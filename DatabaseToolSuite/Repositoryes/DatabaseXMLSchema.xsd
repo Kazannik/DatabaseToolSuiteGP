@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="RepositoryDataSet" targetNamespace="http://tempuri.org/DictionaryXMLSchema.xsd" xmlns:mstns="http://tempuri.org/DictionaryXMLSchema.xsd" xmlns="http://tempuri.org/DictionaryXMLSchema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="RepositoryDataSet" msdata:IsDataSet="true" msdata:Locale="ru" msprop:Generator_DataSetName="RepositoryDataSet" msprop:Generator_UserDSName="RepositoryDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="authority" msdata:CaseSensitive="False" msdata:Locale="ru" msprop:Generator_TableClassName="authorityDataTable" msprop:Generator_TableVarName="tableauthority" msprop:Generator_RowChangedName="authorityRowChanged" msprop:Generator_TablePropName="authority" msprop:Generator_RowDeletingName="authorityRowDeleting" msprop:Generator_RowChangingName="authorityRowChanging" msprop:Generator_RowEvHandlerName="authorityRowChangeEventHandler" msprop:Generator_RowDeletedName="authorityRowDeleted" msprop:Generator_RowClassName="authorityRow" msprop:Generator_UserTableName="authority" msprop:Generator_RowEvArgName="authorityRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" />
+              <xs:element name="code" msdata:ReadOnly="true" msdata:Expression="IIF(LEN(Convert(id, System.String))=1, '0' + Convert(id, System.String), id)" msdata:Caption="Код" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:string" />
+              <xs:element name="name" msdata:Caption="Наименование" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="okato" msdata:Locale="ru" msprop:Generator_TableClassName="okatoDataTable" msprop:Generator_TableVarName="tableokato" msprop:Generator_RowChangedName="okatoRowChanged" msprop:Generator_TablePropName="okato" msprop:Generator_RowDeletingName="okatoRowDeleting" msprop:Generator_RowChangingName="okatoRowChanging" msprop:Generator_RowEvHandlerName="okatoRowChangeEventHandler" msprop:Generator_RowDeletedName="okatoRowDeleted" msprop:Generator_RowClassName="okatoRow" msprop:Generator_UserTableName="okato" msprop:Generator_RowEvArgName="okatoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="code" msdata:ReadOnly="true" msdata:Expression="IIF(LEN(Convert(ter, System.String))=1, '0' + Convert(ter, System.String), ter) + IIF(kod1&gt;0, IIF(LEN(Convert(kod1, System.String))=1, '0' + Convert(kod1, System.String), kod1),'') + ISNULL(lab,'')" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:string" minOccurs="0" />
+              <xs:element name="name" msdata:Caption="Наименование по справочнику ОКАТО" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name" type="xs:string" />
+              <xs:element name="name2" msdata:Caption="Наименование для вывода" msprop:Generator_ColumnVarNameInTable="columnname2" msprop:Generator_ColumnPropNameInRow="name2" msprop:Generator_ColumnPropNameInTable="name2Column" msprop:Generator_UserColumnName="name2" type="xs:string" minOccurs="0" />
+              <xs:element name="centrum" msdata:Caption="Центр" msprop:Generator_ColumnVarNameInTable="columncentrum" msprop:Generator_ColumnPropNameInRow="centrum" msprop:Generator_ColumnPropNameInTable="centrumColumn" msprop:Generator_UserColumnName="centrum" type="xs:string" minOccurs="0" />
+              <xs:element name="genitive" msdata:Caption="Наименование в родительном падеже" msprop:Generator_ColumnVarNameInTable="columngenitive" msprop:Generator_ColumnPropNameInRow="genitive" msprop:Generator_ColumnPropNameInTable="genitiveColumn" msprop:Generator_UserColumnName="genitive" type="xs:string" minOccurs="0" />
+              <xs:element name="ter" msdata:Caption="TER код ОКАТО" msprop:Generator_ColumnVarNameInTable="columnter" msprop:Generator_ColumnPropNameInRow="ter" msprop:Generator_ColumnPropNameInTable="terColumn" msprop:Generator_UserColumnName="ter" type="xs:string" />
+              <xs:element name="kod1" msdata:Caption="KOD1 код ОКАТО" msprop:Generator_ColumnVarNameInTable="columnkod1" msprop:Generator_ColumnPropNameInRow="kod1" msprop:Generator_ColumnPropNameInTable="kod1Column" msprop:Generator_UserColumnName="kod1" type="xs:short" default="0" />
+              <xs:element name="lab" msdata:Caption="Дополнительные знаки" msprop:Generator_ColumnVarNameInTable="columnlab" msprop:Generator_ColumnPropNameInRow="lab" msprop:Generator_ColumnPropNameInTable="labColumn" msprop:Generator_UserColumnName="lab" default="" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="okato" msdata:ReadOnly="true" msdata:Expression="IIF(LEN(Convert(ter, System.String))=1, '0' + Convert(ter, System.String), ter) + IIF(kod1&gt;0, IIF(LEN(Convert(kod1, System.String))=1, '0' + Convert(kod1, System.String), kod1),'')" msdata:Caption="Код ОКАТО" msprop:Generator_ColumnVarNameInTable="columnokato" msprop:Generator_ColumnPropNameInRow="okato" msprop:Generator_ColumnPropNameInTable="okatoColumn" msprop:Generator_UserColumnName="okato" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="gasps" msprop:Generator_TableClassName="gaspsDataTable" msprop:Generator_TableVarName="tablegasps" msprop:Generator_RowChangedName="gaspsRowChanged" msprop:Generator_TablePropName="gasps" msprop:Generator_RowDeletingName="gaspsRowDeleting" msprop:Generator_RowChangingName="gaspsRowChanging" msprop:Generator_RowEvHandlerName="gaspsRowChangeEventHandler" msprop:Generator_RowDeletedName="gaspsRowDeleted" msprop:Generator_RowClassName="gaspsRow" msprop:Generator_UserTableName="gasps" msprop:Generator_RowEvArgName="gaspsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" />
+              <xs:element name="name" msdata:Caption="Наименование" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name" type="xs:string" />
+              <xs:element name="key" msprop:Generator_ColumnVarNameInTable="columnkey" msprop:Generator_ColumnPropNameInRow="key" msprop:Generator_ColumnPropNameInTable="keyColumn" msprop:Generator_UserColumnName="key" type="xs:long" />
+              <xs:element name="okato_code" msprop:Generator_ColumnVarNameInTable="columnokato_code" msprop:Generator_ColumnPropNameInRow="okato_code" msprop:Generator_ColumnPropNameInTable="okato_codeColumn" msprop:Generator_UserColumnName="okato_code" type="xs:string" default="00" />
+              <xs:element name="authority_id" msprop:Generator_ColumnVarNameInTable="columnauthority_id" msprop:Generator_ColumnPropNameInRow="authority_id" msprop:Generator_ColumnPropNameInTable="authority_idColumn" msprop:Generator_UserColumnName="authority_id" type="xs:long" />
+              <xs:element name="code" msdata:Caption="Код подразделения" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:string" />
+              <xs:element name="version" msdata:Caption="Версия" msprop:Generator_ColumnVarNameInTable="columnversion" msprop:Generator_ColumnPropNameInRow="version" msprop:Generator_ColumnPropNameInTable="versionColumn" msprop:Generator_UserColumnName="version" type="xs:long" />
+              <xs:element name="index" msprop:Generator_ColumnVarNameInTable="columnindex" msprop:Generator_ColumnPropNameInRow="index" msprop:Generator_ColumnPropNameInTable="indexColumn" msprop:Generator_UserColumnName="index" type="xs:long" minOccurs="0" />
+              <xs:element name="owner_id" msprop:Generator_ColumnVarNameInTable="columnowner_id" msprop:Generator_ColumnPropNameInRow="owner_id" msprop:Generator_ColumnPropNameInTable="owner_idColumn" msprop:Generator_UserColumnName="owner_id" type="xs:long" />
+              <xs:element name="date_beg" msdata:Caption="Дата начала" msprop:Generator_ColumnVarNameInTable="columndate_beg" msprop:Generator_ColumnPropNameInRow="date_beg" msprop:Generator_ColumnPropNameInTable="date_begColumn" msprop:Generator_UserColumnName="date_beg" type="xs:dateTime" />
+              <xs:element name="date_end" msdata:Caption="Дата окончания" msprop:Generator_ColumnVarNameInTable="columndate_end" msprop:Generator_ColumnPropNameInRow="date_end" msprop:Generator_ColumnPropNameInTable="date_endColumn" msprop:Generator_UserColumnName="date_end" type="xs:dateTime" />
+              <xs:element name="location_okato_id" msprop:Generator_ColumnVarNameInTable="columnlocation_okato_id" msprop:Generator_ColumnPropNameInRow="location_okato_id" msprop:Generator_ColumnPropNameInTable="location_okato_idColumn" msprop:Generator_UserColumnName="location_okato_id" type="xs:long" minOccurs="0" />
+              <xs:element name="another_okato_id" msprop:Generator_ColumnVarNameInTable="columnanother_okato_id" msprop:Generator_ColumnPropNameInRow="another_okato_id" msprop:Generator_ColumnPropNameInTable="another_okato_idColumn" msprop:Generator_UserColumnName="another_okato_id" type="xs:long" minOccurs="0" />
+              <xs:element name="court_type_id" msprop:Generator_ColumnVarNameInTable="columncourt_type_id" msprop:Generator_ColumnPropNameInRow="court_type_id" msprop:Generator_ColumnPropNameInTable="court_type_idColumn" msprop:Generator_UserColumnName="court_type_id" type="xs:long" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="court_type" msprop:Generator_TableClassName="court_typeDataTable" msprop:Generator_TableVarName="tablecourt_type" msprop:Generator_RowChangedName="court_typeRowChanged" msprop:Generator_TablePropName="court_type" msprop:Generator_RowDeletingName="court_typeRowDeleting" msprop:Generator_RowChangingName="court_typeRowChanging" msprop:Generator_RowEvHandlerName="court_typeRowChangeEventHandler" msprop:Generator_RowDeletedName="court_typeRowDeleted" msprop:Generator_RowClassName="court_typeRow" msprop:Generator_UserTableName="court_type" msprop:Generator_RowEvArgName="court_typeRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" />
+              <xs:element name="name" msdata:Caption="Наименование" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="fgis_esnsi" msprop:Generator_TableClassName="fgis_esnsiDataTable" msprop:Generator_TableVarName="tablefgis_esnsi" msprop:Generator_RowChangedName="fgis_esnsiRowChanged" msprop:Generator_TablePropName="fgis_esnsi" msprop:Generator_RowDeletingName="fgis_esnsiRowDeleting" msprop:Generator_RowChangingName="fgis_esnsiRowChanging" msprop:Generator_RowEvHandlerName="fgis_esnsiRowChangeEventHandler" msprop:Generator_RowDeletedName="fgis_esnsiRowDeleted" msprop:Generator_RowClassName="fgis_esnsiRow" msprop:Generator_UserTableName="fgis_esnsi" msprop:Generator_RowEvArgName="fgis_esnsiRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="version" msdata:Caption="Версия" msprop:Generator_ColumnVarNameInTable="columnversion" msprop:Generator_ColumnPropNameInRow="version" msprop:Generator_ColumnPropNameInTable="versionColumn" msprop:Generator_UserColumnName="version" type="xs:long" />
+              <xs:element name="region_id" msdata:Caption="Регион" msprop:Generator_ColumnVarNameInTable="columnregion_id" msprop:Generator_ColumnPropNameInRow="region_id" msprop:Generator_ColumnPropNameInTable="region_idColumn" msprop:Generator_UserColumnName="region_id" type="xs:long" minOccurs="0" />
+              <xs:element name="sv_0004" msdata:Caption="Телефон канцелярии" msprop:Generator_ColumnVarNameInTable="columnsv_0004" msprop:Generator_ColumnPropNameInRow="sv_0004" msprop:Generator_ColumnPropNameInTable="sv_0004Column" msprop:Generator_UserColumnName="sv_0004" type="xs:string" minOccurs="0" />
+              <xs:element name="sv_0005" msdata:Caption="Электронный адрес канцелярии" msprop:Generator_ColumnVarNameInTable="columnsv_0005" msprop:Generator_ColumnPropNameInRow="sv_0005" msprop:Generator_ColumnPropNameInTable="sv_0005Column" msprop:Generator_UserColumnName="sv_0005" type="xs:string" minOccurs="0" />
+              <xs:element name="sv_0006" msdata:Caption="Адрес приемной" msprop:Generator_ColumnVarNameInTable="columnsv_0006" msprop:Generator_ColumnPropNameInRow="sv_0006" msprop:Generator_ColumnPropNameInTable="sv_0006Column" msprop:Generator_UserColumnName="sv_0006" type="xs:string" minOccurs="0" />
+              <xs:element name="okato" msdata:Caption="esnsi_okato" msprop:Generator_ColumnVarNameInTable="columnokato" msprop:Generator_ColumnPropNameInRow="okato" msprop:Generator_ColumnPropNameInTable="okatoColumn" msprop:Generator_UserColumnName="okato" type="xs:short" minOccurs="0" />
+              <xs:element name="code" msdata:Caption="esnsi_code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:long" minOccurs="0" />
+              <xs:element name="autokey" msdata:Caption="esnsi_autokey" msprop:Generator_ColumnVarNameInTable="columnautokey" msprop:Generator_ColumnPropNameInRow="autokey" msprop:Generator_ColumnPropNameInTable="autokeyColumn" msprop:Generator_UserColumnName="autokey" type="xs:string" minOccurs="0" />
+              <xs:element name="id" msdata:Caption="esnsi_id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="authority_key" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:authority" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="Constraint1">
+      <xs:selector xpath=".//mstns:authority" />
+      <xs:field xpath="mstns:name" />
+    </xs:unique>
+    <xs:unique name="gasps_key" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:gasps" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="Constraint4">
+      <xs:selector xpath=".//mstns:gasps" />
+      <xs:field xpath="mstns:version" />
+    </xs:unique>
+    <xs:unique name="court_type_key" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:court_type" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="court_type_Constraint1" msdata:ConstraintName="Constraint1">
+      <xs:selector xpath=".//mstns:court_type" />
+      <xs:field xpath="mstns:name" />
+    </xs:unique>
+    <xs:unique name="fgis_esnsi_Constraint4" msdata:ConstraintName="Constraint4">
+      <xs:selector xpath=".//mstns:fgis_esnsi" />
+      <xs:field xpath="mstns:version" />
+    </xs:unique>
+    <xs:keyref name="FK_authority_gasps" refer="authority_key" msprop:rel_Generator_UserChildTable="gasps" msprop:rel_Generator_ChildPropName="GetgaspsRows" msprop:rel_Generator_UserRelationName="FK_authority_gasps" msprop:rel_Generator_ParentPropName="authorityRow" msprop:rel_Generator_RelationVarName="relationFK_authority_gasps" msprop:rel_Generator_UserParentTable="authority">
+      <xs:selector xpath=".//mstns:gasps" />
+      <xs:field xpath="mstns:authority_id" />
+    </xs:keyref>
+    <xs:keyref name="FK_court_type_gasps" refer="court_type_key" msprop:rel_Generator_UserChildTable="gasps" msprop:rel_Generator_ChildPropName="GetgaspsRows" msprop:rel_Generator_UserRelationName="FK_court_type_gasps" msprop:rel_Generator_RelationVarName="relationFK_court_type_gasps" msprop:rel_Generator_UserParentTable="court_type" msprop:rel_Generator_ParentPropName="court_typeRow">
+      <xs:selector xpath=".//mstns:gasps" />
+      <xs:field xpath="mstns:court_type_id" />
+    </xs:keyref>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="FK_okato_gasps" msdata:parent="okato" msdata:child="gasps" msdata:parentkey="code" msdata:childkey="okato_code" msprop:Generator_UserChildTable="gasps" msprop:Generator_ChildPropName="GetgaspsRows" msprop:Generator_UserRelationName="FK_okato_gasps" msprop:Generator_ParentPropName="okatoRow" msprop:Generator_RelationVarName="relationFK_okato_gasps" msprop:Generator_UserParentTable="okato" />
+      <msdata:Relationship name="fgis_esnsi_gasps" msdata:parent="gasps" msdata:child="fgis_esnsi" msdata:parentkey="version" msdata:childkey="version" msprop:Generator_UserChildTable="fgis_esnsi" msprop:Generator_ChildPropName="Getfgis_esnsiRows" msprop:Generator_UserRelationName="fgis_esnsi_gasps" msprop:Generator_ParentPropName="gaspsRow" msprop:Generator_RelationVarName="relationfgis_esnsi_gasps" msprop:Generator_UserParentTable="gasps" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

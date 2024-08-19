@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DatabaseToolSuite.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DatabaseFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">gasps.xml</Value>
+    </Setting>
+    <Setting Name="RescueDatabaseFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">gasps.xml.rescue</Value>
+    </Setting>
+    <Setting Name="AppWindowWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">900</Value>
+    </Setting>
+    <Setting Name="AppWindowHight" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">600</Value>
+    </Setting>
+    <Setting Name="DialogWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">740</Value>
+    </Setting>
+    <Setting Name="DialogHight" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">580</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
