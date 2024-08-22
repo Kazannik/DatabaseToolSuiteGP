@@ -13,13 +13,14 @@ namespace DatabaseToolSuite.Controls
     public partial class GaspsListView : UserControl
     {
         private RepositoryDataSet _dataSet;
-        private IList<ViewFgisEsnsiOrganization> itemsCollection;
+        private IList<ViewErvkOrganization> itemsCollection;
         private ListViewItem[] itemsCache;
         private int firstItemIndex;
 
         private bool _lockShow;
         private bool _reserveShow;
         private bool _unlockShow;
+        private bool _ervkOnlyShow;
         private long? _authority;
         private string _okato;
         private string _code;
@@ -38,11 +39,12 @@ namespace DatabaseToolSuite.Controls
 
         public GaspsListView()
         {
-            itemsCollection = new List<ViewFgisEsnsiOrganization>();
+            itemsCollection = new List<ViewErvkOrganization>();
 
             _lockShow = false;
             _reserveShow = true;
             _unlockShow = true;
+            _ervkOnlyShow = false;
 
             _authority = (long?)null;
             _okato = string.Empty;
@@ -58,7 +60,8 @@ namespace DatabaseToolSuite.Controls
                 name: _name,
                 unlockShow: _unlockShow,
                 reserveShow: _reserveShow,
-                lockShow: _lockShow);
+                lockShow: _lockShow,
+                ervkOnlyShow: _ervkOnlyShow);
 
             DetailsUpdate();
         }
@@ -82,7 +85,8 @@ namespace DatabaseToolSuite.Controls
                         name: _name,
                         unlockShow: _unlockShow,
                         reserveShow: _reserveShow,
-                        lockShow: _lockShow);
+                        lockShow: _lockShow,
+                        ervkOnlyShow: _ervkOnlyShow);
 
                     DetailsUpdate();
                 }
@@ -91,7 +95,7 @@ namespace DatabaseToolSuite.Controls
 
         public gaspsRow DataRow { get; private set; }
         
-        public ViewFgisEsnsiOrganization SelectedOrganization
+        public ViewErvkOrganization SelectedOrganization
         {
             get
             {
@@ -154,12 +158,28 @@ namespace DatabaseToolSuite.Controls
             }
         }
 
+        public bool ErvkOnlyShow
+        {
+            get
+            {
+                return _ervkOnlyShow;
+            }
+            set
+            {
+                if (_ervkOnlyShow != value)
+                {
+                    _ervkOnlyShow = value;
+                    OnErvkOnlyVisibleChanged(new EventArgs());
+                }
+            }
+        }
+
         public int RowCount
         {
             get { return itemsCollection.Count; }
         }
 
-        public void SetFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
+        public void SetFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow, bool ervkOnlyShow)
         {
             InitializeFilter(dataSet: DataSet,
                 authority: authority,
@@ -168,30 +188,32 @@ namespace DatabaseToolSuite.Controls
                 name: name,
                 unlockShow: unlockShow,
                 reserveShow: reserveShow,
-                lockShow: lockShow);
+                lockShow: lockShow,
+                ervkOnlyShow: ervkOnlyShow);
             
         }
 
-        private void InitializeFilter(RepositoryDataSet dataSet, long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
+        private void InitializeFilter(RepositoryDataSet dataSet, long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow, bool ervkOnlyShow)
         {
             if (dataSet == null) return;
 
             baseListView.BeginUpdate();
 
             int selectedIndex = baseListView.SelectedIndices.Count > 0 ? baseListView.SelectedIndices[0] : 0;
-            ViewFgisEsnsiOrganization selectedOrganization = itemsCollection.Count > 0 ? itemsCollection[selectedIndex] : null;
+            ViewErvkOrganization selectedOrganization = itemsCollection.Count > 0 ? itemsCollection[selectedIndex] : null;
 
             baseListView.VirtualMode = true;
             itemsCache = null;
 
-            itemsCollection = dataSet.gasps.GetFullOrganizationFilter(
+            itemsCollection = dataSet.gasps.GetErvkOrganizationFilter(
                 authority: authority,
                 okato: okato,
                 code: code,
                 name: name,
                 unlockShow: unlockShow,
                 reserveShow: reserveShow,
-                lockShow: lockShow);
+                lockShow: lockShow,
+                ervkOnlyShow: ervkOnlyShow);
 
             baseListView.VirtualListSize = itemsCollection.Count();
 
@@ -220,7 +242,7 @@ namespace DatabaseToolSuite.Controls
             }
             else
             {
-                ViewFgisEsnsiOrganization newOrganization = itemsCollection[baseListView.SelectedIndices[0]];
+                ViewErvkOrganization newOrganization = itemsCollection[baseListView.SelectedIndices[0]];
                 if (DataRow ==null ||
                     DataRow.version != newOrganization.Version)
                 {
@@ -259,7 +281,7 @@ namespace DatabaseToolSuite.Controls
             }
         }
 
-        private ListViewItem CreateListViewItem(ViewFgisEsnsiOrganization organization)
+        private ListViewItem CreateListViewItem(ViewErvkOrganization organization)
         {
             ListViewItem item = new ListViewItem(organization.Code);
 
@@ -303,7 +325,7 @@ namespace DatabaseToolSuite.Controls
         {
             if (itemsCollection.Count == 0) return;
             int selectedIndex = baseListView.SelectedIndices.Count > 0 ? baseListView.SelectedIndices[0] : 0;
-            ViewFgisEsnsiOrganization organization = itemsCollection[selectedIndex];
+            ViewErvkOrganization organization = itemsCollection[selectedIndex];
 
             UpdateListViewItem(
                 name: organization.Name,
@@ -320,7 +342,18 @@ namespace DatabaseToolSuite.Controls
                 okatoCode: okatoCode,
                 key: organization.Key,
                 ownerId: organization.OwnerId,
-                ownerName: organization.OwnerName);           
+                ownerName: organization.OwnerName,
+                esnsiCode: organization.EsnsiCode,
+                isHead: organization.IsHead,
+                special: organization.Special,
+                military: organization.Military,
+                isActive: organization.IsActive,
+                idVersionProc: organization.IdVersionProc,
+                idVersionHead: organization.IdVersionHead,
+                dateStartVersion: organization.DateStartVersion,
+                dateCloseProc: organization.DateCloseProc,
+                ogrn: organization.Ogrn,
+                inn: organization.Inn);           
         }
 
         public void UpdateListViewItem(
@@ -338,12 +371,24 @@ namespace DatabaseToolSuite.Controls
             string okatoCode,
             long key,
             long ownerId,
-            string ownerName)
+            string ownerName,
+            long esnsiCode,
+            bool isHead,
+            bool special,
+            bool military,
+            bool isActive,
+            string idVersionProc,
+            long idVersionHead,
+            DateTime dateStartVersion,
+            DateTime dateCloseProc,
+            string ogrn,
+            string inn
+            )
         {
             if (itemsCollection.Count == 0) return;
             int selectedIndex = baseListView.SelectedIndices.Count > 0 ? baseListView.SelectedIndices[0] : 0;
-            ViewFgisEsnsiOrganization organization = itemsCollection[selectedIndex];
-            itemsCollection[selectedIndex] = new ViewFgisEsnsiOrganization(
+            ViewErvkOrganization organization = itemsCollection[selectedIndex];
+            itemsCollection[selectedIndex] = new ViewErvkOrganization(
                 name: name,
                 authority: authority,
                 okato: okato,
@@ -358,7 +403,18 @@ namespace DatabaseToolSuite.Controls
                 okatoCode: okatoCode,
                 key: key,
                 ownerId: ownerId,
-                ownerName: ownerName);
+                ownerName: ownerName,
+                esnsiCode: esnsiCode,
+                isHead: isHead,
+                special: special,
+                military: military,
+                isActive: isActive,
+                idVersionProc: idVersionProc,
+                idVersionHead: idVersionHead,
+                dateStartVersion: dateStartVersion,
+                dateCloseProc: dateCloseProc,
+                ogrn: ogrn,
+                inn: inn);
             UpdateListViewItem();
         }
 
@@ -367,8 +423,8 @@ namespace DatabaseToolSuite.Controls
             if (itemsCollection.Count == 0) return;
             int selectedIndex = baseListView.SelectedIndices.Count > 0 ? baseListView.SelectedIndices[0] : 0;
             long version = itemsCollection[selectedIndex].Version;
-            itemsCollection[selectedIndex] = _dataSet.gasps.GetFgisEsnsiOrganization(version);
-            ViewFgisEsnsiOrganization organization = itemsCollection[selectedIndex];
+            itemsCollection[selectedIndex] = _dataSet.gasps.GetErvkOrganization(version);
+            ViewErvkOrganization organization = itemsCollection[selectedIndex];
             ListViewItem item = itemsCache[selectedIndex - firstItemIndex];
 
             if (organization.Begin > DateTime.Today)
@@ -413,7 +469,7 @@ namespace DatabaseToolSuite.Controls
             baseListView.BeginUpdate();
 
             int selectedIndex = baseListView.SelectedIndices.Count > 0 ? baseListView.SelectedIndices[0] : 0;
-            ViewFgisEsnsiOrganization selectedOrganization = itemsCollection[selectedIndex];
+            ViewErvkOrganization selectedOrganization = itemsCollection[selectedIndex];
 
             if (baseListView.Columns[e.Column].Tag == null ||
                 baseListView.Columns[e.Column].Tag.ToString() == "UP")
@@ -483,6 +539,7 @@ namespace DatabaseToolSuite.Controls
         public event EventHandler LockVisibleChanged;
         public event EventHandler ReserveVisibleChanged;
         public event EventHandler UnlockVisibleChanged;
+        public event EventHandler ErvkOnlyVisibleChanged;
 
         public event EventHandler<GaspsListViewEventArgs> ItemMouseClick;
         public event EventHandler<GaspsListViewEventArgs> ItemMouseDoubleClick;
@@ -511,6 +568,12 @@ namespace DatabaseToolSuite.Controls
             UnlockVisibleChanged?.Invoke(this, e);
         }
 
+        protected virtual void OnErvkOnlyVisibleChanged(EventArgs e)
+        {
+            ControlsValueChanged();
+            ErvkOnlyVisibleChanged?.Invoke(this, e);
+        }
+
         protected virtual void OnItemMouseClick(GaspsListViewEventArgs e)
         {
             ItemMouseClick?.Invoke(this, e);
@@ -531,7 +594,8 @@ namespace DatabaseToolSuite.Controls
                 name: _name,
                 unlockShow: _unlockShow,
                 reserveShow: _reserveShow,
-                lockShow: _lockShow);
+                lockShow: _lockShow,
+                ervkOnlyShow: _ervkOnlyShow);
             DetailsUpdate();
         }
 

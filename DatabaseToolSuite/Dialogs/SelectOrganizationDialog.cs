@@ -111,7 +111,7 @@ namespace DatabaseToolSuite.Dialogs
             }
             else
             {
-                rowsCollection = dataSet.gasps.GetOrganizationFilter(
+                rowsCollection = dataSet.gasps.GetGaspsOrganizationFilter(
                     authority: authority,
                     okato: filterOkatoComboBox.Code,
                     code: filterCodeNumericTextBox.Text,

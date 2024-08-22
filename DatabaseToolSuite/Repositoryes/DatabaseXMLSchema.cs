@@ -234,9 +234,9 @@ namespace DatabaseToolSuite.Repositoryes
                        select item.version;
             }
 
-            public IList<gaspsRow> GetOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
+            public IList<gaspsRow> GetGaspsOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
             {
-                return _GetOrganizationFilter(authority: authority,
+                return _GetGaspsOrganizationFilter(authority: authority,
                     okato: okato,
                     code: code,
                     name: name,
@@ -245,7 +245,7 @@ namespace DatabaseToolSuite.Repositoryes
                     lockShow: lockShow).ToList();
             }
 
-            private IEnumerable<gaspsRow> _GetOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
+            private IEnumerable<gaspsRow> _GetGaspsOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
             {
                 IEnumerable<gaspsRow> result = this.AsEnumerable()
                     .OrderBy(x => x.version).OrderBy(x => x.code);
@@ -293,9 +293,9 @@ namespace DatabaseToolSuite.Repositoryes
                 return result;
             }
 
-            public IList<ViewFgisEsnsiOrganization> GetFullOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
+            public IList<ViewFgisEsnsiOrganization> GetFgisEsnsiOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
             {
-                return _GetFullOrganizationFilter(authority: authority,
+                return _GetFgisEsnsiOrganizationFilter(authority: authority,
                     okato: okato,
                     code: code,
                     name: name,
@@ -304,7 +304,7 @@ namespace DatabaseToolSuite.Repositoryes
                     lockShow: lockShow).ToList();
             }
 
-            private IEnumerable<ViewFgisEsnsiOrganization> _GetFullOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
+            private IEnumerable<ViewFgisEsnsiOrganization> _GetFgisEsnsiOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
             {
                 IEnumerable<ViewFgisEsnsiOrganization> result = GetFgisEsnsiOrganizations()
                     .OrderBy(x => x.Version).OrderBy(x => x.Code);
@@ -351,6 +351,74 @@ namespace DatabaseToolSuite.Repositoryes
 
                 return result;
             }
+
+
+
+
+            public IList<ViewErvkOrganization> GetErvkOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow, bool ervkOnlyShow)
+            {
+                return _GetErvkOrganizationFilter(authority: authority,
+                    okato: okato,
+                    code: code,
+                    name: name,
+                    unlockShow: unlockShow,
+                    reserveShow: reserveShow,
+                    lockShow: lockShow,
+                    ervkOnlyShow: ervkOnlyShow).ToList();
+            }
+
+            private IEnumerable<ViewErvkOrganization> _GetErvkOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow, bool ervkOnlyShow)
+            {
+                IEnumerable<ViewErvkOrganization> result = GetErvkOrganizations()
+                    .OrderBy(x => x.Version).OrderBy(x => x.Code);
+
+                if (!unlockShow)
+                {
+                    result = result
+                        .Where(x => (
+                    (x.End < DateTime.Now || x.Begin >= DateTime.Today))
+                    );
+                }
+
+                if (!reserveShow)
+                {
+                    result = result
+                    .Where(x => x.Begin < DateTime.Today);
+                }
+
+                if (!lockShow)
+                {
+                    result = result
+                    .Where(x => x.End > DateTime.Today);
+                }
+
+                if (authority.HasValue)
+                {
+                    result = result.Where(x => x.AuthorityId == authority.Value);
+                }
+
+                if (!string.IsNullOrWhiteSpace(okato))
+                {
+                    result = result.Where(x => x.OkatoCode.Equals(okato, StringComparison.OrdinalIgnoreCase));
+                }
+
+                if (!string.IsNullOrWhiteSpace(code))
+                {
+                    result = result.Where(x => x.Code.Contains(code));
+                }
+
+                if (!string.IsNullOrWhiteSpace(name))
+                {
+                    result = result.Where(x => x.Name.ToLower().Contains(name.ToLower()));
+                }
+
+                return result;
+            }
+
+
+
+
+
 
             public IEnumerable<gaspsRow> GetOwnerOrganization()
             {
@@ -709,7 +777,6 @@ namespace DatabaseToolSuite.Repositoryes
                            ownerName: ownerName);
             }
 
-
             public IEnumerable<ViewFgisEsnsiOrganization> GetFgisEsnsiOrganizations()
             {
                 EnumerableRowCollection<gaspsRow> gasps = this.Where(e => e.RowState != DataRowState.Deleted);
@@ -740,8 +807,9 @@ namespace DatabaseToolSuite.Repositoryes
                            ownerId: row.owner_id,
                            ownerName: owner.name);
             }
+        
 
-                        
+
             public class ViewErvkOrganization : ViewFgisEsnsiOrganization
             {
                 [Description("ИД ЕСНСИ")]
@@ -843,7 +911,7 @@ namespace DatabaseToolSuite.Repositoryes
                 }
             }
 
-            public ViewFgisEsnsiOrganization GetErvkOrganization(long version)
+            public ViewErvkOrganization GetErvkOrganization(long version)
             {
                 gaspsRow gasps = this.GetOrganizationFromVersion(version);
                 string authority_name = authorityTable.GetName(gasps.authority_id);
@@ -880,7 +948,6 @@ namespace DatabaseToolSuite.Repositoryes
                            ogrn: ervk.IsogrnNull() ? string.Empty : ervk.ogrn,
                            inn: ervk.IsinnNull() ? string.Empty : ervk.inn);
             }
-
 
             public IEnumerable<ViewErvkOrganization> GetErvkOrganizations()
             {

@@ -18,13 +18,13 @@ namespace DatabaseToolSuite.Dialogs
 
             DisableControl();
 
-            if (Services.FileSystem.DefaultDatabaseFileExists())
-                Services.FileSystem.ReadDatabase();
+            if (FileSystem.DefaultDatabaseFileExists())
+                FileSystem.ReadDatabase();
 
-            gaspsListView.DataSet = Services.FileSystem.Repository.DataSet;
+            gaspsListView.DataSet = FileSystem.Repository.DataSet;
 
-            filterOkatoComboBox.InitializeSource(Services.FileSystem.Repository.DataSet.okato);
-            filterAuthorityComboBox.InitializeSource(Services.FileSystem.Repository.DataSet.authority);
+            filterOkatoComboBox.InitializeSource(FileSystem.Repository.DataSet.okato);
+            filterAuthorityComboBox.InitializeSource(FileSystem.Repository.DataSet.authority);
             rowCountStatusLabel.Text = string.Format("Отражено записей {0}", gaspsListView.RowCount);
         }
 
@@ -71,8 +71,7 @@ namespace DatabaseToolSuite.Dialogs
             mnuTableErvkRemove.Enabled = false;
             mnuTableErvkRemoveButton.Enabled = false;
         }
-
-
+        
         bool isFilter = true;
 
         private void Filter_ParametersChanged(object sender, EventArgs e)
@@ -85,7 +84,8 @@ namespace DatabaseToolSuite.Dialogs
                 name: filterNameTextBox.Text,
                 unlockShow: true,
                 reserveShow: true,
-                lockShow: filterLockCodeViewCheckBox.Checked);
+                lockShow: filterLockCodeViewCheckBox.Checked,
+                ervkOnlyShow: filterErvkOnlyViewCheckBox.Checked);
                 rowCountStatusLabel.Text = string.Format("Отражено записей {0}", gaspsListView.RowCount);
            }
         }
@@ -105,7 +105,8 @@ namespace DatabaseToolSuite.Dialogs
                name: filterNameTextBox.Text,
                unlockShow: true,
                reserveShow: true,
-               lockShow: filterLockCodeViewCheckBox.Checked);
+               lockShow: filterLockCodeViewCheckBox.Checked,
+               ervkOnlyShow: filterErvkOnlyViewCheckBox.Checked);
             rowCountStatusLabel.Text = string.Format("Отражено записей {0}", gaspsListView.RowCount);
         }
 
@@ -254,8 +255,7 @@ namespace DatabaseToolSuite.Dialogs
                 gaspsListView.UpdateListViewItem();
             }
         }
-
-
+        
         private void TableEditError_Click(object sender, EventArgs e)
         {
             EditErrorDialog dialog = new EditErrorDialog(gaspsListView.DataRow);
@@ -411,7 +411,8 @@ namespace DatabaseToolSuite.Dialogs
                 if (dialog.FilterIndex == 1)
                 {
                     Export.ExportToXml(dialog.FileName);
-                } else if (dialog.FilterIndex == 2)
+                }
+                else if (dialog.FilterIndex == 2)
                 {
                     Export.ExportFgisEsnsiToCsv(dialog.FileName);
                 }
