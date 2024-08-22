@@ -59,11 +59,19 @@
             this.mnuTableFgisEsnsiEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTableFgisEsnsiCloneToLast = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTableFgisEsnsiRemove = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem15 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuTableErvkEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuTableErvkCloneToLast = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuTableErvkRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTools = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuToolsImportFgisEsnsi = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuToolsServise = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuToolsCreateNewVersion = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuToolsEditError = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuToolsFillLogEditDateGasps = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuToolsFillLogEditDateFgisEsnsi = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuToolsFillLogEditDateErvk = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHelpStatistic = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
@@ -74,14 +82,11 @@
             this.filterPanel = new System.Windows.Forms.Panel();
             this.filterGroupBox = new System.Windows.Forms.GroupBox();
             this.cleanFilterButton = new System.Windows.Forms.Button();
-            this.filterCodeNumericTextBox = new DatabaseToolSuite.Controls.NumericTextBox(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.filterNameTextBox = new System.Windows.Forms.TextBox();
             this.filterLockCodeViewCheckBox = new System.Windows.Forms.CheckBox();
             this.okatoLabel = new System.Windows.Forms.Label();
-            this.filterAuthorityComboBox = new DatabaseToolSuite.Controls.AuthorityComboBox();
-            this.filterOkatoComboBox = new DatabaseToolSuite.Controls.OkatoComboBox();
             this.authorityLabel = new System.Windows.Forms.Label();
             this.contextMenuTable = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuContextNewOrganization = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,6 +101,9 @@
             this.mnuContextFgisEsnsiEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuContextFgisEsnsiCloneToLast = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuContextErvkEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuContextErvkCloneToLast = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuContextUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.mainToolStripBar = new System.Windows.Forms.ToolStrip();
             this.fileSaveButton = new System.Windows.Forms.ToolStripButton();
@@ -111,9 +119,16 @@
             this.mnuTableFgisEsnsiCloneToLastButton = new System.Windows.Forms.ToolStripButton();
             this.mnuTableFgisEsnsiRemoveButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuTableErvkEditButton = new System.Windows.Forms.ToolStripButton();
+            this.mnuTableErvkCloneToLastButton = new System.Windows.Forms.ToolStripButton();
+            this.mnuTableErvkRemoveButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuTableRefreshButton = new System.Windows.Forms.ToolStripButton();
-            this.gaspsListView = new DatabaseToolSuite.Controls.GaspsListView2();
-            this.mnuToolsEditError = new System.Windows.Forms.ToolStripMenuItem();
+            this.filterErvkOnlyViewCheckBox = new System.Windows.Forms.CheckBox();
+            this.gaspsListView = new DatabaseToolSuite.Controls.GaspsListView();
+            this.filterCodeNumericTextBox = new DatabaseToolSuite.Controls.NumericTextBox(this.components);
+            this.filterAuthorityComboBox = new DatabaseToolSuite.Controls.AuthorityComboBox();
+            this.filterOkatoComboBox = new DatabaseToolSuite.Controls.OkatoComboBox();
             this.mainMenuStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.filterPanel.SuspendLayout();
@@ -272,7 +287,11 @@
             this.toolStripMenuItem11,
             this.mnuTableFgisEsnsiEdit,
             this.mnuTableFgisEsnsiCloneToLast,
-            this.mnuTableFgisEsnsiRemove});
+            this.mnuTableFgisEsnsiRemove,
+            this.toolStripMenuItem15,
+            this.mnuTableErvkEdit,
+            this.mnuTableErvkCloneToLast,
+            this.mnuTableErvkRemove});
             this.mnuTable.Name = "mnuTable";
             this.mnuTable.Size = new System.Drawing.Size(246, 27);
             this.mnuTable.Text = "Справочник подразделений";
@@ -361,6 +380,32 @@
             this.mnuTableFgisEsnsiRemove.Text = "Удалить запись ФГИС ЕСНСИ";
             this.mnuTableFgisEsnsiRemove.Click += new System.EventHandler(this.FgisEsnsiRemove_Click);
             // 
+            // toolStripMenuItem15
+            // 
+            this.toolStripMenuItem15.Name = "toolStripMenuItem15";
+            this.toolStripMenuItem15.Size = new System.Drawing.Size(604, 6);
+            // 
+            // mnuTableErvkEdit
+            // 
+            this.mnuTableErvkEdit.Name = "mnuTableErvkEdit";
+            this.mnuTableErvkEdit.Size = new System.Drawing.Size(607, 30);
+            this.mnuTableErvkEdit.Text = "Запись ЕРВК...";
+            this.mnuTableErvkEdit.Click += new System.EventHandler(this.ErvkEdit_Click);
+            // 
+            // mnuTableErvkCloneToLast
+            // 
+            this.mnuTableErvkCloneToLast.Name = "mnuTableErvkCloneToLast";
+            this.mnuTableErvkCloneToLast.Size = new System.Drawing.Size(607, 30);
+            this.mnuTableErvkCloneToLast.Text = "Копировать запись ЕРВК в действующую версию записи";
+            this.mnuTableErvkCloneToLast.Click += new System.EventHandler(this.ErvkCloneToLast_Click);
+            // 
+            // mnuTableErvkRemove
+            // 
+            this.mnuTableErvkRemove.Name = "mnuTableErvkRemove";
+            this.mnuTableErvkRemove.Size = new System.Drawing.Size(607, 30);
+            this.mnuTableErvkRemove.Text = "Удалить запись ЕРВК";
+            this.mnuTableErvkRemove.Click += new System.EventHandler(this.ErvkRemove_Click);
+            // 
             // mnuTools
             // 
             this.mnuTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -387,7 +432,10 @@
             // 
             this.mnuToolsServise.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuToolsCreateNewVersion,
-            this.mnuToolsEditError});
+            this.mnuToolsEditError,
+            this.mnuToolsFillLogEditDateGasps,
+            this.mnuToolsFillLogEditDateFgisEsnsi,
+            this.mnuToolsFillLogEditDateErvk});
             this.mnuToolsServise.Name = "mnuToolsServise";
             this.mnuToolsServise.Size = new System.Drawing.Size(333, 28);
             this.mnuToolsServise.Text = "Сервисные команды";
@@ -396,9 +444,38 @@
             // 
             this.mnuToolsCreateNewVersion.Image = global::DatabaseToolSuite.Properties.Resources.Duplicate24;
             this.mnuToolsCreateNewVersion.Name = "mnuToolsCreateNewVersion";
-            this.mnuToolsCreateNewVersion.Size = new System.Drawing.Size(443, 30);
+            this.mnuToolsCreateNewVersion.Size = new System.Drawing.Size(607, 30);
             this.mnuToolsCreateNewVersion.Text = "Аварийное создание новой версии записи...";
             this.mnuToolsCreateNewVersion.Click += new System.EventHandler(this.TableCreateVersion_Click);
+            // 
+            // mnuToolsEditError
+            // 
+            this.mnuToolsEditError.Image = global::DatabaseToolSuite.Properties.Resources.Edit24;
+            this.mnuToolsEditError.Name = "mnuToolsEditError";
+            this.mnuToolsEditError.Size = new System.Drawing.Size(607, 30);
+            this.mnuToolsEditError.Text = "Аварийное исправление ошибки...";
+            this.mnuToolsEditError.Click += new System.EventHandler(this.TableEditError_Click);
+            // 
+            // mnuToolsFillLogEditDateGasps
+            // 
+            this.mnuToolsFillLogEditDateGasps.Name = "mnuToolsFillLogEditDateGasps";
+            this.mnuToolsFillLogEditDateGasps.Size = new System.Drawing.Size(607, 30);
+            this.mnuToolsFillLogEditDateGasps.Text = "Автозаполнение журнала редактирования записей ГАС ПС";
+            this.mnuToolsFillLogEditDateGasps.Click += new System.EventHandler(this.ToolsFillLogEditDateGasps_Click);
+            // 
+            // mnuToolsFillLogEditDateFgisEsnsi
+            // 
+            this.mnuToolsFillLogEditDateFgisEsnsi.Name = "mnuToolsFillLogEditDateFgisEsnsi";
+            this.mnuToolsFillLogEditDateFgisEsnsi.Size = new System.Drawing.Size(607, 30);
+            this.mnuToolsFillLogEditDateFgisEsnsi.Text = "Автозаполнение журнала редактирования записей ФГИС ЕСНСИ";
+            this.mnuToolsFillLogEditDateFgisEsnsi.Click += new System.EventHandler(this.ToolsFillLogEditDateFgisEsnsi_Click);
+            // 
+            // mnuToolsFillLogEditDateErvk
+            // 
+            this.mnuToolsFillLogEditDateErvk.Name = "mnuToolsFillLogEditDateErvk";
+            this.mnuToolsFillLogEditDateErvk.Size = new System.Drawing.Size(607, 30);
+            this.mnuToolsFillLogEditDateErvk.Text = "Автозаполнение журнала редактирования записей ЕРВК";
+            this.mnuToolsFillLogEditDateErvk.Click += new System.EventHandler(this.ToolsFillLogEditDateErvk_Click);
             // 
             // mnuHelp
             // 
@@ -473,6 +550,7 @@
             // 
             this.filterGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.filterGroupBox.Controls.Add(this.filterErvkOnlyViewCheckBox);
             this.filterGroupBox.Controls.Add(this.cleanFilterButton);
             this.filterGroupBox.Controls.Add(this.filterCodeNumericTextBox);
             this.filterGroupBox.Controls.Add(this.label1);
@@ -487,7 +565,7 @@
             this.filterGroupBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.filterGroupBox.Name = "filterGroupBox";
             this.filterGroupBox.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.filterGroupBox.Size = new System.Drawing.Size(834, 191);
+            this.filterGroupBox.Size = new System.Drawing.Size(874, 191);
             this.filterGroupBox.TabIndex = 2;
             this.filterGroupBox.TabStop = false;
             this.filterGroupBox.Text = "Фильтр";
@@ -495,22 +573,13 @@
             // cleanFilterButton
             // 
             this.cleanFilterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cleanFilterButton.Location = new System.Drawing.Point(700, 140);
+            this.cleanFilterButton.Location = new System.Drawing.Point(740, 140);
             this.cleanFilterButton.Margin = new System.Windows.Forms.Padding(5);
             this.cleanFilterButton.Name = "cleanFilterButton";
             this.cleanFilterButton.Size = new System.Drawing.Size(125, 34);
             this.cleanFilterButton.TabIndex = 8;
             this.cleanFilterButton.Text = "Очистить";
             this.cleanFilterButton.Click += new System.EventHandler(this.cleanFilterButton_Click);
-            // 
-            // filterCodeNumericTextBox
-            // 
-            this.filterCodeNumericTextBox.Location = new System.Drawing.Point(9, 142);
-            this.filterCodeNumericTextBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.filterCodeNumericTextBox.Name = "filterCodeNumericTextBox";
-            this.filterCodeNumericTextBox.Size = new System.Drawing.Size(200, 27);
-            this.filterCodeNumericTextBox.TabIndex = 6;
-            this.filterCodeNumericTextBox.TextChanged += new System.EventHandler(this.Filter_ParametersChanged);
             // 
             // label1
             // 
@@ -541,7 +610,7 @@
             this.filterNameTextBox.Location = new System.Drawing.Point(216, 142);
             this.filterNameTextBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.filterNameTextBox.Name = "filterNameTextBox";
-            this.filterNameTextBox.Size = new System.Drawing.Size(474, 27);
+            this.filterNameTextBox.Size = new System.Drawing.Size(514, 27);
             this.filterNameTextBox.TabIndex = 7;
             this.filterNameTextBox.TextChanged += new System.EventHandler(this.Filter_ParametersChanged);
             // 
@@ -549,7 +618,7 @@
             // 
             this.filterLockCodeViewCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.filterLockCodeViewCheckBox.AutoSize = true;
-            this.filterLockCodeViewCheckBox.Location = new System.Drawing.Point(559, 71);
+            this.filterLockCodeViewCheckBox.Location = new System.Drawing.Point(594, 70);
             this.filterLockCodeViewCheckBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.filterLockCodeViewCheckBox.Name = "filterLockCodeViewCheckBox";
             this.filterLockCodeViewCheckBox.Size = new System.Drawing.Size(270, 24);
@@ -567,46 +636,6 @@
             this.okatoLabel.Size = new System.Drawing.Size(111, 20);
             this.okatoLabel.TabIndex = 35;
             this.okatoLabel.Text = "Код ОКАТО:";
-            // 
-            // filterAuthorityComboBox
-            // 
-            this.filterAuthorityComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.filterAuthorityComboBox.Code = "";
-            this.filterAuthorityComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.filterAuthorityComboBox.DropDownHeight = 504;
-            this.filterAuthorityComboBox.DropDownWidth = 80;
-            this.filterAuthorityComboBox.FormattingEnabled = true;
-            this.filterAuthorityComboBox.IntegralHeight = false;
-            this.filterAuthorityComboBox.ItemHeight = 25;
-            this.filterAuthorityComboBox.Location = new System.Drawing.Point(131, 66);
-            this.filterAuthorityComboBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.filterAuthorityComboBox.MaxDropDownItems = 20;
-            this.filterAuthorityComboBox.Name = "filterAuthorityComboBox";
-            this.filterAuthorityComboBox.SelectedItem = null;
-            this.filterAuthorityComboBox.Size = new System.Drawing.Size(369, 31);
-            this.filterAuthorityComboBox.TabIndex = 4;
-            this.filterAuthorityComboBox.SelectedIndexChanged += new System.EventHandler(this.Filter_ParametersChanged);
-            // 
-            // filterOkatoComboBox
-            // 
-            this.filterOkatoComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.filterOkatoComboBox.Code = "";
-            this.filterOkatoComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.filterOkatoComboBox.DropDownHeight = 504;
-            this.filterOkatoComboBox.DropDownWidth = 80;
-            this.filterOkatoComboBox.FormattingEnabled = true;
-            this.filterOkatoComboBox.IntegralHeight = false;
-            this.filterOkatoComboBox.ItemHeight = 25;
-            this.filterOkatoComboBox.Location = new System.Drawing.Point(134, 26);
-            this.filterOkatoComboBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.filterOkatoComboBox.MaxDropDownItems = 20;
-            this.filterOkatoComboBox.Name = "filterOkatoComboBox";
-            this.filterOkatoComboBox.SelectedItem = null;
-            this.filterOkatoComboBox.Size = new System.Drawing.Size(690, 31);
-            this.filterOkatoComboBox.TabIndex = 3;
-            this.filterOkatoComboBox.SelectedIndexChanged += new System.EventHandler(this.Filter_ParametersChanged);
             // 
             // authorityLabel
             // 
@@ -635,9 +664,12 @@
             this.mnuContextFgisEsnsiEdit,
             this.mnuContextFgisEsnsiCloneToLast,
             this.toolStripMenuItem14,
+            this.mnuContextErvkEdit,
+            this.mnuContextErvkCloneToLast,
+            this.toolStripMenuItem16,
             this.mnuContextUpdate});
             this.contextMenuTable.Name = "contextMenuTable";
-            this.contextMenuTable.Size = new System.Drawing.Size(606, 274);
+            this.contextMenuTable.Size = new System.Drawing.Size(606, 340);
             // 
             // mnuContextNewOrganization
             // 
@@ -720,6 +752,25 @@
             this.toolStripMenuItem14.Name = "toolStripMenuItem14";
             this.toolStripMenuItem14.Size = new System.Drawing.Size(602, 6);
             // 
+            // mnuContextErvkEdit
+            // 
+            this.mnuContextErvkEdit.Name = "mnuContextErvkEdit";
+            this.mnuContextErvkEdit.Size = new System.Drawing.Size(605, 30);
+            this.mnuContextErvkEdit.Text = "Запись ЕРВК...";
+            this.mnuContextErvkEdit.Click += new System.EventHandler(this.ErvkEdit_Click);
+            // 
+            // mnuContextErvkCloneToLast
+            // 
+            this.mnuContextErvkCloneToLast.Name = "mnuContextErvkCloneToLast";
+            this.mnuContextErvkCloneToLast.Size = new System.Drawing.Size(605, 30);
+            this.mnuContextErvkCloneToLast.Text = "Копировать запись ЕРВК в действующую версию записи";
+            this.mnuContextErvkCloneToLast.Click += new System.EventHandler(this.ErvkCloneToLast_Click);
+            // 
+            // toolStripMenuItem16
+            // 
+            this.toolStripMenuItem16.Name = "toolStripMenuItem16";
+            this.toolStripMenuItem16.Size = new System.Drawing.Size(602, 6);
+            // 
             // mnuContextUpdate
             // 
             this.mnuContextUpdate.Image = global::DatabaseToolSuite.Properties.Resources.Update24;
@@ -746,6 +797,10 @@
             this.mnuTableFgisEsnsiCloneToLastButton,
             this.mnuTableFgisEsnsiRemoveButton,
             this.toolStripSeparator5,
+            this.mnuTableErvkEditButton,
+            this.mnuTableErvkCloneToLastButton,
+            this.mnuTableErvkRemoveButton,
+            this.toolStripSeparator6,
             this.mnuTableRefreshButton});
             this.mainToolStripBar.Location = new System.Drawing.Point(0, 31);
             this.mainToolStripBar.Name = "mainToolStripBar";
@@ -858,6 +913,41 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 39);
             // 
+            // mnuTableErvkEditButton
+            // 
+            this.mnuTableErvkEditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.mnuTableErvkEditButton.Image = ((System.Drawing.Image)(resources.GetObject("mnuTableErvkEditButton.Image")));
+            this.mnuTableErvkEditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.mnuTableErvkEditButton.Name = "mnuTableErvkEditButton";
+            this.mnuTableErvkEditButton.Size = new System.Drawing.Size(36, 36);
+            this.mnuTableErvkEditButton.Text = "Запись ЕРВК";
+            this.mnuTableErvkEditButton.Click += new System.EventHandler(this.ErvkEdit_Click);
+            // 
+            // mnuTableErvkCloneToLastButton
+            // 
+            this.mnuTableErvkCloneToLastButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.mnuTableErvkCloneToLastButton.Image = ((System.Drawing.Image)(resources.GetObject("mnuTableErvkCloneToLastButton.Image")));
+            this.mnuTableErvkCloneToLastButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.mnuTableErvkCloneToLastButton.Name = "mnuTableErvkCloneToLastButton";
+            this.mnuTableErvkCloneToLastButton.Size = new System.Drawing.Size(36, 36);
+            this.mnuTableErvkCloneToLastButton.Text = "Копировать запись ЕРВК в действующую версию записи";
+            this.mnuTableErvkCloneToLastButton.Click += new System.EventHandler(this.ErvkCloneToLast_Click);
+            // 
+            // mnuTableErvkRemoveButton
+            // 
+            this.mnuTableErvkRemoveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.mnuTableErvkRemoveButton.Image = ((System.Drawing.Image)(resources.GetObject("mnuTableErvkRemoveButton.Image")));
+            this.mnuTableErvkRemoveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.mnuTableErvkRemoveButton.Name = "mnuTableErvkRemoveButton";
+            this.mnuTableErvkRemoveButton.Size = new System.Drawing.Size(36, 36);
+            this.mnuTableErvkRemoveButton.Text = "Удалить запись ЕРВК";
+            this.mnuTableErvkRemoveButton.Click += new System.EventHandler(this.ErvkRemove_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 39);
+            // 
             // mnuTableRefreshButton
             // 
             this.mnuTableRefreshButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -867,6 +957,18 @@
             this.mnuTableRefreshButton.Size = new System.Drawing.Size(36, 36);
             this.mnuTableRefreshButton.Text = "Обновить таблицу";
             this.mnuTableRefreshButton.Click += new System.EventHandler(this.Filter_ParametersChanged);
+            // 
+            // filterErvkOnlyViewCheckBox
+            // 
+            this.filterErvkOnlyViewCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.filterErvkOnlyViewCheckBox.AutoSize = true;
+            this.filterErvkOnlyViewCheckBox.Location = new System.Drawing.Point(552, 99);
+            this.filterErvkOnlyViewCheckBox.Name = "filterErvkOnlyViewCheckBox";
+            this.filterErvkOnlyViewCheckBox.Size = new System.Drawing.Size(312, 24);
+            this.filterErvkOnlyViewCheckBox.TabIndex = 41;
+            this.filterErvkOnlyViewCheckBox.Text = "Показывать только записи ЕРВК";
+            this.filterErvkOnlyViewCheckBox.UseVisualStyleBackColor = true;
+            this.filterErvkOnlyViewCheckBox.CheckedChanged += new System.EventHandler(this.Filter_ParametersChanged);
             // 
             // gaspsListView
             // 
@@ -883,13 +985,54 @@
             this.gaspsListView.ItemMouseClick += new System.EventHandler<DatabaseToolSuite.Controls.GaspsListViewEventArgs>(this.gaspsListView_ItemMouseClick);
             this.gaspsListView.ItemMouseDoubleClick += new System.EventHandler<DatabaseToolSuite.Controls.GaspsListViewEventArgs>(this.gaspsListView_ItemMouseDoubleClick);
             // 
-            // mnuToolsEditError
+            // filterCodeNumericTextBox
             // 
-            this.mnuToolsEditError.Image = global::DatabaseToolSuite.Properties.Resources.Edit24;
-            this.mnuToolsEditError.Name = "mnuToolsEditError";
-            this.mnuToolsEditError.Size = new System.Drawing.Size(443, 30);
-            this.mnuToolsEditError.Text = "Аварийное исправление ошибки...";
-            this.mnuToolsEditError.Click += new System.EventHandler(this.TableEditError_Click);
+            this.filterCodeNumericTextBox.Location = new System.Drawing.Point(9, 142);
+            this.filterCodeNumericTextBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.filterCodeNumericTextBox.Name = "filterCodeNumericTextBox";
+            this.filterCodeNumericTextBox.Size = new System.Drawing.Size(200, 27);
+            this.filterCodeNumericTextBox.TabIndex = 6;
+            this.filterCodeNumericTextBox.TextChanged += new System.EventHandler(this.Filter_ParametersChanged);
+            // 
+            // filterAuthorityComboBox
+            // 
+            this.filterAuthorityComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.filterAuthorityComboBox.Code = "";
+            this.filterAuthorityComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.filterAuthorityComboBox.DropDownHeight = 504;
+            this.filterAuthorityComboBox.DropDownWidth = 80;
+            this.filterAuthorityComboBox.FormattingEnabled = true;
+            this.filterAuthorityComboBox.IntegralHeight = false;
+            this.filterAuthorityComboBox.ItemHeight = 25;
+            this.filterAuthorityComboBox.Location = new System.Drawing.Point(131, 66);
+            this.filterAuthorityComboBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.filterAuthorityComboBox.MaxDropDownItems = 20;
+            this.filterAuthorityComboBox.Name = "filterAuthorityComboBox";
+            this.filterAuthorityComboBox.SelectedItem = null;
+            this.filterAuthorityComboBox.Size = new System.Drawing.Size(409, 31);
+            this.filterAuthorityComboBox.TabIndex = 4;
+            this.filterAuthorityComboBox.SelectedIndexChanged += new System.EventHandler(this.Filter_ParametersChanged);
+            // 
+            // filterOkatoComboBox
+            // 
+            this.filterOkatoComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.filterOkatoComboBox.Code = "";
+            this.filterOkatoComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.filterOkatoComboBox.DropDownHeight = 504;
+            this.filterOkatoComboBox.DropDownWidth = 80;
+            this.filterOkatoComboBox.FormattingEnabled = true;
+            this.filterOkatoComboBox.IntegralHeight = false;
+            this.filterOkatoComboBox.ItemHeight = 25;
+            this.filterOkatoComboBox.Location = new System.Drawing.Point(134, 26);
+            this.filterOkatoComboBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.filterOkatoComboBox.MaxDropDownItems = 20;
+            this.filterOkatoComboBox.Name = "filterOkatoComboBox";
+            this.filterOkatoComboBox.SelectedItem = null;
+            this.filterOkatoComboBox.Size = new System.Drawing.Size(730, 31);
+            this.filterOkatoComboBox.TabIndex = 3;
+            this.filterOkatoComboBox.SelectedIndexChanged += new System.EventHandler(this.Filter_ParametersChanged);
             // 
             // AppForm
             // 
@@ -951,7 +1094,7 @@
         private Controls.AuthorityComboBox filterAuthorityComboBox;
         private Controls.OkatoComboBox filterOkatoComboBox;
         private System.Windows.Forms.Label authorityLabel;
-        private Controls.GaspsListView2 gaspsListView;
+        private Controls.GaspsListView gaspsListView;
         private System.Windows.Forms.ToolStripStatusLabel rowCountStatusLabel;
         private System.Windows.Forms.ToolStripMenuItem mnuTable;
         private System.Windows.Forms.ToolStripMenuItem mnuTableNewOrganization;
@@ -1012,5 +1155,20 @@
         private System.Windows.Forms.ToolStripButton mnuTableRefreshButton;
         private System.Windows.Forms.ToolStripMenuItem mnuFileErknmExportToExcel;
         private System.Windows.Forms.ToolStripMenuItem mnuToolsEditError;
+        private System.Windows.Forms.ToolStripMenuItem mnuToolsFillLogEditDateGasps;
+        private System.Windows.Forms.ToolStripMenuItem mnuToolsFillLogEditDateFgisEsnsi;
+        private System.Windows.Forms.ToolStripMenuItem mnuToolsFillLogEditDateErvk;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem15;
+        private System.Windows.Forms.ToolStripMenuItem mnuTableErvkEdit;
+        private System.Windows.Forms.ToolStripMenuItem mnuTableErvkCloneToLast;
+        private System.Windows.Forms.ToolStripMenuItem mnuTableErvkRemove;
+        private System.Windows.Forms.ToolStripButton mnuTableErvkEditButton;
+        private System.Windows.Forms.ToolStripButton mnuTableErvkCloneToLastButton;
+        private System.Windows.Forms.ToolStripButton mnuTableErvkRemoveButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem mnuContextErvkEdit;
+        private System.Windows.Forms.ToolStripMenuItem mnuContextErvkCloneToLast;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem16;
+        private System.Windows.Forms.CheckBox filterErvkOnlyViewCheckBox;
     }
 }

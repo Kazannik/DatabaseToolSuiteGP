@@ -103,13 +103,12 @@ namespace DatabaseToolSuite.Repositoryes
 
             public fgis_esnsiRow Create(long gaspsVersion)
             {
-                return (fgis_esnsiRow)this.Rows.Add(new object[] { gaspsVersion, null, null, null, null, null, null, null, null }); ;
+                return (fgis_esnsiRow)this.Rows.Add(new object[] { gaspsVersion, null, null, null, null, null, null, null, null, null }); ;
             }
 
             public class FgisEsnsiOrganization
             {
                 private FgisEsnsiOrganization() { }
-
                 public long Version { get; protected set; }
                 public long Id { get; }
                 public string Name { get; }
@@ -121,6 +120,8 @@ namespace DatabaseToolSuite.Repositoryes
                 public long Code { get; }
                 public string Autokey { get; }
 
+                public DateTime EditDate { get; }
+
                 public FgisEsnsiOrganization(
                     long version,
                     long id,
@@ -131,7 +132,8 @@ namespace DatabaseToolSuite.Repositoryes
                     string address,
                     short okato,
                     long code,
-                    string autokey)
+                    string autokey,
+                    DateTime editDate)
                 {
                     Version = version;
                     Id = id;
@@ -143,6 +145,7 @@ namespace DatabaseToolSuite.Repositoryes
                     Okato = okato;
                     Code = code;
                     Autokey = autokey;
+                    EditDate = editDate;
                 }
             }
 
@@ -155,15 +158,16 @@ namespace DatabaseToolSuite.Repositoryes
                        join okato in okatoTable on gasps.okato_code equals okato.code
                        select new FgisEsnsiOrganization(
                            version: esnsi.version,
-                           id: esnsi.IsidNull() ? 0: esnsi.id,
+                           id: esnsi.IsidNull() ? 0 : esnsi.id,
                            name: gasps.name,
-                           region: okato.Isname2Null()? okato.name: okato.name2,
-                           phone: esnsi.Issv_0004Null() ? string.Empty:  esnsi.sv_0004,
-                           email: esnsi.Issv_0005Null() ? string.Empty: esnsi.sv_0005,
-                           address: esnsi.Issv_0006Null() ? string.Empty: esnsi.sv_0006,
-                           okato: esnsi.IsokatoNull() ? (short) 0 :  esnsi.okato,
-                           code: esnsi.IscodeNull() ? 0: esnsi.code,
-                           autokey: esnsi.IsautokeyNull() ? string.Empty: esnsi.autokey);
+                           region: okato.Isname2Null() ? okato.name : okato.name2,
+                           phone: esnsi.Issv_0004Null() ? string.Empty : esnsi.sv_0004,
+                           email: esnsi.Issv_0005Null() ? string.Empty : esnsi.sv_0005,
+                           address: esnsi.Issv_0006Null() ? string.Empty : esnsi.sv_0006,
+                           okato: esnsi.IsokatoNull() ? (short)0 : esnsi.okato,
+                           code: esnsi.IscodeNull() ? 0 : esnsi.code,
+                           autokey: esnsi.IsautokeyNull() ? string.Empty : esnsi.autokey,
+                           editDate: esnsi.IslogEditDateNull() ? Services.MasterDataSystem.MIN_DATE : esnsi.logEditDate);
             }
 
             private gaspsDataTable gaspsTable
@@ -289,7 +293,7 @@ namespace DatabaseToolSuite.Repositoryes
                 return result;
             }
 
-            public IList<FullOrganization> GetFullOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
+            public IList<ViewFgisEsnsiOrganization> GetFullOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
             {
                 return _GetFullOrganizationFilter(authority: authority,
                     okato: okato,
@@ -300,9 +304,9 @@ namespace DatabaseToolSuite.Repositoryes
                     lockShow: lockShow).ToList();
             }
 
-            private IEnumerable<FullOrganization> _GetFullOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
+            private IEnumerable<ViewFgisEsnsiOrganization> _GetFullOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
             {
-                IEnumerable<FullOrganization> result = GetFullOrganizations()
+                IEnumerable<ViewFgisEsnsiOrganization> result = GetFgisEsnsiOrganizations()
                     .OrderBy(x => x.Version).OrderBy(x => x.Code);
 
                 if (!unlockShow)
@@ -548,28 +552,30 @@ namespace DatabaseToolSuite.Repositoryes
                 return new BindingList<gaspsRow>(lockCodes.Where(p => unlickCodes.All(p2 => p2.code != p.code)).OrderBy(x => x.code).ToArray());
             }
 
-            public IEnumerable<GaspsOrganization> ExportData()
+            public IEnumerable<ViewGaspsOrganization> ExportData()
             {
                 return from item in this.AsEnumerable()
                        where (item.date_beg <= DateTime.Today &&
                        item.date_end > DateTime.Today)
                        join authority in authorityTable on item.authority_id equals authority.id
                        join okato in okatoTable on item.okato_code equals okato.code
-                       select new GaspsOrganization(
-                           name: item.name, 
-                           authority: authority.name, 
-                           okato: okato.code + " - " + (okato.Isname2Null() ? okato.name: okato.name2), 
-                           code: item.code, 
-                           begin: item.date_beg, 
-                           end: item.date_end, 
-                           version: item.version, 
-                           authorityId: item.authority_id, 
+                       join owner in this.AsEnumerable() on item.id equals owner.owner_id
+                       select new ViewGaspsOrganization(
+                           name: item.name,
+                           authority: authority.name,
+                           okato: okato.code + " - " + (okato.Isname2Null() ? okato.name : okato.name2),
+                           code: item.code,
+                           begin: item.date_beg,
+                           end: item.date_end,
+                           version: item.version,
+                           authorityId: item.authority_id,
                            okatoCode: item.okato_code,
                            key: item.key,
-                           ownerId: item.owner_id);
+                           ownerId: item.owner_id,
+                           ownerName: owner.name);
             }
 
-            public class GaspsOrganization
+            public class ViewGaspsOrganization
             {
                 [Description("Наименование подразделения (SV-0001)")]
                 [Category("ГАС ПС")]
@@ -604,8 +610,15 @@ namespace DatabaseToolSuite.Repositoryes
                 [Description("Уникальное значение версии записи")]
                 [DisplayName("Версия записи")]
                 public long Version { get; }
+
+                [Description("Наименование вышестоящей организации (владельца)")]
+                [Category("ГАС ПС")]
+                [DisplayName("Владелец")]
+                public string OwnerName { get; }
+
                 [Browsable(false)]
                 public long AuthorityId { get; }
+
                 [Browsable(false)]
                 public string OkatoCode { get; }
 
@@ -613,7 +626,7 @@ namespace DatabaseToolSuite.Repositoryes
 
                 public long OwnerId { get; }
 
-                public GaspsOrganization(string name, string authority, string okato, string code, DateTime begin, DateTime end, long version, long authorityId, string okatoCode, long key, long ownerId)
+                public ViewGaspsOrganization(string name, string authority, string okato, string code, DateTime begin, DateTime end, long version, long authorityId, string okatoCode, long key, long ownerId, string ownerName)
                 {
                     Name = name;
                     Authority = authority;
@@ -626,10 +639,11 @@ namespace DatabaseToolSuite.Repositoryes
                     OkatoCode = okatoCode;
                     Key = key;
                     OwnerId = ownerId;
+                    OwnerName = ownerName;
                 }
             }
 
-            public class FullOrganization : GaspsOrganization
+            public class ViewFgisEsnsiOrganization : ViewGaspsOrganization
             {
                 [Description("Телефон канцелярии (SV-0004)")]
                 [Category("ФГИС ЕСНСИ")]
@@ -646,7 +660,7 @@ namespace DatabaseToolSuite.Repositoryes
                 [DisplayName("Почтовый адрес")]
                 public string Address { get; }
 
-                public FullOrganization(
+                public ViewFgisEsnsiOrganization(
                     string name,
                     string authority,
                     string okato,
@@ -660,24 +674,24 @@ namespace DatabaseToolSuite.Repositoryes
                     long authorityId,
                     string okatoCode,
                     long key,
-                    long ownerId) : base(name, authority, okato, code, begin, end, version, authorityId, okatoCode, key, ownerId)
+                    long ownerId,
+                    string ownerName) : base(name, authority, okato, code, begin, end, version, authorityId, okatoCode, key, ownerId, ownerName)
                 {
                     Phone = phone;
                     Email = email;
                     Address = address;
                 }
             }
-            
 
-            public FullOrganization GetFullOrganization(long version)
+            public ViewFgisEsnsiOrganization GetFgisEsnsiOrganization(long version)
             {
                 gaspsRow gasps = this.GetOrganizationFromVersion(version);
                 string authority_name = authorityTable.GetName(gasps.authority_id);
                 string okato_name = okatoTable.GetName2(gasps.okato_code);
-
+                string ownerName = "TODO";
                 fgis_esnsiRow esnsi = fgisesnsiTable.ExistsRow(version) ? fgisesnsiTable.Get(version) : null;
 
-                return new FullOrganization(
+                return new ViewFgisEsnsiOrganization(
                            name: gasps.name,
                            authority: authority_name,
                            okato: gasps.okato_code + " - " + okato_name,
@@ -691,33 +705,224 @@ namespace DatabaseToolSuite.Repositoryes
                            authorityId: gasps.authority_id,
                            okatoCode: gasps.okato_code,
                            key: gasps.key,
-                           ownerId: gasps.owner_id);
+                           ownerId: gasps.owner_id,
+                           ownerName: ownerName);
             }
 
 
-            public IEnumerable<FullOrganization> GetFullOrganizations()
+            public IEnumerable<ViewFgisEsnsiOrganization> GetFgisEsnsiOrganizations()
             {
+                EnumerableRowCollection<gaspsRow> gasps = this.Where(e => e.RowState != DataRowState.Deleted);
+                EnumerableRowCollection<gaspsRow> active = gasps.Where(e => e.date_end > DateTime.Today && e.date_beg <= DateTime.Today);
+                EnumerableRowCollection<fgis_esnsiRow> fgisEsnsi = fgisesnsiTable.Where(e => e.RowState != DataRowState.Deleted);
 
-                return from gasps in this.Where(e => e.RowState != DataRowState.Deleted)
+                return from row in gasps
+                       join authority in authorityTable on row.authority_id equals authority.id
+                       join okato in okatoTable on row.okato_code equals okato.code
+                       join esnsi in fgisEsnsi on row.version equals esnsi.version into ps_jointable
+                       join owner in active on row.owner_id equals owner.key
+                       from p in ps_jointable.DefaultIfEmpty()
+
+                       select new ViewFgisEsnsiOrganization(
+                           name: row.name,
+                           authority: authority.name,
+                           okato: okato.code + " - " + (okato.Isname2Null() ? okato.name : okato.name2),
+                           code: row.code,
+                           begin: row.date_beg,
+                           end: row.date_end,
+                           phone: p == null ? string.Empty : (p.Issv_0004Null() ? string.Empty : p.sv_0004),
+                           email: p == null ? string.Empty : (p.Issv_0005Null() ? string.Empty : p.sv_0005),
+                           address: p == null ? string.Empty : (p.Issv_0006Null() ? string.Empty : p.sv_0006),
+                           version: row.version,
+                           authorityId: row.authority_id,
+                           okatoCode: row.okato_code,
+                           key: row.key,
+                           ownerId: row.owner_id,
+                           ownerName: owner.name);
+            }
+
+                        
+            public class ViewErvkOrganization : ViewFgisEsnsiOrganization
+            {
+                [Description("ИД ЕСНСИ")]
+                [Category("ЕРВК")]
+                [DisplayName("ИД ЕСНСИ")]
+                public long EsnsiCode { get; }
+
+                [Description("Признак, определяющий, что орган прокуратуры является головным")]
+                [Category("ЕРВК")]
+                [DisplayName("Головная прокуратура")]
+                public bool IsHead { get; }
+
+                [Description("Признак, определяющий, что орган прокуратуры является специализированным")]
+                [Category("ЕРВК")]
+                [DisplayName("Спец.прокуратура")]
+                public bool Special { get; }
+
+                [Description("Признак, определяющий, что орган прокуратуры является военным")]
+                [Category("ЕРВК")]
+                [DisplayName("Военная прокуратура")]
+                public bool Military { get; }
+
+                [Description("Признак, определяющий, что запись является активной")]
+                [Category("ЕРВК")]
+                [DisplayName("Признак активности")]
+                public bool IsActive { get; }
+
+                [Description("ИД версии органа прокуратуры в ЕСНСИ")]
+                [Category("ЕРВК")]
+                [DisplayName("ИД версии органа прокуратуры в ЕСНСИ")]
+                public string IdVersionProc { get; }
+
+                [Description("ИД ЕСНСИ вышестоящего органа прокуратуры (ссылка на esnsiCode)")]
+                [Category("ЕРВК")]
+                [DisplayName("ИД ЕСНСИ вышестоящего органа прокуратуры")]
+                public long IdVersionHead { get; }
+
+                [Description("Дата создания версии органа прокуратуры в ЕСНСИ")]
+                [Category("ЕРВК")]
+                [DisplayName("Дата создания версии органа прокуратуры в ЕСНСИ")]
+                public DateTime DateStartVersion { get; }
+
+                [Description("Дата прекращения действия органа прокуратуры в ЕСНСИ")]
+                [Category("ЕРВК")]
+                [DisplayName("Дата прекращения действия")]
+                public DateTime DateCloseProc { get; }
+
+                [Description("ОГРН")]
+                [Category("ЕРВК")]
+                [DisplayName("ОГРН")]
+                public string Ogrn { get; }
+
+                [Description("ИНН")]
+                [Category("ЕРВК")]
+                [DisplayName("ИНН")]
+                public string Inn { get; }
+
+              
+                public ViewErvkOrganization(
+                    string name,
+                    string authority,
+                    string okato,
+                    string code,
+                    DateTime begin,
+                    DateTime end,
+                    string phone,
+                    string email,
+                    string address,
+                    long version,
+                    long authorityId,
+                    string okatoCode,
+                    long key,
+                    long ownerId,
+                    string ownerName,
+                    long esnsiCode,
+                    bool isHead,
+                    bool special,
+                    bool military,
+                    bool isActive,
+                    string idVersionProc,
+                    long idVersionHead,
+                    DateTime dateStartVersion,
+                    DateTime dateCloseProc,
+                    string ogrn,
+                    string inn                    
+                    ) : base(name, authority, okato, code, begin, end, phone, email, address, version, authorityId, okatoCode, key, ownerId, ownerName)
+                {
+                    EsnsiCode = esnsiCode;
+                    IsHead = isHead;
+                    Special = special;
+                    Military = military;
+                    IsActive = isActive;
+                    IdVersionProc = idVersionProc;
+                    IdVersionHead = idVersionHead;
+                    DateStartVersion = dateStartVersion;
+                    DateCloseProc = dateCloseProc;
+                    Ogrn = ogrn;
+                    Inn = inn;                    
+                }
+            }
+
+            public ViewFgisEsnsiOrganization GetErvkOrganization(long version)
+            {
+                gaspsRow gasps = this.GetOrganizationFromVersion(version);
+                string authority_name = authorityTable.GetName(gasps.authority_id);
+                string okato_name = okatoTable.GetName2(gasps.okato_code);
+                string ownerName = "TODO";
+                fgis_esnsiRow esnsi = fgisesnsiTable.ExistsRow(version) ? fgisesnsiTable.Get(version) : null;
+                ervkRow ervk = ervkTable.ExistsRow(version) ? ervkTable.Get(version) : null;
+
+                return new ViewErvkOrganization(
+                           name: gasps.name,
+                           authority: authority_name,
+                           okato: gasps.okato_code + " - " + okato_name,
+                           code: gasps.code,
+                           begin: gasps.date_beg,
+                           end: gasps.date_end,
+                           phone: esnsi == null ? string.Empty : (esnsi.Issv_0004Null() ? string.Empty : esnsi.sv_0004),
+                           email: esnsi == null ? string.Empty : (esnsi.Issv_0005Null() ? string.Empty : esnsi.sv_0005),
+                           address: esnsi == null ? string.Empty : (esnsi.Issv_0006Null() ? string.Empty : esnsi.sv_0006),
+                           version: gasps.version,
+                           authorityId: gasps.authority_id,
+                           okatoCode: gasps.okato_code,
+                           key: gasps.key,
+                           ownerId: gasps.owner_id,
+                           ownerName: ownerName,
+                           esnsiCode: ervk.esnsiCode,
+                           isHead: ervk.isHead,
+                           special: ervk.special,
+                           military: ervk.military,
+                           isActive: ervk.isActive,
+                           idVersionProc: ervk.IsidVersionProcNull() ? string.Empty : ervk.idVersionProc,
+                           idVersionHead: ervk.IsidVersionHeadNull() ? 0 : ervk.idVersionHead,
+                           dateStartVersion: ervk.dateStartVersion,
+                           dateCloseProc: ervk.IsdateCloseProcNull() ?  DateTime.MaxValue : ervk.dateCloseProc,
+                           ogrn: ervk.IsogrnNull() ? string.Empty : ervk.ogrn,
+                           inn: ervk.IsinnNull() ? string.Empty : ervk.inn);
+            }
+
+
+            public IEnumerable<ViewErvkOrganization> GetErvkOrganizations()
+            {
+                EnumerableRowCollection<gaspsRow> rows = this.Where(e => e.RowState != DataRowState.Deleted);
+
+                return from gasps in rows
+                       join owner in rows on gasps.owner_id equals owner.id into owner_jointable
+                       from o in owner_jointable.DefaultIfEmpty()
                        join authority in authorityTable on gasps.authority_id equals authority.id
                        join okato in okatoTable on gasps.okato_code equals okato.code
                        join esnsi in fgisesnsiTable.Where(e => e.RowState != DataRowState.Deleted) on gasps.version equals esnsi.version into ps_jointable
                        from p in ps_jointable.DefaultIfEmpty()
-                       select new FullOrganization(
-                           name: gasps.name, 
-                           authority: authority.name, 
-                           okato: okato.code + " - " + (okato.Isname2Null() ? okato.name : okato.name2), 
-                           code: gasps.code, 
-                           begin: gasps.date_beg, 
+                       join ervk in ervkTable.Where(e => e.RowState != DataRowState.Deleted) on gasps.version equals ervk.version into es_jointable
+                       from e in es_jointable.DefaultIfEmpty()
+
+                       select new ViewErvkOrganization(
+                           name: gasps.name,
+                           authority: authority.name,
+                           okato: okato.code + " - " + (okato.Isname2Null() ? okato.name : okato.name2),
+                           code: gasps.code,
+                           begin: gasps.date_beg,
                            end: gasps.date_end,
-                           phone: p == null ? string.Empty : (p.Issv_0004Null() ? string.Empty: p.sv_0004),
+                           phone: p == null ? string.Empty : (p.Issv_0004Null() ? string.Empty : p.sv_0004),
                            email: p == null ? string.Empty : (p.Issv_0005Null() ? string.Empty : p.sv_0005),
                            address: p == null ? string.Empty : (p.Issv_0006Null() ? string.Empty : p.sv_0006),
                            version: gasps.version,
                            authorityId: gasps.authority_id,
                            okatoCode: gasps.okato_code,
                            key: gasps.key,
-                           ownerId: gasps.owner_id);
+                           ownerId: gasps.owner_id,
+                           ownerName: o.name,
+                           esnsiCode: e == null ? 0 :  e.esnsiCode,
+                           isHead: e == null ? false : e.isHead,
+                           special: e == null ? false : e.special,
+                           military: e == null ? false : e.military,
+                           isActive: e == null ? false : e.isActive,
+                           idVersionProc: e.idVersionProc,
+                           idVersionHead: e.idVersionHead,
+                           dateStartVersion: e.dateStartVersion,
+                           dateCloseProc: e.dateCloseProc,
+                           ogrn: e.ogrn,
+                           inn: e.inn);
             }
 
             private authorityDataTable authorityTable
@@ -733,6 +938,11 @@ namespace DatabaseToolSuite.Repositoryes
             private fgis_esnsiDataTable fgisesnsiTable
             {
                 get { return Services.MasterDataSystem.DataSet.fgis_esnsi; }
+            }
+
+            private ervkDataTable ervkTable
+            {
+                get { return Services.MasterDataSystem.DataSet.ervk; }
             }
         }
 
@@ -817,6 +1027,181 @@ namespace DatabaseToolSuite.Repositoryes
                 return (from item in this.AsEnumerable()
                         where item.code == code
                         select item).First().genitive;
+            }
+        }
+
+        partial class ervkDataTable
+        {
+            public bool ExistsRow(long gaspsVersion)
+            {
+                return (from item in this.AsEnumerable()
+                        where item.RowState != DataRowState.Deleted &&
+                        item.version == gaspsVersion
+                        select item).Count() > 0;
+            }
+
+            public ervkRow Get(long gaspsVersion)
+            {
+                return this.AsEnumerable()
+                    .Where(x => x.RowState != DataRowState.Deleted)
+                    .Last(x => x.version == gaspsVersion);
+            }
+
+            public void Romove(long gaspsVersion)
+            {
+                DataRow row = Get(gaspsVersion);
+                row.Delete();
+            }
+
+            public ervkRow Create(long gaspsVersion, long esnsiCode)
+            {
+                DateTime dateStartVersion = DateTime.Now;
+                return (ervkRow)this.Rows.Add(new object[] { gaspsVersion, esnsiCode, null, null, null, null, null, null, dateStartVersion, null, null, null, null, null, null }); ;
+            }
+
+            /// <summary>
+            /// Запись справочника ЕРВК
+            /// https://esnsi.gosuslugi.ru/classifiers/14531/hierarchical
+            /// </summary>
+            public class ErvkOrganization
+            {
+                private ErvkOrganization() { }
+
+                /// <summary>
+                /// Версия ГАС ПС
+                /// </summary>
+                public long Version { get; protected set; }
+
+                /// <summary>
+                /// ИД ЕСНСИ
+                /// </summary>
+                public long EsnsiCode { get; }
+
+                /// <summary>
+                /// Название органа прокуратуры в справочнике ЕРВК
+                /// </summary>
+                public string Title { get; }
+
+                /// <summary>
+                /// Признак, определяющий, что орган прокуратуры является головным
+                /// </summary>
+                public bool IsHead { get; }
+
+                /// <summary>
+                /// Специальная
+                /// </summary>
+                public bool Special { get; }
+
+                /// <summary>
+                /// Военная
+                /// </summary>
+                public bool Military { get; }
+
+                /// <summary>
+                /// Признак активности
+                /// </summary>
+                public bool IsActive { get; }
+
+                /// <summary>
+                /// ИД версии органа прокуратуры в ЕСНСИ
+                /// </summary>
+                public string IdVersionProc { get; }
+
+                /// <summary>
+                /// ИД ЕСНСИ вышестоящего органа прокуратуры (ссылка на esnsiCode)
+                /// </summary>
+                public long IdVersionHead { get; }
+
+                /// <summary>
+                /// Дата создания версии органа прокуратуры в ЕСНСИ
+                /// </summary>
+                public DateTime DateStartVersion { get; }
+
+                /// <summary>
+                /// Дата прекращения действия органа прокуратуры в ЕСНСИ
+                /// </summary>
+                public DateTime DateCloseProc { get; }
+
+                /// <summary>
+                /// ОГРН
+                /// </summary>
+                public string Ogrn { get; }
+
+                /// <summary>
+                /// ИНН
+                /// </summary>
+                public string Inn { get; }
+
+                /// <summary>
+                /// Субъект множественный
+                /// </summary>
+                public string SubjectRfList { get; }
+
+                /// <summary>
+                /// ОКТМО множественный
+                /// </summary>
+                public string OktmoList { get; }
+            
+                public ErvkOrganization(
+                    long version,
+                    long esnsiCode,
+                    bool isHead,
+                    bool special,
+                    bool military,
+                    bool isActive,
+                    string idVersionProc,
+                    long idVersionHead,
+                    DateTime dateStartVersion,
+                    DateTime dateCloseProc,
+                    string ogrn,
+                    string inn,
+                    string subjectRfList,
+                    string oktmoList)
+                {
+                    Version = version;
+                    EsnsiCode = esnsiCode;
+                    IsHead = isHead;
+                    Special = special;
+                    Military = military;
+                    IsActive = isActive;
+                    IdVersionProc = idVersionProc;
+                    IdVersionHead = idVersionHead;
+                    DateStartVersion = dateStartVersion;
+                    DateCloseProc = dateCloseProc;
+                    Ogrn = ogrn;
+                    Inn = inn;
+                    SubjectRfList = subjectRfList;
+                    OktmoList = oktmoList;
+                }
+            }
+
+            //public IEnumerable<ErvkOrganization> ExportData()
+            //{
+            //    return from gasps in gaspsTable
+            //           where (gasps.authority_id == 20 && gasps.date_beg <= DateTime.Today &&
+            //           gasps.date_end > DateTime.Today)
+            //           join ervk in this on gasps.version equals ervk.version
+            //           join okato in okatoTable on gasps.okato_code equals okato.code
+            //           select new ErvkOrganization(
+            //               version: ervk.version,
+            //               id: esnsi.IsidNull() ? 0 : esnsi.id,
+            //               name: gasps.name,
+            //               region: okato.Isname2Null() ? okato.name : okato.name2,
+            //               phone: esnsi.Issv_0004Null() ? string.Empty : esnsi.sv_0004,
+            //               email: esnsi.Issv_0005Null() ? string.Empty : esnsi.sv_0005,
+            //               address: esnsi.Issv_0006Null() ? string.Empty : esnsi.sv_0006,
+            //               okato: esnsi.IsokatoNull() ? (short)0 : esnsi.okato,
+            //               code: esnsi.IscodeNull() ? 0 : esnsi.code,
+            //               autokey: esnsi.IsautokeyNull() ? string.Empty : esnsi.autokey);
+            //}
+
+            private gaspsDataTable gaspsTable
+            {
+                get { return Services.MasterDataSystem.DataSet.gasps; }
+            }
+            private okatoDataTable okatoTable
+            {
+                get { return Services.MasterDataSystem.DataSet.okato; }
             }
         }
     }

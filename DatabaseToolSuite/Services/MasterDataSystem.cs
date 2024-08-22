@@ -14,6 +14,7 @@ namespace DatabaseToolSuite.Services
     // index
     static class MasterDataSystem
     {
+        public static readonly long PROSECUTOR_CODE = 20;
         public static readonly DateTime MAX_DATE = new DateTime(2999, 12, 31);
         public static readonly DateTime MIN_DATE = new DateTime(1900, 1, 1);
         
@@ -21,21 +22,21 @@ namespace DatabaseToolSuite.Services
         {
             get { return FileSystem.Repository.DataSet; }
         }
-                
+
         /// <summary>
         /// Создание записи о подразделении правоохранительного органа
         /// </summary>
-        /// <param name="name">Наименование подразделения</param>
-        /// <param name="key"></param>
-        /// <param name="okato"></param>
-        /// <param name="authorityId"></param>
-        /// <param name="code"></param>
-        /// <param name="version"></param>
-        /// <param name="index"></param>
-        /// <param name="ownerKey"></param>
-        /// <param name="dateBegin"></param>
-        /// <param name="dateEnd"></param>
-        /// <param name="courtTypeId"></param>
+        /// <param name="name">Наименование подразделения.</param>
+        /// <param name="key">Ключ подразделения. Не изменяется от версии к версии записи.</param>
+        /// <param name="okato">Код ОКАТО.</param>
+        /// <param name="authorityId">Индекс вида органа.</param>
+        /// <param name="code">Код подразделения.</param>
+        /// <param name="version">Уникальный "сквозной" код версии записи. </param>
+        /// <param name="index">Код для сортировки (?). Не используется.</param>
+        /// <param name="ownerKey">Ключ (key) родительского подразделения.</param>
+        /// <param name="dateBegin">Дата введения в действие новой записи.</param>
+        /// <param name="dateEnd">Дата окончания действия записи.</param>
+        /// <param name="courtTypeId">Индекс вида суда.</param>
         /// <returns></returns>
         private static gaspsRow CreateOrganization(
             string name,
@@ -50,7 +51,7 @@ namespace DatabaseToolSuite.Services
             DateTime dateEnd,
             long courtTypeId)
         {
-            object[] values = new object[14];
+            object[] values = new object[15];
             values[0] = null; // id
             values[1] = name; // name
             values[2] = key; // key
@@ -65,6 +66,7 @@ namespace DatabaseToolSuite.Services
             values[11] = null; // location_okato_id
             values[12] = null; // another_okato_id
             values[13] = 0; // court_type_id
+            values[14] = DateTime.Now; // logEditDate
 
             gaspsRow newRow = (gaspsRow) FileSystem.Repository.DataSet.gasps.Rows.Add(values);
 
@@ -161,20 +163,16 @@ namespace DatabaseToolSuite.Services
                 dateEnd: MAX_DATE,
                 courtTypeId: courtTypeId);
 
-            if (modifedRow.authority_id == 20 &&
-               DataSet.fgis_esnsi.ExistsRow(modifedRow.version))
+            if (modifedRow.authority_id == PROSECUTOR_CODE)
             {
-                fgis_esnsiRow clonedRow = DataSet.fgis_esnsi.Get(modifedRow.version);
-                CreateFgisEsnsiNote(
-                    version: newVersion,
-                    region_id: clonedRow.Isregion_idNull() ? 0: clonedRow.region_id,
-                    sv_0004: clonedRow.Issv_0004Null() ? string.Empty: clonedRow.sv_0004,
-                    sv_0005: clonedRow.Issv_0005Null() ? string.Empty: clonedRow.sv_0005,
-                    sv_0006: clonedRow.Issv_0006Null() ? string.Empty: clonedRow.sv_0006,
-                    okato: clonedRow.IsokatoNull() ? (short) 0: clonedRow.okato,
-                    code: clonedRow.IscodeNull()? 0: clonedRow.code,
-                    autokey: clonedRow.IsautokeyNull() ? string.Empty: clonedRow.autokey,
-                    id: clonedRow.IsidNull()? 0: clonedRow.id);
+                if (DataSet.fgis_esnsi.ExistsRow(modifedRow.version))
+                {
+                    CloneFgisEsnsiNote(modifedRow.version, newVersion);
+                }
+                if (DataSet.ervk.ExistsRow(modifedRow.version))
+                {
+                    CloneErvkNote(modifedRow.version, newVersion);
+                }
             }
 
             return newRow.version;
@@ -219,20 +217,17 @@ namespace DatabaseToolSuite.Services
                 dateEnd: MAX_DATE,
                 courtTypeId: modifedRow.court_type_id);
 
-            if (modifedRow.authority_id == 20 &&
-                DataSet.fgis_esnsi.ExistsRow(modifedRow.version))
+            if (modifedRow.authority_id == PROSECUTOR_CODE)
             {
-                fgis_esnsiRow clonedRow = DataSet.fgis_esnsi.Get(modifedRow.version);
-                CreateFgisEsnsiNote(
-                    version: newVersion,
-                    region_id: clonedRow.Isregion_idNull() ? 0 : clonedRow.region_id,
-                    sv_0004: clonedRow.Issv_0004Null() ? string.Empty : clonedRow.sv_0004,
-                    sv_0005: clonedRow.Issv_0005Null() ? string.Empty : clonedRow.sv_0005,
-                    sv_0006: clonedRow.Issv_0006Null() ? string.Empty : clonedRow.sv_0006,
-                    okato: clonedRow.IsokatoNull() ? (short)0: clonedRow.okato,
-                    code: clonedRow.IscodeNull() ? 0 : clonedRow.code,
-                    autokey: clonedRow.IsautokeyNull() ? string.Empty : clonedRow.autokey,
-                    id: clonedRow.IsidNull() ? 0 : clonedRow.id);
+                if (DataSet.fgis_esnsi.ExistsRow(modifedRow.version))
+                {
+                    CloneFgisEsnsiNote(modifedRow.version, newVersion);
+                }
+
+                if (DataSet.ervk.ExistsRow(modifedRow.version))
+                {
+                    CloneErvkNote(modifedRow.version, newVersion);
+                }
             }
             return newRow.version;
         }
@@ -249,8 +244,7 @@ namespace DatabaseToolSuite.Services
             oldRow.date_end = date;
             oldRow.EndEdit();
         }
-
-
+        
         /// <summary>
         /// Создание новой версии записи
         /// </summary>
@@ -279,18 +273,19 @@ namespace DatabaseToolSuite.Services
             errorRow.authority_id = authorityId;
             errorRow.owner_id = ownerKey;
             errorRow.date_end = MAX_DATE;
+            errorRow.logEditDate = DateTime.Now;
 
             return errorRow.version;
         }
 
        
         /// <summary>
-        /// 
+        /// Создание записи ФГИС ЕСНСИ
         /// </summary>
         /// <param name="version">Версия. Поле для связи gasps и fgis_esnsi</param>
         /// <param name="region_id">Индекс региона</param>
         /// <param name="sv_0004">Телефон</param>
-        /// <param name="sv_0005">Електронный адрес</param>
+        /// <param name="sv_0005">Электронный адрес</param>
         /// <param name="sv_0006">Почтовый адрес</param>
         /// <param name="okato">ОКАТО</param>
         /// <param name="code">Служебный код</param>
@@ -307,9 +302,8 @@ namespace DatabaseToolSuite.Services
             long code,
             string autokey,
             long id)
-        {
-            
-                object[] values = new object[9];
+        {            
+                object[] values = new object[10];
                 values[0] = version;
                 values[1] = region_id;
                 values[2] = sv_0004;
@@ -319,36 +313,240 @@ namespace DatabaseToolSuite.Services
                 values[6] = code;
                 values[7] = autokey;
                 values[8] = id;
+                values[9] = DateTime.Now;
 
-                fgis_esnsiRow newRow = (fgis_esnsiRow)FileSystem.Repository.DataSet.fgis_esnsi.Rows.Add(values);
+            fgis_esnsiRow newRow = (fgis_esnsiRow)FileSystem.Repository.DataSet.fgis_esnsi.Rows.Add(values);
                 return newRow;
                          
         }
 
-
+        /// <summary>
+        /// Клонирование записи ФГИС ЕСНСИ из заданой записи в последнюю запись.
+        /// </summary>
+        /// <param name="currentVersion">Выбранная запись.</param>
+        /// <returns></returns>
         public static fgis_esnsiRow CloneFgisEsnsiNoteToLastVersion(long currentVersion)
         {
             gaspsRow currentGaspsRow = DataSet.gasps.GetOrganizationFromVersion(version: currentVersion);
             gaspsRow lastGaspsRow = DataSet.gasps.GetLastVersionOrganizationFromCode(currentGaspsRow.code);
 
-           if (!DataSet.fgis_esnsi.ExistsRow(lastGaspsRow.version))
+            return CloneFgisEsnsiNote(currentGaspsRow.version, lastGaspsRow.version);           
+        }
+
+        /// <summary>
+        /// Клонирование записи ФГИС ЕСНСИ
+        /// </summary>
+        /// <param name="sourceVersion">Версия записи источника.</param>
+        /// <param name="destVersion">Версия записи назначения</param>
+        /// <returns></returns>
+        public static fgis_esnsiRow CloneFgisEsnsiNote(long sourceVersion, long destVersion)
+        {
+            if (!DataSet.fgis_esnsi.ExistsRow(destVersion))
             {
-                fgis_esnsiRow currentFgisEsnsiRow = DataSet.fgis_esnsi.Get(currentGaspsRow.version);
+                fgis_esnsiRow currentFgisEsnsiRow = DataSet.fgis_esnsi.Get(sourceVersion);
                 return CreateFgisEsnsiNote(
-                version: lastGaspsRow.version,
+                version: destVersion,
                 region_id: currentFgisEsnsiRow.Isregion_idNull() ? 0 : currentFgisEsnsiRow.region_id,
                 sv_0004: currentFgisEsnsiRow.Issv_0004Null() ? string.Empty : currentFgisEsnsiRow.sv_0004,
                 sv_0005: currentFgisEsnsiRow.Issv_0005Null() ? string.Empty : currentFgisEsnsiRow.sv_0005,
                 sv_0006: currentFgisEsnsiRow.Issv_0006Null() ? string.Empty : currentFgisEsnsiRow.sv_0006,
-                okato: currentFgisEsnsiRow.IsokatoNull() ? (short) 0 : currentFgisEsnsiRow.okato,
+                okato: currentFgisEsnsiRow.IsokatoNull() ? (short)0 : currentFgisEsnsiRow.okato,
                 code: currentFgisEsnsiRow.IscodeNull() ? 0 : currentFgisEsnsiRow.code,
-                autokey: currentFgisEsnsiRow.IsautokeyNull() ? string.Empty : currentFgisEsnsiRow.autokey, 
+                autokey: currentFgisEsnsiRow.IsautokeyNull() ? string.Empty : currentFgisEsnsiRow.autokey,
                 id: currentFgisEsnsiRow.IsidNull() ? 0 : currentFgisEsnsiRow.id);
             }
             else
             {
                 return null;
-            }            
+            }
+        }
+        
+        /// <summary>
+        /// Редактирование записи ФГИС ЕСНСИ
+        /// </summary>
+        /// <param name="version">Версия. Поле для связи gasps и fgis_esnsi</param>
+        /// <param name="region_id">Индекс региона</param>
+        /// <param name="sv_0004">Телефон</param>
+        /// <param name="sv_0005">Электронный адрес</param>
+        /// <param name="sv_0006">Почтовый адрес</param>
+        /// <param name="okato">ОКАТО</param>
+        /// <returns></returns>
+        public static long EditVersionFgisEsnsiNote(
+            long version,
+            long region_id,
+            string sv_0004,
+            string sv_0005,
+            string sv_0006,
+            short okato)
+        {
+            fgis_esnsiRow errorRow = DataSet.fgis_esnsi.Get(gaspsVersion: version);
+
+            errorRow.region_id = region_id;
+            errorRow.sv_0004 = sv_0004;
+            errorRow.sv_0005 = sv_0005;
+            errorRow.sv_0006 = sv_0006;
+            errorRow.okato = okato;
+            errorRow.logEditDate = DateTime.Now;
+
+            return errorRow.version;
+        }
+
+        /// <summary>
+        /// Создание записи ЕРВК
+        /// </summary>
+        /// <param name="version">Версия. Поле для связи gasps и ervk</param>
+        /// <param name="esnsiCode">ИД ЕСНСИ</param>
+        /// <param name="isHead">isHead</param>
+        /// <param name="special">Специальная</param>
+        /// <param name="military">Военная</param>
+        /// <param name="isActive">Признак активности</param>
+        /// <param name="idVersionProc">ИД версии органа прокуратуры в ЕСНСИ</param>
+        /// <param name="idVersionHead">ИД ЕСНСИ вышестоящего органа прокуратуры (ссылка на esnsiCode)</param>
+        /// <param name="dateStartVersion">Дата создания версии органа прокуратуры в ЕСНСИ</param>
+        /// <param name="dateCloseProc">Дата прекращения действия органа прокуратуры в ЕСНСИ</param>
+        /// <param name="ogrn">ОГРН</param>
+        /// <param name="inn">ИНН</param>
+        /// <param name="subjectRfList">Субъект множественный</param>
+        /// <param name="oktmoList">ОКТМО множественный</param>
+        /// <returns></returns>
+        public static ervkRow CreateErvkNote(
+            long version,
+            long esnsiCode,
+            bool isHead,
+            bool special,
+            bool military,
+            bool isActive,
+            string idVersionProc,
+            long idVersionHead,
+            DateTime dateStartVersion,
+            DateTime dateCloseProc,
+            string ogrn,
+            string inn,
+            string subjectRfList,
+            string oktmoList
+            )
+        {
+            object[] values = new object[15];
+            values[0] = version;
+            values[1] = esnsiCode;
+            values[2] = isHead;
+            values[3] = special;
+            values[4] = military;
+            values[5] = isActive;
+            values[6] = idVersionProc;
+            values[7] = idVersionHead;
+            values[8] = dateStartVersion;
+            values[9] =  DateTime.MaxValue.Equals(dateCloseProc) ? null : (object)dateCloseProc;
+            values[10] = ogrn;
+            values[11] = inn;
+            values[12] = subjectRfList;
+            values[13] = oktmoList;
+            values[14] = DateTime.Now;
+
+            ervkRow newRow = (ervkRow)FileSystem.Repository.DataSet.ervk.Rows.Add(values);
+            return newRow;
+        }
+
+        /// <summary>
+        /// Клонирование записи ЕРВК
+        /// </summary>
+        /// <param name="currentVersion"></param>
+        /// <returns></returns>
+        public static ervkRow CloneErvkNoteToLastVersion(long currentVersion)
+        {
+            gaspsRow currentGaspsRow = DataSet.gasps.GetOrganizationFromVersion(version: currentVersion);
+            gaspsRow lastGaspsRow = DataSet.gasps.GetLastVersionOrganizationFromCode(currentGaspsRow.code);
+
+            return CloneErvkNote(currentGaspsRow.version, lastGaspsRow.version);
+        }
+
+
+        /// <summary>
+        /// Клонирование записи ЕРВК
+        /// </summary>
+        /// <param name="sourceVersion">Версия записи источника.</param>
+        /// <param name="destVersion">Версия записи назначения</param>
+        /// <returns></returns>
+        public static ervkRow CloneErvkNote(long sourceVersion, long destVersion)
+        {
+            if (!DataSet.ervk.ExistsRow(destVersion))
+            {
+                ervkRow currentErvkRow = DataSet.ervk.Get(sourceVersion);
+                return CreateErvkNote(
+                version: destVersion,
+                esnsiCode: currentErvkRow.esnsiCode,
+                isHead: currentErvkRow.isHead,
+                special: currentErvkRow.special,
+                military: currentErvkRow.military,
+                isActive: currentErvkRow.isActive,
+                idVersionProc: currentErvkRow.IsidVersionProcNull() ? string.Empty : currentErvkRow.idVersionProc,
+                idVersionHead: currentErvkRow.IsidVersionHeadNull() ? 0 : currentErvkRow.idVersionHead,
+                dateStartVersion: currentErvkRow.dateStartVersion,
+                dateCloseProc: currentErvkRow.IsdateCloseProcNull() ? DateTime.MaxValue : currentErvkRow.dateCloseProc,
+                ogrn: currentErvkRow.IsogrnNull() ? string.Empty : currentErvkRow.ogrn,
+                inn: currentErvkRow.IsinnNull() ? string.Empty : currentErvkRow.inn,
+                subjectRfList: currentErvkRow.IssubjectRfListNull() ? string.Empty : currentErvkRow.subjectRfList,
+                oktmoList: currentErvkRow.IsoktmoListNull() ? string.Empty : currentErvkRow.oktmoList);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Редактирование записи ЕРВК
+        /// </summary>
+        /// <param name="version">Версия. Поле для связи gasps и ervk</param>
+        /// <param name="esnsiCode">ИД ЕСНСИ</param>
+        /// <param name="isHead">isHead</param>
+        /// <param name="special">Специальная</param>
+        /// <param name="military">Военная</param>
+        /// <param name="isActive">Признак активности</param>
+        /// <param name="idVersionProc">ИД версии органа прокуратуры в ЕСНСИ</param>
+        /// <param name="idVersionHead">ИД ЕСНСИ вышестоящего органа прокуратуры (ссылка на esnsiCode)</param>
+        /// <param name="dateStartVersion">Дата создания версии органа прокуратуры в ЕСНСИ</param>
+        /// <param name="dateCloseProc">Дата прекращения действия органа прокуратуры в ЕСНСИ</param>
+        /// <param name="ogrn">ОГРН</param>
+        /// <param name="inn">ИНН</param>
+        /// <param name="subjectRfList">Субъект множественный</param>
+        /// <param name="oktmoList">ОКТМО множественный</param>
+        /// <returns></returns>
+        public static long EditVersionErvkNote(
+            long version,
+            long esnsiCode,
+            bool isHead,
+            bool special,
+            bool military,
+            bool isActive,
+            string idVersionProc,
+            long idVersionHead,
+            DateTime dateStartVersion,
+            DateTime dateCloseProc,
+            string ogrn,
+            string inn,
+            string subjectRfList,
+            string oktmoList)
+        {
+            ervkRow errorRow = DataSet.ervk.Get(gaspsVersion: version);
+
+            errorRow.esnsiCode = esnsiCode;
+            errorRow.isHead = isHead;
+            errorRow.special = special;
+            errorRow.military = military;
+            errorRow.isActive = isActive;
+            errorRow.idVersionProc = idVersionProc;
+            errorRow.idVersionHead = idVersionHead;
+            errorRow.dateStartVersion = dateStartVersion;
+            errorRow.dateCloseProc = dateCloseProc;
+            errorRow.ogrn = ogrn;
+            errorRow.inn = inn;
+            errorRow.subjectRfList = subjectRfList;
+            errorRow.oktmoList = oktmoList;
+
+            errorRow.logEditDate = DateTime.Now;
+
+            return errorRow.version;
         }
     }
 }

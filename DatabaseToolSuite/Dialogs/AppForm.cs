@@ -59,6 +59,17 @@ namespace DatabaseToolSuite.Dialogs
 
             mnuTableFgisEsnsiRemove.Enabled = false;
             mnuTableFgisEsnsiRemoveButton.Enabled = false;
+
+            mnuTableErvkEdit.Enabled = false;
+            mnuContextErvkEdit.Enabled = false;
+            mnuTableErvkEditButton.Enabled = false;
+
+            mnuTableErvkCloneToLast.Enabled = false;
+            mnuContextErvkCloneToLast.Enabled = false;
+            mnuTableErvkCloneToLastButton.Enabled = false;
+
+            mnuTableErvkRemove.Enabled = false;
+            mnuTableErvkRemoveButton.Enabled = false;
         }
 
 
@@ -124,10 +135,14 @@ namespace DatabaseToolSuite.Dialogs
                 mnuTableEditError.Enabled = isLastVersion;
                 mnuContextEditError.Enabled = isLastVersion;
 
-                mnuTableFgisEsnsiEdit.Enabled = gaspsListView.DataRow.authority_id == 20;
-                mnuContextFgisEsnsiEdit.Enabled = gaspsListView.DataRow.authority_id == 20;
-                mnuTableFgisEsnsiEditButton.Enabled = gaspsListView.DataRow.authority_id == 20;
+                mnuTableFgisEsnsiEdit.Enabled = gaspsListView.DataRow.authority_id == MasterDataSystem.PROSECUTOR_CODE;
+                mnuContextFgisEsnsiEdit.Enabled = gaspsListView.DataRow.authority_id == MasterDataSystem.PROSECUTOR_CODE;
+                mnuTableFgisEsnsiEditButton.Enabled = gaspsListView.DataRow.authority_id == MasterDataSystem.PROSECUTOR_CODE;
 
+                mnuTableErvkEdit.Enabled = gaspsListView.DataRow.authority_id == MasterDataSystem.PROSECUTOR_CODE;
+                mnuContextErvkEdit.Enabled = gaspsListView.DataRow.authority_id == MasterDataSystem.PROSECUTOR_CODE;
+                mnuTableErvkEditButton.Enabled = gaspsListView.DataRow.authority_id == MasterDataSystem.PROSECUTOR_CODE;
+                
                 bool existsFgisEsnsi = Services.FileSystem.Repository.DataSet.fgis_esnsi.ExistsRow(gaspsListView.DataRow.version);
 
                 mnuTableFgisEsnsiCloneToLast.Enabled = !isLastVersion && existsFgisEsnsi;
@@ -136,6 +151,15 @@ namespace DatabaseToolSuite.Dialogs
 
                 mnuTableFgisEsnsiRemove.Enabled = existsFgisEsnsi;
                 mnuTableFgisEsnsiRemoveButton.Enabled = existsFgisEsnsi;
+
+                bool existsErvk = Services.FileSystem.Repository.DataSet.ervk.ExistsRow(gaspsListView.DataRow.version);
+
+                mnuTableErvkCloneToLast.Enabled = !isLastVersion && existsErvk;
+                mnuContextErvkCloneToLast.Enabled = !isLastVersion && existsErvk;
+                mnuTableErvkCloneToLastButton.Enabled = !isLastVersion && existsErvk;
+
+                mnuTableErvkRemove.Enabled = existsErvk;
+                mnuTableErvkRemoveButton.Enabled = existsErvk;
             }
             else
             {
@@ -408,8 +432,7 @@ namespace DatabaseToolSuite.Dialogs
         {
             Export.ExportGaspsToExcel2();
         }
-
-
+        
         private void AppForm_Load(object sender, EventArgs e)
         {
             Properties.Settings.Default.Reload();
@@ -437,6 +460,9 @@ namespace DatabaseToolSuite.Dialogs
             gaspsListView.Height = statusStrip1.Top - gaspsListView.Top - filterPanel.Left;
         }
 
+
+        #region FGIS ESNSI
+        
         private void FgisEsnsiEdit_Click(object sender, EventArgs e)
         {
             FgisEsnsiEdit();
@@ -444,7 +470,7 @@ namespace DatabaseToolSuite.Dialogs
 
         private void FgisEsnsiRemove_Click(object sender, EventArgs e)
         {
-            if (gaspsListView.DataRow != null && gaspsListView.DataRow.authority_id == 20)
+            if (gaspsListView.DataRow != null && gaspsListView.DataRow.authority_id == MasterDataSystem.PROSECUTOR_CODE)
             {
                 if (MasterDataSystem.DataSet.fgis_esnsi.ExistsRow(gaspsListView.DataRow.version))
                 {
@@ -458,39 +484,7 @@ namespace DatabaseToolSuite.Dialogs
                 gaspsListView.UpdateListViewItem();
             }
         }
-    
-
-        private void FgisEsnsiEdit()
-        {
-            if (gaspsListView.DataRow !=null && gaspsListView.DataRow.authority_id == 20)
-            {
-                fgis_esnsiRow editRow;
-
-                if (MasterDataSystem.DataSet.fgis_esnsi.ExistsRow(gaspsListView.DataRow.version))
-                {
-                    editRow = MasterDataSystem.DataSet.fgis_esnsi.Get(gaspsListView.DataRow.version);
-                }
-                else
-                {
-                    editRow = MasterDataSystem.DataSet.fgis_esnsi.Create(gaspsListView.DataRow.version);
-                }
-
-                EsnsiDialog dialog = new EsnsiDialog(gaspsListView.DataRow, editRow);
-                if (dialog.ShowDialog(this) == DialogResult.OK)
-                {
-                    editRow.autokey = dialog.Autokey;
-                    editRow.code = dialog.Code;
-                    editRow.id = dialog.Id;
-                    editRow.okato = (short)dialog.OkatoCode;
-                    editRow.region_id = dialog.RegionCode;
-                    editRow.sv_0004 = dialog.Phone;
-                    editRow.sv_0005 = dialog.Email;
-                    editRow.sv_0006 = dialog.Address;
-                    gaspsListView.UpdateListViewItem();
-                }
-            }
-        }
-
+                
         private void FgisEsnsiCloneToLast_Click(object sender, EventArgs e)
         {
             if (MasterDataSystem.DataSet.fgis_esnsi.ExistsRow(gaspsListView.DataRow.version))
@@ -507,10 +501,161 @@ namespace DatabaseToolSuite.Dialogs
             }
         }
 
+        private void FgisEsnsiEdit()
+        {
+            if (gaspsListView.DataRow !=null && gaspsListView.DataRow.authority_id == MasterDataSystem.PROSECUTOR_CODE)
+            {
+                fgis_esnsiRow editRow;
+                bool createdRow = false;
+
+                if (MasterDataSystem.DataSet.fgis_esnsi.ExistsRow(gaspsListView.DataRow.version))
+                {
+                    editRow = MasterDataSystem.DataSet.fgis_esnsi.Get(gaspsListView.DataRow.version);
+                }
+                else
+                {
+                    editRow = MasterDataSystem.DataSet.fgis_esnsi.Create(gaspsListView.DataRow.version);
+                    createdRow = true;
+                }
+
+                EsnsiDialog dialog = new EsnsiDialog(gaspsListView.DataRow, editRow);
+                if (dialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    editRow.autokey = dialog.Autokey;
+                    editRow.code = dialog.Code;
+                    editRow.id = dialog.Id;
+                    editRow.okato = (short)dialog.OkatoCode;
+                    editRow.region_id = dialog.RegionCode;
+                    editRow.sv_0004 = dialog.Phone;
+                    editRow.sv_0005 = dialog.Email;
+                    editRow.sv_0006 = dialog.Address;
+                    gaspsListView.UpdateListViewItem();
+                }
+                else
+                {
+                    if (createdRow)
+                    {
+                        editRow.Delete();
+                    }
+                    else
+                    {
+                        editRow.CancelEdit();
+                    }
+
+                }
+            }
+        }
+       
+        #endregion
+        
+        #region ERVK
+
+        private void ErvkEdit_Click(object sender, EventArgs e)
+        {
+            ErvkEdit();
+        }
+
+        private void ErvkCloneToLast_Click(object sender, EventArgs e)
+        {
+            if (MasterDataSystem.DataSet.ervk.ExistsRow(gaspsListView.DataRow.version))
+            {
+                ervkRow currentRow = MasterDataSystem.DataSet.ervk.Get(gaspsListView.DataRow.version);
+                if (MasterDataSystem.CloneErvkNoteToLastVersion(currentRow.version) != null)
+                {
+                    MessageBox.Show(this, "Данные ЕРВК успешно скопированы в действующую запись!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(this, "Не удалось скопировать данные ЕРВК!" + Environment.NewLine + "Вероятно в действующей записи уже имеются сведения.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        private void ErvkRemove_Click(object sender, EventArgs e)
+        {
+            if (gaspsListView.DataRow != null && gaspsListView.DataRow.authority_id == MasterDataSystem.PROSECUTOR_CODE)
+            {
+                if (MasterDataSystem.DataSet.ervk.ExistsRow(gaspsListView.DataRow.version))
+                {
+                    MasterDataSystem.DataSet.ervk.Romove(gaspsListView.DataRow.version);
+                }
+
+                bool existsErvk = FileSystem.Repository.DataSet.ervk.ExistsRow(gaspsListView.DataRow.version);
+
+                mnuTableErvkRemove.Enabled = existsErvk;
+                mnuTableErvkRemoveButton.Enabled = existsErvk;
+                gaspsListView.UpdateListViewItem();
+            }
+        }
+
+        private void ErvkEdit()
+        {
+            if (gaspsListView.DataRow != null && gaspsListView.DataRow.authority_id == MasterDataSystem.PROSECUTOR_CODE)
+            {
+                ervkRow editRow;
+                bool createdRow = false;
+
+                if (MasterDataSystem.DataSet.ervk.ExistsRow(gaspsListView.DataRow.version))
+                {
+                    editRow = MasterDataSystem.DataSet.ervk.Get(gaspsListView.DataRow.version);
+                }
+                else
+                {
+                    editRow = MasterDataSystem.DataSet.ervk.Create(gaspsListView.DataRow.version, 0);
+                    createdRow = true;
+                }
+
+                ErvkDialog dialog = new ErvkDialog(gaspsListView.DataRow, editRow);
+                if (dialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    //editRow.autokey = dialog.Autokey;
+                    //editRow.code = dialog.Code;
+                    //editRow.id = dialog.Id;
+                    //editRow.okato = (short)dialog.OkatoCode;
+                    //editRow.region_id = dialog.RegionCode;
+                    //editRow.sv_0004 = dialog.Phone;
+                    //editRow.sv_0005 = dialog.Email;
+                    //editRow.sv_0006 = dialog.Address;
+                    gaspsListView.UpdateListViewItem();
+                }
+                else
+                {
+                    if (createdRow)
+                    {
+                        editRow.Delete();
+                    }
+                    else
+                    {
+                        editRow.CancelEdit();
+                    }
+                }
+            }
+        }
+        
+        #endregion
+
         private void ToolsImportFgisEsnsi_Click(object sender, EventArgs e)
         {
             Utils.Dialogs.ImportDialog dialog = new Utils.Dialogs.ImportDialog();
             dialog.ShowDialog(this);
-        }                
+        }
+
+        private void ToolsFillLogEditDateGasps_Click(object sender, EventArgs e)
+        {
+            Utils.Database.FillLogEditDateInGasps();
+            MessageBox.Show(this, "Данные ГАС ПС успешно дополнены журналом редактирования", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ToolsFillLogEditDateFgisEsnsi_Click(object sender, EventArgs e)
+        {
+            Utils.Database.FillLogEditDateInFgisEsnsi();
+            MessageBox.Show(this, "Данные ФГИС ЕСНСИ успешно дополнены журналом редактирования", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ToolsFillLogEditDateErvk_Click(object sender, EventArgs e)
+        {
+            Utils.Database.FillLogEditDateInErvk();
+            MessageBox.Show(this, "Данные ЕРВК успешно дополнены журналом редактирования", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }       
     }
 }

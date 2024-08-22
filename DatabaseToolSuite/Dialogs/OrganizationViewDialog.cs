@@ -18,7 +18,7 @@ namespace DatabaseToolSuite.Dialogs
             InitializeComponent();
         }
 
-        public OrganizationViewDialog(FullOrganization organization ) : base()
+        public OrganizationViewDialog(ViewFgisEsnsiOrganization organization ) : base()
         {
             InitializeComponent();
             propertyGrid1.SelectedObject = organization;

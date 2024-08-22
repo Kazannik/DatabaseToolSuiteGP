@@ -50,7 +50,8 @@ namespace DatabaseToolSuite.Utils.Dialogs
                     address: split[5],
                     okato: short.Parse(split[6]),
                     code: long.Parse(split[7]),
-                    autokey: split[8]);
+                    autokey: split[8],
+                    editDate: DateTime.Today);
 
                 if (split.Length == 10)
                     note.Version = long.Parse(split[9]);
@@ -121,7 +122,8 @@ namespace DatabaseToolSuite.Utils.Dialogs
                     address: split[5], 
                     okato: short.Parse(split[6]), 
                     code: long.Parse( split[7]), 
-                    autokey: split[8]);
+                    autokey: split[8],
+                    editDate: DateTime.Today);
 
                 IEnumerable<long> versions = Services.MasterDataSystem.DataSet.gasps.GetVersionFromNameOkato(note.Name1, note.Name2, note.Name3, note.Okato.ToString("00"));
                 foreach (long v in versions)
@@ -172,7 +174,8 @@ namespace DatabaseToolSuite.Utils.Dialogs
                    string address,
                    short okato,
                    long code,
-                   string autokey): 
+                   string autokey,
+                   DateTime editDate): 
                 base(
                     version: -1, 
                     id: id, 
@@ -183,7 +186,8 @@ namespace DatabaseToolSuite.Utils.Dialogs
                     address: address, 
                     okato: okato, 
                     code: code, 
-                    autokey: autokey)
+                    autokey: autokey,
+                    editDate: editDate)
             {
                 Name1 = name;
                 Name2 = name.Replace(" г. ", " города ");

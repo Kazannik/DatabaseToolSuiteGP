@@ -100,12 +100,6 @@
     <Compile Include="Controls\GaspsListView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\GaspsListView.Designer.cs">
-      <DependentUpon>GaspsListView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\GaspsListView2.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Controls\NumericTextBox.cs" />
     <Compile Include="Controls\OkatoComboBox.cs" />
     <Compile Include="Controls\OkatoToolStripComboBox.cs" />
@@ -122,6 +116,10 @@
     <Compile Include="Dialogs\AppForm.Designer.cs">
       <DependentUpon>AppForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\ErvkDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utils\Database.cs" />
     <Compile Include="Utils\Dialogs\AuthorityDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -232,14 +230,14 @@
     <EmbeddedResource Include="Controls\GaspsListView.resx">
       <DependentUpon>GaspsListView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\GaspsListView2.resx">
-      <DependentUpon>GaspsListView2.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AppForm.resx">
       <DependentUpon>AppForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ErvkDialog.resx">
+      <DependentUpon>ErvkDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utils\Dialogs\AuthorityDialog.resx">
       <DependentUpon>AuthorityDialog.cs</DependentUpon>

@@ -21,7 +21,7 @@ namespace DatabaseToolSuite.Services
 
         public static void ExportGaspsToExcel()
         {
-            IEnumerable<GaspsOrganization> data = MasterDataSystem.DataSet.gasps.ExportData();
+            IEnumerable<ViewGaspsOrganization> data = MasterDataSystem.DataSet.gasps.ExportData();
             int rowCount = data.Count();
 
             Excel.Application m_objExcel = null;
@@ -75,7 +75,7 @@ namespace DatabaseToolSuite.Services
 
             object[,] objData = new object[rowCount, 6];
             int r = 0;
-            foreach (GaspsOrganization item in data)
+            foreach (ViewGaspsOrganization item in data)
             {
                 objData[r, 0] = r + 1;
                 objData[r, 1] = item.Name;
@@ -101,7 +101,7 @@ namespace DatabaseToolSuite.Services
 
         public static void ExportGaspsToExcel2()
         {
-            IEnumerable<GaspsOrganization> data = MasterDataSystem.DataSet.gasps.ExportData()
+            IEnumerable<ViewGaspsOrganization> data = MasterDataSystem.DataSet.gasps.ExportData()
                 .Where(x=> x.AuthorityId == 20)
                 .Where(x=> x.Name.ToLower().IndexOf("прокуратура")>=0);
             int rowCount = data.Count();
@@ -157,7 +157,7 @@ namespace DatabaseToolSuite.Services
 
             object[,] objData = new object[rowCount, 8];
             int r = 0;
-            foreach (GaspsOrganization item in data)
+            foreach (ViewGaspsOrganization item in data)
             {
                 objData[r, 0] = r + 1;
                 objData[r, 1] = item.Name;
@@ -184,7 +184,7 @@ namespace DatabaseToolSuite.Services
 
         public static void ExportFgisEsnsiToExcel()
         {
-            IEnumerable<FgisEsnsiOrganization> data = MasterDataSystem.DataSet.fgis_esnsi.ExportData();
+            IEnumerable<Repositoryes.RepositoryDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization> data = MasterDataSystem.DataSet.fgis_esnsi.ExportData();
             int rowCount = data.Count();
 
             Excel.Application m_objExcel = null;
@@ -215,7 +215,7 @@ namespace DatabaseToolSuite.Services
            
             object[,] objData = new object[rowCount, objHeaders.Count()];
             int r = 0;
-            foreach (FgisEsnsiOrganization item in data)
+            foreach (Repositoryes.RepositoryDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization item in data)
             {
                 objData[r, 0] = item.Id;
                 objData[r, 1] = item.Name;
@@ -236,11 +236,11 @@ namespace DatabaseToolSuite.Services
 
         public static void ExportFgisEsnsiToCsv(string path)
         {
-            IEnumerable<FgisEsnsiOrganization> data = MasterDataSystem.DataSet.fgis_esnsi.ExportData();
+            IEnumerable<Repositoryes.RepositoryDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization> data = MasterDataSystem.DataSet.fgis_esnsi.ExportData();
             StreamWriter writer = new StreamWriter(path: path, append: false, encoding: Encoding.GetEncoding(1251));
             writer.WriteLine("id;NAME;REGION;PHONE;EMAIL;ADDRESS;OKATO;CODE;autokey");
             
-            foreach (FgisEsnsiOrganization item in data)
+            foreach (Repositoryes.RepositoryDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization item in data)
             {
                 string line = item.Id + ";" + 
                     item.Name.Trim() + ";" + 

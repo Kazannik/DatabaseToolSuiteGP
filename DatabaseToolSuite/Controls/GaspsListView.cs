@@ -1,23 +1,21 @@
-﻿using System;
+﻿using DatabaseToolSuite.Repositoryes;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using DatabaseToolSuite.Repositoryes;
 using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
-using System.Drawing;
+using static DatabaseToolSuite.Repositoryes.RepositoryDataSet.gaspsDataTable;
 
 namespace DatabaseToolSuite.Controls
 {
     public partial class GaspsListView : UserControl
     {
         private RepositoryDataSet _dataSet;
-        private IList<gaspsRow> rowsCollection;
+        private IList<ViewFgisEsnsiOrganization> itemsCollection;
         private ListViewItem[] itemsCache;
         private int firstItemIndex;
-
-        private Dictionary<long, string> authorityCollection;
-        private Dictionary<string, string> okatoCollection;
 
         private bool _lockShow;
         private bool _reserveShow;
@@ -25,13 +23,22 @@ namespace DatabaseToolSuite.Controls
         private long? _authority;
         private string _okato;
         private string _code;
+        private ImageList organizationImageList;
+        private ColumnHeader phoneColumn;
+        private ColumnHeader emailColumn;
+        private ColumnHeader addressColumn;
+        private ColumnHeader ownerName;
+        private ColumnHeader isActive;
+        private ColumnHeader isHead;
+        private ColumnHeader special;
+        private ColumnHeader military;
+        private ColumnHeader ogrn;
+        private ColumnHeader inn;
         private string _name;
 
         public GaspsListView()
         {
-            rowsCollection = new List<gaspsRow>();
-            authorityCollection = new Dictionary<long, string>();
-            okatoCollection = new Dictionary<string, string>();
+            itemsCollection = new List<ViewFgisEsnsiOrganization>();
 
             _lockShow = false;
             _reserveShow = true;
@@ -61,7 +68,7 @@ namespace DatabaseToolSuite.Controls
             get
             {
                 return _dataSet;
-            } 
+            }
             set
             {
                 if (value != null)
@@ -83,7 +90,22 @@ namespace DatabaseToolSuite.Controls
         }
 
         public gaspsRow DataRow { get; private set; }
-             
+        
+        public ViewFgisEsnsiOrganization SelectedOrganization
+        {
+            get
+            {
+                if (baseListView.SelectedIndices.Count > 0)
+                {
+                    return itemsCollection[baseListView.SelectedIndices[0]];
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
         public bool LockShow
         {
             get
@@ -131,23 +153,23 @@ namespace DatabaseToolSuite.Controls
                 }
             }
         }
-        
+
         public int RowCount
         {
-            get { return rowsCollection.Count; }
+            get { return itemsCollection.Count; }
         }
 
         public void SetFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
         {
-            InitializeFilter(dataSet: DataSet, 
-                authority: authority, 
-                okato: okato, 
-                code: code, 
-                name: name, 
-                unlockShow: 
-                unlockShow, 
-                reserveShow: reserveShow, 
+            InitializeFilter(dataSet: DataSet,
+                authority: authority,
+                okato: okato,
+                code: code,
+                name: name,
+                unlockShow: unlockShow,
+                reserveShow: reserveShow,
                 lockShow: lockShow);
+            
         }
 
         private void InitializeFilter(RepositoryDataSet dataSet, long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
@@ -157,24 +179,12 @@ namespace DatabaseToolSuite.Controls
             baseListView.BeginUpdate();
 
             int selectedIndex = baseListView.SelectedIndices.Count > 0 ? baseListView.SelectedIndices[0] : 0;
-            gaspsRow selectedRow = rowsCollection.Count > 0 ? rowsCollection[selectedIndex]: null;
-
-            authorityCollection.Clear();
-            foreach (authorityRow row in DataSet.authority)
-            {
-                authorityCollection.Add(row.id, row.name);
-            }
-
-            okatoCollection.Clear();
-            foreach (okatoRow row in DataSet.okato)
-            {
-                okatoCollection.Add(row.code, row.name);
-            }
+            ViewFgisEsnsiOrganization selectedOrganization = itemsCollection.Count > 0 ? itemsCollection[selectedIndex] : null;
 
             baseListView.VirtualMode = true;
             itemsCache = null;
-            
-            rowsCollection = dataSet.gasps.GetOrganizationFilter(
+
+            itemsCollection = dataSet.gasps.GetFullOrganizationFilter(
                 authority: authority,
                 okato: okato,
                 code: code,
@@ -183,10 +193,10 @@ namespace DatabaseToolSuite.Controls
                 reserveShow: reserveShow,
                 lockShow: lockShow);
 
-            baseListView.VirtualListSize = rowsCollection.Count();
+            baseListView.VirtualListSize = itemsCollection.Count();
 
             baseListView.SelectedIndices.Clear();
-            int selectIndex = rowsCollection.IndexOf(selectedRow);
+            int selectIndex = itemsCollection.IndexOf(selectedOrganization);
             if (selectIndex >= 0)
             {
                 baseListView.SelectedIndices.Add(selectIndex);
@@ -199,21 +209,22 @@ namespace DatabaseToolSuite.Controls
         }
 
         private void DetailsUpdate()
-        {            
+        {
             if (baseListView.SelectedIndices.Count == 0)
             {
                 if (DataRow != null)
                 {
                     DataRow = null;
                     OnItemSelectionChanged(new EventArgs());
-                }                
+                }
             }
             else
             {
-                gaspsRow newRow = rowsCollection[baseListView.SelectedIndices[0]];
-                if (DataRow != newRow)
+                ViewFgisEsnsiOrganization newOrganization = itemsCollection[baseListView.SelectedIndices[0]];
+                if (DataRow ==null ||
+                    DataRow.version != newOrganization.Version)
                 {
-                    DataRow = newRow;
+                    DataRow = DataSet.gasps.GetOrganizationFromVersion(newOrganization.Version);
                     OnItemSelectionChanged(new EventArgs());
                 }
             }
@@ -227,7 +238,7 @@ namespace DatabaseToolSuite.Controls
             }
             else
             {
-                e.Item = CreateListViewItem(rowsCollection[e.ItemIndex]);
+                e.Item = CreateListViewItem(itemsCollection[e.ItemIndex]);
             }
         }
 
@@ -244,79 +255,150 @@ namespace DatabaseToolSuite.Controls
 
             for (int i = 0; i < length; i++)
             {
-                itemsCache[i] = CreateListViewItem(rowsCollection[firstItemIndex + i]);
+                itemsCache[i] = CreateListViewItem(itemsCollection[firstItemIndex + i]);
             }
         }
 
-        //private void ListView_SearchForVirtualItem(object sender, SearchForVirtualItemEventArgs e)
-        //{
-        //    //We've gotten a search request.
-        //    //In this example, finding the item is easy since it's
-        //    //just the square of its index.  We'll take the square root
-        //    //and round.
-        //    double x = 0;
-        //    if (Double.TryParse(e.Text, out x)) //check if this is a valid search
-        //    {
-        //        x = Math.Sqrt(x);
-        //        x = Math.Round(x);
-        //        e.Index = (int)x;
-        //    }
-        //    //If e.Index is not set, the search returns null.
-        //    //Note that this only handles simple searches over the entire
-        //    //list, ignoring any other settings.  Handling Direction, StartIndex,
-        //    //and the other properties of SearchForVirtualItemEventArgs is up
-        //    //to this handler.
-        //}
-
-        private ListViewItem CreateListViewItem(gaspsRow row)
+        private ListViewItem CreateListViewItem(ViewFgisEsnsiOrganization organization)
         {
-            ListViewItem item = new ListViewItem(row.code);
+            ListViewItem item = new ListViewItem(organization.Code);
 
-            if (row.date_beg > DateTime.Today)
+            if (organization.Begin > DateTime.Today)
                 item.ImageIndex = 2;
-            else if (row.date_beg <= DateTime.Today && row.date_end > DateTime.Today)
+            else if (organization.Begin <= DateTime.Today && organization.End > DateTime.Today)
                 item.ImageIndex = 0;
             else
                 item.ImageIndex = 1;
-                        
-            item.Text = row.code;
-            item.SubItems.Add(row.name);
-            item.SubItems.Add(authorityCollection[row.authority_id]);
-            item.SubItems.Add(row.okato_code + " - " + okatoCollection[row.okato_code]);
-            item.SubItems.Add(row.date_beg.ToShortDateString());
-            item.SubItems.Add(row.date_end.ToShortDateString());
 
-            //item.SubItems.Add(row.key.ToString());
-            //item.SubItems.Add(row.version.ToString());
+            item.Text = organization.Code;
+            item.SubItems.Add(organization.Name);
+            item.SubItems.Add(organization.Authority);
+            item.SubItems.Add(organization.Okato);
+            item.SubItems.Add(organization.Begin.ToShortDateString());
+            item.SubItems.Add(organization.End.ToShortDateString());
+
+            item.SubItems.Add(organization.Phone);
+            item.SubItems.Add(organization.Email);
+            item.SubItems.Add(organization.Address);
+
+            item.SubItems.Add(organization.OwnerName);
+
+            item.SubItems.Add(organization.OwnerName);
+            item.SubItems.Add(organization.OwnerName);
+            item.SubItems.Add(organization.OwnerName);
+            item.SubItems.Add(organization.OwnerName);
+            item.SubItems.Add(organization.OwnerName);
+            item.SubItems.Add(organization.OwnerName);
+
             return item;
         }
 
 
+        public void UpdateListViewItem(           
+            string code,           
+            string phone,
+            string email,
+            string address,            
+            string okatoCode)
+        {
+            if (itemsCollection.Count == 0) return;
+            int selectedIndex = baseListView.SelectedIndices.Count > 0 ? baseListView.SelectedIndices[0] : 0;
+            ViewFgisEsnsiOrganization organization = itemsCollection[selectedIndex];
+
+            UpdateListViewItem(
+                name: organization.Name,
+                authority: organization.Authority,
+                okato: organization.Okato,
+                code: code,
+                begin: organization.Begin,
+                end: organization.End,
+                phone: phone,
+                email: email,
+                address: address,
+                version: organization.Version,
+                authorityId: organization.AuthorityId,
+                okatoCode: okatoCode,
+                key: organization.Key,
+                ownerId: organization.OwnerId,
+                ownerName: organization.OwnerName);           
+        }
+
+        public void UpdateListViewItem(
+            string name,
+            string authority,
+            string okato,
+            string code,
+            DateTime begin,
+            DateTime end,
+            string phone,
+            string email,
+            string address,
+            long version,
+            long authorityId,
+            string okatoCode,
+            long key,
+            long ownerId,
+            string ownerName)
+        {
+            if (itemsCollection.Count == 0) return;
+            int selectedIndex = baseListView.SelectedIndices.Count > 0 ? baseListView.SelectedIndices[0] : 0;
+            ViewFgisEsnsiOrganization organization = itemsCollection[selectedIndex];
+            itemsCollection[selectedIndex] = new ViewFgisEsnsiOrganization(
+                name: name,
+                authority: authority,
+                okato: okato,
+                code: code,
+                begin: begin,
+                end: end,
+                phone: phone,
+                email: email,
+                address: address,
+                version: version,
+                authorityId: authorityId,
+                okatoCode: okatoCode,
+                key: key,
+                ownerId: ownerId,
+                ownerName: ownerName);
+            UpdateListViewItem();
+        }
+
         public void UpdateListViewItem()
         {
-            if (rowsCollection.Count == 0) return;
+            if (itemsCollection.Count == 0) return;
             int selectedIndex = baseListView.SelectedIndices.Count > 0 ? baseListView.SelectedIndices[0] : 0;
-            gaspsRow selectedRow = rowsCollection[selectedIndex];
-
-
+            long version = itemsCollection[selectedIndex].Version;
+            itemsCollection[selectedIndex] = _dataSet.gasps.GetFgisEsnsiOrganization(version);
+            ViewFgisEsnsiOrganization organization = itemsCollection[selectedIndex];
             ListViewItem item = itemsCache[selectedIndex - firstItemIndex];
 
-            if (selectedRow.date_beg > DateTime.Today)
+            if (organization.Begin > DateTime.Today)
                 item.ImageIndex = 2;
-            else if (selectedRow.date_beg <= DateTime.Today && selectedRow.date_end > DateTime.Today)
+            else if (organization.Begin <= DateTime.Today && organization.End > DateTime.Today)
                 item.ImageIndex = 0;
             else
                 item.ImageIndex = 1;
 
-            item.Text = selectedRow.code;
-            item.SubItems[1].Text = selectedRow.name;
-            item.SubItems[2].Text = authorityCollection[selectedRow.authority_id];
-            item.SubItems[3].Text = selectedRow.okato_code + " - " + okatoCollection[selectedRow.okato_code];
-            item.SubItems[4].Text = selectedRow.date_beg.ToShortDateString();
-            item.SubItems[5].Text = selectedRow.date_end.ToShortDateString();
+            item.Text = organization.Code;
+            item.SubItems[1].Text = organization.Name;
+            item.SubItems[2].Text = organization.Authority;
+            item.SubItems[3].Text = organization.Okato;
+            item.SubItems[4].Text = organization.Begin.ToShortDateString();
+            item.SubItems[5].Text = organization.End.ToShortDateString();
 
-            //item.SubItems[6].Text = selectedRow.key.ToString();
-            //item.SubItems[7].Text = selectedRow.version.ToString();
+            item.SubItems[6].Text = organization.Phone;
+            item.SubItems[7].Text = organization.Email;
+            item.SubItems[8].Text = organization.Address;
+
+            item.SubItems[9].Text = organization.OwnerName;
+
+            item.SubItems[10].Text = organization.OwnerName;
+            item.SubItems[11].Text = organization.OwnerName;
+            item.SubItems[12].Text = organization.OwnerName;
+            item.SubItems[13].Text = organization.OwnerName;
+            item.SubItems[14].Text = organization.OwnerName;
+            item.SubItems[15].Text = organization.OwnerName;
+
+            Refresh();
         }
 
         private void ListView_SelectedIndexChanged(object sender, EventArgs e)
@@ -326,54 +408,70 @@ namespace DatabaseToolSuite.Controls
 
         private void ListView_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            if (rowsCollection.Count == 0) return;
+            if (itemsCollection.Count == 0) return;
 
             baseListView.BeginUpdate();
 
             int selectedIndex = baseListView.SelectedIndices.Count > 0 ? baseListView.SelectedIndices[0] : 0;
-            gaspsRow selectedRow = rowsCollection[selectedIndex];
+            ViewFgisEsnsiOrganization selectedOrganization = itemsCollection[selectedIndex];
 
             if (baseListView.Columns[e.Column].Tag == null ||
                 baseListView.Columns[e.Column].Tag.ToString() == "UP")
             {
                 if (e.Column == 0)
-                    rowsCollection = rowsCollection.OrderBy(x => x.code).ToArray();
+                    itemsCollection = itemsCollection.OrderBy(x => x.Code).ToArray();
                 else if (e.Column == 1)
-                    rowsCollection = rowsCollection.OrderBy(x => x.name).ToArray();
+                    itemsCollection = itemsCollection.OrderBy(x => x.Name).ToArray();
                 else if (e.Column == 2)
-                    rowsCollection = rowsCollection.OrderBy(x => x.authority_id).ToArray();
+                    itemsCollection = itemsCollection.OrderBy(x => x.Authority).ToArray();
                 else if (e.Column == 3)
-                    rowsCollection = rowsCollection.OrderBy(x => x.okato_code).ToArray();
+                    itemsCollection = itemsCollection.OrderBy(x => x.Okato).ToArray();
                 else if (e.Column == 4)
-                    rowsCollection = rowsCollection.OrderBy(x => x.date_beg).ToArray();
+                    itemsCollection = itemsCollection.OrderBy(x => x.Begin).ToArray();
                 else if (e.Column == 5)
-                    rowsCollection = rowsCollection.OrderBy(x => x.date_end).ToArray();
+                    itemsCollection = itemsCollection.OrderBy(x => x.End).ToArray();
+                else if (e.Column == 6)
+                    itemsCollection = itemsCollection.OrderBy(x => x.Phone).ToArray();
+                else if (e.Column == 7)
+                    itemsCollection = itemsCollection.OrderBy(x => x.Email).ToArray();
+                else if (e.Column == 8)
+                    itemsCollection = itemsCollection.OrderBy(x => x.Address).ToArray();
+                else if (e.Column == 9)
+                    itemsCollection = itemsCollection.OrderBy(x => x.OwnerName).ToArray();
                 else
-                    rowsCollection = rowsCollection.OrderBy(x => x.code).ToArray();
+                    itemsCollection = itemsCollection.OrderBy(x => x.Code).ToArray();
 
                 baseListView.Columns[e.Column].Tag = "DOWN";
             }
             else
             {
                 if (e.Column == 0)
-                    rowsCollection = rowsCollection.OrderByDescending(x => x.code).ToArray();
+                    itemsCollection = itemsCollection.OrderByDescending(x => x.Code).ToArray();
                 else if (e.Column == 1)
-                    rowsCollection = rowsCollection.OrderByDescending(x => x.name).ToArray();
+                    itemsCollection = itemsCollection.OrderByDescending(x => x.Name).ToArray();
                 else if (e.Column == 2)
-                    rowsCollection = rowsCollection.OrderByDescending(x => x.authority_id).ToArray();
+                    itemsCollection = itemsCollection.OrderByDescending(x => x.Authority).ToArray();
                 else if (e.Column == 3)
-                    rowsCollection = rowsCollection.OrderByDescending(x => x.okato_code).ToArray();
-               else if (e.Column == 4)
-                    rowsCollection = rowsCollection.OrderByDescending(x => x.date_beg).ToArray();
+                    itemsCollection = itemsCollection.OrderByDescending(x => x.Okato).ToArray();
+                else if (e.Column == 4)
+                    itemsCollection = itemsCollection.OrderByDescending(x => x.Begin).ToArray();
                 else if (e.Column == 5)
-                    rowsCollection = rowsCollection.OrderByDescending(x => x.date_end).ToArray();
+                    itemsCollection = itemsCollection.OrderByDescending(x => x.End).ToArray();
+                else if (e.Column == 6)
+                    itemsCollection = itemsCollection.OrderByDescending(x => x.Phone).ToArray();
+                else if (e.Column == 7)
+                    itemsCollection = itemsCollection.OrderByDescending(x => x.Email).ToArray();
+                else if (e.Column == 8)
+                    itemsCollection = itemsCollection.OrderByDescending(x => x.Address).ToArray();
+                else if (e.Column == 9)
+                    itemsCollection = itemsCollection.OrderByDescending(x => x.OwnerName).ToArray();
                 else
-                    rowsCollection = rowsCollection.OrderByDescending(x => x.code).ToArray();
+                    itemsCollection = itemsCollection.OrderByDescending(x => x.Code).ToArray();
 
                 baseListView.Columns[e.Column].Tag = "UP";
             }
 
-            int selectIndex = rowsCollection.IndexOf(selectedRow);
+            int selectIndex = itemsCollection.IndexOf(selectedOrganization);
             itemsCache = null;
             baseListView.SelectedIndices.Clear();
             baseListView.SelectedIndices.Add(selectIndex);
@@ -443,7 +541,7 @@ namespace DatabaseToolSuite.Controls
             var focusedItem = listView.FocusedItem;
             if (focusedItem != null && focusedItem.Bounds.Contains(e.Location))
             {
-                OnItemMouseClick(new GaspsListViewEventArgs(focusedItem, e ));
+                OnItemMouseClick(new GaspsListViewEventArgs(focusedItem, e));
             }
         }
 
@@ -456,8 +554,210 @@ namespace DatabaseToolSuite.Controls
                 OnItemMouseDoubleClick(new GaspsListViewEventArgs(focusedItem, e));
             }
         }
+
+      
+        /// <summary> 
+        /// Обязательная переменная конструктора.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Освободить все используемые ресурсы.
+        /// </summary>
+        /// <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Код, автоматически созданный конструктором компонентов
+
+        /// <summary> 
+        /// Требуемый метод для поддержки конструктора — не изменяйте 
+        /// содержимое этого метода с помощью редактора кода.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GaspsListView));
+            this.baseListView = new System.Windows.Forms.ListView();
+            this.codeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.nameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.authorityColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.okatoColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.beginColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.endColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.phoneColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.emailColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.addressColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ownerName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.organizationImageList = new System.Windows.Forms.ImageList(this.components);
+            this.isHead = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.special = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.military = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ogrn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.inn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.isActive = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.SuspendLayout();
+            // 
+            // baseListView
+            // 
+            this.baseListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.codeColumn,
+            this.nameColumn,
+            this.authorityColumn,
+            this.okatoColumn,
+            this.beginColumn,
+            this.endColumn,
+            this.phoneColumn,
+            this.emailColumn,
+            this.addressColumn,
+            this.ownerName,
+            this.isActive,
+            this.isHead,
+            this.special,
+            this.military,
+            this.ogrn,
+            this.inn});
+            this.baseListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.baseListView.FullRowSelect = true;
+            this.baseListView.GridLines = true;
+            this.baseListView.LargeImageList = this.organizationImageList;
+            this.baseListView.Location = new System.Drawing.Point(0, 0);
+            this.baseListView.Margin = new System.Windows.Forms.Padding(4);
+            this.baseListView.MultiSelect = false;
+            this.baseListView.Name = "baseListView";
+            this.baseListView.Size = new System.Drawing.Size(863, 185);
+            this.baseListView.SmallImageList = this.organizationImageList;
+            this.baseListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.baseListView.TabIndex = 0;
+            this.baseListView.UseCompatibleStateImageBehavior = false;
+            this.baseListView.View = System.Windows.Forms.View.Details;
+            this.baseListView.VirtualMode = true;
+            this.baseListView.CacheVirtualItems += new System.Windows.Forms.CacheVirtualItemsEventHandler(this.ListView_CacheVirtualItems);
+            this.baseListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListView_ColumnClick);
+            this.baseListView.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.ListView_RetrieveVirtualItem);
+            this.baseListView.SelectedIndexChanged += new System.EventHandler(this.ListView_SelectedIndexChanged);
+            this.baseListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListView_MouseClick);
+            this.baseListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListView_MouseDoubleClick);
+            // 
+            // codeColumn
+            // 
+            this.codeColumn.Text = "Код";
+            this.codeColumn.Width = 80;
+            // 
+            // nameColumn
+            // 
+            this.nameColumn.Text = "Наименование";
+            this.nameColumn.Width = 400;
+            // 
+            // authorityColumn
+            // 
+            this.authorityColumn.Text = "Ведомство";
+            this.authorityColumn.Width = 120;
+            // 
+            // okatoColumn
+            // 
+            this.okatoColumn.Text = "ОКАТО";
+            this.okatoColumn.Width = 200;
+            // 
+            // beginColumn
+            // 
+            this.beginColumn.Text = "Начало действия";
+            this.beginColumn.Width = 100;
+            // 
+            // endColumn
+            // 
+            this.endColumn.Text = "Окончание действия";
+            this.endColumn.Width = 100;
+            // 
+            // phoneColumn
+            // 
+            this.phoneColumn.Text = "Телефон";
+            this.phoneColumn.Width = 120;
+            // 
+            // emailColumn
+            // 
+            this.emailColumn.Text = "Эл.почта";
+            this.emailColumn.Width = 120;
+            // 
+            // addressColumn
+            // 
+            this.addressColumn.Text = "Адрес";
+            this.addressColumn.Width = 200;
+            // 
+            // ownerName
+            // 
+            this.ownerName.Text = "Владелец";
+            this.ownerName.Width = 200;
+            // 
+            // organizationImageList
+            // 
+            this.organizationImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("organizationImageList.ImageStream")));
+            this.organizationImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.organizationImageList.Images.SetKeyName(0, "unlock");
+            this.organizationImageList.Images.SetKeyName(1, "lock");
+            this.organizationImageList.Images.SetKeyName(2, "reserve");
+            // 
+            // isHead
+            // 
+            this.isHead.DisplayIndex = 10;
+            this.isHead.Text = "Головная";
+            // 
+            // special
+            // 
+            this.special.DisplayIndex = 11;
+            this.special.Text = "Специализированная";
+            // 
+            // military
+            // 
+            this.military.DisplayIndex = 12;
+            this.military.Text = "Военная";
+            // 
+            // ogrn
+            // 
+            this.ogrn.DisplayIndex = 13;
+            this.ogrn.Text = "ОГРН";
+            // 
+            // inn
+            // 
+            this.inn.DisplayIndex = 14;
+            this.inn.Text = "ИНН";
+            // 
+            // isActive
+            // 
+            this.isActive.DisplayIndex = 15;
+            this.isActive.Text = "Активная";
+            // 
+            // GaspsListView
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.baseListView);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "GaspsListView";
+            this.Size = new System.Drawing.Size(863, 185);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.ListView baseListView;
+        private System.Windows.Forms.ColumnHeader codeColumn;
+        private System.Windows.Forms.ColumnHeader nameColumn;
+        private System.Windows.Forms.ColumnHeader authorityColumn;
+        private System.Windows.Forms.ColumnHeader okatoColumn;
+        private System.Windows.Forms.ColumnHeader beginColumn;
+        private System.Windows.Forms.ColumnHeader endColumn;
+
     }
 
+    
     public class GaspsListViewEventArgs : EventArgs
     {
         public GaspsListViewEventArgs(ListViewItem item, MouseEventArgs arg)
@@ -486,4 +786,6 @@ namespace DatabaseToolSuite.Controls
         public int Y { get; }
 
     }
+
 }
+
