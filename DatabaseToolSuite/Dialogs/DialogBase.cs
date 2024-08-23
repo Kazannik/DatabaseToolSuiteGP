@@ -12,7 +12,7 @@ namespace DatabaseToolSuite.Dialogs
 
         public const int CONTROL_MARGIN = 6;
         public readonly static int LINES_MARGIN = SystemInformation.Border3DSize.Width * 2;
-        public const int TOP_BORDER_HEIGHT = 42;
+        public const int TOP_BORDER_HEIGHT = 52;
         public const int BOTTOM_BORDER_HEIGHT = 48;
 
         public readonly static Size BUTTON_SIZE = new Size(75, 23);

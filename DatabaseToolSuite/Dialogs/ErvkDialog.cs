@@ -67,7 +67,7 @@ namespace DatabaseToolSuite.Dialogs
             this.esnsiRegionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.esnsiRegionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.esnsiRegionTextBox.Location = new System.Drawing.Point(86, 110);
+            this.esnsiRegionTextBox.Location = new System.Drawing.Point(86, 123);
             this.esnsiRegionTextBox.Name = "esnsiRegionTextBox";
             this.esnsiRegionTextBox.ReadOnly = true;
             this.esnsiRegionTextBox.Size = new System.Drawing.Size(624, 27);
@@ -77,7 +77,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.esnsiRegionLabel.AutoSize = true;
             this.esnsiRegionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.esnsiRegionLabel.Location = new System.Drawing.Point(12, 113);
+            this.esnsiRegionLabel.Location = new System.Drawing.Point(12, 126);
             this.esnsiRegionLabel.Name = "esnsiRegionLabel";
             this.esnsiRegionLabel.Size = new System.Drawing.Size(68, 20);
             this.esnsiRegionLabel.TabIndex = 9;
@@ -88,7 +88,7 @@ namespace DatabaseToolSuite.Dialogs
             this.esnsiNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.esnsiNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.esnsiNameTextBox.Location = new System.Drawing.Point(16, 77);
+            this.esnsiNameTextBox.Location = new System.Drawing.Point(16, 90);
             this.esnsiNameTextBox.Name = "esnsiNameTextBox";
             this.esnsiNameTextBox.ReadOnly = true;
             this.esnsiNameTextBox.Size = new System.Drawing.Size(694, 27);
@@ -98,7 +98,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.esnsiNameLabel.AutoSize = true;
             this.esnsiNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.esnsiNameLabel.Location = new System.Drawing.Point(12, 54);
+            this.esnsiNameLabel.Location = new System.Drawing.Point(12, 67);
             this.esnsiNameLabel.Name = "esnsiNameLabel";
             this.esnsiNameLabel.Size = new System.Drawing.Size(246, 20);
             this.esnsiNameLabel.TabIndex = 7;

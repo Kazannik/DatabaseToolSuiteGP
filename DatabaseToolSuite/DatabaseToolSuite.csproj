@@ -220,6 +220,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
     </Compile>
+	<Compile Include="Repositoryes\DatabaseXMLSchema.Viewers.cs">
+      <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
+    </Compile>
+	<Compile Include="Repositoryes\DatabaseXMLSchema.Gasps.cs">
+      <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
+    </Compile>
+	<Compile Include="Repositoryes\DatabaseXMLSchema.FgisEsnsi.cs">
+      <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
+    </Compile>
+	<Compile Include="Repositoryes\DatabaseXMLSchema.Ervk.cs">
+      <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Repositoryes\Dto\AuthorityDto.cs" />
     <Compile Include="Repositoryes\Dto\OkatoDto.cs" />
     <Compile Include="Services\DataGridViewSetting.cs" />

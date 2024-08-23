@@ -85,7 +85,8 @@ namespace DatabaseToolSuite.Dialogs
                 unlockShow: true,
                 reserveShow: true,
                 lockShow: filterLockCodeViewCheckBox.Checked,
-                ervkOnlyShow: filterErvkOnlyViewCheckBox.Checked);
+                fgisEsnsiOnlyShow: filterFgisEsnsiOnlyRadioButton.Checked,
+                ervkOnlyShow: filterErvkOnlyRadioButton.Checked);
                 rowCountStatusLabel.Text = string.Format("Отражено записей {0}", gaspsListView.RowCount);
            }
         }
@@ -106,7 +107,8 @@ namespace DatabaseToolSuite.Dialogs
                unlockShow: true,
                reserveShow: true,
                lockShow: filterLockCodeViewCheckBox.Checked,
-               ervkOnlyShow: filterErvkOnlyViewCheckBox.Checked);
+               fgisEsnsiOnlyShow: filterFgisEsnsiOnlyRadioButton.Checked,
+               ervkOnlyShow: filterErvkOnlyRadioButton.Checked);
             rowCountStatusLabel.Text = string.Format("Отражено записей {0}", gaspsListView.RowCount);
         }
 

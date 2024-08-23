@@ -2,11 +2,10 @@
 using System.Linq;
 using System.Reflection;
 using Excel = Microsoft.Office.Interop.Excel;
-using static DatabaseToolSuite.Repositoryes.RepositoryDataSet.gaspsDataTable;
-using static DatabaseToolSuite.Repositoryes.RepositoryDataSet.fgis_esnsiDataTable;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
 
 namespace DatabaseToolSuite.Services
 {
