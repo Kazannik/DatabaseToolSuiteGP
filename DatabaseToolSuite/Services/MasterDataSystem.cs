@@ -24,7 +24,7 @@ namespace DatabaseToolSuite.Services
         }
 
         /// <summary>
-        /// Создание записи о подразделении правоохранительного органа
+        /// Создание записи о подразделении правоохранительного органа в ГАС ПС
         /// </summary>
         /// <param name="name">Наименование подразделения.</param>
         /// <param name="key">Ключ подразделения. Не изменяется от версии к версии записи.</param>
@@ -72,9 +72,9 @@ namespace DatabaseToolSuite.Services
 
             return newRow;
         }
-       
+
         /// <summary>
-        /// Создание новой записи.
+        /// Создание записи о подразделении правоохранительного органа в ГАС ПС
         /// </summary>
         /// <param name="name">Наименование подразделения</param>
         /// <param name="okato">Код ОКАТО</param>
@@ -116,9 +116,9 @@ namespace DatabaseToolSuite.Services
 
             return newRow.version;
         }
-        
+
         /// <summary>
-        /// Создание новой версии записи
+        /// Создание новой версии записи о подразделении правоохранительного органа в ГАС ПС
         /// </summary>
         /// <param name="version">Индекс версии</param>
         /// <param name="date">Дата введения в действие новой версии</param>
@@ -180,7 +180,7 @@ namespace DatabaseToolSuite.Services
 
 
         /// <summary>
-        /// Создание новой версии записи
+        /// Создание новой версии записи о подразделении правоохранительного органа в ГАС ПС
         /// </summary>
         /// <param name="version">Индекс версии</param>
         /// <param name="date">Дата введения в действие новой версии</param>
@@ -233,7 +233,7 @@ namespace DatabaseToolSuite.Services
         }
 
         /// <summary>
-        /// Блокировка записи
+        /// Блокировка записи о подразделении правоохранительного органа в ГАС ПС
         /// </summary>
         /// <param name="version">Индекс версии</param>
         /// <param name="date">Дата блокировки</param>
@@ -244,9 +244,9 @@ namespace DatabaseToolSuite.Services
             oldRow.date_end = date;
             oldRow.EndEdit();
         }
-        
+
         /// <summary>
-        /// Создание новой версии записи
+        /// Правка записи о подразделении правоохранительного органа в ГАС ПС
         /// </summary>
         /// <param name="version">Индекс версии</param>
         /// <param name="date">Дата введения в действие новой версии</param>

@@ -30,6 +30,31 @@ namespace DatabaseToolSuite.Repositoryes
                 row.Delete();
             }
 
+
+            public bool IsLastVersion(long version)
+            {
+                ervkRow current = GetOrganizationFromVersion(version);
+                ervkRow last = GetLastVersionOrganizationFromCode(current.code);
+                return version == last.version;
+            }
+
+            public long GetNextEsnsiCode()
+            {
+                if (this.Count > 0)
+                    return 1 + this.AsEnumerable().Max(r => r.esnsiCode);
+                else
+                    return 1;
+            }
+
+            public long GetNextVersionProc()
+            {
+                if (this.Count > 0)
+                    return 1 + this.AsEnumerable().Max(r =>long.Parse(r.idVersionProc));
+                else
+                    return 1;
+            }
+                       
+                    
             public ervkRow Create(long gaspsVersion, long esnsiCode)
             {
                 DateTime dateStartVersion = DateTime.Now;
