@@ -604,21 +604,52 @@ namespace DatabaseToolSuite.Dialogs
                 }
                 else
                 {
-                    editRow = MasterDataSystem.DataSet.ervk.Create(gaspsListView.DataRow.version, 0);
+                    editRow = MasterDataSystem.DataSet.ervk.Create(gaspsListView.DataRow.version);
+                    editRow.dateStartVersion = gaspsListView.DataRow.date_beg;
                     createdRow = true;
                 }
 
-                ErvkDialog dialog = new ErvkDialog(gaspsListView.DataRow, editRow);
+                ErvkDialog dialog = new ErvkDialog(editRow);
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
-                    //editRow.autokey = dialog.Autokey;
-                    //editRow.code = dialog.Code;
-                    //editRow.id = dialog.Id;
-                    //editRow.okato = (short)dialog.OkatoCode;
-                    //editRow.region_id = dialog.RegionCode;
-                    //editRow.sv_0004 = dialog.Phone;
-                    //editRow.sv_0005 = dialog.Email;
-                    //editRow.sv_0006 = dialog.Address;
+                    if (dialog.DateCloseProc != MasterDataSystem.MAX_DATE)
+                    {
+                        editRow.dateCloseProc = dialog.DateCloseProc > MasterDataSystem.MAX_DATE ? MasterDataSystem.MAX_DATE : dialog.DateCloseProc;
+                    }
+                    else
+                    {
+                        editRow.SetdateCloseProcNull();
+                    }
+                    if (editRow.dateStartVersion < MasterDataSystem.MIN_DATE)
+                    {
+                        editRow.dateStartVersion = MasterDataSystem.MIN_DATE;
+                    }
+                    else
+                    {
+                        editRow.dateStartVersion = dialog.DateStartVersion;
+                    }
+                                       
+                    // editRow.esnsiCode
+                    // editRow.idSuccession
+                    if (dialog.IdVersionHead <=0)
+                    {
+                        editRow.SetidVersionHeadNull();
+                    }
+                    else
+                    {
+                        editRow.idVersionHead = dialog.IdVersionHead;
+                    }
+                    
+                    //editRow.idVersionProc = dialog.
+                    editRow.inn = dialog.Inn;
+                    editRow.isActive = dialog.IsActive;
+                    editRow.isHead = dialog.IsHead;
+                    editRow.military = dialog.IsMilitary;
+                    editRow.ogrn = dialog.Ogrn;
+                    //     editRow.oktmoList
+                    editRow.special = dialog.IsSpecial;
+                   //     editRow.subjectRfList
+
                     gaspsListView.UpdateListViewItem();
                 }
                 else

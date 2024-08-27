@@ -326,12 +326,25 @@ namespace DatabaseToolSuite.Controls
 
             item.SubItems.Add(organization.OwnerName);
 
-            item.SubItems.Add(organization.IsHead.ToString());
-            item.SubItems.Add(organization.Special.ToString());
-            item.SubItems.Add(organization.Military.ToString());
-            item.SubItems.Add(organization.Ogrn);
-            item.SubItems.Add(organization.Inn);
-            item.SubItems.Add(organization.IsActive.ToString());
+            if (organization.IsErvk)
+            {
+                item.SubItems.Add(organization.IsHead.ToString());
+                item.SubItems.Add(organization.Special.ToString());
+                item.SubItems.Add(organization.Military.ToString());
+                item.SubItems.Add(organization.Ogrn);
+                item.SubItems.Add(organization.Inn);
+                item.SubItems.Add(organization.IsActive.ToString());
+            }
+            else
+            {
+                item.SubItems.Add(string.Empty);
+                item.SubItems.Add(string.Empty);
+                item.SubItems.Add(string.Empty);
+                item.SubItems.Add(string.Empty);
+                item.SubItems.Add(string.Empty);
+                item.SubItems.Add(string.Empty);
+            }
+
 
             return item;
         }
@@ -371,6 +384,7 @@ namespace DatabaseToolSuite.Controls
                 isActive: organization.IsActive,
                 idVersionProc: organization.IdVersionProc,
                 idVersionHead: organization.IdVersionHead,
+                idSuccession: organization.IdSuccession,
                 dateStartVersion: organization.DateStartVersion,
                 dateCloseProc: organization.DateCloseProc,
                 ogrn: organization.Ogrn,
@@ -402,6 +416,7 @@ namespace DatabaseToolSuite.Controls
             bool isActive,
             string idVersionProc,
             long idVersionHead,
+            long idSuccession,
             DateTime dateStartVersion,
             DateTime dateCloseProc,
             string ogrn,
@@ -436,6 +451,7 @@ namespace DatabaseToolSuite.Controls
                 isActive: isActive,
                 idVersionProc: idVersionProc,
                 idVersionHead: idVersionHead,
+                idSuccession: idSuccession,
                 dateStartVersion: dateStartVersion,
                 dateCloseProc: dateCloseProc,
                 ogrn: ogrn,
@@ -474,13 +490,25 @@ namespace DatabaseToolSuite.Controls
 
             item.SubItems[9].Text = organization.OwnerName;
 
-            item.SubItems[10].Text = organization.IsHead.ToString();
-            item.SubItems[11].Text = organization.Special.ToString();
-            item.SubItems[12].Text = organization.Military.ToString();
-            item.SubItems[13].Text = organization.Ogrn;
-            item.SubItems[14].Text = organization.Inn;
-            item.SubItems[15].Text = organization.IsActive.ToString();
-
+            if (organization.IsErvk)
+            {
+                item.SubItems[10].Text = organization.IsHead.ToString();
+                item.SubItems[11].Text = organization.Special.ToString();
+                item.SubItems[12].Text = organization.Military.ToString();
+                item.SubItems[13].Text = organization.Ogrn;
+                item.SubItems[14].Text = organization.Inn;
+                item.SubItems[15].Text = organization.IsActive.ToString();
+            }
+            else
+            {
+                item.SubItems[10].Text = string.Empty;
+                item.SubItems[11].Text = string.Empty;
+                item.SubItems[12].Text = string.Empty;
+                item.SubItems[13].Text = string.Empty;
+                item.SubItems[14].Text = string.Empty;
+                item.SubItems[15].Text = string.Empty;
+            }
+            
             Refresh();
         }
 

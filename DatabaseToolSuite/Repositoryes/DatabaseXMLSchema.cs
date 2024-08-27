@@ -10,6 +10,7 @@ namespace DatabaseToolSuite.Repositoryes
 
     partial class RepositoryDataSet
     {
+
         public bool ExistsCourtTypeId(Int64 id)
         {
             return courtTypeTable.ExistsId(id);
@@ -202,7 +203,7 @@ namespace DatabaseToolSuite.Repositoryes
                         select item).First().genitive;
             }
         }
-               
+
     }
 }
 

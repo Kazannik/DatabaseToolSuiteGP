@@ -80,8 +80,9 @@ namespace DatabaseToolSuite.Repositoryes
                        special: ervk.special,
                        military: ervk.military,
                        isActive: ervk.isActive,
-                       idVersionProc: ervk.IsidVersionProcNull() ? string.Empty : ervk.idVersionProc,
+                       idVersionProc: ervk.idVersionProc,
                        idVersionHead: ervk.IsidVersionHeadNull() ? 0 : ervk.idVersionHead,
+                       idSuccession: ervk.IsidSuccessionNull() ? 0 : ervk.idSuccession,
                        dateStartVersion: ervk.dateStartVersion,
                        dateCloseProc: ervk.IsdateCloseProcNull() ? DateTime.MaxValue : ervk.dateCloseProc,
                        ogrn: ervk.IsogrnNull() ? string.Empty : ervk.ogrn,
@@ -450,6 +451,11 @@ namespace DatabaseToolSuite.Repositoryes
             [DisplayName("ИД ЕСНСИ вышестоящего органа прокуратуры")]
             public long IdVersionHead { get; private set; }
 
+            [Description("ИД ЕСНСИ бывшего органа прокуратуры (ссылка на esnsiCode)")]
+            [Category("ЕРВК")]
+            [DisplayName("ИД ЕСНСИ бывшего органа прокуратуры")]
+            public long IdSuccession { get; private set; }
+
             [Description("Дата создания версии органа прокуратуры в ЕСНСИ")]
             [Category("ЕРВК")]
             [DisplayName("Дата создания версии органа прокуратуры в ЕСНСИ")]
@@ -496,6 +502,7 @@ namespace DatabaseToolSuite.Repositoryes
                 bool isActive,
                 string idVersionProc,
                 long idVersionHead,
+                long idSuccession,
                 DateTime dateStartVersion,
                 DateTime dateCloseProc,
                 string ogrn,
@@ -511,6 +518,7 @@ namespace DatabaseToolSuite.Repositoryes
                 IsActive = isActive;
                 IdVersionProc = idVersionProc;
                 IdVersionHead = idVersionHead;
+                IdSuccession = idSuccession;
                 DateStartVersion = dateStartVersion;
                 DateCloseProc = dateCloseProc;
                 Ogrn = ogrn;
@@ -582,8 +590,9 @@ namespace DatabaseToolSuite.Repositoryes
                     Special = ervk.special;
                     Military = ervk.military;
                     IsActive = ervk.isActive;
-                    IdVersionProc = ervk.IsidVersionProcNull() ? string.Empty : ervk.idVersionProc;
+                    IdVersionProc = ervk.idVersionProc;
                     IdVersionHead = ervk.IsidVersionHeadNull() ? 0 : ervk.idVersionHead;
+                    IdSuccession = ervk.IsidSuccessionNull() ? 0 : ervk.idSuccession;
                     DateStartVersion = ervk.dateStartVersion;
                     DateCloseProc = ervk.IsdateCloseProcNull() ? DateTime.MaxValue : ervk.dateCloseProc;
                     Ogrn = ervk.IsogrnNull() ? string.Empty : ervk.ogrn;

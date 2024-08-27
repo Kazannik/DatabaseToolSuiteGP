@@ -190,6 +190,14 @@ namespace DatabaseToolSuite.Dialogs
             this.organizationGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
+            // button_Cancel
+            // 
+            this.button_Cancel.Location = new System.Drawing.Point(637, 506);
+            // 
+            // button_OK
+            // 
+            this.button_OK.Location = new System.Drawing.Point(475, 506);
+            // 
             // beginDateLabel
             // 
             this.beginDateLabel.AutoSize = true;
@@ -297,6 +305,7 @@ namespace DatabaseToolSuite.Dialogs
             this.ownerLabel.Size = new System.Drawing.Size(98, 20);
             this.ownerLabel.TabIndex = 44;
             this.ownerLabel.Text = "Владелец:";
+            this.ownerLabel.Click += new System.EventHandler(this.ownerLabel_Click);
             // 
             // okatoLabel
             // 
@@ -326,7 +335,7 @@ namespace DatabaseToolSuite.Dialogs
             | System.Windows.Forms.AnchorStyles.Right)));
             this.okatoComboBox.Code = "";
             this.okatoComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.okatoComboBox.DropDownHeight = 196;
+            this.okatoComboBox.DropDownHeight = 484;
             this.okatoComboBox.DropDownWidth = 80;
             this.okatoComboBox.FormattingEnabled = true;
             this.okatoComboBox.IntegralHeight = false;
@@ -335,6 +344,7 @@ namespace DatabaseToolSuite.Dialogs
             this.okatoComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.okatoComboBox.MaxDropDownItems = 20;
             this.okatoComboBox.Name = "okatoComboBox";
+            this.okatoComboBox.SelectedItem = null;
             this.okatoComboBox.Size = new System.Drawing.Size(544, 30);
             this.okatoComboBox.TabIndex = 6;
             this.okatoComboBox.SelectedIndexChanged += new System.EventHandler(this.Controls_ValueChanged);
@@ -345,7 +355,7 @@ namespace DatabaseToolSuite.Dialogs
             | System.Windows.Forms.AnchorStyles.Right)));
             this.authorityComboBox.Code = "";
             this.authorityComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.authorityComboBox.DropDownHeight = 196;
+            this.authorityComboBox.DropDownHeight = 484;
             this.authorityComboBox.DropDownWidth = 80;
             this.authorityComboBox.FormattingEnabled = true;
             this.authorityComboBox.IntegralHeight = false;
@@ -354,6 +364,7 @@ namespace DatabaseToolSuite.Dialogs
             this.authorityComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.authorityComboBox.MaxDropDownItems = 20;
             this.authorityComboBox.Name = "authorityComboBox";
+            this.authorityComboBox.SelectedItem = null;
             this.authorityComboBox.Size = new System.Drawing.Size(544, 30);
             this.authorityComboBox.TabIndex = 5;
             this.authorityComboBox.SelectedIndexChanged += new System.EventHandler(this.Controls_ValueChanged);
@@ -400,9 +411,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // CreateNewVersionDialog
             // 
-            this.AcceptButton = null;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.CancelButton = null;
             this.ClientSize = new System.Drawing.Size(722, 533);
             this.Controls.Add(this.organizationGroupBox);
             this.Controls.Add(this.beginDateLabel);
@@ -412,6 +421,8 @@ namespace DatabaseToolSuite.Dialogs
             this.Margin = new System.Windows.Forms.Padding(5);
             this.MinimumSize = new System.Drawing.Size(740, 580);
             this.Name = "CreateNewVersionDialog";
+            this.Controls.SetChildIndex(this.button_Cancel, 0);
+            this.Controls.SetChildIndex(this.button_OK, 0);
             this.Controls.SetChildIndex(this.beginDateTimePicker, 0);
             this.Controls.SetChildIndex(this.beginDateLabel, 0);
             this.Controls.SetChildIndex(this.organizationGroupBox, 0);
@@ -439,6 +450,9 @@ namespace DatabaseToolSuite.Dialogs
         protected System.Windows.Forms.TextBox nameTextBox;
         protected System.Windows.Forms.DateTimePicker beginDateTimePicker;
 
+        private void ownerLabel_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

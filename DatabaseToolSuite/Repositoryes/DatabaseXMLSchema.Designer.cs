@@ -2429,6 +2429,8 @@ namespace DatabaseToolSuite.Repositoryes {
             
             private global::System.Data.DataColumn columnidVersionHead;
             
+            private global::System.Data.DataColumn columnidSuccession;
+            
             private global::System.Data.DataColumn columndateStartVersion;
             
             private global::System.Data.DataColumn columndateCloseProc;
@@ -2542,6 +2544,14 @@ namespace DatabaseToolSuite.Repositoryes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn idSuccessionColumn {
+                get {
+                    return this.columnidSuccession;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn dateStartVersionColumn {
                 get {
                     return this.columndateStartVersion;
@@ -2633,7 +2643,23 @@ namespace DatabaseToolSuite.Repositoryes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ervkRow AddervkRow(gaspsRow parentgaspsRowBygasps_ervk, long esnsiCode, bool isHead, bool special, bool military, bool isActive, string idVersionProc, long idVersionHead, System.DateTime dateStartVersion, System.DateTime dateCloseProc, string ogrn, string inn, string subjectRfList, string oktmoList, System.DateTime logEditDate) {
+            public ervkRow AddervkRow(
+                        gaspsRow parentgaspsRowBygasps_ervk, 
+                        long esnsiCode, 
+                        bool isHead, 
+                        bool special, 
+                        bool military, 
+                        bool isActive, 
+                        string idVersionProc, 
+                        long idVersionHead, 
+                        long idSuccession, 
+                        System.DateTime dateStartVersion, 
+                        System.DateTime dateCloseProc, 
+                        string ogrn, 
+                        string inn, 
+                        string subjectRfList, 
+                        string oktmoList, 
+                        System.DateTime logEditDate) {
                 ervkRow rowervkRow = ((ervkRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2644,6 +2670,7 @@ namespace DatabaseToolSuite.Repositoryes {
                         isActive,
                         idVersionProc,
                         idVersionHead,
+                        idSuccession,
                         dateStartVersion,
                         dateCloseProc,
                         ogrn,
@@ -2684,6 +2711,7 @@ namespace DatabaseToolSuite.Repositoryes {
                 this.columnisActive = base.Columns["isActive"];
                 this.columnidVersionProc = base.Columns["idVersionProc"];
                 this.columnidVersionHead = base.Columns["idVersionHead"];
+                this.columnidSuccession = base.Columns["idSuccession"];
                 this.columndateStartVersion = base.Columns["dateStartVersion"];
                 this.columndateCloseProc = base.Columns["dateCloseProc"];
                 this.columnogrn = base.Columns["ogrn"];
@@ -2712,6 +2740,8 @@ namespace DatabaseToolSuite.Repositoryes {
                 base.Columns.Add(this.columnidVersionProc);
                 this.columnidVersionHead = new global::System.Data.DataColumn("idVersionHead", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnidVersionHead);
+                this.columnidSuccession = new global::System.Data.DataColumn("idSuccession", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnidSuccession);
                 this.columndateStartVersion = new global::System.Data.DataColumn("dateStartVersion", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndateStartVersion);
                 this.columndateCloseProc = new global::System.Data.DataColumn("dateCloseProc", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -2740,6 +2770,7 @@ namespace DatabaseToolSuite.Repositoryes {
                 this.columnmilitary.DefaultValue = ((bool)(false));
                 this.columnisActive.AllowDBNull = false;
                 this.columnisActive.DefaultValue = ((bool)(true));
+                this.columnidVersionProc.AllowDBNull = false;
                 this.columndateStartVersion.AllowDBNull = false;
             }
             
@@ -3894,12 +3925,7 @@ namespace DatabaseToolSuite.Repositoryes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string idVersionProc {
                 get {
-                    try {
-                        return ((string)(this[this.tableervk.idVersionProcColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'idVersionProc\' в таблице \'ervk\' равно DBNull.", e);
-                    }
+                    return ((string)(this[this.tableervk.idVersionProcColumn]));
                 }
                 set {
                     this[this.tableervk.idVersionProcColumn] = value;
@@ -3919,6 +3945,22 @@ namespace DatabaseToolSuite.Repositoryes {
                 }
                 set {
                     this[this.tableervk.idVersionHeadColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long idSuccession {
+                get {
+                    try {
+                        return ((long)(this[this.tableervk.idSuccessionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'idSuccession\' в таблице \'ervk\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableervk.idSuccessionColumn] = value;
                 }
             }
             
@@ -4042,18 +4084,6 @@ namespace DatabaseToolSuite.Repositoryes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsidVersionProcNull() {
-                return this.IsNull(this.tableervk.idVersionProcColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetidVersionProcNull() {
-                this[this.tableervk.idVersionProcColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsidVersionHeadNull() {
                 return this.IsNull(this.tableervk.idVersionHeadColumn);
             }
@@ -4062,6 +4092,18 @@ namespace DatabaseToolSuite.Repositoryes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetidVersionHeadNull() {
                 this[this.tableervk.idVersionHeadColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsidSuccessionNull() {
+                return this.IsNull(this.tableervk.idSuccessionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetidSuccessionNull() {
+                this[this.tableervk.idSuccessionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

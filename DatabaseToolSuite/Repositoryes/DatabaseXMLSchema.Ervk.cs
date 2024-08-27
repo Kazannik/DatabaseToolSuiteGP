@@ -17,6 +17,35 @@ namespace DatabaseToolSuite.Repositoryes
                         select item).Count() > 0;
             }
 
+            public bool ExistsEsnsiCode(long esnsiCode)
+            {
+                return (from item in this.AsEnumerable()
+                        where item.RowState != DataRowState.Deleted &&
+                        item.esnsiCode == esnsiCode
+                        select item).Count() > 0;
+            }
+
+            public bool ExistsInn(string inn)
+            {
+                return (from item in this.AsEnumerable()
+                        where item.inn.Equals(inn, StringComparison.CurrentCultureIgnoreCase)
+                        select item).Count() > 0;
+            }
+
+            public bool ExistsOgrn(string ogrn)
+            {
+                return (from item in this.AsEnumerable()
+                        where item.ogrn.Equals(ogrn, StringComparison.CurrentCultureIgnoreCase)
+                        select item).Count() > 0;
+            }
+
+            public bool ExistsIdVersionHead(long idVersionHead)
+            {
+                return (from item in this.AsEnumerable()
+                        where item.idVersionHead == idVersionHead
+                        select item).Count() > 0;
+            }
+
             public ervkRow Get(long gaspsVersion)
             {
                 return this.AsEnumerable()
@@ -24,20 +53,20 @@ namespace DatabaseToolSuite.Repositoryes
                     .Last(x => x.version == gaspsVersion);
             }
 
+            public ervkRow GetFromEsnsiCode(long esnsiCode)
+            {
+                return this.AsEnumerable()
+                    .Where(x => x.RowState != DataRowState.Deleted)
+                    .Last(x => x.esnsiCode == esnsiCode);
+            }
+                       
             public void Romove(long gaspsVersion)
             {
                 DataRow row = Get(gaspsVersion);
                 row.Delete();
             }
 
-
-            public bool IsLastVersion(long version)
-            {
-                ervkRow current = GetOrganizationFromVersion(version);
-                ervkRow last = GetLastVersionOrganizationFromCode(current.code);
-                return version == last.version;
-            }
-
+                        
             public long GetNextEsnsiCode()
             {
                 if (this.Count > 0)
@@ -46,19 +75,22 @@ namespace DatabaseToolSuite.Repositoryes
                     return 1;
             }
 
-            public long GetNextVersionProc()
+            public string GetNextVersionProc()
             {
                 if (this.Count > 0)
-                    return 1 + this.AsEnumerable().Max(r =>long.Parse(r.idVersionProc));
+                    return (1 + this.AsEnumerable().Max(r =>long.Parse(r.idVersionProc))).ToString();
                 else
-                    return 1;
+                    return (1).ToString();
             }
                        
                     
-            public ervkRow Create(long gaspsVersion, long esnsiCode)
+            public ervkRow Create(long gaspsVersion)
             {
                 DateTime dateStartVersion = DateTime.Now;
-                return (ervkRow)this.Rows.Add(new object[] { gaspsVersion, esnsiCode, null, null, null, null, null, null, dateStartVersion, null, null, null, null, null, null }); ;
+                long esnsiCode = GetNextEsnsiCode();
+                string idVersionProc = GetNextVersionProc();
+
+                return (ervkRow)this.Rows.Add(new object[] { gaspsVersion, esnsiCode, null, null, null, null, idVersionProc, null, null, dateStartVersion, null, null, null, null, null, null }); ;
             }
 
             /// <summary>
@@ -115,6 +147,11 @@ namespace DatabaseToolSuite.Repositoryes
                 public long IdVersionHead { get; }
 
                 /// <summary>
+                /// ИД ЕСНСИ бывшего органа прокуратуры (ссылка на esnsiCode)
+                /// </summary>
+                public long IdSuccession { get; }
+
+                /// <summary>
                 /// Дата создания версии органа прокуратуры в ЕСНСИ
                 /// </summary>
                 public DateTime DateStartVersion { get; }
@@ -153,6 +190,7 @@ namespace DatabaseToolSuite.Repositoryes
                     bool isActive,
                     string idVersionProc,
                     long idVersionHead,
+                    long idSuccession,
                     DateTime dateStartVersion,
                     DateTime dateCloseProc,
                     string ogrn,
@@ -168,6 +206,7 @@ namespace DatabaseToolSuite.Repositoryes
                     IsActive = isActive;
                     IdVersionProc = idVersionProc;
                     IdVersionHead = idVersionHead;
+                    IdSuccession = idSuccession;
                     DateStartVersion = dateStartVersion;
                     DateCloseProc = dateCloseProc;
                     Ogrn = ogrn;

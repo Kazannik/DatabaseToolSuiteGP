@@ -26,6 +26,13 @@ namespace DatabaseToolSuite.Repositoryes
                         select item).Count() > 0;
             }
 
+            public gaspsRow Get(long version)
+            {
+                return this.AsEnumerable()
+                    .Where(x => x.RowState != DataRowState.Deleted)
+                    .Last(x => x.version == version);
+            }
+
             public IEnumerable<long> GetVersionFromNameOkato(string name1, string name2, string name3, string okato)
             {
                 return from item in this.AsEnumerable()
@@ -95,12 +102,6 @@ namespace DatabaseToolSuite.Repositoryes
                 }
 
                 return result;
-            }
-
-
-            public IEnumerable<gaspsRow> GetOwnerOrganization()
-            {
-                return this.AsEnumerable().Where(x => x.owner_id == 0);
             }
 
             public DataView GetUnlockOrganization()
