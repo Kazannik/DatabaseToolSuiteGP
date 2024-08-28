@@ -12,6 +12,7 @@ namespace DatabaseToolSuite.Repositoryes
             public bool ExistsRow(long gaspsVersion)
             {
                 return (from item in this.AsEnumerable()
+                        .Where(x => x.RowState != DataRowState.Deleted)
                         where item.RowState != DataRowState.Deleted &&
                         item.version == gaspsVersion
                         select item).Count() > 0;
@@ -20,6 +21,7 @@ namespace DatabaseToolSuite.Repositoryes
             public bool ExistsEsnsiCode(long esnsiCode)
             {
                 return (from item in this.AsEnumerable()
+                        .Where(x => x.RowState != DataRowState.Deleted)
                         where item.RowState != DataRowState.Deleted &&
                         item.esnsiCode == esnsiCode
                         select item).Count() > 0;
@@ -28,6 +30,7 @@ namespace DatabaseToolSuite.Repositoryes
             public bool ExistsInn(string inn)
             {
                 return (from item in this.AsEnumerable()
+                        .Where(x => x.RowState != DataRowState.Deleted)
                         where item.inn.Equals(inn, StringComparison.CurrentCultureIgnoreCase)
                         select item).Count() > 0;
             }
@@ -35,6 +38,7 @@ namespace DatabaseToolSuite.Repositoryes
             public bool ExistsOgrn(string ogrn)
             {
                 return (from item in this.AsEnumerable()
+                        .Where(x => x.RowState != DataRowState.Deleted)
                         where item.ogrn.Equals(ogrn, StringComparison.CurrentCultureIgnoreCase)
                         select item).Count() > 0;
             }
@@ -42,7 +46,8 @@ namespace DatabaseToolSuite.Repositoryes
             public bool ExistsIdVersionHead(long idVersionHead)
             {
                 return (from item in this.AsEnumerable()
-                        where item.idVersionHead == idVersionHead
+                        .Where(x => x.RowState != DataRowState.Deleted)
+                        where (!item.IsidVersionHeadNull() && item.idVersionHead == idVersionHead) 
                         select item).Count() > 0;
             }
 
@@ -70,7 +75,9 @@ namespace DatabaseToolSuite.Repositoryes
             public long GetNextEsnsiCode()
             {
                 if (this.Count > 0)
-                    return 1 + this.AsEnumerable().Max(r => r.esnsiCode);
+                    return 1 + this.AsEnumerable()
+                        .Where(x => x.RowState != DataRowState.Deleted)
+                        .Max(r => r.esnsiCode);
                 else
                     return 1;
             }
@@ -78,7 +85,9 @@ namespace DatabaseToolSuite.Repositoryes
             public string GetNextVersionProc()
             {
                 if (this.Count > 0)
-                    return (1 + this.AsEnumerable().Max(r =>long.Parse(r.idVersionProc))).ToString();
+                    return (1 + this.AsEnumerable()
+                        .Where(x => x.RowState != DataRowState.Deleted)
+                        .Max(r =>long.Parse(r.idVersionProc))).ToString();
                 else
                     return (1).ToString();
             }
@@ -184,6 +193,7 @@ namespace DatabaseToolSuite.Repositoryes
                 public ErvkOrganization(
                     long version,
                     long esnsiCode,
+                    string title,
                     bool isHead,
                     bool special,
                     bool military,
@@ -200,6 +210,7 @@ namespace DatabaseToolSuite.Repositoryes
                 {
                     Version = version;
                     EsnsiCode = esnsiCode;
+                    Title = title;
                     IsHead = isHead;
                     Special = special;
                     Military = military;
@@ -216,25 +227,29 @@ namespace DatabaseToolSuite.Repositoryes
                 }
             }
 
-            //public IEnumerable<ErvkOrganization> ExportData()
-            //{
-            //    return from gasps in gaspsTable
-            //           where (gasps.authority_id == 20 && gasps.date_beg <= DateTime.Today &&
-            //           gasps.date_end > DateTime.Today)
-            //           join ervk in this on gasps.version equals ervk.version
-            //           join okato in okatoTable on gasps.okato_code equals okato.code
-            //           select new ErvkOrganization(
-            //               version: ervk.version,
-            //               id: esnsi.IsidNull() ? 0 : esnsi.id,
-            //               name: gasps.name,
-            //               region: okato.Isname2Null() ? okato.name : okato.name2,
-            //               phone: esnsi.Issv_0004Null() ? string.Empty : esnsi.sv_0004,
-            //               email: esnsi.Issv_0005Null() ? string.Empty : esnsi.sv_0005,
-            //               address: esnsi.Issv_0006Null() ? string.Empty : esnsi.sv_0006,
-            //               okato: esnsi.IsokatoNull() ? (short)0 : esnsi.okato,
-            //               code: esnsi.IscodeNull() ? 0 : esnsi.code,
-            //               autokey: esnsi.IsautokeyNull() ? string.Empty : esnsi.autokey);
-            //}
+            public IEnumerable<ErvkOrganization> ExportData()
+            {
+                return from ervk in this.AsEnumerable()
+                        .Where(x => x.RowState != DataRowState.Deleted)
+                       join gasps in gaspsTable on ervk.version equals gasps.version
+                       select new ErvkOrganization(
+                           version: ervk.version,
+                           esnsiCode: ervk.esnsiCode,
+                           title: gasps.name,
+                           isHead: ervk.isHead,
+                           special: ervk.special,
+                           military: ervk.military,
+                           isActive: ervk.isActive,
+                           idVersionProc: ervk.idVersionProc,
+                           idVersionHead: ervk.IsidVersionHeadNull() ? 0 :  ervk.idVersionHead,
+                           idSuccession: ervk.IsidSuccessionNull() ? 0 : ervk.idSuccession,
+                           dateStartVersion: ervk.dateStartVersion,
+                           dateCloseProc: ervk.IsdateCloseProcNull() ? Services.MasterDataSystem.MAX_DATE : ervk.dateCloseProc,
+                           ogrn: ervk.ogrn,
+                           inn: ervk.inn,
+                           subjectRfList: gasps.okatoRow.IsssrfNull() ? string.Empty :  gasps.okatoRow.ssrf + "," + gasps.okatoRow.name2,
+                           oktmoList: gasps.okato_code.Substring(0,2).Equals("00") ? string.Empty : gasps.okato_code);
+            }
 
             private gaspsDataTable gaspsTable
             {

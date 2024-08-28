@@ -431,9 +431,16 @@ namespace DatabaseToolSuite.Dialogs
             Export.ExportFgisEsnsiToExcel();
         }
 
-        private void mnuFileErknmExportToExcel_Click(object sender, EventArgs e)
+        private void mnuFileErvkExportToExcel_Click(object sender, EventArgs e)
         {
-            Export.ExportGaspsToExcel2();
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Title = "Экспортировать данные ЕРВК";
+            dialog.Filter = "Файл Microsoft Excel, содержащий значения, разделенные запятыми (.csv)|*.csv";
+            dialog.FileName = "FED_GENPROK_ORGANIZATION_ERVK_28Cp1251";
+            if (dialog.ShowDialog(this) == DialogResult.OK)
+            {
+                Export.ExportErvkToCsv(dialog.FileName);               
+            }
         }
         
         private void AppForm_Load(object sender, EventArgs e)
@@ -620,6 +627,7 @@ namespace DatabaseToolSuite.Dialogs
                     {
                         editRow.SetdateCloseProcNull();
                     }
+
                     if (editRow.dateStartVersion < MasterDataSystem.MIN_DATE)
                     {
                         editRow.dateStartVersion = MasterDataSystem.MIN_DATE;
@@ -648,7 +656,9 @@ namespace DatabaseToolSuite.Dialogs
                     editRow.ogrn = dialog.Ogrn;
                     //     editRow.oktmoList
                     editRow.special = dialog.IsSpecial;
-                   //     editRow.subjectRfList
+                    //     editRow.subjectRfList
+
+                    Utils.Database.SetIsHeadAttribute();
 
                     gaspsListView.UpdateListViewItem();
                 }

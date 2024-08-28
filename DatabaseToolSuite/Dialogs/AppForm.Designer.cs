@@ -43,7 +43,7 @@
             this.mnuFileExportToExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuFileGaspsExportToExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuFileFgisEsnsiExportToExcel = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuFileErknmExportToExcel = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFileErvkExportToExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTable = new System.Windows.Forms.ToolStripMenuItem();
@@ -235,7 +235,7 @@
             this.mnuFileExportToExcel.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuFileGaspsExportToExcel,
             this.mnuFileFgisEsnsiExportToExcel,
-            this.mnuFileErknmExportToExcel});
+            this.mnuFileErvkExportToExcel});
             this.mnuFileExportToExcel.Image = global::DatabaseToolSuite.Properties.Resources.ExportExcel24;
             this.mnuFileExportToExcel.Name = "mnuFileExportToExcel";
             this.mnuFileExportToExcel.Size = new System.Drawing.Size(288, 30);
@@ -255,12 +255,12 @@
             this.mnuFileFgisEsnsiExportToExcel.Text = "Данных ФГИС ЕСНСИ...";
             this.mnuFileFgisEsnsiExportToExcel.Click += new System.EventHandler(this.FileFgisEsnsiExportToExcel_Click);
             // 
-            // mnuFileErknmExportToExcel
+            // mnuFileErvkExportToExcel
             // 
-            this.mnuFileErknmExportToExcel.Name = "mnuFileErknmExportToExcel";
-            this.mnuFileErknmExportToExcel.Size = new System.Drawing.Size(269, 28);
-            this.mnuFileErknmExportToExcel.Text = "Данных ЕРКНМ";
-            this.mnuFileErknmExportToExcel.Click += new System.EventHandler(this.mnuFileErknmExportToExcel_Click);
+            this.mnuFileErvkExportToExcel.Name = "mnuFileErvkExportToExcel";
+            this.mnuFileErvkExportToExcel.Size = new System.Drawing.Size(269, 28);
+            this.mnuFileErvkExportToExcel.Text = "Данных ЕРВК";
+            this.mnuFileErvkExportToExcel.Click += new System.EventHandler(this.mnuFileErvkExportToExcel_Click);
             // 
             // toolStripMenuItem6
             // 
@@ -1187,7 +1187,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuContextUpdate;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton mnuTableRefreshButton;
-        private System.Windows.Forms.ToolStripMenuItem mnuFileErknmExportToExcel;
+        private System.Windows.Forms.ToolStripMenuItem mnuFileErvkExportToExcel;
         private System.Windows.Forms.ToolStripMenuItem mnuToolsEditError;
         private System.Windows.Forms.ToolStripMenuItem mnuToolsFillLogEditDateGasps;
         private System.Windows.Forms.ToolStripMenuItem mnuToolsFillLogEditDateFgisEsnsi;

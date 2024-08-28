@@ -255,5 +255,37 @@ namespace DatabaseToolSuite.Services
             writer.Close();
             MessageBox.Show("Экспорт в формате CSV выполнен!");
         }
+
+        public static void ExportErvkToCsv(string path)
+        {
+            IEnumerable<ervkDataTable.ErvkOrganization> data = MasterDataSystem.DataSet.ervk.ExportData();
+            StreamWriter writer = new StreamWriter(path: path, append: false, encoding: Encoding.GetEncoding(1251));
+            writer.WriteLine("esnsiCode;title;isHead;special;military;isActive;idVersionProc;idVersionHead;dateStartVersion;dateCloseProc;ogrn;inn;subjectRfList;oktmoList;idSuccession;Родительский элемент");
+
+            foreach (ervkDataTable.ErvkOrganization item in data)
+            {
+                string line = item.EsnsiCode + ";" +
+                    item.Title.Trim() + ";" +
+                    item.IsHead.ToString().ToLower() + ";" +
+                    item.Special.ToString().ToLower() + ";" +
+                    item.Military.ToString().ToLower() + ";" +
+                    item.IsActive.ToString().ToLower() + ";" +
+                    item.IdVersionProc.ToString() + ";" +
+                    (item.IdVersionHead == 0 ? "1" : item.IdVersionHead.ToString()) + ";" +
+                    item.DateStartVersion.ToString("dd.MM.yyyy") + ";" +
+                    (item.DateCloseProc == MasterDataSystem.MAX_DATE ? string.Empty : item.DateCloseProc.ToString("dd.MM.yyyy")) + ";" +
+                    item.Ogrn + ";" +
+                    item.Inn + ";" +
+                    item.SubjectRfList + ";" +
+                    item.OktmoList + ";" +
+                    (item.IdSuccession == 0 ? string.Empty : item.IdSuccession.ToString())  + ";" +
+                    (item.IdVersionHead == 0 ? string.Empty : item.IdVersionHead.ToString()) ;
+
+                writer.WriteLine(line);
+            }
+            writer.Close();
+            MessageBox.Show("Экспорт в формате CSV выполнен!");
+        }
+
     }
 }

@@ -12,8 +12,8 @@ namespace DatabaseToolSuite.Repositoryes
             public bool ExistsRow(long gaspsVersion)
             {
                 return (from item in this.AsEnumerable()
-                        where item.RowState != DataRowState.Deleted &&
-                        item.version == gaspsVersion
+                        .Where(x => x.RowState != DataRowState.Deleted)
+                        where item.version == gaspsVersion
                         select item).Count() > 0;
             }
 
@@ -81,6 +81,7 @@ namespace DatabaseToolSuite.Repositoryes
             public IEnumerable<FgisEsnsiOrganization> ExportData()
             {
                 return from gasps in gaspsTable
+                       .Where(x => x.RowState != DataRowState.Deleted)
                        where (gasps.authority_id == 20 && gasps.date_beg <= DateTime.Today &&
                        gasps.date_end > DateTime.Today)
                        join esnsi in this on gasps.version equals esnsi.version

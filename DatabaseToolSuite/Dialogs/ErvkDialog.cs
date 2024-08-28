@@ -27,13 +27,16 @@ namespace DatabaseToolSuite.Dialogs
         private Button deleteOwnerButton;
         private Button selectOwnerButton;
         private TextBox ownerTextBox;
-        private Label ownerLabel;
         private Button autoSelectOwnerButton;
         protected Label beginDateLabel;
         protected DateTimePicker beginDateTimePicker;
         protected Label endDateLabel;
         protected DateTimePicker endDateTimePicker;
+        private GroupBox ownerGroupBox;
         private Button getOwnerArgButton;
+
+        public ervkRow ErvkOwnerOrganization { get; private set; }
+        public gaspsRow GaspsOwnerOrganization { get; private set; }
 
         /// <summary>
         /// Признак активности записи.
@@ -48,7 +51,7 @@ namespace DatabaseToolSuite.Dialogs
         /// <summary>
         /// Код (esnsiCode) вышестоящей прокуратуры.
         /// </summary>
-        public long IdVersionHead { get; private set; }
+        public long IdVersionHead { get { return ErvkOwnerOrganization == null ? 0 : ErvkOwnerOrganization.esnsiCode; } }
 
         /// <summary>
         /// Код (esnsiCode) бывшей прокуратуры.
@@ -138,18 +141,51 @@ namespace DatabaseToolSuite.Dialogs
 
             if (MasterDataSystem.DataSet.ervk.ExistsEsnsiCode(DataRow.IsidVersionHeadNull() ? 0 : DataRow.idVersionHead))
             {
-                long ownerVersion = MasterDataSystem.DataSet.ervk.GetFromEsnsiCode(DataRow.IsidVersionHeadNull() ? 0 : DataRow.idVersionHead).version;
-                gaspsRow owner = MasterDataSystem.DataSet.gasps.Get(ownerVersion);
-                ownerTextBox.Text = owner.name + " (код: " + owner.code + ")";
+                ErvkOwnerOrganization = MasterDataSystem.DataSet.ervk.GetFromEsnsiCode(DataRow.IsidVersionHeadNull() ? 0 : DataRow.idVersionHead);
+                GaspsOwnerOrganization = MasterDataSystem.DataSet.gasps.Get(ErvkOwnerOrganization.version);
+            }
+            SetOwnerOrganizationName();
+            OkButtonEnabled = false;
+        }
+
+
+        private void GetOwnerOrganization()
+        {
+            long ownerKey = DataRow.gaspsRow.owner_id;
+            if (MasterDataSystem.DataSet.gasps.ExistsKey(ownerKey))
+            {
+                GaspsOwnerOrganization = MasterDataSystem.DataSet.gasps.GetVersionOrganizationFromKeyDate(ownerKey, DateTime.Now);
+                if (MasterDataSystem.DataSet.ervk.ExistsRow(GaspsOwnerOrganization.version))
+                {
+                    ErvkOwnerOrganization = MasterDataSystem.DataSet.ervk.Get(GaspsOwnerOrganization.version);
+                }
+                else
+                {
+                    GaspsOwnerOrganization = null;
+                    ErvkOwnerOrganization = null;
+                    MessageBox.Show(this, "Не удалось в автоматическом режиме получить код родительского подразделения!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                GaspsOwnerOrganization = null;
+                ErvkOwnerOrganization = null;
+                MessageBox.Show(this, "Не удалось в автоматическом режиме получить код родительского подразделения!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            SetOwnerOrganizationName();
+        }
+
+        private void SetOwnerOrganizationName()
+        {
+            if (GaspsOwnerOrganization != null)
+            {
+                ownerTextBox.Text = GaspsOwnerOrganization.name + " (код: " + GaspsOwnerOrganization.code + ")";
             }
             else
             {
                 ownerTextBox.Text = string.Empty;
-            }           
-
-            OkButtonEnabled = false;
+            }
         }
-
 
         private void Controls_ValueChanged(object sender, EventArgs e)
         {
@@ -207,32 +243,36 @@ namespace DatabaseToolSuite.Dialogs
             this.deleteOwnerButton = new System.Windows.Forms.Button();
             this.selectOwnerButton = new System.Windows.Forms.Button();
             this.ownerTextBox = new System.Windows.Forms.TextBox();
-            this.ownerLabel = new System.Windows.Forms.Label();
             this.autoSelectOwnerButton = new System.Windows.Forms.Button();
             this.getOwnerArgButton = new System.Windows.Forms.Button();
             this.beginDateLabel = new System.Windows.Forms.Label();
             this.beginDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.endDateLabel = new System.Windows.Forms.Label();
             this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.ownerGroupBox = new System.Windows.Forms.GroupBox();
+            this.ownerGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_Cancel
             // 
-            this.button_Cancel.Location = new System.Drawing.Point(637, 632);
+            this.button_Cancel.Location = new System.Drawing.Point(637, 602);
             // 
             // button_OK
             // 
-            this.button_OK.Location = new System.Drawing.Point(475, 632);
+            this.button_OK.Location = new System.Drawing.Point(475, 602);
             // 
             // esnsiNameTextBox
             // 
             this.esnsiNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.esnsiNameTextBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.esnsiNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.esnsiNameTextBox.Location = new System.Drawing.Point(16, 90);
+            this.esnsiNameTextBox.Multiline = true;
             this.esnsiNameTextBox.Name = "esnsiNameTextBox";
             this.esnsiNameTextBox.ReadOnly = true;
-            this.esnsiNameTextBox.Size = new System.Drawing.Size(694, 27);
+            this.esnsiNameTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.esnsiNameTextBox.Size = new System.Drawing.Size(694, 79);
             this.esnsiNameTextBox.TabIndex = 8;
             // 
             // esnsiNameLabel
@@ -247,7 +287,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // innNumericTextBox
             // 
-            this.innNumericTextBox.Location = new System.Drawing.Point(92, 134);
+            this.innNumericTextBox.Location = new System.Drawing.Point(100, 313);
             this.innNumericTextBox.Name = "innNumericTextBox";
             this.innNumericTextBox.Size = new System.Drawing.Size(235, 22);
             this.innNumericTextBox.TabIndex = 11;
@@ -257,7 +297,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 136);
+            this.label1.Location = new System.Drawing.Point(20, 315);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 20);
             this.label1.TabIndex = 12;
@@ -267,7 +307,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(12, 170);
+            this.label2.Location = new System.Drawing.Point(20, 349);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 20);
             this.label2.TabIndex = 14;
@@ -275,7 +315,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // ogrnNumericTextBox
             // 
-            this.ogrnNumericTextBox.Location = new System.Drawing.Point(92, 170);
+            this.ogrnNumericTextBox.Location = new System.Drawing.Point(100, 349);
             this.ogrnNumericTextBox.Name = "ogrnNumericTextBox";
             this.ogrnNumericTextBox.Size = new System.Drawing.Size(235, 22);
             this.ogrnNumericTextBox.TabIndex = 13;
@@ -285,7 +325,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.isSpecialCheckBox.AutoSize = true;
             this.isSpecialCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.isSpecialCheckBox.Location = new System.Drawing.Point(346, 135);
+            this.isSpecialCheckBox.Location = new System.Drawing.Point(354, 314);
             this.isSpecialCheckBox.Name = "isSpecialCheckBox";
             this.isSpecialCheckBox.Size = new System.Drawing.Size(322, 24);
             this.isSpecialCheckBox.TabIndex = 15;
@@ -297,7 +337,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.isMilitaryCheckBox.AutoSize = true;
             this.isMilitaryCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.isMilitaryCheckBox.Location = new System.Drawing.Point(346, 169);
+            this.isMilitaryCheckBox.Location = new System.Drawing.Point(354, 348);
             this.isMilitaryCheckBox.Name = "isMilitaryCheckBox";
             this.isMilitaryCheckBox.Size = new System.Drawing.Size(213, 24);
             this.isMilitaryCheckBox.TabIndex = 16;
@@ -308,9 +348,10 @@ namespace DatabaseToolSuite.Dialogs
             // isActiveCheckBox
             // 
             this.isActiveCheckBox.AutoSize = true;
-            this.isActiveCheckBox.Location = new System.Drawing.Point(346, 256);
+            this.isActiveCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.isActiveCheckBox.Location = new System.Drawing.Point(354, 435);
             this.isActiveCheckBox.Name = "isActiveCheckBox";
-            this.isActiveCheckBox.Size = new System.Drawing.Size(141, 21);
+            this.isActiveCheckBox.Size = new System.Drawing.Size(175, 24);
             this.isActiveCheckBox.TabIndex = 17;
             this.isActiveCheckBox.Text = "Активная запись";
             this.isActiveCheckBox.UseVisualStyleBackColor = true;
@@ -319,9 +360,10 @@ namespace DatabaseToolSuite.Dialogs
             // isHeadCheckBox
             // 
             this.isHeadCheckBox.AutoSize = true;
-            this.isHeadCheckBox.Location = new System.Drawing.Point(346, 283);
+            this.isHeadCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.isHeadCheckBox.Location = new System.Drawing.Point(354, 462);
             this.isHeadCheckBox.Name = "isHeadCheckBox";
-            this.isHeadCheckBox.Size = new System.Drawing.Size(239, 21);
+            this.isHeadCheckBox.Size = new System.Drawing.Size(297, 24);
             this.isHeadCheckBox.TabIndex = 18;
             this.isHeadCheckBox.Text = "Запись, имеющая подчиненных";
             this.isHeadCheckBox.UseVisualStyleBackColor = true;
@@ -330,7 +372,7 @@ namespace DatabaseToolSuite.Dialogs
             // deleteOwnerButton
             // 
             this.deleteOwnerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteOwnerButton.Location = new System.Drawing.Point(499, 562);
+            this.deleteOwnerButton.Location = new System.Drawing.Point(473, 85);
             this.deleteOwnerButton.Margin = new System.Windows.Forms.Padding(4);
             this.deleteOwnerButton.Name = "deleteOwnerButton";
             this.deleteOwnerButton.Size = new System.Drawing.Size(213, 34);
@@ -341,7 +383,7 @@ namespace DatabaseToolSuite.Dialogs
             // selectOwnerButton
             // 
             this.selectOwnerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.selectOwnerButton.Location = new System.Drawing.Point(278, 562);
+            this.selectOwnerButton.Location = new System.Drawing.Point(257, 85);
             this.selectOwnerButton.Margin = new System.Windows.Forms.Padding(4);
             this.selectOwnerButton.Name = "selectOwnerButton";
             this.selectOwnerButton.Size = new System.Drawing.Size(213, 34);
@@ -351,34 +393,24 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // ownerTextBox
             // 
-            this.ownerTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.ownerTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ownerTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ownerTextBox.Location = new System.Drawing.Point(16, 499);
+            this.ownerTextBox.Location = new System.Drawing.Point(7, 18);
             this.ownerTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.ownerTextBox.Multiline = true;
             this.ownerTextBox.Name = "ownerTextBox";
             this.ownerTextBox.ReadOnly = true;
             this.ownerTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ownerTextBox.Size = new System.Drawing.Size(696, 56);
+            this.ownerTextBox.Size = new System.Drawing.Size(679, 59);
             this.ownerTextBox.TabIndex = 49;
             this.ownerTextBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
-            // 
-            // ownerLabel
-            // 
-            this.ownerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ownerLabel.AutoSize = true;
-            this.ownerLabel.Location = new System.Drawing.Point(13, 478);
-            this.ownerLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.ownerLabel.Name = "ownerLabel";
-            this.ownerLabel.Size = new System.Drawing.Size(77, 17);
-            this.ownerLabel.TabIndex = 48;
-            this.ownerLabel.Text = "Владелец:";
             // 
             // autoSelectOwnerButton
             // 
             this.autoSelectOwnerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.autoSelectOwnerButton.Location = new System.Drawing.Point(16, 562);
+            this.autoSelectOwnerButton.Location = new System.Drawing.Point(7, 85);
             this.autoSelectOwnerButton.Margin = new System.Windows.Forms.Padding(4);
             this.autoSelectOwnerButton.Name = "autoSelectOwnerButton";
             this.autoSelectOwnerButton.Size = new System.Drawing.Size(213, 34);
@@ -388,10 +420,10 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // getOwnerArgButton
             // 
-            this.getOwnerArgButton.Location = new System.Drawing.Point(16, 200);
+            this.getOwnerArgButton.Location = new System.Drawing.Point(24, 379);
             this.getOwnerArgButton.Margin = new System.Windows.Forms.Padding(4);
             this.getOwnerArgButton.Name = "getOwnerArgButton";
-            this.getOwnerArgButton.Size = new System.Drawing.Size(311, 34);
+            this.getOwnerArgButton.Size = new System.Drawing.Size(685, 34);
             this.getOwnerArgButton.TabIndex = 51;
             this.getOwnerArgButton.Text = "Получить из вышестоящей прокуратуры";
             this.getOwnerArgButton.Click += new System.EventHandler(this.getOwnerArgButton_Click);
@@ -400,7 +432,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.beginDateLabel.AutoSize = true;
             this.beginDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.beginDateLabel.Location = new System.Drawing.Point(13, 284);
+            this.beginDateLabel.Location = new System.Drawing.Point(21, 433);
             this.beginDateLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.beginDateLabel.Name = "beginDateLabel";
             this.beginDateLabel.Size = new System.Drawing.Size(263, 20);
@@ -411,7 +443,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.beginDateTimePicker.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.beginDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.beginDateTimePicker.Location = new System.Drawing.Point(17, 312);
+            this.beginDateTimePicker.Location = new System.Drawing.Point(25, 462);
             this.beginDateTimePicker.Margin = new System.Windows.Forms.Padding(4);
             this.beginDateTimePicker.Name = "beginDateTimePicker";
             this.beginDateTimePicker.Size = new System.Drawing.Size(191, 26);
@@ -422,7 +454,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.endDateLabel.AutoSize = true;
             this.endDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.endDateLabel.Location = new System.Drawing.Point(13, 365);
+            this.endDateLabel.Location = new System.Drawing.Point(21, 502);
             this.endDateLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.endDateLabel.Name = "endDateLabel";
             this.endDateLabel.Size = new System.Drawing.Size(224, 20);
@@ -433,29 +465,41 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.endDateTimePicker.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.endDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.endDateTimePicker.Location = new System.Drawing.Point(17, 393);
+            this.endDateTimePicker.Location = new System.Drawing.Point(24, 526);
             this.endDateTimePicker.Margin = new System.Windows.Forms.Padding(4);
             this.endDateTimePicker.Name = "endDateTimePicker";
             this.endDateTimePicker.Size = new System.Drawing.Size(191, 26);
             this.endDateTimePicker.TabIndex = 54;
             this.endDateTimePicker.ValueChanged += new System.EventHandler(this.Controls_ValueChanged);
             // 
+            // ownerGroupBox
+            // 
+            this.ownerGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ownerGroupBox.Controls.Add(this.ownerTextBox);
+            this.ownerGroupBox.Controls.Add(this.autoSelectOwnerButton);
+            this.ownerGroupBox.Controls.Add(this.selectOwnerButton);
+            this.ownerGroupBox.Controls.Add(this.deleteOwnerButton);
+            this.ownerGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ownerGroupBox.Location = new System.Drawing.Point(17, 175);
+            this.ownerGroupBox.Name = "ownerGroupBox";
+            this.ownerGroupBox.Size = new System.Drawing.Size(693, 126);
+            this.ownerGroupBox.TabIndex = 56;
+            this.ownerGroupBox.TabStop = false;
+            this.ownerGroupBox.Text = "Владелец";
+            // 
             // ErvkDialog
             // 
             this.AcceptButton = this.button_OK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.CancelButton = this.button_Cancel;
-            this.ClientSize = new System.Drawing.Size(722, 659);
+            this.ClientSize = new System.Drawing.Size(722, 629);
+            this.Controls.Add(this.ownerGroupBox);
             this.Controls.Add(this.endDateLabel);
             this.Controls.Add(this.endDateTimePicker);
             this.Controls.Add(this.beginDateLabel);
             this.Controls.Add(this.beginDateTimePicker);
             this.Controls.Add(this.getOwnerArgButton);
-            this.Controls.Add(this.autoSelectOwnerButton);
-            this.Controls.Add(this.deleteOwnerButton);
-            this.Controls.Add(this.selectOwnerButton);
-            this.Controls.Add(this.ownerTextBox);
-            this.Controls.Add(this.ownerLabel);
             this.Controls.Add(this.isHeadCheckBox);
             this.Controls.Add(this.isActiveCheckBox);
             this.Controls.Add(this.isMilitaryCheckBox);
@@ -481,16 +525,14 @@ namespace DatabaseToolSuite.Dialogs
             this.Controls.SetChildIndex(this.isMilitaryCheckBox, 0);
             this.Controls.SetChildIndex(this.isActiveCheckBox, 0);
             this.Controls.SetChildIndex(this.isHeadCheckBox, 0);
-            this.Controls.SetChildIndex(this.ownerLabel, 0);
-            this.Controls.SetChildIndex(this.ownerTextBox, 0);
-            this.Controls.SetChildIndex(this.selectOwnerButton, 0);
-            this.Controls.SetChildIndex(this.deleteOwnerButton, 0);
-            this.Controls.SetChildIndex(this.autoSelectOwnerButton, 0);
             this.Controls.SetChildIndex(this.getOwnerArgButton, 0);
             this.Controls.SetChildIndex(this.beginDateTimePicker, 0);
             this.Controls.SetChildIndex(this.beginDateLabel, 0);
             this.Controls.SetChildIndex(this.endDateTimePicker, 0);
             this.Controls.SetChildIndex(this.endDateLabel, 0);
+            this.Controls.SetChildIndex(this.ownerGroupBox, 0);
+            this.ownerGroupBox.ResumeLayout(false);
+            this.ownerGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -498,27 +540,7 @@ namespace DatabaseToolSuite.Dialogs
 
         private void autoSelectOwnerButton_Click(object sender, EventArgs e)
         {
-            long ownerKey = DataRow.gaspsRow.owner_id;
-            try
-            {
-                gaspsRow owner = MasterDataSystem.DataSet.gasps.GetLastVersionOrganizationFromKey(ownerKey);
-                if (MasterDataSystem.DataSet.ervk.ExistsRow(owner.version))
-                {
-                    ervkRow ownerErvk = MasterDataSystem.DataSet.ervk.Get(owner.version);
-                    IdVersionHead = ownerErvk.esnsiCode;
-                    ownerTextBox.Text = owner.name + " (код: " + owner.code + ")";
-                }
-                else
-                {
-                    IdVersionHead = 0;
-                    ownerTextBox.Text = string.Empty;
-                    MessageBox.Show(this, "Не удалось в автоматическом режиме получить код родительского подразделения!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(this, "Не удалось в автоматическом режиме получить код родительского подразделения!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            GetOwnerOrganization();
         }
 
         private void selectOwnerButton_Click(object sender, EventArgs e)
@@ -535,28 +557,29 @@ namespace DatabaseToolSuite.Dialogs
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 long ownerKey = dialog.DataRow.key;
-                gaspsRow owner = MasterDataSystem.DataSet.gasps.GetLastVersionOrganizationFromKey(ownerKey);
-                ervkRow ownerErvk = MasterDataSystem.DataSet.ervk.Get(owner.version);
-
-                IdVersionHead = ownerErvk.esnsiCode;
-                ownerTextBox.Text = dialog.DataRow.name + " (код: " + dialog.DataRow.code + ")";                
+                GaspsOwnerOrganization = MasterDataSystem.DataSet.gasps.GetVersionOrganizationFromKeyDate(ownerKey, DateTime.Now);
+                ErvkOwnerOrganization = MasterDataSystem.DataSet.ervk.Get(GaspsOwnerOrganization.version);
+                SetOwnerOrganizationName();
             }
         }
 
         private void deleteOwnerButton_Click(object sender, EventArgs e)
         {
-            IdVersionHead = 0;
-            ownerTextBox.Text = string.Empty;
+            GaspsOwnerOrganization = null;
+            ErvkOwnerOrganization = null;
+            SetOwnerOrganizationName();
         }
 
         private void getOwnerArgButton_Click(object sender, EventArgs e)
         {
-            long ownerKey = DataRow.IsidVersionHeadNull() ? 0 : DataRow.idVersionHead;
-            if (MasterDataSystem.DataSet.ervk.ExistsRow(ownerKey))
+            if (ErvkOwnerOrganization != null)
             {
-                ervkRow ownerErvk = MasterDataSystem.DataSet.ervk.Get(ownerKey);
-                innNumericTextBox.Text = ownerErvk.IsinnNull() ? string.Empty : ownerErvk.inn;
-                ogrnNumericTextBox.Text = ownerErvk.IsogrnNull() ? string.Empty : ownerErvk.ogrn;
+                innNumericTextBox.Text = ErvkOwnerOrganization.IsinnNull() ? string.Empty : ErvkOwnerOrganization.inn;
+                ogrnNumericTextBox.Text = ErvkOwnerOrganization.IsogrnNull() ? string.Empty : ErvkOwnerOrganization.ogrn;
+                if (ErvkOwnerOrganization.special)
+                    isSpecialCheckBox.Checked = true;
+                if (ErvkOwnerOrganization.military)
+                    isMilitaryCheckBox.Checked = true;
             }
             else
             {
