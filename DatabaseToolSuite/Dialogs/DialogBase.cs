@@ -258,6 +258,7 @@ namespace DatabaseToolSuite.Dialogs
             button_OK.Size = BUTTON_SIZE;
 
             int left = Width - RIGHT_BUTTON_MARGIN - BUTTON_SIZE.Width;
+
             if (button_Cancel.Visible)
             {
                 button_Cancel.Location = new Point(left, Height - BOTTOM_BUTTON_MARGIN - BUTTON_SIZE.Height);
@@ -326,7 +327,7 @@ namespace DatabaseToolSuite.Dialogs
             this.button_Apply.Location = new System.Drawing.Point(0, 0);
             this.button_Apply.Margin = new System.Windows.Forms.Padding(4);
             this.button_Apply.Name = "button_Apply";
-            this.button_Apply.Size = new System.Drawing.Size(100, 28);
+            this.button_Apply.Size = new System.Drawing.Size(124, 36);
             this.button_Apply.TabIndex = 2;
             this.button_Apply.Text = "Применить";
             this.button_Apply.UseVisualStyleBackColor = true;
@@ -340,7 +341,7 @@ namespace DatabaseToolSuite.Dialogs
             this.button_Cancel.Location = new System.Drawing.Point(0, 0);
             this.button_Cancel.Margin = new System.Windows.Forms.Padding(4);
             this.button_Cancel.Name = "button_Cancel";
-            this.button_Cancel.Size = new System.Drawing.Size(100, 28);
+            this.button_Cancel.Size = new System.Drawing.Size(124, 36);
             this.button_Cancel.TabIndex = 1;
             this.button_Cancel.Text = "Отмена";
             this.button_Cancel.UseVisualStyleBackColor = true;
@@ -354,7 +355,7 @@ namespace DatabaseToolSuite.Dialogs
             this.button_OK.Location = new System.Drawing.Point(0, 0);
             this.button_OK.Margin = new System.Windows.Forms.Padding(4);
             this.button_OK.Name = "button_OK";
-            this.button_OK.Size = new System.Drawing.Size(100, 28);
+            this.button_OK.Size = new System.Drawing.Size(124, 36);
             this.button_OK.TabIndex = 0;
             this.button_OK.Text = "ОК";
             this.button_OK.UseVisualStyleBackColor = true;
@@ -364,13 +365,15 @@ namespace DatabaseToolSuite.Dialogs
             // DialogBase
             // 
             this.AcceptButton = this.button_OK;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.button_Cancel;
             this.ClientSize = this.ClientSize;
             this.Controls.Add(this.button_OK);
             this.Controls.Add(this.button_Cancel);
             this.Controls.Add(this.button_Apply);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

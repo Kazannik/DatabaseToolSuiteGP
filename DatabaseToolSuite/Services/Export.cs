@@ -265,7 +265,7 @@ namespace DatabaseToolSuite.Services
             foreach (ervkDataTable.ErvkOrganization item in data)
             {
                 string line = item.EsnsiCode + ";" +
-                    item.Title.Trim() + ";" +
+                    item.Title.Replace("\r\n", string.Empty).Replace("\r", string.Empty).Trim() + ";" +
                     item.IsHead.ToString().ToLower() + ";" +
                     item.Special.ToString().ToLower() + ";" +
                     item.Military.ToString().ToLower() + ";" +

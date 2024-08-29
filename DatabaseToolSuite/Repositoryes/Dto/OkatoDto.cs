@@ -25,7 +25,9 @@ namespace DatabaseToolSuite.Repositoryes.Dto
 
         public string Text { get { return Name; } }
 
-        public OkatoDto (int ter, int kod1, string lab, string name, string name2, string centrum, string genitive)
+        public string SSRF { get; }
+
+        public OkatoDto (int ter, int kod1, string lab, string name, string name2, string centrum, string genitive, string ssrf)
         {
             Ter = ter;
             Kod1 = kod1;
@@ -36,14 +38,18 @@ namespace DatabaseToolSuite.Repositoryes.Dto
             Genitive = genitive;
             Okato = ter.ToString("00") + (kod1 > 0 ? kod1.ToString("00") : string.Empty);
             Code = Okato + (lab.Length > 0 ? lab.ToUpper() : string.Empty);
+            SSRF = ssrf;
         }
 
-        public OkatoDto(okatoRow row) : this(int.Parse(row.ter), row.kod1, 
-            (row.IslabNull() ? string.Empty: row.lab), 
-            row.name, 
-            (row.Isname2Null() ? string.Empty:  row.name2), 
-            (row.IscentrumNull() ? string.Empty: row.centrum), 
-            (row.IsgenitiveNull() ? string.Empty: row.genitive)
+        public OkatoDto(okatoRow row) : this(
+            ter: int.Parse(row.ter),
+            kod1: row.kod1, 
+            lab: (row.IslabNull() ? string.Empty: row.lab), 
+            name: row.name, 
+            name2: (row.Isname2Null() ? string.Empty:  row.name2), 
+            centrum: (row.IscentrumNull() ? string.Empty: row.centrum), 
+            genitive: (row.IsgenitiveNull() ? string.Empty: row.genitive),
+            ssrf: (row.IsssrfNull() ? string.Empty : row.ssrf)
             ) { }       
     }
 }

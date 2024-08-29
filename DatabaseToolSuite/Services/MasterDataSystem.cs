@@ -172,9 +172,10 @@ namespace DatabaseToolSuite.Services
                 if (DataSet.ervk.ExistsRow(modifedRow.version))
                 {
                     CloneErvkNote(modifedRow.version, newVersion);
+                    DataSet.ervk.Get(modifedRow.version).isActive = false;
+                    DataSet.ervk.Get(modifedRow.version).logEditDate = DateTime.Now;
                 }
             }
-
             return newRow.version;
         }
 
@@ -227,6 +228,8 @@ namespace DatabaseToolSuite.Services
                 if (DataSet.ervk.ExistsRow(modifedRow.version))
                 {
                     CloneErvkNote(modifedRow.version, newVersion);
+                    DataSet.ervk.Get(modifedRow.version).isActive = false;
+                    DataSet.ervk.Get(modifedRow.version).logEditDate = DateTime.Now;
                 }
             }
             return newRow.version;
@@ -243,6 +246,11 @@ namespace DatabaseToolSuite.Services
             oldRow.BeginEdit();
             oldRow.date_end = date;
             oldRow.EndEdit();
+            if (DataSet.ervk.ExistsRow(version))
+            {
+                DataSet.ervk.Get(version).isActive = false;
+                DataSet.ervk.Get(version).logEditDate = DateTime.Now;
+            }
         }
 
         /// <summary>
