@@ -349,10 +349,8 @@ namespace DatabaseToolSuite.Repositoryes
                        .Where(x => x.RowState != DataRowState.Deleted)
                        where (item.date_beg <= DateTime.Today &&
                        item.date_end > DateTime.Today)
-                       join authority in authorityTable on item.authority_id equals authority.id
-                       join okato in okatoTable on item.okato_code equals okato.code
                        join owner in this.AsEnumerable() on item.id equals owner.owner_id
-                       select new ViewGaspsOrganization(gasps: item, owner: owner, authority: authority, okato: okato);
+                       select new ViewGaspsOrganization(gasps: item, owner: owner);
             }
 
 

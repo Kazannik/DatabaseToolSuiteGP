@@ -8,33 +8,6 @@ namespace DatabaseToolSuite.Repositoryes
 {
     partial class RepositoryDataSet
     {
-        public ViewFgisEsnsiOrganization GetViewFgisEsnsiOrganization(long version)
-        {
-            gaspsRow gasps = gaspsTable.GetOrganizationFromVersion(version);
-            string authority_name = authorityTable.GetName(gasps.authority_id);
-            string okato_name = okatoTable.GetName2(gasps.okato_code);
-            string ownerName = "TODO";
-            fgis_esnsiRow esnsi = fgisesnsiTable.ExistsRow(version) ? fgisesnsiTable.Get(version) : null;
-
-            return new ViewFgisEsnsiOrganization(
-                       name: gasps.name,
-                       authority: authority_name,
-                       okato: gasps.okato_code + " - " + okato_name,
-                       code: gasps.code,
-                       begin: gasps.date_beg,
-                       end: gasps.date_end,
-                       phone: esnsi == null ? string.Empty : (esnsi.Issv_0004Null() ? string.Empty : esnsi.sv_0004),
-                       email: esnsi == null ? string.Empty : (esnsi.Issv_0005Null() ? string.Empty : esnsi.sv_0005),
-                       address: esnsi == null ? string.Empty : (esnsi.Issv_0006Null() ? string.Empty : esnsi.sv_0006),
-                       version: gasps.version,
-                       authorityId: gasps.authority_id,
-                       okatoCode: gasps.okato_code,
-                       key: gasps.key,
-                       ownerId: gasps.owner_id,
-                       ownerName: ownerName,
-                       isFgisEsnsi: esnsi !=null);
-        }
-
         public IEnumerable<ViewFgisEsnsiOrganization> GetViewFgisEsnsiOrganizations()
         {
             EnumerableRowCollection<gaspsRow> gaspsCollection = gaspsTable.Where(e => e.RowState != DataRowState.Deleted);
@@ -42,53 +15,22 @@ namespace DatabaseToolSuite.Repositoryes
             EnumerableRowCollection<fgis_esnsiRow> fgisEsnsiCollection = fgisesnsiTable.Where(e => e.RowState != DataRowState.Deleted);
 
             return from gasps in gaspsCollection
-                   join authority in authorityTable on gasps.authority_id equals authority.id
-                   join okato in okatoTable on gasps.okato_code equals okato.code
                    join owner in activeCollection on gasps.owner_id equals owner.key into ow_jointable from ow in ow_jointable.DefaultIfEmpty()
                    join esnsi in fgisEsnsiCollection on gasps.version equals esnsi.version into es_jointable from es in es_jointable.DefaultIfEmpty()
 
-                   select new ViewFgisEsnsiOrganization(gasps: gasps, owner: ow, authority: authority, okato: okato, esnsi: es);
+                   select new ViewFgisEsnsiOrganization(gasps: gasps, owner: ow, esnsi: es);
         }
 
         public ViewErvkOrganization GetViewErvkOrganization(long version)
         {
             gaspsRow gasps = gaspsTable.GetOrganizationFromVersion(version);
-            string authority_name = authorityTable.GetName(gasps.authority_id);
-            string okato_name = okatoTable.GetName2(gasps.okato_code);
-            string ownerName = "TODO";
+
+            DateTime date = gasps.date_end > DateTime.Now ? DateTime.Now : gasps.date_end;
+            gaspsRow gaspsOwner = gaspsTable.GetVersionOrganizationFromKeyDate(gasps.owner_id, date);
             fgis_esnsiRow esnsi = fgisesnsiTable.ExistsRow(version) ? fgisesnsiTable.Get(version) : null;
             ervkRow ervk = ervkTable.ExistsRow(version) ? ervkTable.Get(version) : null;
 
-            return new ViewErvkOrganization(
-                       name: gasps.name,
-                       authority: authority_name,
-                       okato: gasps.okato_code + " - " + okato_name,
-                       code: gasps.code,
-                       begin: gasps.date_beg,
-                       end: gasps.date_end,
-                       phone: esnsi == null ? string.Empty : (esnsi.Issv_0004Null() ? string.Empty : esnsi.sv_0004),
-                       email: esnsi == null ? string.Empty : (esnsi.Issv_0005Null() ? string.Empty : esnsi.sv_0005),
-                       address: esnsi == null ? string.Empty : (esnsi.Issv_0006Null() ? string.Empty : esnsi.sv_0006),
-                       version: gasps.version,
-                       authorityId: gasps.authority_id,
-                       okatoCode: gasps.okato_code,
-                       key: gasps.key,
-                       ownerId: gasps.owner_id,
-                       ownerName: ownerName,
-                       esnsiCode: ervk.esnsiCode,
-                       isHead: ervk.isHead,
-                       special: ervk.special,
-                       military: ervk.military,
-                       isActive: ervk.isActive,
-                       idVersionProc: ervk.idVersionProc,
-                       idVersionHead: ervk.IsidVersionHeadNull() ? 0 : ervk.idVersionHead,
-                       idSuccession: ervk.IsidSuccessionNull() ? 0 : ervk.idSuccession,
-                       dateStartVersion: ervk.dateStartVersion,
-                       dateCloseProc: ervk.IsdateCloseProcNull() ? DateTime.MaxValue : ervk.dateCloseProc,
-                       ogrn: ervk.IsogrnNull() ? string.Empty : ervk.ogrn,
-                       inn: ervk.IsinnNull() ? string.Empty : ervk.inn,
-                       isFgisEsnsi: esnsi != null,
-                       isErvk: ervk !=null);
+            return new ViewErvkOrganization(gasps: gasps, owner: gaspsOwner, esnsi: esnsi, ervk: ervk);            
         }
 
         public IEnumerable<ViewErvkOrganization> GetViewErvkOrganizations()
@@ -99,13 +41,11 @@ namespace DatabaseToolSuite.Repositoryes
             EnumerableRowCollection<ervkRow> ervkCollection = ervkTable.Where(e => e.RowState != DataRowState.Deleted);
 
             return from gasps in gaspsCollection
-                   join authority in authorityTable on gasps.authority_id equals authority.id
-                   join okato in okatoTable on gasps.okato_code equals okato.code
                    join owner in activeCollection on gasps.owner_id equals owner.key into ow_jointable from ow in ow_jointable.DefaultIfEmpty()
                    join esnsi in fgisEsnsiCollection on gasps.version equals esnsi.version into es_jointable from es in es_jointable.DefaultIfEmpty()
                    join ervk in ervkCollection on gasps.version equals ervk.version into er_jointable from er in er_jointable.DefaultIfEmpty()
                    
-                   select new ViewErvkOrganization(gasps: gasps, owner: ow, authority: authority, okato: okato, esnsi: es, ervk: er);
+                   select new ViewErvkOrganization(gasps: gasps, owner: ow, esnsi: es, ervk: er);
         }
 
 
@@ -312,10 +252,10 @@ namespace DatabaseToolSuite.Repositoryes
                 OwnerName = ownerName;
             }
 
-            public ViewGaspsOrganization(gaspsRow gasps, gaspsRow owner, authorityRow authority, okatoRow okato) : this(
+            public ViewGaspsOrganization(gaspsRow gasps, gaspsRow owner) : this(
                 name: gasps.name,
-                authority: authority.name,
-                okato: okato.code + " - " + (okato.Isname2Null() ? okato.name : okato.name2),
+                authority: gasps.authorityRow.name,
+                okato: gasps.okatoRow.code + " - " + (gasps.okatoRow.Isname2Null() ? gasps.okatoRow.name : gasps.okatoRow.name2),
                 code: gasps.code,
                 begin: gasps.date_beg,
                 end: gasps.date_end,
@@ -393,10 +333,8 @@ namespace DatabaseToolSuite.Repositoryes
 
             public ViewFgisEsnsiOrganization(
                 gaspsRow gasps,
-                gaspsRow owner,
-                authorityRow authority,
-                okatoRow okato,
-                fgis_esnsiRow esnsi) : base(gasps: gasps, owner: owner, authority: authority, okato: okato)
+                gaspsRow owner,                
+                fgis_esnsiRow esnsi) : base(gasps: gasps, owner: owner)
             {
                 SetAttr(esnsi);
             }
@@ -572,11 +510,9 @@ namespace DatabaseToolSuite.Repositoryes
             public ViewErvkOrganization(
                 gaspsRow gasps,
                 gaspsRow owner,
-                authorityRow authority,
-                okatoRow okato,
                 fgis_esnsiRow esnsi,
                 ervkRow ervk
-                ) : base(gasps, owner, authority, okato, esnsi)
+                ) : base(gasps, owner, esnsi)
             {
                 SetAttr(ervk);
             }
@@ -594,7 +530,7 @@ namespace DatabaseToolSuite.Repositoryes
                     IdVersionHead = ervk.IsidVersionHeadNull() ? 0 : ervk.idVersionHead;
                     IdSuccession = ervk.IsidSuccessionNull() ? 0 : ervk.idSuccession;
                     DateStartVersion = ervk.dateStartVersion;
-                    DateCloseProc = ervk.IsdateCloseProcNull() ? DateTime.MaxValue : ervk.dateCloseProc;
+                    DateCloseProc = ervk.IsdateCloseProcNull() ? Services.MasterDataSystem.MAX_DATE : ervk.dateCloseProc;
                     Ogrn = ervk.IsogrnNull() ? string.Empty : ervk.ogrn;
                     Inn = ervk.IsinnNull() ? string.Empty : ervk.inn;
                     IsErvk = true;
