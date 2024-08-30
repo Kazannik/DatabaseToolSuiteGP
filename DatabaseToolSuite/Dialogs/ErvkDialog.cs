@@ -255,11 +255,13 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // button_Cancel
             // 
-            this.button_Cancel.Location = new System.Drawing.Point(637, 602);
+            this.button_Cancel.Location = new System.Drawing.Point(817, 759);
+            this.button_Cancel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             // 
             // button_OK
             // 
-            this.button_OK.Location = new System.Drawing.Point(475, 602);
+            this.button_OK.Location = new System.Drawing.Point(655, 759);
+            this.button_OK.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             // 
             // esnsiNameTextBox
             // 
@@ -267,19 +269,21 @@ namespace DatabaseToolSuite.Dialogs
             | System.Windows.Forms.AnchorStyles.Right)));
             this.esnsiNameTextBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.esnsiNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.esnsiNameTextBox.Location = new System.Drawing.Point(16, 90);
+            this.esnsiNameTextBox.Location = new System.Drawing.Point(20, 112);
+            this.esnsiNameTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.esnsiNameTextBox.Multiline = true;
             this.esnsiNameTextBox.Name = "esnsiNameTextBox";
             this.esnsiNameTextBox.ReadOnly = true;
             this.esnsiNameTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.esnsiNameTextBox.Size = new System.Drawing.Size(694, 79);
+            this.esnsiNameTextBox.Size = new System.Drawing.Size(866, 98);
             this.esnsiNameTextBox.TabIndex = 8;
             // 
             // esnsiNameLabel
             // 
             this.esnsiNameLabel.AutoSize = true;
             this.esnsiNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.esnsiNameLabel.Location = new System.Drawing.Point(12, 67);
+            this.esnsiNameLabel.Location = new System.Drawing.Point(15, 84);
+            this.esnsiNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.esnsiNameLabel.Name = "esnsiNameLabel";
             this.esnsiNameLabel.Size = new System.Drawing.Size(246, 20);
             this.esnsiNameLabel.TabIndex = 7;
@@ -287,9 +291,10 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // innNumericTextBox
             // 
-            this.innNumericTextBox.Location = new System.Drawing.Point(100, 313);
+            this.innNumericTextBox.Location = new System.Drawing.Point(125, 391);
+            this.innNumericTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.innNumericTextBox.Name = "innNumericTextBox";
-            this.innNumericTextBox.Size = new System.Drawing.Size(235, 22);
+            this.innNumericTextBox.Size = new System.Drawing.Size(293, 27);
             this.innNumericTextBox.TabIndex = 11;
             this.innNumericTextBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
             // 
@@ -297,7 +302,8 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(20, 315);
+            this.label1.Location = new System.Drawing.Point(25, 394);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 20);
             this.label1.TabIndex = 12;
@@ -307,7 +313,8 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(20, 349);
+            this.label2.Location = new System.Drawing.Point(25, 436);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 20);
             this.label2.TabIndex = 14;
@@ -315,9 +322,10 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // ogrnNumericTextBox
             // 
-            this.ogrnNumericTextBox.Location = new System.Drawing.Point(100, 349);
+            this.ogrnNumericTextBox.Location = new System.Drawing.Point(125, 436);
+            this.ogrnNumericTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ogrnNumericTextBox.Name = "ogrnNumericTextBox";
-            this.ogrnNumericTextBox.Size = new System.Drawing.Size(235, 22);
+            this.ogrnNumericTextBox.Size = new System.Drawing.Size(293, 27);
             this.ogrnNumericTextBox.TabIndex = 13;
             this.ogrnNumericTextBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
             // 
@@ -325,7 +333,8 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.isSpecialCheckBox.AutoSize = true;
             this.isSpecialCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.isSpecialCheckBox.Location = new System.Drawing.Point(354, 314);
+            this.isSpecialCheckBox.Location = new System.Drawing.Point(442, 392);
+            this.isSpecialCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.isSpecialCheckBox.Name = "isSpecialCheckBox";
             this.isSpecialCheckBox.Size = new System.Drawing.Size(322, 24);
             this.isSpecialCheckBox.TabIndex = 15;
@@ -337,7 +346,8 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.isMilitaryCheckBox.AutoSize = true;
             this.isMilitaryCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.isMilitaryCheckBox.Location = new System.Drawing.Point(354, 348);
+            this.isMilitaryCheckBox.Location = new System.Drawing.Point(442, 435);
+            this.isMilitaryCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.isMilitaryCheckBox.Name = "isMilitaryCheckBox";
             this.isMilitaryCheckBox.Size = new System.Drawing.Size(213, 24);
             this.isMilitaryCheckBox.TabIndex = 16;
@@ -349,7 +359,8 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.isActiveCheckBox.AutoSize = true;
             this.isActiveCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.isActiveCheckBox.Location = new System.Drawing.Point(354, 435);
+            this.isActiveCheckBox.Location = new System.Drawing.Point(442, 544);
+            this.isActiveCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.isActiveCheckBox.Name = "isActiveCheckBox";
             this.isActiveCheckBox.Size = new System.Drawing.Size(175, 24);
             this.isActiveCheckBox.TabIndex = 17;
@@ -361,7 +372,8 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.isHeadCheckBox.AutoSize = true;
             this.isHeadCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.isHeadCheckBox.Location = new System.Drawing.Point(354, 462);
+            this.isHeadCheckBox.Location = new System.Drawing.Point(442, 578);
+            this.isHeadCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.isHeadCheckBox.Name = "isHeadCheckBox";
             this.isHeadCheckBox.Size = new System.Drawing.Size(297, 24);
             this.isHeadCheckBox.TabIndex = 18;
@@ -372,10 +384,10 @@ namespace DatabaseToolSuite.Dialogs
             // deleteOwnerButton
             // 
             this.deleteOwnerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteOwnerButton.Location = new System.Drawing.Point(473, 85);
-            this.deleteOwnerButton.Margin = new System.Windows.Forms.Padding(4);
+            this.deleteOwnerButton.Location = new System.Drawing.Point(591, 106);
+            this.deleteOwnerButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.deleteOwnerButton.Name = "deleteOwnerButton";
-            this.deleteOwnerButton.Size = new System.Drawing.Size(213, 34);
+            this.deleteOwnerButton.Size = new System.Drawing.Size(266, 42);
             this.deleteOwnerButton.TabIndex = 47;
             this.deleteOwnerButton.Text = "Удалить владельца...";
             this.deleteOwnerButton.Click += new System.EventHandler(this.deleteOwnerButton_Click);
@@ -383,10 +395,10 @@ namespace DatabaseToolSuite.Dialogs
             // selectOwnerButton
             // 
             this.selectOwnerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.selectOwnerButton.Location = new System.Drawing.Point(257, 85);
-            this.selectOwnerButton.Margin = new System.Windows.Forms.Padding(4);
+            this.selectOwnerButton.Location = new System.Drawing.Point(321, 106);
+            this.selectOwnerButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.selectOwnerButton.Name = "selectOwnerButton";
-            this.selectOwnerButton.Size = new System.Drawing.Size(213, 34);
+            this.selectOwnerButton.Size = new System.Drawing.Size(266, 42);
             this.selectOwnerButton.TabIndex = 46;
             this.selectOwnerButton.Text = "Выбрать владельца...";
             this.selectOwnerButton.Click += new System.EventHandler(this.selectOwnerButton_Click);
@@ -397,33 +409,33 @@ namespace DatabaseToolSuite.Dialogs
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ownerTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ownerTextBox.Location = new System.Drawing.Point(7, 18);
-            this.ownerTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.ownerTextBox.Location = new System.Drawing.Point(9, 22);
+            this.ownerTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ownerTextBox.Multiline = true;
             this.ownerTextBox.Name = "ownerTextBox";
             this.ownerTextBox.ReadOnly = true;
             this.ownerTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ownerTextBox.Size = new System.Drawing.Size(679, 59);
+            this.ownerTextBox.Size = new System.Drawing.Size(848, 73);
             this.ownerTextBox.TabIndex = 49;
             this.ownerTextBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
             // 
             // autoSelectOwnerButton
             // 
             this.autoSelectOwnerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.autoSelectOwnerButton.Location = new System.Drawing.Point(7, 85);
-            this.autoSelectOwnerButton.Margin = new System.Windows.Forms.Padding(4);
+            this.autoSelectOwnerButton.Location = new System.Drawing.Point(9, 106);
+            this.autoSelectOwnerButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.autoSelectOwnerButton.Name = "autoSelectOwnerButton";
-            this.autoSelectOwnerButton.Size = new System.Drawing.Size(213, 34);
+            this.autoSelectOwnerButton.Size = new System.Drawing.Size(266, 42);
             this.autoSelectOwnerButton.TabIndex = 50;
             this.autoSelectOwnerButton.Text = "Авто из ГАС ПС";
             this.autoSelectOwnerButton.Click += new System.EventHandler(this.autoSelectOwnerButton_Click);
             // 
             // getOwnerArgButton
             // 
-            this.getOwnerArgButton.Location = new System.Drawing.Point(24, 379);
-            this.getOwnerArgButton.Margin = new System.Windows.Forms.Padding(4);
+            this.getOwnerArgButton.Location = new System.Drawing.Point(30, 474);
+            this.getOwnerArgButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.getOwnerArgButton.Name = "getOwnerArgButton";
-            this.getOwnerArgButton.Size = new System.Drawing.Size(685, 34);
+            this.getOwnerArgButton.Size = new System.Drawing.Size(856, 42);
             this.getOwnerArgButton.TabIndex = 51;
             this.getOwnerArgButton.Text = "Получить из вышестоящей прокуратуры";
             this.getOwnerArgButton.Click += new System.EventHandler(this.getOwnerArgButton_Click);
@@ -432,8 +444,8 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.beginDateLabel.AutoSize = true;
             this.beginDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.beginDateLabel.Location = new System.Drawing.Point(21, 433);
-            this.beginDateLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.beginDateLabel.Location = new System.Drawing.Point(26, 541);
+            this.beginDateLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.beginDateLabel.Name = "beginDateLabel";
             this.beginDateLabel.Size = new System.Drawing.Size(263, 20);
             this.beginDateLabel.TabIndex = 53;
@@ -443,10 +455,10 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.beginDateTimePicker.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.beginDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.beginDateTimePicker.Location = new System.Drawing.Point(25, 462);
-            this.beginDateTimePicker.Margin = new System.Windows.Forms.Padding(4);
+            this.beginDateTimePicker.Location = new System.Drawing.Point(31, 578);
+            this.beginDateTimePicker.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.beginDateTimePicker.Name = "beginDateTimePicker";
-            this.beginDateTimePicker.Size = new System.Drawing.Size(191, 26);
+            this.beginDateTimePicker.Size = new System.Drawing.Size(238, 26);
             this.beginDateTimePicker.TabIndex = 52;
             this.beginDateTimePicker.ValueChanged += new System.EventHandler(this.Controls_ValueChanged);
             // 
@@ -454,8 +466,8 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.endDateLabel.AutoSize = true;
             this.endDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.endDateLabel.Location = new System.Drawing.Point(21, 502);
-            this.endDateLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.endDateLabel.Location = new System.Drawing.Point(26, 628);
+            this.endDateLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.endDateLabel.Name = "endDateLabel";
             this.endDateLabel.Size = new System.Drawing.Size(224, 20);
             this.endDateLabel.TabIndex = 55;
@@ -465,10 +477,10 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.endDateTimePicker.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.endDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.endDateTimePicker.Location = new System.Drawing.Point(24, 526);
-            this.endDateTimePicker.Margin = new System.Windows.Forms.Padding(4);
+            this.endDateTimePicker.Location = new System.Drawing.Point(30, 658);
+            this.endDateTimePicker.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.endDateTimePicker.Name = "endDateTimePicker";
-            this.endDateTimePicker.Size = new System.Drawing.Size(191, 26);
+            this.endDateTimePicker.Size = new System.Drawing.Size(238, 26);
             this.endDateTimePicker.TabIndex = 54;
             this.endDateTimePicker.ValueChanged += new System.EventHandler(this.Controls_ValueChanged);
             // 
@@ -481,9 +493,11 @@ namespace DatabaseToolSuite.Dialogs
             this.ownerGroupBox.Controls.Add(this.selectOwnerButton);
             this.ownerGroupBox.Controls.Add(this.deleteOwnerButton);
             this.ownerGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ownerGroupBox.Location = new System.Drawing.Point(17, 175);
+            this.ownerGroupBox.Location = new System.Drawing.Point(21, 219);
+            this.ownerGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ownerGroupBox.Name = "ownerGroupBox";
-            this.ownerGroupBox.Size = new System.Drawing.Size(693, 126);
+            this.ownerGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ownerGroupBox.Size = new System.Drawing.Size(866, 158);
             this.ownerGroupBox.TabIndex = 56;
             this.ownerGroupBox.TabStop = false;
             this.ownerGroupBox.Text = "Владелец";
@@ -491,9 +505,9 @@ namespace DatabaseToolSuite.Dialogs
             // ErvkDialog
             // 
             this.AcceptButton = this.button_OK;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.CancelButton = this.button_Cancel;
-            this.ClientSize = new System.Drawing.Size(722, 629);
+            this.ClientSize = new System.Drawing.Size(902, 786);
             this.Controls.Add(this.ownerGroupBox);
             this.Controls.Add(this.endDateLabel);
             this.Controls.Add(this.endDateTimePicker);
@@ -510,8 +524,9 @@ namespace DatabaseToolSuite.Dialogs
             this.Controls.Add(this.innNumericTextBox);
             this.Controls.Add(this.esnsiNameTextBox);
             this.Controls.Add(this.esnsiNameLabel);
-            this.DialogCaptionImage = global::DatabaseToolSuite.Properties.Resources.epgu;
+            this.DialogCaptionImage = global::DatabaseToolSuite.Properties.Resources.economy32;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "ErvkDialog";
             this.Controls.SetChildIndex(this.button_Cancel, 0);
             this.Controls.SetChildIndex(this.button_OK, 0);

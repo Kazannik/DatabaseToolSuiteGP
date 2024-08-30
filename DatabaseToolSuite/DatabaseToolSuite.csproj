@@ -220,16 +220,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
     </Compile>
-	<Compile Include="Repositoryes\DatabaseXMLSchema.Viewers.cs">
+    <Compile Include="Repositoryes\DatabaseXMLSchema.Viewers.cs">
       <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
     </Compile>
-	<Compile Include="Repositoryes\DatabaseXMLSchema.Gasps.cs">
+    <Compile Include="Repositoryes\DatabaseXMLSchema.Gasps.cs">
       <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
     </Compile>
-	<Compile Include="Repositoryes\DatabaseXMLSchema.FgisEsnsi.cs">
+    <Compile Include="Repositoryes\DatabaseXMLSchema.FgisEsnsi.cs">
       <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
     </Compile>
-	<Compile Include="Repositoryes\DatabaseXMLSchema.Ervk.cs">
+    <Compile Include="Repositoryes\DatabaseXMLSchema.Ervk.cs">
       <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
     </Compile>
     <Compile Include="Repositoryes\Dto\AuthorityDto.cs" />
@@ -479,6 +479,20 @@
   <ItemGroup>
     <None Include="Resources\epgu_dublicate.png" />
     <None Include="Resources\Update24.png" />
+    <None Include="Resources\economy24.png" />
+    <None Include="Resources\economy32.png" />
+    <None Include="Resources\gosuslugi32.png" />
+    <None Include="Resources\gosuslugi24.png" />
+    <None Include="Resources\gosuslugi_dublicate24.png" />
+    <None Include="Resources\economy_dublicate24.png" />
+    <None Include="Resources\gosuslugi_remove24.png" />
+    <None Include="Resources\economy_remove24.png" />
+    <None Include="Resources\gosuslugi_remove241.png" />
+    <None Include="Resources\economy_remove241.png" />
+    <None Include="Resources\gosuslugi_dublicate32.png" />
+    <None Include="Resources\economy_dublicate32.png" />
+    <None Include="Resources\gosuslugi_remove32.png" />
+    <None Include="Resources\economy_remove32.png" />
     <Content Include="Utils\Files\FED.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

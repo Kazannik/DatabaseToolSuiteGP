@@ -163,6 +163,66 @@ namespace DatabaseToolSuite.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap economy_dublicate24 {
+            get {
+                object obj = ResourceManager.GetObject("economy_dublicate24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap economy_dublicate32 {
+            get {
+                object obj = ResourceManager.GetObject("economy_dublicate32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap economy_remove24 {
+            get {
+                object obj = ResourceManager.GetObject("economy_remove24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap economy_remove32 {
+            get {
+                object obj = ResourceManager.GetObject("economy_remove32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap economy24 {
+            get {
+                object obj = ResourceManager.GetObject("economy24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap economy32 {
+            get {
+                object obj = ResourceManager.GetObject("economy32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Edit24 {
             get {
                 object obj = ResourceManager.GetObject("Edit24", resourceCulture);
@@ -186,36 +246,6 @@ namespace DatabaseToolSuite.Properties {
         internal static System.Drawing.Bitmap emblem_big {
             get {
                 object obj = ResourceManager.GetObject("emblem_big", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap epgu {
-            get {
-                object obj = ResourceManager.GetObject("epgu", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap epgu_dublicate {
-            get {
-                object obj = ResourceManager.GetObject("epgu_dublicate", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap epguremove {
-            get {
-                object obj = ResourceManager.GetObject("epguremove", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -266,6 +296,66 @@ namespace DatabaseToolSuite.Properties {
         internal static System.Drawing.Bitmap Flag16 {
             get {
                 object obj = ResourceManager.GetObject("Flag16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gosuslugi_dublicate24 {
+            get {
+                object obj = ResourceManager.GetObject("gosuslugi_dublicate24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gosuslugi_dublicate32 {
+            get {
+                object obj = ResourceManager.GetObject("gosuslugi_dublicate32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gosuslugi_remove24 {
+            get {
+                object obj = ResourceManager.GetObject("gosuslugi_remove24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gosuslugi_remove32 {
+            get {
+                object obj = ResourceManager.GetObject("gosuslugi_remove32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gosuslugi24 {
+            get {
+                object obj = ResourceManager.GetObject("gosuslugi24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gosuslugi32 {
+            get {
+                object obj = ResourceManager.GetObject("gosuslugi32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
