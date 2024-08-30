@@ -323,16 +323,6 @@ namespace DatabaseToolSuite.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap gosuslugi_remove24 {
-            get {
-                object obj = ResourceManager.GetObject("gosuslugi_remove24", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap gosuslugi_remove32 {
             get {
                 object obj = ResourceManager.GetObject("gosuslugi_remove32", resourceCulture);
