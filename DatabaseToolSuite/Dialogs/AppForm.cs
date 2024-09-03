@@ -78,7 +78,7 @@ namespace DatabaseToolSuite.Dialogs
         {
             if (isFilter)
             {
-                gaspsListView.SetFilter(authority: filterAuthorityComboBox.Value,
+                gaspsListView.Filter(authority: filterAuthorityComboBox.Value,
                 okato: filterOkatoComboBox.Code,
                 code: filterCodeNumericTextBox.Text,
                 name: filterNameTextBox.Text,
@@ -100,7 +100,7 @@ namespace DatabaseToolSuite.Dialogs
             filterNameTextBox.Text = string.Empty;
             isFilter = true;
 
-            gaspsListView.SetFilter(authority: filterAuthorityComboBox.Value,
+            gaspsListView.Filter(authority: filterAuthorityComboBox.Value,
                okato: filterOkatoComboBox.Code,
                code: filterCodeNumericTextBox.Text,
                name: filterNameTextBox.Text,

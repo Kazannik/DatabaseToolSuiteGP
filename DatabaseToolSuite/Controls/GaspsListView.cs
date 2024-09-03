@@ -1,9 +1,12 @@
 ﻿using DatabaseToolSuite.Repositoryes;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
 
@@ -53,6 +56,8 @@ namespace DatabaseToolSuite.Controls
             _name = string.Empty;
 
             InitializeComponent();
+
+            InitializeDelegates();
 
             InitializeFilter(dataSet: DataSet,
                 authority: _authority,
@@ -198,7 +203,7 @@ namespace DatabaseToolSuite.Controls
             get { return itemsCollection.Count; }
         }
 
-        public void SetFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow, bool fgisEsnsiOnlyShow, bool ervkOnlyShow)
+        public void Filter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow, bool fgisEsnsiOnlyShow, bool ervkOnlyShow)
         {
             InitializeFilter(dataSet: DataSet,
                 authority: authority,
@@ -213,10 +218,35 @@ namespace DatabaseToolSuite.Controls
             
         }
 
-        private void InitializeFilter(RepositoryDataSet dataSet, long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow, bool fgisEsnsiOnlyShow, bool ervkOnlyShow)
+       
+
+
+        private  void InitializeFilter(RepositoryDataSet dataSet, long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow, bool fgisEsnsiOnlyShow, bool ervkOnlyShow)
         {
             if (dataSet == null) return;
 
+
+            ApplyFilter(dataSet: DataSet,
+                authority: authority,
+                okato: okato,
+                code: code,
+                name: name,
+                unlockShow: unlockShow,
+                reserveShow: reserveShow,
+                lockShow: lockShow,
+                fgisEsnsiOnlyShow: fgisEsnsiOnlyShow,
+                ervkOnlyShow: ervkOnlyShow
+
+                );
+            var cts = new CancellationTokenSource();
+            
+        }
+
+
+        private void ApplyFilter(RepositoryDataSet dataSet, long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow, bool fgisEsnsiOnlyShow, bool ervkOnlyShow)
+        {   
+            
+      
             baseListView.BeginUpdate();
 
             int selectedIndex = baseListView.SelectedIndices.Count > 0 ? baseListView.SelectedIndices[0] : 0;
@@ -251,6 +281,7 @@ namespace DatabaseToolSuite.Controls
             baseListView.EndUpdate();
         }
 
+
         private void DetailsUpdate()
         {
             if (baseListView.SelectedIndices.Count == 0)
@@ -273,32 +304,39 @@ namespace DatabaseToolSuite.Controls
             }
         }
 
+        static readonly object lockCache = new object();
         private void ListView_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
         {
-            if (itemsCache != null && e.ItemIndex >= firstItemIndex && e.ItemIndex < firstItemIndex + itemsCache.Length)
+            lock (lockCache)
             {
-                e.Item = itemsCache[e.ItemIndex - firstItemIndex];
-            }
-            else
-            {
-                e.Item = CreateListViewItem(itemsCollection[e.ItemIndex]);
+                if (itemsCache != null && e.ItemIndex >= firstItemIndex && e.ItemIndex < firstItemIndex + itemsCache.Length)
+                {
+                    e.Item = itemsCache[e.ItemIndex - firstItemIndex];
+                }
+                else
+                {
+                    e.Item = CreateListViewItem(itemsCollection[e.ItemIndex]);
+                }
             }
         }
 
         private void ListView_CacheVirtualItems(object sender, CacheVirtualItemsEventArgs e)
         {
-            if (itemsCache != null && e.StartIndex >= firstItemIndex && e.EndIndex <= firstItemIndex + itemsCache.Length)
+            lock (lockCache)
             {
-                return;
-            }
+                if (itemsCache != null && e.StartIndex >= firstItemIndex && e.EndIndex <= firstItemIndex + itemsCache.Length)
+                {
+                    return;
+                }
+                            
+                firstItemIndex = e.StartIndex;
+                int length = e.EndIndex - e.StartIndex + 1;
+                itemsCache = new ListViewItem[length];
 
-            firstItemIndex = e.StartIndex;
-            int length = e.EndIndex - e.StartIndex + 1;
-            itemsCache = new ListViewItem[length];
-
-            for (int i = 0; i < length; i++)
-            {
-                itemsCache[i] = CreateListViewItem(itemsCollection[firstItemIndex + i]);
+                for (int i = 0; i < length; i++)
+                {
+                    itemsCache[i] = CreateListViewItem(itemsCollection[firstItemIndex + i]);
+                }
             }
         }
 
@@ -595,7 +633,31 @@ namespace DatabaseToolSuite.Controls
             }
         }
 
-      
+        
+
+
+
+
+
+
+
+
+
+        private delegate void WorkerEventHandler(int numberToCheck, AsyncOperation asyncOp);
+
+        private SendOrPostCallback onProgressReportDelegate;
+        private SendOrPostCallback onCompletedDelegate;
+
+        private HybridDictionary userStateToLifetime =
+            new HybridDictionary();
+
+        #region Public events
+
+        public event ProgressChangedEventHandler ProgressChanged;
+        public event GaspsListViewCompletedEventHandler GaspsListViewCompleted;
+
+        #endregion
+
         /// <summary> 
         /// Обязательная переменная конструктора.
         /// </summary>
@@ -613,6 +675,201 @@ namespace DatabaseToolSuite.Controls
             }
             base.Dispose(disposing);
         }
+
+        protected virtual void InitializeDelegates()
+        {
+            onProgressReportDelegate = new SendOrPostCallback(ReportProgress);
+            onCompletedDelegate = new SendOrPostCallback(ItemCollectionCompleted);
+        }
+        
+        #region Implementation
+
+
+        public virtual void FilterAsync(
+            long? authority, 
+            string okato, 
+            string code, 
+            string name, 
+            bool unlockShow, 
+            bool reserveShow, 
+            bool lockShow, 
+            bool fgisEsnsiOnlyShow, 
+            bool ervkOnlyShow)
+        {
+            AsyncOperation asyncOp = AsyncOperationManager.CreateOperation(taskId);
+
+            lock (userStateToLifetime.SyncRoot)
+            {
+                if (userStateToLifetime.Contains(taskId))
+                {
+                    throw new ArgumentException(
+                        "Task ID parameter must be unique",
+                        "taskId");
+                }
+
+                userStateToLifetime[taskId] = asyncOp;
+            }
+
+            WorkerEventHandler workerDelegate = new WorkerEventHandler(GaspsListViewWorker);
+            workerDelegate.BeginInvoke(
+                numberToTest,
+                asyncOp,
+                null,
+                null);
+        }
+
+        private bool TaskCanceled(object taskId)
+        {
+            return (userStateToLifetime[taskId] == null);
+        }
+
+        public void CancelAsync(object taskId)
+        {
+            AsyncOperation asyncOp = userStateToLifetime[taskId] as AsyncOperation;
+            if (asyncOp != null)
+            {
+                lock (userStateToLifetime.SyncRoot)
+                {
+                    userStateToLifetime.Remove(taskId);
+                }
+            }
+        }
+
+        private void GaspsListViewWorker(
+            int numberToTest,
+            AsyncOperation asyncOp)
+        {
+            bool isPrime = false;
+            int firstDivisor = 1;
+            Exception e = null;
+
+            if (!TaskCanceled(asyncOp.UserSuppliedState))
+            {
+                try
+                {
+                    // Find all the prime numbers up to
+                    // the square root of numberToTest.
+                    IList<ViewErvkOrganization> primes = BuildPrimeNumberList(
+                        numberToTest,
+                        asyncOp);
+
+                    // Now we have a list of primes less than
+                    // numberToTest.
+                    isPrime = IsPrime(
+                        primes,
+                        numberToTest,
+                        out firstDivisor);
+                }
+                catch (Exception ex)
+                {
+                    e = ex;
+                }
+            }
+
+
+            this.CompletionMethod(
+                numberToTest,
+                firstDivisor,
+                isPrime,
+                e,
+                TaskCanceled(asyncOp.UserSuppliedState),
+                asyncOp);
+        }
+        
+        private IList<ViewErvkOrganization> BuildPrimeNumberList(
+            RepositoryDataSet dataSet,
+            AsyncOperation asyncOp)
+        {
+            ProgressChangedEventArgs e = null;
+            IList<ViewErvkOrganization> primes = new ArrayList();
+            int firstDivisor;
+            int n = 5;
+
+            // Add the first prime numbers.
+            primes.Add(2);
+            primes.Add(3);
+
+            // Do the work.
+            while (n < numberToTest &&
+                   !TaskCanceled(asyncOp.UserSuppliedState))
+            {
+                if (IsPrime(primes, n, out firstDivisor))
+                {
+                    // Report to the client that a prime was found.
+                    e = new GaspsListViewProgressChangedEventArgs(
+                        n,
+                        (int)((float)n / (float)numberToTest * 100),
+                        asyncOp.UserSuppliedState);
+
+                    asyncOp.Post(this.onProgressReportDelegate, e);
+
+                    primes.Add(n);
+
+                    // Yield the rest of this time slice.
+                    Thread.Sleep(0);
+                }
+
+                // Skip even numbers.
+                n += 2;
+            }
+
+            return primes;
+        }
+
+        
+        private void ItemCollectionCompleted(object operationState)
+        {
+            GaspsListViewCompletedEventArgs e = operationState as GaspsListViewCompletedEventArgs;
+            OnGaspsListViewCompleted(e);
+        }
+
+        private void ReportProgress(object state)
+        {
+            ProgressChangedEventArgs e = state as ProgressChangedEventArgs;
+            OnProgressChanged(e);
+        }
+
+        protected void OnGaspsListViewCompleted(GaspsListViewCompletedEventArgs e)
+        {
+            GaspsListViewCompleted?.Invoke(this, e);
+        }
+
+        protected void OnProgressChanged(ProgressChangedEventArgs e)
+        {
+            ProgressChanged?.Invoke(e);
+        }
+
+        private void CompletionMethod(
+            long itemsCount,
+            Exception exception,
+            bool canceled,
+            AsyncOperation asyncOp)
+
+        {
+            if (!canceled)
+            {
+                lock (userStateToLifetime.SyncRoot)
+                {
+                    userStateToLifetime.Remove(asyncOp.UserSuppliedState);
+                }
+            }
+
+            GaspsListViewCompletedEventArgs e =
+                new GaspsListViewCompletedEventArgs(
+                itemsCount,
+                exception,
+                canceled,
+                asyncOp.UserSuppliedState);
+
+            asyncOp.PostOperationCompleted(onCompletedDelegate, e);
+        }
+
+        #endregion
+
+
+
+
+
 
         #region Код, автоматически созданный конструктором компонентов
 
@@ -789,6 +1046,88 @@ namespace DatabaseToolSuite.Controls
         private System.Windows.Forms.ColumnHeader beginColumn;
         private System.Windows.Forms.ColumnHeader endColumn;
 
+
+        private class FilterParameters
+        {
+            public RepositoryDataSet DataSet { get; }
+            public long? Authority { get; }
+            public string Okato { get; }
+            public string Code { get; }
+            public string Name { get; }
+            public bool UnlockShow { get; }
+            public bool ReserveShow { get; }
+            public bool LockShow { get; }
+            public bool FgisEsnsiOnlyShow { get; }
+            public bool ErvkOnlyShow { get; }
+
+            public FilterParameters(RepositoryDataSet dataSet, long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow, bool fgisEsnsiOnlyShow, bool ervkOnlyShow)
+            {
+                DataSet = dataSet;
+                Authority = authority;
+                Okato = okato;
+                Code = code;
+                Name = name;
+                UnlockShow = unlockShow;
+                ReserveShow = reserveShow;
+                LockShow = lockShow;
+                FgisEsnsiOnlyShow = fgisEsnsiOnlyShow;
+                ErvkOnlyShow = ervkOnlyShow;
+            }
+
+
+            public static bool Equals(FilterParameters parameterA, FilterParameters parameterB)
+            {
+                return Equals(objA: parameterA, objB: parameterB);
+            }
+
+            public static new bool Equals(object objA, object objB)
+            {
+                if (objA == null & objB == null)
+                {
+                    return true;
+                }
+                else if (objA != null & objB == null)
+                {
+                    return false;
+                }
+                else if (objA == null & objB != null)
+                {
+                    return false;
+                }
+                else
+                {
+                    if (!(objA is FilterParameters) | !(objB is FilterParameters))
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        FilterParameters parameterA = (FilterParameters)objA;
+                        FilterParameters parameterB = (FilterParameters)objB;
+                        return parameterA.Code.Equals(parameterB.Code, StringComparison.CurrentCultureIgnoreCase)
+                            && parameterA.Def.Equals(parameterB.Def, StringComparison.CurrentCultureIgnoreCase)
+                            && parameterA.Number.Equals(parameterB.Number)
+                            && parameterA.Ext.Equals(parameterB.Ext, StringComparison.CurrentCultureIgnoreCase);
+                    }
+                }
+            }
+
+            public override bool Equals(Object obj)
+            {
+                return Equals(objA: this, objB: obj);
+            }
+            public bool Equals(FilterParameters obj)
+            {
+                return Equals(objA: this, objB: obj);
+            }
+                       
+            public override int GetHashCode()
+            {
+                return (this.type + this.ToString()).GetHashCode();
+            }
+
+        }
+
     }
 
     
@@ -821,5 +1160,52 @@ namespace DatabaseToolSuite.Controls
 
     }
 
+    public delegate void ProgressChangedEventHandler(ProgressChangedEventArgs e);
+
+    public delegate void GaspsListViewCompletedEventHandler(object sender, GaspsListViewCompletedEventArgs e);
+
+    public class GaspsListViewProgressChangedEventArgs : ProgressChangedEventArgs
+    {
+        private int latestPrimeNumberValue = 1;
+
+        public GaspsListViewProgressChangedEventArgs(
+            int latestPrime,
+            int progressPercentage,
+            object userToken) : base(progressPercentage, userToken)
+        {
+            this.latestPrimeNumberValue = latestPrime;
+        }
+
+        public int LatestPrimeNumber
+        {
+            get
+            {
+                return latestPrimeNumberValue;
+            }
+        }
+    }
+
+    public class GaspsListViewCompletedEventArgs : AsyncCompletedEventArgs
+    {
+        private long itemsCount = 0;
+
+        public GaspsListViewCompletedEventArgs(
+            long itemsCount,
+            Exception e,
+            bool canceled,
+            object state) : base(e, canceled, state)
+        {
+            this.itemsCount = itemsCount;
+        }
+
+        public long ItemsCount
+        {
+            get
+            {
+                RaiseExceptionIfNecessary();
+                return itemsCount;
+            }
+        }       
+    }
 }
 
