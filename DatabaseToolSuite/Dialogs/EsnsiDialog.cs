@@ -399,7 +399,7 @@ namespace DatabaseToolSuite.Dialogs
             this.Controls.Add(this.esnsiRegionLabel);
             this.Controls.Add(this.esnsiNameTextBox);
             this.Controls.Add(this.esnsiNameLabel);
-            this.DialogCaptionImage = global::DatabaseToolSuite.Properties.Resources.epgu;
+            this.DialogCaptionImage = global::DatabaseToolSuite.Properties.Resources.gosuslugi32;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.MinimumSize = new System.Drawing.Size(740, 580);

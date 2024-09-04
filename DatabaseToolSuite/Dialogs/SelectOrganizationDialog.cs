@@ -1,7 +1,9 @@
 ﻿using DatabaseToolSuite.Repositoryes;
+using DatabaseToolSuite.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -20,6 +22,9 @@ namespace DatabaseToolSuite.Dialogs
 
         [DefaultValue(true)]
         public bool UnlockShow { get; set; }
+
+        [DefaultValue(false)]
+        public bool ErvkOnlyShow { get; set; }
 
         public bool LockShow {
             get
@@ -67,6 +72,21 @@ namespace DatabaseToolSuite.Dialogs
         public bool ReserveShow { get; set; }
         
         public SelectOrganizationDialog(): this(dataSet: Services.FileSystem.Repository.DataSet) { }
+        
+        public SelectOrganizationDialog(long authority) : this(dataSet: Services.FileSystem.Repository.DataSet)
+        {
+            filterAuthorityComboBox.Enabled = false;
+            filterOkatoComboBox.Enabled = true;
+            filterAuthorityComboBox.Code = authority.ToString("00");
+        }
+
+        public SelectOrganizationDialog(bool ervkOnlyShow) : this(dataSet: Services.FileSystem.Repository.DataSet)
+        {
+            ErvkOnlyShow = ervkOnlyShow;
+            filterAuthorityComboBox.Enabled = false;
+            filterOkatoComboBox.Enabled = true;
+            filterAuthorityComboBox.Code = MasterDataSystem.PROSECUTOR_CODE.ToString("00");
+        }
 
         public SelectOrganizationDialog(long authority, string okato) : this(dataSet: Services.FileSystem.Repository.DataSet)
         {
@@ -111,7 +131,7 @@ namespace DatabaseToolSuite.Dialogs
             }
             else
             {
-                rowsCollection = dataSet.gasps.GetOrganizationFilter(
+                rowsCollection = dataSet.gasps.GetGaspsOrganizationFilter(
                     authority: authority,
                     okato: filterOkatoComboBox.Code,
                     code: filterCodeNumericTextBox.Text,
@@ -119,6 +139,14 @@ namespace DatabaseToolSuite.Dialogs
                     unlockShow: UnlockShow,
                     reserveShow: ReserveShow,
                     lockShow: filterLockCodeViewCheckBox.Checked);
+            }
+
+            if (ErvkOnlyShow)
+            {
+                EnumerableRowCollection<ervkRow> ervkCollection = dataSet.ervk.Where(e => e.RowState != DataRowState.Deleted);
+                rowsCollection = (from gasps in rowsCollection
+                                  join ervk in ervkCollection on gasps.version equals ervk.version
+                                  select gasps).ToList();                
             }
             
             detailsListView.VirtualListSize = rowsCollection.Count();

@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static DatabaseToolSuite.Repositoryes.RepositoryDataSet.gaspsDataTable;
+﻿using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
 
 namespace DatabaseToolSuite.Dialogs
 {
     class OrganizationViewDialog : DialogBase
     {
         private System.Windows.Forms.PropertyGrid propertyGrid1;
-
-
-
+        
         private OrganizationViewDialog() : base()
         {
             InitializeComponent();

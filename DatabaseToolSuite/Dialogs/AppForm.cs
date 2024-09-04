@@ -18,13 +18,13 @@ namespace DatabaseToolSuite.Dialogs
 
             DisableControl();
 
-            if (Services.FileSystem.DefaultDatabaseFileExists())
-                Services.FileSystem.ReadDatabase();
+            if (FileSystem.DefaultDatabaseFileExists())
+                FileSystem.ReadDatabase();
 
-            gaspsListView.DataSet = Services.FileSystem.Repository.DataSet;
+            gaspsListView.DataSet = FileSystem.Repository.DataSet;
 
-            filterOkatoComboBox.InitializeSource(Services.FileSystem.Repository.DataSet.okato);
-            filterAuthorityComboBox.InitializeSource(Services.FileSystem.Repository.DataSet.authority);
+            filterOkatoComboBox.InitializeSource(FileSystem.Repository.DataSet.okato);
+            filterAuthorityComboBox.InitializeSource(FileSystem.Repository.DataSet.authority);
             rowCountStatusLabel.Text = string.Format("Отражено записей {0}", gaspsListView.RowCount);
         }
 
@@ -71,22 +71,22 @@ namespace DatabaseToolSuite.Dialogs
             mnuTableErvkRemove.Enabled = false;
             mnuTableErvkRemoveButton.Enabled = false;
         }
-
-
+        
         bool isFilter = true;
 
         private void Filter_ParametersChanged(object sender, EventArgs e)
         {
             if (isFilter)
             {
-                gaspsListView.SetFilter(authority: filterAuthorityComboBox.Value,
+                gaspsListView.FilterAsync(authority: filterAuthorityComboBox.Value,
                 okato: filterOkatoComboBox.Code,
                 code: filterCodeNumericTextBox.Text,
                 name: filterNameTextBox.Text,
                 unlockShow: true,
                 reserveShow: true,
-                lockShow: filterLockCodeViewCheckBox.Checked);
-                rowCountStatusLabel.Text = string.Format("Отражено записей {0}", gaspsListView.RowCount);
+                lockShow: filterLockCodeViewCheckBox.Checked,
+                fgisEsnsiOnlyShow: filterFgisEsnsiOnlyRadioButton.Checked,
+                ervkOnlyShow: filterErvkOnlyRadioButton.Checked);
            }
         }
 
@@ -99,14 +99,15 @@ namespace DatabaseToolSuite.Dialogs
             filterNameTextBox.Text = string.Empty;
             isFilter = true;
 
-            gaspsListView.SetFilter(authority: filterAuthorityComboBox.Value,
+            gaspsListView.FilterAsync(authority: filterAuthorityComboBox.Value,
                okato: filterOkatoComboBox.Code,
                code: filterCodeNumericTextBox.Text,
                name: filterNameTextBox.Text,
                unlockShow: true,
                reserveShow: true,
-               lockShow: filterLockCodeViewCheckBox.Checked);
-            rowCountStatusLabel.Text = string.Format("Отражено записей {0}", gaspsListView.RowCount);
+               lockShow: filterLockCodeViewCheckBox.Checked,
+               fgisEsnsiOnlyShow: filterFgisEsnsiOnlyRadioButton.Checked,
+               ervkOnlyShow: filterErvkOnlyRadioButton.Checked);
         }
 
         private void gaspsListView_ItemSelectionChanged(object sender, EventArgs e)
@@ -254,8 +255,7 @@ namespace DatabaseToolSuite.Dialogs
                 gaspsListView.UpdateListViewItem();
             }
         }
-
-
+        
         private void TableEditError_Click(object sender, EventArgs e)
         {
             EditErrorDialog dialog = new EditErrorDialog(gaspsListView.DataRow);
@@ -411,7 +411,8 @@ namespace DatabaseToolSuite.Dialogs
                 if (dialog.FilterIndex == 1)
                 {
                     Export.ExportToXml(dialog.FileName);
-                } else if (dialog.FilterIndex == 2)
+                }
+                else if (dialog.FilterIndex == 2)
                 {
                     Export.ExportFgisEsnsiToCsv(dialog.FileName);
                 }
@@ -428,9 +429,16 @@ namespace DatabaseToolSuite.Dialogs
             Export.ExportFgisEsnsiToExcel();
         }
 
-        private void mnuFileErknmExportToExcel_Click(object sender, EventArgs e)
+        private void mnuFileErvkExportToExcel_Click(object sender, EventArgs e)
         {
-            Export.ExportGaspsToExcel2();
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Title = "Экспортировать данные ЕРВК";
+            dialog.Filter = "Файл Microsoft Excel, содержащий значения, разделенные запятыми (.csv)|*.csv";
+            dialog.FileName = "FED_GENPROK_ORGANIZATION_ERVK_28Cp1251";
+            if (dialog.ShowDialog(this) == DialogResult.OK)
+            {
+                Export.ExportErvkToCsv(dialog.FileName);               
+            }
         }
         
         private void AppForm_Load(object sender, EventArgs e)
@@ -601,21 +609,55 @@ namespace DatabaseToolSuite.Dialogs
                 }
                 else
                 {
-                    editRow = MasterDataSystem.DataSet.ervk.Create(gaspsListView.DataRow.version, 0);
+                    editRow = MasterDataSystem.DataSet.ervk.Create(gaspsListView.DataRow.version);
+                    editRow.dateStartVersion = gaspsListView.DataRow.date_beg;
                     createdRow = true;
                 }
 
-                ErvkDialog dialog = new ErvkDialog(gaspsListView.DataRow, editRow);
+                ErvkDialog dialog = new ErvkDialog(editRow);
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
-                    //editRow.autokey = dialog.Autokey;
-                    //editRow.code = dialog.Code;
-                    //editRow.id = dialog.Id;
-                    //editRow.okato = (short)dialog.OkatoCode;
-                    //editRow.region_id = dialog.RegionCode;
-                    //editRow.sv_0004 = dialog.Phone;
-                    //editRow.sv_0005 = dialog.Email;
-                    //editRow.sv_0006 = dialog.Address;
+                    if (dialog.DateCloseProc != MasterDataSystem.MAX_DATE)
+                    {
+                        editRow.dateCloseProc = dialog.DateCloseProc > MasterDataSystem.MAX_DATE ? MasterDataSystem.MAX_DATE : dialog.DateCloseProc;
+                    }
+                    else
+                    {
+                        editRow.SetdateCloseProcNull();
+                    }
+
+                    if (editRow.dateStartVersion < MasterDataSystem.MIN_DATE)
+                    {
+                        editRow.dateStartVersion = MasterDataSystem.MIN_DATE;
+                    }
+                    else
+                    {
+                        editRow.dateStartVersion = dialog.DateStartVersion;
+                    }
+                                       
+                    // editRow.esnsiCode
+                    // editRow.idSuccession
+                    if (dialog.IdVersionHead <=0)
+                    {
+                        editRow.SetidVersionHeadNull();
+                    }
+                    else
+                    {
+                        editRow.idVersionHead = dialog.IdVersionHead;
+                    }
+                    
+                    //editRow.idVersionProc = dialog.
+                    editRow.inn = dialog.Inn;
+                    editRow.isActive = dialog.IsActive;
+                    editRow.isHead = dialog.IsHead;
+                    editRow.military = dialog.IsMilitary;
+                    editRow.ogrn = dialog.Ogrn;
+                    //     editRow.oktmoList
+                    editRow.special = dialog.IsSpecial;
+                    //     editRow.subjectRfList
+
+                    Utils.Database.SetIsHeadAttribute();
+
                     gaspsListView.UpdateListViewItem();
                 }
                 else
@@ -656,6 +698,11 @@ namespace DatabaseToolSuite.Dialogs
         {
             Utils.Database.FillLogEditDateInErvk();
             MessageBox.Show(this, "Данные ЕРВК успешно дополнены журналом редактирования", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }       
+        }
+
+        private void gaspsListView_GaspsListViewCompleted(object sender, Controls.GaspsListViewCompletedEventArgs e)
+        {
+            rowCountStatusLabel.Text = string.Format("Отражено записей {0}", gaspsListView.RowCount);
+        }
     }
 }

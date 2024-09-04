@@ -66,7 +66,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
@@ -220,6 +220,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Repositoryes\DatabaseXMLSchema.Viewers.cs">
+      <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Repositoryes\DatabaseXMLSchema.Gasps.cs">
+      <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Repositoryes\DatabaseXMLSchema.FgisEsnsi.cs">
+      <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Repositoryes\DatabaseXMLSchema.Ervk.cs">
+      <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Repositoryes\Dto\AuthorityDto.cs" />
     <Compile Include="Repositoryes\Dto\OkatoDto.cs" />
     <Compile Include="Services\DataGridViewSetting.cs" />
@@ -303,7 +315,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="DatabaseToolSuite_TemporaryKey.pfx" />
     <None Include="Utils\Files\FED_GENPROK_ORGANIZATION_Cp1251.csv" />
     <None Include="Utils\Files\FED_GENPROK_ORGANIZATION_Cp1251.xlsx" />
     <None Include="Utils\Files\gasps.xsc">
@@ -467,6 +478,19 @@
   <ItemGroup>
     <None Include="Resources\epgu_dublicate.png" />
     <None Include="Resources\Update24.png" />
+    <None Include="Resources\economy24.png" />
+    <None Include="Resources\economy32.png" />
+    <None Include="Resources\gosuslugi32.png" />
+    <None Include="Resources\gosuslugi24.png" />
+    <None Include="Resources\gosuslugi_dublicate24.png" />
+    <None Include="Resources\economy_dublicate24.png" />
+    <None Include="Resources\gosuslugi_remove24.png" />
+    <None Include="Resources\economy_remove24.png" />
+    <None Include="Resources\gosuslugi_remove241.png" />
+    <None Include="Resources\gosuslugi_dublicate32.png" />
+    <None Include="Resources\economy_dublicate32.png" />
+    <None Include="Resources\gosuslugi_remove32.png" />
+    <None Include="Resources\economy_remove32.png" />
     <Content Include="Utils\Files\FED.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

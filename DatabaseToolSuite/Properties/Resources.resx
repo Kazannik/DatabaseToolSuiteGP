@@ -124,8 +124,11 @@
   <data name="About24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\About24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Info64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Info64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Delete16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Delete16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gosuslugi32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gosuslugi32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Duplicate24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Duplicate24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,17 +148,29 @@
   <data name="Home16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Home16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="gosuslugi_dublicate24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gosuslugi_dublicate24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Update24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Update24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Save32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Save24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="NewSeries32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NewSeries32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Flag16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Flag16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gosuslugi24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gosuslugi24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Statistics32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Statistics32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gosuslugi_remove32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gosuslugi_remove32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="saveHS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\saveHS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -163,38 +178,38 @@
   <data name="PasteHS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PasteHS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Edit24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Edit24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="economy_remove24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\economy_remove24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Windows32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Windows32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="epguremove" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\epguremove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="New24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\New24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Edit24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Edit24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ExportXmlFile24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ExportXmlFile24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Delete24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Delete24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Windows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Info64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Info64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SaveAs24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SaveAs24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="epgu_dublicate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\epgu_dublicate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="emblem_big" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\emblem_big.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="openHS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\openHS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ExportXmlFile24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ExportXmlFile24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="economy_dublicate24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\economy_dublicate24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="economy24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\economy24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ImportTextFile24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImportTextFile24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -208,8 +223,8 @@
   <data name="New32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\New32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FileExit32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FileExit32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="NewSeries32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NewSeries32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Statistics24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Statistics24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -220,25 +235,34 @@
   <data name="Delete32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Delete32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="epgu" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\epgu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="FileExit32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FileExit32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Delete16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Delete16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="emblem_big" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\emblem_big.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Flag16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Flag16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="gosuslugi_dublicate32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gosuslugi_dublicate32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Warning64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Warning64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Windows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ExportExcel24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ExportExcel24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="economy32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\economy32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Warning64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Warning64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="economy_dublicate32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\economy_dublicate32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="DeleteRedHS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeleteRedHS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Update24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Update24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="economy_remove32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\economy_remove32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

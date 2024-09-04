@@ -36,9 +36,9 @@ namespace DatabaseToolSuite.Repositoryes {
         
         private ervkDataTable tableervk;
         
-        private global::System.Data.DataRelation relationFK_authority_gasps;
-        
         private global::System.Data.DataRelation relationFK_court_type_gasps;
+        
+        private global::System.Data.DataRelation relationFK_authority_gasps;
         
         private global::System.Data.DataRelation relationFK_okato_gasps;
         
@@ -330,8 +330,8 @@ namespace DatabaseToolSuite.Repositoryes {
                     this.tableervk.InitVars();
                 }
             }
-            this.relationFK_authority_gasps = this.Relations["FK_authority_gasps"];
             this.relationFK_court_type_gasps = this.Relations["FK_court_type_gasps"];
+            this.relationFK_authority_gasps = this.Relations["FK_authority_gasps"];
             this.relationFK_okato_gasps = this.Relations["FK_okato_gasps"];
             this.relationfgis_esnsi_gasps = this.Relations["fgis_esnsi_gasps"];
             this.relationgasps_ervk = this.Relations["gasps_ervk"];
@@ -359,13 +359,6 @@ namespace DatabaseToolSuite.Repositoryes {
             this.tableervk = new ervkDataTable();
             base.Tables.Add(this.tableervk);
             global::System.Data.ForeignKeyConstraint fkc;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_authority_gasps", new global::System.Data.DataColumn[] {
-                        this.tableauthority.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablegasps.authority_idColumn});
-            this.tablegasps.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
-            fkc.DeleteRule = global::System.Data.Rule.Cascade;
-            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             fkc = new global::System.Data.ForeignKeyConstraint("FK_court_type_gasps", new global::System.Data.DataColumn[] {
                         this.tablecourt_type.idColumn}, new global::System.Data.DataColumn[] {
                         this.tablegasps.court_type_idColumn});
@@ -373,14 +366,21 @@ namespace DatabaseToolSuite.Repositoryes {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            this.relationFK_authority_gasps = new global::System.Data.DataRelation("FK_authority_gasps", new global::System.Data.DataColumn[] {
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_authority_gasps", new global::System.Data.DataColumn[] {
                         this.tableauthority.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablegasps.authority_idColumn}, false);
-            this.Relations.Add(this.relationFK_authority_gasps);
+                        this.tablegasps.authority_idColumn});
+            this.tablegasps.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             this.relationFK_court_type_gasps = new global::System.Data.DataRelation("FK_court_type_gasps", new global::System.Data.DataColumn[] {
                         this.tablecourt_type.idColumn}, new global::System.Data.DataColumn[] {
                         this.tablegasps.court_type_idColumn}, false);
             this.Relations.Add(this.relationFK_court_type_gasps);
+            this.relationFK_authority_gasps = new global::System.Data.DataRelation("FK_authority_gasps", new global::System.Data.DataColumn[] {
+                        this.tableauthority.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablegasps.authority_idColumn}, false);
+            this.Relations.Add(this.relationFK_authority_gasps);
             this.relationFK_okato_gasps = new global::System.Data.DataRelation("FK_okato_gasps", new global::System.Data.DataColumn[] {
                         this.tableokato.codeColumn}, new global::System.Data.DataColumn[] {
                         this.tablegasps.okato_codeColumn}, false);
@@ -865,6 +865,8 @@ namespace DatabaseToolSuite.Repositoryes {
             
             private global::System.Data.DataColumn columnokato;
             
+            private global::System.Data.DataColumn columnssrf;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public okatoDataTable() : 
@@ -981,6 +983,14 @@ namespace DatabaseToolSuite.Repositoryes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ssrfColumn {
+                get {
+                    return this.columnssrf;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1016,7 +1026,7 @@ namespace DatabaseToolSuite.Repositoryes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public okatoRow AddokatoRow(string code, string name, string name2, string centrum, string genitive, string ter, short kod1, string lab, string okato) {
+            public okatoRow AddokatoRow(string code, string name, string name2, string centrum, string genitive, string ter, short kod1, string lab, string okato, string ssrf) {
                 okatoRow rowokatoRow = ((okatoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         code,
@@ -1027,7 +1037,8 @@ namespace DatabaseToolSuite.Repositoryes {
                         ter,
                         kod1,
                         lab,
-                        okato};
+                        okato,
+                        ssrf};
                 rowokatoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowokatoRow);
                 return rowokatoRow;
@@ -1035,7 +1046,7 @@ namespace DatabaseToolSuite.Repositoryes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public okatoRow AddokatoRow(string name, string name2, string centrum, string genitive, string ter, short kod1, string lab) {
+            public okatoRow AddokatoRow(string name, string name2, string centrum, string genitive, string ter, short kod1, string lab, string ssrf) {
                 okatoRow rowokatoRow = ((okatoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1046,7 +1057,8 @@ namespace DatabaseToolSuite.Repositoryes {
                         ter,
                         kod1,
                         lab,
-                        null};
+                        null,
+                        ssrf};
                 rowokatoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowokatoRow);
                 return rowokatoRow;
@@ -1078,6 +1090,7 @@ namespace DatabaseToolSuite.Repositoryes {
                 this.columnkod1 = base.Columns["kod1"];
                 this.columnlab = base.Columns["lab"];
                 this.columnokato = base.Columns["okato"];
+                this.columnssrf = base.Columns["ssrf"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1101,6 +1114,8 @@ namespace DatabaseToolSuite.Repositoryes {
                 base.Columns.Add(this.columnlab);
                 this.columnokato = new global::System.Data.DataColumn("okato", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnokato);
+                this.columnssrf = new global::System.Data.DataColumn("ssrf", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnssrf);
                 this.columncode.ReadOnly = true;
                 this.columnname.AllowDBNull = false;
                 this.columnname.Caption = "Наименование по справочнику ОКАТО";
@@ -2429,6 +2444,8 @@ namespace DatabaseToolSuite.Repositoryes {
             
             private global::System.Data.DataColumn columnidVersionHead;
             
+            private global::System.Data.DataColumn columnidSuccession;
+            
             private global::System.Data.DataColumn columndateStartVersion;
             
             private global::System.Data.DataColumn columndateCloseProc;
@@ -2542,6 +2559,14 @@ namespace DatabaseToolSuite.Repositoryes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn idSuccessionColumn {
+                get {
+                    return this.columnidSuccession;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn dateStartVersionColumn {
                 get {
                     return this.columndateStartVersion;
@@ -2633,7 +2658,23 @@ namespace DatabaseToolSuite.Repositoryes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ervkRow AddervkRow(gaspsRow parentgaspsRowBygasps_ervk, long esnsiCode, bool isHead, bool special, bool military, bool isActive, string idVersionProc, long idVersionHead, System.DateTime dateStartVersion, System.DateTime dateCloseProc, string ogrn, string inn, string subjectRfList, string oktmoList, System.DateTime logEditDate) {
+            public ervkRow AddervkRow(
+                        gaspsRow parentgaspsRowBygasps_ervk, 
+                        long esnsiCode, 
+                        bool isHead, 
+                        bool special, 
+                        bool military, 
+                        bool isActive, 
+                        string idVersionProc, 
+                        long idVersionHead, 
+                        long idSuccession, 
+                        System.DateTime dateStartVersion, 
+                        System.DateTime dateCloseProc, 
+                        string ogrn, 
+                        string inn, 
+                        string subjectRfList, 
+                        string oktmoList, 
+                        System.DateTime logEditDate) {
                 ervkRow rowervkRow = ((ervkRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2644,6 +2685,7 @@ namespace DatabaseToolSuite.Repositoryes {
                         isActive,
                         idVersionProc,
                         idVersionHead,
+                        idSuccession,
                         dateStartVersion,
                         dateCloseProc,
                         ogrn,
@@ -2684,6 +2726,7 @@ namespace DatabaseToolSuite.Repositoryes {
                 this.columnisActive = base.Columns["isActive"];
                 this.columnidVersionProc = base.Columns["idVersionProc"];
                 this.columnidVersionHead = base.Columns["idVersionHead"];
+                this.columnidSuccession = base.Columns["idSuccession"];
                 this.columndateStartVersion = base.Columns["dateStartVersion"];
                 this.columndateCloseProc = base.Columns["dateCloseProc"];
                 this.columnogrn = base.Columns["ogrn"];
@@ -2712,6 +2755,8 @@ namespace DatabaseToolSuite.Repositoryes {
                 base.Columns.Add(this.columnidVersionProc);
                 this.columnidVersionHead = new global::System.Data.DataColumn("idVersionHead", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnidVersionHead);
+                this.columnidSuccession = new global::System.Data.DataColumn("idSuccession", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnidSuccession);
                 this.columndateStartVersion = new global::System.Data.DataColumn("dateStartVersion", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndateStartVersion);
                 this.columndateCloseProc = new global::System.Data.DataColumn("dateCloseProc", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -2740,6 +2785,7 @@ namespace DatabaseToolSuite.Repositoryes {
                 this.columnmilitary.DefaultValue = ((bool)(false));
                 this.columnisActive.AllowDBNull = false;
                 this.columnisActive.DefaultValue = ((bool)(true));
+                this.columnidVersionProc.AllowDBNull = false;
                 this.columndateStartVersion.AllowDBNull = false;
             }
             
@@ -3071,6 +3117,22 @@ namespace DatabaseToolSuite.Repositoryes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ssrf {
+                get {
+                    try {
+                        return ((string)(this[this.tableokato.ssrfColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'ssrf\' в таблице \'okato\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableokato.ssrfColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IscodeNull() {
                 return this.IsNull(this.tableokato.codeColumn);
             }
@@ -3139,6 +3201,18 @@ namespace DatabaseToolSuite.Repositoryes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetokatoNull() {
                 this[this.tableokato.okatoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsssrfNull() {
+                return this.IsNull(this.tableokato.ssrfColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetssrfNull() {
+                this[this.tableokato.ssrfColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3359,23 +3433,23 @@ namespace DatabaseToolSuite.Repositoryes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public authorityRow authorityRow {
-                get {
-                    return ((authorityRow)(this.GetParentRow(this.Table.ParentRelations["FK_authority_gasps"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_authority_gasps"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public court_typeRow court_typeRow {
                 get {
                     return ((court_typeRow)(this.GetParentRow(this.Table.ParentRelations["FK_court_type_gasps"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_court_type_gasps"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public authorityRow authorityRow {
+                get {
+                    return ((authorityRow)(this.GetParentRow(this.Table.ParentRelations["FK_authority_gasps"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_authority_gasps"]);
                 }
             }
             
@@ -3894,12 +3968,7 @@ namespace DatabaseToolSuite.Repositoryes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string idVersionProc {
                 get {
-                    try {
-                        return ((string)(this[this.tableervk.idVersionProcColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'idVersionProc\' в таблице \'ervk\' равно DBNull.", e);
-                    }
+                    return ((string)(this[this.tableervk.idVersionProcColumn]));
                 }
                 set {
                     this[this.tableervk.idVersionProcColumn] = value;
@@ -3919,6 +3988,22 @@ namespace DatabaseToolSuite.Repositoryes {
                 }
                 set {
                     this[this.tableervk.idVersionHeadColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long idSuccession {
+                get {
+                    try {
+                        return ((long)(this[this.tableervk.idSuccessionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'idSuccession\' в таблице \'ervk\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableervk.idSuccessionColumn] = value;
                 }
             }
             
@@ -4042,18 +4127,6 @@ namespace DatabaseToolSuite.Repositoryes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsidVersionProcNull() {
-                return this.IsNull(this.tableervk.idVersionProcColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetidVersionProcNull() {
-                this[this.tableervk.idVersionProcColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsidVersionHeadNull() {
                 return this.IsNull(this.tableervk.idVersionHeadColumn);
             }
@@ -4062,6 +4135,18 @@ namespace DatabaseToolSuite.Repositoryes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetidVersionHeadNull() {
                 this[this.tableervk.idVersionHeadColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsidSuccessionNull() {
+                return this.IsNull(this.tableervk.idSuccessionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetidSuccessionNull() {
+                this[this.tableervk.idSuccessionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

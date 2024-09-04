@@ -99,5 +99,23 @@ namespace DatabaseToolSuite.Utils
                 }
             }
         }
+
+        /// <summary>
+        /// Автоматическая расстановка атрибута IsHead о наличии подчиненных прокуратур в таблице ЕРВК.
+        /// </summary>
+        public static void SetIsHeadAttribute()
+        {
+            foreach (ervkRow row in MasterDataSystem.DataSet.ervk.Rows)
+            {
+                if (MasterDataSystem.DataSet.ervk.ExistsIdVersionHead(row.esnsiCode))
+                {
+                    row.isHead = true;
+                }
+                else
+                {
+                    row.isHead = false;
+                }              
+            }
+        }
     }
 }

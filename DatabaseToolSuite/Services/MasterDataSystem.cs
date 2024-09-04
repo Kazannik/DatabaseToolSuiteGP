@@ -24,7 +24,7 @@ namespace DatabaseToolSuite.Services
         }
 
         /// <summary>
-        /// Создание записи о подразделении правоохранительного органа
+        /// Создание записи о подразделении правоохранительного органа в ГАС ПС
         /// </summary>
         /// <param name="name">Наименование подразделения.</param>
         /// <param name="key">Ключ подразделения. Не изменяется от версии к версии записи.</param>
@@ -72,9 +72,9 @@ namespace DatabaseToolSuite.Services
 
             return newRow;
         }
-       
+
         /// <summary>
-        /// Создание новой записи.
+        /// Создание записи о подразделении правоохранительного органа в ГАС ПС
         /// </summary>
         /// <param name="name">Наименование подразделения</param>
         /// <param name="okato">Код ОКАТО</param>
@@ -116,9 +116,9 @@ namespace DatabaseToolSuite.Services
 
             return newRow.version;
         }
-        
+
         /// <summary>
-        /// Создание новой версии записи
+        /// Создание новой версии записи о подразделении правоохранительного органа в ГАС ПС
         /// </summary>
         /// <param name="version">Индекс версии</param>
         /// <param name="date">Дата введения в действие новой версии</param>
@@ -172,15 +172,16 @@ namespace DatabaseToolSuite.Services
                 if (DataSet.ervk.ExistsRow(modifedRow.version))
                 {
                     CloneErvkNote(modifedRow.version, newVersion);
+                    DataSet.ervk.Get(modifedRow.version).isActive = false;
+                    DataSet.ervk.Get(modifedRow.version).logEditDate = DateTime.Now;
                 }
             }
-
             return newRow.version;
         }
 
 
         /// <summary>
-        /// Создание новой версии записи
+        /// Создание новой версии записи о подразделении правоохранительного органа в ГАС ПС
         /// </summary>
         /// <param name="version">Индекс версии</param>
         /// <param name="date">Дата введения в действие новой версии</param>
@@ -227,13 +228,15 @@ namespace DatabaseToolSuite.Services
                 if (DataSet.ervk.ExistsRow(modifedRow.version))
                 {
                     CloneErvkNote(modifedRow.version, newVersion);
+                    DataSet.ervk.Get(modifedRow.version).isActive = false;
+                    DataSet.ervk.Get(modifedRow.version).logEditDate = DateTime.Now;
                 }
             }
             return newRow.version;
         }
 
         /// <summary>
-        /// Блокировка записи
+        /// Блокировка записи о подразделении правоохранительного органа в ГАС ПС
         /// </summary>
         /// <param name="version">Индекс версии</param>
         /// <param name="date">Дата блокировки</param>
@@ -243,10 +246,15 @@ namespace DatabaseToolSuite.Services
             oldRow.BeginEdit();
             oldRow.date_end = date;
             oldRow.EndEdit();
+            if (DataSet.ervk.ExistsRow(version))
+            {
+                DataSet.ervk.Get(version).isActive = false;
+                DataSet.ervk.Get(version).logEditDate = DateTime.Now;
+            }
         }
-        
+
         /// <summary>
-        /// Создание новой версии записи
+        /// Правка записи о подразделении правоохранительного органа в ГАС ПС
         /// </summary>
         /// <param name="version">Индекс версии</param>
         /// <param name="date">Дата введения в действие новой версии</param>
@@ -402,6 +410,7 @@ namespace DatabaseToolSuite.Services
         /// <param name="isActive">Признак активности</param>
         /// <param name="idVersionProc">ИД версии органа прокуратуры в ЕСНСИ</param>
         /// <param name="idVersionHead">ИД ЕСНСИ вышестоящего органа прокуратуры (ссылка на esnsiCode)</param>
+        /// <param name="idSuccession">ИД ЕСНСИ бывшего органа прокуратуры (ссылка на esnsiCode)</param>
         /// <param name="dateStartVersion">Дата создания версии органа прокуратуры в ЕСНСИ</param>
         /// <param name="dateCloseProc">Дата прекращения действия органа прокуратуры в ЕСНСИ</param>
         /// <param name="ogrn">ОГРН</param>
@@ -418,6 +427,7 @@ namespace DatabaseToolSuite.Services
             bool isActive,
             string idVersionProc,
             long idVersionHead,
+            long idSuccession,
             DateTime dateStartVersion,
             DateTime dateCloseProc,
             string ogrn,
@@ -426,7 +436,7 @@ namespace DatabaseToolSuite.Services
             string oktmoList
             )
         {
-            object[] values = new object[15];
+            object[] values = new object[16];
             values[0] = version;
             values[1] = esnsiCode;
             values[2] = isHead;
@@ -435,18 +445,79 @@ namespace DatabaseToolSuite.Services
             values[5] = isActive;
             values[6] = idVersionProc;
             values[7] = idVersionHead;
-            values[8] = dateStartVersion;
-            values[9] =  DateTime.MaxValue.Equals(dateCloseProc) ? null : (object)dateCloseProc;
-            values[10] = ogrn;
-            values[11] = inn;
-            values[12] = subjectRfList;
-            values[13] = oktmoList;
-            values[14] = DateTime.Now;
+            values[8] = idSuccession;
+            values[9] = dateStartVersion;
+            values[10] =  DateTime.MaxValue.Equals(dateCloseProc) ? null : (object)dateCloseProc;
+            values[11] = ogrn;
+            values[12] = inn;
+            values[13] = subjectRfList;
+            values[14] = oktmoList;
+            values[15] = DateTime.Now;
 
             ervkRow newRow = (ervkRow)FileSystem.Repository.DataSet.ervk.Rows.Add(values);
             return newRow;
         }
 
+
+        /// <summary>
+        /// Создание записи ЕРВК
+        /// </summary>
+        /// <param name="version">Версия. Поле для связи gasps и ervk</param>
+        /// <param name="esnsiCode">ИД ЕСНСИ</param>
+        /// <param name="isHead">isHead</param>
+        /// <param name="special">Специальная</param>
+        /// <param name="military">Военная</param>
+        /// <param name="isActive">Признак активности</param>
+        /// <param name="idVersionProc">ИД версии органа прокуратуры в ЕСНСИ</param>
+        /// <param name="idVersionHead">ИД ЕСНСИ вышестоящего органа прокуратуры (ссылка на esnsiCode)</param>
+        /// <param name="idSuccession">ИД ЕСНСИ бывшего органа прокуратуры (ссылка на esnsiCode)</param>
+        /// <param name="dateStartVersion">Дата создания версии органа прокуратуры в ЕСНСИ</param>
+        /// <param name="dateCloseProc">Дата прекращения действия органа прокуратуры в ЕСНСИ</param>
+        /// <param name="ogrn">ОГРН</param>
+        /// <param name="inn">ИНН</param>
+        /// <param name="subjectRfList">Субъект множественный</param>
+        /// <param name="oktmoList">ОКТМО множественный</param>
+        /// <returns></returns>
+        public static ervkRow CreateErvkNote(
+            long version,
+            bool isHead,
+            bool special,
+            bool military,            
+            long idVersionHead,
+            long idSuccession,
+            DateTime dateStartVersion,
+            string ogrn,
+            string inn,
+            string subjectRfList,
+            string oktmoList
+            )
+        {
+            long esnsiCode = DataSet.ervk.GetNextEsnsiCode();
+            string idVersionProc = DataSet.ervk.GetNextVersionProc();
+            if (idVersionHead > 0)
+            {
+                ervkRow headRow = DataSet.ervk.GetFromEsnsiCode(idVersionHead);
+                headRow.isHead = true;
+            }
+
+            return CreateErvkNote(
+                version: version,
+                esnsiCode: esnsiCode,
+                isHead: isHead,
+                special: special,
+                military: military,
+                isActive: true,
+                idVersionProc: idVersionProc,
+                idVersionHead: idVersionHead,
+                idSuccession: idSuccession,
+                dateStartVersion: dateStartVersion,
+                dateCloseProc: MAX_DATE,
+                ogrn: ogrn,
+                inn: inn,
+                subjectRfList: subjectRfList,
+                oktmoList: oktmoList);
+        }
+        
         /// <summary>
         /// Клонирование записи ЕРВК
         /// </summary>
@@ -479,8 +550,9 @@ namespace DatabaseToolSuite.Services
                 special: currentErvkRow.special,
                 military: currentErvkRow.military,
                 isActive: currentErvkRow.isActive,
-                idVersionProc: currentErvkRow.IsidVersionProcNull() ? string.Empty : currentErvkRow.idVersionProc,
+                idVersionProc: currentErvkRow.idVersionProc,
                 idVersionHead: currentErvkRow.IsidVersionHeadNull() ? 0 : currentErvkRow.idVersionHead,
+                idSuccession: currentErvkRow.IsidSuccessionNull() ? 0 : currentErvkRow.idSuccession,
                 dateStartVersion: currentErvkRow.dateStartVersion,
                 dateCloseProc: currentErvkRow.IsdateCloseProcNull() ? DateTime.MaxValue : currentErvkRow.dateCloseProc,
                 ogrn: currentErvkRow.IsogrnNull() ? string.Empty : currentErvkRow.ogrn,
@@ -505,6 +577,7 @@ namespace DatabaseToolSuite.Services
         /// <param name="isActive">Признак активности</param>
         /// <param name="idVersionProc">ИД версии органа прокуратуры в ЕСНСИ</param>
         /// <param name="idVersionHead">ИД ЕСНСИ вышестоящего органа прокуратуры (ссылка на esnsiCode)</param>
+        /// <param name="idSuccession">ИД ЕСНСИ бывшего органа прокуратуры (ссылка на esnsiCode)</param>
         /// <param name="dateStartVersion">Дата создания версии органа прокуратуры в ЕСНСИ</param>
         /// <param name="dateCloseProc">Дата прекращения действия органа прокуратуры в ЕСНСИ</param>
         /// <param name="ogrn">ОГРН</param>
@@ -521,6 +594,7 @@ namespace DatabaseToolSuite.Services
             bool isActive,
             string idVersionProc,
             long idVersionHead,
+            long idSuccession,
             DateTime dateStartVersion,
             DateTime dateCloseProc,
             string ogrn,
@@ -537,6 +611,7 @@ namespace DatabaseToolSuite.Services
             errorRow.isActive = isActive;
             errorRow.idVersionProc = idVersionProc;
             errorRow.idVersionHead = idVersionHead;
+            errorRow.idSuccession = idSuccession;
             errorRow.dateStartVersion = dateStartVersion;
             errorRow.dateCloseProc = dateCloseProc;
             errorRow.ogrn = ogrn;

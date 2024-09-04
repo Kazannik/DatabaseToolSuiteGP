@@ -50,8 +50,7 @@ namespace DatabaseToolSuite.Dialogs
         public CreateNewOrganizationDialog(gaspsRow row) : base(row)
         {
             InitializeComponent();
-
-
+            
             nextCodeButton.Enabled = !string.IsNullOrWhiteSpace(authorityComboBox.Code) ||
                 !string.IsNullOrWhiteSpace(okatoComboBox.Code);
 
@@ -61,7 +60,6 @@ namespace DatabaseToolSuite.Dialogs
             Text = "Новая запись о подразделении";
             DialogCaption = "Создание новой записи о подразделении";
             codeTextBox.Text = string.Empty;
-
         }
 
         public string Code
@@ -129,7 +127,6 @@ namespace DatabaseToolSuite.Dialogs
             // 
             this.organizationGroupBox.Controls.Add(this.selectCodeButton);
             this.organizationGroupBox.Controls.Add(this.nextCodeButton);
-            this.organizationGroupBox.Size = new System.Drawing.Size(690, 357);
             this.organizationGroupBox.Controls.SetChildIndex(this.nameTextBox, 0);
             this.organizationGroupBox.Controls.SetChildIndex(this.authorityComboBox, 0);
             this.organizationGroupBox.Controls.SetChildIndex(this.okatoComboBox, 0);
@@ -137,31 +134,21 @@ namespace DatabaseToolSuite.Dialogs
             this.organizationGroupBox.Controls.SetChildIndex(this.nextCodeButton, 0);
             this.organizationGroupBox.Controls.SetChildIndex(this.selectCodeButton, 0);
             // 
-            // codeTextBox
-            // 
-            this.codeTextBox.Location = new System.Drawing.Point(204, 102);
-            // 
             // authorityComboBox
             // 
-            this.authorityComboBox.Location = new System.Drawing.Point(129, 180);
             this.authorityComboBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox_SelectedIndexChanged);
             // 
             // okatoComboBox
             // 
-            this.okatoComboBox.Location = new System.Drawing.Point(129, 140);
             this.okatoComboBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox_SelectedIndexChanged);
-            // 
-            // nameTextBox
-            // 
-            this.nameTextBox.Size = new System.Drawing.Size(669, 37);
             // 
             // nextCodeButton
             // 
             this.nextCodeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.nextCodeButton.Location = new System.Drawing.Point(345, 99);
+            this.nextCodeButton.Location = new System.Drawing.Point(374, 172);
             this.nextCodeButton.Margin = new System.Windows.Forms.Padding(4);
             this.nextCodeButton.Name = "nextCodeButton";
-            this.nextCodeButton.Size = new System.Drawing.Size(113, 34);
+            this.nextCodeButton.Size = new System.Drawing.Size(127, 28);
             this.nextCodeButton.TabIndex = 3;
             this.nextCodeButton.Text = "Создать";
             this.nextCodeButton.UseVisualStyleBackColor = true;
@@ -170,10 +157,10 @@ namespace DatabaseToolSuite.Dialogs
             // selectCodeButton
             // 
             this.selectCodeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.selectCodeButton.Location = new System.Drawing.Point(466, 99);
+            this.selectCodeButton.Location = new System.Drawing.Point(509, 172);
             this.selectCodeButton.Margin = new System.Windows.Forms.Padding(4);
             this.selectCodeButton.Name = "selectCodeButton";
-            this.selectCodeButton.Size = new System.Drawing.Size(113, 34);
+            this.selectCodeButton.Size = new System.Drawing.Size(127, 28);
             this.selectCodeButton.TabIndex = 4;
             this.selectCodeButton.Text = "Выбрать...";
             this.selectCodeButton.UseVisualStyleBackColor = true;
@@ -181,8 +168,6 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // CreateNewOrganizationDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.MinimumSize = new System.Drawing.Size(740, 580);
             this.Name = "CreateNewOrganizationDialog";
             this.organizationGroupBox.ResumeLayout(false);
             this.organizationGroupBox.PerformLayout();
