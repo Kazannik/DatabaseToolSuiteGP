@@ -78,7 +78,7 @@ namespace DatabaseToolSuite.Dialogs
         {
             if (isFilter)
             {
-                gaspsListView.Filter(authority: filterAuthorityComboBox.Value,
+                gaspsListView.FilterAsync(authority: filterAuthorityComboBox.Value,
                 okato: filterOkatoComboBox.Code,
                 code: filterCodeNumericTextBox.Text,
                 name: filterNameTextBox.Text,
@@ -87,7 +87,6 @@ namespace DatabaseToolSuite.Dialogs
                 lockShow: filterLockCodeViewCheckBox.Checked,
                 fgisEsnsiOnlyShow: filterFgisEsnsiOnlyRadioButton.Checked,
                 ervkOnlyShow: filterErvkOnlyRadioButton.Checked);
-                rowCountStatusLabel.Text = string.Format("Отражено записей {0}", gaspsListView.RowCount);
            }
         }
 
@@ -100,7 +99,7 @@ namespace DatabaseToolSuite.Dialogs
             filterNameTextBox.Text = string.Empty;
             isFilter = true;
 
-            gaspsListView.Filter(authority: filterAuthorityComboBox.Value,
+            gaspsListView.FilterAsync(authority: filterAuthorityComboBox.Value,
                okato: filterOkatoComboBox.Code,
                code: filterCodeNumericTextBox.Text,
                name: filterNameTextBox.Text,
@@ -109,7 +108,6 @@ namespace DatabaseToolSuite.Dialogs
                lockShow: filterLockCodeViewCheckBox.Checked,
                fgisEsnsiOnlyShow: filterFgisEsnsiOnlyRadioButton.Checked,
                ervkOnlyShow: filterErvkOnlyRadioButton.Checked);
-            rowCountStatusLabel.Text = string.Format("Отражено записей {0}", gaspsListView.RowCount);
         }
 
         private void gaspsListView_ItemSelectionChanged(object sender, EventArgs e)
@@ -700,6 +698,11 @@ namespace DatabaseToolSuite.Dialogs
         {
             Utils.Database.FillLogEditDateInErvk();
             MessageBox.Show(this, "Данные ЕРВК успешно дополнены журналом редактирования", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }       
+        }
+
+        private void gaspsListView_GaspsListViewCompleted(object sender, Controls.GaspsListViewCompletedEventArgs e)
+        {
+            rowCountStatusLabel.Text = string.Format("Отражено записей {0}", gaspsListView.RowCount);
+        }
     }
 }

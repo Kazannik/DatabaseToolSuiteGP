@@ -315,7 +315,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="DatabaseToolSuite_TemporaryKey.pfx" />
     <None Include="Utils\Files\FED_GENPROK_ORGANIZATION_Cp1251.csv" />
     <None Include="Utils\Files\FED_GENPROK_ORGANIZATION_Cp1251.xlsx" />
     <None Include="Utils\Files\gasps.xsc">
@@ -488,7 +487,6 @@
     <None Include="Resources\gosuslugi_remove24.png" />
     <None Include="Resources\economy_remove24.png" />
     <None Include="Resources\gosuslugi_remove241.png" />
-    <None Include="Resources\economy_remove241.png" />
     <None Include="Resources\gosuslugi_dublicate32.png" />
     <None Include="Resources\economy_dublicate32.png" />
     <None Include="Resources\gosuslugi_remove32.png" />
