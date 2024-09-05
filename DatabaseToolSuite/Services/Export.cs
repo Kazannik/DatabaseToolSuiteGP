@@ -287,5 +287,66 @@ namespace DatabaseToolSuite.Services
             MessageBox.Show("Экспорт в формате CSV выполнен!");
         }
 
+
+        public static void ExportErvkToExcel()
+        {
+            IEnumerable<ervkDataTable.ErvkOrganization> data = MasterDataSystem.DataSet.ervk.ExportData();
+            int rowCount = data.Count();
+
+            Excel.Application m_objExcel = null;
+            Excel.Workbooks m_objBooks = null;
+            Excel._Workbook m_objBook = null;
+            Excel.Sheets m_objSheets = null;
+            Excel._Worksheet m_objSheet = null;
+            Excel.Range m_objRange = null;
+            Excel.Font m_objFont = null;
+
+            object m_objOpt = Missing.Value;
+
+            // Start a new workbook in Excel.
+            m_objExcel = new Excel.Application();
+
+            m_objExcel.Visible = true;
+
+            m_objBooks = m_objExcel.Workbooks;
+
+            m_objBook = m_objBooks.Add(m_objOpt);
+            m_objSheets = m_objBook.Worksheets;
+            m_objSheet = (Excel._Worksheet)(m_objSheets.get_Item(1));
+            m_objSheet.Name = "FED_GENPROK_ORGANIZATION_ERVK";
+
+            object[] objHeaders = { "esnsiCode","title","isHead", "special", "military", "isActive", "idVersionProc",
+                "idVersionHead", "dateStartVersion", "dateCloseProc", "ogrn", "inn", "subjectRfList", "oktmoList",
+                "idSuccession", "Родительский элемент" };
+            m_objRange = m_objSheet.get_Range("A1", "P1");
+            m_objRange.Value = objHeaders;
+
+            object[,] objData = new object[rowCount, objHeaders.Count()];
+            int r = 0;
+            foreach (ervkDataTable.ErvkOrganization item in data)
+            {
+                objData[r, 0] = item.EsnsiCode;
+                objData[r, 1] = item.Title;
+                objData[r, 2] = item.IsHead;
+                objData[r, 3] = item.Special;
+                objData[r, 4] = item.Military;
+                objData[r, 5] = item.IsActive;
+                objData[r, 6] = item.IdVersionProc;
+                objData[r, 7] = item.IdVersionHead;
+                objData[r, 8] = item.DateStartVersion;
+                objData[r, 9] = item.DateCloseProc;
+                objData[r, 10] = item.Ogrn;
+                objData[r, 11] = item.Inn;
+                objData[r, 12] = item.SubjectRfList;
+                objData[r, 13] = item.OktmoList;
+                objData[r, 14] = item.IdSuccession;
+                objData[r, 15] = item.IdVersionHead;
+                r += 1;
+            }
+
+            m_objRange = m_objSheet.get_Range("A2", m_objOpt);
+            m_objRange = m_objRange.get_Resize(rowCount, objHeaders.Count());
+            m_objRange.Value = objData;
+        }
     }
 }

@@ -262,7 +262,7 @@
             this.mnuFileErvkExportToExcel.Name = "mnuFileErvkExportToExcel";
             this.mnuFileErvkExportToExcel.Size = new System.Drawing.Size(273, 30);
             this.mnuFileErvkExportToExcel.Text = "Данных ЕРВК...";
-            this.mnuFileErvkExportToExcel.Click += new System.EventHandler(this.mnuFileErvkExportToExcel_Click);
+            this.mnuFileErvkExportToExcel.Click += new System.EventHandler(this.FileErvkExportToExcel_Click);
             // 
             // toolStripMenuItem6
             // 
