@@ -349,7 +349,9 @@ namespace DatabaseToolSuite.Repositoryes
                        .Where(x => x.RowState != DataRowState.Deleted)
                        where (item.date_beg <= DateTime.Today &&
                        item.date_end > DateTime.Today)
-                       join owner in this.AsEnumerable() on item.id equals owner.owner_id
+                       join owner in this.AsEnumerable()
+                       .Where(x => x.RowState != DataRowState.Deleted)
+                       on item.id equals owner.owner_id
                        select new ViewGaspsOrganization(gasps: item, owner: owner);
             }
 

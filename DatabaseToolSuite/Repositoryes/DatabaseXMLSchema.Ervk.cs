@@ -231,7 +231,9 @@ namespace DatabaseToolSuite.Repositoryes
             {
                 return from ervk in this.AsEnumerable()
                         .Where(x => x.RowState != DataRowState.Deleted)
-                       join gasps in gaspsTable on ervk.version equals gasps.version
+                       join gasps in gaspsTable
+                       .Where(x => x.RowState != DataRowState.Deleted)
+                       on ervk.version equals gasps.version
                        select new ErvkOrganization(
                            version: ervk.version,
                            esnsiCode: ervk.esnsiCode,

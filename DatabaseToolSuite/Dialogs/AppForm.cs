@@ -404,8 +404,10 @@ namespace DatabaseToolSuite.Dialogs
         {
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.Title = "Экспортировать данные";
-            dialog.Filter = "Документ XML(.xml)|*.xml|Файл Microsoft Excel, содержащий значения, разделенные запятыми (.csv)|*.csv";
-            dialog.FileName = "export";
+            dialog.Filter = "Документ XML(.xml)|*.xml|" + 
+                "Файл Microsoft Excel, содержащий значения ЕСНСИ, разделенные запятыми (.csv)|*.csv|" +
+                "Файл Microsoft Excel, содержащий значения ЕРВК, разделенные запятыми (.csv)|*.csv";
+            dialog.FileName = "FED_GENPROK_ORGANIZATION_Cp1251";
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 if (dialog.FilterIndex == 1)
@@ -415,6 +417,10 @@ namespace DatabaseToolSuite.Dialogs
                 else if (dialog.FilterIndex == 2)
                 {
                     Export.ExportFgisEsnsiToCsv(dialog.FileName);
+                }
+                else if (dialog.FilterIndex == 3)
+                {
+                    Export.ExportErvkToCsv(dialog.FileName);
                 }
             }
         }
@@ -429,16 +435,9 @@ namespace DatabaseToolSuite.Dialogs
             Export.ExportFgisEsnsiToExcel();
         }
 
-        private void mnuFileErvkExportToExcel_Click(object sender, EventArgs e)
+        private void FileErvkExportToExcel_Click(object sender, EventArgs e)
         {
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Title = "Экспортировать данные ЕРВК";
-            dialog.Filter = "Файл Microsoft Excel, содержащий значения, разделенные запятыми (.csv)|*.csv";
-            dialog.FileName = "FED_GENPROK_ORGANIZATION_ERVK_28Cp1251";
-            if (dialog.ShowDialog(this) == DialogResult.OK)
-            {
-                Export.ExportErvkToCsv(dialog.FileName);               
-            }
+            Export.ExportErvkToExcel();
         }
         
         private void AppForm_Load(object sender, EventArgs e)

@@ -80,17 +80,18 @@ namespace DatabaseToolSuite.Repositoryes
 
             public IEnumerable<FgisEsnsiOrganization> ExportData()
             {
-                return from gasps in gaspsTable
+                return from esnsi in this.AsEnumerable()
+                        .Where(x => x.RowState != DataRowState.Deleted)
+                       join gasps in gaspsTable
                        .Where(x => x.RowState != DataRowState.Deleted)
-                       where (gasps.authority_id == 20 && gasps.date_beg <= DateTime.Today &&
+                       on esnsi.version equals gasps.version
+                       where (gasps.date_beg <= DateTime.Today &&
                        gasps.date_end > DateTime.Today)
-                       join esnsi in this on gasps.version equals esnsi.version
-                       join okato in okatoTable on gasps.okato_code equals okato.code
                        select new FgisEsnsiOrganization(
                            version: esnsi.version,
                            id: esnsi.IsidNull() ? 0 : esnsi.id,
                            name: gasps.name,
-                           region: okato.Isname2Null() ? okato.name : okato.name2,
+                           region: gasps.okatoRow.Isname2Null() ? gasps.okatoRow.name : gasps.okatoRow.name2,
                            phone: esnsi.Issv_0004Null() ? string.Empty : esnsi.sv_0004,
                            email: esnsi.Issv_0005Null() ? string.Empty : esnsi.sv_0005,
                            address: esnsi.Issv_0006Null() ? string.Empty : esnsi.sv_0006,
