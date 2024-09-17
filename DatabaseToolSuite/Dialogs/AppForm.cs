@@ -439,7 +439,13 @@ namespace DatabaseToolSuite.Dialogs
         {
             Export.ExportErvkToExcel();
         }
-        
+
+
+        private void FileFullExportToExcel_Click(object sender, EventArgs e)
+        {
+            Export.ExportFullDataBaseToExcel();
+        }
+
         private void AppForm_Load(object sender, EventArgs e)
         {
             Properties.Settings.Default.Reload();
@@ -702,6 +708,6 @@ namespace DatabaseToolSuite.Dialogs
         private void gaspsListView_GaspsListViewCompleted(object sender, Controls.GaspsListViewCompletedEventArgs e)
         {
             rowCountStatusLabel.Text = string.Format("Отражено записей {0}", gaspsListView.RowCount);
-        }
+        }        
     }
 }

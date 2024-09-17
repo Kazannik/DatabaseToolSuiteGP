@@ -345,14 +345,27 @@ namespace DatabaseToolSuite.Repositoryes
 
             public IEnumerable<ViewGaspsOrganization> ExportData()
             {
-                return from item in this.AsEnumerable()
-                       .Where(x => x.RowState != DataRowState.Deleted)
-                       where (item.date_beg <= DateTime.Today &&
-                       item.date_end > DateTime.Today)
-                       join owner in this.AsEnumerable()
-                       .Where(x => x.RowState != DataRowState.Deleted)
-                       on item.id equals owner.owner_id
-                       select new ViewGaspsOrganization(gasps: item, owner: owner);
+                EnumerableRowCollection<gaspsRow> gaspsCollection = this.AsEnumerable()
+                    .Where(e => e.RowState != DataRowState.Deleted)
+                    .Where(e => e.date_end > DateTime.Today && e.date_beg <= DateTime.Today);
+
+                return from gasps in gaspsCollection
+                       join owner in gaspsCollection on gasps.owner_id equals owner.key into ow_jointable
+                       from ow in ow_jointable.DefaultIfEmpty()
+                       select new ViewGaspsOrganization(gasps: gasps, owner: ow);
+            }
+
+
+            public IEnumerable<ViewGaspsOrganization> ExportFullData()
+            {
+                EnumerableRowCollection<gaspsRow> gaspsCollection = this.AsEnumerable()
+                    .Where(e => e.RowState != DataRowState.Deleted);
+                EnumerableRowCollection<gaspsRow> activeCollection = gaspsCollection
+                    .Where(e => e.date_end > DateTime.Today && e.date_beg <= DateTime.Today);
+                return from gasps in gaspsCollection
+                       join owner in activeCollection on gasps.owner_id equals owner.key into ow_jointable
+                       from ow in ow_jointable.DefaultIfEmpty()
+                       select new ViewGaspsOrganization(gasps: gasps, owner: ow);
             }
 
 

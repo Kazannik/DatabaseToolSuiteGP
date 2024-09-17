@@ -48,7 +48,7 @@ namespace DatabaseToolSuite.Dialogs
         {
             get
             {
-                return lockDateTimePicker.Value;
+                return new DateTime(year: lockDateTimePicker.Value.Year, month: lockDateTimePicker.Value.Month, day: lockDateTimePicker.Value.Day);
             }
         }
 

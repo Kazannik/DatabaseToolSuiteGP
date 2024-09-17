@@ -82,7 +82,7 @@ namespace DatabaseToolSuite.Dialogs
 
         public DateTime BeginDate
         {
-            get { return beginDateTimePicker.Value; }
+            get { return new DateTime(year: beginDateTimePicker.Value.Year, month: beginDateTimePicker.Value.Month, day: beginDateTimePicker.Value.Day); }
         }
 
         public string OrganizationName

@@ -131,6 +131,8 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuTableRefreshButton = new System.Windows.Forms.ToolStripButton();
             this.gaspsListView = new DatabaseToolSuite.Controls.GaspsListView();
+            this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuFileFullExportToExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.filterPanel.SuspendLayout();
@@ -235,7 +237,9 @@
             this.mnuFileExportToExcel.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuFileGaspsExportToExcel,
             this.mnuFileFgisEsnsiExportToExcel,
-            this.mnuFileErvkExportToExcel});
+            this.mnuFileErvkExportToExcel,
+            this.toolStripMenuItem17,
+            this.mnuFileFullExportToExcel});
             this.mnuFileExportToExcel.Image = global::DatabaseToolSuite.Properties.Resources.ExportExcel24;
             this.mnuFileExportToExcel.Name = "mnuFileExportToExcel";
             this.mnuFileExportToExcel.Size = new System.Drawing.Size(288, 30);
@@ -1079,6 +1083,19 @@
             this.gaspsListView.ItemMouseDoubleClick += new System.EventHandler<DatabaseToolSuite.Controls.GaspsListViewEventArgs>(this.gaspsListView_ItemMouseDoubleClick);
             this.gaspsListView.GaspsListViewCompleted += new DatabaseToolSuite.Controls.GaspsListViewCompletedEventHandler(this.gaspsListView_GaspsListViewCompleted);
             // 
+            // toolStripMenuItem17
+            // 
+            this.toolStripMenuItem17.Name = "toolStripMenuItem17";
+            this.toolStripMenuItem17.Size = new System.Drawing.Size(270, 6);
+            // 
+            // mnuFileFullExportToExcel
+            // 
+            this.mnuFileFullExportToExcel.Image = global::DatabaseToolSuite.Properties.Resources.Windows32;
+            this.mnuFileFullExportToExcel.Name = "mnuFileFullExportToExcel";
+            this.mnuFileFullExportToExcel.Size = new System.Drawing.Size(273, 30);
+            this.mnuFileFullExportToExcel.Text = "Всего справочника...";
+            this.mnuFileFullExportToExcel.Click += new System.EventHandler(this.FileFullExportToExcel_Click);
+            // 
             // AppForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -1217,5 +1234,7 @@
         private System.Windows.Forms.RadioButton filterErvkOnlyRadioButton;
         private System.Windows.Forms.RadioButton filterFgisEsnsiOnlyRadioButton;
         private System.Windows.Forms.RadioButton filterAllRadioButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem17;
+        private System.Windows.Forms.ToolStripMenuItem mnuFileFullExportToExcel;
     }
 }
