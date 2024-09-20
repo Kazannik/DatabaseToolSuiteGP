@@ -66,9 +66,9 @@ namespace DatabaseToolSuite.Dialogs
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StatisticsDialog));
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.expensesСolumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listView1 = new ListView();
+            this.nameColumnHeader = ((ColumnHeader)(new ColumnHeader()));
+            this.expensesСolumnHeader = ((ColumnHeader)(new ColumnHeader()));
             this.authorityComboBox1 = new DatabaseToolSuite.Controls.AuthorityComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();

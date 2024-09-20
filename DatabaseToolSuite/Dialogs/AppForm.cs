@@ -446,6 +446,11 @@ namespace DatabaseToolSuite.Dialogs
             Export.ExportFullDataBaseToExcel();
         }
 
+        private void FileStatisticsExportToExcel_Click(object sender, EventArgs e)
+        {
+            Export.ExportStatisticToExcel();
+        }
+
         private void AppForm_Load(object sender, EventArgs e)
         {
             Properties.Settings.Default.Reload();

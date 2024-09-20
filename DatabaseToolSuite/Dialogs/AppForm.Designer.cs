@@ -44,6 +44,8 @@
             this.mnuFileGaspsExportToExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuFileFgisEsnsiExportToExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuFileErvkExportToExcel = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuFileFullExportToExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTable = new System.Windows.Forms.ToolStripMenuItem();
@@ -131,8 +133,8 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuTableRefreshButton = new System.Windows.Forms.ToolStripButton();
             this.gaspsListView = new DatabaseToolSuite.Controls.GaspsListView();
-            this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuFileFullExportToExcel = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuFileStatisticsExportToExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.filterPanel.SuspendLayout();
@@ -239,7 +241,9 @@
             this.mnuFileFgisEsnsiExportToExcel,
             this.mnuFileErvkExportToExcel,
             this.toolStripMenuItem17,
-            this.mnuFileFullExportToExcel});
+            this.mnuFileFullExportToExcel,
+            this.toolStripMenuItem18,
+            this.mnuFileStatisticsExportToExcel});
             this.mnuFileExportToExcel.Image = global::DatabaseToolSuite.Properties.Resources.ExportExcel24;
             this.mnuFileExportToExcel.Name = "mnuFileExportToExcel";
             this.mnuFileExportToExcel.Size = new System.Drawing.Size(288, 30);
@@ -267,6 +271,19 @@
             this.mnuFileErvkExportToExcel.Size = new System.Drawing.Size(273, 30);
             this.mnuFileErvkExportToExcel.Text = "Данных ЕРВК...";
             this.mnuFileErvkExportToExcel.Click += new System.EventHandler(this.FileErvkExportToExcel_Click);
+            // 
+            // toolStripMenuItem17
+            // 
+            this.toolStripMenuItem17.Name = "toolStripMenuItem17";
+            this.toolStripMenuItem17.Size = new System.Drawing.Size(270, 6);
+            // 
+            // mnuFileFullExportToExcel
+            // 
+            this.mnuFileFullExportToExcel.Image = global::DatabaseToolSuite.Properties.Resources.Windows32;
+            this.mnuFileFullExportToExcel.Name = "mnuFileFullExportToExcel";
+            this.mnuFileFullExportToExcel.Size = new System.Drawing.Size(273, 30);
+            this.mnuFileFullExportToExcel.Text = "Всего справочника...";
+            this.mnuFileFullExportToExcel.Click += new System.EventHandler(this.FileFullExportToExcel_Click);
             // 
             // toolStripMenuItem6
             // 
@@ -1083,18 +1100,18 @@
             this.gaspsListView.ItemMouseDoubleClick += new System.EventHandler<DatabaseToolSuite.Controls.GaspsListViewEventArgs>(this.gaspsListView_ItemMouseDoubleClick);
             this.gaspsListView.GaspsListViewCompleted += new DatabaseToolSuite.Controls.GaspsListViewCompletedEventHandler(this.gaspsListView_GaspsListViewCompleted);
             // 
-            // toolStripMenuItem17
+            // toolStripMenuItem18
             // 
-            this.toolStripMenuItem17.Name = "toolStripMenuItem17";
-            this.toolStripMenuItem17.Size = new System.Drawing.Size(270, 6);
+            this.toolStripMenuItem18.Name = "toolStripMenuItem18";
+            this.toolStripMenuItem18.Size = new System.Drawing.Size(270, 6);
             // 
-            // mnuFileFullExportToExcel
+            // mnuFileStatisticsExportToExcel
             // 
-            this.mnuFileFullExportToExcel.Image = global::DatabaseToolSuite.Properties.Resources.Windows32;
-            this.mnuFileFullExportToExcel.Name = "mnuFileFullExportToExcel";
-            this.mnuFileFullExportToExcel.Size = new System.Drawing.Size(273, 30);
-            this.mnuFileFullExportToExcel.Text = "Всего справочника...";
-            this.mnuFileFullExportToExcel.Click += new System.EventHandler(this.FileFullExportToExcel_Click);
+            this.mnuFileStatisticsExportToExcel.Image = global::DatabaseToolSuite.Properties.Resources.Statistics24;
+            this.mnuFileStatisticsExportToExcel.Name = "mnuFileStatisticsExportToExcel";
+            this.mnuFileStatisticsExportToExcel.Size = new System.Drawing.Size(273, 30);
+            this.mnuFileStatisticsExportToExcel.Text = "Статистики...";
+            this.mnuFileStatisticsExportToExcel.Click += new System.EventHandler(this.FileStatisticsExportToExcel_Click);
             // 
             // AppForm
             // 
@@ -1236,5 +1253,7 @@
         private System.Windows.Forms.RadioButton filterAllRadioButton;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem17;
         private System.Windows.Forms.ToolStripMenuItem mnuFileFullExportToExcel;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem18;
+        private System.Windows.Forms.ToolStripMenuItem mnuFileStatisticsExportToExcel;
     }
 }

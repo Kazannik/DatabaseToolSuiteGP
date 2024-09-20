@@ -431,5 +431,70 @@ namespace DatabaseToolSuite.Services
             m_objRange = m_objRange.get_Resize(rowCount, objHeaders.Count());
             m_objRange.Value = objData;
         }
+
+        public static void ExportStatisticToExcel()
+        {
+            Excel.Application m_objExcel = null;
+            Excel.Workbooks m_objBooks = null;
+            Excel._Workbook m_objBook = null;
+            Excel.Sheets m_objSheets = null;
+            Excel._Worksheet m_objSheet = null;
+            Excel.Range m_objRange = null;
+
+            object m_objOpt = Missing.Value;
+
+            // Start a new workbook in Excel.
+            m_objExcel = new Excel.Application();
+
+            m_objExcel.Visible = true;
+
+            m_objBooks = m_objExcel.Workbooks;
+
+            m_objBook = m_objBooks.Add(m_objOpt);
+            m_objSheets = m_objBook.Worksheets;
+            m_objSheet = (Excel._Worksheet)(m_objSheets.get_Item(1));
+            m_objSheet.Name = "Statistics";
+
+            object[] objHeaders = { "Подразделение","Окато","Количество свободный значений"};
+
+            m_objRange = m_objSheet.get_Range("A1", "C1");
+            m_objRange.Value = objHeaders;
+
+            long rowCount = (MasterDataSystem.DataSet.authority.Count - 1) * MasterDataSystem.DataSet.okato.Count;
+
+            object[,] objData = new object[rowCount, objHeaders.Count()];
+            int r = 0;
+            foreach (authorityRow authority in MasterDataSystem.DataSet.authority.Where(a => a.id != 5))
+            {
+                foreach (okatoRow okato in MasterDataSystem.DataSet.okato)
+                {
+                    IEnumerable<long> codes = MasterDataSystem.DataSet.gasps.GetUsedCodes(authority.id, okato.okato);
+                    if (codes.Count() > 0)
+                    {
+                    
+                    decimal expenses;
+                    if (okato.code.Length == 2)
+                    {
+                        expenses = 9999 - codes.Count();
+                    }
+                    else
+                    {
+                        expenses = 99 - codes.Count();
+                    }
+
+                    
+                    objData[r, 0] = authority.name;
+                    objData[r, 1] = okato.name + " (" + okato.code + ")";
+                    objData[r, 2] = expenses;
+
+                    r += 1;
+                    }
+                }
+            }
+
+            m_objRange = m_objSheet.get_Range("A2", m_objOpt);
+            m_objRange = m_objRange.get_Resize(rowCount, objHeaders.Count());
+            m_objRange.Value = objData;
+        }
     }
 }
