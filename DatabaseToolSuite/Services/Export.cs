@@ -455,9 +455,9 @@ namespace DatabaseToolSuite.Services
             m_objSheet = (Excel._Worksheet)(m_objSheets.get_Item(1));
             m_objSheet.Name = "Statistics";
 
-            object[] objHeaders = { "Подразделение","Окато","Количество свободный значений"};
+            object[] objHeaders = { "Подразделение","Окато","Количество задействованных значений", "Количество свободный значений"};
 
-            m_objRange = m_objSheet.get_Range("A1", "C1");
+            m_objRange = m_objSheet.get_Range("A1", "D1");
             m_objRange.Value = objHeaders;
 
             long rowCount = (MasterDataSystem.DataSet.authority.Count - 1) * MasterDataSystem.DataSet.okato.Count;
@@ -485,7 +485,8 @@ namespace DatabaseToolSuite.Services
                     
                     objData[r, 0] = authority.name;
                     objData[r, 1] = okato.name + " (" + okato.code + ")";
-                    objData[r, 2] = expenses;
+                        objData[r, 2] = codes.Count();
+                        objData[r, 3] = expenses;
 
                     r += 1;
                     }
