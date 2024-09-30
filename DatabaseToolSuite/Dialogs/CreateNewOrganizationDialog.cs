@@ -39,7 +39,7 @@ namespace DatabaseToolSuite.Dialogs
             nameTextBox.Enabled = false;
             codeTextBox.Text = code;
             codeTextBox.Enabled = false;
-            beginDateTimePicker.Value = beginDate;
+            beginDateTimePicker.Value = new DateTime(year: beginDate.Year, month: beginDate.Month, day: beginDate.Day);
             beginDateTimePicker.Enabled = false;
 
             Text = "Новая запись о подразделении";
