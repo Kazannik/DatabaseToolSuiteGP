@@ -1,7 +1,6 @@
 ﻿using DatabaseToolSuite.Repositoryes.Dto;
 using System.ComponentModel;
 using System.Diagnostics;
-using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
 
 namespace DatabaseToolSuite.Controls
 {
@@ -11,11 +10,11 @@ namespace DatabaseToolSuite.Controls
 
         public OkatoComboBox() : base() { }
 
-        public void InitializeSource(okatoDataTable table)
+        public void InitializeSource(Repositoryes.RepositoryDataSet.okatoDataTable table)
         {
             BeginUpdate();
             Items.Clear();
-            foreach (okatoRow row in table.Rows)
+            foreach (Repositoryes.RepositoryDataSet.okatoRow row in table.Rows)
             {
                 Add(new OkatoDto(row));
             }

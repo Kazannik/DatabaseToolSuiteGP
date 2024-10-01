@@ -2,9 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DatabaseToolSuite.Services
@@ -132,7 +130,7 @@ namespace DatabaseToolSuite.Services
 
             public int Count { get { return items.Count; } }
 
-            public string Code { get; }
+            public string Code { get; private set; }
             
             public class CodeGroupItem
             {
@@ -143,11 +141,11 @@ namespace DatabaseToolSuite.Services
                     DateEnd = dateEnd;
                 }
 
-                public string Name { get; }
+                public string Name { get; private set; }
                 
-                public DateTime? DateBegin { get; }
+                public DateTime? DateBegin { get; private set; }
 
-                public DateTime? DateEnd { get; }
+                public DateTime? DateEnd { get; private set; }
             }
         }
     }

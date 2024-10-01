@@ -1,5 +1,4 @@
-﻿using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
-
+﻿
 namespace DatabaseToolSuite.Dialogs
 {
     public class EditErrorDialog : CreateNewVersionDialog
@@ -11,7 +10,7 @@ namespace DatabaseToolSuite.Dialogs
             DialogCaption = "Исправление ошибки в записи о подразделении";
         }
 
-        public EditErrorDialog(gaspsRow row) : base(row)
+        public EditErrorDialog(Repositoryes.RepositoryDataSet.gaspsRow row) : base(row)
         {
             beginDateLabel.Text = "Дата введения в действие";
             beginDateTimePicker.Value = row.date_beg;

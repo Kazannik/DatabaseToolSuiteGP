@@ -1,6 +1,5 @@
 ﻿using DatabaseToolSuite.Repositoryes.Dto;
 using System.Windows.Forms.Design;
-using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
 
 namespace DatabaseToolSuite.Controls
 {
@@ -10,11 +9,11 @@ namespace DatabaseToolSuite.Controls
         #region Initialize
         public  AuthorityComboBox() : base() { }
 
-        public void InitializeSource(authorityDataTable table)
+        public void InitializeSource(Repositoryes.RepositoryDataSet.authorityDataTable table)
         {
             BeginUpdate();
             Items.Clear();
-            foreach (authorityRow row in table.Rows)
+            foreach (Repositoryes.RepositoryDataSet.authorityRow row in table.Rows)
             {
                 Add(new AuthorityDto(row));
             }

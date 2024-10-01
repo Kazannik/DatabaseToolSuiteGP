@@ -1,12 +1,11 @@
 ﻿using System;
-using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
 
 namespace DatabaseToolSuite.Dialogs
 {
     public class RemoveOrganizationDialog : DialogBase
     {
 
-        public RemoveOrganizationDialog(gaspsRow row): base()
+        public RemoveOrganizationDialog(Repositoryes.RepositoryDataSet.gaspsRow row): base()
         {
             ApplyButtonVisible = false;
 
@@ -37,12 +36,12 @@ namespace DatabaseToolSuite.Dialogs
             listView1.Items.Add("Дата окончания действия").SubItems.Add(DataRow.date_end.ToShortDateString());
             if (DataRow.owner_id > 0)
             {
-                gaspsRow owner = Services.FileSystem.Repository.DataSet.gasps.GetLastVersionOrganizationFromKey(DataRow.owner_id);
+                Repositoryes.RepositoryDataSet.gaspsRow owner = Services.FileSystem.Repository.DataSet.gasps.GetLastVersionOrganizationFromKey(DataRow.owner_id);
                 listView1.Items.Add("Владелец").SubItems.Add("(" + owner.code + ") " + owner.name);
             }
         }
 
-        public gaspsRow DataRow { get; }
+        public Repositoryes.RepositoryDataSet.gaspsRow DataRow { get; private set; }
 
         public DateTime LockDate
         {

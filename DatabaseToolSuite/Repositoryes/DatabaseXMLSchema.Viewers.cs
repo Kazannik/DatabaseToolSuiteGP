@@ -186,55 +186,55 @@ namespace DatabaseToolSuite.Repositoryes
             [Description("Наименование подразделения (SV-0001)")]
             [Category("ГАС ПС")]
             [DisplayName("Наименование")]
-            public string Name { get; }
+            public string Name { get; private set; }
 
             [Description("Ведомство")]
             [Category("ГАС ПС")]
             [DisplayName("Ведомство")]
-            public string Authority { get; }
+            public string Authority { get; private set; }
 
             [Description("Код ОКАТО")]
             [Category("ГАС ПС")]
             [DisplayName("ОКАТО")]
-            public string Okato { get; }
+            public string Okato { get; private set; }
 
             [Description("Код подразделения")]
             [Category("ГАС ПС")]
             [DisplayName("Код подразделения")]
-            public string Code { get; }
+            public string Code { get; private set; }
 
             [Description("Дата начала действия подразделения")]
             [Category("ГАС ПС")]
             [DisplayName("Дата начала")]
-            public DateTime Begin { get; }
+            public DateTime Begin { get; private set; }
 
             [Description("Дата окончания действия подразделения")]
             [Category("ГАС ПС")]
             [DisplayName("Дата окончания")]
-            public DateTime End { get; }
+            public DateTime End { get; private set; }
 
             [Description("Уникальное значение версии записи")]
             [DisplayName("Версия записи")]
-            public long Version { get; }
+            public long Version { get; private set; }
 
             [Description("Наименование вышестоящей организации (владельца)")]
             [Category("ГАС ПС")]
             [DisplayName("Владелец")]
-            public string OwnerName { get; }
+            public string OwnerName { get; private set; }
 
             [Browsable(false)]
-            public long AuthorityId { get; }
+            public long AuthorityId { get; private set; }
 
             [Browsable(false)]
-            public string OkatoCode { get; }
+            public string OkatoCode { get; private set; }
 
             [Description("Постоянный ключ записи, который не меняется при изменении версии записи")]
             [DisplayName("Ключ записи")]
-            public long Key { get; }
+            public long Key { get; private set; }
 
             [Description("Постоянный ключ записи вышестоящей организации, который не меняется при изменении версии записи")]
             [DisplayName("Ключ записи вышестоящей организации")]
-            public long OwnerId { get; }
+            public long OwnerId { get; private set; }
 
             public ViewGaspsOrganization(string name, string authority, string okato, string code, DateTime begin, DateTime end, long version, long authorityId, string okatoCode, long key, long ownerId, string ownerName)
             {

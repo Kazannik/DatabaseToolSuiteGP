@@ -1,29 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
 
 namespace DatabaseToolSuite.Dialogs
 {
     public partial class OrganizationDialog : Form
     {
-
-        private Mode mode = Mode.viewOrgaization;
-
         private long key;
         private long index;
 
-        public OrganizationDialog(gaspsRow row, gaspsDataTable gasps, okatoDataTable okato, authorityDataTable authority)
+        public OrganizationDialog(Repositoryes.RepositoryDataSet.gaspsRow row, Repositoryes.RepositoryDataSet.gaspsDataTable gasps, Repositoryes.RepositoryDataSet.okatoDataTable okato, Repositoryes.RepositoryDataSet.authorityDataTable authority)
         {
             InitializeComponent();
 
-            gaspsRow owner = gasps.GetLastVersionOrganizationFromKey(row.owner_id);
+            Repositoryes.RepositoryDataSet.gaspsRow owner = gasps.GetLastVersionOrganizationFromKey(row.owner_id);
             if (owner !=null)
             {
                 ownerTextBox.Text = owner.name;
@@ -32,8 +22,6 @@ namespace DatabaseToolSuite.Dialogs
             {
                 ownerTextBox.Text = string.Empty;
             }
-
-            mode = Mode.viewOrgaization;
 
             okatoComboBox.InitializeSource(okato);
             authorityComboBox.InitializeSource(authority);

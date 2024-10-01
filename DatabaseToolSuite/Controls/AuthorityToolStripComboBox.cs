@@ -1,7 +1,6 @@
 ﻿using DatabaseToolSuite.Repositoryes.Dto;
 using System.ComponentModel;
 using System.Diagnostics;
-using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
 
 namespace DatabaseToolSuite.Controls
 {
@@ -14,11 +13,11 @@ namespace DatabaseToolSuite.Controls
         [DebuggerNonUserCode()]
         public AuthorityToolStripComboBox(IContainer container):base(container: container) { }
 
-        public void InitializeSource(authorityDataTable table)
+        public void InitializeSource(Repositoryes.RepositoryDataSet.authorityDataTable table)
         {
             BeginUpdate();
             ComboBox.Items.Clear();
-            foreach (authorityRow row in table.Rows)
+            foreach (Repositoryes.RepositoryDataSet.authorityRow row in table.Rows)
             {
                 Add(new AuthorityDto(row));
             }

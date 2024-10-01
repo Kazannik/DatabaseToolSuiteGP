@@ -118,77 +118,77 @@ namespace DatabaseToolSuite.Repositoryes
                 /// <summary>
                 /// ИД ЕСНСИ
                 /// </summary>
-                public long EsnsiCode { get; }
+                public long EsnsiCode { get; private set; }
 
                 /// <summary>
                 /// Название органа прокуратуры в справочнике ЕРВК
                 /// </summary>
-                public string Title { get; }
+                public string Title { get; private set; }
 
                 /// <summary>
                 /// Признак, определяющий, что орган прокуратуры является головным
                 /// </summary>
-                public bool IsHead { get; }
+                public bool IsHead { get; private set; }
 
                 /// <summary>
                 /// Специальная
                 /// </summary>
-                public bool Special { get; }
+                public bool Special { get; private set; }
 
                 /// <summary>
                 /// Военная
                 /// </summary>
-                public bool Military { get; }
+                public bool Military { get; private set; }
 
                 /// <summary>
                 /// Признак активности
                 /// </summary>
-                public bool IsActive { get; }
+                public bool IsActive { get; private set; }
 
                 /// <summary>
                 /// ИД версии органа прокуратуры в ЕСНСИ
                 /// </summary>
-                public string IdVersionProc { get; }
+                public string IdVersionProc { get; private set; }
 
                 /// <summary>
                 /// ИД ЕСНСИ вышестоящего органа прокуратуры (ссылка на esnsiCode)
                 /// </summary>
-                public long IdVersionHead { get; }
+                public long IdVersionHead { get; private set; }
 
                 /// <summary>
                 /// ИД ЕСНСИ бывшего органа прокуратуры (ссылка на esnsiCode)
                 /// </summary>
-                public long IdSuccession { get; }
+                public long IdSuccession { get; private set; }
 
                 /// <summary>
                 /// Дата создания версии органа прокуратуры в ЕСНСИ
                 /// </summary>
-                public DateTime DateStartVersion { get; }
+                public DateTime DateStartVersion { get; private set; }
 
                 /// <summary>
                 /// Дата прекращения действия органа прокуратуры в ЕСНСИ
                 /// </summary>
-                public DateTime DateCloseProc { get; }
+                public DateTime DateCloseProc { get; private set; }
 
                 /// <summary>
                 /// ОГРН
                 /// </summary>
-                public string Ogrn { get; }
+                public string Ogrn { get; private set; }
 
                 /// <summary>
                 /// ИНН
                 /// </summary>
-                public string Inn { get; }
+                public string Inn { get; private set; }
 
                 /// <summary>
                 /// Субъект множественный
                 /// </summary>
-                public string SubjectRfList { get; }
+                public string SubjectRfList { get; private set; }
 
                 /// <summary>
                 /// ОКТМО множественный
                 /// </summary>
-                public string OktmoList { get; }
+                public string OktmoList { get; private set; }
 
                 public ErvkOrganization(
                     long version,

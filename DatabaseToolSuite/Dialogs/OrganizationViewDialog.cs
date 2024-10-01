@@ -1,6 +1,4 @@
-﻿using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
-
-namespace DatabaseToolSuite.Dialogs
+﻿namespace DatabaseToolSuite.Dialogs
 {
     class OrganizationViewDialog : DialogBase
     {
@@ -11,7 +9,7 @@ namespace DatabaseToolSuite.Dialogs
             InitializeComponent();
         }
 
-        public OrganizationViewDialog(ViewFgisEsnsiOrganization organization ) : base()
+        public OrganizationViewDialog(Repositoryes.RepositoryDataSet.ViewFgisEsnsiOrganization organization ) : base()
         {
             InitializeComponent();
             propertyGrid1.SelectedObject = organization;

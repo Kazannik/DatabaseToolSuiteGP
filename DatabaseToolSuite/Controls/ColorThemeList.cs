@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Collections;
 
 namespace DatabaseToolSuite.Controls
 {
@@ -77,17 +70,17 @@ namespace DatabaseToolSuite.Controls
             ColorPassiveBottom = Color.FromArgb(125, 166, 223);
         }
 
-        public new Color ForeColor { get; }
-        public new Color BackColor { get; }
-        public new Color ForeColorSelected { get; }
-        public new Color BackColorSelected { get; }
-        public new Color ColorHoveringTop { get; }
-        public new Color ColorHoveringBottom { get; }
-        public new Color ColorSelectedTop { get; }
-        public new Color ColorSelectedBottom { get; }
-        public new Color ColorSelectedAndHoveringTop { get; }
-        public new Color ColorSelectedAndHoveringBottom { get; }
-        public new Color ColorPassiveTop { get; }
-        public new Color ColorPassiveBottom { get; }
+        public new Color ForeColor { get; private set; }
+        public new Color BackColor { get; private set; }
+        public new Color ForeColorSelected { get; private set; }
+        public new Color BackColorSelected { get; private set; }
+        public new Color ColorHoveringTop { get; private set; }
+        public new Color ColorHoveringBottom { get; private set; }
+        public new Color ColorSelectedTop { get; private set; }
+        public new Color ColorSelectedBottom { get; private set; }
+        public new Color ColorSelectedAndHoveringTop { get; private set; }
+        public new Color ColorSelectedAndHoveringBottom { get; private set; }
+        public new Color ColorPassiveTop { get; private set; }
+        public new Color ColorPassiveBottom { get; private set; }
     }
 }

@@ -1,14 +1,9 @@
 ﻿using DatabaseToolSuite.Dialogs;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static DatabaseToolSuite.Repositoryes.RepositoryDataSet.fgis_esnsiDataTable;
 
 namespace DatabaseToolSuite.Utils.Dialogs
 {
@@ -153,7 +148,7 @@ namespace DatabaseToolSuite.Utils.Dialogs
         }
 
 
-        public class NoteFgisEsnsi: FgisEsnsiOrganization
+        public class NoteFgisEsnsi: Repositoryes.RepositoryDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization
         {
             public new long Version
             {
@@ -161,9 +156,9 @@ namespace DatabaseToolSuite.Utils.Dialogs
                 set { base.Version = value; }
             }
 
-            public string Name1 { get; }
-            public string Name2 { get; }
-            public string Name3 { get; }
+            public string Name1 { get; private set; }
+            public string Name2 { get; private set; }
+            public string Name3 { get; private set; }
 
             public NoteFgisEsnsi(
                    long id,

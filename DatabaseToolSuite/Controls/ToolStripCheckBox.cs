@@ -41,7 +41,11 @@ namespace DatabaseToolSuite.Controls
 
         protected virtual void OnCheckedChanged(EventArgs e)
         {
-            CheckedChanged?.Invoke(this, e);
+            EventHandler CheckedChangedEvent = CheckedChanged;
+            if (CheckedChangedEvent != null)
+            {
+                CheckedChangedEvent(this, e);
+            }
         }
 
         private void CheckBox_CheckedChanged(Object sender, EventArgs e)

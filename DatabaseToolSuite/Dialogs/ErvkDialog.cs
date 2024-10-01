@@ -1,17 +1,12 @@
 ﻿using DatabaseToolSuite.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
 
 namespace DatabaseToolSuite.Dialogs
 {
     class ErvkDialog : DialogBase
     {
-        public ervkRow DataRow { get; }
+        public Repositoryes.RepositoryDataSet.ervkRow DataRow { get; private set; }
         
         private bool oldIsHead;
         private bool oldSpecial;
@@ -35,8 +30,8 @@ namespace DatabaseToolSuite.Dialogs
         private GroupBox ownerGroupBox;
         private Button getOwnerArgButton;
 
-        public ervkRow ErvkOwnerOrganization { get; private set; }
-        public gaspsRow GaspsOwnerOrganization { get; private set; }
+        public Repositoryes.RepositoryDataSet.ervkRow ErvkOwnerOrganization { get; private set; }
+        public Repositoryes.RepositoryDataSet.gaspsRow GaspsOwnerOrganization { get; private set; }
 
         /// <summary>
         /// Признак активности записи.
@@ -96,7 +91,7 @@ namespace DatabaseToolSuite.Dialogs
             InitializeComponent();
         }
 
-        public ErvkDialog(ervkRow row) : base()
+        public ErvkDialog(Repositoryes.RepositoryDataSet.ervkRow row) : base()
         {
             ApplyButtonVisible = false;
 
@@ -216,7 +211,7 @@ namespace DatabaseToolSuite.Dialogs
 
         private System.Windows.Forms.TextBox esnsiNameTextBox;
         private Controls.NumericTextBox innNumericTextBox;
-        private System.ComponentModel.IContainer components;
+        private new System.ComponentModel.IContainer components;
         private Label label1;
         private Label label2;
         private Controls.NumericTextBox ogrnNumericTextBox;

@@ -39,7 +39,11 @@ namespace DatabaseToolSuite.Controls
 
         protected virtual void OnValueChanged(EventArgs e)
         {
-            ValueChanged?.Invoke(this, e);
+            EventHandler ValueChangedEvent = ValueChanged;
+            if (ValueChangedEvent != null)
+            {
+                ValueChangedEvent(this, e);
+            }
         }
 
         private void NumericUpDown_ValueChanged(Object sender, EventArgs e)
