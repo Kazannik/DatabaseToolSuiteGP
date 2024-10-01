@@ -5,7 +5,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
+using DatabaseToolSuite.Repositoryes;
 
 namespace DatabaseToolSuite.Services
 {
@@ -20,7 +20,7 @@ namespace DatabaseToolSuite.Services
 
         public static void ExportGaspsToExcel()
         {
-            IEnumerable<ViewGaspsOrganization> data = MasterDataSystem.DataSet.gasps.ExportData();
+            IEnumerable<RepositoryDataSet.ViewGaspsOrganization> data = MasterDataSystem.DataSet.gasps.ExportData();
             int rowCount = data.Count();
 
             Excel.Application m_objExcel = null;
@@ -74,7 +74,7 @@ namespace DatabaseToolSuite.Services
 
             object[,] objData = new object[rowCount, 6];
             int r = 0;
-            foreach (ViewGaspsOrganization item in data)
+            foreach (RepositoryDataSet.ViewGaspsOrganization item in data)
             {
                 objData[r, 0] = r + 1;
                 objData[r, 1] = item.Name;
@@ -100,7 +100,7 @@ namespace DatabaseToolSuite.Services
 
         public static void ExportFullDataBaseToExcel()
         {
-            IEnumerable<ViewGaspsOrganization> data = MasterDataSystem.DataSet.gasps.ExportFullData();
+            IEnumerable<RepositoryDataSet.ViewGaspsOrganization> data = MasterDataSystem.DataSet.gasps.ExportFullData();
             int rowCount = data.Count();
 
             Excel.Application m_objExcel = null;
@@ -157,7 +157,7 @@ namespace DatabaseToolSuite.Services
 
             object[,] objData = new object[rowCount, 7];
             int r = 0;
-            foreach (ViewGaspsOrganization item in data)
+            foreach (RepositoryDataSet.ViewGaspsOrganization item in data)
             {
                 objData[r, 0] = r + 1;
                 objData[r, 1] = item.Name;
@@ -183,7 +183,7 @@ namespace DatabaseToolSuite.Services
 
         public static void ExportGaspsToExcel2()
         {
-            IEnumerable<ViewGaspsOrganization> data = MasterDataSystem.DataSet.gasps.ExportData()
+            IEnumerable<RepositoryDataSet.ViewGaspsOrganization> data = MasterDataSystem.DataSet.gasps.ExportData()
                 .Where(x=> x.AuthorityId == 20)
                 .Where(x=> x.Name.ToLower().IndexOf("прокуратура")>=0);
             int rowCount = data.Count();
@@ -239,7 +239,7 @@ namespace DatabaseToolSuite.Services
 
             object[,] objData = new object[rowCount, 8];
             int r = 0;
-            foreach (ViewGaspsOrganization item in data)
+            foreach (RepositoryDataSet.ViewGaspsOrganization item in data)
             {
                 objData[r, 0] = r + 1;
                 objData[r, 1] = item.Name;
@@ -275,7 +275,6 @@ namespace DatabaseToolSuite.Services
             Excel.Sheets m_objSheets = null;
             Excel._Worksheet m_objSheet = null;
             Excel.Range m_objRange = null;
-            Excel.Font m_objFont = null;
 
             object m_objOpt = Missing.Value;
 
@@ -341,11 +340,11 @@ namespace DatabaseToolSuite.Services
 
         public static void ExportErvkToCsv(string path)
         {
-            IEnumerable<ervkDataTable.ErvkOrganization> data = MasterDataSystem.DataSet.ervk.ExportData();
+            IEnumerable<RepositoryDataSet.ervkDataTable.ErvkOrganization> data = MasterDataSystem.DataSet.ervk.ExportData();
             StreamWriter writer = new StreamWriter(path: path, append: false, encoding: Encoding.GetEncoding(1251));
             writer.WriteLine("esnsiCode;title;isHead;special;military;isActive;idVersionProc;idVersionHead;dateStartVersion;dateCloseProc;ogrn;inn;subjectRfList;oktmoList;idSuccession;Родительский элемент");
 
-            foreach (ervkDataTable.ErvkOrganization item in data)
+            foreach (RepositoryDataSet.ervkDataTable.ErvkOrganization item in data)
             {
                 string line = item.EsnsiCode + ";" +
                     item.Title.Replace("\r\n", string.Empty).Replace("\r", string.Empty).Trim() + ";" +
@@ -373,7 +372,7 @@ namespace DatabaseToolSuite.Services
 
         public static void ExportErvkToExcel()
         {
-            IEnumerable<ervkDataTable.ErvkOrganization> data = MasterDataSystem.DataSet.ervk.ExportData();
+            IEnumerable<RepositoryDataSet.ervkDataTable.ErvkOrganization> data = MasterDataSystem.DataSet.ervk.ExportData();
             int rowCount = data.Count();
 
             Excel.Application m_objExcel = null;
@@ -382,7 +381,6 @@ namespace DatabaseToolSuite.Services
             Excel.Sheets m_objSheets = null;
             Excel._Worksheet m_objSheet = null;
             Excel.Range m_objRange = null;
-            Excel.Font m_objFont = null;
 
             object m_objOpt = Missing.Value;
 
@@ -406,7 +404,7 @@ namespace DatabaseToolSuite.Services
 
             object[,] objData = new object[rowCount, objHeaders.Count()];
             int r = 0;
-            foreach (ervkDataTable.ErvkOrganization item in data)
+            foreach (RepositoryDataSet.ervkDataTable.ErvkOrganization item in data)
             {
                 objData[r, 0] = item.EsnsiCode;
                 objData[r, 1] = item.Title;
@@ -464,9 +462,9 @@ namespace DatabaseToolSuite.Services
 
             object[,] objData = new object[rowCount, objHeaders.Count()];
             int r = 0;
-            foreach (authorityRow authority in MasterDataSystem.DataSet.authority.Where(a => a.id != 5))
+            foreach (RepositoryDataSet.authorityRow authority in MasterDataSystem.DataSet.authority.Where(a => a.id != 5))
             {
-                foreach (okatoRow okato in MasterDataSystem.DataSet.okato)
+                foreach (RepositoryDataSet.okatoRow okato in MasterDataSystem.DataSet.okato)
                 {
                     IEnumerable<long> codes = MasterDataSystem.DataSet.gasps.GetUsedCodes(authority.id, okato.okato);
                     if (codes.Count() > 0)

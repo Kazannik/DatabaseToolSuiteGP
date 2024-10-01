@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
-using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
 
 namespace DatabaseToolSuite.Dialogs
 {
     class EsnsiDialog : DialogBase
     {
-        public fgis_esnsiRow DataRow { get; }
+        public Repositoryes.RepositoryDataSet.fgis_esnsiRow DataRow { get; private set; }
 
         private long oldRegionCode;
         private string oldPhone;
@@ -52,7 +51,7 @@ namespace DatabaseToolSuite.Dialogs
             InitializeComponent();
         }
 
-        public EsnsiDialog(gaspsRow gaspsRow,  fgis_esnsiRow row) : base()
+        public EsnsiDialog(Repositoryes.RepositoryDataSet.gaspsRow gaspsRow, Repositoryes.RepositoryDataSet.fgis_esnsiRow row) : base()
         {
             ApplyButtonVisible = false; 
 
@@ -136,7 +135,7 @@ namespace DatabaseToolSuite.Dialogs
         private System.Windows.Forms.TextBox esnsiAutokeyTextBox;
         private Label esnsiIdLabel;
         private Controls.NumericTextBox esnsiIdNumericTextBox;
-        private System.ComponentModel.IContainer components;
+        private new System.ComponentModel.IContainer components;
         private System.Windows.Forms.Label esnsiNameLabel;
 
         private void InitializeComponent()

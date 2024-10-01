@@ -180,17 +180,29 @@ namespace DatabaseToolSuite.Dialogs
 
         protected virtual void OnApply(EventArgs eventargs)
         {
-            onApply?.Invoke(this, eventargs);
+            EventHandler ApplyEvent = onApply;
+            if (ApplyEvent != null)
+            {
+                ApplyEvent(this, eventargs);
+            }
         }
 
         protected virtual void OnCancel(EventArgs eventargs)
         {
-            onCancel?.Invoke(this, eventargs);
+            EventHandler CancelEvent = onCancel;
+            if (CancelEvent != null)
+            {
+                CancelEvent(this, eventargs);
+            }
         }
 
         protected virtual void OnOk(EventArgs eventargs)
         {
-            onOk?.Invoke(this, eventargs);
+            EventHandler OkEvent = onOk;
+            if (OkEvent != null)
+            {
+                OkEvent(this, eventargs);
+            }
         }
 
         public DialogBase()

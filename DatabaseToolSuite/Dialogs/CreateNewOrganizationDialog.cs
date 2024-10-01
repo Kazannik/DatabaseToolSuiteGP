@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
 
 namespace DatabaseToolSuite.Dialogs
 {
@@ -47,7 +46,7 @@ namespace DatabaseToolSuite.Dialogs
 
         }
 
-        public CreateNewOrganizationDialog(gaspsRow row) : base(row)
+        public CreateNewOrganizationDialog(Repositoryes.RepositoryDataSet.gaspsRow row) : base(row)
         {
             InitializeComponent();
             

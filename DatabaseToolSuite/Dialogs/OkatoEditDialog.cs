@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
 
 namespace DatabaseToolSuite.Dialogs
 {
@@ -25,11 +24,11 @@ namespace DatabaseToolSuite.Dialogs
         public string OkatoGenitive { get; private set; }
 
 
-        okatoDataTable okatoTable;
+        Repositoryes.RepositoryDataSet.okatoDataTable okatoTable;
 
         private string oldCode = string.Empty;
 
-        public OkatoEditDialog(okatoDataTable table)
+        public OkatoEditDialog(Repositoryes.RepositoryDataSet.okatoDataTable table)
         {
             okatoTable = table;
 
@@ -44,7 +43,7 @@ namespace DatabaseToolSuite.Dialogs
             genitiveTextBox.Text = string.Empty;
         }
 
-        public OkatoEditDialog(int ter, int kod1, string lab, string name, string name2, string centrum, string genitive, okatoDataTable table)
+        public OkatoEditDialog(int ter, int kod1, string lab, string name, string name2, string centrum, string genitive, Repositoryes.RepositoryDataSet.okatoDataTable table)
         {
             okatoTable = table;
 

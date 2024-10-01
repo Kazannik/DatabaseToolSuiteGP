@@ -8,14 +8,13 @@ using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
 
 namespace DatabaseToolSuite.Controls
 {
     public partial class GaspsListView : UserControl
     {
         private RepositoryDataSet _dataSet;
-        private IList<ViewErvkOrganization> itemsCollection;
+        private IList<RepositoryDataSet.ViewErvkOrganization> itemsCollection;
         private ListViewItem[] itemsCache;
         private int firstItemIndex;
 
@@ -42,7 +41,7 @@ namespace DatabaseToolSuite.Controls
 
         public GaspsListView()
         {
-            itemsCollection = new List<ViewErvkOrganization>();
+            itemsCollection = new List<RepositoryDataSet.ViewErvkOrganization>();
 
             _lockShow = false;
             _reserveShow = true;
@@ -99,9 +98,9 @@ namespace DatabaseToolSuite.Controls
             }
         }
 
-        public gaspsRow DataRow { get; private set; }
+        public RepositoryDataSet.gaspsRow DataRow { get; private set; }
 
-        public ViewErvkOrganization SelectedOrganization
+        public RepositoryDataSet.ViewErvkOrganization SelectedOrganization
         {
             get
             {
@@ -204,7 +203,7 @@ namespace DatabaseToolSuite.Controls
         public void Filter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow, bool fgisEsnsiOnlyShow, bool ervkOnlyShow)
         {
             if (DataSet == null) return;
-            IList<ViewErvkOrganization> list = DataSet.GetViewErvkOrganizationFilter(
+            IList<RepositoryDataSet.ViewErvkOrganization> list = DataSet.GetViewErvkOrganizationFilter(
                 authority: authority,
                 okato: okato,
                 code: code,
@@ -218,13 +217,13 @@ namespace DatabaseToolSuite.Controls
             ApplyFilter(list);
         }
 
-        private void ApplyFilter(IList<ViewErvkOrganization> list)
+        private void ApplyFilter(IList<RepositoryDataSet.ViewErvkOrganization> list)
         {
 
             baseListView.BeginUpdate();
 
             int selectedIndex = baseListView.SelectedIndices.Count > 0 ? baseListView.SelectedIndices[0] : 0;
-            ViewErvkOrganization selectedOrganization = itemsCollection.Count > 0 ? itemsCollection[selectedIndex] : null;
+            RepositoryDataSet.ViewErvkOrganization selectedOrganization = itemsCollection.Count > 0 ? itemsCollection[selectedIndex] : null;
 
             baseListView.VirtualMode = true;
             itemsCache = null;
@@ -260,7 +259,7 @@ namespace DatabaseToolSuite.Controls
             }
             else
             {
-                ViewErvkOrganization newOrganization = itemsCollection[baseListView.SelectedIndices[0]];
+                RepositoryDataSet.ViewErvkOrganization newOrganization = itemsCollection[baseListView.SelectedIndices[0]];
                 if (DataRow == null ||
                     DataRow.version != newOrganization.Version)
                 {
@@ -299,7 +298,7 @@ namespace DatabaseToolSuite.Controls
             }
         }
 
-        private ListViewItem CreateListViewItem(ViewErvkOrganization organization)
+        private ListViewItem CreateListViewItem(RepositoryDataSet.ViewErvkOrganization organization)
         {
             ListViewItem item = new ListViewItem(organization.Code);
 
@@ -352,7 +351,7 @@ namespace DatabaseToolSuite.Controls
             int selectedIndex = baseListView.SelectedIndices.Count > 0 ? baseListView.SelectedIndices[0] : 0;
             long version = itemsCollection[selectedIndex].Version;
             itemsCollection[selectedIndex] = _dataSet.GetViewErvkOrganization(version);
-            ViewErvkOrganization organization = itemsCollection[selectedIndex];
+            RepositoryDataSet.ViewErvkOrganization organization = itemsCollection[selectedIndex];
             ListViewItem item = itemsCache[selectedIndex - firstItemIndex];
 
             if (organization.Begin > DateTime.Today)
@@ -409,7 +408,7 @@ namespace DatabaseToolSuite.Controls
             baseListView.BeginUpdate();
 
             int selectedIndex = baseListView.SelectedIndices.Count > 0 ? baseListView.SelectedIndices[0] : 0;
-            ViewErvkOrganization selectedOrganization = itemsCollection[selectedIndex];
+            RepositoryDataSet.ViewErvkOrganization selectedOrganization = itemsCollection[selectedIndex];
 
             if (baseListView.Columns[e.Column].Tag == null ||
                 baseListView.Columns[e.Column].Tag.ToString() == "UP")
@@ -512,47 +511,79 @@ namespace DatabaseToolSuite.Controls
 
         protected virtual void OnItemSelectionChanged(EventArgs e)
         {
-            ItemSelectionChanged?.Invoke(this, e);
+            EventHandler ItemSelectionChangedEvent = ItemSelectionChanged;
+            if (ItemSelectionChangedEvent != null)
+            {
+                ItemSelectionChangedEvent(this, e);
+            }
         }
 
         protected virtual void OnLockVisibleChanged(EventArgs e)
         {
             ControlsValueChanged();
-            LockVisibleChanged?.Invoke(this, e);
+            EventHandler LockVisibleChangedEvent = LockVisibleChanged;
+            if (LockVisibleChangedEvent != null)
+            {
+                LockVisibleChangedEvent(this, e);
+            }
         }
 
         protected virtual void OnReserveVisibleChanged(EventArgs e)
         {
             ControlsValueChanged();
-            ReserveVisibleChanged?.Invoke(this, e);
+            EventHandler ReserveVisibleChangedEvent = ReserveVisibleChanged;
+            if (ReserveVisibleChangedEvent != null)
+            {
+                ReserveVisibleChangedEvent(this, e);
+            }
         }
 
         protected virtual void OnUnlockVisibleChanged(EventArgs e)
         {
             ControlsValueChanged();
-            UnlockVisibleChanged?.Invoke(this, e);
+            EventHandler UnlockVisibleChangedEvent = UnlockVisibleChanged;
+            if (UnlockVisibleChangedEvent != null)
+            {
+                UnlockVisibleChangedEvent(this, e);
+            }
         }
 
         protected virtual void OnFgisEsnsiOnlyVisibleChanged(EventArgs e)
         {
             ControlsValueChanged();
-            FgisEsnsiOnlyVisibleChanged?.Invoke(this, e);
+            EventHandler FgisEsnsiOnlyVisibleChangedEvent = FgisEsnsiOnlyVisibleChanged;
+            if (FgisEsnsiOnlyVisibleChangedEvent != null)
+            {
+                FgisEsnsiOnlyVisibleChangedEvent(this, e);
+            }
         }
 
         protected virtual void OnErvkOnlyVisibleChanged(EventArgs e)
         {
             ControlsValueChanged();
-            ErvkOnlyVisibleChanged?.Invoke(this, e);
+            EventHandler ErvkOnlyVisibleChangedEvent = ErvkOnlyVisibleChanged;
+            if (ErvkOnlyVisibleChangedEvent != null)
+            {
+                ErvkOnlyVisibleChangedEvent(this, e);
+            }
         }
 
         protected virtual void OnItemMouseClick(GaspsListViewEventArgs e)
         {
-            ItemMouseClick?.Invoke(this, e);
+            EventHandler<GaspsListViewEventArgs> ItemMouseClickEvent = ItemMouseClick;
+            if (ItemMouseClickEvent != null)
+            {
+                ItemMouseClickEvent(this, e);
+            }
         }
 
         protected virtual void OnItemMouseDoubleClick(GaspsListViewEventArgs e)
         {
-            ItemMouseDoubleClick?.Invoke(this, e);
+            EventHandler<GaspsListViewEventArgs> ItemMouseDoubleClickEvent = ItemMouseDoubleClick;
+            if (ItemMouseDoubleClickEvent != null)
+            {
+                ItemMouseDoubleClickEvent(this, e);
+            }
         }
 
         private void ControlsValueChanged()
@@ -591,17 +622,7 @@ namespace DatabaseToolSuite.Controls
                 OnItemMouseDoubleClick(new GaspsListViewEventArgs(focusedItem, e));
             }
         }
-
-
-
-
-
-
-
-
-
-
-
+                
         private delegate void WorkerEventHandler(FilterParameters filter, AsyncOperation asyncOp);
 
         private SendOrPostCallback onProgressReportDelegate;
@@ -721,7 +742,7 @@ namespace DatabaseToolSuite.Controls
             FilterParameters filter,
             AsyncOperation asyncOp)
         {
-            IList<ViewErvkOrganization> collection = null;
+            IList<Repositoryes.RepositoryDataSet.ViewErvkOrganization> collection = null;
             Exception e = null;
 
             if (!TaskCanceled(asyncOp.UserSuppliedState))
@@ -746,12 +767,11 @@ namespace DatabaseToolSuite.Controls
                 asyncOp);
         }
 
-        private IList<ViewErvkOrganization> BuildGaspsListViewList(
+        private IList<RepositoryDataSet.ViewErvkOrganization> BuildGaspsListViewList(
             FilterParameters filter,
             AsyncOperation asyncOp)
         {
-            ProgressChangedEventArgs e = null;
-            IList<ViewErvkOrganization> list =
+            IList<Repositoryes.RepositoryDataSet.ViewErvkOrganization> list =
                 filter.DataSet.GetViewErvkOrganizationFilter(
                 authority: filter.Authority,
                 okato: filter.Okato,
@@ -793,17 +813,25 @@ namespace DatabaseToolSuite.Controls
 
         protected void OnGaspsListViewCompleted(GaspsListViewCompletedEventArgs e)
         {
-            GaspsListViewCompleted?.Invoke(this, e);
+            GaspsListViewCompletedEventHandler GaspsListViewCompletedEvent = GaspsListViewCompleted;
+            if (GaspsListViewCompletedEvent != null)
+            {
+                GaspsListViewCompletedEvent(this, e);
+            }
         }
 
         protected void OnProgressChanged(ProgressChangedEventArgs e)
         {
-            ProgressChanged?.Invoke(e);
+            ProgressChangedEventHandler ProgressChangedEvent = ProgressChanged;
+            if (ProgressChangedEvent != null)
+            {
+                ProgressChangedEvent(e);
+            }
         }
 
         private void CompletionMethod(
             FilterParameters filter,
-            IList<ViewErvkOrganization> collection,
+            IList<RepositoryDataSet.ViewErvkOrganization> collection,
             Exception exception,
             bool canceled,
             AsyncOperation asyncOp)
@@ -1006,16 +1034,16 @@ namespace DatabaseToolSuite.Controls
 
         private class FilterParameters
         {
-            public RepositoryDataSet DataSet { get; }
-            public long? Authority { get; }
-            public string Okato { get; }
-            public string Code { get; }
-            public string Name { get; }
-            public bool UnlockShow { get; }
-            public bool ReserveShow { get; }
-            public bool LockShow { get; }
-            public bool FgisEsnsiOnlyShow { get; }
-            public bool ErvkOnlyShow { get; }
+            public RepositoryDataSet DataSet { get; private set; }
+            public long? Authority { get; private set; }
+            public string Okato { get; private set; }
+            public string Code { get; private set; }
+            public string Name { get; private set; }
+            public bool UnlockShow { get; private set; }
+            public bool ReserveShow { get; private set; }
+            public bool LockShow { get; private set; }
+            public bool FgisEsnsiOnlyShow { get; private set; }
+            public bool ErvkOnlyShow { get; private set; }
 
             private int hashCode;
 
@@ -1110,19 +1138,19 @@ namespace DatabaseToolSuite.Controls
             Y = arg.Y;
         }
 
-        public ListViewItem FocusedItem { get; }
+        public ListViewItem FocusedItem { get; private set; }
 
-        public MouseButtons Button { get; }
+        public MouseButtons Button { get; private set; }
 
-        public int Clicks { get; }
+        public int Clicks { get; private set; }
 
-        public int Delta { get; }
+        public int Delta { get; private set; }
 
-        public Point Location { get; }
+        public Point Location { get; private set; }
 
-        public int X { get; }
+        public int X { get; private set; }
 
-        public int Y { get; }
+        public int Y { get; private set; }
 
     }
 
@@ -1153,10 +1181,10 @@ namespace DatabaseToolSuite.Controls
 
     public class GaspsListViewCompletedEventArgs : AsyncCompletedEventArgs
     {
-        private IList<ViewErvkOrganization> collection;
+        private IList<RepositoryDataSet.ViewErvkOrganization> collection;
 
         public GaspsListViewCompletedEventArgs(
-            IList<ViewErvkOrganization> collection,
+            IList<RepositoryDataSet.ViewErvkOrganization> collection,
             Exception e,
             bool canceled,
             object state) : base(e, canceled, state)
@@ -1164,7 +1192,7 @@ namespace DatabaseToolSuite.Controls
             this.collection = collection;
         }
 
-        public IList<ViewErvkOrganization> Collection
+        public IList<RepositoryDataSet.ViewErvkOrganization> Collection
         {
             get
             {

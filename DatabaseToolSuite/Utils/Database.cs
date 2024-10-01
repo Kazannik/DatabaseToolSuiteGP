@@ -1,6 +1,5 @@
 ﻿using System;
 using DatabaseToolSuite.Services;
-using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
 
 namespace DatabaseToolSuite.Utils
 {
@@ -13,7 +12,7 @@ namespace DatabaseToolSuite.Utils
         public static void FillLogEditDateInGasps()
         {
 
-            foreach (gaspsRow row in MasterDataSystem.DataSet.gasps.Rows)
+            foreach (Repositoryes.RepositoryDataSet.gaspsRow row in MasterDataSystem.DataSet.gasps.Rows)
             {
                 if (row.IslogEditDateNull())
                 {
@@ -39,11 +38,11 @@ namespace DatabaseToolSuite.Utils
         /// </summary>
         public static void FillLogEditDateInFgisEsnsi()
         {
-            foreach (fgis_esnsiRow row in MasterDataSystem.DataSet.fgis_esnsi.Rows)
+            foreach (Repositoryes.RepositoryDataSet.fgis_esnsiRow row in MasterDataSystem.DataSet.fgis_esnsi.Rows)
             {
                 if (row.IslogEditDateNull())
                 {
-                    gaspsRow gaspsRow = MasterDataSystem.DataSet.gasps.GetOrganizationFromVersion(row.version);
+                    Repositoryes.RepositoryDataSet.gaspsRow gaspsRow = MasterDataSystem.DataSet.gasps.GetOrganizationFromVersion(row.version);
                     if (gaspsRow.IslogEditDateNull())
                     {
                         if (gaspsRow.date_end < DateTime.Now)
@@ -72,11 +71,11 @@ namespace DatabaseToolSuite.Utils
         /// </summary>
         public static void FillLogEditDateInErvk()
         {
-            foreach (ervkRow row in MasterDataSystem.DataSet.ervk.Rows)
+            foreach (Repositoryes.RepositoryDataSet.ervkRow row in MasterDataSystem.DataSet.ervk.Rows)
             {
                 if (row.IslogEditDateNull())
                 {
-                    gaspsRow gaspsRow = MasterDataSystem.DataSet.gasps.GetOrganizationFromVersion(row.version);
+                    Repositoryes.RepositoryDataSet.gaspsRow gaspsRow = MasterDataSystem.DataSet.gasps.GetOrganizationFromVersion(row.version);
                     if (gaspsRow.IslogEditDateNull())
                     {
                         if (gaspsRow.date_end < DateTime.Now)
@@ -105,7 +104,7 @@ namespace DatabaseToolSuite.Utils
         /// </summary>
         public static void SetIsHeadAttribute()
         {
-            foreach (ervkRow row in MasterDataSystem.DataSet.ervk.Rows)
+            foreach (Repositoryes.RepositoryDataSet.ervkRow row in MasterDataSystem.DataSet.ervk.Rows)
             {
                 if (MasterDataSystem.DataSet.ervk.ExistsIdVersionHead(row.esnsiCode))
                 {

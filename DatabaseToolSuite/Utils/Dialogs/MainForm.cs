@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
 
 namespace DatabaseToolSuite.Dialogs
 {
@@ -127,9 +122,9 @@ namespace DatabaseToolSuite.Dialogs
            if (e.Node.Tag is DataTable)
             {
                 DataTable table = (DataTable)e.Node.Tag;
-                if (table is gaspsDataTable)
+                if (table is Repositoryes.RepositoryDataSet.gaspsDataTable)
                 {
-                    mainDataGridView.DataSource = ((gaspsDataTable)table) ;
+                    mainDataGridView.DataSource = ((Repositoryes.RepositoryDataSet.gaspsDataTable)table) ;
                 }
                 else
                 {
@@ -165,7 +160,7 @@ namespace DatabaseToolSuite.Dialogs
             dialog.Text = "Добавить строку ОКАТО";
             if (dialog.ShowDialog(this)== DialogResult.OK)
             {
-                okatoRow row =(okatoRow) repository.DataSet.okato.NewRow();
+                Repositoryes.RepositoryDataSet.okatoRow row =(Repositoryes.RepositoryDataSet.okatoRow) repository.DataSet.okato.NewRow();
                 row.centrum = dialog.OkatoCentrum;
                 row.code = dialog.Code;
                 row.genitive = dialog.OkatoGenitive;
@@ -244,7 +239,7 @@ namespace DatabaseToolSuite.Dialogs
         {
             this.Text = repository.DataSet.gasps.GetNextCode(2, "0077");
 
-            foreach (okatoRow okato in repository.DataSet.okato)
+            foreach (Repositoryes.RepositoryDataSet.okatoRow okato in repository.DataSet.okato)
             {
                 var t = repository.DataSet.gasps.GetLockCodes(2, okato.code, DateTime.Today);
                 if (t.Count>0)
@@ -259,13 +254,13 @@ namespace DatabaseToolSuite.Dialogs
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            OrganizationDialog dialog = new OrganizationDialog((gaspsRow) repository.DataSet.gasps.Rows[35000], repository.DataSet.gasps, repository.DataSet.okato, repository.DataSet.authority);
+            OrganizationDialog dialog = new OrganizationDialog((Repositoryes.RepositoryDataSet.gaspsRow) repository.DataSet.gasps.Rows[35000], repository.DataSet.gasps, repository.DataSet.okato, repository.DataSet.authority);
             dialog.ShowDialog(this);
         }
 
         private void mainDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (mainDataGridView.DataSource is gaspsDataTable)
+            if (mainDataGridView.DataSource is Repositoryes.RepositoryDataSet.gaspsDataTable)
             {
                
             }

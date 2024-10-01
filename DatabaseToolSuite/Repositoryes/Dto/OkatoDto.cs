@@ -1,31 +1,30 @@
 ﻿using DatabaseToolSuite.Controls;
-using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
 
 namespace DatabaseToolSuite.Repositoryes.Dto
 {
     public class OkatoDto : ComboControl<OkatoDto>.IComboBoxItem
     {
-        public string Code { get; }
+        public string Code { get; private set; }
 
-        public string Okato { get; }
+        public string Okato { get; private set; }
 
-        public int Ter { get; }
+        public int Ter { get; private set; }
 
-        public int Kod1 { get;}
+        public int Kod1 { get; private set; }
 
-        public string Lab { get; }
+        public string Lab { get; private set; }
 
-        public string Name { get; }
+        public string Name { get; private set; }
 
-        public string Name2 { get; }
+        public string Name2 { get; private set; }
 
-        public string Centrum { get; }
+        public string Centrum { get; private set; }
 
-        public string Genitive { get; }
+        public string Genitive { get; private set; }
 
         public string Text { get { return Name; } }
 
-        public string SSRF { get; }
+        public string SSRF { get; private set; }
 
         public OkatoDto (int ter, int kod1, string lab, string name, string name2, string centrum, string genitive, string ssrf)
         {
@@ -41,7 +40,7 @@ namespace DatabaseToolSuite.Repositoryes.Dto
             SSRF = ssrf;
         }
 
-        public OkatoDto(okatoRow row) : this(
+        public OkatoDto(Repositoryes.RepositoryDataSet.okatoRow row) : this(
             ter: int.Parse(row.ter),
             kod1: row.kod1, 
             lab: (row.IslabNull() ? string.Empty: row.lab), 

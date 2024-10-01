@@ -39,17 +39,17 @@ namespace DatabaseToolSuite.Repositoryes
             {
                 private FgisEsnsiOrganization() { }
                 public long Version { get; protected set; }
-                public long Id { get; }
-                public string Name { get; }
-                public string Region { get; }
-                public string Phone { get; }
-                public string Email { get; }
-                public string Address { get; }
-                public short Okato { get; }
-                public long Code { get; }
-                public string Autokey { get; }
+                public long Id { get; private set; }
+                public string Name { get; private set; }
+                public string Region { get; private set; }
+                public string Phone { get; private set; }
+                public string Email { get; private set; }
+                public string Address { get; private set; }
+                public short Okato { get; private set; }
+                public long Code { get; private set; }
+                public string Autokey { get; private set; }
 
-                public DateTime EditDate { get; }
+                public DateTime EditDate { get; private set; }
 
                 public FgisEsnsiOrganization(
                     long version,

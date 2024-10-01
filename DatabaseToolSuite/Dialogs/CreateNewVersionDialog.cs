@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
 
 namespace DatabaseToolSuite.Dialogs
 {
@@ -30,7 +29,7 @@ namespace DatabaseToolSuite.Dialogs
 
         }
 
-        public CreateNewVersionDialog(gaspsRow row): base()
+        public CreateNewVersionDialog(Repositoryes.RepositoryDataSet.gaspsRow row): base()
         {
 
             ApplyButtonVisible = false;
@@ -66,7 +65,7 @@ namespace DatabaseToolSuite.Dialogs
 
             if (DataRow.owner_id > 0)
             {
-                gaspsRow owner = Services.FileSystem.Repository.DataSet.gasps.GetLastVersionOrganizationFromKey(DataRow.owner_id);
+                Repositoryes.RepositoryDataSet.gaspsRow owner = Services.FileSystem.Repository.DataSet.gasps.GetLastVersionOrganizationFromKey(DataRow.owner_id);
 
                 ownerTextBox.Text = owner.name + " (код: " + owner.code + ")";
             }
@@ -78,7 +77,7 @@ namespace DatabaseToolSuite.Dialogs
         }
 
 
-        public gaspsRow DataRow { get; }
+        public Repositoryes.RepositoryDataSet.gaspsRow DataRow { get; private set; }
 
         public DateTime BeginDate
         {

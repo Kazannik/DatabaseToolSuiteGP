@@ -2,7 +2,6 @@
 using System;
 using System.Reflection;
 using System.Windows.Forms;
-using static DatabaseToolSuite.Repositoryes.RepositoryDataSet;
 
 namespace DatabaseToolSuite.Dialogs
 {
@@ -507,7 +506,7 @@ namespace DatabaseToolSuite.Dialogs
         {
             if (MasterDataSystem.DataSet.fgis_esnsi.ExistsRow(gaspsListView.DataRow.version))
             {
-                fgis_esnsiRow currentRow = MasterDataSystem.DataSet.fgis_esnsi.Get(gaspsListView.DataRow.version);
+                Repositoryes.RepositoryDataSet.fgis_esnsiRow currentRow = MasterDataSystem.DataSet.fgis_esnsi.Get(gaspsListView.DataRow.version);
                if ( MasterDataSystem.CloneFgisEsnsiNoteToLastVersion(currentRow.version) != null)
                 {
                     MessageBox.Show(this, "Данные ФГСИ ЕСНСИ успешно скопированы в действующую запись!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -523,7 +522,7 @@ namespace DatabaseToolSuite.Dialogs
         {
             if (gaspsListView.DataRow !=null && gaspsListView.DataRow.authority_id == MasterDataSystem.PROSECUTOR_CODE)
             {
-                fgis_esnsiRow editRow;
+                Repositoryes.RepositoryDataSet.fgis_esnsiRow editRow;
                 bool createdRow = false;
 
                 if (MasterDataSystem.DataSet.fgis_esnsi.ExistsRow(gaspsListView.DataRow.version))
@@ -577,7 +576,7 @@ namespace DatabaseToolSuite.Dialogs
         {
             if (MasterDataSystem.DataSet.ervk.ExistsRow(gaspsListView.DataRow.version))
             {
-                ervkRow currentRow = MasterDataSystem.DataSet.ervk.Get(gaspsListView.DataRow.version);
+                Repositoryes.RepositoryDataSet.ervkRow currentRow = MasterDataSystem.DataSet.ervk.Get(gaspsListView.DataRow.version);
                 if (MasterDataSystem.CloneErvkNoteToLastVersion(currentRow.version) != null)
                 {
                     MessageBox.Show(this, "Данные ЕРВК успешно скопированы в действующую запись!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -610,7 +609,7 @@ namespace DatabaseToolSuite.Dialogs
         {
             if (gaspsListView.DataRow != null && gaspsListView.DataRow.authority_id == MasterDataSystem.PROSECUTOR_CODE)
             {
-                ervkRow editRow;
+                Repositoryes.RepositoryDataSet.ervkRow editRow;
                 bool createdRow = false;
 
                 if (MasterDataSystem.DataSet.ervk.ExistsRow(gaspsListView.DataRow.version))
