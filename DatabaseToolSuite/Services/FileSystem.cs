@@ -2,15 +2,18 @@
 
 namespace DatabaseToolSuite.Services
 {
+    /// <summary>
+    /// Класс для работы с файлами базы данных
+    /// </summary>
     static class FileSystem
     {
         private static readonly Repositoryes.DatabaseRepository repository = new Repositoryes.DatabaseRepository();
-        
+
         public static Repositoryes.DatabaseRepository Repository
         {
             get { return repository; }
         }
-        
+
         public static string DatabaseFileName { get; private set; }
 
         public static bool DefaultDatabaseFileExists()
@@ -33,7 +36,7 @@ namespace DatabaseToolSuite.Services
 
         public static void ReadSchema(string xsdFileName)
         {
-            Repository.ReadSchema(xsdFileName);           
+            Repository.ReadSchema(xsdFileName);
         }
 
         public static void WriteDatabase()
@@ -47,14 +50,14 @@ namespace DatabaseToolSuite.Services
             Repository.WriteXml(xmlFileName);
             Repository.DataSet.AcceptChanges();
         }
-        
+
         public static void WriteSchema(string xsdFileName)
         {
             Repository.WriteSchema(xsdFileName);
         }
-        
+
         public static void RescueDatabase()
-        {            
+        {
             Repository.WriteXml(DateTime.Now.ToString("yyyy-MM-dd_hh-mm-ss_") + Properties.Settings.Default.RescueDatabaseFileName);
         }
     }

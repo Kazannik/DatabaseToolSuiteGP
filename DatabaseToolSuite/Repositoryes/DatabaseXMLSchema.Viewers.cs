@@ -15,8 +15,10 @@ namespace DatabaseToolSuite.Repositoryes
             EnumerableRowCollection<fgis_esnsiRow> fgisEsnsiCollection = fgisesnsiTable.Where(e => e.RowState != DataRowState.Deleted);
 
             return from gasps in gaspsCollection
-                   join owner in activeCollection on gasps.owner_id equals owner.key into ow_jointable from ow in ow_jointable.DefaultIfEmpty()
-                   join esnsi in fgisEsnsiCollection on gasps.version equals esnsi.version into es_jointable from es in es_jointable.DefaultIfEmpty()
+                   join owner in activeCollection on gasps.owner_id equals owner.key into ow_jointable
+                   from ow in ow_jointable.DefaultIfEmpty()
+                   join esnsi in fgisEsnsiCollection on gasps.version equals esnsi.version into es_jointable
+                   from es in es_jointable.DefaultIfEmpty()
 
                    select new ViewFgisEsnsiOrganization(gasps: gasps, owner: ow, esnsi: es);
         }
@@ -30,7 +32,7 @@ namespace DatabaseToolSuite.Repositoryes
             fgis_esnsiRow esnsi = fgisesnsiTable.ExistsRow(version) ? fgisesnsiTable.Get(version) : null;
             ervkRow ervk = ervkTable.ExistsRow(version) ? ervkTable.Get(version) : null;
 
-            return new ViewErvkOrganization(gasps: gasps, owner: gaspsOwner, esnsi: esnsi, ervk: ervk);            
+            return new ViewErvkOrganization(gasps: gasps, owner: gaspsOwner, esnsi: esnsi, ervk: ervk);
         }
 
         public IEnumerable<ViewErvkOrganization> GetViewErvkOrganizations()
@@ -41,10 +43,13 @@ namespace DatabaseToolSuite.Repositoryes
             EnumerableRowCollection<ervkRow> ervkCollection = ervkTable.Where(e => e.RowState != DataRowState.Deleted);
 
             return from gasps in gaspsCollection
-                   join owner in activeCollection on gasps.owner_id equals owner.key into ow_jointable from ow in ow_jointable.DefaultIfEmpty()
-                   join esnsi in fgisEsnsiCollection on gasps.version equals esnsi.version into es_jointable from es in es_jointable.DefaultIfEmpty()
-                   join ervk in ervkCollection on gasps.version equals ervk.version into er_jointable from er in er_jointable.DefaultIfEmpty()
-                   
+                   join owner in activeCollection on gasps.owner_id equals owner.key into ow_jointable
+                   from ow in ow_jointable.DefaultIfEmpty()
+                   join esnsi in fgisEsnsiCollection on gasps.version equals esnsi.version into es_jointable
+                   from es in es_jointable.DefaultIfEmpty()
+                   join ervk in ervkCollection on gasps.version equals ervk.version into er_jointable
+                   from er in er_jointable.DefaultIfEmpty()
+
                    select new ViewErvkOrganization(gasps: gasps, owner: ow, esnsi: es, ervk: er);
         }
 
@@ -180,7 +185,7 @@ namespace DatabaseToolSuite.Repositoryes
 
             return result;
         }
-        
+
         public class ViewGaspsOrganization
         {
             [Description("Наименование подразделения (SV-0001)")]
@@ -304,7 +309,7 @@ namespace DatabaseToolSuite.Repositoryes
                 string okatoCode,
                 long key,
                 long ownerId,
-                string ownerName, 
+                string ownerName,
                 bool isFgisEsnsi) : base(name, authority, okato, code, begin, end, version, authorityId, okatoCode, key, ownerId, ownerName)
             {
                 Phone = phone;
@@ -333,7 +338,7 @@ namespace DatabaseToolSuite.Repositoryes
 
             public ViewFgisEsnsiOrganization(
                 gaspsRow gasps,
-                gaspsRow owner,                
+                gaspsRow owner,
                 fgis_esnsiRow esnsi) : base(gasps: gasps, owner: owner)
             {
                 SetAttr(esnsi);

@@ -26,7 +26,7 @@ namespace DatabaseToolSuite.Repositoryes.Dto
 
         public string SSRF { get; private set; }
 
-        public OkatoDto (int ter, int kod1, string lab, string name, string name2, string centrum, string genitive, string ssrf)
+        public OkatoDto(int ter, int kod1, string lab, string name, string name2, string centrum, string genitive, string ssrf)
         {
             Ter = ter;
             Kod1 = kod1;
@@ -42,13 +42,14 @@ namespace DatabaseToolSuite.Repositoryes.Dto
 
         public OkatoDto(Repositoryes.RepositoryDataSet.okatoRow row) : this(
             ter: int.Parse(row.ter),
-            kod1: row.kod1, 
-            lab: (row.IslabNull() ? string.Empty: row.lab), 
-            name: row.name, 
-            name2: (row.Isname2Null() ? string.Empty:  row.name2), 
-            centrum: (row.IscentrumNull() ? string.Empty: row.centrum), 
-            genitive: (row.IsgenitiveNull() ? string.Empty: row.genitive),
+            kod1: row.kod1,
+            lab: (row.IslabNull() ? string.Empty : row.lab),
+            name: row.name,
+            name2: (row.Isname2Null() ? string.Empty : row.name2),
+            centrum: (row.IscentrumNull() ? string.Empty : row.centrum),
+            genitive: (row.IsgenitiveNull() ? string.Empty : row.genitive),
             ssrf: (row.IsssrfNull() ? string.Empty : row.ssrf)
-            ) { }       
+            )
+        { }
     }
 }

@@ -4,10 +4,10 @@ using System.Windows.Forms.Design;
 namespace DatabaseToolSuite.Controls
 {
     [ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.All)]
-    public class AuthorityComboBox: ComboControl<AuthorityDto>
+    public class AuthorityComboBox : ComboControl<AuthorityDto>
     {
         #region Initialize
-        public  AuthorityComboBox() : base() { }
+        public AuthorityComboBox() : base() { }
 
         public void InitializeSource(Repositoryes.RepositoryDataSet.authorityDataTable table)
         {

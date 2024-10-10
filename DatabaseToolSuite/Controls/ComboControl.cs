@@ -30,7 +30,7 @@ namespace DatabaseToolSuite.Controls
 
         public ComboControl() : base()
         {
-            
+
             SuspendLayout();
             sfCode = (StringFormat)StringFormat.GenericTypographic.Clone();
             sfCode.Alignment = StringAlignment.Center;
@@ -79,7 +79,7 @@ namespace DatabaseToolSuite.Controls
             Rectangle rectText = new Rectangle(rectCode.X + rectCode.Width + 6, rectCode.Y, e.Bounds.Width - rectCode.X - rectCode.Width - 6, rectCode.Height);
 
             Size TextSize = new Size(rectText.Width - SystemInformation.VerticalScrollBarWidth - 8, rectText.Height);
-            
+
             Brush backCodeBrush, foreCodeBrush, backCaptionBrush, foreCaptionBrush;
             Pen borderPen;
 
@@ -147,13 +147,13 @@ namespace DatabaseToolSuite.Controls
                 graphics.DrawString(itemCaptionString, Font, foreCaptionBrush, rectText, sfCaption);
             }
         }
-        
+
         private void DrawHighlightText(Graphics graphics, Rectangle rectagle, Font font, Brush foreColorBrush, Brush highlightForeColor, Brush highlightBackColor, string text, StringFormat format, string buffer)
         {
             if (string.IsNullOrWhiteSpace(buffer) || !text.Contains(buffer))
             {
                 graphics.DrawString(text, font, foreColorBrush, rectagle, format);
-            } 
+            }
             else
             {
                 string firstText = text.Substring(0, text.IndexOf(buffer, StringComparison.CurrentCultureIgnoreCase));
@@ -168,7 +168,7 @@ namespace DatabaseToolSuite.Controls
                 Rectangle firstRect;
                 if (format.Alignment == StringAlignment.Near)
                 {
-                    firstRect = new Rectangle(rectagle.X, rectagle.Y, (int) firstSize.Width, rectagle.Height);
+                    firstRect = new Rectangle(rectagle.X, rectagle.Y, (int)firstSize.Width, rectagle.Height);
                 }
                 else if (format.Alignment == StringAlignment.Far)
                 {
@@ -178,15 +178,12 @@ namespace DatabaseToolSuite.Controls
                 else
                 {
                     SizeF textSize = graphics.MeasureString(text, font, rectagle.Width, format);
-                    firstRect = new Rectangle((rectagle.Width - (int)textSize.Width + 2)/2 + 3, rectagle.Y, (int)firstSize.Width, rectagle.Height);
+                    firstRect = new Rectangle((rectagle.Width - (int)textSize.Width + 2) / 2 + 3, rectagle.Y, (int)firstSize.Width, rectagle.Height);
                 }
 
                 Rectangle centerRect = new Rectangle(firstRect.X + firstRect.Width + 1, rectagle.Y, (int)centerSize.Width, rectagle.Height);
                 Rectangle lastRect = new Rectangle(centerRect.X + centerRect.Width + 1, rectagle.Y, (int)lastSize.Width, rectagle.Height);
 
-                //graphics.FillRectangle( Brushes.Yellow, firstRect);
-                //graphics.FillRectangle(Brushes.Yellow, lastRect);
-                
                 graphics.FillRectangle(highlightBackColor, centerRect);
 
                 graphics.DrawString(firstText, font, foreColorBrush, firstRect, format);
@@ -194,7 +191,7 @@ namespace DatabaseToolSuite.Controls
                 graphics.DrawString(lastText, font, foreColorBrush, lastRect, format);
             }
         }
-                       
+
         #endregion
 
         string codeBuffer = string.Empty;
@@ -203,7 +200,7 @@ namespace DatabaseToolSuite.Controls
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
-            if (e.KeyCode== Keys.Delete)
+            if (e.KeyCode == Keys.Delete)
             {
                 codeBuffer = string.Empty;
                 textBuffer = string.Empty;
@@ -247,15 +244,16 @@ namespace DatabaseToolSuite.Controls
                     if (!FindText(textBuffer))
                         findNext = 0;
                 }
-            }                
+            }
             else if (e.KeyChar >= 48 & e.KeyChar <= 57)
             {
-                e.Handled = false;                
-                if (FindCode(codeBuffer + e.KeyChar)) {
+                e.Handled = false;
+                if (FindCode(codeBuffer + e.KeyChar))
+                {
                     codeBuffer += e.KeyChar;
                     textBuffer = string.Empty;
                 }
-                findNext = 0;             
+                findNext = 0;
             }
             else if (char.IsLetter(e.KeyChar))
             {
@@ -304,7 +302,7 @@ namespace DatabaseToolSuite.Controls
             }
             return false;
         }
-        
+
         public string Code
         {
             get
@@ -342,7 +340,7 @@ namespace DatabaseToolSuite.Controls
         {
             get
             {
-               return string.IsNullOrWhiteSpace(Code) ? (long?)null : long.Parse(Code);
+                return string.IsNullOrWhiteSpace(Code) ? (long?)null : long.Parse(Code);
             }
         }
 
@@ -378,7 +376,7 @@ namespace DatabaseToolSuite.Controls
         {
             object item = Items[index];
             list.Remove((T)item);
-            Items.RemoveAt(index);            
+            Items.RemoveAt(index);
         }
 
         protected void Clear()
@@ -386,7 +384,7 @@ namespace DatabaseToolSuite.Controls
             list.Clear();
             Items.Clear();
         }
-        
+
         public int Add(T item)
         {
             foreach (T i in Items)
@@ -415,7 +413,7 @@ namespace DatabaseToolSuite.Controls
 
         public new T SelectedItem
         {
-            get { return (T) base.SelectedItem; }
+            get { return (T)base.SelectedItem; }
             set { base.SelectedItem = value; }
         }
 
@@ -434,7 +432,7 @@ namespace DatabaseToolSuite.Controls
         public interface IComboBoxItem
         {
             string Code { get; }
-            string Text { get; }            
+            string Text { get; }
         }
 
         private class ItemComparer : IComparer<T>

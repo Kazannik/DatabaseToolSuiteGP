@@ -22,13 +22,13 @@ namespace DatabaseToolSuite.Repositoryes
             catch (Exception)
             {
                 IsInitialize = false;
-            }            
+            }
         }
 
 
         public DatabaseRepository()
         {
-             _dataSet = new RepositoryDataSet();
+            _dataSet = new RepositoryDataSet();
 
             if (System.IO.File.Exists("DatabaseXMLSchema.xsd"))
             {

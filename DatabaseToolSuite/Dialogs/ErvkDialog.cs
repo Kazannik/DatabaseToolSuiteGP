@@ -7,7 +7,7 @@ namespace DatabaseToolSuite.Dialogs
     class ErvkDialog : DialogBase
     {
         public Repositoryes.RepositoryDataSet.ervkRow DataRow { get; private set; }
-        
+
         private bool oldIsHead;
         private bool oldSpecial;
         private bool oldMilitary;
@@ -18,7 +18,7 @@ namespace DatabaseToolSuite.Dialogs
         private DateTime oldDateCloseProc;
         private string oldOgrn;
         private string oldInn;
-        
+
         private Button deleteOwnerButton;
         private Button selectOwnerButton;
         private TextBox ownerTextBox;
@@ -77,14 +77,14 @@ namespace DatabaseToolSuite.Dialogs
         /// ИНН
         /// </summary>
         public string Inn { get { return innNumericTextBox.Text; } }
-        
+
         /// <summary>
         /// ОГРН
         /// </summary>
         public string Ogrn { get { return ogrnNumericTextBox.Text; } }
 
-        
-        public ErvkDialog(): base()
+
+        public ErvkDialog() : base()
         {
             ApplyButtonVisible = false;
 
@@ -184,9 +184,6 @@ namespace DatabaseToolSuite.Dialogs
 
         private void Controls_ValueChanged(object sender, EventArgs e)
         {
-            //esnsiAutokeyTextBox.Text = "FED_GENPROK_ORGANIZATION_" + esnsiIdNumericTextBox.Text;
-            //esnsiRegionTextBox.Text = esnsiOkatoComboBox.SelectedItem != null ? esnsiOkatoComboBox.SelectedItem.Name2 : string.Empty;
-
             if (
                 oldIsHead != IsHead ||
                 oldSpecial != IsSpecial ||
@@ -260,7 +257,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // esnsiNameTextBox
             // 
-            this.esnsiNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.esnsiNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.esnsiNameTextBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.esnsiNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -400,8 +397,8 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // ownerTextBox
             // 
-            this.ownerTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.ownerTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ownerTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ownerTextBox.Location = new System.Drawing.Point(9, 22);
@@ -481,7 +478,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // ownerGroupBox
             // 
-            this.ownerGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ownerGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ownerGroupBox.Controls.Add(this.ownerTextBox);
             this.ownerGroupBox.Controls.Add(this.autoSelectOwnerButton);
@@ -556,7 +553,7 @@ namespace DatabaseToolSuite.Dialogs
         private void selectOwnerButton_Click(object sender, EventArgs e)
         {
             SelectOrganizationDialog dialog;
-            
+
             dialog = new SelectOrganizationDialog(ervkOnlyShow: true);
 
             dialog.UnlockShow = true;

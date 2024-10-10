@@ -701,15 +701,6 @@ namespace DatabaseToolSuite.Controls
 
             lock (userStateToLifetime.SyncRoot)
             {
-                
-
-                //if (userStateToLifetime.Contains(filter.GetHashCode()))
-                //{
-                //    //throw new ArgumentException(
-                //    //    "Task ID parameter must be unique",
-                //    //    "taskId");
-                //    return;
-                //}
                 userStateToLifetime[filter.GetHashCode()] = asyncOp;
             }
 
@@ -782,17 +773,6 @@ namespace DatabaseToolSuite.Controls
                 lockShow: filter.LockShow,
                 fgisEsnsiOnlyShow: filter.FgisEsnsiOnlyShow,
                 ervkOnlyShow: filter.ErvkOnlyShow);
-
-            //while (!TaskCanceled(asyncOp.UserSuppliedState))
-            //{
-            //    e = new GaspsListViewProgressChangedEventArgs(
-            //        0,
-            //        (int)((float)1000 / (float)1 * 100),
-            //        asyncOp.UserSuppliedState);
-
-            //    asyncOp.Post(this.onProgressReportDelegate, e);
-            //    Thread.Sleep(0);
-            //}
 
             return list;
         }
@@ -1196,7 +1176,6 @@ namespace DatabaseToolSuite.Controls
         {
             get
             {
-                //RaiseExceptionIfNecessary();
                 return collection;
             }
         }

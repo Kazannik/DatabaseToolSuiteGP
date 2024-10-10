@@ -8,83 +8,103 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DatabaseToolSuite.Properties {
-    
-    
+namespace DatabaseToolSuite.Properties
+{
+
+
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
+    {
+
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-        
-        public static Settings Default {
-            get {
+
+        public static Settings Default
+        {
+            get
+            {
                 return defaultInstance;
             }
         }
-        
+
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("gasps.xml")]
-        public string DatabaseFileName {
-            get {
+        public string DatabaseFileName
+        {
+            get
+            {
                 return ((string)(this["DatabaseFileName"]));
             }
         }
-        
+
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("gasps.xml.rescue")]
-        public string RescueDatabaseFileName {
-            get {
+        public string RescueDatabaseFileName
+        {
+            get
+            {
                 return ((string)(this["RescueDatabaseFileName"]));
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("900")]
-        public int AppWindowWidth {
-            get {
+        public int AppWindowWidth
+        {
+            get
+            {
                 return ((int)(this["AppWindowWidth"]));
             }
-            set {
+            set
+            {
                 this["AppWindowWidth"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("600")]
-        public int AppWindowHight {
-            get {
+        public int AppWindowHight
+        {
+            get
+            {
                 return ((int)(this["AppWindowHight"]));
             }
-            set {
+            set
+            {
                 this["AppWindowHight"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("740")]
-        public int DialogWidth {
-            get {
+        public int DialogWidth
+        {
+            get
+            {
                 return ((int)(this["DialogWidth"]));
             }
-            set {
+            set
+            {
                 this["DialogWidth"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("580")]
-        public int DialogHight {
-            get {
+        public int DialogHight
+        {
+            get
+            {
                 return ((int)(this["DialogHight"]));
             }
-            set {
+            set
+            {
                 this["DialogHight"] = value;
             }
         }

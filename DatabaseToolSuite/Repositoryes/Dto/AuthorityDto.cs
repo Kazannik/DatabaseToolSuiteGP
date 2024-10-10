@@ -2,7 +2,7 @@
 
 namespace DatabaseToolSuite.Repositoryes.Dto
 {
-    public class AuthorityDto: ComboControl<AuthorityDto>.IComboBoxItem
+    public class AuthorityDto : ComboControl<AuthorityDto>.IComboBoxItem
     {
         public string Code { get; private set; }
 

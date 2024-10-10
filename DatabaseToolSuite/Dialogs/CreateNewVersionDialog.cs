@@ -29,7 +29,7 @@ namespace DatabaseToolSuite.Dialogs
 
         }
 
-        public CreateNewVersionDialog(Repositoryes.RepositoryDataSet.gaspsRow row): base()
+        public CreateNewVersionDialog(Repositoryes.RepositoryDataSet.gaspsRow row) : base()
         {
 
             ApplyButtonVisible = false;
@@ -232,8 +232,8 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // organizationGroupBox
             // 
-            this.organizationGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.organizationGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.organizationGroupBox.Controls.Add(this.deleteOwnerButton);
             this.organizationGroupBox.Controls.Add(this.selectOwnerButton);
@@ -283,7 +283,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // ownerTextBox
             // 
-            this.ownerTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.ownerTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ownerTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ownerTextBox.Location = new System.Drawing.Point(11, 307);
@@ -332,7 +332,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // okatoComboBox
             // 
-            this.okatoComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.okatoComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.okatoComboBox.Code = "";
             this.okatoComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
@@ -352,7 +352,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // authorityComboBox
             // 
-            this.authorityComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.authorityComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.authorityComboBox.Code = "";
             this.authorityComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
@@ -397,8 +397,8 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // nameTextBox
             // 
-            this.nameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.nameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nameTextBox.Location = new System.Drawing.Point(11, 48);

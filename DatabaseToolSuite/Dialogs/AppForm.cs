@@ -303,9 +303,6 @@ namespace DatabaseToolSuite.Dialogs
         {
             StatisticsDialog dialog = new StatisticsDialog();
             dialog.ShowDialog(this);
-
-            //MessageBox.Show("Всего добавлено/изменено/заблокировано в 2023 году записей: " + 
-            //    Services.FileSystem.Repository.DataSet.gasps.GetEditedRowCount().ToString(), "Статистика", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void FileOpenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -644,8 +641,6 @@ namespace DatabaseToolSuite.Dialogs
                         editRow.dateStartVersion = dialog.DateStartVersion;
                     }
                                        
-                    // editRow.esnsiCode
-                    // editRow.idSuccession
                     if (dialog.IdVersionHead <=0)
                     {
                         editRow.SetidVersionHeadNull();
@@ -655,15 +650,12 @@ namespace DatabaseToolSuite.Dialogs
                         editRow.idVersionHead = dialog.IdVersionHead;
                     }
                     
-                    //editRow.idVersionProc = dialog.
                     editRow.inn = dialog.Inn;
                     editRow.isActive = dialog.IsActive;
                     editRow.isHead = dialog.IsHead;
                     editRow.military = dialog.IsMilitary;
                     editRow.ogrn = dialog.Ogrn;
-                    //     editRow.oktmoList
                     editRow.special = dialog.IsSpecial;
-                    //     editRow.subjectRfList
 
                     Utils.Database.SetIsHeadAttribute();
 

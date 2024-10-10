@@ -2,21 +2,15 @@
 
 namespace DatabaseToolSuite.Services
 {
-    // Создание новой записи:
-    // key++
-    // version = key
-    // index++
-
-    // Создание версии записи:
-    // key
-    // version++
-    // index
+    /// <summary>
+    /// Управление записями
+    /// </summary>
     static class MasterDataSystem
     {
         public static readonly long PROSECUTOR_CODE = 20;
         public static readonly DateTime MAX_DATE = new DateTime(2999, 12, 31);
         public static readonly DateTime MIN_DATE = new DateTime(1900, 1, 1);
-        
+
         public static Repositoryes.RepositoryDataSet DataSet
         {
             get { return FileSystem.Repository.DataSet; }
@@ -67,7 +61,7 @@ namespace DatabaseToolSuite.Services
             values[13] = 0; // court_type_id
             values[14] = DateTime.Now; // logEditDate
 
-            Repositoryes.RepositoryDataSet.gaspsRow newRow = (Repositoryes.RepositoryDataSet.gaspsRow) FileSystem.Repository.DataSet.gasps.Rows.Add(values);
+            Repositoryes.RepositoryDataSet.gaspsRow newRow = (Repositoryes.RepositoryDataSet.gaspsRow)FileSystem.Repository.DataSet.gasps.Rows.Add(values);
 
             return newRow;
         }
@@ -85,8 +79,8 @@ namespace DatabaseToolSuite.Services
         /// <param name="courtTypeId">Индекс вида суда</param>
         /// <returns></returns>
         public static long CreateNewOrganization(
-            string name,            
-            string okato, 
+            string name,
+            string okato,
             long authorityId,
             string code,
             long ownerKey,
@@ -128,12 +122,12 @@ namespace DatabaseToolSuite.Services
         /// <param name="courtTypeId">Индекс вида суда</param>
         /// <returns></returns>
         public static long CreateNewVersionOrganization(
-            long version, 
+            long version,
             DateTime date,
             string name,
             string okato,
             long authorityId,
-            long ownerKey,            
+            long ownerKey,
             long courtTypeId)
         {
             Repositoryes.RepositoryDataSet.gaspsRow modifedRow = DataSet.gasps.GetOrganizationFromVersion(version: version);
@@ -144,7 +138,7 @@ namespace DatabaseToolSuite.Services
                     "Запись версии {0} не является самой последней записью с ключем {1}, поэтому не может быть отредактирована.",
                             version, modifedRow.key));
             }
-            
+
             modifedRow.date_end = date;
 
             long newVersion = DataSet.gasps.GetNextVersion();
@@ -156,7 +150,7 @@ namespace DatabaseToolSuite.Services
                 authorityId: authorityId,
                 code: modifedRow.code,
                 version: newVersion,
-                index: modifedRow.IsindexNull() ? 0: modifedRow.index,
+                index: modifedRow.IsindexNull() ? 0 : modifedRow.index,
                 ownerKey: ownerKey,
                 dateBegin: date,
                 dateEnd: MAX_DATE,
@@ -285,7 +279,7 @@ namespace DatabaseToolSuite.Services
             return errorRow.version;
         }
 
-       
+
         /// <summary>
         /// Создание записи ФГИС ЕСНСИ
         /// </summary>
@@ -309,22 +303,22 @@ namespace DatabaseToolSuite.Services
             long code,
             string autokey,
             long id)
-        {            
-                object[] values = new object[10];
-                values[0] = version;
-                values[1] = region_id;
-                values[2] = sv_0004;
-                values[3] = sv_0005;
-                values[4] = sv_0006;
-                values[5] = okato;
-                values[6] = code;
-                values[7] = autokey;
-                values[8] = id;
-                values[9] = DateTime.Now;
+        {
+            object[] values = new object[10];
+            values[0] = version;
+            values[1] = region_id;
+            values[2] = sv_0004;
+            values[3] = sv_0005;
+            values[4] = sv_0006;
+            values[5] = okato;
+            values[6] = code;
+            values[7] = autokey;
+            values[8] = id;
+            values[9] = DateTime.Now;
 
             Repositoryes.RepositoryDataSet.fgis_esnsiRow newRow = (Repositoryes.RepositoryDataSet.fgis_esnsiRow)FileSystem.Repository.DataSet.fgis_esnsi.Rows.Add(values);
-                return newRow;
-                         
+            return newRow;
+
         }
 
         /// <summary>
@@ -337,7 +331,7 @@ namespace DatabaseToolSuite.Services
             Repositoryes.RepositoryDataSet.gaspsRow currentGaspsRow = DataSet.gasps.GetOrganizationFromVersion(version: currentVersion);
             Repositoryes.RepositoryDataSet.gaspsRow lastGaspsRow = DataSet.gasps.GetLastVersionOrganizationFromCode(currentGaspsRow.code);
 
-            return CloneFgisEsnsiNote(currentGaspsRow.version, lastGaspsRow.version);           
+            return CloneFgisEsnsiNote(currentGaspsRow.version, lastGaspsRow.version);
         }
 
         /// <summary>
@@ -367,7 +361,7 @@ namespace DatabaseToolSuite.Services
                 return null;
             }
         }
-        
+
         /// <summary>
         /// Редактирование записи ФГИС ЕСНСИ
         /// </summary>
@@ -446,7 +440,7 @@ namespace DatabaseToolSuite.Services
             values[7] = idVersionHead;
             values[8] = idSuccession;
             values[9] = dateStartVersion;
-            values[10] =  DateTime.MaxValue.Equals(dateCloseProc) ? null : (object)dateCloseProc;
+            values[10] = DateTime.MaxValue.Equals(dateCloseProc) ? null : (object)dateCloseProc;
             values[11] = ogrn;
             values[12] = inn;
             values[13] = subjectRfList;
@@ -481,7 +475,7 @@ namespace DatabaseToolSuite.Services
             long version,
             bool isHead,
             bool special,
-            bool military,            
+            bool military,
             long idVersionHead,
             long idSuccession,
             DateTime dateStartVersion,
@@ -516,7 +510,7 @@ namespace DatabaseToolSuite.Services
                 subjectRfList: subjectRfList,
                 oktmoList: oktmoList);
         }
-        
+
         /// <summary>
         /// Клонирование записи ЕРВК
         /// </summary>

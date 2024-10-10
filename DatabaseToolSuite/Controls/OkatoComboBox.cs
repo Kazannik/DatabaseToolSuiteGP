@@ -1,10 +1,8 @@
 ﻿using DatabaseToolSuite.Repositoryes.Dto;
-using System.ComponentModel;
-using System.Diagnostics;
 
 namespace DatabaseToolSuite.Controls
 {
-    public class OkatoComboBox: ComboControl<OkatoDto>
+    public class OkatoComboBox : ComboControl<OkatoDto>
     {
         #region Initialize
 

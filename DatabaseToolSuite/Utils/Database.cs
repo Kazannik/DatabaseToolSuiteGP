@@ -3,6 +3,10 @@ using DatabaseToolSuite.Services;
 
 namespace DatabaseToolSuite.Utils
 {
+
+    /// <summary>
+    /// Класс для реализации временных функций.
+    /// </summary>
     static class Database
     {
 
@@ -61,7 +65,7 @@ namespace DatabaseToolSuite.Utils
                     else
                     {
                         row.logEditDate = gaspsRow.logEditDate;
-                    }                   
+                    }
                 }
             }
         }
@@ -113,7 +117,7 @@ namespace DatabaseToolSuite.Utils
                 else
                 {
                     row.isHead = false;
-                }              
+                }
             }
         }
     }

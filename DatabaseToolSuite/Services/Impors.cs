@@ -17,17 +17,17 @@ namespace DatabaseToolSuite.Services
             string headers = reader.ReadLine();
             Dictionary<string, CodeGroup> dictionary = new Dictionary<string, CodeGroup>();
 
-            
+
 
             while (!reader.EndOfStream)
             {
                 string line = reader.ReadLine();
                 string[] split = line.Split(';');
-                
+
                 if (dictionary.ContainsKey(split[1]))
                 {
-                    dictionary[split[1]].Add(split[0], 
-                        string.IsNullOrWhiteSpace(split[2]) ? (DateTime?)null : DateTime.Parse(split[2]), 
+                    dictionary[split[1]].Add(split[0],
+                        string.IsNullOrWhiteSpace(split[2]) ? (DateTime?)null : DateTime.Parse(split[2]),
                         string.IsNullOrWhiteSpace(split[3]) ? (DateTime?)null : DateTime.Parse(split[3]));
                 }
                 else
@@ -61,7 +61,7 @@ namespace DatabaseToolSuite.Services
                         else
                         {
                             throw new Exception();
-                        }                        
+                        }
                     }
                     if (group.Count == 2)
                     {
@@ -88,20 +88,20 @@ namespace DatabaseToolSuite.Services
                                 dateEnd: Services.MasterDataSystem.MAX_DATE,
                                 courtTypeId: dialog.CourtType);
 
-                            created += 1;                            
-                        }                       
+                            created += 1;
+                        }
                     }
-                }                
+                }
             }
 
             MessageBox.Show("Импорт данных из текстового файла завершен." + Environment.NewLine +
                 string.Format("Создано записей: {0}", created) + Environment.NewLine +
                 string.Format("Изменен записей: {0}", edited) + Environment.NewLine +
-                string.Format("Удалено записей: {0}", removed), 
+                string.Format("Удалено записей: {0}", removed),
                 "Импорт данных", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
         }
-               
+
 
         private class CodeGroup
         {
@@ -122,7 +122,7 @@ namespace DatabaseToolSuite.Services
                 CodeGroupItem newItem = new CodeGroupItem(name, dateBegin, dateEnd);
                 items.Add(newItem);
             }
-            
+
             public CodeGroupItem[] Items
             {
                 get { return items.ToArray(); }
@@ -131,7 +131,7 @@ namespace DatabaseToolSuite.Services
             public int Count { get { return items.Count; } }
 
             public string Code { get; private set; }
-            
+
             public class CodeGroupItem
             {
                 public CodeGroupItem(string name, DateTime? dateBegin, DateTime? dateEnd)
@@ -142,7 +142,7 @@ namespace DatabaseToolSuite.Services
                 }
 
                 public string Name { get; private set; }
-                
+
                 public DateTime? DateBegin { get; private set; }
 
                 public DateTime? DateEnd { get; private set; }

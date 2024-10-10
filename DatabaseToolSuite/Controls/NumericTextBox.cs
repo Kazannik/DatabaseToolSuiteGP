@@ -33,8 +33,8 @@ namespace DatabaseToolSuite.Controls
             else if (char.IsNumber(e.KeyChar))
                 e.Handled = false;
             else if (char.IsControl(e.KeyChar))
-                   e.Handled = false;
-            
+                e.Handled = false;
+
             else
                 e.Handled = true;
             base.OnKeyPress(e);
@@ -49,7 +49,7 @@ namespace DatabaseToolSuite.Controls
                 long result = 0;
                 if (long.TryParse(Text, out result))
                     return result;
-                else                
+                else
                     return 0;
             }
         }
@@ -63,7 +63,7 @@ namespace DatabaseToolSuite.Controls
             {
                 oldText = Text;
                 base.OnTextChanged(e);
-            } 
+            }
             else if (string.IsNullOrEmpty(this.Text))
             {
                 oldText = Text;

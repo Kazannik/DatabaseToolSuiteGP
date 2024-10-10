@@ -17,10 +17,11 @@ namespace DatabaseToolSuite.Dialogs
         private long oldId;
 
 
-        public long RegionCode {
+        public long RegionCode
+        {
             get
             {
-                return esnsiOkatoComboBox.SelectedItem !=null ?  esnsiOkatoComboBox.SelectedItem.Ter: 0;
+                return esnsiOkatoComboBox.SelectedItem != null ? esnsiOkatoComboBox.SelectedItem.Ter : 0;
             }
         }
 
@@ -38,13 +39,13 @@ namespace DatabaseToolSuite.Dialogs
             }
         }
 
-        public int Code { get { return (int)esnsiCodeNumericTextBox.Value ; } }
+        public int Code { get { return (int)esnsiCodeNumericTextBox.Value; } }
 
         public string Autokey { get { return esnsiAutokeyTextBox.Text; } }
 
         public long Id { get { return esnsiIdNumericTextBox.Value; } }
 
-        public EsnsiDialog(): base()
+        public EsnsiDialog() : base()
         {
             ApplyButtonVisible = false;
 
@@ -53,7 +54,7 @@ namespace DatabaseToolSuite.Dialogs
 
         public EsnsiDialog(Repositoryes.RepositoryDataSet.gaspsRow gaspsRow, Repositoryes.RepositoryDataSet.fgis_esnsiRow row) : base()
         {
-            ApplyButtonVisible = false; 
+            ApplyButtonVisible = false;
 
             InitializeComponent();
 
@@ -62,18 +63,18 @@ namespace DatabaseToolSuite.Dialogs
             esnsiOkatoComboBox.InitializeSource(Services.FileSystem.Repository.DataSet.okato);
 
             FormBorderStyle = FormBorderStyle.Sizable;
-            
+
             Text = "ФГИС 'Единая система нормативно-справочной информации'";
             DialogCaption = "Сведения о прокуратуре для ФГИС ЕСНСИ";
 
-            oldAutokey = DataRow.IsautokeyNull()? string.Empty: DataRow.autokey;
-            oldRegionCode = DataRow.Isregion_idNull()? -1: DataRow.region_id;
-            oldOkatoCode = DataRow.IsokatoNull()? -1: DataRow.okato;
-            oldPhone = DataRow.Issv_0004Null()?string.Empty: DataRow.sv_0004;
-            oldEmail = DataRow.Issv_0005Null()? string.Empty: DataRow.sv_0005;
-            oldAddress = DataRow.Issv_0006Null()? string.Empty: DataRow.sv_0006;
-            oldCode = DataRow.IscodeNull()?-1: DataRow.code;
-            oldId = DataRow.IsidNull()? -1: DataRow.id;
+            oldAutokey = DataRow.IsautokeyNull() ? string.Empty : DataRow.autokey;
+            oldRegionCode = DataRow.Isregion_idNull() ? -1 : DataRow.region_id;
+            oldOkatoCode = DataRow.IsokatoNull() ? -1 : DataRow.okato;
+            oldPhone = DataRow.Issv_0004Null() ? string.Empty : DataRow.sv_0004;
+            oldEmail = DataRow.Issv_0005Null() ? string.Empty : DataRow.sv_0005;
+            oldAddress = DataRow.Issv_0006Null() ? string.Empty : DataRow.sv_0006;
+            oldCode = DataRow.IscodeNull() ? -1 : DataRow.code;
+            oldId = DataRow.IsidNull() ? -1 : DataRow.id;
 
             if (oldOkatoCode >= 0)
             {
@@ -81,7 +82,7 @@ namespace DatabaseToolSuite.Dialogs
             }
 
             esnsiNameTextBox.Text = gaspsRow.name;
-            esnsiRegionTextBox.Text = esnsiOkatoComboBox.SelectedItem !=null ? esnsiOkatoComboBox.SelectedItem.Name2: string.Empty;
+            esnsiRegionTextBox.Text = esnsiOkatoComboBox.SelectedItem != null ? esnsiOkatoComboBox.SelectedItem.Name2 : string.Empty;
             esnsiPhoneTextBox.Text = DataRow.Issv_0004Null() ? string.Empty : DataRow.sv_0004;
             esnsiEmailTextBox.Text = DataRow.Issv_0005Null() ? string.Empty : DataRow.sv_0005;
             esnsiAddressTextBox.Text = DataRow.Issv_0006Null() ? string.Empty : DataRow.sv_0006;
@@ -95,7 +96,7 @@ namespace DatabaseToolSuite.Dialogs
         private void Controls_ValueChanged(object sender, EventArgs e)
         {
             esnsiAutokeyTextBox.Text = "FED_GENPROK_ORGANIZATION_" + esnsiIdNumericTextBox.Text;
-            esnsiRegionTextBox.Text = esnsiOkatoComboBox.SelectedItem !=null ? esnsiOkatoComboBox.SelectedItem.Name2: string.Empty;
+            esnsiRegionTextBox.Text = esnsiOkatoComboBox.SelectedItem != null ? esnsiOkatoComboBox.SelectedItem.Name2 : string.Empty;
 
             if (
                 oldAddress != Address ||
@@ -105,7 +106,7 @@ namespace DatabaseToolSuite.Dialogs
                 oldId != Id ||
                 oldOkatoCode != OkatoCode ||
                 oldPhone != Phone ||
-                oldRegionCode !=RegionCode
+                oldRegionCode != RegionCode
                 )
             {
                 OkButtonEnabled = true;
@@ -113,10 +114,10 @@ namespace DatabaseToolSuite.Dialogs
             else
             {
                 OkButtonEnabled = false;
-            }           
+            }
         }
-        
-        
+
+
 
         private System.Windows.Forms.TextBox esnsiNameTextBox;
         private System.Windows.Forms.Label esnsiRegionLabel;
@@ -184,7 +185,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // esnsiNameTextBox
             // 
-            this.esnsiNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.esnsiNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.esnsiNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.esnsiNameTextBox.Location = new System.Drawing.Point(16, 82);
@@ -205,7 +206,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // esnsiRegionTextBox
             // 
-            this.esnsiRegionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.esnsiRegionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.esnsiRegionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.esnsiRegionTextBox.Location = new System.Drawing.Point(86, 115);
@@ -279,7 +280,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // esnsiPhoneTextBox
             // 
-            this.esnsiPhoneTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.esnsiPhoneTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.esnsiPhoneTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.esnsiPhoneTextBox.Location = new System.Drawing.Point(379, 148);
@@ -290,7 +291,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // esnsiEmailTextBox
             // 
-            this.esnsiEmailTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.esnsiEmailTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.esnsiEmailTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.esnsiEmailTextBox.Location = new System.Drawing.Point(379, 181);
@@ -301,8 +302,8 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // esnsiAddressTextBox
             // 
-            this.esnsiAddressTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.esnsiAddressTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.esnsiAddressTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.esnsiAddressTextBox.Location = new System.Drawing.Point(16, 251);
@@ -314,7 +315,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // esnsiOkatoComboBox
             // 
-            this.esnsiOkatoComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.esnsiOkatoComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.esnsiOkatoComboBox.Code = "";
             this.esnsiOkatoComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
@@ -344,7 +345,7 @@ namespace DatabaseToolSuite.Dialogs
             // 
             // esnsiAutokeyTextBox
             // 
-            this.esnsiAutokeyTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.esnsiAutokeyTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.esnsiAutokeyTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.esnsiAutokeyTextBox.Location = new System.Drawing.Point(379, 396);
@@ -427,6 +428,6 @@ namespace DatabaseToolSuite.Dialogs
             this.PerformLayout();
 
         }
-                
+
     }
 }
