@@ -1,4 +1,5 @@
 ﻿using DatabaseToolSuite.Dialogs;
+using DatabaseToolSuite.Repositoryes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,215 +8,213 @@ using System.Windows.Forms;
 
 namespace DatabaseToolSuite.Utils.Dialogs
 {
-    public partial class ImportDialog : Form
-    {
-        const string HEADER = "id;Наименование прокуратуры (SV-0001);REGION;Телефон канцелярии (SV-0004);Электронный адрес канцелярии(SV-0005);Адрес приемной(SV-0006);OKATO;CODE;autokey;version";
+	public partial class ImportDialog : Form
+	{
+		private const string HEADER = "id;Наименование прокуратуры (SV-0001);REGION;Телефон канцелярии (SV-0004);Электронный адрес канцелярии(SV-0005);Адрес приемной(SV-0006);OKATO;CODE;autokey;version";
 
-        List<NoteFgisEsnsi> existsNotes;
+		private List<NoteFgisEsnsi> existsNotes;
 
-        public ImportDialog()
-        {
-            existsNotes = new List<NoteFgisEsnsi>();
+		public ImportDialog()
+		{
+			existsNotes = new List<NoteFgisEsnsi>();
 
-            InitializeComponent();
-        }
+			InitializeComponent();
+		}
 
-        private void openFilesButton_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Multiselect = false;
+		private void openFilesButton_Click(object sender, EventArgs e)
+		{
+			OpenFileDialog dialog = new OpenFileDialog();
+			dialog.Multiselect = false;
 
-            if (dialog.ShowDialog(this) != DialogResult.OK) return;
+			if (dialog.ShowDialog(this) != DialogResult.OK) return;
 
-            existsNotes.Clear();
+			existsNotes.Clear();
 
-            System.IO.StreamReader reader = new System.IO.StreamReader(dialog.FileName, Encoding.Default);
-            reader.ReadLine();
-            while (!reader.EndOfStream)
-            {
-                string line = reader.ReadLine();
-                string[] split = line.Split(new string[] { ";" }, StringSplitOptions.None);
+			System.IO.StreamReader reader = new System.IO.StreamReader(dialog.FileName, Encoding.Default);
+			reader.ReadLine();
+			while (!reader.EndOfStream)
+			{
+				string line = reader.ReadLine();
+				string[] split = line.Split(new string[] { ";" }, StringSplitOptions.None);
 
-                NoteFgisEsnsi note = new NoteFgisEsnsi(
-                    id: long.Parse(split[0]),
-                    name: split[1],
-                    region: split[2],
-                    phone: split[3],
-                    email: split[4],
-                    address: split[5],
-                    okato: short.Parse(split[6]),
-                    code: long.Parse(split[7]),
-                    autokey: split[8],
-                    editDate: DateTime.Today);
+				NoteFgisEsnsi note = new NoteFgisEsnsi(
+					id: long.Parse(split[0]),
+					name: split[1],
+					region: split[2],
+					phone: split[3],
+					email: split[4],
+					address: split[5],
+					okato: short.Parse(split[6]),
+					code: long.Parse(split[7]),
+					autokey: split[8],
+					editDate: DateTime.Today);
 
-                if (split.Length == 10)
-                    note.Version = long.Parse(split[9]);
-                
-                    existsNotes.Add(note);
-            }
-            reader.Close();
-            MessageBox.Show("Загружено " + existsNotes.Count + " записей");
+				if (split.Length == 10)
+					note.Version = long.Parse(split[9]);
 
-            foreach (NoteFgisEsnsi note in existsNotes)
-            {
-                ListViewItem item = listView1.Items.Add(note.Name);
-                item.Tag = note;
-                item.SubItems.Add(note.Region);
-                item.SubItems.Add(note.Address);
-            }
-        }
+				existsNotes.Add(note);
+			}
+			reader.Close();
+			MessageBox.Show("Загружено " + existsNotes.Count + " записей");
 
-        private void selectOrganizationButton_Click(object sender, EventArgs e)
-        {
-            SelectOrganizationDialog dialog = new SelectOrganizationDialog(Services.MasterDataSystem.DataSet);
-            if (listView1.SelectedItems.Count > 0)
-            {
-                NoteFgisEsnsi note = (NoteFgisEsnsi)listView1.SelectedItems[0].Tag;
-                dialog.FilterAuthority = 20;
-                dialog.FilterName = note.Name;
+			foreach (NoteFgisEsnsi note in existsNotes)
+			{
+				ListViewItem item = listView1.Items.Add(note.Name);
+				item.Tag = note;
+				item.SubItems.Add(note.Region);
+				item.SubItems.Add(note.Address);
+			}
+		}
 
-                if (dialog.ShowDialog(this) == DialogResult.OK)
-                {
-                    try
-                    {
-                        note.Version = dialog.DataRow.version;
-                        Services.MasterDataSystem.CreateFgisEsnsiNote(dialog.DataRow.version, note.Okato, note.Phone, note.Email, note.Address, note.Okato, note.Code, note.Autokey, note.Id);
-                        listView1.SelectedItems[0].Remove();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
-            }            
-        }
+		private void selectOrganizationButton_Click(object sender, EventArgs e)
+		{
+			SelectOrganizationDialog dialog = new SelectOrganizationDialog(Services.MasterDataSystem.DataSet);
+			if (listView1.SelectedItems.Count > 0)
+			{
+				NoteFgisEsnsi note = (NoteFgisEsnsi)listView1.SelectedItems[0].Tag;
+				dialog.FilterAuthority = 20;
+				dialog.FilterName = note.Name;
 
-        private void autoButton_Click(object sender, EventArgs e)
-        {
-            
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Multiselect = false;
+				if (dialog.ShowDialog(this) == DialogResult.OK)
+				{
+					try
+					{
+						note.Version = dialog.DataRow.version;
+						Services.MasterDataSystem.CreateFgisEsnsiNote(dialog.DataRow.version, note.Okato, note.Phone, note.Email, note.Address, note.Okato, note.Code, note.Autokey, note.Id);
+						listView1.SelectedItems[0].Remove();
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show(ex.Message);
+					}
+				}
+			}
+		}
 
-            if (dialog.ShowDialog(this) != DialogResult.OK) return;
+		private void autoButton_Click(object sender, EventArgs e)
+		{
+			OpenFileDialog dialog = new OpenFileDialog();
+			dialog.Multiselect = false;
 
-            existsNotes.Clear();
-            int adding = 0;
+			if (dialog.ShowDialog(this) != DialogResult.OK) return;
 
-            System.IO.StreamReader reader = new System.IO.StreamReader(dialog.FileName, Encoding.Default);
-            reader.ReadLine();
-            while (!reader.EndOfStream)
-            {
-                string line = reader.ReadLine();
-                string[] split = line.Split(new string[] { ";" }, StringSplitOptions.None);
+			existsNotes.Clear();
+			int adding = 0;
 
-                NoteFgisEsnsi note = new NoteFgisEsnsi(
-                    id: long.Parse(split[0]), 
-                    name: split[1], 
-                    region: split[2], 
-                    phone: split[3], 
-                    email: split[4], 
-                    address: split[5], 
-                    okato: short.Parse(split[6]), 
-                    code: long.Parse( split[7]), 
-                    autokey: split[8],
-                    editDate: DateTime.Today);
+			System.IO.StreamReader reader = new System.IO.StreamReader(dialog.FileName, Encoding.Default);
+			reader.ReadLine();
+			while (!reader.EndOfStream)
+			{
+				string line = reader.ReadLine();
+				string[] split = line.Split(new string[] { ";" }, StringSplitOptions.None);
 
-                IEnumerable<long> versions = Services.MasterDataSystem.DataSet.gasps.GetVersionFromNameOkato(note.Name1, note.Name2, note.Name3, note.Okato.ToString("00"));
-                foreach (long v in versions)
-                {
-                    if (!Services.MasterDataSystem.DataSet.fgis_esnsi.ExistsRow(v))
-                    {
-                        Services.MasterDataSystem.CreateFgisEsnsiNote(v, note.Okato, note.Phone, note.Email, note.Address, note.Okato, note.Code, note.Autokey, note.Id);
-                        adding += 1;
-                    }
-                }
+				NoteFgisEsnsi note = new NoteFgisEsnsi(
+					id: long.Parse(split[0]),
+					name: split[1],
+					region: split[2],
+					phone: split[3],
+					email: split[4],
+					address: split[5],
+					okato: short.Parse(split[6]),
+					code: long.Parse(split[7]),
+					autokey: split[8],
+					editDate: DateTime.Today);
 
-                if (versions.Count() == 0)
-                {
-                   existsNotes.Add(note);
-                }
-            }
-            reader.Close();
-            MessageBox.Show("Добавлено " + adding + " записей");
+				IEnumerable<long> versions = Services.MasterDataSystem.DataSet.gasps.GetVersionFromNameOkato(note.Name1, note.Name2, note.Name3, note.Okato.ToString("00"));
+				foreach (long v in versions)
+				{
+					if (!Services.MasterDataSystem.DataSet.fgis_esnsi.Exists(v))
+					{
+						Services.MasterDataSystem.CreateFgisEsnsiNote(v, note.Okato, note.Phone, note.Email, note.Address, note.Okato, note.Code, note.Autokey, note.Id);
+						adding += 1;
+					}
+				}
 
-            foreach (NoteFgisEsnsi note in existsNotes)
-            {
-                ListViewItem item = listView1.Items.Add(note.Name);
-                item.Tag = note;
-                item.SubItems.Add(note.Region);
-                item.SubItems.Add(note.Address);
-            }
-        }
+				if (versions.Count() == 0)
+				{
+					existsNotes.Add(note);
+				}
+			}
+			reader.Close();
+			MessageBox.Show("Добавлено " + adding + " записей");
 
+			foreach (NoteFgisEsnsi note in existsNotes)
+			{
+				ListViewItem item = listView1.Items.Add(note.Name);
+				item.Tag = note;
+				item.SubItems.Add(note.Region);
+				item.SubItems.Add(note.Address);
+			}
+		}
 
-        public class NoteFgisEsnsi: Repositoryes.RepositoryDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization
-        {
-            public new long Version
-            {
-                get { return base.Version; }
-                set { base.Version = value; }
-            }
+		internal class NoteFgisEsnsi : MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization
+		{
+			public new long Version
+			{
+				get { return base.Version; }
+				set { base.Version = value; }
+			}
 
-            public string Name1 { get; private set; }
-            public string Name2 { get; private set; }
-            public string Name3 { get; private set; }
+			public string Name1 { get; private set; }
+			public string Name2 { get; private set; }
+			public string Name3 { get; private set; }
 
-            public NoteFgisEsnsi(
-                   long id,
-                   string name,
-                   string region,
-                   string phone,
-                   string email,
-                   string address,
-                   short okato,
-                   long code,
-                   string autokey,
-                   DateTime editDate): 
-                base(
-                    version: -1, 
-                    id: id, 
-                    name: name, 
-                    region: region, 
-                    phone: phone, 
-                    email: email, 
-                    address: address, 
-                    okato: okato, 
-                    code: code, 
-                    autokey: autokey,
-                    editDate: editDate)
-            {
-                Name1 = name;
-                Name2 = name.Replace(" г. ", " города ");
-                Name3 = name.Replace(" города ", " г. ");
-            }
-        }
+			public NoteFgisEsnsi(
+				   long id,
+				   string name,
+				   string region,
+				   string phone,
+				   string email,
+				   string address,
+				   short okato,
+				   long code,
+				   string autokey,
+				   DateTime editDate) :
+				base(
+					version: -1,
+					id: id,
+					name: name,
+					region: region,
+					phone: phone,
+					email: email,
+					address: address,
+					okato: okato,
+					code: code,
+					autokey: autokey,
+					editDate: editDate)
+			{
+				Name1 = name;
+				Name2 = name.Replace(" г. ", " города ");
+				Name3 = name.Replace(" города ", " г. ");
+			}
+		}
 
-        private void saveButton_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog dialog = new SaveFileDialog();
+		private void saveButton_Click(object sender, EventArgs e)
+		{
+			SaveFileDialog dialog = new SaveFileDialog();
 
-            if (dialog.ShowDialog(this) == DialogResult.OK)
-            {
-                System.IO.StreamWriter writer = new System.IO.StreamWriter(dialog.FileName, false, Encoding.Default);
+			if (dialog.ShowDialog(this) == DialogResult.OK)
+			{
+				System.IO.StreamWriter writer = new System.IO.StreamWriter(dialog.FileName, false, Encoding.Default);
 
-                writer.WriteLine(HEADER);
+				writer.WriteLine(HEADER);
 
-                foreach (NoteFgisEsnsi note in existsNotes)
-                {
-                    writer.WriteLine(
-                        note.Id + ";" +
-                        note.Name + ";" +
-                        note.Region + ";" +
-                        note.Phone + ";" +
-                        note.Email + ";" +
-                        note.Address + ";" +
-                        note.Okato + ";" +
-                        note.Code + ";" +
-                        note.Autokey + ";" + 
-                        note.Version);
-                }
-                writer.Close();
-            }
-        }
-    }
+				foreach (NoteFgisEsnsi note in existsNotes)
+				{
+					writer.WriteLine(
+						note.Id + ";" +
+						note.Name + ";" +
+						note.Region + ";" +
+						note.Phone + ";" +
+						note.Email + ";" +
+						note.Address + ";" +
+						note.Okato + ";" +
+						note.Code + ";" +
+						note.Autokey + ";" +
+						note.Version);
+				}
+				writer.Close();
+			}
+		}
+	}
 }

@@ -1,38 +1,39 @@
-﻿using DatabaseToolSuite.Repositoryes.Dto;
+﻿using DatabaseToolSuite.Repositoryes;
+using DatabaseToolSuite.Repositoryes.Dto;
 
 namespace DatabaseToolSuite.Controls
 {
-    public class OkatoComboBox : ComboControl<OkatoDto>
-    {
-        #region Initialize
+	internal class OkatoComboBox : ComboControl<OkatoDto>
+	{
+		#region Initialize
 
-        public OkatoComboBox() : base() { }
+		public OkatoComboBox() : base()
+		{
+		}
 
-        public void InitializeSource(Repositoryes.RepositoryDataSet.okatoDataTable table)
-        {
-            BeginUpdate();
-            Items.Clear();
-            foreach (Repositoryes.RepositoryDataSet.okatoRow row in table.Rows)
-            {
-                Add(new OkatoDto(row));
-            }
-            EndUpdate();
-        }
+		public void InitializeSource(MainDataSet.okatoDataTable table)
+		{
+			BeginUpdate();
+			Items.Clear();
+			foreach (MainDataSet.okatoRow row in table.Rows)
+			{
+				Add(new OkatoDto(row));
+			}
+			EndUpdate();
+		}
 
-        #endregion
+		#endregion Initialize
 
-
-        public OkatoDto GetItemFromTer(int ter)
-        {
-            foreach (OkatoDto i in Items)
-            {
-                if (i.Ter == ter && i.Kod1 == 0)
-                {
-                    return i;
-                }
-            }
-            return default(OkatoDto);
-        }
-    }
+		public OkatoDto GetItemFromTer(int ter)
+		{
+			foreach (OkatoDto i in Items)
+			{
+				if (i.Ter == ter && i.Kod1 == 0)
+				{
+					return i;
+				}
+			}
+			return default(OkatoDto);
+		}
+	}
 }
-

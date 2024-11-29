@@ -1,25 +1,29 @@
-﻿using DatabaseToolSuite.Repositoryes.Dto;
+﻿using DatabaseToolSuite.Repositoryes;
+using DatabaseToolSuite.Repositoryes.Dto;
 using System.Windows.Forms.Design;
 
 namespace DatabaseToolSuite.Controls
 {
-    [ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.All)]
-    public class AuthorityComboBox : ComboControl<AuthorityDto>
-    {
-        #region Initialize
-        public AuthorityComboBox() : base() { }
+	[ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.All)]
+	internal class AuthorityComboBox : ComboControl<AuthorityDto>
+	{
+		#region Initialize
 
-        public void InitializeSource(Repositoryes.RepositoryDataSet.authorityDataTable table)
-        {
-            BeginUpdate();
-            Items.Clear();
-            foreach (Repositoryes.RepositoryDataSet.authorityRow row in table.Rows)
-            {
-                Add(new AuthorityDto(row));
-            }
-            EndUpdate();
-        }
+		public AuthorityComboBox() : base()
+		{
+		}
 
-        #endregion
-    }
+		public void InitializeSource(MainDataSet.authorityDataTable table)
+		{
+			BeginUpdate();
+			Items.Clear();
+			foreach (MainDataSet.authorityRow row in table.Rows)
+			{
+				Add(new AuthorityDto(row));
+			}
+			EndUpdate();
+		}
+
+		#endregion Initialize
+	}
 }
