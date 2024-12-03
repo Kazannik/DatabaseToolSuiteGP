@@ -86,6 +86,7 @@
 			this.mnuToolsFillLogEditDateErvk = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem20 = new System.Windows.Forms.ToolStripSeparator();
 			this.mnuToolsInitializeRtkTables = new System.Windows.Forms.ToolStripMenuItem();
+			this.mnuToolsFillRtkUrpTable = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuToolsExpLawAgenceEdit = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuToolsTableEdit = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
@@ -101,14 +102,11 @@
 			this.filterFgisEsnsiOnlyRadioButton = new System.Windows.Forms.RadioButton();
 			this.filterAllRadioButton = new System.Windows.Forms.RadioButton();
 			this.cleanFilterButton = new System.Windows.Forms.Button();
-			this.filterCodeNumericTextBox = new DatabaseToolSuite.Controls.NumericTextBox(this.components);
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.filterNameTextBox = new System.Windows.Forms.TextBox();
 			this.filterLockCodeViewCheckBox = new System.Windows.Forms.CheckBox();
 			this.okatoLabel = new System.Windows.Forms.Label();
-			this.filterAuthorityComboBox = new DatabaseToolSuite.Controls.AuthorityComboBox();
-			this.filterOkatoComboBox = new DatabaseToolSuite.Controls.OkatoComboBox();
 			this.authorityLabel = new System.Windows.Forms.Label();
 			this.contextMenuTable = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.mnuContextNewOrganization = new System.Windows.Forms.ToolStripMenuItem();
@@ -154,7 +152,9 @@
 			this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
 			this.mnuTableRefreshButton = new System.Windows.Forms.ToolStripButton();
 			this.gaspsListView = new DatabaseToolSuite.Controls.GaspsListView();
-			this.mnuToolsFillRtkUrpTable = new System.Windows.Forms.ToolStripMenuItem();
+			this.filterCodeNumericTextBox = new DatabaseToolSuite.Controls.NumericTextBox(this.components);
+			this.filterAuthorityComboBox = new DatabaseToolSuite.Controls.AuthorityComboBox();
+			this.filterOkatoComboBox = new DatabaseToolSuite.Controls.OkatoComboBox();
 			this.mainMenuStrip.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.filterPanel.SuspendLayout();
@@ -618,19 +618,30 @@
 			// 
 			this.toolStripMenuItem20.Name = "toolStripMenuItem20";
 			this.toolStripMenuItem20.Size = new System.Drawing.Size(741, 6);
+			this.toolStripMenuItem20.Visible = false;
 			// 
 			// mnuToolsInitializeRtkTables
 			// 
 			this.mnuToolsInitializeRtkTables.Name = "mnuToolsInitializeRtkTables";
 			this.mnuToolsInitializeRtkTables.Size = new System.Drawing.Size(744, 38);
-			this.mnuToolsInitializeRtkTables.Text = "mnuToolsInitializeRtkTables";
+			this.mnuToolsInitializeRtkTables.Text = "Инициализация таблиц в основной базе данных";
+			this.mnuToolsInitializeRtkTables.Visible = false;
 			this.mnuToolsInitializeRtkTables.Click += new System.EventHandler(this.ToolsInitializeRtkTables_Click);
+			// 
+			// mnuToolsFillRtkUrpTable
+			// 
+			this.mnuToolsFillRtkUrpTable.Name = "mnuToolsFillRtkUrpTable";
+			this.mnuToolsFillRtkUrpTable.Size = new System.Drawing.Size(744, 38);
+			this.mnuToolsFillRtkUrpTable.Text = "Автодополнение основной базы сведениями УРП ГАС ПС";
+			this.mnuToolsFillRtkUrpTable.Visible = false;
+			this.mnuToolsFillRtkUrpTable.Click += new System.EventHandler(this.ToolsFillRtkUrpTable_Click);
 			// 
 			// mnuToolsExpLawAgenceEdit
 			// 
 			this.mnuToolsExpLawAgenceEdit.Name = "mnuToolsExpLawAgenceEdit";
 			this.mnuToolsExpLawAgenceEdit.Size = new System.Drawing.Size(594, 38);
 			this.mnuToolsExpLawAgenceEdit.Text = "mnuToolsExpLawAgenceEdit";
+			this.mnuToolsExpLawAgenceEdit.Visible = false;
 			this.mnuToolsExpLawAgenceEdit.Click += new System.EventHandler(this.ToolsExpLawAgenceEdit_Click);
 			// 
 			// mnuToolsTableEdit
@@ -638,6 +649,7 @@
 			this.mnuToolsTableEdit.Name = "mnuToolsTableEdit";
 			this.mnuToolsTableEdit.Size = new System.Drawing.Size(594, 38);
 			this.mnuToolsTableEdit.Text = "mnuToolsTableEdit";
+			this.mnuToolsTableEdit.Visible = false;
 			this.mnuToolsTableEdit.Click += new System.EventHandler(this.ToolsTableEdit_Click);
 			// 
 			// mnuHelp
@@ -786,15 +798,6 @@
 			this.cleanFilterButton.Text = "Очистить";
 			this.cleanFilterButton.Click += new System.EventHandler(this.CleanFilterButton_Click);
 			// 
-			// filterCodeNumericTextBox
-			// 
-			this.filterCodeNumericTextBox.Location = new System.Drawing.Point(9, 142);
-			this.filterCodeNumericTextBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.filterCodeNumericTextBox.Name = "filterCodeNumericTextBox";
-			this.filterCodeNumericTextBox.Size = new System.Drawing.Size(196, 31);
-			this.filterCodeNumericTextBox.TabIndex = 6;
-			this.filterCodeNumericTextBox.TextChanged += new System.EventHandler(this.Filter_ParametersChanged);
-			// 
 			// label1
 			// 
 			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -850,48 +853,6 @@
 			this.okatoLabel.Size = new System.Drawing.Size(135, 25);
 			this.okatoLabel.TabIndex = 35;
 			this.okatoLabel.Text = "Код ОКАТО:";
-			// 
-			// filterAuthorityComboBox
-			// 
-			this.filterAuthorityComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.filterAuthorityComboBox.Code = "";
-			this.filterAuthorityComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.filterAuthorityComboBox.DropDownHeight = 584;
-			this.filterAuthorityComboBox.DropDownWidth = 80;
-			this.filterAuthorityComboBox.FormattingEnabled = true;
-			this.filterAuthorityComboBox.Id = ((long)(-1));
-			this.filterAuthorityComboBox.IntegralHeight = false;
-			this.filterAuthorityComboBox.ItemHeight = 29;
-			this.filterAuthorityComboBox.Location = new System.Drawing.Point(134, 66);
-			this.filterAuthorityComboBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.filterAuthorityComboBox.MaxDropDownItems = 20;
-			this.filterAuthorityComboBox.Name = "filterAuthorityComboBox";
-			this.filterAuthorityComboBox.SelectedItem = null;
-			this.filterAuthorityComboBox.Size = new System.Drawing.Size(409, 35);
-			this.filterAuthorityComboBox.TabIndex = 4;
-			this.filterAuthorityComboBox.SelectedIndexChanged += new System.EventHandler(this.Filter_ParametersChanged);
-			// 
-			// filterOkatoComboBox
-			// 
-			this.filterOkatoComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.filterOkatoComboBox.Code = "";
-			this.filterOkatoComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.filterOkatoComboBox.DropDownHeight = 584;
-			this.filterOkatoComboBox.DropDownWidth = 80;
-			this.filterOkatoComboBox.FormattingEnabled = true;
-			this.filterOkatoComboBox.Id = ((long)(-1));
-			this.filterOkatoComboBox.IntegralHeight = false;
-			this.filterOkatoComboBox.ItemHeight = 29;
-			this.filterOkatoComboBox.Location = new System.Drawing.Point(134, 26);
-			this.filterOkatoComboBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.filterOkatoComboBox.MaxDropDownItems = 20;
-			this.filterOkatoComboBox.Name = "filterOkatoComboBox";
-			this.filterOkatoComboBox.SelectedItem = null;
-			this.filterOkatoComboBox.Size = new System.Drawing.Size(730, 35);
-			this.filterOkatoComboBox.TabIndex = 3;
-			this.filterOkatoComboBox.SelectedIndexChanged += new System.EventHandler(this.Filter_ParametersChanged);
 			// 
 			// authorityLabel
 			// 
@@ -1297,12 +1258,56 @@
 			this.gaspsListView.ItemMouseDoubleClick += new System.EventHandler<DatabaseToolSuite.Controls.GaspsListViewEventArgs>(this.GaspsListView_ItemMouseDoubleClick);
 			this.gaspsListView.GaspsListViewCompleted += new DatabaseToolSuite.Controls.GaspsListView.GaspsListViewCompletedEventHandler(this.GaspsListView_GaspsListViewCompleted);
 			// 
-			// mnuToolsFillRtkUrpTable
+			// filterCodeNumericTextBox
 			// 
-			this.mnuToolsFillRtkUrpTable.Name = "mnuToolsFillRtkUrpTable";
-			this.mnuToolsFillRtkUrpTable.Size = new System.Drawing.Size(744, 38);
-			this.mnuToolsFillRtkUrpTable.Text = "mnuToolsFillRtkUrpTable";
-			this.mnuToolsFillRtkUrpTable.Click += new System.EventHandler(this.ToolsFillRtkUrpTable_Click);
+			this.filterCodeNumericTextBox.Location = new System.Drawing.Point(9, 142);
+			this.filterCodeNumericTextBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.filterCodeNumericTextBox.Name = "filterCodeNumericTextBox";
+			this.filterCodeNumericTextBox.Size = new System.Drawing.Size(196, 31);
+			this.filterCodeNumericTextBox.TabIndex = 6;
+			this.filterCodeNumericTextBox.TextChanged += new System.EventHandler(this.Filter_ParametersChanged);
+			// 
+			// filterAuthorityComboBox
+			// 
+			this.filterAuthorityComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.filterAuthorityComboBox.Code = "";
+			this.filterAuthorityComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+			this.filterAuthorityComboBox.DropDownHeight = 424;
+			this.filterAuthorityComboBox.DropDownWidth = 80;
+			this.filterAuthorityComboBox.FormattingEnabled = true;
+			this.filterAuthorityComboBox.Id = ((long)(-1));
+			this.filterAuthorityComboBox.IntegralHeight = false;
+			this.filterAuthorityComboBox.ItemHeight = 21;
+			this.filterAuthorityComboBox.Location = new System.Drawing.Point(134, 66);
+			this.filterAuthorityComboBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.filterAuthorityComboBox.MaxDropDownItems = 20;
+			this.filterAuthorityComboBox.Name = "filterAuthorityComboBox";
+			this.filterAuthorityComboBox.SelectedItem = null;
+			this.filterAuthorityComboBox.Size = new System.Drawing.Size(409, 27);
+			this.filterAuthorityComboBox.TabIndex = 4;
+			this.filterAuthorityComboBox.SelectedIndexChanged += new System.EventHandler(this.Filter_ParametersChanged);
+			// 
+			// filterOkatoComboBox
+			// 
+			this.filterOkatoComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.filterOkatoComboBox.Code = "";
+			this.filterOkatoComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+			this.filterOkatoComboBox.DropDownHeight = 424;
+			this.filterOkatoComboBox.DropDownWidth = 80;
+			this.filterOkatoComboBox.FormattingEnabled = true;
+			this.filterOkatoComboBox.Id = ((long)(-1));
+			this.filterOkatoComboBox.IntegralHeight = false;
+			this.filterOkatoComboBox.ItemHeight = 21;
+			this.filterOkatoComboBox.Location = new System.Drawing.Point(134, 26);
+			this.filterOkatoComboBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.filterOkatoComboBox.MaxDropDownItems = 20;
+			this.filterOkatoComboBox.Name = "filterOkatoComboBox";
+			this.filterOkatoComboBox.SelectedItem = null;
+			this.filterOkatoComboBox.Size = new System.Drawing.Size(730, 27);
+			this.filterOkatoComboBox.TabIndex = 3;
+			this.filterOkatoComboBox.SelectedIndexChanged += new System.EventHandler(this.Filter_ParametersChanged);
 			// 
 			// AppForm
 			// 

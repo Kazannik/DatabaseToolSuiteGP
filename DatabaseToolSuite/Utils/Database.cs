@@ -1,159 +1,165 @@
-﻿using DatabaseToolSuite.Services;
-using System;
-
-namespace DatabaseToolSuite.Utils
+﻿namespace DatabaseToolSuite.Utils
 {
+	using DatabaseToolSuite.Services;
+	using System;
+
 	/// <summary>
-	/// Класс для реализации временных функций.
+	/// Класс для реализации временных функций
 	/// </summary>
 	internal static class Database
 	{
+		/// <summary>
+		/// Defines the allowbleHierarchyArray
+		/// </summary>
 		private static readonly LAW_AGENCY_ALLOWBLE_HIERARCHY[] allowbleHierarchyArray = new LAW_AGENCY_ALLOWBLE_HIERARCHY[]
 		{
 			new LAW_AGENCY_ALLOWBLE_HIERARCHY(2, 1),
 			new LAW_AGENCY_ALLOWBLE_HIERARCHY(3, 2),
 			new LAW_AGENCY_ALLOWBLE_HIERARCHY(4, 2),
 			new LAW_AGENCY_ALLOWBLE_HIERARCHY(5, 2),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(6,   2),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(7,   2),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(8,   2),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(9,   2),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(10,  1),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(11,  10),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(12,  1),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(13,  1),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(14,  12),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(14,  13),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(15,  1),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  1),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  2),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  3),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  4),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  5),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  6),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  7),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  8),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  9),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  10),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  11),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  12),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  13),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  14),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  15),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  17),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  18),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  19),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  20),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  21),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16,  22),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(17,  15),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  1),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  2),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  3),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  4),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  5),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  6),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  7),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  8),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  9),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  10),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  11),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  12),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  13),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  14),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  15),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  16),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  17),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  19),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  20),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  21),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18,  22),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  1),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  2),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  3),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  4),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  5),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  6),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  7),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  8),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  9),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  10),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  11),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  12),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  13),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  14),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  15),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  16),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  17),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  18),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  20),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  21),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19,  22),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  1),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  2),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  3),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  4),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  5),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  6),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  7),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  8),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  9),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  10),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  11),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  12),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  13),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  14),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  15),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  16),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  17),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  18),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  19),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  21),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20,  22),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  1),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  2),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  3),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  4),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  5),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  6),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  7),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  8),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  9),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  10),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  11),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  12),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  13),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  14),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  15),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  16),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  17),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  18),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  19),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  20),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21,  22),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  1),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  2),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  3),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  4),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  5),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  6),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  7),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  8),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  9),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  10),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  11),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  12),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  13),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  14),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  15),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  16),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  17),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  18),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  19),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  20),
-			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22,  21)
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(6, 2),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(7, 2),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(8, 2),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(9, 2),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(10, 1),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(11, 10),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(12, 1),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(13, 1),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(14, 12),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(14, 13),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(15, 1),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 1),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 2),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 3),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 4),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 5),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 6),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 7),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 8),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 9),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 10),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 11),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 12),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 13),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 14),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 15),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 17),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 18),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 19),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 20),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 21),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(16, 22),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(17, 15),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 1),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 2),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 3),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 4),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 5),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 6),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 7),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 8),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 9),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 10),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 11),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 12),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 13),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 14),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 15),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 16),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 17),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 19),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 20),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 21),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(18, 22),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 1),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 2),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 3),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 4),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 5),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 6),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 7),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 8),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 9),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 10),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 11),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 12),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 13),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 14),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 15),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 16),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 17),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 18),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 20),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 21),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(19, 22),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 1),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 2),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 3),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 4),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 5),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 6),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 7),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 8),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 9),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 10),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 11),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 12),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 13),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 14),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 15),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 16),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 17),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 18),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 19),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 21),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(20, 22),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 1),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 2),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 3),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 4),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 5),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 6),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 7),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 8),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 9),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 10),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 11),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 12),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 13),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 14),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 15),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 16),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 17),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 18),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 19),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 20),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(21, 22),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 1),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 2),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 3),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 4),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 5),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 6),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 7),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 8),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 9),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 10),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 11),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 12),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 13),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 14),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 15),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 16),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 17),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 18),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 19),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 20),
+			new LAW_AGENCY_ALLOWBLE_HIERARCHY(22, 21)
 		};
 
+		/// <summary>
+		/// Defines the territorialArray
+		/// </summary>
 		private static readonly SPECIAL_TERRITORIAL_CODE[] territorialArray = new SPECIAL_TERRITORIAL_CODE[]
 				{
 			new SPECIAL_TERRITORIAL_CODE(1, "Приволжская транспортная прокуратура"),
@@ -183,6 +189,9 @@ namespace DatabaseToolSuite.Utils
 			new SPECIAL_TERRITORIAL_CODE(98, "Уральская транспортная прокуратура")
 		};
 
+		/// <summary>
+		/// Defines the typesArray
+		/// </summary>
 		private static readonly LAW_AGENCY_TYPE[] typesArray = new LAW_AGENCY_TYPE[] {
 			new LAW_AGENCY_TYPE(1, "Генеральная прокуратура", true),
 			new LAW_AGENCY_TYPE(2, "Прокуратура субъекта", true),
@@ -274,7 +283,7 @@ namespace DatabaseToolSuite.Utils
 		}
 
 		/// <summary>
-		///  Автозаполнение сведений журнала редактирования базы ГАС ПС
+		/// Автозаполнение сведений журнала редактирования базы ГАС ПС
 		/// </summary>
 		public static void FillLogEditDateInGasps()
 		{
@@ -299,23 +308,29 @@ namespace DatabaseToolSuite.Utils
 		}
 
 		/// <summary>
-		///  Автодополнение основной базы сведениями УРП ГАС ПС.
+		/// Автодополнение основной базы сведениями УРП ГАС ПС
 		/// </summary>
 		public static void FillUrpInGasps()
 		{
+			Rtk.EntityCollection oktmo = Rtk.ConvertOktmo();
+			Rtk.EntityCollection authority = Rtk.ConvertAuthority();
+			Rtk.EntityCollection lawAgencyTypeAllowbleHierarchy = Rtk.ConvertLawAgencyTypeAllowbleHierarchy();
+			Rtk.EntityCollection lawAgencyTypes = Rtk.ConvertLawAgencyTypes();
+			Rtk.EntityCollection specialTerritorialCode = Rtk.ConvertSpecialTerritorialCode();
+
 			foreach (Repositoryes.MainDataSet.gaspsRow row in MasterDataSystem.DataSet.gasps.Rows)
 			{
 				if (row.authority_id == MasterDataSystem.PROSECUTOR_CODE
 					&& (row.date_end.Date > DateTime.Today && row.date_beg.Date <= DateTime.Today))
 				{
-					if (!MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Exists(row.version))
-						MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Create(row.version, row.name, row.okatoRow.export_id);
+					if (!MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Exists(gaspsVersion: row.version))
+						MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Create(gaspsVersion: row.version, shortName: row.name, oktmo: row.okatoRow.export_id);
 				}
 			}
 		}
 
 		/// <summary>
-		/// Инициализация таблиц для РТК в основной базе данных.
+		/// Инициализация таблиц для РТК в основной базе данных
 		/// </summary>
 		public static void InitializeTables()
 		{
@@ -339,7 +354,7 @@ namespace DatabaseToolSuite.Utils
 		}
 
 		/// <summary>
-		/// Автоматическая расстановка атрибута IsHead о наличии подчиненных прокуратур в таблице ЕРВК.
+		/// Автоматическая расстановка атрибута IsHead о наличии подчиненных прокуратур в таблице ЕРВК
 		/// </summary>
 		public static void SetIsHeadAttribute()
 		{
@@ -356,20 +371,44 @@ namespace DatabaseToolSuite.Utils
 			}
 		}
 
+		/// <summary>
+		/// Defines the <see cref="LAW_AGENCY_ALLOWBLE_HIERARCHY" />
+		/// </summary>
 		private class LAW_AGENCY_ALLOWBLE_HIERARCHY
 		{
+			/// <summary>
+			/// Initializes a new instance of the <see cref="LAW_AGENCY_ALLOWBLE_HIERARCHY"/> class.
+			/// </summary>
+			/// <param name="LAW_AGENCY_TYPE">The LAW_AGENCY_TYPE<see cref="long"/></param>
+			/// <param name="ALLOWBLE_HIERARCHY">The ALLOWBLE_HIERARCHY<see cref="long"/></param>
 			public LAW_AGENCY_ALLOWBLE_HIERARCHY(long LAW_AGENCY_TYPE, long ALLOWBLE_HIERARCHY)
 			{
 				this.LAW_AGENCY_TYPE = LAW_AGENCY_TYPE;
 				this.ALLOWBLE_HIERARCHY = ALLOWBLE_HIERARCHY;
 			}
 
+			/// <summary>
+			/// Gets the ALLOWBLE_HIERARCHY
+			/// </summary>
 			public long ALLOWBLE_HIERARCHY { get; }
+
+			/// <summary>
+			/// Gets the LAW_AGENCY_TYPE
+			/// </summary>
 			public long LAW_AGENCY_TYPE { get; }
 		}
 
+		/// <summary>
+		/// Defines the <see cref="LAW_AGENCY_TYPE" />
+		/// </summary>
 		private class LAW_AGENCY_TYPE
 		{
+			/// <summary>
+			/// Initializes a new instance of the <see cref="LAW_AGENCY_TYPE"/> class.
+			/// </summary>
+			/// <param name="ID">The ID<see cref="long"/></param>
+			/// <param name="NAME">The NAME<see cref="string"/></param>
+			/// <param name="MANDATORY_CODE">The MANDATORY_CODE<see cref="bool"/></param>
 			public LAW_AGENCY_TYPE(long ID, string NAME, bool MANDATORY_CODE)
 			{
 				this.ID = ID;
@@ -377,23 +416,46 @@ namespace DatabaseToolSuite.Utils
 				this.NAME = NAME;
 			}
 
+			/// <summary>
+			/// Gets the ID
+			/// </summary>
 			public long ID { get; }
 
+			/// <summary>
+			/// Gets a value indicating whether MANDATORY_CODE
+			/// </summary>
 			public bool MANDATORY_CODE { get; }
 
+			/// <summary>
+			/// Gets the NAME
+			/// </summary>
 			public string NAME { get; }
 		}
 
+		/// <summary>
+		/// Defines the <see cref="SPECIAL_TERRITORIAL_CODE" />
+		/// </summary>
 		private class SPECIAL_TERRITORIAL_CODE
 		{
+			/// <summary>
+			/// Initializes a new instance of the <see cref="SPECIAL_TERRITORIAL_CODE"/> class.
+			/// </summary>
+			/// <param name="ID">The ID<see cref="long"/></param>
+			/// <param name="NAME">The NAME<see cref="string"/></param>
 			public SPECIAL_TERRITORIAL_CODE(long ID, string NAME)
 			{
 				this.ID = ID;
 				this.NAME = NAME;
 			}
 
+			/// <summary>
+			/// Gets the ID
+			/// </summary>
 			public long ID { get; }
 
+			/// <summary>
+			/// Gets the NAME
+			/// </summary>
 			public string NAME { get; }
 		}
 	}

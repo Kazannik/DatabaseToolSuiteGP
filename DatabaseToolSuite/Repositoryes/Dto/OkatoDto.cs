@@ -69,6 +69,8 @@ namespace DatabaseToolSuite.Repositoryes.Dto
 			genitive: (row.IsgenitiveNull() ? string.Empty : row.genitive),
 			ssrf: (row.IsssrfNull() ? string.Empty : row.ssrf)
 			)
-		{ }
+		{
+			Id = row.export_id;
+		}
 	}
 }

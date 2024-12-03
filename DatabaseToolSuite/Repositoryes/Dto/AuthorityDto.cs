@@ -29,6 +29,7 @@ namespace DatabaseToolSuite.Repositoryes.Dto
 
 		public AuthorityDto(MainDataSet.authorityRow row) : this(code: row.code, name: row.name)
 		{
+			Id = row.id;
 		}
 	}
 }

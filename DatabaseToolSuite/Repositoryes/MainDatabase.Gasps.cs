@@ -291,7 +291,7 @@ namespace DatabaseToolSuite.Repositoryes
 					long code = 1 + this.AsEnumerable()
 						.Where(x => x.RowState != DataRowState.Deleted)
 						.Where(r => r.authority_id == authority && r.okato_code == okato)
-						.Max(r => long.Parse(r.code.Substring(leftCode.Length)));
+						.Max(r => r.IscodeNull() ? 0 : long.Parse(r.code.Substring(leftCode.Length)));
 
 					if (code.ToString().Length > rightCodeFormat.Length)
 					{

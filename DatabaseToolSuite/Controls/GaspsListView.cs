@@ -351,7 +351,7 @@ namespace DatabaseToolSuite.Controls
 			long version = itemsCollection[selectedIndex].Version;
 			itemsCollection[selectedIndex] = _dataSet.GetViewUrpOrganization(version);
 			ViewUrpOrganization organization = itemsCollection[selectedIndex];
-			ListViewItem item = itemsCache[selectedIndex - firstItemIndex];
+			ListViewItem item = selectedIndex >= firstItemIndex ? itemsCache[selectedIndex - firstItemIndex] : itemsCache[0];
 
 			if (organization.Begin.Date > DateTime.Today)
 				item.ImageIndex = 2;

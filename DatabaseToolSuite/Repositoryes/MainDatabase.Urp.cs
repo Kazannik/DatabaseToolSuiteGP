@@ -45,9 +45,9 @@ namespace DatabaseToolSuite.Repositoryes
 				return (urpRow)this.Rows.Add(new object[] {
 					gaspsVersion,
 					shortName, // SHORT_NAME
-					true, // DOESNT_CREATE_CARD
-					true, // DOESNT_SIGN_REPORT
-					true, // DOESNT_CONSOLIDATE_CHILD
+					false, // DOESNT_CREATE_CARD
+					false, // DOESNT_SIGN_REPORT
+					false, // DOESNT_CONSOLIDATE_CHILD
 					0, // AGENCY_RECEIVING_REPORT
 					0, // ORD
 					0, // VED_CODE

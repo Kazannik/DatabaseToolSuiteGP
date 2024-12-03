@@ -1,5 +1,4 @@
-﻿using Microsoft.Office.Interop.Excel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace DatabaseToolSuite.Services
@@ -122,6 +121,27 @@ namespace DatabaseToolSuite.Services
 						   export_version: null
 						   );
 
+			long id = DataSet.EXP_LAW_AGENCY_URP.GetNextId();
+			long oktmo = 0;
+			if (DataSet.okato.ExistsCode(okato))
+			{
+				oktmo = DataSet.okato.Get(okato).export_id;
+			}
+			
+			CreateUrpNote(
+					version: version,
+					shortName: name,
+					doesntCreateCard: false,
+					doesntSingReport: false,
+					doesntConsolidateChild: false,
+					agencyReceivingReport: 0,
+					ord: 0,
+					vedCode: "0",
+					id: id,
+					oktmoLocId: oktmo,
+					lawAgencyType: 0,
+					specialTerritorialCode: 0);
+
 			return newRow;
 		}
 
@@ -179,6 +199,22 @@ namespace DatabaseToolSuite.Services
 							   export_key: null,
 							   export_version: null
 							   );
+
+				long id = DataSet.EXP_LAW_AGENCY_URP.GetNextId();
+				CreateUrpNote(
+					version: version,
+					shortName: name,
+					doesntCreateCard: false,
+					doesntSingReport: false,
+					doesntConsolidateChild: false,
+					agencyReceivingReport: 0,
+					ord: 0,
+					vedCode: "0",
+					id: id,
+					oktmoLocId: parentRow.okatoRow.export_id,
+					lawAgencyType: 0,
+					specialTerritorialCode: 0);
+
 				return newRow;
 			}
 		}
@@ -244,7 +280,12 @@ namespace DatabaseToolSuite.Services
 					DataSet.ervk.Get(modifedRow.version).isActive = false;
 					DataSet.ervk.Get(modifedRow.version).logEditDate = DateTime.Now;
 				}
+				if (DataSet.EXP_LAW_AGENCY_URP.Exists(modifedRow.version))
+				{
+					CloneUrpNote(modifedRow.version, newVersion);
+				}
 			}
+
 			return newRow;
 		}
 
@@ -301,6 +342,11 @@ namespace DatabaseToolSuite.Services
 					CloneErvkNote(modifedRow.version, newVersion);
 					DataSet.ervk.Get(modifedRow.version).isActive = false;
 					DataSet.ervk.Get(modifedRow.version).logEditDate = DateTime.Now;
+				}
+
+				if (DataSet.EXP_LAW_AGENCY_URP.Exists(modifedRow.version))
+				{
+					CloneUrpNote(modifedRow.version, newVersion);
 				}
 			}
 			return newRow;

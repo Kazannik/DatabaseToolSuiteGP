@@ -57,12 +57,12 @@ namespace DatabaseToolSuite.Dialogs
 			DOESNT_CREATE_CARD_checkBox.Checked = DataRow.DOESNT_CREATE_CARD;
 			DOESNT_SIGN_REPORT_checkBox.Checked = DataRow.DOESNT_SIGN_REPORT;
 			AgencyReceivingReport = DataRow.AGENCY_RECEIVING_REPORT;
-			AGENCY_RECEIVING_REPORT_textBox.Text = FileSystem.Repository.MainDataSet.gasps.Exists(AgencyReceivingReport) ?
-				FileSystem.Repository.MainDataSet.gasps.Get(AgencyReceivingReport).name + " (код: " + FileSystem.Repository.MainDataSet.gasps.Get(AgencyReceivingReport).code + ")" :
+			AGENCY_RECEIVING_REPORT_textBox.Text = FileSystem.Repository.MainDataSet.gasps.ExistsKey(AgencyReceivingReport) ?
+				FileSystem.Repository.MainDataSet.gasps.GetLastVersionOrganizationFromKey(AgencyReceivingReport).name + " (код: " + FileSystem.Repository.MainDataSet.gasps.GetLastVersionOrganizationFromKey(AgencyReceivingReport).code + ")" :
 				string.Empty;
 
 			LAW_AGENCY_TYPE_ComboBox.Id = DataRow.IsLAW_AGENCY_TYPENull() ? -1 : DataRow.LAW_AGENCY_TYPE;
-			OKTMO_LOC_ID_ComboBox.Code = DataRow.OKTMO_LOC_ID.ToString("00");
+			OKTMO_LOC_ID_ComboBox.Id = DataRow.OKTMO_LOC_ID;
 			SHORT_NAME_textBox.Text = DataRow.SHORT_NAME;
 			VED_CODE_textBox.Text = DataRow.IsVED_CODENull() ? string.Empty : DataRow.VED_CODE;
 			SPECIAL_TERRITORIAL_CODE_ComboBox.Id = DataRow.IsSPECIAL_TERRITORIAL_CODENull() ? -1 : DataRow.SPECIAL_TERRITORIAL_CODE;
@@ -86,7 +86,7 @@ namespace DatabaseToolSuite.Dialogs
 		{ get { return LAW_AGENCY_TYPE_ComboBox.Value ?? 0; } }
 
 		public long OktmoLocId
-		{ get { return OKTMO_LOC_ID_ComboBox.Value ?? 0; } }
+		{ get { return OKTMO_LOC_ID_ComboBox.Id; } }
 
 		public string ShortName
 		{ get { return SHORT_NAME_textBox.Text; } }

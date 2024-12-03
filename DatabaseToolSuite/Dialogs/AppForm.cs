@@ -1,7 +1,6 @@
 ﻿using DatabaseToolSuite.Services;
 using System;
 using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
 namespace DatabaseToolSuite.Dialogs

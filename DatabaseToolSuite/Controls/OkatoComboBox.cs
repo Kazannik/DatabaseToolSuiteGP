@@ -33,7 +33,7 @@ namespace DatabaseToolSuite.Controls
 					return i;
 				}
 			}
-			return default(OkatoDto);
+			return default;
 		}
 	}
 }

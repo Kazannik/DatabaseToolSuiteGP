@@ -1,17 +1,11 @@
 ﻿using DatabaseToolSuite.Repositoryes;
 using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using System.Security.Cryptography;
-using ExportDataSet = DatabaseToolSuite.Repositoryes.EXP_LAW_AGENCY;
 using System.Collections;
-using static DatabaseToolSuite.Repositoryes._1C.SubdivisionCollection;
-using System.Security.Principal;
-using System.Linq;
-using System.Windows.Forms;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Web.UI.WebControls.Expressions;
-using Microsoft.Office.Interop.Excel;
+using ExportDataSet = DatabaseToolSuite.Repositoryes.EXP_LAW_AGENCY;
 
 namespace DatabaseToolSuite.Services
 {
@@ -32,6 +26,8 @@ namespace DatabaseToolSuite.Services
 
 		public static void ConvertDataBase()
 		{
+			DataSet.Clear();
+			
 			EntityCollection oktmo = ConvertOktmo();
 			EntityCollection authority = ConvertAuthority();
 			EntityCollection lawAgencyTypeAllowbleHierarchy = ConvertLawAgencyTypeAllowbleHierarchy();
@@ -59,7 +55,7 @@ namespace DatabaseToolSuite.Services
 			}
 		}
 
-		private static EntityCollection ConvertOktmo()
+		public static EntityCollection ConvertOktmo()
 		{
 			EntityCollection result = new EntityCollection();
 			foreach (MainDataSet.okatoRow row in MasterDataSystem.DataSet.okato.Rows)
@@ -88,7 +84,7 @@ namespace DatabaseToolSuite.Services
 			return result;
 		}
 
-		private static EntityCollection ConvertAuthority()
+		public static EntityCollection ConvertAuthority()
 		{
 			EntityCollection result = new EntityCollection();
 
@@ -110,7 +106,7 @@ namespace DatabaseToolSuite.Services
 			return result;
 		}
 
-		private static EntityCollection ConvertLawAgencyTypes()
+		public static EntityCollection ConvertLawAgencyTypes()
 		{
 			EntityCollection result = new EntityCollection();
 
@@ -132,7 +128,7 @@ namespace DatabaseToolSuite.Services
 			return result;
 		}
 
-		private static EntityCollection ConvertSpecialTerritorialCode()
+		public static EntityCollection ConvertSpecialTerritorialCode()
 		{
 			EntityCollection result = new EntityCollection();
 
@@ -154,7 +150,7 @@ namespace DatabaseToolSuite.Services
 			return result;
 		}
 
-		private static EntityCollection ConvertLawAgencyTypeAllowbleHierarchy()
+		public static EntityCollection ConvertLawAgencyTypeAllowbleHierarchy()
 		{
 			EntityCollection result = new EntityCollection();
 
@@ -174,7 +170,7 @@ namespace DatabaseToolSuite.Services
 			return result;
 		}
 
-		private class EntityCollection : CollectionBase, IEnumerable<EntityCollection.IEntity>
+		public class EntityCollection : CollectionBase, IEnumerable<EntityCollection.IEntity>
 		{
 			public void Add(IEntity item)
 			{
