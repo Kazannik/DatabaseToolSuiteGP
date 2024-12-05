@@ -64,10 +64,16 @@
     <ManifestKeyFile>DatabaseToolSuite_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
@@ -91,11 +97,14 @@
     <Compile Include="Const\App.cs" />
     <Compile Include="Controls\AuthorityComboBox.cs" />
     <Compile Include="Controls\ComboControl.cs" />
+    <Compile Include="Controls\DataGridViewDateTimePickerCell.cs" />
     <Compile Include="Controls\GaspsListView.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\LawAgencyTypesComboBox.cs" />
     <Compile Include="Controls\NumericTextBox.cs" />
     <Compile Include="Controls\OkatoComboBox.cs" />
+    <Compile Include="Controls\SpecialTerritorialComboBox.cs" />
     <Compile Include="Dialogs\AboutDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +117,39 @@
     <Compile Include="Dialogs\ErvkDialog.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Dialogs\ExpLawAgencyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ExpLawAgencyForm.Designer.cs">
+      <DependentUpon>ExpLawAgencyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ImportSubdivisionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\UrpDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SelectTableDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SelectTableDialog.Designer.cs">
+      <DependentUpon>SelectTableDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TableEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Repositoryes\1C\SubdivisionCollection.cs" />
+    <Compile Include="Repositoryes\Dto\LawAgencyTypesDto.cs" />
+    <Compile Include="Repositoryes\Dto\SpecialTerritorialDto.cs" />
+    <Compile Include="Repositoryes\GaspsDatabase.cs">
+      <DependentUpon>GaspsDatabase.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Repositoryes\GaspsDatabase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GaspsDatabase.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Rtk.cs" />
     <Compile Include="Utils\Database.cs" />
     <Compile Include="Dialogs\CreateNewOrganizationDialog.cs">
       <SubType>Form</SubType>
@@ -147,26 +189,29 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositoryes\DatabaseXMLSchema.cs">
-      <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
+    <Compile Include="Repositoryes\MainDatabase.cs">
+      <DependentUpon>MainDatabase.xsd</DependentUpon>
     </Compile>
     <Compile Include="Repositoryes\DatabaseRepository.cs" />
-    <Compile Include="Repositoryes\DatabaseXMLSchema.Designer.cs">
+    <Compile Include="Repositoryes\MainDatabase.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
+      <DependentUpon>MainDatabase.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Repositoryes\DatabaseXMLSchema.Viewers.cs">
-      <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
+    <Compile Include="Repositoryes\MainDatabase.Viewers.cs">
+      <DependentUpon>MainDatabase.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Repositoryes\DatabaseXMLSchema.Gasps.cs">
-      <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
+    <Compile Include="Repositoryes\MainDatabase.Gasps.cs">
+      <DependentUpon>MainDatabase.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Repositoryes\DatabaseXMLSchema.FgisEsnsi.cs">
-      <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
+    <Compile Include="Repositoryes\MainDatabase.Urp.cs">
+      <DependentUpon>MainDatabase.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Repositoryes\DatabaseXMLSchema.Ervk.cs">
-      <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
+    <Compile Include="Repositoryes\MainDatabase.FgisEsnsi.cs">
+      <DependentUpon>MainDatabase.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Repositoryes\MainDatabase.Ervk.cs">
+      <DependentUpon>MainDatabase.xsd</DependentUpon>
     </Compile>
     <Compile Include="Repositoryes\Dto\AuthorityDto.cs" />
     <Compile Include="Repositoryes\Dto\OkatoDto.cs" />
@@ -179,6 +224,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AppForm.resx">
       <DependentUpon>AppForm.cs</DependentUpon>
@@ -188,6 +234,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\CreateNewOrganizationDialog.resx">
       <DependentUpon>CreateNewOrganizationDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\CreateNewVersionDialog.resx">
       <DependentUpon>CreateNewVersionDialog.cs</DependentUpon>
@@ -201,6 +248,12 @@
     <EmbeddedResource Include="Dialogs\EsnsiDialog.resx">
       <DependentUpon>EsnsiDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExpLawAgencyForm.resx">
+      <DependentUpon>ExpLawAgencyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ImportSubdivisionDialog.resx">
+      <DependentUpon>ImportSubdivisionDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\OrganizationViewDialog.resx">
       <DependentUpon>OrganizationViewDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -209,9 +262,20 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectOrganizationDialog.resx">
       <DependentUpon>SelectOrganizationDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SelectTableDialog.resx">
+      <DependentUpon>SelectTableDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\StatisticsDialog.resx">
       <DependentUpon>StatisticsDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TableEditor.resx">
+      <DependentUpon>TableEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\UrpDialog.resx">
+      <DependentUpon>UrpDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -226,6 +290,7 @@
     <EmbeddedResource Include="Utils\Dialogs\ImportDialog.resx">
       <DependentUpon>ImportDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -235,16 +300,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Repositoryes\DatabaseXMLSchema.xsc">
-      <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
+    <None Include="Repositoryes\MainDatabase.xsc">
+      <DependentUpon>MainDatabase.xsd</DependentUpon>
     </None>
-    <None Include="Repositoryes\DatabaseXMLSchema.xsd">
+    <None Include="Repositoryes\MainDatabase.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DatabaseXMLSchema.Designer.cs</LastGenOutput>
+      <LastGenOutput>MainDatabase.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Repositoryes\DatabaseXMLSchema.xss">
-      <DependentUpon>DatabaseXMLSchema.xsd</DependentUpon>
+    <None Include="Repositoryes\MainDatabase.xss">
+      <DependentUpon>MainDatabase.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -263,6 +328,17 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Repositoryes\GaspsDatabase.xsc">
+      <DependentUpon>GaspsDatabase.xsd</DependentUpon>
+    </None>
+    <None Include="Repositoryes\GaspsDatabase.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GaspsDatabase.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Repositoryes\GaspsDatabase.xss">
+      <DependentUpon>GaspsDatabase.xsd</DependentUpon>
+    </None>
     <None Include="Resources\app.ico" />
     <None Include="Resources\AddHomeHS.png" />
     <None Include="Resources\DeleteRedHS.png" />
@@ -383,6 +459,42 @@
     <None Include="Resources\economy_dublicate32.png" />
     <None Include="Resources\gosuslugi_remove32.png" />
     <None Include="Resources\economy_remove32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExportXmlGaspsFile24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1C.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1C32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1C_Yellow32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1C_Yellow24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Table32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emblem32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emblem24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emblem_dublicate32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emblem_dublicate24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emblem_remove24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emblem_remove32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

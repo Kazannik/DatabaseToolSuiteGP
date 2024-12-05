@@ -1,60 +1,89 @@
-﻿using System;
+﻿using DatabaseToolSuite.Repositoryes._1C;
+using System;
 using System.Data;
+using System.Threading.Tasks;
+using GaspsDataSet = DatabaseToolSuite.Repositoryes.EXP_LAW_AGENCY;
 
 namespace DatabaseToolSuite.Repositoryes
 {
-    class DatabaseRepository
-    {
-        RepositoryDataSet _dataSet;
+	class DatabasesRepository
+	{
+		public MainDataSet MainDataSet { get; }
 
-        public RepositoryDataSet DataSet { get { return _dataSet; } }
+		public GaspsDataSet GaspsDataSet { get; }
 
-        public bool IsInitialize { get; private set; }
+		public SubdivisionCollection Subdivisions { get; }
 
-        private void Initialize(string schema)
-        {
-            try
-            {
-                _dataSet.Reset();
-                _dataSet.ReadXmlSchema(schema);
-                IsInitialize = true;
-            }
-            catch (Exception)
-            {
-                IsInitialize = false;
-            }
-        }
+		public bool IsInitialize { get; private set; }
+
+		private void Initialize(string schema)
+		{
+			try
+			{
+				MainDataSet.Reset();
+				MainDataSet.ReadXmlSchema(schema);
+				IsInitialize = true;
+			}
+			catch (Exception)
+			{
+				IsInitialize = false;
+			}
+		}
 
 
-        public DatabaseRepository()
-        {
-            _dataSet = new RepositoryDataSet();
+		public DatabasesRepository()
+		{
+			MainDataSet = new MainDataSet();
+			GaspsDataSet = new GaspsDataSet();
+			Subdivisions = new SubdivisionCollection();
 
-            if (System.IO.File.Exists("DatabaseXMLSchema.xsd"))
-            {
-                Initialize("DatabaseXMLSchema.xsd");
-            }
-        }
+			if (System.IO.File.Exists("DatabaseXMLSchema.xsd"))
+			{
+				Initialize("DatabaseXMLSchema.xsd");
+			}
+		}
 
-        public void ReadSchema(string schemaFilename)
-        {
-            Initialize(schemaFilename);
-        }
+		public void ReadSchema(string schemaFilename)
+		{
+			Initialize(schemaFilename);
+		}
 
-        public void ReadXml(string filename)
-        {
-            _dataSet.Clear();
-            _dataSet.ReadXml(filename, XmlReadMode.IgnoreSchema);
-        }
+		public void ReadXml(string filename)
+		{
+			MainDataSet.Clear();
+			MainDataSet.ReadXml(filename, XmlReadMode.IgnoreSchema);
+		}
 
-        public void WriteSchema(string fileName)
-        {
-            _dataSet.WriteXmlSchema(fileName);
-        }
+		public void WriteSchema(string fileName)
+		{
+			MainDataSet.WriteXmlSchema(fileName);
+		}
 
-        public void WriteXml(string filename)
-        {
-            _dataSet.WriteXml(filename, XmlWriteMode.IgnoreSchema);
-        }
-    }
+		public void WriteXml(string filename)
+		{
+			MainDataSet.WriteXml(filename, XmlWriteMode.IgnoreSchema);
+		}
+
+		public void GaspsWriteSchema(string fileName)
+		{
+			GaspsDataSet.WriteXmlSchema(fileName);
+		}
+
+		public void GaspsWriteXml(string filename)
+		{
+			GaspsDataSet.WriteXml(filename, XmlWriteMode.IgnoreSchema);
+		}
+
+		public void SubdivisionsReadXml(string filename)
+		{
+			Subdivisions.Clear();
+			Subdivisions.ReadXml(filename);
+		}
+
+		public async Task SubdivisionsReadXmlAsync(string filename)
+		{
+			Subdivisions.Clear();
+			await Subdivisions.ReadXmlAsync(filename);
+		}
+	}
 }

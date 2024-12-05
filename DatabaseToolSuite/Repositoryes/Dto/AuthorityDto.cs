@@ -2,20 +2,34 @@
 
 namespace DatabaseToolSuite.Repositoryes.Dto
 {
-    public class AuthorityDto : ComboControl<AuthorityDto>.IComboBoxItem
-    {
-        public string Code { get; private set; }
+	internal class AuthorityDto : ComboControl<AuthorityDto>.IComboBoxItem
+	{
+		public AuthorityDto()
+		{
+			Id = -1;
+			Code = string.Empty;
+			Name = string.Empty;
+		}
 
-        public string Name { get; private set; }
+		public long Id { get; private set; }
 
-        public string Text { get { return Name; } }
+		public string Code { get; private set; }
 
-        public AuthorityDto(string code, string name)
-        {
-            Code = code;
-            Name = name;
-        }
+		public string Name { get; private set; }
 
-        public AuthorityDto(Repositoryes.RepositoryDataSet.authorityRow row) : this(code: row.code, name: row.name) { }
-    }
+		public string Text
+		{ get { return Name; } }
+
+		public AuthorityDto(string code, string name)
+		{
+			Id = 0;
+			Code = code;
+			Name = name;
+		}
+
+		public AuthorityDto(MainDataSet.authorityRow row) : this(code: row.code, name: row.name)
+		{
+			Id = row.id;
+		}
+	}
 }
