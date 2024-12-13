@@ -19,7 +19,7 @@ namespace DatabaseToolSuite.Dialogs
 		private readonly string oldVED_CODE;
 		private readonly long oldSPECIAL_TERRITORIAL_CODE;
 
-		private UrpDialog() : base()
+		protected UrpDialog() : base()
 		{
 			ApplyButtonVisible = false;
 
@@ -28,7 +28,7 @@ namespace DatabaseToolSuite.Dialogs
 			FormBorderStyle = FormBorderStyle.Sizable;
 
 			OKTMO_LOC_ID_ComboBox.InitializeSource(Services.FileSystem.Repository.MainDataSet.okato);
-			LAW_AGENCY_TYPE_ComboBox.InitializeSource(Services.FileSystem.Repository.MainDataSet.EXP_LAW_AGENCY_TYPES);
+			AGENCY_TYPE_ComboBox.InitializeSource(Services.FileSystem.Repository.MainDataSet.EXP_LAW_AGENCY_TYPES);
 			SPECIAL_TERRITORIAL_CODE_ComboBox.InitializeSource(Services.FileSystem.Repository.MainDataSet.SPECIAL_TERRITORIAL_CODE);
 
 			Text = "Новая запись о подразделении в УРП ГАС ПС";
@@ -36,6 +36,10 @@ namespace DatabaseToolSuite.Dialogs
 
 			OkButtonEnabled = false;
 		}
+
+		protected TextBox SHORT_NAME_textBox;
+		protected CheckBox DOESNT_CREATE_CARD_checkBox;
+		protected CheckBox DOESNT_SIGN_REPORT_checkBox;
 
 		public UrpDialog(Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow row, bool createNew) : this()
 		{
@@ -61,7 +65,7 @@ namespace DatabaseToolSuite.Dialogs
 				FileSystem.Repository.MainDataSet.gasps.GetLastVersionOrganizationFromKey(AgencyReceivingReport).name + " (код: " + FileSystem.Repository.MainDataSet.gasps.GetLastVersionOrganizationFromKey(AgencyReceivingReport).code + ")" :
 				string.Empty;
 
-			LAW_AGENCY_TYPE_ComboBox.Id = DataRow.IsLAW_AGENCY_TYPENull() ? -1 : DataRow.LAW_AGENCY_TYPE;
+			AGENCY_TYPE_ComboBox.Id = DataRow.IsLAW_AGENCY_TYPENull() ? -1 : DataRow.LAW_AGENCY_TYPE;
 			OKTMO_LOC_ID_ComboBox.Id = DataRow.OKTMO_LOC_ID;
 			SHORT_NAME_textBox.Text = DataRow.SHORT_NAME;
 			VED_CODE_textBox.Text = DataRow.IsVED_CODENull() ? string.Empty : DataRow.VED_CODE;
@@ -83,7 +87,7 @@ namespace DatabaseToolSuite.Dialogs
 		public long AgencyReceivingReport { get; private set; }
 
 		public long LawAgencyType
-		{ get { return LAW_AGENCY_TYPE_ComboBox.Value ?? 0; } }
+		{ get { return AGENCY_TYPE_ComboBox.Value ?? 0; } }
 
 		public long OktmoLocId
 		{ get { return OKTMO_LOC_ID_ComboBox.Id; } }
@@ -96,22 +100,18 @@ namespace DatabaseToolSuite.Dialogs
 
 		public long SpecialTerritorialCode
 		{ get { return SPECIAL_TERRITORIAL_CODE_ComboBox.Id; } }
-
-		private System.Windows.Forms.TextBox SHORT_NAME_textBox;
-		private System.Windows.Forms.CheckBox DOESNT_CREATE_CARD_checkBox;
-		private System.Windows.Forms.CheckBox DOESNT_SIGN_REPORT_checkBox;
 		private System.Windows.Forms.Label AGENCY_RECEIVING_REPORT_label;
-		private System.Windows.Forms.TextBox AGENCY_RECEIVING_REPORT_textBox;
+		protected System.Windows.Forms.TextBox AGENCY_RECEIVING_REPORT_textBox;
 		private System.Windows.Forms.Button AGENCY_RECEIVING_REPORT_button;
-		private System.Windows.Forms.Label LAW_AGENCY_TYPE_label;
-		private Controls.LawAgencyTypesComboBox LAW_AGENCY_TYPE_ComboBox;
-		private System.Windows.Forms.TextBox VED_CODE_textBox;
+		private System.Windows.Forms.Label AGENCY_TYPE_label;
+		protected Controls.LawAgencyTypesComboBox AGENCY_TYPE_ComboBox;
+		protected TextBox VED_CODE_textBox;
 		private System.Windows.Forms.Label VED_CODE_label;
 		private System.Windows.Forms.Label OKTMO_LOC_ID_label;
-		private Controls.OkatoComboBox OKTMO_LOC_ID_ComboBox;
-		private System.Windows.Forms.CheckBox DOESNT_CONSOLIDATE_CHILD_checkBox;
+		protected Controls.OkatoComboBox OKTMO_LOC_ID_ComboBox;
+		protected CheckBox DOESNT_CONSOLIDATE_CHILD_checkBox;
 		private System.Windows.Forms.Label SHORT_NAME_label;
-		private SpecialTerritorialComboBox SPECIAL_TERRITORIAL_CODE_ComboBox;
+		protected SpecialTerritorialComboBox SPECIAL_TERRITORIAL_CODE_ComboBox;
 		private Label SPECIAL_TERRITORIAL_CODE_label;
 		private Button AGENCY_RECEIVING_REPORT_Clean_button;
 
@@ -124,8 +124,8 @@ namespace DatabaseToolSuite.Dialogs
 			this.AGENCY_RECEIVING_REPORT_label = new System.Windows.Forms.Label();
 			this.AGENCY_RECEIVING_REPORT_textBox = new System.Windows.Forms.TextBox();
 			this.AGENCY_RECEIVING_REPORT_button = new System.Windows.Forms.Button();
-			this.LAW_AGENCY_TYPE_label = new System.Windows.Forms.Label();
-			this.LAW_AGENCY_TYPE_ComboBox = new DatabaseToolSuite.Controls.LawAgencyTypesComboBox();
+			this.AGENCY_TYPE_label = new System.Windows.Forms.Label();
+			this.AGENCY_TYPE_ComboBox = new DatabaseToolSuite.Controls.LawAgencyTypesComboBox();
 			this.VED_CODE_textBox = new System.Windows.Forms.TextBox();
 			this.VED_CODE_label = new System.Windows.Forms.Label();
 			this.OKTMO_LOC_ID_label = new System.Windows.Forms.Label();
@@ -135,36 +135,36 @@ namespace DatabaseToolSuite.Dialogs
 			this.SPECIAL_TERRITORIAL_CODE_label = new System.Windows.Forms.Label();
 			this.AGENCY_RECEIVING_REPORT_Clean_button = new System.Windows.Forms.Button();
 			this.SuspendLayout();
-			//
+			// 
 			// button_Cancel
-			//
+			// 
 			this.button_Cancel.Location = new System.Drawing.Point(778, 566);
-			//
+			// 
 			// button_OK
-			//
+			// 
 			this.button_OK.Location = new System.Drawing.Point(578, 566);
-			//
+			// 
 			// SHORT_NAME_label
-			//
+			// 
 			this.SHORT_NAME_label.AutoSize = true;
 			this.SHORT_NAME_label.Location = new System.Drawing.Point(12, 88);
 			this.SHORT_NAME_label.Name = "SHORT_NAME_label";
 			this.SHORT_NAME_label.Size = new System.Drawing.Size(259, 25);
 			this.SHORT_NAME_label.TabIndex = 3;
 			this.SHORT_NAME_label.Text = "Краткое наименование :";
-			//
+			// 
 			// SHORT_NAME_textBox
-			//
-			this.SHORT_NAME_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			// 
+			this.SHORT_NAME_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.SHORT_NAME_textBox.Location = new System.Drawing.Point(274, 84);
 			this.SHORT_NAME_textBox.Name = "SHORT_NAME_textBox";
 			this.SHORT_NAME_textBox.Size = new System.Drawing.Size(594, 31);
 			this.SHORT_NAME_textBox.TabIndex = 4;
 			this.SHORT_NAME_textBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
-			//
+			// 
 			// DOESNT_CREATE_CARD_checkBox
-			//
+			// 
 			this.DOESNT_CREATE_CARD_checkBox.AutoSize = true;
 			this.DOESNT_CREATE_CARD_checkBox.Location = new System.Drawing.Point(17, 200);
 			this.DOESNT_CREATE_CARD_checkBox.Name = "DOESNT_CREATE_CARD_checkBox";
@@ -173,9 +173,9 @@ namespace DatabaseToolSuite.Dialogs
 			this.DOESNT_CREATE_CARD_checkBox.Text = "Не создаёт карточки ";
 			this.DOESNT_CREATE_CARD_checkBox.UseVisualStyleBackColor = true;
 			this.DOESNT_CREATE_CARD_checkBox.CheckedChanged += new System.EventHandler(this.Controls_ValueChanged);
-			//
+			// 
 			// DOESNT_SIGN_REPORT_checkBox
-			//
+			// 
 			this.DOESNT_SIGN_REPORT_checkBox.AutoSize = true;
 			this.DOESNT_SIGN_REPORT_checkBox.Location = new System.Drawing.Point(17, 235);
 			this.DOESNT_SIGN_REPORT_checkBox.Name = "DOESNT_SIGN_REPORT_checkBox";
@@ -184,21 +184,21 @@ namespace DatabaseToolSuite.Dialogs
 			this.DOESNT_SIGN_REPORT_checkBox.Text = "Не подписывает отчёт";
 			this.DOESNT_SIGN_REPORT_checkBox.UseVisualStyleBackColor = true;
 			this.DOESNT_SIGN_REPORT_checkBox.CheckStateChanged += new System.EventHandler(this.Controls_ValueChanged);
-			//
+			// 
 			// AGENCY_RECEIVING_REPORT_label
-			//
+			// 
 			this.AGENCY_RECEIVING_REPORT_label.AutoSize = true;
 			this.AGENCY_RECEIVING_REPORT_label.Location = new System.Drawing.Point(12, 314);
 			this.AGENCY_RECEIVING_REPORT_label.Name = "AGENCY_RECEIVING_REPORT_label";
 			this.AGENCY_RECEIVING_REPORT_label.Size = new System.Drawing.Size(193, 25);
 			this.AGENCY_RECEIVING_REPORT_label.TabIndex = 7;
 			this.AGENCY_RECEIVING_REPORT_label.Text = "Передаёт отчёт в:";
-			//
+			// 
 			// AGENCY_RECEIVING_REPORT_textBox
-			//
-			this.AGENCY_RECEIVING_REPORT_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-			| System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			// 
+			this.AGENCY_RECEIVING_REPORT_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.AGENCY_RECEIVING_REPORT_textBox.Location = new System.Drawing.Point(234, 314);
 			this.AGENCY_RECEIVING_REPORT_textBox.Multiline = true;
 			this.AGENCY_RECEIVING_REPORT_textBox.Name = "AGENCY_RECEIVING_REPORT_textBox";
@@ -207,9 +207,9 @@ namespace DatabaseToolSuite.Dialogs
 			this.AGENCY_RECEIVING_REPORT_textBox.Size = new System.Drawing.Size(345, 44);
 			this.AGENCY_RECEIVING_REPORT_textBox.TabIndex = 8;
 			this.AGENCY_RECEIVING_REPORT_textBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
-			//
+			// 
 			// AGENCY_RECEIVING_REPORT_button
-			//
+			// 
 			this.AGENCY_RECEIVING_REPORT_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.AGENCY_RECEIVING_REPORT_button.Location = new System.Drawing.Point(603, 314);
 			this.AGENCY_RECEIVING_REPORT_button.Name = "AGENCY_RECEIVING_REPORT_button";
@@ -218,49 +218,49 @@ namespace DatabaseToolSuite.Dialogs
 			this.AGENCY_RECEIVING_REPORT_button.Text = "Обзор...";
 			this.AGENCY_RECEIVING_REPORT_button.UseVisualStyleBackColor = true;
 			this.AGENCY_RECEIVING_REPORT_button.Click += new System.EventHandler(this.AGENCY_RECEIVING_REPORT_button_Click);
-			//
+			// 
 			// LAW_AGENCY_TYPE_label
-			//
-			this.LAW_AGENCY_TYPE_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.LAW_AGENCY_TYPE_label.AutoSize = true;
-			this.LAW_AGENCY_TYPE_label.Location = new System.Drawing.Point(12, 374);
-			this.LAW_AGENCY_TYPE_label.Name = "LAW_AGENCY_TYPE_label";
-			this.LAW_AGENCY_TYPE_label.Size = new System.Drawing.Size(216, 25);
-			this.LAW_AGENCY_TYPE_label.TabIndex = 10;
-			this.LAW_AGENCY_TYPE_label.Text = "Тип подразделений:";
-			//
+			// 
+			this.AGENCY_TYPE_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.AGENCY_TYPE_label.AutoSize = true;
+			this.AGENCY_TYPE_label.Location = new System.Drawing.Point(12, 374);
+			this.AGENCY_TYPE_label.Name = "LAW_AGENCY_TYPE_label";
+			this.AGENCY_TYPE_label.Size = new System.Drawing.Size(216, 25);
+			this.AGENCY_TYPE_label.TabIndex = 10;
+			this.AGENCY_TYPE_label.Text = "Тип подразделений:";
+			// 
 			// LAW_AGENCY_TYPE_ComboBox
-			//
-			this.LAW_AGENCY_TYPE_ComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
-			this.LAW_AGENCY_TYPE_ComboBox.Code = "";
-			this.LAW_AGENCY_TYPE_ComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.LAW_AGENCY_TYPE_ComboBox.DropDownHeight = 584;
-			this.LAW_AGENCY_TYPE_ComboBox.DropDownWidth = 80;
-			this.LAW_AGENCY_TYPE_ComboBox.FormattingEnabled = true;
-			this.LAW_AGENCY_TYPE_ComboBox.Id = ((long)(-1));
-			this.LAW_AGENCY_TYPE_ComboBox.IntegralHeight = false;
-			this.LAW_AGENCY_TYPE_ComboBox.ItemHeight = 29;
-			this.LAW_AGENCY_TYPE_ComboBox.Location = new System.Drawing.Point(234, 369);
-			this.LAW_AGENCY_TYPE_ComboBox.MaxDropDownItems = 20;
-			this.LAW_AGENCY_TYPE_ComboBox.Name = "LAW_AGENCY_TYPE_ComboBox";
-			this.LAW_AGENCY_TYPE_ComboBox.SelectedItem = null;
-			this.LAW_AGENCY_TYPE_ComboBox.Size = new System.Drawing.Size(634, 35);
-			this.LAW_AGENCY_TYPE_ComboBox.TabIndex = 11;
-			this.LAW_AGENCY_TYPE_ComboBox.SelectedIndexChanged += new System.EventHandler(this.Controls_ValueChanged);
-			//
+			// 
+			this.AGENCY_TYPE_ComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.AGENCY_TYPE_ComboBox.Code = "";
+			this.AGENCY_TYPE_ComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+			this.AGENCY_TYPE_ComboBox.DropDownHeight = 584;
+			this.AGENCY_TYPE_ComboBox.DropDownWidth = 80;
+			this.AGENCY_TYPE_ComboBox.FormattingEnabled = true;
+			this.AGENCY_TYPE_ComboBox.Id = ((long)(-1));
+			this.AGENCY_TYPE_ComboBox.IntegralHeight = false;
+			this.AGENCY_TYPE_ComboBox.ItemHeight = 29;
+			this.AGENCY_TYPE_ComboBox.Location = new System.Drawing.Point(234, 369);
+			this.AGENCY_TYPE_ComboBox.MaxDropDownItems = 20;
+			this.AGENCY_TYPE_ComboBox.Name = "LAW_AGENCY_TYPE_ComboBox";
+			this.AGENCY_TYPE_ComboBox.SelectedItem = null;
+			this.AGENCY_TYPE_ComboBox.Size = new System.Drawing.Size(634, 35);
+			this.AGENCY_TYPE_ComboBox.TabIndex = 11;
+			this.AGENCY_TYPE_ComboBox.SelectedIndexChanged += new System.EventHandler(this.Controls_ValueChanged);
+			// 
 			// VED_CODE_textBox
-			//
-			this.VED_CODE_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			// 
+			this.VED_CODE_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.VED_CODE_textBox.Location = new System.Drawing.Point(234, 415);
 			this.VED_CODE_textBox.Name = "VED_CODE_textBox";
 			this.VED_CODE_textBox.Size = new System.Drawing.Size(634, 31);
 			this.VED_CODE_textBox.TabIndex = 12;
 			this.VED_CODE_textBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
-			//
+			// 
 			// VED_CODE_label
-			//
+			// 
 			this.VED_CODE_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.VED_CODE_label.AutoSize = true;
 			this.VED_CODE_label.Location = new System.Drawing.Point(12, 419);
@@ -268,9 +268,9 @@ namespace DatabaseToolSuite.Dialogs
 			this.VED_CODE_label.Size = new System.Drawing.Size(219, 25);
 			this.VED_CODE_label.TabIndex = 13;
 			this.VED_CODE_label.Text = "Ведомственный код:";
-			//
+			// 
 			// OKTMO_LOC_ID_label
-			//
+			// 
 			this.OKTMO_LOC_ID_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.OKTMO_LOC_ID_label.AutoSize = true;
 			this.OKTMO_LOC_ID_label.Location = new System.Drawing.Point(12, 459);
@@ -278,11 +278,11 @@ namespace DatabaseToolSuite.Dialogs
 			this.OKTMO_LOC_ID_label.Size = new System.Drawing.Size(372, 25);
 			this.OKTMO_LOC_ID_label.TabIndex = 14;
 			this.OKTMO_LOC_ID_label.Text = "ОКТМО территории обслуживания :";
-			//
+			// 
 			// OKTMO_LOC_ID_ComboBox
-			//
-			this.OKTMO_LOC_ID_ComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			// 
+			this.OKTMO_LOC_ID_ComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.OKTMO_LOC_ID_ComboBox.Code = "";
 			this.OKTMO_LOC_ID_ComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
 			this.OKTMO_LOC_ID_ComboBox.DropDownHeight = 584;
@@ -298,9 +298,9 @@ namespace DatabaseToolSuite.Dialogs
 			this.OKTMO_LOC_ID_ComboBox.Size = new System.Drawing.Size(477, 35);
 			this.OKTMO_LOC_ID_ComboBox.TabIndex = 15;
 			this.OKTMO_LOC_ID_ComboBox.SelectedIndexChanged += new System.EventHandler(this.Controls_ValueChanged);
-			//
+			// 
 			// DOESNT_CONSOLIDATE_CHILD_checkBox
-			//
+			// 
 			this.DOESNT_CONSOLIDATE_CHILD_checkBox.AutoSize = true;
 			this.DOESNT_CONSOLIDATE_CHILD_checkBox.Location = new System.Drawing.Point(17, 270);
 			this.DOESNT_CONSOLIDATE_CHILD_checkBox.Name = "DOESNT_CONSOLIDATE_CHILD_checkBox";
@@ -309,11 +309,11 @@ namespace DatabaseToolSuite.Dialogs
 			this.DOESNT_CONSOLIDATE_CHILD_checkBox.Text = "Не консолидирует дочерние";
 			this.DOESNT_CONSOLIDATE_CHILD_checkBox.UseVisualStyleBackColor = true;
 			this.DOESNT_CONSOLIDATE_CHILD_checkBox.CheckedChanged += new System.EventHandler(this.Controls_ValueChanged);
-			//
+			// 
 			// SPECIAL_TERRITORIAL_CODE_ComboBox
-			//
-			this.SPECIAL_TERRITORIAL_CODE_ComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			// 
+			this.SPECIAL_TERRITORIAL_CODE_ComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.SPECIAL_TERRITORIAL_CODE_ComboBox.Code = "";
 			this.SPECIAL_TERRITORIAL_CODE_ComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
 			this.SPECIAL_TERRITORIAL_CODE_ComboBox.DropDownHeight = 584;
@@ -329,18 +329,18 @@ namespace DatabaseToolSuite.Dialogs
 			this.SPECIAL_TERRITORIAL_CODE_ComboBox.Size = new System.Drawing.Size(632, 35);
 			this.SPECIAL_TERRITORIAL_CODE_ComboBox.TabIndex = 17;
 			this.SPECIAL_TERRITORIAL_CODE_ComboBox.SelectedIndexChanged += new System.EventHandler(this.Controls_ValueChanged);
-			//
+			// 
 			// SPECIAL_TERRITORIAL_CODE_label
-			//
+			// 
 			this.SPECIAL_TERRITORIAL_CODE_label.AutoSize = true;
 			this.SPECIAL_TERRITORIAL_CODE_label.Location = new System.Drawing.Point(12, 124);
 			this.SPECIAL_TERRITORIAL_CODE_label.Name = "SPECIAL_TERRITORIAL_CODE_label";
 			this.SPECIAL_TERRITORIAL_CODE_label.Size = new System.Drawing.Size(463, 25);
 			this.SPECIAL_TERRITORIAL_CODE_label.TabIndex = 18;
 			this.SPECIAL_TERRITORIAL_CODE_label.Text = "Специализированный территориальный код:";
-			//
+			// 
 			// AGENCY_RECEIVING_REPORT_Clean_button
-			//
+			// 
 			this.AGENCY_RECEIVING_REPORT_Clean_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.AGENCY_RECEIVING_REPORT_Clean_button.Location = new System.Drawing.Point(739, 314);
 			this.AGENCY_RECEIVING_REPORT_Clean_button.Name = "AGENCY_RECEIVING_REPORT_Clean_button";
@@ -349,9 +349,9 @@ namespace DatabaseToolSuite.Dialogs
 			this.AGENCY_RECEIVING_REPORT_Clean_button.Text = "Очистить";
 			this.AGENCY_RECEIVING_REPORT_Clean_button.UseVisualStyleBackColor = true;
 			this.AGENCY_RECEIVING_REPORT_Clean_button.Click += new System.EventHandler(this.AGENCY_RECEIVING_REPORT_Clean_button_Click);
-			//
+			// 
 			// UrpDialog
-			//
+			// 
 			this.AcceptButton = this.button_OK;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
 			this.CancelButton = this.button_Cancel;
@@ -364,8 +364,8 @@ namespace DatabaseToolSuite.Dialogs
 			this.Controls.Add(this.OKTMO_LOC_ID_label);
 			this.Controls.Add(this.VED_CODE_label);
 			this.Controls.Add(this.VED_CODE_textBox);
-			this.Controls.Add(this.LAW_AGENCY_TYPE_ComboBox);
-			this.Controls.Add(this.LAW_AGENCY_TYPE_label);
+			this.Controls.Add(this.AGENCY_TYPE_ComboBox);
+			this.Controls.Add(this.AGENCY_TYPE_label);
 			this.Controls.Add(this.AGENCY_RECEIVING_REPORT_button);
 			this.Controls.Add(this.AGENCY_RECEIVING_REPORT_textBox);
 			this.Controls.Add(this.AGENCY_RECEIVING_REPORT_label);
@@ -385,8 +385,8 @@ namespace DatabaseToolSuite.Dialogs
 			this.Controls.SetChildIndex(this.AGENCY_RECEIVING_REPORT_label, 0);
 			this.Controls.SetChildIndex(this.AGENCY_RECEIVING_REPORT_textBox, 0);
 			this.Controls.SetChildIndex(this.AGENCY_RECEIVING_REPORT_button, 0);
-			this.Controls.SetChildIndex(this.LAW_AGENCY_TYPE_label, 0);
-			this.Controls.SetChildIndex(this.LAW_AGENCY_TYPE_ComboBox, 0);
+			this.Controls.SetChildIndex(this.AGENCY_TYPE_label, 0);
+			this.Controls.SetChildIndex(this.AGENCY_TYPE_ComboBox, 0);
 			this.Controls.SetChildIndex(this.VED_CODE_textBox, 0);
 			this.Controls.SetChildIndex(this.VED_CODE_label, 0);
 			this.Controls.SetChildIndex(this.OKTMO_LOC_ID_label, 0);
@@ -397,6 +397,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.Controls.SetChildIndex(this.AGENCY_RECEIVING_REPORT_Clean_button, 0);
 			this.ResumeLayout(false);
 			this.PerformLayout();
+
 		}
 
 		private void AGENCY_RECEIVING_REPORT_button_Click(object sender, EventArgs e)
