@@ -99,15 +99,34 @@ namespace DatabaseToolSuite.Controls
 			}
 		}
 
-		public MainDataSet.gaspsRow DataRow { get; private set; }
+		public gaspsRow DataRow { get; private set; }
+
+		public IEnumerable<gaspsRow> MultySelectDataRows { get; private set; }
 
 		public ViewUrpOrganization SelectedOrganization
 		{
 			get
 			{
-				if (baseListView.SelectedIndices.Count > 0)
+				if (baseListView.SelectedIndices.Count == 1)
 				{
 					return itemsCollection[baseListView.SelectedIndices[0]];
+				}
+				else
+				{
+					return default;
+				}
+			}
+		}
+
+		public IEnumerable<ViewUrpOrganization> MultySelectedOrganization
+		{
+			get
+			{
+				if (baseListView.SelectedIndices.Count > 1)
+				{
+					int[] indices = new int[baseListView.SelectedIndices.Count];
+					baseListView.SelectedIndices.CopyTo(indices,0);
+					return indices.Select(index => itemsCollection[index]);
 				}
 				else
 				{
@@ -253,18 +272,30 @@ namespace DatabaseToolSuite.Controls
 				if (DataRow != null)
 				{
 					DataRow = null;
+					MultySelectDataRows = null;
+					OnItemSelectionChanged(new EventArgs());
+				}
+			}
+			else if (baseListView.SelectedIndices.Count == 1)
+			{
+				ViewUrpOrganization selectedOrganization = itemsCollection[baseListView.SelectedIndices[0]];
+				if (DataRow == null ||
+					DataRow.version != selectedOrganization.Version)
+				{
+					MultySelectDataRows = null;
+					DataRow = DataSet.gasps.GetOrganizationFromVersion(selectedOrganization.Version);
 					OnItemSelectionChanged(new EventArgs());
 				}
 			}
 			else
 			{
-				ViewUrpOrganization newOrganization = itemsCollection[baseListView.SelectedIndices[0]];
-				if (DataRow == null ||
-					DataRow.version != newOrganization.Version)
-				{
-					DataRow = DataSet.gasps.GetOrganizationFromVersion(newOrganization.Version);
-					OnItemSelectionChanged(new EventArgs());
-				}
+				DataRow = null;
+				OnItemSelectionChanged(new EventArgs());
+
+				MultySelectDataRows = MultySelectedOrganization
+					.Select(organization => DataSet.gasps.GetOrganizationFromVersion(organization.Version));
+				
+				OnItemsMultySelectionChanged(new EventArgs());				
 			}
 		}
 
@@ -300,14 +331,8 @@ namespace DatabaseToolSuite.Controls
 		private ListViewItem CreateListViewItem(ViewUrpOrganization organization)
 		{
 			ListViewItem item = new ListViewItem(organization.Code);
-
-			if (organization.Begin.Date > DateTime.Today)
-				item.ImageIndex = 2;
-			else if (organization.Begin.Date <= DateTime.Today
-				&& organization.End.Date > DateTime.Today)
-				item.ImageIndex = 0;
-			else
-				item.ImageIndex = 1;
+			
+			item.ImageIndex = GetImageIndex(organization);
 
 			item.Text = string.IsNullOrEmpty(organization.Code) ? string.Empty : organization.Code;
 			item.SubItems.Add(organization.Name);
@@ -344,6 +369,25 @@ namespace DatabaseToolSuite.Controls
 			return item;
 		}
 
+
+		private int GetImageIndex(ViewUrpOrganization organization)
+		{
+			if (organization.Begin.Date > DateTime.Today)
+				return 2;
+			else if (organization.Begin.Date <= DateTime.Today
+				&& organization.End.Date > DateTime.Today)
+				if (organization.IsUrp)
+				{
+					return 2 + (int)organization.LawAgencyType;
+				}
+			else
+				{
+					return 0;
+				}
+			else
+				return 1;
+		}
+
 		public void UpdateListViewItem()
 		{
 			if (itemsCollection.Count == 0) return;
@@ -353,12 +397,7 @@ namespace DatabaseToolSuite.Controls
 			ViewUrpOrganization organization = itemsCollection[selectedIndex];
 			ListViewItem item = selectedIndex >= firstItemIndex ? itemsCache[selectedIndex - firstItemIndex] : itemsCache[0];
 
-			if (organization.Begin.Date > DateTime.Today)
-				item.ImageIndex = 2;
-			else if (organization.Begin.Date <= DateTime.Today && organization.End.Date > DateTime.Today)
-				item.ImageIndex = 0;
-			else
-				item.ImageIndex = 1;
+			item.ImageIndex = GetImageIndex(organization);
 
 			item.Text = string.IsNullOrEmpty(organization.Code) ? string.Empty : organization.Code;
 			item.SubItems[1].Text = organization.Name;
@@ -396,6 +435,11 @@ namespace DatabaseToolSuite.Controls
 		}
 
 		private void ListView_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			DetailsUpdate();
+		}
+
+		private void ListView_VirtualItemsSelectionRangeChanged(object sender, ListViewVirtualItemsSelectionRangeChangedEventArgs e)
 		{
 			DetailsUpdate();
 		}
@@ -499,6 +543,8 @@ namespace DatabaseToolSuite.Controls
 
 		public event EventHandler ItemSelectionChanged;
 
+		public event EventHandler ItemsMultySelectionChanged;
+
 		public event EventHandler LockVisibleChanged;
 
 		public event EventHandler ReserveVisibleChanged;
@@ -516,6 +562,11 @@ namespace DatabaseToolSuite.Controls
 		protected virtual void OnItemSelectionChanged(EventArgs e)
 		{
 			ItemSelectionChanged?.Invoke(this, e);
+		}
+
+		protected virtual void OnItemsMultySelectionChanged(EventArgs e)
+		{
+			ItemsMultySelectionChanged?.Invoke(this, e);
 		}
 
 		protected virtual void OnLockVisibleChanged(EventArgs e)
@@ -828,43 +879,43 @@ namespace DatabaseToolSuite.Controls
 			this.emailColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.addressColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ownerName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.isActive = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.isHead = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.special = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.military = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ogrn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.inn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.isActive = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.organizationImageList = new System.Windows.Forms.ImageList(this.components);
 			this.SuspendLayout();
-			//
+			// 
 			// baseListView
-			//
+			// 
 			this.baseListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-			this.codeColumn,
-			this.nameColumn,
-			this.authorityColumn,
-			this.okatoColumn,
-			this.beginColumn,
-			this.endColumn,
-			this.phoneColumn,
-			this.emailColumn,
-			this.addressColumn,
-			this.ownerName,
-			this.isHead,
-			this.special,
-			this.military,
-			this.ogrn,
-			this.inn,
-			this.isActive});
+            this.codeColumn,
+            this.nameColumn,
+            this.authorityColumn,
+            this.okatoColumn,
+            this.beginColumn,
+            this.endColumn,
+            this.phoneColumn,
+            this.emailColumn,
+            this.addressColumn,
+            this.ownerName,
+            this.isHead,
+            this.special,
+            this.military,
+            this.ogrn,
+            this.inn,
+            this.isActive});
 			this.baseListView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.baseListView.FullRowSelect = true;
 			this.baseListView.GridLines = true;
+			this.baseListView.HideSelection = false;
 			this.baseListView.LargeImageList = this.organizationImageList;
 			this.baseListView.Location = new System.Drawing.Point(0, 0);
-			this.baseListView.Margin = new System.Windows.Forms.Padding(4);
-			this.baseListView.MultiSelect = false;
+			this.baseListView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.baseListView.Name = "baseListView";
-			this.baseListView.Size = new System.Drawing.Size(863, 185);
+			this.baseListView.Size = new System.Drawing.Size(971, 231);
 			this.baseListView.SmallImageList = this.organizationImageList;
 			this.baseListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
 			this.baseListView.TabIndex = 0;
@@ -875,100 +926,124 @@ namespace DatabaseToolSuite.Controls
 			this.baseListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListView_ColumnClick);
 			this.baseListView.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.ListView_RetrieveVirtualItem);
 			this.baseListView.SelectedIndexChanged += new System.EventHandler(this.ListView_SelectedIndexChanged);
+			this.baseListView.VirtualItemsSelectionRangeChanged += new System.Windows.Forms.ListViewVirtualItemsSelectionRangeChangedEventHandler(this.ListView_VirtualItemsSelectionRangeChanged);
 			this.baseListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListView_MouseClick);
 			this.baseListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListView_MouseDoubleClick);
-			//
+			// 
 			// codeColumn
-			//
+			// 
 			this.codeColumn.Text = "Код";
 			this.codeColumn.Width = 80;
-			//
+			// 
 			// nameColumn
-			//
+			// 
 			this.nameColumn.Text = "Наименование";
 			this.nameColumn.Width = 400;
-			//
+			// 
 			// authorityColumn
-			//
+			// 
 			this.authorityColumn.Text = "Ведомство";
 			this.authorityColumn.Width = 120;
-			//
+			// 
 			// okatoColumn
-			//
+			// 
 			this.okatoColumn.Text = "ОКАТО";
 			this.okatoColumn.Width = 200;
-			//
+			// 
 			// beginColumn
-			//
+			// 
 			this.beginColumn.Text = "Начало действия";
 			this.beginColumn.Width = 100;
-			//
+			// 
 			// endColumn
-			//
+			// 
 			this.endColumn.Text = "Окончание действия";
 			this.endColumn.Width = 100;
-			//
+			// 
 			// phoneColumn
-			//
+			// 
 			this.phoneColumn.Text = "Телефон";
 			this.phoneColumn.Width = 120;
-			//
+			// 
 			// emailColumn
-			//
+			// 
 			this.emailColumn.Text = "Эл.почта";
 			this.emailColumn.Width = 120;
-			//
+			// 
 			// addressColumn
-			//
+			// 
 			this.addressColumn.Text = "Адрес";
 			this.addressColumn.Width = 200;
-			//
+			// 
 			// ownerName
-			//
+			// 
 			this.ownerName.Text = "Владелец";
 			this.ownerName.Width = 200;
-			//
-			// isActive
-			//
-			this.isActive.Text = "Активная";
-			//
+			// 
 			// isHead
-			//
+			// 
 			this.isHead.Text = "Головная";
-			//
+			// 
 			// special
-			//
+			// 
 			this.special.Text = "Специализированная";
-			//
+			// 
 			// military
-			//
+			// 
 			this.military.Text = "Военная";
-			//
+			// 
 			// ogrn
-			//
+			// 
 			this.ogrn.Text = "ОГРН";
-			//
+			// 
 			// inn
-			//
+			// 
 			this.inn.Text = "ИНН";
-			//
+			// 
+			// isActive
+			// 
+			this.isActive.Text = "Активная";
+			// 
 			// organizationImageList
-			//
+			// 
 			this.organizationImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("organizationImageList.ImageStream")));
 			this.organizationImageList.TransparentColor = System.Drawing.Color.Transparent;
 			this.organizationImageList.Images.SetKeyName(0, "unlock");
 			this.organizationImageList.Images.SetKeyName(1, "lock");
 			this.organizationImageList.Images.SetKeyName(2, "reserve");
-			//
+			this.organizationImageList.Images.SetKeyName(3, "bt01");
+			this.organizationImageList.Images.SetKeyName(4, "bt02");
+			this.organizationImageList.Images.SetKeyName(5, "bt03");
+			this.organizationImageList.Images.SetKeyName(6, "bt04");
+			this.organizationImageList.Images.SetKeyName(7, "bt05");
+			this.organizationImageList.Images.SetKeyName(8, "bt06");
+			this.organizationImageList.Images.SetKeyName(9, "bt07");
+			this.organizationImageList.Images.SetKeyName(10, "bt08");
+			this.organizationImageList.Images.SetKeyName(11, "bt09");
+			this.organizationImageList.Images.SetKeyName(12, "bt10");
+			this.organizationImageList.Images.SetKeyName(13, "bt11");
+			this.organizationImageList.Images.SetKeyName(14, "bt12");
+			this.organizationImageList.Images.SetKeyName(15, "bt13");
+			this.organizationImageList.Images.SetKeyName(16, "bt14");
+			this.organizationImageList.Images.SetKeyName(17, "bt15");
+			this.organizationImageList.Images.SetKeyName(18, "bt16");
+			this.organizationImageList.Images.SetKeyName(19, "bt17");
+			this.organizationImageList.Images.SetKeyName(20, "bt18");
+			this.organizationImageList.Images.SetKeyName(21, "bt19");
+			this.organizationImageList.Images.SetKeyName(22, "bt20");
+			this.organizationImageList.Images.SetKeyName(23, "bt21");
+			this.organizationImageList.Images.SetKeyName(24, "bt22");
+			// 
 			// GaspsListView
-			//
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.baseListView);
-			this.Margin = new System.Windows.Forms.Padding(4);
+			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.Name = "GaspsListView";
-			this.Size = new System.Drawing.Size(863, 185);
+			this.Size = new System.Drawing.Size(971, 231);
 			this.ResumeLayout(false);
+
 		}
 
 		#endregion Код, автоматически созданный конструктором компонентов
@@ -1075,6 +1150,7 @@ namespace DatabaseToolSuite.Controls
 		public delegate void ProgressChangedEventHandler(ProgressChangedEventArgs e);
 
 		public delegate void GaspsListViewCompletedEventHandler(object sender, GaspsListViewCompletedEventArgs e);
+				
 	}
 
 	internal class GaspsListViewEventArgs : EventArgs

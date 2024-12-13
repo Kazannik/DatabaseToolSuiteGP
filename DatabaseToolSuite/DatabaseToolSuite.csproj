@@ -138,6 +138,9 @@
     <Compile Include="Dialogs\TableEditor.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Dialogs\UrpMultyEditDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Repositoryes\1C\SubdivisionCollection.cs" />
     <Compile Include="Repositoryes\Dto\LawAgencyTypesDto.cs" />
     <Compile Include="Repositoryes\Dto\SpecialTerritorialDto.cs" />
@@ -495,6 +498,40 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\emblem_remove32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bt01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bt02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bt03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bt04.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bt05.png" />
+    <None Include="Resources\bt06.png" />
+    <None Include="Resources\bt07.png" />
+    <None Include="Resources\bt08.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bt09.png" />
+    <None Include="Resources\bt10.png" />
+    <None Include="Resources\bt11.png" />
+    <None Include="Resources\bt12.png" />
+    <None Include="Resources\bt13.png" />
+    <None Include="Resources\bt14.png" />
+    <None Include="Resources\bt15.png" />
+    <None Include="Resources\bt16.png" />
+    <None Include="Resources\bt17.png" />
+    <None Include="Resources\bt18.png" />
+    <None Include="Resources\bt19.png" />
+    <None Include="Resources\bt20.png" />
+    <None Include="Resources\bt21.png" />
+    <None Include="Resources\bt22.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

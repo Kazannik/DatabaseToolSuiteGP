@@ -102,11 +102,14 @@
 			this.filterFgisEsnsiOnlyRadioButton = new System.Windows.Forms.RadioButton();
 			this.filterAllRadioButton = new System.Windows.Forms.RadioButton();
 			this.cleanFilterButton = new System.Windows.Forms.Button();
+			this.filterCodeNumericTextBox = new DatabaseToolSuite.Controls.NumericTextBox(this.components);
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.filterNameTextBox = new System.Windows.Forms.TextBox();
 			this.filterLockCodeViewCheckBox = new System.Windows.Forms.CheckBox();
 			this.okatoLabel = new System.Windows.Forms.Label();
+			this.filterAuthorityComboBox = new DatabaseToolSuite.Controls.AuthorityComboBox();
+			this.filterOkatoComboBox = new DatabaseToolSuite.Controls.OkatoComboBox();
 			this.authorityLabel = new System.Windows.Forms.Label();
 			this.contextMenuTable = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.mnuContextNewOrganization = new System.Windows.Forms.ToolStripMenuItem();
@@ -151,16 +154,41 @@
 			this.mnuTableUrpRemoveButton = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
 			this.mnuTableRefreshButton = new System.Windows.Forms.ToolStripButton();
+			this.additionalToolStripBar = new System.Windows.Forms.ToolStrip();
+			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+			this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+			this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+			this.toolStripButton12 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton13 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton14 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+			this.toolStripButton15 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton16 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton17 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton18 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton19 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton20 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton21 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton22 = new System.Windows.Forms.ToolStripButton();
 			this.gaspsListView = new DatabaseToolSuite.Controls.GaspsListView();
-			this.filterCodeNumericTextBox = new DatabaseToolSuite.Controls.NumericTextBox(this.components);
-			this.filterAuthorityComboBox = new DatabaseToolSuite.Controls.AuthorityComboBox();
-			this.filterOkatoComboBox = new DatabaseToolSuite.Controls.OkatoComboBox();
 			this.mainMenuStrip.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.filterPanel.SuspendLayout();
 			this.filterGroupBox.SuspendLayout();
 			this.contextMenuTable.SuspendLayout();
 			this.mainToolStripBar.SuspendLayout();
+			this.additionalToolStripBar.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// mainMenuStrip
@@ -689,7 +717,7 @@
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.rowCountStatusLabel,
             this.selectedRowStatusLabel});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 659);
+			this.statusStrip1.Location = new System.Drawing.Point(0, 707);
 			this.statusStrip1.Name = "statusStrip1";
 			this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 24, 0);
 			this.statusStrip1.Size = new System.Drawing.Size(1228, 32);
@@ -715,7 +743,7 @@
 			this.filterPanel.AutoScroll = true;
 			this.filterPanel.BackColor = System.Drawing.SystemColors.Window;
 			this.filterPanel.Controls.Add(this.filterGroupBox);
-			this.filterPanel.Location = new System.Drawing.Point(0, 88);
+			this.filterPanel.Location = new System.Drawing.Point(0, 122);
 			this.filterPanel.Margin = new System.Windows.Forms.Padding(5);
 			this.filterPanel.Name = "filterPanel";
 			this.filterPanel.Size = new System.Drawing.Size(1228, 200);
@@ -798,6 +826,15 @@
 			this.cleanFilterButton.Text = "Очистить";
 			this.cleanFilterButton.Click += new System.EventHandler(this.CleanFilterButton_Click);
 			// 
+			// filterCodeNumericTextBox
+			// 
+			this.filterCodeNumericTextBox.Location = new System.Drawing.Point(9, 142);
+			this.filterCodeNumericTextBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.filterCodeNumericTextBox.Name = "filterCodeNumericTextBox";
+			this.filterCodeNumericTextBox.Size = new System.Drawing.Size(196, 31);
+			this.filterCodeNumericTextBox.TabIndex = 6;
+			this.filterCodeNumericTextBox.TextChanged += new System.EventHandler(this.Filter_ParametersChanged);
+			// 
 			// label1
 			// 
 			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -853,6 +890,48 @@
 			this.okatoLabel.Size = new System.Drawing.Size(135, 25);
 			this.okatoLabel.TabIndex = 35;
 			this.okatoLabel.Text = "Код ОКАТО:";
+			// 
+			// filterAuthorityComboBox
+			// 
+			this.filterAuthorityComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.filterAuthorityComboBox.Code = "";
+			this.filterAuthorityComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+			this.filterAuthorityComboBox.DropDownHeight = 584;
+			this.filterAuthorityComboBox.DropDownWidth = 80;
+			this.filterAuthorityComboBox.FormattingEnabled = true;
+			this.filterAuthorityComboBox.Id = ((long)(-1));
+			this.filterAuthorityComboBox.IntegralHeight = false;
+			this.filterAuthorityComboBox.ItemHeight = 29;
+			this.filterAuthorityComboBox.Location = new System.Drawing.Point(134, 66);
+			this.filterAuthorityComboBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.filterAuthorityComboBox.MaxDropDownItems = 20;
+			this.filterAuthorityComboBox.Name = "filterAuthorityComboBox";
+			this.filterAuthorityComboBox.SelectedItem = null;
+			this.filterAuthorityComboBox.Size = new System.Drawing.Size(409, 35);
+			this.filterAuthorityComboBox.TabIndex = 4;
+			this.filterAuthorityComboBox.SelectedIndexChanged += new System.EventHandler(this.Filter_ParametersChanged);
+			// 
+			// filterOkatoComboBox
+			// 
+			this.filterOkatoComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.filterOkatoComboBox.Code = "";
+			this.filterOkatoComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+			this.filterOkatoComboBox.DropDownHeight = 584;
+			this.filterOkatoComboBox.DropDownWidth = 80;
+			this.filterOkatoComboBox.FormattingEnabled = true;
+			this.filterOkatoComboBox.Id = ((long)(-1));
+			this.filterOkatoComboBox.IntegralHeight = false;
+			this.filterOkatoComboBox.ItemHeight = 29;
+			this.filterOkatoComboBox.Location = new System.Drawing.Point(134, 26);
+			this.filterOkatoComboBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.filterOkatoComboBox.MaxDropDownItems = 20;
+			this.filterOkatoComboBox.Name = "filterOkatoComboBox";
+			this.filterOkatoComboBox.SelectedItem = null;
+			this.filterOkatoComboBox.Size = new System.Drawing.Size(730, 35);
+			this.filterOkatoComboBox.TabIndex = 3;
+			this.filterOkatoComboBox.SelectedIndexChanged += new System.EventHandler(this.Filter_ParametersChanged);
 			// 
 			// authorityLabel
 			// 
@@ -1240,83 +1319,333 @@
 			this.mnuTableRefreshButton.Text = "Обновить таблицу";
 			this.mnuTableRefreshButton.Click += new System.EventHandler(this.Filter_ParametersChanged);
 			// 
+			// additionalToolStripBar
+			// 
+			this.additionalToolStripBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+			this.additionalToolStripBar.ImageScalingSize = new System.Drawing.Size(24, 24);
+			this.additionalToolStripBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this.toolStripSeparator8,
+            this.toolStripButton2,
+            this.toolStripButton3,
+            this.toolStripButton4,
+            this.toolStripButton5,
+            this.toolStripButton6,
+            this.toolStripButton7,
+            this.toolStripButton8,
+            this.toolStripButton9,
+            this.toolStripSeparator9,
+            this.toolStripButton10,
+            this.toolStripButton11,
+            this.toolStripSeparator10,
+            this.toolStripButton12,
+            this.toolStripButton13,
+            this.toolStripButton14,
+            this.toolStripSeparator11,
+            this.toolStripButton15,
+            this.toolStripButton16,
+            this.toolStripButton17,
+            this.toolStripButton18,
+            this.toolStripButton19,
+            this.toolStripButton20,
+            this.toolStripButton21,
+            this.toolStripButton22});
+			this.additionalToolStripBar.Location = new System.Drawing.Point(0, 79);
+			this.additionalToolStripBar.Name = "additionalToolStripBar";
+			this.additionalToolStripBar.Size = new System.Drawing.Size(1228, 33);
+			this.additionalToolStripBar.TabIndex = 10;
+			this.additionalToolStripBar.Text = "Дополнительная";
+			// 
+			// toolStripButton1
+			// 
+			this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton1.Image = global::DatabaseToolSuite.Properties.Resources.bt01;
+			this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton1.Name = "toolStripButton1";
+			this.toolStripButton1.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton1.Tag = "1";
+			this.toolStripButton1.Text = "Генеральная прокуратура";
+			this.toolStripButton1.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripSeparator8
+			// 
+			this.toolStripSeparator8.Name = "toolStripSeparator8";
+			this.toolStripSeparator8.Size = new System.Drawing.Size(6, 33);
+			// 
+			// toolStripButton2
+			// 
+			this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton2.Image = global::DatabaseToolSuite.Properties.Resources.bt02;
+			this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton2.Name = "toolStripButton2";
+			this.toolStripButton2.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton2.Tag = "2";
+			this.toolStripButton2.Text = "Прокуратура субъекта";
+			this.toolStripButton2.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripButton3
+			// 
+			this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton3.Image = global::DatabaseToolSuite.Properties.Resources.bt03;
+			this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton3.Name = "toolStripButton3";
+			this.toolStripButton3.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton3.Tag = "3";
+			this.toolStripButton3.Text = "Районная прокуратура";
+			this.toolStripButton3.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripButton4
+			// 
+			this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton4.Image = global::DatabaseToolSuite.Properties.Resources.bt04;
+			this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton4.Name = "toolStripButton4";
+			this.toolStripButton4.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton4.Tag = "4";
+			this.toolStripButton4.Text = "Межрайонная прокуратура";
+			this.toolStripButton4.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripButton5
+			// 
+			this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton5.Image = global::DatabaseToolSuite.Properties.Resources.bt05;
+			this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton5.Name = "toolStripButton5";
+			this.toolStripButton5.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton5.Tag = "5";
+			this.toolStripButton5.Text = "Специализированная прокуратура субъекта";
+			this.toolStripButton5.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripButton6
+			// 
+			this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton6.Image = global::DatabaseToolSuite.Properties.Resources.bt06;
+			this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton6.Name = "toolStripButton6";
+			this.toolStripButton6.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton6.Tag = "6";
+			this.toolStripButton6.Text = "Межрайонная специализированная прокуратура";
+			this.toolStripButton6.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripButton7
+			// 
+			this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton7.Image = global::DatabaseToolSuite.Properties.Resources.bt07;
+			this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton7.Name = "toolStripButton7";
+			this.toolStripButton7.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton7.Tag = "7";
+			this.toolStripButton7.Text = "Городская прокуратура";
+			this.toolStripButton7.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripButton8
+			// 
+			this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton8.Image = global::DatabaseToolSuite.Properties.Resources.bt08;
+			this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton8.Name = "toolStripButton8";
+			this.toolStripButton8.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton8.Tag = "8";
+			this.toolStripButton8.Text = "Окружная прокуратура";
+			this.toolStripButton8.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripButton9
+			// 
+			this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton9.Image = global::DatabaseToolSuite.Properties.Resources.bt09;
+			this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton9.Name = "toolStripButton9";
+			this.toolStripButton9.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton9.Tag = "9";
+			this.toolStripButton9.Text = "Городская районная прокуратура";
+			this.toolStripButton9.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripSeparator9
+			// 
+			this.toolStripSeparator9.Name = "toolStripSeparator9";
+			this.toolStripSeparator9.Size = new System.Drawing.Size(6, 33);
+			// 
+			// toolStripButton10
+			// 
+			this.toolStripButton10.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton10.Image = global::DatabaseToolSuite.Properties.Resources.bt10;
+			this.toolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton10.Name = "toolStripButton10";
+			this.toolStripButton10.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton10.Tag = "10";
+			this.toolStripButton10.Text = "Специализированная прокуратура";
+			this.toolStripButton10.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripButton11
+			// 
+			this.toolStripButton11.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton11.Image = global::DatabaseToolSuite.Properties.Resources.bt11;
+			this.toolStripButton11.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton11.Name = "toolStripButton11";
+			this.toolStripButton11.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton11.Tag = "11";
+			this.toolStripButton11.Text = "Специализированная прокуратура на правах районной";
+			this.toolStripButton11.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripSeparator10
+			// 
+			this.toolStripSeparator10.Name = "toolStripSeparator10";
+			this.toolStripSeparator10.Size = new System.Drawing.Size(6, 33);
+			// 
+			// toolStripButton12
+			// 
+			this.toolStripButton12.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton12.Image = global::DatabaseToolSuite.Properties.Resources.bt12;
+			this.toolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton12.Name = "toolStripButton12";
+			this.toolStripButton12.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton12.Tag = "12";
+			this.toolStripButton12.Text = "Главная военная прокуратура";
+			this.toolStripButton12.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripButton13
+			// 
+			this.toolStripButton13.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton13.Image = global::DatabaseToolSuite.Properties.Resources.bt13;
+			this.toolStripButton13.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton13.Name = "toolStripButton13";
+			this.toolStripButton13.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton13.Tag = "13";
+			this.toolStripButton13.Text = "Военная прокуратура окружного звена";
+			this.toolStripButton13.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripButton14
+			// 
+			this.toolStripButton14.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton14.Image = global::DatabaseToolSuite.Properties.Resources.bt14;
+			this.toolStripButton14.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton14.Name = "toolStripButton14";
+			this.toolStripButton14.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton14.Tag = "14";
+			this.toolStripButton14.Text = "Военная прокуратура";
+			this.toolStripButton14.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripSeparator11
+			// 
+			this.toolStripSeparator11.Name = "toolStripSeparator11";
+			this.toolStripSeparator11.Size = new System.Drawing.Size(6, 33);
+			// 
+			// toolStripButton15
+			// 
+			this.toolStripButton15.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton15.Image = global::DatabaseToolSuite.Properties.Resources.bt15;
+			this.toolStripButton15.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton15.Name = "toolStripButton15";
+			this.toolStripButton15.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton15.Tag = "15";
+			this.toolStripButton15.Text = "Центральный аппарат";
+			this.toolStripButton15.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripButton16
+			// 
+			this.toolStripButton16.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton16.Image = global::DatabaseToolSuite.Properties.Resources.bt16;
+			this.toolStripButton16.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton16.Name = "toolStripButton16";
+			this.toolStripButton16.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton16.Tag = "16";
+			this.toolStripButton16.Text = "Аппарат";
+			this.toolStripButton16.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripButton17
+			// 
+			this.toolStripButton17.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton17.Image = global::DatabaseToolSuite.Properties.Resources.bt17;
+			this.toolStripButton17.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton17.Name = "toolStripButton17";
+			this.toolStripButton17.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton17.Tag = "17";
+			this.toolStripButton17.Text = "Главное управление";
+			this.toolStripButton17.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripButton18
+			// 
+			this.toolStripButton18.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton18.Image = global::DatabaseToolSuite.Properties.Resources.bt18;
+			this.toolStripButton18.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton18.Name = "toolStripButton18";
+			this.toolStripButton18.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton18.Tag = "18";
+			this.toolStripButton18.Text = "Управление";
+			this.toolStripButton18.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripButton19
+			// 
+			this.toolStripButton19.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton19.Image = global::DatabaseToolSuite.Properties.Resources.bt19;
+			this.toolStripButton19.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton19.Name = "toolStripButton19";
+			this.toolStripButton19.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton19.Tag = "19";
+			this.toolStripButton19.Text = "Отдел";
+			this.toolStripButton19.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripButton20
+			// 
+			this.toolStripButton20.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton20.Image = global::DatabaseToolSuite.Properties.Resources.bt20;
+			this.toolStripButton20.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton20.Name = "toolStripButton20";
+			this.toolStripButton20.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton20.Tag = "20";
+			this.toolStripButton20.Text = "Руководитель";
+			this.toolStripButton20.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripButton21
+			// 
+			this.toolStripButton21.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton21.Image = global::DatabaseToolSuite.Properties.Resources.bt21;
+			this.toolStripButton21.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton21.Name = "toolStripButton21";
+			this.toolStripButton21.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton21.Tag = "21";
+			this.toolStripButton21.Text = "Старший помощник";
+			this.toolStripButton21.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// toolStripButton22
+			// 
+			this.toolStripButton22.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton22.Image = global::DatabaseToolSuite.Properties.Resources.bt22;
+			this.toolStripButton22.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton22.Name = "toolStripButton22";
+			this.toolStripButton22.Size = new System.Drawing.Size(34, 28);
+			this.toolStripButton22.Tag = "22";
+			this.toolStripButton22.Text = "Помощник";
+			this.toolStripButton22.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
 			// gaspsListView
 			// 
 			this.gaspsListView.DataSet = null;
 			this.gaspsListView.ErvkOnlyShow = false;
 			this.gaspsListView.FgisEsnsiOnlyShow = false;
-			this.gaspsListView.Location = new System.Drawing.Point(0, 299);
+			this.gaspsListView.Location = new System.Drawing.Point(0, 326);
 			this.gaspsListView.LockShow = false;
 			this.gaspsListView.Margin = new System.Windows.Forms.Padding(6);
 			this.gaspsListView.Name = "gaspsListView";
 			this.gaspsListView.ReserveShow = true;
-			this.gaspsListView.Size = new System.Drawing.Size(1228, 361);
+			this.gaspsListView.Size = new System.Drawing.Size(1228, 379);
 			this.gaspsListView.TabIndex = 1;
 			this.gaspsListView.UnlockShow = true;
 			this.gaspsListView.ItemSelectionChanged += new System.EventHandler(this.GaspsListView_ItemSelectionChanged);
+			this.gaspsListView.ItemsMultySelectionChanged += new System.EventHandler(this.GaspsListView_ItemsMultySelectionChanged);
 			this.gaspsListView.ItemMouseClick += new System.EventHandler<DatabaseToolSuite.Controls.GaspsListViewEventArgs>(this.GaspsListView_ItemMouseClick);
 			this.gaspsListView.ItemMouseDoubleClick += new System.EventHandler<DatabaseToolSuite.Controls.GaspsListViewEventArgs>(this.GaspsListView_ItemMouseDoubleClick);
 			this.gaspsListView.GaspsListViewCompleted += new DatabaseToolSuite.Controls.GaspsListView.GaspsListViewCompletedEventHandler(this.GaspsListView_GaspsListViewCompleted);
-			// 
-			// filterCodeNumericTextBox
-			// 
-			this.filterCodeNumericTextBox.Location = new System.Drawing.Point(9, 142);
-			this.filterCodeNumericTextBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.filterCodeNumericTextBox.Name = "filterCodeNumericTextBox";
-			this.filterCodeNumericTextBox.Size = new System.Drawing.Size(196, 31);
-			this.filterCodeNumericTextBox.TabIndex = 6;
-			this.filterCodeNumericTextBox.TextChanged += new System.EventHandler(this.Filter_ParametersChanged);
-			// 
-			// filterAuthorityComboBox
-			// 
-			this.filterAuthorityComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.filterAuthorityComboBox.Code = "";
-			this.filterAuthorityComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.filterAuthorityComboBox.DropDownHeight = 424;
-			this.filterAuthorityComboBox.DropDownWidth = 80;
-			this.filterAuthorityComboBox.FormattingEnabled = true;
-			this.filterAuthorityComboBox.Id = ((long)(-1));
-			this.filterAuthorityComboBox.IntegralHeight = false;
-			this.filterAuthorityComboBox.ItemHeight = 21;
-			this.filterAuthorityComboBox.Location = new System.Drawing.Point(134, 66);
-			this.filterAuthorityComboBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.filterAuthorityComboBox.MaxDropDownItems = 20;
-			this.filterAuthorityComboBox.Name = "filterAuthorityComboBox";
-			this.filterAuthorityComboBox.SelectedItem = null;
-			this.filterAuthorityComboBox.Size = new System.Drawing.Size(409, 27);
-			this.filterAuthorityComboBox.TabIndex = 4;
-			this.filterAuthorityComboBox.SelectedIndexChanged += new System.EventHandler(this.Filter_ParametersChanged);
-			// 
-			// filterOkatoComboBox
-			// 
-			this.filterOkatoComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.filterOkatoComboBox.Code = "";
-			this.filterOkatoComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.filterOkatoComboBox.DropDownHeight = 424;
-			this.filterOkatoComboBox.DropDownWidth = 80;
-			this.filterOkatoComboBox.FormattingEnabled = true;
-			this.filterOkatoComboBox.Id = ((long)(-1));
-			this.filterOkatoComboBox.IntegralHeight = false;
-			this.filterOkatoComboBox.ItemHeight = 21;
-			this.filterOkatoComboBox.Location = new System.Drawing.Point(134, 26);
-			this.filterOkatoComboBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.filterOkatoComboBox.MaxDropDownItems = 20;
-			this.filterOkatoComboBox.Name = "filterOkatoComboBox";
-			this.filterOkatoComboBox.SelectedItem = null;
-			this.filterOkatoComboBox.Size = new System.Drawing.Size(730, 27);
-			this.filterOkatoComboBox.TabIndex = 3;
-			this.filterOkatoComboBox.SelectedIndexChanged += new System.EventHandler(this.Filter_ParametersChanged);
 			// 
 			// AppForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1228, 691);
+			this.ClientSize = new System.Drawing.Size(1228, 739);
+			this.Controls.Add(this.filterPanel);
+			this.Controls.Add(this.additionalToolStripBar);
 			this.Controls.Add(this.mainToolStripBar);
 			this.Controls.Add(this.gaspsListView);
-			this.Controls.Add(this.filterPanel);
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.mainMenuStrip);
 			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -1339,6 +1668,8 @@
 			this.contextMenuTable.ResumeLayout(false);
 			this.mainToolStripBar.ResumeLayout(false);
 			this.mainToolStripBar.PerformLayout();
+			this.additionalToolStripBar.ResumeLayout(false);
+			this.additionalToolStripBar.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1471,5 +1802,32 @@
 		private System.Windows.Forms.ToolStripButton mnuTableUrpRemoveButton;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
 		private System.Windows.Forms.ToolStripMenuItem mnuToolsFillRtkUrpTable;
+		private System.Windows.Forms.ToolStrip additionalToolStripBar;
+		private System.Windows.Forms.ToolStripButton toolStripButton1;
+		private System.Windows.Forms.ToolStripButton toolStripButton2;
+		private System.Windows.Forms.ToolStripButton toolStripButton3;
+		private System.Windows.Forms.ToolStripButton toolStripButton4;
+		private System.Windows.Forms.ToolStripButton toolStripButton5;
+		private System.Windows.Forms.ToolStripButton toolStripButton6;
+		private System.Windows.Forms.ToolStripButton toolStripButton7;
+		private System.Windows.Forms.ToolStripButton toolStripButton8;
+		private System.Windows.Forms.ToolStripButton toolStripButton9;
+		private System.Windows.Forms.ToolStripButton toolStripButton10;
+		private System.Windows.Forms.ToolStripButton toolStripButton11;
+		private System.Windows.Forms.ToolStripButton toolStripButton12;
+		private System.Windows.Forms.ToolStripButton toolStripButton13;
+		private System.Windows.Forms.ToolStripButton toolStripButton14;
+		private System.Windows.Forms.ToolStripButton toolStripButton15;
+		private System.Windows.Forms.ToolStripButton toolStripButton16;
+		private System.Windows.Forms.ToolStripButton toolStripButton17;
+		private System.Windows.Forms.ToolStripButton toolStripButton18;
+		private System.Windows.Forms.ToolStripButton toolStripButton19;
+		private System.Windows.Forms.ToolStripButton toolStripButton20;
+		private System.Windows.Forms.ToolStripButton toolStripButton21;
+		private System.Windows.Forms.ToolStripButton toolStripButton22;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
 	}
 }

@@ -1,4 +1,5 @@
-﻿using DatabaseToolSuite.Services;
+﻿using DatabaseToolSuite.Repositoryes;
+using DatabaseToolSuite.Services;
 using System;
 using System.Reflection;
 using System.Windows.Forms;
@@ -81,6 +82,7 @@ namespace DatabaseToolSuite.Dialogs
 			mnuTableUrpRemoveButton.Enabled = false;
 
 			mnuToolsClearCode.Enabled = false;
+			additionalToolStripBar.Enabled = false;
 		}
 
 		private bool isFilter = true;
@@ -187,11 +189,21 @@ namespace DatabaseToolSuite.Dialogs
 				mnuTableUrpRemoveButton.Enabled = existsUrp;
 
 				mnuToolsClearCode.Enabled = !gaspsListView.DataRow.IscodeNull();
+				
+				additionalToolStripBar.Enabled = existsUrp;
 			}
 			else
 			{
 				DisableControl();
 			}
+		}
+
+		private void GaspsListView_ItemsMultySelectionChanged(object sender, EventArgs e)
+		{
+			mnuTableUrpEdit.Enabled = filterAuthorityComboBox.Value == MasterDataSystem.PROSECUTOR_CODE;
+			mnuContextUrpEdit.Enabled = filterAuthorityComboBox.Value == MasterDataSystem.PROSECUTOR_CODE;
+			mnuTableUrpEditButton.Enabled = filterAuthorityComboBox.Value == MasterDataSystem.PROSECUTOR_CODE;
+			additionalToolStripBar.Enabled = filterAuthorityComboBox.Value == MasterDataSystem.PROSECUTOR_CODE;
 		}
 
 		private void GaspsListView_ItemMouseClick(object sender, Controls.GaspsListViewEventArgs e)
@@ -541,7 +553,7 @@ namespace DatabaseToolSuite.Dialogs
 
 		private void AppForm_Resize(object sender, EventArgs e)
 		{
-			filterPanel.Location = new System.Drawing.Point(2, mainToolStripBar.Top + mainToolStripBar.Height);
+			filterPanel.Location = new System.Drawing.Point(2, mainToolStripBar.Top + mainToolStripBar.Height + additionalToolStripBar.Height + 2);
 			filterPanel.Width = ClientSize.Width - 4;
 			gaspsListView.Location = new System.Drawing.Point(filterPanel.Left + filterGroupBox.Left, filterPanel.Top + filterPanel.Height);
 			gaspsListView.Width = ClientSize.Width - (filterPanel.Left + filterGroupBox.Left) * 2;
@@ -842,7 +854,85 @@ namespace DatabaseToolSuite.Dialogs
 					}
 				}
 			}
+			else if (gaspsListView.MultySelectDataRows != null && filterAuthorityComboBox.Value == MasterDataSystem.PROSECUTOR_CODE)
+			{
+				UrpMultyEditDialog dialog = new UrpMultyEditDialog();
+				if (dialog.ShowDialog(this) == DialogResult.OK)
+				{
+					foreach(MainDataSet.gaspsRow row in gaspsListView.MultySelectDataRows)
+					{
+						
+						if (MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Exists(row.version))
+						{
+							Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow editRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(row.version);
+							if (dialog.IsEditDoesntConsolidateChild)
+							{
+								editRow.DOESNT_CONSOLIDATE_CHILD = dialog.DoesntConsolidateChild;
+							}
+							if (dialog.IsEditDoesntCreateCard)
+							{
+								editRow.DOESNT_CREATE_CARD = dialog.DoesntCreateCard;
+							}
+							if (dialog.IsEditDoesntSingReport)
+							{
+								editRow.DOESNT_SIGN_REPORT = dialog.DoesntSingReport;
+							}
+							if (dialog.IsEditAgencyReceivingReport)
+							{
+								editRow.AGENCY_RECEIVING_REPORT = dialog.AgencyReceivingReport;
+							}
+							if (dialog.IsEditLawAgencyType)
+							{
+								editRow.LAW_AGENCY_TYPE = dialog.LawAgencyType;
+							}
+							if (dialog.IsEditOktmoLocId)
+							{
+								editRow.OKTMO_LOC_ID = dialog.OktmoLocId;
+							}
+							if (dialog.IsEditSpecialTerritorialCode)
+							{
+								editRow.SPECIAL_TERRITORIAL_CODE = dialog.SpecialTerritorialCode;
+							}
+						}
+					}
+					Utils.Database.SetIsHeadAttribute();
+					gaspsListView.UpdateListViewItem();
+					MessageBox.Show(this, "Данные успешно внесены", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+			}
 		}
+
+		private void UrpLawAgencyTypeEditButton_Click(object sender, EventArgs e)
+		{
+			ToolStripButton button = sender as ToolStripButton;
+			long agencyType = long.Parse((string)button.Tag);
+
+			if (gaspsListView.DataRow != null && gaspsListView.DataRow.authority_id == MasterDataSystem.PROSECUTOR_CODE)
+			{
+				if (MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Exists(gaspsListView.DataRow.version))
+				{
+					Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow editRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(gaspsListView.DataRow.version);
+					editRow.LAW_AGENCY_TYPE = agencyType;
+
+					Utils.Database.SetIsHeadAttribute();
+					gaspsListView.UpdateListViewItem();
+				}
+			}
+			else if (gaspsListView.MultySelectDataRows != null && filterAuthorityComboBox.Value == MasterDataSystem.PROSECUTOR_CODE)
+			{
+				foreach (MainDataSet.gaspsRow row in gaspsListView.MultySelectDataRows)
+				{
+					if (MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Exists(row.version))
+					{
+						Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow editRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(row.version);
+						editRow.LAW_AGENCY_TYPE = agencyType;
+					}
+				}
+				Utils.Database.SetIsHeadAttribute();
+				gaspsListView.UpdateListViewItem();
+				MessageBox.Show(this, "Данные успешно внесены", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+		}		
 
 		#endregion URP
 
@@ -922,6 +1012,6 @@ namespace DatabaseToolSuite.Dialogs
 		{
 			Utils.Database.FillUrpInGasps();
 			gaspsListView.UpdateListViewItem();
-		}
+		}		
 	}
 }
