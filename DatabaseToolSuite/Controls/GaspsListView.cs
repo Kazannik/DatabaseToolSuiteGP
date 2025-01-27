@@ -40,6 +40,25 @@ namespace DatabaseToolSuite.Controls
 		private ColumnHeader inn;
 		private string _name;
 
+		private readonly Func<ViewUrpOrganization, object>[] orders = new Func<ViewUrpOrganization, object>[] {
+			new Func<ViewUrpOrganization, string>(x => x.Code),
+			new Func<ViewUrpOrganization, string>(x => x.Name),
+			new Func<ViewUrpOrganization, string>(x => x.Authority),
+			new Func<ViewUrpOrganization, string>(x => x.Okato),
+			new Func<ViewUrpOrganization, object>(x => x.Begin),
+			new Func<ViewUrpOrganization, object>(x => x.End),
+			new Func<ViewUrpOrganization, string>(x => x.Phone),
+			new Func<ViewUrpOrganization, string>(x => x.Email),
+			new Func<ViewUrpOrganization, string>(x => x.Address),
+			new Func<ViewUrpOrganization, string>(x => x.OwnerName),
+			new Func<ViewUrpOrganization, object>(x => x.IsHead),
+			new Func<ViewUrpOrganization, object>(x => x.Special),
+			new Func<ViewUrpOrganization, object>(x => x.Military),
+			new Func<ViewUrpOrganization, string>(x => x.Ogrn),
+			new Func<ViewUrpOrganization, string>(x => x.Inn),
+			new Func<ViewUrpOrganization, object>(x => x.IsActive)
+	};
+
 		public GaspsListView()
 		{
 			itemsCollection = new List<ViewUrpOrganization>();
@@ -330,11 +349,12 @@ namespace DatabaseToolSuite.Controls
 
 		private ListViewItem CreateListViewItem(ViewUrpOrganization organization)
 		{
-			ListViewItem item = new ListViewItem(organization.Code);
-			
-			item.ImageIndex = GetImageIndex(organization);
+			ListViewItem item = new ListViewItem(organization.Code)
+			{
+				ImageIndex = GetImageIndex(organization),
 
-			item.Text = string.IsNullOrEmpty(organization.Code) ? string.Empty : organization.Code;
+				Text = string.IsNullOrEmpty(organization.Code) ? string.Empty : organization.Code
+			};
 			item.SubItems.Add(organization.Name);
 			item.SubItems.Add(organization.Authority);
 			item.SubItems.Add(organization.Okato);
@@ -451,85 +471,17 @@ namespace DatabaseToolSuite.Controls
 			baseListView.BeginUpdate();
 
 			int selectedIndex = baseListView.SelectedIndices.Count > 0 ? baseListView.SelectedIndices[0] : 0;
-			ViewUrpOrganization selectedOrganization = itemsCollection[selectedIndex];
+			ViewUrpOrganization selectedOrganization = itemsCollection[selectedIndex];		
 
 			if (baseListView.Columns[e.Column].Tag == null ||
 				baseListView.Columns[e.Column].Tag.ToString() == "UP")
 			{
-				if (e.Column == 0)
-					itemsCollection = itemsCollection.OrderBy(x => x.Code).ToArray();
-				else if (e.Column == 1)
-					itemsCollection = itemsCollection.OrderBy(x => x.Name).ToArray();
-				else if (e.Column == 2)
-					itemsCollection = itemsCollection.OrderBy(x => x.Authority).ToArray();
-				else if (e.Column == 3)
-					itemsCollection = itemsCollection.OrderBy(x => x.Okato).ToArray();
-				else if (e.Column == 4)
-					itemsCollection = itemsCollection.OrderBy(x => x.Begin).ToArray();
-				else if (e.Column == 5)
-					itemsCollection = itemsCollection.OrderBy(x => x.End).ToArray();
-				else if (e.Column == 6)
-					itemsCollection = itemsCollection.OrderBy(x => x.Phone).ToArray();
-				else if (e.Column == 7)
-					itemsCollection = itemsCollection.OrderBy(x => x.Email).ToArray();
-				else if (e.Column == 8)
-					itemsCollection = itemsCollection.OrderBy(x => x.Address).ToArray();
-				else if (e.Column == 9)
-					itemsCollection = itemsCollection.OrderBy(x => x.OwnerName).ToArray();
-				else if (e.Column == 10)
-					itemsCollection = itemsCollection.OrderBy(x => x.IsHead).ToArray();
-				else if (e.Column == 11)
-					itemsCollection = itemsCollection.OrderBy(x => x.Special).ToArray();
-				else if (e.Column == 12)
-					itemsCollection = itemsCollection.OrderBy(x => x.Military).ToArray();
-				else if (e.Column == 13)
-					itemsCollection = itemsCollection.OrderBy(x => x.Ogrn).ToArray();
-				else if (e.Column == 14)
-					itemsCollection = itemsCollection.OrderBy(x => x.Inn).ToArray();
-				else if (e.Column == 15)
-					itemsCollection = itemsCollection.OrderBy(x => x.IsActive).ToArray();
-				else
-					itemsCollection = itemsCollection.OrderBy(x => x.Code).ToArray();
-
+				itemsCollection = itemsCollection.OrderBy(orders[e.Column]).ToArray();
 				baseListView.Columns[e.Column].Tag = "DOWN";
 			}
 			else
 			{
-				if (e.Column == 0)
-					itemsCollection = itemsCollection.OrderByDescending(x => x.Code).ToArray();
-				else if (e.Column == 1)
-					itemsCollection = itemsCollection.OrderByDescending(x => x.Name).ToArray();
-				else if (e.Column == 2)
-					itemsCollection = itemsCollection.OrderByDescending(x => x.Authority).ToArray();
-				else if (e.Column == 3)
-					itemsCollection = itemsCollection.OrderByDescending(x => x.Okato).ToArray();
-				else if (e.Column == 4)
-					itemsCollection = itemsCollection.OrderByDescending(x => x.Begin).ToArray();
-				else if (e.Column == 5)
-					itemsCollection = itemsCollection.OrderByDescending(x => x.End).ToArray();
-				else if (e.Column == 6)
-					itemsCollection = itemsCollection.OrderByDescending(x => x.Phone).ToArray();
-				else if (e.Column == 7)
-					itemsCollection = itemsCollection.OrderByDescending(x => x.Email).ToArray();
-				else if (e.Column == 8)
-					itemsCollection = itemsCollection.OrderByDescending(x => x.Address).ToArray();
-				else if (e.Column == 9)
-					itemsCollection = itemsCollection.OrderByDescending(x => x.OwnerName).ToArray();
-				else if (e.Column == 10)
-					itemsCollection = itemsCollection.OrderByDescending(x => x.IsHead).ToArray();
-				else if (e.Column == 11)
-					itemsCollection = itemsCollection.OrderByDescending(x => x.Special).ToArray();
-				else if (e.Column == 12)
-					itemsCollection = itemsCollection.OrderByDescending(x => x.Military).ToArray();
-				else if (e.Column == 13)
-					itemsCollection = itemsCollection.OrderByDescending(x => x.Ogrn).ToArray();
-				else if (e.Column == 14)
-					itemsCollection = itemsCollection.OrderByDescending(x => x.Inn).ToArray();
-				else if (e.Column == 15)
-					itemsCollection = itemsCollection.OrderByDescending(x => x.IsActive).ToArray();
-				else
-					itemsCollection = itemsCollection.OrderByDescending(x => x.Code).ToArray();
-
+				itemsCollection = itemsCollection.OrderByDescending(orders[e.Column]).ToArray();
 				baseListView.Columns[e.Column].Tag = "UP";
 			}
 
@@ -555,9 +507,9 @@ namespace DatabaseToolSuite.Controls
 
 		public event EventHandler ErvkOnlyVisibleChanged;
 
-		public event EventHandler<GaspsListViewEventArgs> ItemMouseClick;
+		public event EventHandler<ListViewEventArgs> ItemMouseClick;
 
-		public event EventHandler<GaspsListViewEventArgs> ItemMouseDoubleClick;
+		public event EventHandler<ListViewEventArgs> ItemMouseDoubleClick;
 
 		protected virtual void OnItemSelectionChanged(EventArgs e)
 		{
@@ -599,12 +551,12 @@ namespace DatabaseToolSuite.Controls
 			ErvkOnlyVisibleChanged?.Invoke(this, e);
 		}
 
-		protected virtual void OnItemMouseClick(GaspsListViewEventArgs e)
+		protected virtual void OnItemMouseClick(ListViewEventArgs e)
 		{
 			ItemMouseClick?.Invoke(this, e);
 		}
 
-		protected virtual void OnItemMouseDoubleClick(GaspsListViewEventArgs e)
+		protected virtual void OnItemMouseDoubleClick(ListViewEventArgs e)
 		{
 			ItemMouseDoubleClick?.Invoke(this, e);
 		}
@@ -632,7 +584,7 @@ namespace DatabaseToolSuite.Controls
 			var focusedItem = listView.FocusedItem;
 			if (focusedItem != null && focusedItem.Bounds.Contains(e.Location))
 			{
-				OnItemMouseClick(new GaspsListViewEventArgs(focusedItem, e));
+				OnItemMouseClick(new ListViewEventArgs(focusedItem, e));
 			}
 		}
 
@@ -642,7 +594,7 @@ namespace DatabaseToolSuite.Controls
 			var focusedItem = listView.FocusedItem;
 			if (focusedItem != null && focusedItem.Bounds.Contains(e.Location))
 			{
-				OnItemMouseDoubleClick(new GaspsListViewEventArgs(focusedItem, e));
+				OnItemMouseDoubleClick(new ListViewEventArgs(focusedItem, e));
 			}
 		}
 
@@ -657,7 +609,7 @@ namespace DatabaseToolSuite.Controls
 
 		public event ProgressChangedEventHandler ProgressChanged;
 
-		public event GaspsListViewCompletedEventHandler GaspsListViewCompleted;
+		public event ListViewCompletedEventHandler GaspsListViewCompleted;
 
 		#endregion Public events
 
@@ -727,7 +679,7 @@ namespace DatabaseToolSuite.Controls
 				userStateToLifetime[filter.GetHashCode()] = asyncOp;
 			}
 
-			WorkerEventHandler workerDelegate = new WorkerEventHandler(GaspsListViewWorker);
+			WorkerEventHandler workerDelegate = new WorkerEventHandler(ListViewWorker);
 			workerDelegate.BeginInvoke(
 				filter,
 				asyncOp,
@@ -737,13 +689,12 @@ namespace DatabaseToolSuite.Controls
 
 		private bool TaskCanceled(object taskId)
 		{
-			return (userStateToLifetime[taskId] == null);
+			return userStateToLifetime[taskId] == null;
 		}
 
 		public void CancelAsync(object taskId)
 		{
-			AsyncOperation asyncOp = userStateToLifetime[taskId] as AsyncOperation;
-			if (asyncOp != null)
+			if (userStateToLifetime[taskId] is AsyncOperation)
 			{
 				lock (userStateToLifetime.SyncRoot)
 				{
@@ -752,7 +703,7 @@ namespace DatabaseToolSuite.Controls
 			}
 		}
 
-		private void GaspsListViewWorker(
+		private void ListViewWorker(
 			FilterParameters filter,
 			AsyncOperation asyncOp)
 		{
@@ -763,7 +714,7 @@ namespace DatabaseToolSuite.Controls
 			{
 				try
 				{
-					collection = BuildGaspsListViewList(
+					collection = BuildListViewList(
 						filter,
 						asyncOp);
 				}
@@ -781,7 +732,7 @@ namespace DatabaseToolSuite.Controls
 				asyncOp);
 		}
 
-		private IList<ViewUrpOrganization> BuildGaspsListViewList(
+		private IList<ViewUrpOrganization> BuildListViewList(
 			FilterParameters filter,
 			AsyncOperation asyncOp)
 		{
@@ -802,9 +753,9 @@ namespace DatabaseToolSuite.Controls
 
 		private void ItemCollectionCompleted(object operationState)
 		{
-			GaspsListViewCompletedEventArgs e = operationState as GaspsListViewCompletedEventArgs;
+			ListViewCompletedEventArgs e = operationState as ListViewCompletedEventArgs;
 			ApplyFilter(e.Collection);
-			OnGaspsListViewCompleted(e);
+			OnListViewCompleted(e);
 		}
 
 		private void ReportProgress(object state)
@@ -813,22 +764,14 @@ namespace DatabaseToolSuite.Controls
 			OnProgressChanged(e);
 		}
 
-		protected void OnGaspsListViewCompleted(GaspsListViewCompletedEventArgs e)
+		protected void OnListViewCompleted(ListViewCompletedEventArgs e)
 		{
-			GaspsListViewCompletedEventHandler GaspsListViewCompletedEvent = GaspsListViewCompleted;
-			if (GaspsListViewCompletedEvent != null)
-			{
-				GaspsListViewCompletedEvent(this, e);
-			}
+			GaspsListViewCompleted?.Invoke(this, e);
 		}
 
 		protected void OnProgressChanged(ProgressChangedEventArgs e)
 		{
-			ProgressChangedEventHandler ProgressChangedEvent = ProgressChanged;
-			if (ProgressChangedEvent != null)
-			{
-				ProgressChangedEvent(e);
-			}
+			ProgressChanged?.Invoke(e);
 		}
 
 		private void CompletionMethod(
@@ -846,8 +789,8 @@ namespace DatabaseToolSuite.Controls
 				}
 			}
 
-			GaspsListViewCompletedEventArgs e =
-				new GaspsListViewCompletedEventArgs(
+			ListViewCompletedEventArgs e =
+				new ListViewCompletedEventArgs(
 				collection,
 				exception,
 				canceled,
@@ -1149,13 +1092,13 @@ namespace DatabaseToolSuite.Controls
 
 		public delegate void ProgressChangedEventHandler(ProgressChangedEventArgs e);
 
-		public delegate void GaspsListViewCompletedEventHandler(object sender, GaspsListViewCompletedEventArgs e);
+		public delegate void ListViewCompletedEventHandler(object sender, ListViewCompletedEventArgs e);
 				
 	}
 
-	internal class GaspsListViewEventArgs : EventArgs
+	internal class ListViewEventArgs : EventArgs
 	{
-		public GaspsListViewEventArgs(ListViewItem item, MouseEventArgs arg)
+		public ListViewEventArgs(ListViewItem item, MouseEventArgs arg)
 		{
 			FocusedItem = item;
 			Button = arg.Button;
@@ -1194,9 +1137,9 @@ namespace DatabaseToolSuite.Controls
 		public long LatestItemIndex { get; } = 0;
 	}
 
-	internal class GaspsListViewCompletedEventArgs : AsyncCompletedEventArgs
+	internal class ListViewCompletedEventArgs : AsyncCompletedEventArgs
 	{
-		public GaspsListViewCompletedEventArgs(
+		public ListViewCompletedEventArgs(
 			IList<ViewUrpOrganization> collection,
 			Exception e,
 			bool canceled,

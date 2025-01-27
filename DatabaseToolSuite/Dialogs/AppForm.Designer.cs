@@ -1633,9 +1633,9 @@
 			this.gaspsListView.UnlockShow = true;
 			this.gaspsListView.ItemSelectionChanged += new System.EventHandler(this.GaspsListView_ItemSelectionChanged);
 			this.gaspsListView.ItemsMultySelectionChanged += new System.EventHandler(this.GaspsListView_ItemsMultySelectionChanged);
-			this.gaspsListView.ItemMouseClick += new System.EventHandler<DatabaseToolSuite.Controls.GaspsListViewEventArgs>(this.GaspsListView_ItemMouseClick);
-			this.gaspsListView.ItemMouseDoubleClick += new System.EventHandler<DatabaseToolSuite.Controls.GaspsListViewEventArgs>(this.GaspsListView_ItemMouseDoubleClick);
-			this.gaspsListView.GaspsListViewCompleted += new DatabaseToolSuite.Controls.GaspsListView.GaspsListViewCompletedEventHandler(this.GaspsListView_GaspsListViewCompleted);
+			this.gaspsListView.ItemMouseClick += new System.EventHandler<DatabaseToolSuite.Controls.ListViewEventArgs>(this.GaspsListView_ItemMouseClick);
+			this.gaspsListView.ItemMouseDoubleClick += new System.EventHandler<DatabaseToolSuite.Controls.ListViewEventArgs>(this.GaspsListView_ItemMouseDoubleClick);
+			this.gaspsListView.GaspsListViewCompleted += new DatabaseToolSuite.Controls.GaspsListView.ListViewCompletedEventHandler(this.GaspsListView_GaspsListViewCompleted);
 			// 
 			// AppForm
 			// 

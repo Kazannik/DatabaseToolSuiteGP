@@ -206,7 +206,7 @@ namespace DatabaseToolSuite.Dialogs
 			additionalToolStripBar.Enabled = filterAuthorityComboBox.Value == MasterDataSystem.PROSECUTOR_CODE;
 		}
 
-		private void GaspsListView_ItemMouseClick(object sender, Controls.GaspsListViewEventArgs e)
+		private void GaspsListView_ItemMouseClick(object sender, Controls.ListViewEventArgs e)
 		{
 			if (e.Button == MouseButtons.Right)
 			{
@@ -214,7 +214,7 @@ namespace DatabaseToolSuite.Dialogs
 			}
 		}
 
-		private void GaspsListView_ItemMouseDoubleClick(object sender, Controls.GaspsListViewEventArgs e)
+		private void GaspsListView_ItemMouseDoubleClick(object sender, Controls.ListViewEventArgs e)
 		{
 			if (e.Button == MouseButtons.Left)
 			{
@@ -960,7 +960,7 @@ namespace DatabaseToolSuite.Dialogs
 			MessageBox.Show(this, "Данные ЕРВК успешно дополнены журналом редактирования", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
-		private void GaspsListView_GaspsListViewCompleted(object sender, Controls.GaspsListViewCompletedEventArgs e)
+		private void GaspsListView_GaspsListViewCompleted(object sender, Controls.ListViewCompletedEventArgs e)
 		{
 			rowCountStatusLabel.Text = string.Format("Отражено записей {0}", gaspsListView.RowCount);
 		}
@@ -969,15 +969,15 @@ namespace DatabaseToolSuite.Dialogs
 		{
 		}
 
-		private void gaspsListView_ItemMouseClick(object sender, Controls.GaspsListViewEventArgs e)
+		private void gaspsListView_ItemMouseClick(object sender, Controls.ListViewEventArgs e)
 		{
 		}
 
-		private void gaspsListView_ItemMouseDoubleClick(object sender, Controls.GaspsListViewEventArgs e)
+		private void gaspsListView_ItemMouseDoubleClick(object sender, Controls.ListViewEventArgs e)
 		{
 		}
 
-		private void gaspsListView_GaspsListViewCompleted(object sender, Controls.GaspsListViewCompletedEventArgs e)
+		private void gaspsListView_GaspsListViewCompleted(object sender, Controls.ListViewCompletedEventArgs e)
 		{
 		}
 
