@@ -120,16 +120,6 @@ namespace DatabaseToolSuite.Dialogs
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox_Logo)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// button_Cancel
-			// 
-			this.button_Cancel.Location = new System.Drawing.Point(784, 573);
-			this.button_Cancel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-			// 
-			// button_OK
-			// 
-			this.button_OK.Location = new System.Drawing.Point(622, 573);
-			this.button_OK.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-			// 
 			// tableLayoutPanel
 			// 
 			this.tableLayoutPanel.ColumnCount = 2;
@@ -142,7 +132,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.tableLayoutPanel.Controls.Add(this.label_Copyright, 1, 2);
 			this.tableLayoutPanel.Controls.Add(this.textBox_Description, 0, 4);
 			this.tableLayoutPanel.Location = new System.Drawing.Point(17, 85);
-			this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+			this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(6);
 			this.tableLayoutPanel.Name = "tableLayoutPanel";
 			this.tableLayoutPanel.RowCount = 5;
 			this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -174,7 +164,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.pictureBox_Logo.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pictureBox_Logo.Image = global::DatabaseToolSuite.Properties.Resources.emblem_big;
 			this.pictureBox_Logo.Location = new System.Drawing.Point(6, 6);
-			this.pictureBox_Logo.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+			this.pictureBox_Logo.Margin = new System.Windows.Forms.Padding(6);
 			this.pictureBox_Logo.Name = "pictureBox_Logo";
 			this.tableLayoutPanel.SetRowSpan(this.pictureBox_Logo, 4);
 			this.pictureBox_Logo.Size = new System.Drawing.Size(263, 270);
@@ -246,11 +236,9 @@ namespace DatabaseToolSuite.Dialogs
 			this.MaximumSize = new System.Drawing.Size(887, 647);
 			this.MinimumSize = new System.Drawing.Size(887, 647);
 			this.Name = "AboutDialog";
-			this.Padding = new System.Windows.Forms.Padding(18, 18, 18, 18);
+			this.Padding = new System.Windows.Forms.Padding(18);
 			this.ShowIcon = false;
 			this.Text = "DialogAbout";
-			this.Controls.SetChildIndex(this.button_Cancel, 0);
-			this.Controls.SetChildIndex(this.button_OK, 0);
 			this.Controls.SetChildIndex(this.tableLayoutPanel, 0);
 			this.tableLayoutPanel.ResumeLayout(false);
 			this.tableLayoutPanel.PerformLayout();

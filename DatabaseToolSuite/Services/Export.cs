@@ -1,4 +1,5 @@
-﻿using DatabaseToolSuite.Repositoryes;
+﻿using DatabaseToolSuite.Repositories;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -163,6 +164,87 @@ namespace DatabaseToolSuite.Services
 			excRange.Value = objData;
 		}
 
+		public static void ExportDeltaDataBaseToExcel(DateTime begin, DateTime end)
+		{
+			IEnumerable<MainDataSet.ViewGaspsOrganization> data = MasterDataSystem.DataSet.gasps.ExportDeltaData(begin: begin, end: end);
+			int rowCount = data.Count();
+
+			Excel.Application excExcel = null;
+			Excel.Workbooks excBooks = null;
+			Excel._Workbook excBook = null;
+			Excel.Sheets excSheets = null;
+			Excel._Worksheet excSheet = null;
+			Excel.Range excRange = null;
+			Excel.Font excFont = null;
+
+			object objOpt = Missing.Value;
+
+			excExcel = new Excel.Application
+			{
+				Visible = true
+			};
+
+			excBooks = excExcel.Workbooks;
+			excBook = excBooks.Add(objOpt);
+			excSheets = excBook.Worksheets;
+			excSheet = (Excel._Worksheet)excSheets.get_Item(1);
+
+
+			object[] objHeaders = { "Номер", "Наименование", "Ведомство", "ОКАТО", "Код", "Дата начала действия", "Дата окончания действия", "Дата редактирования" };
+			excRange = excSheet.get_Range("A1", "H1");
+			excRange.Value = objHeaders;
+			excFont = excRange.Font;
+			excFont.Bold = true;
+
+			excRange = excSheet.get_Range("B1", "E" + (rowCount + 1));
+			excRange.NumberFormat = "@";
+
+			excRange = excSheet.get_Range("B1", "B1");
+			excRange.ColumnWidth = 70;
+
+			excRange = excSheet.get_Range("B2", "B2");
+			excRange.Select();
+			excExcel.ActiveWindow.FreezePanes = true;
+
+			excRange = excSheet.get_Range("C1", "C1");
+			excRange.ColumnWidth = 20;
+
+			excRange = excSheet.get_Range("D1", "D1");
+			excRange.ColumnWidth = 60;
+
+			excRange = excSheet.get_Range("E1", "E1");
+			excRange.ColumnWidth = 10;
+
+			excRange = excSheet.get_Range("F1", "F1");
+			excRange.ColumnWidth = 10;
+
+			excRange = excSheet.get_Range("G1", "G1");
+			excRange.ColumnWidth = 10;
+
+			excRange = excSheet.get_Range("H1", "H1");
+			excRange.ColumnWidth = 10;
+
+			object[,] objData = new object[rowCount, 8];
+			int r = 0;
+			foreach (MainDataSet.ViewGaspsOrganization item in data)
+			{
+				objData[r, 0] = r + 1;
+				objData[r, 1] = item.Name;
+				objData[r, 2] = item.AuthorityId.ToString("00 - ") + item.Authority;
+				objData[r, 3] = item.Okato;
+				objData[r, 4] = item.Code;
+				objData[r, 5] = item.Begin;
+				objData[r, 6] = item.End;
+				objData[r, 7] = item.LogEditDate;
+
+				r += 1;
+			}
+
+			excRange = excSheet.get_Range("A2", objOpt);
+			excRange = excRange.get_Resize(rowCount, 8);
+			excRange.Value = objData;
+		}
+
 		public static void ExportGaspsToExcel2()
 		{
 			IEnumerable<MainDataSet.ViewGaspsOrganization> data = MasterDataSystem.DataSet.gasps.ExportData()
@@ -240,7 +322,7 @@ namespace DatabaseToolSuite.Services
 
 		public static void ExportFgisEsnsiToExcel()
 		{
-			IEnumerable<Repositoryes.MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization> data = MasterDataSystem.DataSet.fgis_esnsi.ExportData();
+			IEnumerable<Repositories.MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization> data = MasterDataSystem.DataSet.fgis_esnsi.ExportData();
 			int rowCount = data.Count();
 
 			Excel.Application excExcel = null;
@@ -269,7 +351,7 @@ namespace DatabaseToolSuite.Services
 
 			object[,] objData = new object[rowCount, objHeaders.Count()];
 			int r = 0;
-			foreach (Repositoryes.MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization item in data)
+			foreach (Repositories.MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization item in data)
 			{
 				objData[r, 0] = item.Id;
 				objData[r, 1] = item.Name;
@@ -290,11 +372,11 @@ namespace DatabaseToolSuite.Services
 
 		public static void ExportFgisEsnsiToCsv(string path)
 		{
-			IEnumerable<Repositoryes.MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization> data = MasterDataSystem.DataSet.fgis_esnsi.ExportData();
+			IEnumerable<Repositories.MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization> data = MasterDataSystem.DataSet.fgis_esnsi.ExportData();
 			StreamWriter writer = new StreamWriter(path: path, append: false, encoding: Encoding.GetEncoding(1251));
 			writer.WriteLine("id;NAME;REGION;PHONE;EMAIL;ADDRESS;OKATO;CODE;autokey");
 
-			foreach (Repositoryes.MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization item in data)
+			foreach (Repositories.MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization item in data)
 			{
 				string line = item.Id + ";" +
 					item.Name.Trim() + ";" +

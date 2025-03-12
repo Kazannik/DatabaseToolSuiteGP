@@ -1,4 +1,4 @@
-﻿using DatabaseToolSuite.Repositoryes;
+﻿using DatabaseToolSuite.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -8,7 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using static DatabaseToolSuite.Repositoryes.MainDataSet;
+using static DatabaseToolSuite.Repositories.MainDataSet;
 
 namespace DatabaseToolSuite.Controls
 {

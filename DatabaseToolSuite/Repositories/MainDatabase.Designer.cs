@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace DatabaseToolSuite.Repositoryes {
+namespace DatabaseToolSuite.Repositories {
     
     
     /// <summary>
@@ -5559,7 +5559,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public string code {
                 get {
                     try {
-                        return ((string)(this[this.tableokato.codeColumn]));
+                        return (ConvertFromDBVal<string>(this[this.tableokato.codeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'code\' в таблице \'okato\' равно DBNull.", e);
@@ -5586,7 +5586,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public string name2 {
                 get {
                     try {
-                        return ((string)(this[this.tableokato.name2Column]));
+                        return (ConvertFromDBVal<string>(this[this.tableokato.name2Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'name2\' в таблице \'okato\' равно DBNull.", e);
@@ -5602,7 +5602,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public string centrum {
                 get {
                     try {
-                        return ((string)(this[this.tableokato.centrumColumn]));
+                        return (ConvertFromDBVal<string>(this[this.tableokato.centrumColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'centrum\' в таблице \'okato\' равно DBNull.", e);
@@ -5618,7 +5618,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public string genitive {
                 get {
                     try {
-                        return ((string)(this[this.tableokato.genitiveColumn]));
+                        return (ConvertFromDBVal<string>(this[this.tableokato.genitiveColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'genitive\' в таблице \'okato\' равно DBNull.", e);
@@ -5688,7 +5688,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public string ssrf {
                 get {
                     try {
-                        return ((string)(this[this.tableokato.ssrfColumn]));
+						return (ConvertFromDBVal<string>(this[this.tableokato.ssrfColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'ssrf\' в таблице \'okato\' равно DBNull.", e);
@@ -5704,8 +5704,8 @@ namespace DatabaseToolSuite.Repositoryes {
             public long export_id {
                 get {
                     try {
-						return ConvertFromDBVal<long>(this[this.tableokato.export_idColumn]);
-					}
+						return (ConvertFromDBVal<long>(this[this.tableokato.export_idColumn]));
+                    }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'export_id\' в таблице \'okato\' равно DBNull.", e);
                     }
@@ -5924,7 +5924,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public long index {
                 get {
                     try {
-                        return ((long)(this[this.tablegasps.indexColumn]));
+                        return (ConvertFromDBVal<long>(this[this.tablegasps.indexColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'index\' в таблице \'gasps\' равно DBNull.", e);
@@ -5973,7 +5973,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public long location_okato_id {
                 get {
                     try {
-                        return ((long)(this[this.tablegasps.location_okato_idColumn]));
+                        return (ConvertFromDBVal<long>(this[this.tablegasps.location_okato_idColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'location_okato_id\' в таблице \'gasps\' равно DBNull.", e);
@@ -5989,7 +5989,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public long another_okato_id {
                 get {
                     try {
-                        return ((long)(this[this.tablegasps.another_okato_idColumn]));
+                        return (ConvertFromDBVal<long>(this[this.tablegasps.another_okato_idColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'another_okato_id\' в таблице \'gasps\' равно DBNull.", e);
@@ -6005,7 +6005,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public long court_type_id {
                 get {
                     try {
-                        return ((long)(this[this.tablegasps.court_type_idColumn]));
+                        return (ConvertFromDBVal<long>(this[this.tablegasps.court_type_idColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'court_type_id\' в таблице \'gasps\' равно DBNull.", e);
@@ -6053,7 +6053,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public long export_key {
                 get {
                     try {
-                        return ((long)(this[this.tablegasps.export_keyColumn]));
+                        return (ConvertFromDBVal<long>(this[this.tablegasps.export_keyColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'export_key\' в таблице \'gasps\' равно DBNull.", e);
@@ -6069,7 +6069,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public long export_version {
                 get {
                     try {
-                        return ((long)(this[this.tablegasps.export_versionColumn]));
+                        return (ConvertFromDBVal<long>(this[this.tablegasps.export_versionColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'export_version\' в таблице \'gasps\' равно DBNull.", e);
@@ -6085,7 +6085,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public long export_id {
                 get {
                     try {
-                        return ((long)(this[this.tablegasps.export_idColumn]));
+                        return (ConvertFromDBVal<long>(this[this.tablegasps.export_idColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'export_id\' в таблице \'gasps\' равно DBNull.", e);
@@ -6101,7 +6101,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public long export_ord {
                 get {
                     try {
-                        return ((long)(this[this.tablegasps.export_ordColumn]));
+                        return (ConvertFromDBVal <long>(this[this.tablegasps.export_ordColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'export_ord\' в таблице \'gasps\' равно DBNull.", e);
@@ -6445,7 +6445,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public long region_id {
                 get {
                     try {
-                        return ((long)(this[this.tablefgis_esnsi.region_idColumn]));
+                        return (ConvertFromDBVal <long>(this[this.tablefgis_esnsi.region_idColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'region_id\' в таблице \'fgis_esnsi\' равно DBNull.", e);
@@ -6461,7 +6461,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public string sv_0004 {
                 get {
                     try {
-                        return ((string)(this[this.tablefgis_esnsi.sv_0004Column]));
+                        return (ConvertFromDBVal<string>(this[this.tablefgis_esnsi.sv_0004Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'sv_0004\' в таблице \'fgis_esnsi\' равно DBNull.", e);
@@ -6477,7 +6477,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public string sv_0005 {
                 get {
                     try {
-                        return ((string)(this[this.tablefgis_esnsi.sv_0005Column]));
+                        return (ConvertFromDBVal<string>(this[this.tablefgis_esnsi.sv_0005Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'sv_0005\' в таблице \'fgis_esnsi\' равно DBNull.", e);
@@ -6493,7 +6493,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public string sv_0006 {
                 get {
                     try {
-                        return ((string)(this[this.tablefgis_esnsi.sv_0006Column]));
+                        return (ConvertFromDBVal<string>(this[this.tablefgis_esnsi.sv_0006Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'sv_0006\' в таблице \'fgis_esnsi\' равно DBNull.", e);
@@ -6509,7 +6509,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public short okato {
                 get {
                     try {
-                        return ((short)(this[this.tablefgis_esnsi.okatoColumn]));
+                        return (ConvertFromDBVal <short>(this[this.tablefgis_esnsi.okatoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'okato\' в таблице \'fgis_esnsi\' равно DBNull.", e);
@@ -6525,7 +6525,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public long code {
                 get {
                     try {
-                        return ((long)(this[this.tablefgis_esnsi.codeColumn]));
+                        return (ConvertFromDBVal <long>(this[this.tablefgis_esnsi.codeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'code\' в таблице \'fgis_esnsi\' равно DBNull.", e);
@@ -6541,7 +6541,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public string autokey {
                 get {
                     try {
-                        return ((string)(this[this.tablefgis_esnsi.autokeyColumn]));
+                        return (ConvertFromDBVal<string>(this[this.tablefgis_esnsi.autokeyColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'autokey\' в таблице \'fgis_esnsi\' равно DBNull.", e);
@@ -6557,7 +6557,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public long id {
                 get {
                     try {
-                        return ((long)(this[this.tablefgis_esnsi.idColumn]));
+                        return (ConvertFromDBVal<long>(this[this.tablefgis_esnsi.idColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'id\' в таблице \'fgis_esnsi\' равно DBNull.", e);
@@ -6800,7 +6800,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public long idVersionHead {
                 get {
                     try {
-                        return ((long)(this[this.tableervk.idVersionHeadColumn]));
+                        return (ConvertFromDBVal <long>(this[this.tableervk.idVersionHeadColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'idVersionHead\' в таблице \'ervk\' равно DBNull.", e);
@@ -6859,7 +6859,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public string ogrn {
                 get {
                     try {
-                        return ((string)(this[this.tableervk.ogrnColumn]));
+                        return (ConvertFromDBVal<string>(this[this.tableervk.ogrnColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'ogrn\' в таблице \'ervk\' равно DBNull.", e);
@@ -6875,7 +6875,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public string inn {
                 get {
                     try {
-                        return ((string)(this[this.tableervk.innColumn]));
+                        return (ConvertFromDBVal<string>(this[this.tableervk.innColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'inn\' в таблице \'ervk\' равно DBNull.", e);
@@ -6891,7 +6891,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public string subjectRfList {
                 get {
                     try {
-                        return ((string)(this[this.tableervk.subjectRfListColumn]));
+                        return (ConvertFromDBVal<string>(this[this.tableervk.subjectRfListColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'subjectRfList\' в таблице \'ervk\' равно DBNull.", e);
@@ -6907,7 +6907,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public string oktmoList {
                 get {
                     try {
-                        return ((string)(this[this.tableervk.oktmoListColumn]));
+                        return (ConvertFromDBVal<string>(this[this.tableervk.oktmoListColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'oktmoList\' в таблице \'ervk\' равно DBNull.", e);
@@ -7116,7 +7116,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public long AGENCY_RECEIVING_REPORT {
                 get {
                     try {
-                        return ((long)(this[this.tableEXP_LAW_AGENCY_URP.AGENCY_RECEIVING_REPORTColumn]));
+                        return (ConvertFromDBVal <long>(this[this.tableEXP_LAW_AGENCY_URP.AGENCY_RECEIVING_REPORTColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'AGENCY_RECEIVING_REPORT\' в таблице \'EXP_LAW_AGENCY_URP\' рав" +
@@ -7133,7 +7133,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public long ORD {
                 get {
                     try {
-                        return ((long)(this[this.tableEXP_LAW_AGENCY_URP.ORDColumn]));
+                        return (ConvertFromDBVal <long>(this[this.tableEXP_LAW_AGENCY_URP.ORDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'ORD\' в таблице \'EXP_LAW_AGENCY_URP\' равно DBNull.", e);
@@ -7149,7 +7149,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public string VED_CODE {
                 get {
                     try {
-                        return ((string)(this[this.tableEXP_LAW_AGENCY_URP.VED_CODEColumn]));
+                        return (ConvertFromDBVal<string>(this[this.tableEXP_LAW_AGENCY_URP.VED_CODEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'VED_CODE\' в таблице \'EXP_LAW_AGENCY_URP\' равно DBNull.", e);
@@ -7165,7 +7165,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public long ID {
                 get {
                     try {
-                        return ((long)(this[this.tableEXP_LAW_AGENCY_URP.IDColumn]));
+                        return (ConvertFromDBVal <long>(this[this.tableEXP_LAW_AGENCY_URP.IDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'ID\' в таблице \'EXP_LAW_AGENCY_URP\' равно DBNull.", e);
@@ -7192,7 +7192,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public long LAW_AGENCY_TYPE {
                 get {
                     try {
-                        return ((long)(this[this.tableEXP_LAW_AGENCY_URP.LAW_AGENCY_TYPEColumn]));
+                        return (ConvertFromDBVal <long>(this[this.tableEXP_LAW_AGENCY_URP.LAW_AGENCY_TYPEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'LAW_AGENCY_TYPE\' в таблице \'EXP_LAW_AGENCY_URP\' равно DBNul" +
@@ -7438,7 +7438,7 @@ namespace DatabaseToolSuite.Repositoryes {
             public string NAME {
                 get {
                     try {
-                        return ((string)(this[this.tableSPECIAL_TERRITORIAL_CODE.NAMEColumn]));
+                        return (ConvertFromDBVal <string>(this[this.tableSPECIAL_TERRITORIAL_CODE.NAMEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'NAME\' в таблице \'SPECIAL_TERRITORIAL_CODE\' равно DBNull.", e);

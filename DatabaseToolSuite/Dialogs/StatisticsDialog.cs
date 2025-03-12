@@ -42,7 +42,7 @@ namespace DatabaseToolSuite.Dialogs
 
 			if (Services.MasterDataSystem.DataSet.okato.Count > 0)
 			{
-				foreach (Repositoryes.MainDataSet.okatoRow row in Services.MasterDataSystem.DataSet.okato)
+				foreach (Repositories.MainDataSet.okatoRow row in Services.MasterDataSystem.DataSet.okato)
 				{
 					ListViewItem item = new ListViewItem(row.name + " (" + row.code + ")");
 					IEnumerable<long> codes = Services.MasterDataSystem.DataSet.gasps.GetUsedCodes(authorityComboBox1.Value.Value, row.okato);
@@ -70,16 +70,6 @@ namespace DatabaseToolSuite.Dialogs
 			this.authorityComboBox1 = new DatabaseToolSuite.Controls.AuthorityComboBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
-			// 
-			// button_Cancel
-			// 
-			this.button_Cancel.Location = new System.Drawing.Point(982, 814);
-			this.button_Cancel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-			// 
-			// button_OK
-			// 
-			this.button_OK.Location = new System.Drawing.Point(782, 814);
-			this.button_OK.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
 			// 
 			// listView1
 			// 
@@ -142,9 +132,7 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// StatisticsDialog
 			// 
-			this.AcceptButton = this.button_OK;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
-			this.CancelButton = this.button_Cancel;
 			this.ClientSize = new System.Drawing.Size(1082, 832);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.authorityComboBox1);
@@ -152,8 +140,6 @@ namespace DatabaseToolSuite.Dialogs
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
 			this.Name = "StatisticsDialog";
-			this.Controls.SetChildIndex(this.button_Cancel, 0);
-			this.Controls.SetChildIndex(this.button_OK, 0);
 			this.Controls.SetChildIndex(this.listView1, 0);
 			this.Controls.SetChildIndex(this.authorityComboBox1, 0);
 			this.Controls.SetChildIndex(this.label1, 0);

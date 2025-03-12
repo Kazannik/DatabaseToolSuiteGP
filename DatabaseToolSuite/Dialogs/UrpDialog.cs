@@ -41,7 +41,7 @@ namespace DatabaseToolSuite.Dialogs
 		protected CheckBox DOESNT_CREATE_CARD_checkBox;
 		protected CheckBox DOESNT_SIGN_REPORT_checkBox;
 
-		public UrpDialog(Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow row, bool createNew) : this()
+		public UrpDialog(Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow row, bool createNew) : this()
 		{
 			this.createNew = createNew;
 
@@ -73,7 +73,7 @@ namespace DatabaseToolSuite.Dialogs
 			if (createNew) OkButtonEnabled = true;
 		}
 
-		public Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow DataRow { get; private set; }
+		public Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow DataRow { get; private set; }
 
 		public bool DoesntConsolidateChild
 		{ get { return DOESNT_CONSOLIDATE_CHILD_checkBox.Checked; } }
@@ -135,14 +135,6 @@ namespace DatabaseToolSuite.Dialogs
 			this.SPECIAL_TERRITORIAL_CODE_label = new System.Windows.Forms.Label();
 			this.AGENCY_RECEIVING_REPORT_Clean_button = new System.Windows.Forms.Button();
 			this.SuspendLayout();
-			// 
-			// button_Cancel
-			// 
-			this.button_Cancel.Location = new System.Drawing.Point(778, 566);
-			// 
-			// button_OK
-			// 
-			this.button_OK.Location = new System.Drawing.Point(578, 566);
 			// 
 			// SHORT_NAME_label
 			// 
@@ -352,9 +344,7 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// UrpDialog
 			// 
-			this.AcceptButton = this.button_OK;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
-			this.CancelButton = this.button_Cancel;
 			this.ClientSize = new System.Drawing.Size(878, 584);
 			this.Controls.Add(this.AGENCY_RECEIVING_REPORT_Clean_button);
 			this.Controls.Add(this.SPECIAL_TERRITORIAL_CODE_label);
@@ -376,8 +366,6 @@ namespace DatabaseToolSuite.Dialogs
 			this.DialogCaptionImage = global::DatabaseToolSuite.Properties.Resources.emblem32;
 			this.MinimumSize = new System.Drawing.Size(580, 640);
 			this.Name = "UrpDialog";
-			this.Controls.SetChildIndex(this.button_Cancel, 0);
-			this.Controls.SetChildIndex(this.button_OK, 0);
 			this.Controls.SetChildIndex(this.SHORT_NAME_label, 0);
 			this.Controls.SetChildIndex(this.SHORT_NAME_textBox, 0);
 			this.Controls.SetChildIndex(this.DOESNT_CREATE_CARD_checkBox, 0);

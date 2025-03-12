@@ -1,4 +1,4 @@
-﻿using DatabaseToolSuite.Repositoryes.Dto;
+﻿using DatabaseToolSuite.Repositories.Dto;
 using System.Windows.Forms.Design;
 
 namespace DatabaseToolSuite.Controls
@@ -13,22 +13,22 @@ namespace DatabaseToolSuite.Controls
 		{
 		}
 
-		public void InitializeSource(Repositoryes.MainDataSet.EXP_LAW_AGENCY_TYPESDataTable table)
+		public void InitializeSource(Repositories.MainDataSet.EXP_LAW_AGENCY_TYPESDataTable table)
 		{
 			BeginUpdate();
 			Items.Clear();
-			foreach (Repositoryes.MainDataSet.EXP_LAW_AGENCY_TYPESRow row in table.Rows)
+			foreach (Repositories.MainDataSet.EXP_LAW_AGENCY_TYPESRow row in table.Rows)
 			{
 				Add(new LawAgencyTypesDto(row));
 			}
 			EndUpdate();
 		}
 
-		public void InitializeSource(Repositoryes.EXP_LAW_AGENCY.EXP_LAW_AGENCY_TYPESDataTable table)
+		public void InitializeSource(Repositories.EXP_LAW_AGENCY.EXP_LAW_AGENCY_TYPESDataTable table)
 		{
 			BeginUpdate();
 			Items.Clear();
-			foreach (Repositoryes.EXP_LAW_AGENCY.EXP_LAW_AGENCY_TYPESRow row in table.Rows)
+			foreach (Repositories.EXP_LAW_AGENCY.EXP_LAW_AGENCY_TYPESRow row in table.Rows)
 			{
 				Add(new LawAgencyTypesDto(row));
 			}

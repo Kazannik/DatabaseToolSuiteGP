@@ -1,11 +1,11 @@
-﻿using DatabaseToolSuite.Repositoryes;
+﻿using DatabaseToolSuite.Repositories;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web.UI.WebControls.Expressions;
-using ExportDataSet = DatabaseToolSuite.Repositoryes.EXP_LAW_AGENCY;
+using ExportDataSet = DatabaseToolSuite.Repositories.EXP_LAW_AGENCY;
 
 namespace DatabaseToolSuite.Services
 {

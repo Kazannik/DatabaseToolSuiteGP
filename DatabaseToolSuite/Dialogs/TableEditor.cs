@@ -33,14 +33,6 @@ namespace DatabaseToolSuite.Dialogs
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// button_Cancel
-			// 
-			this.button_Cancel.Location = new System.Drawing.Point(618, 506);
-			// 
-			// button_OK
-			// 
-			this.button_OK.Location = new System.Drawing.Point(418, 506);
-			// 
 			// dataGridView1
 			// 
 			this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -78,17 +70,13 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// TableEditor
 			// 
-			this.AcceptButton = this.button_OK;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
-			this.CancelButton = this.button_Cancel;
 			this.ClientSize = new System.Drawing.Size(718, 524);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.tables_comboBox);
 			this.Controls.Add(this.dataGridView1);
 			this.DialogCaptionImage = global::DatabaseToolSuite.Properties.Resources.Table32;
 			this.Name = "TableEditor";
-			this.Controls.SetChildIndex(this.button_Cancel, 0);
-			this.Controls.SetChildIndex(this.button_OK, 0);
 			this.Controls.SetChildIndex(this.dataGridView1, 0);
 			this.Controls.SetChildIndex(this.tables_comboBox, 0);
 			this.Controls.SetChildIndex(this.button1, 0);

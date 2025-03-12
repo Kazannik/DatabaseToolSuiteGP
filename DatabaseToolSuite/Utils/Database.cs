@@ -221,11 +221,11 @@
 		/// </summary>
 		public static void FillLogEditDateInErvk()
 		{
-			foreach (Repositoryes.MainDataSet.ervkRow row in MasterDataSystem.DataSet.ervk.Rows)
+			foreach (Repositories.MainDataSet.ervkRow row in MasterDataSystem.DataSet.ervk.Rows)
 			{
 				if (row.IslogEditDateNull())
 				{
-					Repositoryes.MainDataSet.gaspsRow gaspsRow = MasterDataSystem.DataSet.gasps.GetOrganizationFromVersion(row.version);
+					Repositories.MainDataSet.gaspsRow gaspsRow = MasterDataSystem.DataSet.gasps.GetOrganizationFromVersion(row.version);
 					if (gaspsRow.IslogEditDateNull())
 					{
 						if (gaspsRow.date_end < DateTime.Now)
@@ -254,11 +254,11 @@
 		/// </summary>
 		public static void FillLogEditDateInFgisEsnsi()
 		{
-			foreach (Repositoryes.MainDataSet.fgis_esnsiRow row in MasterDataSystem.DataSet.fgis_esnsi.Rows)
+			foreach (Repositories.MainDataSet.fgis_esnsiRow row in MasterDataSystem.DataSet.fgis_esnsi.Rows)
 			{
 				if (row.IslogEditDateNull())
 				{
-					Repositoryes.MainDataSet.gaspsRow gaspsRow = MasterDataSystem.DataSet.gasps.GetOrganizationFromVersion(row.version);
+					Repositories.MainDataSet.gaspsRow gaspsRow = MasterDataSystem.DataSet.gasps.GetOrganizationFromVersion(row.version);
 					if (gaspsRow.IslogEditDateNull())
 					{
 						if (gaspsRow.date_end < DateTime.Now)
@@ -287,7 +287,7 @@
 		/// </summary>
 		public static void FillLogEditDateInGasps()
 		{
-			foreach (Repositoryes.MainDataSet.gaspsRow row in MasterDataSystem.DataSet.gasps.Rows)
+			foreach (Repositories.MainDataSet.gaspsRow row in MasterDataSystem.DataSet.gasps.Rows)
 			{
 				if (row.IslogEditDateNull())
 				{
@@ -318,7 +318,7 @@
 			Rtk.EntityCollection lawAgencyTypes = Rtk.ConvertLawAgencyTypes();
 			Rtk.EntityCollection specialTerritorialCode = Rtk.ConvertSpecialTerritorialCode();
 
-			foreach (Repositoryes.MainDataSet.gaspsRow row in MasterDataSystem.DataSet.gasps.Rows)
+			foreach (Repositories.MainDataSet.gaspsRow row in MasterDataSystem.DataSet.gasps.Rows)
 			{
 				if (row.authority_id == MasterDataSystem.PROSECUTOR_CODE
 					&& (row.date_end.Date > DateTime.Today && row.date_beg.Date <= DateTime.Today))
@@ -358,7 +358,7 @@
 		/// </summary>
 		public static void SetIsHeadAttribute()
 		{
-			foreach (Repositoryes.MainDataSet.ervkRow row in MasterDataSystem.DataSet.ervk.Rows)
+			foreach (Repositories.MainDataSet.ervkRow row in MasterDataSystem.DataSet.ervk.Rows)
 			{
 				if (MasterDataSystem.DataSet.ervk.ExistsIdVersionHead(row.esnsiCode))
 				{

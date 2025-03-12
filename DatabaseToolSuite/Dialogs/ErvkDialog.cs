@@ -6,7 +6,7 @@ namespace DatabaseToolSuite.Dialogs
 {
 	class ErvkDialog : DialogBase
 	{
-		public Repositoryes.MainDataSet.ervkRow DataRow { get; private set; }
+		public Repositories.MainDataSet.ervkRow DataRow { get; private set; }
 
 		private bool oldIsHead;
 		private bool oldSpecial;
@@ -30,8 +30,8 @@ namespace DatabaseToolSuite.Dialogs
 		private GroupBox ownerGroupBox;
 		private Button getOwnerArgButton;
 
-		public Repositoryes.MainDataSet.ervkRow ErvkOwnerOrganization { get; private set; }
-		public Repositoryes.MainDataSet.gaspsRow GaspsOwnerOrganization { get; private set; }
+		public Repositories.MainDataSet.ervkRow ErvkOwnerOrganization { get; private set; }
+		public Repositories.MainDataSet.gaspsRow GaspsOwnerOrganization { get; private set; }
 
 		/// <summary>
 		/// Признак активности записи.
@@ -92,7 +92,7 @@ namespace DatabaseToolSuite.Dialogs
 			InitializeLocation();
 		}
 
-		public ErvkDialog(Repositoryes.MainDataSet.ervkRow row) : base()
+		public ErvkDialog(Repositories.MainDataSet.ervkRow row) : base()
 		{
 			ApplyButtonVisible = false;
 
@@ -209,10 +209,6 @@ namespace DatabaseToolSuite.Dialogs
 
 		private void InitializeLocation()
 		{
-			this.button_Cancel.Location = new System.Drawing.Point(817, 759);
-			this.button_Cancel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-			this.button_OK.Location = new System.Drawing.Point(655, 759);
-			this.button_OK.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
 			this.esnsiNameTextBox.Location = new System.Drawing.Point(20, 112);
 			this.esnsiNameTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.esnsiNameTextBox.Size = new System.Drawing.Size(866, 98);
@@ -316,16 +312,6 @@ namespace DatabaseToolSuite.Dialogs
 			this.ownerGroupBox = new System.Windows.Forms.GroupBox();
 			this.ownerGroupBox.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// button_Cancel
-			// 
-			this.button_Cancel.Location = new System.Drawing.Point(817, 759);
-			this.button_Cancel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-			// 
-			// button_OK
-			// 
-			this.button_OK.Location = new System.Drawing.Point(655, 759);
-			this.button_OK.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
 			// 
 			// esnsiNameTextBox
 			// 
@@ -568,9 +554,7 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// ErvkDialog
 			// 
-			this.AcceptButton = this.button_OK;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
-			this.CancelButton = this.button_Cancel;
 			this.ClientSize = new System.Drawing.Size(902, 786);
 			this.Controls.Add(this.ownerGroupBox);
 			this.Controls.Add(this.endDateLabel);
@@ -592,8 +576,6 @@ namespace DatabaseToolSuite.Dialogs
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
 			this.Name = "ErvkDialog";
-			this.Controls.SetChildIndex(this.button_Cancel, 0);
-			this.Controls.SetChildIndex(this.button_OK, 0);
 			this.Controls.SetChildIndex(this.esnsiNameLabel, 0);
 			this.Controls.SetChildIndex(this.esnsiNameTextBox, 0);
 			this.Controls.SetChildIndex(this.innNumericTextBox, 0);

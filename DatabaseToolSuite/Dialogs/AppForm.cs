@@ -1,4 +1,4 @@
-﻿using DatabaseToolSuite.Repositoryes;
+﻿using DatabaseToolSuite.Repositories;
 using DatabaseToolSuite.Services;
 using System;
 using System.Reflection;
@@ -487,6 +487,15 @@ namespace DatabaseToolSuite.Dialogs
 			}
 		}
 
+		private void FileExportDelta_Click(object sender, EventArgs e)
+		{
+			SelectPeriodDialog dialog = new SelectPeriodDialog();
+			if (dialog.ShowDialog(this) == DialogResult.OK)
+			{
+				Export.ExportDeltaDataBaseToExcel(dialog.Begin, dialog.End );
+			}		
+		}
+
 		private void ToolsImportSubdivision_Click(object sender, EventArgs e)
 		{
 			OpenFileDialog dialog = new OpenFileDialog
@@ -588,7 +597,7 @@ namespace DatabaseToolSuite.Dialogs
 		{
 			if (MasterDataSystem.DataSet.fgis_esnsi.Exists(gaspsListView.DataRow.version))
 			{
-				Repositoryes.MainDataSet.fgis_esnsiRow currentRow = MasterDataSystem.DataSet.fgis_esnsi.Get(gaspsListView.DataRow.version);
+				Repositories.MainDataSet.fgis_esnsiRow currentRow = MasterDataSystem.DataSet.fgis_esnsi.Get(gaspsListView.DataRow.version);
 				if (MasterDataSystem.CloneFgisEsnsiNoteToLastVersion(currentRow.version) != null)
 				{
 					MessageBox.Show(this, "Данные ФГСИ ЕСНСИ успешно скопированы в действующую запись!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -604,7 +613,7 @@ namespace DatabaseToolSuite.Dialogs
 		{
 			if (gaspsListView.DataRow != null && gaspsListView.DataRow.authority_id == MasterDataSystem.PROSECUTOR_CODE)
 			{
-				Repositoryes.MainDataSet.fgis_esnsiRow editRow;
+				Repositories.MainDataSet.fgis_esnsiRow editRow;
 				bool createdRow = false;
 
 				if (MasterDataSystem.DataSet.fgis_esnsi.Exists(gaspsListView.DataRow.version))
@@ -657,7 +666,7 @@ namespace DatabaseToolSuite.Dialogs
 		{
 			if (MasterDataSystem.DataSet.ervk.Exists(gaspsListView.DataRow.version))
 			{
-				Repositoryes.MainDataSet.ervkRow currentRow = MasterDataSystem.DataSet.ervk.Get(gaspsListView.DataRow.version);
+				Repositories.MainDataSet.ervkRow currentRow = MasterDataSystem.DataSet.ervk.Get(gaspsListView.DataRow.version);
 				if (MasterDataSystem.CloneErvkNoteToLastVersion(currentRow.version) != null)
 				{
 					MessageBox.Show(this, "Данные ЕРВК успешно скопированы в действующую запись!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -690,7 +699,7 @@ namespace DatabaseToolSuite.Dialogs
 		{
 			if (gaspsListView.DataRow != null && gaspsListView.DataRow.authority_id == MasterDataSystem.PROSECUTOR_CODE)
 			{
-				Repositoryes.MainDataSet.ervkRow editRow;
+				Repositories.MainDataSet.ervkRow editRow;
 				bool createdRow = false;
 
 				if (MasterDataSystem.DataSet.ervk.Exists(gaspsListView.DataRow.version))
@@ -772,7 +781,7 @@ namespace DatabaseToolSuite.Dialogs
 		{
 			if (MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Exists(gaspsListView.DataRow.version))
 			{
-				Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow currentRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(gaspsListView.DataRow.version);
+				Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow currentRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(gaspsListView.DataRow.version);
 				if (MasterDataSystem.CloneUrpNoteToLastVersion(currentRow.VERSION) != null)
 				{
 					MessageBox.Show(this, "Данные УРП ГАС ПС успешно скопированы в действующую запись!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -805,7 +814,7 @@ namespace DatabaseToolSuite.Dialogs
 		{
 			if (gaspsListView.DataRow != null && gaspsListView.DataRow.authority_id == MasterDataSystem.PROSECUTOR_CODE)
 			{
-				Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow editRow;
+				Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow editRow;
 				bool createdRow = false;
 
 				if (MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Exists(gaspsListView.DataRow.version))
@@ -864,7 +873,7 @@ namespace DatabaseToolSuite.Dialogs
 						
 						if (MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Exists(row.version))
 						{
-							Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow editRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(row.version);
+							Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow editRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(row.version);
 							if (dialog.IsEditDoesntConsolidateChild)
 							{
 								editRow.DOESNT_CONSOLIDATE_CHILD = dialog.DoesntConsolidateChild;
@@ -911,7 +920,7 @@ namespace DatabaseToolSuite.Dialogs
 			{
 				if (MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Exists(gaspsListView.DataRow.version))
 				{
-					Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow editRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(gaspsListView.DataRow.version);
+					Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow editRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(gaspsListView.DataRow.version);
 					editRow.LAW_AGENCY_TYPE = agencyType;
 
 					Utils.Database.SetIsHeadAttribute();
@@ -924,7 +933,7 @@ namespace DatabaseToolSuite.Dialogs
 				{
 					if (MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Exists(row.version))
 					{
-						Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow editRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(row.version);
+						Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow editRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(row.version);
 						editRow.LAW_AGENCY_TYPE = agencyType;
 					}
 				}
@@ -1012,6 +1021,7 @@ namespace DatabaseToolSuite.Dialogs
 		{
 			Utils.Database.FillUrpInGasps();
 			gaspsListView.UpdateListViewItem();
-		}		
+		}
+			
 	}
 }

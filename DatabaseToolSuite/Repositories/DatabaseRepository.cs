@@ -1,10 +1,10 @@
-﻿using DatabaseToolSuite.Repositoryes._1C;
+﻿using DatabaseToolSuite.Repositories._1C;
 using System;
 using System.Data;
 using System.Threading.Tasks;
-using GaspsDataSet = DatabaseToolSuite.Repositoryes.EXP_LAW_AGENCY;
+using GaspsDataSet = DatabaseToolSuite.Repositories.EXP_LAW_AGENCY;
 
-namespace DatabaseToolSuite.Repositoryes
+namespace DatabaseToolSuite.Repositories
 {
 	class DatabasesRepository
 	{

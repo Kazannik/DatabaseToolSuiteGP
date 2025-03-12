@@ -12,7 +12,7 @@ namespace DatabaseToolSuite.Services
 		public static readonly DateTime MAX_DATE = new DateTime(2999, 12, 31);
 		public static readonly DateTime MIN_DATE = new DateTime(1900, 1, 1);
 
-		public static Repositoryes.MainDataSet DataSet
+		public static Repositories.MainDataSet DataSet
 		{
 			get { return FileSystem.Repository.MainDataSet; }
 		}
@@ -35,7 +35,7 @@ namespace DatabaseToolSuite.Services
 		/// <param name="export_key">Ключ подразделения, присвоенный при экспортировании в файл ГАС ПС.</param>
 		/// <param name="export_version">Код версии, присвоенный при экспортировании в файл ГАС ПС.</param>
 		/// <returns></returns>
-		private static Repositoryes.MainDataSet.gaspsRow CreateOrganization(
+		private static Repositories.MainDataSet.gaspsRow CreateOrganization(
 			string name,
 			long key,
 			string okato,
@@ -71,7 +71,7 @@ namespace DatabaseToolSuite.Services
 			values[16] = export_key; // export_key
 			values[17] = export_version; // export_version
 
-			Repositoryes.MainDataSet.gaspsRow newRow = (Repositoryes.MainDataSet.gaspsRow)FileSystem.Repository.MainDataSet.gasps.Rows.Add(values);
+			Repositories.MainDataSet.gaspsRow newRow = (Repositories.MainDataSet.gaspsRow)FileSystem.Repository.MainDataSet.gasps.Rows.Add(values);
 
 			return newRow;
 		}
@@ -88,7 +88,7 @@ namespace DatabaseToolSuite.Services
 		/// <param name="dateEnd">Дата окончания действия записи</param>
 		/// <param name="courtTypeId">Индекс вида суда</param>
 		/// <returns></returns>
-		public static Repositoryes.MainDataSet.gaspsRow CreateNewOrganization(
+		public static Repositories.MainDataSet.gaspsRow CreateNewOrganization(
 			string name,
 			string okato,
 			long authorityId,
@@ -104,7 +104,7 @@ namespace DatabaseToolSuite.Services
 			version = key;
 			long index = DataSet.gasps.GetNextIndex();
 
-			Repositoryes.MainDataSet.gaspsRow newRow = CreateOrganization(
+			Repositories.MainDataSet.gaspsRow newRow = CreateOrganization(
 						   name: name,
 						   key: key,
 						   okato: okato,
@@ -153,9 +153,9 @@ namespace DatabaseToolSuite.Services
 		/// <param name="name">Наименование подразделения органа прокуратуры.</param>
 		/// <param name="guid">Индекс органа прокуратуры в формате GUID, полученный из файла 1С.</param>
 		/// <returns></returns>
-		public static Repositoryes.MainDataSet.gaspsRow CreateNewOrganization(long parentVersion, DateTime date, string name, string guid)
+		public static Repositories.MainDataSet.gaspsRow CreateNewOrganization(long parentVersion, DateTime date, string name, string guid)
 		{
-			Repositoryes.MainDataSet.gaspsRow parentRow = DataSet.gasps.GetOrganizationFromVersion(version: parentVersion);
+			Repositories.MainDataSet.gaspsRow parentRow = DataSet.gasps.GetOrganizationFromVersion(version: parentVersion);
 
 			return CreateNewOrganization(parentRow, date, name, guid);
 		}
@@ -168,7 +168,7 @@ namespace DatabaseToolSuite.Services
 		/// <param name="name">Наименование подразделения органа прокуратуры.</param>
 		/// <param name="guid">Индекс органа прокуратуры в формате GUID, полученный из файла 1С.</param>
 		/// <returns></returns>
-		public static Repositoryes.MainDataSet.gaspsRow CreateNewOrganization(Repositoryes.MainDataSet.gaspsRow parentRow, DateTime date, string name, string guid)
+		public static Repositories.MainDataSet.gaspsRow CreateNewOrganization(Repositories.MainDataSet.gaspsRow parentRow, DateTime date, string name, string guid)
 		{
 			if (!string.IsNullOrWhiteSpace(guid)
 				&& DataSet.gasps.ExistsGuid(guid))
@@ -183,7 +183,7 @@ namespace DatabaseToolSuite.Services
 				version = key;
 				long index = DataSet.gasps.GetNextIndex();
 
-				Repositoryes.MainDataSet.gaspsRow newRow = CreateOrganization(
+				Repositories.MainDataSet.gaspsRow newRow = CreateOrganization(
 							   name: name,
 							   key: key,
 							   okato: parentRow.okato_code,
@@ -230,7 +230,7 @@ namespace DatabaseToolSuite.Services
 		/// <param name="ownerKey">Ключ (key) родительского подразделения</param>
 		/// <param name="courtTypeId">Индекс вида суда</param>
 		/// <returns></returns>
-		public static Repositoryes.MainDataSet.gaspsRow CreateNewVersionOrganization(
+		public static Repositories.MainDataSet.gaspsRow CreateNewVersionOrganization(
 			long version,
 			DateTime date,
 			string name,
@@ -239,7 +239,7 @@ namespace DatabaseToolSuite.Services
 			long ownerKey,
 			long courtTypeId)
 		{
-			Repositoryes.MainDataSet.gaspsRow modifedRow = DataSet.gasps.GetOrganizationFromVersion(version: version);
+			Repositories.MainDataSet.gaspsRow modifedRow = DataSet.gasps.GetOrganizationFromVersion(version: version);
 
 			if (!DataSet.gasps.IsLastVersion(version: version))
 			{
@@ -252,7 +252,7 @@ namespace DatabaseToolSuite.Services
 
 			long newVersion = DataSet.gasps.GetNextVersion();
 
-			Repositoryes.MainDataSet.gaspsRow newRow = CreateOrganization(
+			Repositories.MainDataSet.gaspsRow newRow = CreateOrganization(
 				name: name,
 				key: modifedRow.key,
 				okato: okato,
@@ -296,12 +296,12 @@ namespace DatabaseToolSuite.Services
 		/// <param name="date">Дата введения в действие новой версии</param>
 		/// <param name="name">Наименование подразделения</param>
 		/// <returns></returns>
-		public static Repositoryes.MainDataSet.gaspsRow CreateNewVersionOrganization(
+		public static Repositories.MainDataSet.gaspsRow CreateNewVersionOrganization(
 			long version,
 			DateTime date,
 			string name)
 		{
-			Repositoryes.MainDataSet.gaspsRow modifedRow = DataSet.gasps.GetOrganizationFromVersion(version: version);
+			Repositories.MainDataSet.gaspsRow modifedRow = DataSet.gasps.GetOrganizationFromVersion(version: version);
 
 			if (!DataSet.gasps.IsLastVersion(version: version))
 			{
@@ -314,7 +314,7 @@ namespace DatabaseToolSuite.Services
 
 			long newVersion = DataSet.gasps.GetNextVersion();
 
-			Repositoryes.MainDataSet.gaspsRow newRow = CreateOrganization(
+			Repositories.MainDataSet.gaspsRow newRow = CreateOrganization(
 				name: name,
 				key: modifedRow.key,
 				okato: modifedRow.okato_code,
@@ -359,11 +359,11 @@ namespace DatabaseToolSuite.Services
 		/// <param name="date">Дата блокировки</param>
 		public static void RemoveOrganization(long version, DateTime date)
 		{
-			Repositoryes.MainDataSet.gaspsRow oldRow = DataSet.gasps.GetOrganizationFromVersion(version: version);
+			Repositories.MainDataSet.gaspsRow oldRow = DataSet.gasps.GetOrganizationFromVersion(version: version);
 
-			IEnumerable<Repositoryes.MainDataSet.gaspsRow> childRows = DataSet.gasps.GetGaspsChildOrganization(oldRow.key, date);
+			IEnumerable<Repositories.MainDataSet.gaspsRow> childRows = DataSet.gasps.GetGaspsChildOrganization(oldRow.key, date);
 
-			foreach (Repositoryes.MainDataSet.gaspsRow row in childRows)
+			foreach (Repositories.MainDataSet.gaspsRow row in childRows)
 			{
 				RemoveOrganization(row.version, date);
 			}
@@ -389,7 +389,7 @@ namespace DatabaseToolSuite.Services
 		/// <param name="ownerKey">Ключ (key) родительского подразделения</param>
 		/// <param name="courtTypeId">Индекс вида суда</param>
 		/// <returns></returns>
-		public static Repositoryes.MainDataSet.gaspsRow EditVersionOrganization(
+		public static Repositories.MainDataSet.gaspsRow EditVersionOrganization(
 			long version,
 			DateTime date,
 			string name,
@@ -398,7 +398,7 @@ namespace DatabaseToolSuite.Services
 			long ownerKey,
 			long courtTypeId)
 		{
-			Repositoryes.MainDataSet.gaspsRow errorRow = DataSet.gasps.GetOrganizationFromVersion(version: version);
+			Repositories.MainDataSet.gaspsRow errorRow = DataSet.gasps.GetOrganizationFromVersion(version: version);
 
 			errorRow.date_beg = date;
 			errorRow.name = name;
@@ -411,10 +411,10 @@ namespace DatabaseToolSuite.Services
 			return errorRow;
 		}
 
-		public static Repositoryes.MainDataSet.gaspsRow ClearCodeVersionOrganization(
+		public static Repositories.MainDataSet.gaspsRow ClearCodeVersionOrganization(
 		   long version)
 		{
-			Repositoryes.MainDataSet.gaspsRow row = DataSet.gasps.GetOrganizationFromVersion(version: version);
+			Repositories.MainDataSet.gaspsRow row = DataSet.gasps.GetOrganizationFromVersion(version: version);
 			row.SetcodeNull();
 			return row;
 		}
@@ -432,7 +432,7 @@ namespace DatabaseToolSuite.Services
 		/// <param name="autokey">Составной ключ</param>
 		/// <param name="id">Ключ записи</param>
 		/// <returns></returns>
-		public static Repositoryes.MainDataSet.fgis_esnsiRow CreateFgisEsnsiNote(
+		public static Repositories.MainDataSet.fgis_esnsiRow CreateFgisEsnsiNote(
 			long version,
 			long region_id,
 			string sv_0004,
@@ -455,7 +455,7 @@ namespace DatabaseToolSuite.Services
 			values[8] = id;
 			values[9] = DateTime.Now;
 
-			Repositoryes.MainDataSet.fgis_esnsiRow newRow = (Repositoryes.MainDataSet.fgis_esnsiRow)FileSystem.Repository.MainDataSet.fgis_esnsi.Rows.Add(values);
+			Repositories.MainDataSet.fgis_esnsiRow newRow = (Repositories.MainDataSet.fgis_esnsiRow)FileSystem.Repository.MainDataSet.fgis_esnsi.Rows.Add(values);
 			return newRow;
 		}
 
@@ -464,10 +464,10 @@ namespace DatabaseToolSuite.Services
 		/// </summary>
 		/// <param name="currentVersion">Выбранная запись.</param>
 		/// <returns></returns>
-		public static Repositoryes.MainDataSet.fgis_esnsiRow CloneFgisEsnsiNoteToLastVersion(long currentVersion)
+		public static Repositories.MainDataSet.fgis_esnsiRow CloneFgisEsnsiNoteToLastVersion(long currentVersion)
 		{
-			Repositoryes.MainDataSet.gaspsRow currentGaspsRow = DataSet.gasps.GetOrganizationFromVersion(version: currentVersion);
-			Repositoryes.MainDataSet.gaspsRow lastGaspsRow = DataSet.gasps.GetLastVersionOrganizationFromKey(currentGaspsRow.key);
+			Repositories.MainDataSet.gaspsRow currentGaspsRow = DataSet.gasps.GetOrganizationFromVersion(version: currentVersion);
+			Repositories.MainDataSet.gaspsRow lastGaspsRow = DataSet.gasps.GetLastVersionOrganizationFromKey(currentGaspsRow.key);
 
 			return CloneFgisEsnsiNote(currentGaspsRow.version, lastGaspsRow.version);
 		}
@@ -478,11 +478,11 @@ namespace DatabaseToolSuite.Services
 		/// <param name="sourceVersion">Версия записи источника.</param>
 		/// <param name="destVersion">Версия записи назначения</param>
 		/// <returns></returns>
-		public static Repositoryes.MainDataSet.fgis_esnsiRow CloneFgisEsnsiNote(long sourceVersion, long destVersion)
+		public static Repositories.MainDataSet.fgis_esnsiRow CloneFgisEsnsiNote(long sourceVersion, long destVersion)
 		{
 			if (!DataSet.fgis_esnsi.Exists(destVersion))
 			{
-				Repositoryes.MainDataSet.fgis_esnsiRow currentFgisEsnsiRow = DataSet.fgis_esnsi.Get(sourceVersion);
+				Repositories.MainDataSet.fgis_esnsiRow currentFgisEsnsiRow = DataSet.fgis_esnsi.Get(sourceVersion);
 				return CreateFgisEsnsiNote(
 				version: destVersion,
 				region_id: currentFgisEsnsiRow.Isregion_idNull() ? 0 : currentFgisEsnsiRow.region_id,
@@ -510,7 +510,7 @@ namespace DatabaseToolSuite.Services
 		/// <param name="sv_0006">Почтовый адрес</param>
 		/// <param name="okato">ОКАТО</param>
 		/// <returns></returns>
-		public static Repositoryes.MainDataSet.fgis_esnsiRow EditVersionFgisEsnsiNote(
+		public static Repositories.MainDataSet.fgis_esnsiRow EditVersionFgisEsnsiNote(
 			long version,
 			long region_id,
 			string sv_0004,
@@ -518,7 +518,7 @@ namespace DatabaseToolSuite.Services
 			string sv_0006,
 			short okato)
 		{
-			Repositoryes.MainDataSet.fgis_esnsiRow errorRow = DataSet.fgis_esnsi.Get(gaspsVersion: version);
+			Repositories.MainDataSet.fgis_esnsiRow errorRow = DataSet.fgis_esnsi.Get(gaspsVersion: version);
 
 			errorRow.region_id = region_id;
 			errorRow.sv_0004 = sv_0004;
@@ -549,7 +549,7 @@ namespace DatabaseToolSuite.Services
 		/// <param name="subjectRfList">Субъект множественный</param>
 		/// <param name="oktmoList">ОКТМО множественный</param>
 		/// <returns></returns>
-		public static Repositoryes.MainDataSet.ervkRow CreateErvkNote(
+		public static Repositories.MainDataSet.ervkRow CreateErvkNote(
 			long version,
 			long esnsiCode,
 			bool isHead,
@@ -585,7 +585,7 @@ namespace DatabaseToolSuite.Services
 			values[14] = oktmoList;
 			values[15] = DateTime.Now;
 
-			Repositoryes.MainDataSet.ervkRow newRow = (Repositoryes.MainDataSet.ervkRow)FileSystem.Repository.MainDataSet.ervk.Rows.Add(values);
+			Repositories.MainDataSet.ervkRow newRow = (Repositories.MainDataSet.ervkRow)FileSystem.Repository.MainDataSet.ervk.Rows.Add(values);
 			return newRow;
 		}
 
@@ -608,7 +608,7 @@ namespace DatabaseToolSuite.Services
 		/// <param name="subjectRfList">Субъект множественный</param>
 		/// <param name="oktmoList">ОКТМО множественный</param>
 		/// <returns></returns>
-		public static Repositoryes.MainDataSet.ervkRow CreateErvkNote(
+		public static Repositories.MainDataSet.ervkRow CreateErvkNote(
 			long version,
 			bool isHead,
 			bool special,
@@ -626,7 +626,7 @@ namespace DatabaseToolSuite.Services
 			string idVersionProc = DataSet.ervk.GetNextVersionProc();
 			if (idVersionHead > 0)
 			{
-				Repositoryes.MainDataSet.ervkRow headRow = DataSet.ervk.GetFromEsnsiCode(idVersionHead);
+				Repositories.MainDataSet.ervkRow headRow = DataSet.ervk.GetFromEsnsiCode(idVersionHead);
 				headRow.isHead = true;
 			}
 
@@ -653,10 +653,10 @@ namespace DatabaseToolSuite.Services
 		/// </summary>
 		/// <param name="currentVersion"></param>
 		/// <returns></returns>
-		public static Repositoryes.MainDataSet.ervkRow CloneErvkNoteToLastVersion(long currentVersion)
+		public static Repositories.MainDataSet.ervkRow CloneErvkNoteToLastVersion(long currentVersion)
 		{
-			Repositoryes.MainDataSet.gaspsRow currentGaspsRow = DataSet.gasps.GetOrganizationFromVersion(version: currentVersion);
-			Repositoryes.MainDataSet.gaspsRow lastGaspsRow = DataSet.gasps.GetLastVersionOrganizationFromKey(currentGaspsRow.key);
+			Repositories.MainDataSet.gaspsRow currentGaspsRow = DataSet.gasps.GetOrganizationFromVersion(version: currentVersion);
+			Repositories.MainDataSet.gaspsRow lastGaspsRow = DataSet.gasps.GetLastVersionOrganizationFromKey(currentGaspsRow.key);
 
 			return CloneErvkNote(currentGaspsRow.version, lastGaspsRow.version);
 		}
@@ -667,11 +667,11 @@ namespace DatabaseToolSuite.Services
 		/// <param name="sourceVersion">Версия записи источника.</param>
 		/// <param name="destVersion">Версия записи назначения</param>
 		/// <returns></returns>
-		public static Repositoryes.MainDataSet.ervkRow CloneErvkNote(long sourceVersion, long destVersion)
+		public static Repositories.MainDataSet.ervkRow CloneErvkNote(long sourceVersion, long destVersion)
 		{
 			if (!DataSet.ervk.Exists(destVersion))
 			{
-				Repositoryes.MainDataSet.ervkRow currentErvkRow = DataSet.ervk.Get(sourceVersion);
+				Repositories.MainDataSet.ervkRow currentErvkRow = DataSet.ervk.Get(sourceVersion);
 				return CreateErvkNote(
 				version: destVersion,
 				esnsiCode: currentErvkRow.esnsiCode,
@@ -714,7 +714,7 @@ namespace DatabaseToolSuite.Services
 		/// <param name="subjectRfList">Субъект множественный</param>
 		/// <param name="oktmoList">ОКТМО множественный</param>
 		/// <returns></returns>
-		public static Repositoryes.MainDataSet.ervkRow EditVersionErvkNote(
+		public static Repositories.MainDataSet.ervkRow EditVersionErvkNote(
 			long version,
 			long esnsiCode,
 			bool isHead,
@@ -731,7 +731,7 @@ namespace DatabaseToolSuite.Services
 			string subjectRfList,
 			string oktmoList)
 		{
-			Repositoryes.MainDataSet.ervkRow errorRow = DataSet.ervk.Get(gaspsVersion: version);
+			Repositories.MainDataSet.ervkRow errorRow = DataSet.ervk.Get(gaspsVersion: version);
 
 			errorRow.esnsiCode = esnsiCode;
 			errorRow.isHead = isHead;
@@ -769,7 +769,7 @@ namespace DatabaseToolSuite.Services
 		/// <param name="lawAgencyType">Тип подразделений</param>
 		/// <param name="specialTerritorialCode">Специализированный территориальный код </param>
 		/// <returns></returns>
-		public static Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow CreateUrpNote(
+		public static Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow CreateUrpNote(
 			long version,
 			string shortName,
 			bool doesntCreateCard,
@@ -798,7 +798,7 @@ namespace DatabaseToolSuite.Services
 			values[10] = lawAgencyType; // LAW_AGENCY_TYPE
 			values[11] = specialTerritorialCode; // SPECIAL_TERRITORIAL_CODE
 
-			Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow newRow = (Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow)FileSystem.Repository.MainDataSet.EXP_LAW_AGENCY_URP
+			Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow newRow = (Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow)FileSystem.Repository.MainDataSet.EXP_LAW_AGENCY_URP
 				.Rows.Add(values);
 			return newRow;
 		}
@@ -808,10 +808,10 @@ namespace DatabaseToolSuite.Services
 		/// </summary>
 		/// <param name="currentVersion"></param>
 		/// <returns></returns>
-		public static Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow CloneUrpNoteToLastVersion(long currentVersion)
+		public static Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow CloneUrpNoteToLastVersion(long currentVersion)
 		{
-			Repositoryes.MainDataSet.gaspsRow currentGaspsRow = DataSet.gasps.GetOrganizationFromVersion(version: currentVersion);
-			Repositoryes.MainDataSet.gaspsRow lastGaspsRow = DataSet.gasps.GetLastVersionOrganizationFromKey(currentGaspsRow.key);
+			Repositories.MainDataSet.gaspsRow currentGaspsRow = DataSet.gasps.GetOrganizationFromVersion(version: currentVersion);
+			Repositories.MainDataSet.gaspsRow lastGaspsRow = DataSet.gasps.GetLastVersionOrganizationFromKey(currentGaspsRow.key);
 
 			return CloneUrpNote(currentGaspsRow.version, lastGaspsRow.version);
 		}
@@ -822,11 +822,11 @@ namespace DatabaseToolSuite.Services
 		/// <param name="sourceVersion">Версия записи источника.</param>
 		/// <param name="destVersion">Версия записи назначения</param>
 		/// <returns></returns>
-		public static Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow CloneUrpNote(long sourceVersion, long destVersion)
+		public static Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow CloneUrpNote(long sourceVersion, long destVersion)
 		{
 			if (!DataSet.EXP_LAW_AGENCY_URP.Exists(destVersion))
 			{
-				Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow currentUrpRow = DataSet.EXP_LAW_AGENCY_URP.Get(sourceVersion);
+				Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow currentUrpRow = DataSet.EXP_LAW_AGENCY_URP.Get(sourceVersion);
 				return CreateUrpNote(
 					version: destVersion,
 					shortName: currentUrpRow.SHORT_NAME,
@@ -864,7 +864,7 @@ namespace DatabaseToolSuite.Services
 		/// <param name="lawAgencyType">Тип подразделений</param>
 		/// <param name="specialTerritorialCode">Специализированный территориальный код </param>
 		/// <returns></returns>
-		public static Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow EditVersionUrpNote(
+		public static Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow EditVersionUrpNote(
 			long version,
 			string shortName,
 			bool doesntCreateCard,
@@ -879,7 +879,7 @@ namespace DatabaseToolSuite.Services
 			long specialTerritorialCode
 			)
 		{
-			Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow errorRow = DataSet.EXP_LAW_AGENCY_URP.Get(version: version);
+			Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow errorRow = DataSet.EXP_LAW_AGENCY_URP.Get(version: version);
 
 			errorRow.SHORT_NAME = shortName;
 			errorRow.DOESNT_CREATE_CARD = doesntCreateCard;

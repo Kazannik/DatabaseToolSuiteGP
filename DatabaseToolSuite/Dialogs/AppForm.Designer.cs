@@ -182,6 +182,7 @@
 			this.toolStripButton21 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton22 = new System.Windows.Forms.ToolStripButton();
 			this.gaspsListView = new DatabaseToolSuite.Controls.GaspsListView();
+			this.mnuFileExportDelta = new System.Windows.Forms.ToolStripMenuItem();
 			this.mainMenuStrip.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.filterPanel.SuspendLayout();
@@ -301,7 +302,8 @@
             this.toolStripMenuItem17,
             this.mnuFileFullExportToExcel,
             this.toolStripMenuItem18,
-            this.mnuFileStatisticsExportToExcel});
+            this.mnuFileStatisticsExportToExcel,
+            this.mnuFileExportDelta});
 			this.mnuFileExportToExcel.Image = global::DatabaseToolSuite.Properties.Resources.ExportExcel24;
 			this.mnuFileExportToExcel.Name = "mnuFileExportToExcel";
 			this.mnuFileExportToExcel.Size = new System.Drawing.Size(402, 38);
@@ -1637,6 +1639,14 @@
 			this.gaspsListView.ItemMouseDoubleClick += new System.EventHandler<DatabaseToolSuite.Controls.ListViewEventArgs>(this.GaspsListView_ItemMouseDoubleClick);
 			this.gaspsListView.GaspsListViewCompleted += new DatabaseToolSuite.Controls.GaspsListView.ListViewCompletedEventHandler(this.GaspsListView_GaspsListViewCompleted);
 			// 
+			// mnuFileExportDelta
+			// 
+			this.mnuFileExportDelta.Image = global::DatabaseToolSuite.Properties.Resources.ExportXmlGaspsFile24;
+			this.mnuFileExportDelta.Name = "mnuFileExportDelta";
+			this.mnuFileExportDelta.Size = new System.Drawing.Size(476, 38);
+			this.mnuFileExportDelta.Text = "Сведения об изменениях за период...";
+			this.mnuFileExportDelta.Click += new System.EventHandler(this.FileExportDelta_Click);
+			// 
 			// AppForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -1829,5 +1839,6 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
+		private System.Windows.Forms.ToolStripMenuItem mnuFileExportDelta;
 	}
 }

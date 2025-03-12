@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 
-namespace DatabaseToolSuite.Repositoryes
+namespace DatabaseToolSuite.Repositories
 {
 	internal partial class MainDataSet
 	{
@@ -417,6 +417,21 @@ namespace DatabaseToolSuite.Repositoryes
 					.OrderBy(e => e, new GaspsRowComparer());
 
 				return from gasps in gaspsCollection
+					   join owner in activeCollection on gasps.owner_id equals owner.key into ow_jointable
+					   from ow in ow_jointable.DefaultIfEmpty()
+					   select new ViewGaspsOrganization(gasps: gasps, owner: ow);
+			}
+
+			public IEnumerable<ViewGaspsOrganization> ExportDeltaData(DateTime begin, DateTime end)
+			{
+				EnumerableRowCollection<gaspsRow> gaspsCollection = this.AsEnumerable()
+					.Where(e => e.RowState != DataRowState.Deleted);
+				EnumerableRowCollection<gaspsRow> activeCollection = gaspsCollection
+					.Where(e => e.date_end.Date > DateTime.Today && e.date_beg.Date <= DateTime.Today)
+					.OrderBy(e => e, new GaspsRowComparer());
+
+				return from gasps in gaspsCollection
+					   where gasps.logEditDate >= begin && gasps.logEditDate <= end
 					   join owner in activeCollection on gasps.owner_id equals owner.key into ow_jointable
 					   from ow in ow_jointable.DefaultIfEmpty()
 					   select new ViewGaspsOrganization(gasps: gasps, owner: ow);

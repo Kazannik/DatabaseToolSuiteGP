@@ -1,4 +1,4 @@
-﻿using DatabaseToolSuite.Repositoryes;
+﻿using DatabaseToolSuite.Repositories;
 using DatabaseToolSuite.Services;
 using System;
 using System.Collections.Generic;
@@ -13,11 +13,11 @@ namespace DatabaseToolSuite.Dialogs
 	internal partial class SelectOrganizationDialog : Form
 	{
 		private MainDataSet dialogDataSet;
-		private IList<Repositoryes.MainDataSet.gaspsRow> rowsCollection;
+		private IList<Repositories.MainDataSet.gaspsRow> rowsCollection;
 		private ListViewItem[] itemsCache;
 		private int firstItemIndex;
 
-		public Repositoryes.MainDataSet.gaspsRow DataRow { get; private set; }
+		public Repositories.MainDataSet.gaspsRow DataRow { get; private set; }
 
 		[DefaultValue(true)]
 		public bool UnlockShow { get; set; }
@@ -143,7 +143,7 @@ namespace DatabaseToolSuite.Dialogs
 
 			if (ErvkOnlyShow)
 			{
-				EnumerableRowCollection<Repositoryes.MainDataSet.ervkRow> ervkCollection = dataSet.ervk.Where(e => e.RowState != DataRowState.Deleted);
+				EnumerableRowCollection<Repositories.MainDataSet.ervkRow> ervkCollection = dataSet.ervk.Where(e => e.RowState != DataRowState.Deleted);
 				rowsCollection = (from gasps in rowsCollection
 								  join ervk in ervkCollection on gasps.version equals ervk.version
 								  select gasps).ToList();
@@ -186,7 +186,7 @@ namespace DatabaseToolSuite.Dialogs
 				if (DataRow.owner_id > 0)
 				{
 					text.AppendLine();
-					Repositoryes.MainDataSet.gaspsRow owner = dialogDataSet.gasps.GetLastVersionOrganizationFromKey(DataRow.owner_id);
+					Repositories.MainDataSet.gaspsRow owner = dialogDataSet.gasps.GetLastVersionOrganizationFromKey(DataRow.owner_id);
 					text.AppendLine("Владелец: (" + owner.code + ") " + owner.name);
 				}
 
@@ -235,7 +235,7 @@ namespace DatabaseToolSuite.Dialogs
 			}
 		}
 
-		private ListViewItem CreateListViewItem(Repositoryes.MainDataSet.gaspsRow row)
+		private ListViewItem CreateListViewItem(Repositories.MainDataSet.gaspsRow row)
 		{
 			ListViewItem item = new ListViewItem(row.code);
 
@@ -268,7 +268,7 @@ namespace DatabaseToolSuite.Dialogs
 			detailsListView.BeginUpdate();
 
 			int selectedIndex = detailsListView.SelectedIndices.Count > 0 ? detailsListView.SelectedIndices[0] : 0;
-			Repositoryes.MainDataSet.gaspsRow selectedRow = rowsCollection[selectedIndex];
+			Repositories.MainDataSet.gaspsRow selectedRow = rowsCollection[selectedIndex];
 
 			if (detailsListView.Columns[e.Column].Tag == null ||
 				detailsListView.Columns[e.Column].Tag.ToString() == "UP")
