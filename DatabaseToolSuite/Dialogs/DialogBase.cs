@@ -210,9 +210,9 @@ namespace DatabaseToolSuite.Dialogs
 
 		protected override void OnFormClosed(FormClosedEventArgs e)
 		{
-			DatabaseToolSuite.Properties.Settings.Default.DialogWidth = Width;
-			DatabaseToolSuite.Properties.Settings.Default.DialogHight = Height;
-			DatabaseToolSuite.Properties.Settings.Default.Save();
+			Properties.Settings.Default.DialogWidth = Width;
+			Properties.Settings.Default.DialogHight = Height;
+			Properties.Settings.Default.Save();
 
 			base.OnFormClosed(e);
 		}
@@ -385,15 +385,16 @@ namespace DatabaseToolSuite.Dialogs
 
 		#endregion Windows Form Designer generated code
 
-		protected Button button_Cancel;
-		protected Button button_OK;
+		private Button button_Cancel;
+		private Button button_OK;
 		private Button button_Apply;
 
 		private void DialogBase_Load(object sender, EventArgs e)
 		{
-			DatabaseToolSuite.Properties.Settings.Default.Reload();
-			Width = DatabaseToolSuite.Properties.Settings.Default.DialogWidth;
-			Height = DatabaseToolSuite.Properties.Settings.Default.DialogHight;
+			Properties.Settings.Default.Reload();
+			Width = Properties.Settings.Default.DialogWidth;
+			Height = Properties.Settings.Default.DialogHight;
+			ResizeButton();
 		}
 
 		private void DialogBase_Shown(object sender, EventArgs e)

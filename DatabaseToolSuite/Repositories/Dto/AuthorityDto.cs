@@ -1,6 +1,8 @@
-﻿using DatabaseToolSuite.Controls;
+﻿// Ignore Spelling: Dto
 
-namespace DatabaseToolSuite.Repositoryes.Dto
+using DatabaseToolSuite.Controls;
+
+namespace DatabaseToolSuite.Repositories.Dto
 {
 	internal class AuthorityDto : ComboControl<AuthorityDto>.IComboBoxItem
 	{

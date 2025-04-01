@@ -1,5 +1,5 @@
 ﻿using DatabaseToolSuite.Dialogs;
-using DatabaseToolSuite.Repositoryes._1C;
+using DatabaseToolSuite.Repositories._1C;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,16 +15,16 @@ namespace DatabaseToolSuite.Services
 		{
 			foreach (SubdivisionCollection.Subdivision item in subdivisions.Roots)
 			{
-				Repositoryes.MainDataSet.gaspsRow rootRow = MasterDataSystem.CreateNewOrganization(parentVersion, begiDate, item.Name, item.Guid.ToString());
+				Repositories.MainDataSet.gaspsRow rootRow = MasterDataSystem.CreateNewOrganization(parentVersion, begiDate, item.Name, item.Guid.ToString());
 				ImportSubdivision(rootRow, begiDate, item.Child);
 			}
 		}
 
-		private static void ImportSubdivision(Repositoryes.MainDataSet.gaspsRow parentRow, DateTime begiDate, IEnumerable<SubdivisionCollection.Subdivision> array)
+		private static void ImportSubdivision(Repositories.MainDataSet.gaspsRow parentRow, DateTime begiDate, IEnumerable<SubdivisionCollection.Subdivision> array)
 		{
 			foreach (SubdivisionCollection.Subdivision item in array)
 			{
-				Repositoryes.MainDataSet.gaspsRow rootRow = MasterDataSystem.CreateNewOrganization(parentRow, begiDate, item.Name, item.Guid.ToString());
+				Repositories.MainDataSet.gaspsRow rootRow = MasterDataSystem.CreateNewOrganization(parentRow, begiDate, item.Name, item.Guid.ToString());
 				ImportSubdivision(rootRow, begiDate, item.Child);
 			}
 		}

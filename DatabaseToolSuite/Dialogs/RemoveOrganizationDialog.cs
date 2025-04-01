@@ -4,7 +4,7 @@ namespace DatabaseToolSuite.Dialogs
 {
 	internal class RemoveOrganizationDialog : DialogBase
 	{
-		public RemoveOrganizationDialog(Repositoryes.MainDataSet.gaspsRow row) : base()
+		public RemoveOrganizationDialog(Repositories.MainDataSet.gaspsRow row) : base()
 		{
 			ApplyButtonVisible = false;
 
@@ -34,12 +34,12 @@ namespace DatabaseToolSuite.Dialogs
 			listView1.Items.Add("Дата окончания действия").SubItems.Add(DataRow.date_end.ToShortDateString());
 			if (DataRow.owner_id > 0)
 			{
-				Repositoryes.MainDataSet.gaspsRow owner = Services.FileSystem.Repository.MainDataSet.gasps.GetLastVersionOrganizationFromKey(DataRow.owner_id);
+				Repositories.MainDataSet.gaspsRow owner = Services.FileSystem.Repository.MainDataSet.gasps.GetLastVersionOrganizationFromKey(DataRow.owner_id);
 				listView1.Items.Add("Владелец").SubItems.Add("(" + owner.code + ") " + owner.name);
 			}
 		}
 
-		public Repositoryes.MainDataSet.gaspsRow DataRow { get; private set; }
+		public Repositories.MainDataSet.gaspsRow DataRow { get; private set; }
 
 		public DateTime LockDate
 		{
@@ -65,14 +65,6 @@ namespace DatabaseToolSuite.Dialogs
 			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.label3 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
-			//
-			// button_Cancel
-			//
-			this.button_Cancel.Location = new System.Drawing.Point(640, 419);
-			//
-			// button_OK
-			//
-			this.button_OK.Location = new System.Drawing.Point(478, 419);
 			//
 			// lockDateTimePicker
 			//
@@ -148,8 +140,6 @@ namespace DatabaseToolSuite.Dialogs
 			this.Margin = new System.Windows.Forms.Padding(5);
 			this.MinimumSize = new System.Drawing.Size(741, 481);
 			this.Name = "RemoveOrganizationDialog";
-			this.Controls.SetChildIndex(this.button_Cancel, 0);
-			this.Controls.SetChildIndex(this.button_OK, 0);
 			this.Controls.SetChildIndex(this.lockDateTimePicker, 0);
 			this.Controls.SetChildIndex(this.label1, 0);
 			this.Controls.SetChildIndex(this.listView1, 0);

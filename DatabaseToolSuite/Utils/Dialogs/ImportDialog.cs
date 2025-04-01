@@ -1,5 +1,5 @@
 ﻿using DatabaseToolSuite.Dialogs;
-using DatabaseToolSuite.Repositoryes;
+using DatabaseToolSuite.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;

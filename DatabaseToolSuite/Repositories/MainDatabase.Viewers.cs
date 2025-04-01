@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
-using urpRow = DatabaseToolSuite.Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow;
+using urpRow = DatabaseToolSuite.Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow;
 
-namespace DatabaseToolSuite.Repositoryes
+namespace DatabaseToolSuite.Repositories
 {
 	internal partial class MainDataSet
 	{
+
+
+
 		public IEnumerable<ViewFgisEsnsiOrganization> GetViewFgisEsnsiOrganizations()
 		{
 			EnumerableRowCollection<gaspsRow> gaspsCollection = GaspsTable.Where(e => e.RowState != DataRowState.Deleted);
@@ -354,7 +357,11 @@ namespace DatabaseToolSuite.Repositoryes
 			[DisplayName("Идентификатор GUID")]
 			public string Guid { get; private set; }
 
-			private ViewGaspsOrganization(string name, string authority, string okato, string code, DateTime begin, DateTime end, long version, long authorityId, string okatoCode, long key, long ownerId, string ownerName, string guid)
+			[Description("Дата и время редактирования записи в базе данных")]
+			[DisplayName("Дата и время редактирования")]
+			public DateTime LogEditDate { get; private set; }
+
+			private ViewGaspsOrganization(string name, string authority, string okato, string code, DateTime begin, DateTime end, long version, long authorityId, string okatoCode, long key, long ownerId, string ownerName, string guid, DateTime logEditDate)
 			{
 				Name = name;
 				Authority = authority;
@@ -369,6 +376,7 @@ namespace DatabaseToolSuite.Repositoryes
 				OwnerId = ownerId;
 				OwnerName = ownerName;
 				Guid = guid;
+				LogEditDate = logEditDate;
 			}
 
 			public ViewGaspsOrganization(gaspsRow gasps, gaspsRow owner) : this(
@@ -384,7 +392,8 @@ namespace DatabaseToolSuite.Repositoryes
 				key: gasps.key,
 				ownerId: gasps.owner_id,
 				ownerName: owner == null ? string.Empty : owner.name,
-				guid: gasps.import_guid)
+				guid: gasps.import_guid,
+				logEditDate: gasps.logEditDate)
 			{
 			}
 		}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
-namespace DatabaseToolSuite.Repositoryes
+namespace DatabaseToolSuite.Repositories
 {
 	internal partial class MainDataSet
 	{
@@ -230,8 +230,7 @@ namespace DatabaseToolSuite.Repositoryes
 			{
 				return from ervk in this.AsEnumerable()
 						.Where(x => x.RowState != DataRowState.Deleted)
-					   join gasps in gaspsTable
-					   .Where(x => x.RowState != DataRowState.Deleted)
+					   join gasps in gaspsTable.GetGaspsLastOrganization()
 					   on ervk.version equals gasps.version
 					   select new ErvkOrganization(
 						   version: ervk.version,
@@ -249,7 +248,7 @@ namespace DatabaseToolSuite.Repositoryes
 						   ogrn: ervk.ogrn,
 						   inn: ervk.inn,
 						   subjectRfList: gasps.okatoRow.IsssrfNull() ? string.Empty : gasps.okatoRow.ssrf + "," + gasps.okatoRow.name2,
-						   oktmoList: gasps.okato_code.Substring(0, 2).Equals("00") ? string.Empty : gasps.okato_code);
+						   oktmoList: Utils.Converters.OktmoToEightSymbols(gasps.okato_code));
 			}
 
 			private gaspsDataTable gaspsTable

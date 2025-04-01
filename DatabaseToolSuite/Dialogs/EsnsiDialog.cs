@@ -5,7 +5,7 @@ namespace DatabaseToolSuite.Dialogs
 {
 	class EsnsiDialog : DialogBase
 	{
-		public Repositoryes.MainDataSet.fgis_esnsiRow DataRow { get; private set; }
+		public Repositories.MainDataSet.fgis_esnsiRow DataRow { get; private set; }
 
 		private long oldRegionCode;
 		private string oldPhone;
@@ -75,8 +75,8 @@ namespace DatabaseToolSuite.Dialogs
 		}
 
 		public EsnsiDialog(
-			Repositoryes.MainDataSet.gaspsRow gaspsRow,
-			Repositoryes.MainDataSet.fgis_esnsiRow row
+			Repositories.MainDataSet.gaspsRow gaspsRow,
+			Repositories.MainDataSet.fgis_esnsiRow row
 		)
 			: base()
 		{
@@ -193,16 +193,6 @@ namespace DatabaseToolSuite.Dialogs
 			this.esnsiIdLabel = new System.Windows.Forms.Label();
 			this.esnsiIdNumericTextBox = new DatabaseToolSuite.Controls.NumericTextBox(this.components);
 			this.SuspendLayout();
-			// 
-			// button_Cancel
-			// 
-			this.button_Cancel.Location = new System.Drawing.Point(641, 515);
-			this.button_Cancel.Margin = new System.Windows.Forms.Padding(5);
-			// 
-			// button_OK
-			// 
-			this.button_OK.Location = new System.Drawing.Point(479, 515);
-			this.button_OK.Margin = new System.Windows.Forms.Padding(5);
 			// 
 			// esnsiNameLabel
 			// 
@@ -408,9 +398,7 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// EsnsiDialog
 			// 
-			this.AcceptButton = this.button_OK;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.CancelButton = this.button_Cancel;
 			this.ClientSize = new System.Drawing.Size(722, 533);
 			this.Controls.Add(this.esnsiIdNumericTextBox);
 			this.Controls.Add(this.esnsiIdLabel);
@@ -435,8 +423,6 @@ namespace DatabaseToolSuite.Dialogs
 			this.Margin = new System.Windows.Forms.Padding(5);
 			this.MinimumSize = new System.Drawing.Size(740, 580);
 			this.Name = "EsnsiDialog";
-			this.Controls.SetChildIndex(this.button_Cancel, 0);
-			this.Controls.SetChildIndex(this.button_OK, 0);
 			this.Controls.SetChildIndex(this.esnsiNameLabel, 0);
 			this.Controls.SetChildIndex(this.esnsiNameTextBox, 0);
 			this.Controls.SetChildIndex(this.esnsiRegionLabel, 0);

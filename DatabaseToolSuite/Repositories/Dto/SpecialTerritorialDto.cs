@@ -1,6 +1,6 @@
 ﻿using DatabaseToolSuite.Controls;
 
-namespace DatabaseToolSuite.Repositoryes.Dto
+namespace DatabaseToolSuite.Repositories.Dto
 {
 	internal class SpecialTerritorialDto : ComboControl<SpecialTerritorialDto>.IComboBoxItem
 	{

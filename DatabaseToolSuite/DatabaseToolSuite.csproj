@@ -58,16 +58,17 @@
     <ApplicationIcon>Resources\app.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>D551CC0D8158213231D465ACE9C1A4F4E0D275A2</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>621114F6FD186ADF11B6C9A3F479A971987ACE6E</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>DatabaseToolSuite_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -126,6 +127,18 @@
     <Compile Include="Dialogs\ImportSubdivisionDialog.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Dialogs\SelectPeriodDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SelectPeriodDialog.Designer.cs">
+      <DependentUpon>SelectPeriodDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SelectSkippedCodeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SelectSkippedCodeDialog.Designer.cs">
+      <DependentUpon>SelectSkippedCodeDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\UrpDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,18 +154,19 @@
     <Compile Include="Dialogs\UrpMultyEditDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Repositoryes\1C\SubdivisionCollection.cs" />
-    <Compile Include="Repositoryes\Dto\LawAgencyTypesDto.cs" />
-    <Compile Include="Repositoryes\Dto\SpecialTerritorialDto.cs" />
-    <Compile Include="Repositoryes\GaspsDatabase.cs">
+    <Compile Include="Repositories\1C\SubdivisionCollection.cs" />
+    <Compile Include="Repositories\Dto\LawAgencyTypesDto.cs" />
+    <Compile Include="Repositories\Dto\SpecialTerritorialDto.cs" />
+    <Compile Include="Repositories\GaspsDatabase.cs">
       <DependentUpon>GaspsDatabase.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Repositoryes\GaspsDatabase.Designer.cs">
+    <Compile Include="Repositories\GaspsDatabase.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GaspsDatabase.xsd</DependentUpon>
     </Compile>
     <Compile Include="Services\Rtk.cs" />
+    <Compile Include="Utils\Converters.cs" />
     <Compile Include="Utils\Database.cs" />
     <Compile Include="Dialogs\CreateNewOrganizationDialog.cs">
       <SubType>Form</SubType>
@@ -192,32 +206,32 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositoryes\MainDatabase.cs">
+    <Compile Include="Repositories\MainDatabase.cs">
       <DependentUpon>MainDatabase.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Repositoryes\DatabaseRepository.cs" />
-    <Compile Include="Repositoryes\MainDatabase.Designer.cs">
+    <Compile Include="Repositories\DatabaseRepository.cs" />
+    <Compile Include="Repositories\MainDatabase.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MainDatabase.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Repositoryes\MainDatabase.Viewers.cs">
+    <Compile Include="Repositories\MainDatabase.Viewers.cs">
       <DependentUpon>MainDatabase.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Repositoryes\MainDatabase.Gasps.cs">
+    <Compile Include="Repositories\MainDatabase.Gasps.cs">
       <DependentUpon>MainDatabase.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Repositoryes\MainDatabase.Urp.cs">
+    <Compile Include="Repositories\MainDatabase.Urp.cs">
       <DependentUpon>MainDatabase.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Repositoryes\MainDatabase.FgisEsnsi.cs">
+    <Compile Include="Repositories\MainDatabase.FgisEsnsi.cs">
       <DependentUpon>MainDatabase.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Repositoryes\MainDatabase.Ervk.cs">
+    <Compile Include="Repositories\MainDatabase.Ervk.cs">
       <DependentUpon>MainDatabase.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Repositoryes\Dto\AuthorityDto.cs" />
-    <Compile Include="Repositoryes\Dto\OkatoDto.cs" />
+    <Compile Include="Repositories\Dto\AuthorityDto.cs" />
+    <Compile Include="Repositories\Dto\OkatoDto.cs" />
     <Compile Include="Services\Export.cs" />
     <Compile Include="Services\FileSystem.cs" />
     <Compile Include="Services\Impors.cs" />
@@ -267,6 +281,12 @@
       <DependentUpon>SelectOrganizationDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SelectPeriodDialog.resx">
+      <DependentUpon>SelectPeriodDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SelectSkippedCodeDialog.resx">
+      <DependentUpon>SelectSkippedCodeDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectTableDialog.resx">
       <DependentUpon>SelectTableDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -303,15 +323,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Repositoryes\MainDatabase.xsc">
+    <None Include="Repositories\MainDatabase.xsc">
       <DependentUpon>MainDatabase.xsd</DependentUpon>
     </None>
-    <None Include="Repositoryes\MainDatabase.xsd">
+    <None Include="Repositories\MainDatabase.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>MainDatabase.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Repositoryes\MainDatabase.xss">
+    <None Include="Repositories\MainDatabase.xss">
       <DependentUpon>MainDatabase.xsd</DependentUpon>
     </None>
   </ItemGroup>
@@ -331,15 +351,15 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Repositoryes\GaspsDatabase.xsc">
+    <None Include="Repositories\GaspsDatabase.xsc">
       <DependentUpon>GaspsDatabase.xsd</DependentUpon>
     </None>
-    <None Include="Repositoryes\GaspsDatabase.xsd">
+    <None Include="Repositories\GaspsDatabase.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>GaspsDatabase.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Repositoryes\GaspsDatabase.xss">
+    <None Include="Repositories\GaspsDatabase.xss">
       <DependentUpon>GaspsDatabase.xsd</DependentUpon>
     </None>
     <None Include="Resources\app.ico" />
@@ -534,6 +554,10 @@
     <None Include="Resources\bt22.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

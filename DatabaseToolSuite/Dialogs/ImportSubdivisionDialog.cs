@@ -1,8 +1,8 @@
-﻿using DatabaseToolSuite.Repositoryes._1C;
+﻿using DatabaseToolSuite.Repositories._1C;
 using DatabaseToolSuite.Services;
 using System;
 using System.Windows.Forms;
-using static DatabaseToolSuite.Repositoryes._1C.SubdivisionCollection;
+using static DatabaseToolSuite.Repositories._1C.SubdivisionCollection;
 
 namespace DatabaseToolSuite.Dialogs
 {
@@ -40,7 +40,7 @@ namespace DatabaseToolSuite.Dialogs
 			ApplyButtonVisible = false;
 			CancelButtonVisible = true;
 
-			button_OK.Enabled = false;
+			OkButtonEnabled = false;
 
 			beginDateTimePicker.MinDate = MasterDataSystem.MIN_DATE;
 			beginDateTimePicker.MaxDate = MasterDataSystem.MAX_DATE;
@@ -59,7 +59,7 @@ namespace DatabaseToolSuite.Dialogs
 
 		private void DialogParametersChanged()
 		{
-			button_OK.Enabled = ParentVersion >= 0 && SelectSubdivisions.Count > 0;
+			OkButtonEnabled = ParentVersion >= 0 && SelectSubdivisions.Count > 0;
 		}
 
 		private void AddChildTreeNode(TreeNode node)
@@ -85,16 +85,6 @@ namespace DatabaseToolSuite.Dialogs
 			this.beginDateLabel = new System.Windows.Forms.Label();
 			this.beginDateTimePicker = new System.Windows.Forms.DateTimePicker();
 			this.SuspendLayout();
-			// 
-			// button_Cancel
-			// 
-			this.button_Cancel.Location = new System.Drawing.Point(784, 573);
-			this.button_Cancel.Margin = new System.Windows.Forms.Padding(6);
-			// 
-			// button_OK
-			// 
-			this.button_OK.Location = new System.Drawing.Point(622, 573);
-			this.button_OK.Margin = new System.Windows.Forms.Padding(6);
 			// 
 			// subdivisions_treeView
 			// 
@@ -217,8 +207,6 @@ namespace DatabaseToolSuite.Dialogs
 			this.Padding = new System.Windows.Forms.Padding(18);
 			this.ShowIcon = false;
 			this.Text = "ImportSubdivisionDialog";
-			this.Controls.SetChildIndex(this.button_Cancel, 0);
-			this.Controls.SetChildIndex(this.button_OK, 0);
 			this.Controls.SetChildIndex(this.subdivisions_treeView, 0);
 			this.Controls.SetChildIndex(this.parent_label, 0);
 			this.Controls.SetChildIndex(this.parent_textBox, 0);

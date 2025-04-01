@@ -1,10 +1,13 @@
-﻿using System;
+﻿// Ignore Spelling: okato
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 
-namespace DatabaseToolSuite.Repositoryes
+namespace DatabaseToolSuite.Repositories
 {
 	internal partial class MainDataSet
 	{
@@ -296,7 +299,7 @@ namespace DatabaseToolSuite.Repositoryes
 					if (code.ToString().Length > rightCodeFormat.Length)
 					{
 						throw new ArgumentOutOfRangeException(
-							string.Format("Диапазон кодов исчерпан. Присваемое значение {0} выходит за границы заданного диапазона (1-{1}).",
+							string.Format("Диапазон кодов исчерпан. Присваиваемое значение {0} выходит за границы заданного диапазона (1-{1}).",
 							code, new string('9', rightCodeFormat.Length))
 							);
 					}
@@ -307,7 +310,7 @@ namespace DatabaseToolSuite.Repositoryes
 				}
 				else
 				{
-					return leftCode + (1).ToString(rightCodeFormat);
+					return leftCode + 1.ToString(rightCodeFormat);
 				}
 			}
 
@@ -322,7 +325,7 @@ namespace DatabaseToolSuite.Repositoryes
 					.Distinct());
 				long length = rightCodeFormat.Length == 2 ? 99 : 9999;
 				List<long> result = new List<long>();
-				for (long i = 1; i < length; i++)
+				for (long i = 1; i <= length; i++)
 				{
 					if (!codes.Contains(i))
 					{
@@ -384,6 +387,27 @@ namespace DatabaseToolSuite.Repositoryes
 					.ToArray());
 			}
 
+
+			public IEnumerable<gaspsRow> GetGaspsLastOrganization()
+			{
+				var groups = this.AsEnumerable()
+				.Where(x => x.RowState != DataRowState.Deleted)
+				.GroupBy(x => x.code);
+				List<gaspsRow> result = new List<gaspsRow>();
+				foreach (var item in groups)
+				{
+					gaspsRow gaspsRow = null;
+					foreach (var row in item)
+					{
+						if (gaspsRow == null 
+							|| gaspsRow.date_beg < row.date_beg)
+							gaspsRow = row;
+					}
+					result.Add(gaspsRow);
+				}
+				return result;			
+			}
+
 			public IEnumerable<gaspsRow> GetGaspsChildOrganization(long ownerId, DateTime date)
 			{
 				IEnumerable<gaspsRow> result = this.AsEnumerable()
@@ -412,6 +436,24 @@ namespace DatabaseToolSuite.Repositoryes
 			{
 				EnumerableRowCollection<gaspsRow> gaspsCollection = this.AsEnumerable()
 					.Where(e => e.RowState != DataRowState.Deleted);
+				EnumerableRowCollection<gaspsRow> activeCollection = gaspsCollection
+					.Where(e => e.date_end.Date > DateTime.Today && e.date_beg.Date <= DateTime.Today)
+					.OrderBy(e => e, new GaspsRowComparer());
+
+				return from gasps in gaspsCollection
+					   join owner in activeCollection on gasps.owner_id equals owner.key into ow_jointable
+					   from ow in ow_jointable.DefaultIfEmpty()
+					   select new ViewGaspsOrganization(gasps: gasps, owner: ow);
+			}
+
+			public IEnumerable<ViewGaspsOrganization> ExportDeltaData(DateTime begin, DateTime end)
+			{
+				EnumerableRowCollection<gaspsRow> gaspsCollection = this.AsEnumerable()
+					.Where(e => e.RowState != DataRowState.Deleted)
+					.Where(e => (!e.IslogEditDateNull() 
+					&& e.logEditDate >= begin && e.logEditDate <= end)
+					|| (e.date_end >= begin && e.date_end <= end));
+
 				EnumerableRowCollection<gaspsRow> activeCollection = gaspsCollection
 					.Where(e => e.date_end.Date > DateTime.Today && e.date_beg.Date <= DateTime.Today)
 					.OrderBy(e => e, new GaspsRowComparer());

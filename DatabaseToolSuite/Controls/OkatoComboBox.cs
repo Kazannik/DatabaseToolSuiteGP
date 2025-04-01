@@ -1,5 +1,5 @@
-﻿using DatabaseToolSuite.Repositoryes;
-using DatabaseToolSuite.Repositoryes.Dto;
+﻿using DatabaseToolSuite.Repositories;
+using DatabaseToolSuite.Repositories.Dto;
 
 namespace DatabaseToolSuite.Controls
 {

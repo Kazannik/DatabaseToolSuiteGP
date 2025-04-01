@@ -7,7 +7,7 @@ namespace DatabaseToolSuite.Services
 	/// </summary>
 	static class FileSystem
 	{
-		public static Repositoryes.DatabasesRepository Repository { get; } = new Repositoryes.DatabasesRepository();
+		public static Repositories.DatabasesRepository Repository { get; } = new Repositories.DatabasesRepository();
 
 		public static string DatabaseFileName { get; private set; }
 

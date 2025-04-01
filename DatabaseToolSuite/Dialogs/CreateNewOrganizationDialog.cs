@@ -13,15 +13,19 @@ namespace DatabaseToolSuite.Dialogs
 
 			InitializeComponent();
 
-			nextCodeButton.Enabled = !string.IsNullOrWhiteSpace(authorityComboBox.Code) ||
-				!string.IsNullOrWhiteSpace(okatoComboBox.Code);
+			OtherControls.Add(this.nextCodeButton);
+			OtherControls.Add(this.selectCodeButton);
+			OtherControls.Add(this.cleanCodeButton);
 
-			selectCodeButton.Enabled = !string.IsNullOrWhiteSpace(authorityComboBox.Code) ||
-				!string.IsNullOrWhiteSpace(okatoComboBox.Code);
+			nextCodeButton.Enabled = !string.IsNullOrWhiteSpace(AuthorityCode) ||
+				!string.IsNullOrWhiteSpace(OkatoCode);
+
+			selectCodeButton.Enabled = !string.IsNullOrWhiteSpace(AuthorityCode) ||
+				!string.IsNullOrWhiteSpace(OkatoCode);
 
 			Text = "Новая запись о подразделении";
 			DialogCaption = "Создание новой записи о подразделении";
-			codeTextBox.Text = string.Empty;
+			CodeText = string.Empty;
 		}
 
 		public CreateNewOrganizationDialog(string name, string code, DateTime beginDate) : this()
@@ -30,47 +34,55 @@ namespace DatabaseToolSuite.Dialogs
 			nextCodeButton.Enabled = false;
 			selectCodeButton.Enabled = false;
 
-			nameTextBox.Text = name;
-			nameTextBox.Enabled = false;
-			codeTextBox.Text = code;
-			codeTextBox.Enabled = false;
-			beginDateTimePicker.Value = new DateTime(year: beginDate.Year, month: beginDate.Month, day: beginDate.Day);
-			beginDateTimePicker.Enabled = false;
+			NameText = name;
+			NameTextEnabled = false;
+			CodeText = code;
+			CodeTextEnabled = false;
+			BeginDateTimeValue = new DateTime(year: beginDate.Year, month: beginDate.Month, day: beginDate.Day);
+			BeginDateTimeEnabled = false;
 		}
 
-		public CreateNewOrganizationDialog(Repositoryes.MainDataSet.gaspsRow row) : base(row)
+		public CreateNewOrganizationDialog(Repositories.MainDataSet.gaspsRow row) : base(row)
 		{
 			generationCodeService = true;
 
 			InitializeComponent();
 
-			nextCodeButton.Enabled = !string.IsNullOrWhiteSpace(authorityComboBox.Code) ||
-				!string.IsNullOrWhiteSpace(okatoComboBox.Code);
+			OtherControls.Add(this.nextCodeButton);
+			OtherControls.Add(this.selectCodeButton);
+			OtherControls.Add(this.selectSkippedCodeButton);
+			OtherControls.Add(this.cleanCodeButton);
 
-			selectCodeButton.Enabled = !string.IsNullOrWhiteSpace(authorityComboBox.Code) ||
-				!string.IsNullOrWhiteSpace(okatoComboBox.Code);
+			nextCodeButton.Enabled = !string.IsNullOrWhiteSpace(AuthorityCode) ||
+				!string.IsNullOrWhiteSpace(OkatoCode);
 
-			cleanCodeButton.Enabled = authorityComboBox.Value.HasValue && authorityComboBox.Value == Services.MasterDataSystem.PROSECUTOR_CODE;
+			selectCodeButton.Enabled = !string.IsNullOrWhiteSpace(AuthorityCode) ||
+				!string.IsNullOrWhiteSpace(OkatoCode);
+
+			selectSkippedCodeButton.Enabled = !string.IsNullOrWhiteSpace(AuthorityCode) ||
+				!string.IsNullOrWhiteSpace(OkatoCode);
+
+			cleanCodeButton.Enabled = AuthorityValue.HasValue && AuthorityValue == Services.MasterDataSystem.PROSECUTOR_CODE;
 
 			Text = "Новая запись о подразделении";
 			DialogCaption = "Создание новой записи о подразделении";
-			codeTextBox.Text = string.Empty;
+			CodeText = string.Empty;
 		}
 
 		public string Code
 		{
-			get { return codeTextBox.Text; }
+			get { return CodeText; }
 		}
 
 		private void NextCodeButton_Click(object sender, EventArgs e)
 		{
 			try
 			{
-				codeTextBox.Text = Services.FileSystem.Repository.MainDataSet.gasps.GetNextCode(authority: Authority ?? 0, okato: OkatoCode);
+				CodeText = Services.FileSystem.Repository.MainDataSet.gasps.GetNextCode(authority: Authority ?? 0, okato: OkatoCode);
 			}
 			catch (Exception)
 			{
-				codeTextBox.Text = Services.FileSystem.Repository.MainDataSet.gasps.GetNextSkippedCode(authority: Authority ?? 0, okato: OkatoCode);
+				CodeText = Services.FileSystem.Repository.MainDataSet.gasps.GetNextSkippedCode(authority: Authority ?? 0, okato: OkatoCode);
 				MessageBox.Show(this, "Диапазон кодов исчерпан. Выбран код из числа пропущенных номеров.", "Создание новой записи о подразделении", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 		}
@@ -81,30 +93,47 @@ namespace DatabaseToolSuite.Dialogs
 			dialog.LastLockOnlyShow = true;
 			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{
-				codeTextBox.Text = dialog.DataRow.code;
+				CodeText = dialog.DataRow.code;
+			}
+		}
+
+		private void SelectSkippedCodeButton_Click(object sender, EventArgs e)
+		{
+			SelectSkippedCodeDialog dialog = new SelectSkippedCodeDialog(authority: Authority ?? 0, okato: OkatoCode);
+			if (dialog.ShowDialog(this) == DialogResult.OK)
+			{
+				CodeText = dialog.Code;
 			}
 		}
 
 		private void CleanCodeButton_Click(object sender, EventArgs e)
 		{
-			codeTextBox.Text = string.Empty;
+			CodeText = string.Empty;
 		}
 
-		private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+		protected override void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (string.IsNullOrWhiteSpace(authorityComboBox.Code) ||
-				string.IsNullOrWhiteSpace(okatoComboBox.Code))
+			if (string.IsNullOrWhiteSpace(AuthorityCode) ||
+				string.IsNullOrWhiteSpace(OkatoCode))
 			{
-				nextCodeButton.Enabled = false;
-				selectCodeButton.Enabled = false;
+				if (nextCodeButton !=null) nextCodeButton.Enabled = false;
+				if (selectCodeButton !=null) selectCodeButton.Enabled = false;
 			}
 			else
 			{
 				if (generationCodeService)
 				{
-					codeTextBox.Text = Services.FileSystem.Repository.MainDataSet.gasps.GetNextCode(authority: Authority ?? 0, okato: OkatoCode);
-					nextCodeButton.Enabled = true;
-					selectCodeButton.Enabled = true;
+					try
+					{
+						CodeText = Services.FileSystem.Repository.MainDataSet.gasps.GetNextCode(authority: Authority ?? 0, okato: OkatoCode);
+						nextCodeButton.Enabled = true;
+						selectCodeButton.Enabled = true;
+					}
+					catch (Exception)
+					{
+						CodeText = Services.FileSystem.Repository.MainDataSet.gasps.GetNextSkippedCode(authority: Authority ?? 0, okato: OkatoCode);
+						MessageBox.Show(this, "Диапазон кодов исчерпан. Выбран код из числа пропущенных номеров.", "Создание новой записи о подразделении", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					}
 				}
 			}
 		}
@@ -119,101 +148,72 @@ namespace DatabaseToolSuite.Dialogs
 		{
 			this.nextCodeButton = new System.Windows.Forms.Button();
 			this.selectCodeButton = new System.Windows.Forms.Button();
+			this.selectSkippedCodeButton = new System.Windows.Forms.Button();
 			this.cleanCodeButton = new System.Windows.Forms.Button();
-			this.organizationGroupBox.SuspendLayout();
 			this.SuspendLayout();
-			//
-			// organizationGroupBox
-			//
-			this.organizationGroupBox.Controls.Add(this.cleanCodeButton);
-			this.organizationGroupBox.Controls.Add(this.selectCodeButton);
-			this.organizationGroupBox.Controls.Add(this.nextCodeButton);
-			this.organizationGroupBox.Controls.SetChildIndex(this.ownerTextBox, 0);
-			this.organizationGroupBox.Controls.SetChildIndex(this.nameTextBox, 0);
-			this.organizationGroupBox.Controls.SetChildIndex(this.authorityComboBox, 0);
-			this.organizationGroupBox.Controls.SetChildIndex(this.okatoComboBox, 0);
-			this.organizationGroupBox.Controls.SetChildIndex(this.codeTextBox, 0);
-			this.organizationGroupBox.Controls.SetChildIndex(this.nextCodeButton, 0);
-			this.organizationGroupBox.Controls.SetChildIndex(this.selectCodeButton, 0);
-			this.organizationGroupBox.Controls.SetChildIndex(this.cleanCodeButton, 0);
-			//
-			// codeTextBox
-			//
-			this.codeTextBox.Size = new System.Drawing.Size(126, 22);
-			//
-			// authorityComboBox
-			//
-			this.authorityComboBox.DropDownHeight = 424;
-			this.authorityComboBox.ItemHeight = 21;
-			this.authorityComboBox.Size = new System.Drawing.Size(624, 27);
-			this.authorityComboBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox_SelectedIndexChanged);
-			//
-			// okatoComboBox
-			//
-			this.okatoComboBox.DropDownHeight = 424;
-			this.okatoComboBox.ItemHeight = 21;
-			this.okatoComboBox.Size = new System.Drawing.Size(624, 27);
-			this.okatoComboBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox_SelectedIndexChanged);
-			//
-			// button_Cancel
-			//
-			this.button_Cancel.Location = new System.Drawing.Point(708, 573);
-			//
-			// button_OK
-			//
-			this.button_OK.Location = new System.Drawing.Point(508, 573);
-			//
+			// 
 			// nextCodeButton
-			//
+			// 
 			this.nextCodeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.nextCodeButton.Location = new System.Drawing.Point(362, 172);
-			this.nextCodeButton.Margin = new System.Windows.Forms.Padding(4);
+			this.nextCodeButton.Location = new System.Drawing.Point(390, 172);
+			this.nextCodeButton.Margin = new System.Windows.Forms.Padding(9);
 			this.nextCodeButton.Name = "nextCodeButton";
-			this.nextCodeButton.Size = new System.Drawing.Size(127, 28);
+			this.nextCodeButton.Size = new System.Drawing.Size(90, 28);
 			this.nextCodeButton.TabIndex = 3;
 			this.nextCodeButton.Text = "Создать";
 			this.nextCodeButton.UseVisualStyleBackColor = true;
 			this.nextCodeButton.Click += new System.EventHandler(this.NextCodeButton_Click);
-			//
+			// 
 			// selectCodeButton
-			//
+			// 
 			this.selectCodeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.selectCodeButton.Location = new System.Drawing.Point(497, 172);
-			this.selectCodeButton.Margin = new System.Windows.Forms.Padding(4);
+			this.selectCodeButton.Location = new System.Drawing.Point(490, 172);
+			this.selectCodeButton.Margin = new System.Windows.Forms.Padding(9);
 			this.selectCodeButton.Name = "selectCodeButton";
-			this.selectCodeButton.Size = new System.Drawing.Size(127, 28);
+			this.selectCodeButton.Size = new System.Drawing.Size(90, 28);
 			this.selectCodeButton.TabIndex = 4;
 			this.selectCodeButton.Text = "Выбрать...";
 			this.selectCodeButton.UseVisualStyleBackColor = true;
 			this.selectCodeButton.Click += new System.EventHandler(this.SelectCodeButton_Click);
-			//
+			// 
+			// selectSkippedCodeButton
+			// 
+			this.selectSkippedCodeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.selectSkippedCodeButton.Location = new System.Drawing.Point(590, 172);
+			this.selectSkippedCodeButton.Margin = new System.Windows.Forms.Padding(9);
+			this.selectSkippedCodeButton.Name = "selectSkippedCodeButton";
+			this.selectSkippedCodeButton.Size = new System.Drawing.Size(90, 28);
+			this.selectSkippedCodeButton.TabIndex = 5;
+			this.selectSkippedCodeButton.Text = "Иные...";
+			this.selectSkippedCodeButton.UseVisualStyleBackColor = true;
+			this.selectSkippedCodeButton.Click += new System.EventHandler(this.SelectSkippedCodeButton_Click);
+
+			// 
 			// cleanCodeButton
-			//
+			// 
 			this.cleanCodeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.cleanCodeButton.Location = new System.Drawing.Point(632, 172);
-			this.cleanCodeButton.Margin = new System.Windows.Forms.Padding(4);
+			this.cleanCodeButton.Location = new System.Drawing.Point(690, 172);
+			this.cleanCodeButton.Margin = new System.Windows.Forms.Padding(9);
 			this.cleanCodeButton.Name = "cleanCodeButton";
-			this.cleanCodeButton.Size = new System.Drawing.Size(127, 28);
-			this.cleanCodeButton.TabIndex = 46;
+			this.cleanCodeButton.Size = new System.Drawing.Size(90, 28);
+			this.cleanCodeButton.TabIndex = 6;
 			this.cleanCodeButton.Text = "Очистить";
 			this.cleanCodeButton.UseVisualStyleBackColor = true;
 			this.cleanCodeButton.Click += new System.EventHandler(this.CleanCodeButton_Click);
-			//
+			// 
 			// CreateNewOrganizationDialog
-			//
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-			this.ClientSize = new System.Drawing.Size(814, 608);
+			// 
 			this.Name = "CreateNewOrganizationDialog";
-			this.organizationGroupBox.ResumeLayout(false);
-			this.organizationGroupBox.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
+
 		}
 
 		#endregion Код, автоматически созданный конструктором форм Windows
 
-		private System.Windows.Forms.Button selectCodeButton;
+		private Button nextCodeButton;
+		private Button selectCodeButton;
+		private Button selectSkippedCodeButton;
 		private Button cleanCodeButton;
-		private System.Windows.Forms.Button nextCodeButton;
 	}
 }

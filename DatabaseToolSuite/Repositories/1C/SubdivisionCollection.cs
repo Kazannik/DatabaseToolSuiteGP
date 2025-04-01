@@ -6,9 +6,9 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
-using static DatabaseToolSuite.Repositoryes._1C.SubdivisionCollection;
+using static DatabaseToolSuite.Repositories._1C.SubdivisionCollection;
 
-namespace DatabaseToolSuite.Repositoryes._1C
+namespace DatabaseToolSuite.Repositories._1C
 {
 	internal class SubdivisionCollection
 		: System.Collections.CollectionBase,

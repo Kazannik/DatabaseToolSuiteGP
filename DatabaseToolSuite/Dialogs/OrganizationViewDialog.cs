@@ -9,7 +9,7 @@
 			InitializeComponent();
 		}
 
-		public OrganizationViewDialog(Repositoryes.MainDataSet.ViewFgisEsnsiOrganization organization) : base()
+		public OrganizationViewDialog(Repositories.MainDataSet.ViewFgisEsnsiOrganization organization) : base()
 		{
 			InitializeComponent();
 			propertyGrid1.SelectedObject = organization;
@@ -26,14 +26,6 @@
 			this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
 			this.SuspendLayout();
 			// 
-			// button_Cancel
-			// 
-			this.button_Cancel.Location = new System.Drawing.Point(637, 506);
-			// 
-			// button_OK
-			// 
-			this.button_OK.Location = new System.Drawing.Point(475, 506);
-			// 
 			// propertyGrid1
 			// 
 			this.propertyGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -47,16 +39,12 @@
 			// 
 			// OrganizationViewDialog
 			// 
-			this.AcceptButton = this.button_OK;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-			this.CancelButton = this.button_Cancel;
 			this.ClientSize = new System.Drawing.Size(722, 533);
 			this.Controls.Add(this.propertyGrid1);
 			this.DialogCaptionImage = global::DatabaseToolSuite.Properties.Resources.About24;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "OrganizationViewDialog";
-			this.Controls.SetChildIndex(this.button_Cancel, 0);
-			this.Controls.SetChildIndex(this.button_OK, 0);
 			this.Controls.SetChildIndex(this.propertyGrid1, 0);
 			this.ResumeLayout(false);
 

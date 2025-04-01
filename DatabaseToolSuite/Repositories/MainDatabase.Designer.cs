@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace DatabaseToolSuite.Repositoryes {
+namespace DatabaseToolSuite.Repositories {
     
     
     /// <summary>
@@ -50,9 +50,9 @@ namespace DatabaseToolSuite.Repositoryes {
         
         private EXP_LAW_AGENCY_TYPESDataTable tableEXP_LAW_AGENCY_TYPES;
         
-        private global::System.Data.DataRelation relationFK_court_type_gasps;
-        
         private global::System.Data.DataRelation relationFK_authority_gasps;
+        
+        private global::System.Data.DataRelation relationFK_court_type_gasps;
         
         private global::System.Data.DataRelation relationfgis_esnsi_gasps;
         
@@ -514,8 +514,8 @@ namespace DatabaseToolSuite.Repositoryes {
                     this.tableEXP_LAW_AGENCY_TYPES.InitVars();
                 }
             }
-            this.relationFK_court_type_gasps = this.Relations["FK_court_type_gasps"];
             this.relationFK_authority_gasps = this.Relations["FK_authority_gasps"];
+            this.relationFK_court_type_gasps = this.Relations["FK_court_type_gasps"];
             this.relationfgis_esnsi_gasps = this.Relations["fgis_esnsi_gasps"];
             this.relationgasps_ervk = this.Relations["gasps_ervk"];
             this.relationFK_okato_gasps = this.Relations["FK_okato_gasps"];
@@ -565,13 +565,6 @@ namespace DatabaseToolSuite.Repositoryes {
             this.tableEXP_LAW_AGENCY_TYPES = new EXP_LAW_AGENCY_TYPESDataTable();
             base.Tables.Add(this.tableEXP_LAW_AGENCY_TYPES);
             global::System.Data.ForeignKeyConstraint fkc;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_court_type_gasps", new global::System.Data.DataColumn[] {
-                        this.tablecourt_type.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablegasps.court_type_idColumn});
-            this.tablegasps.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
-            fkc.DeleteRule = global::System.Data.Rule.Cascade;
-            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             fkc = new global::System.Data.ForeignKeyConstraint("FK_authority_gasps", new global::System.Data.DataColumn[] {
                         this.tableauthority.idColumn}, new global::System.Data.DataColumn[] {
                         this.tablegasps.authority_idColumn});
@@ -579,14 +572,21 @@ namespace DatabaseToolSuite.Repositoryes {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            this.relationFK_court_type_gasps = new global::System.Data.DataRelation("FK_court_type_gasps", new global::System.Data.DataColumn[] {
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_court_type_gasps", new global::System.Data.DataColumn[] {
                         this.tablecourt_type.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablegasps.court_type_idColumn}, false);
-            this.Relations.Add(this.relationFK_court_type_gasps);
+                        this.tablegasps.court_type_idColumn});
+            this.tablegasps.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             this.relationFK_authority_gasps = new global::System.Data.DataRelation("FK_authority_gasps", new global::System.Data.DataColumn[] {
                         this.tableauthority.idColumn}, new global::System.Data.DataColumn[] {
                         this.tablegasps.authority_idColumn}, false);
             this.Relations.Add(this.relationFK_authority_gasps);
+            this.relationFK_court_type_gasps = new global::System.Data.DataRelation("FK_court_type_gasps", new global::System.Data.DataColumn[] {
+                        this.tablecourt_type.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablegasps.court_type_idColumn}, false);
+            this.Relations.Add(this.relationFK_court_type_gasps);
             this.relationfgis_esnsi_gasps = new global::System.Data.DataRelation("fgis_esnsi_gasps", new global::System.Data.DataColumn[] {
                         this.tablegasps.versionColumn}, new global::System.Data.DataColumn[] {
                         this.tablefgis_esnsi.versionColumn}, false);
@@ -5704,8 +5704,8 @@ namespace DatabaseToolSuite.Repositoryes {
             public long export_id {
                 get {
                     try {
-						return ConvertFromDBVal<long>(this[this.tableokato.export_idColumn]);
-					}
+                        return ((long)(this[this.tableokato.export_idColumn]));
+                    }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'export_id\' в таблице \'okato\' равно DBNull.", e);
                     }
@@ -5897,8 +5897,8 @@ namespace DatabaseToolSuite.Repositoryes {
             public string code {
                 get {
                     try {
-						return ConvertFromDBVal<string>(this[this.tablegasps.codeColumn]);
-					}
+                        return ((string)(this[this.tablegasps.codeColumn]));
+                    }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'code\' в таблице \'gasps\' равно DBNull.", e);
                     }
@@ -6037,8 +6037,8 @@ namespace DatabaseToolSuite.Repositoryes {
             public string import_guid {
                 get {
                     try {
-						return ConvertFromDBVal<string>(this[this.tablegasps.import_guidColumn]);
-					}
+                        return ((string)(this[this.tablegasps.import_guidColumn]));
+                    }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'import_guid\' в таблице \'gasps\' равно DBNull.", e);
                     }
@@ -6146,23 +6146,23 @@ namespace DatabaseToolSuite.Repositoryes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public court_typeRow court_typeRow {
-                get {
-                    return ((court_typeRow)(this.GetParentRow(this.Table.ParentRelations["FK_court_type_gasps"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_court_type_gasps"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public authorityRow authorityRow {
                 get {
                     return ((authorityRow)(this.GetParentRow(this.Table.ParentRelations["FK_authority_gasps"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_authority_gasps"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public court_typeRow court_typeRow {
+                get {
+                    return ((court_typeRow)(this.GetParentRow(this.Table.ParentRelations["FK_court_type_gasps"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_court_type_gasps"]);
                 }
             }
             
@@ -7209,8 +7209,8 @@ namespace DatabaseToolSuite.Repositoryes {
             public long SPECIAL_TERRITORIAL_CODE {
                 get {
                     try {
-						return ConvertFromDBVal<long>(this[this.tableEXP_LAW_AGENCY_URP.SPECIAL_TERRITORIAL_CODEColumn]);
-					}
+                        return ((long)(this[this.tableEXP_LAW_AGENCY_URP.SPECIAL_TERRITORIAL_CODEColumn]));
+                    }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'SPECIAL_TERRITORIAL_CODE\' в таблице \'EXP_LAW_AGENCY_URP\' ра" +
                                 "вно DBNull.", e);

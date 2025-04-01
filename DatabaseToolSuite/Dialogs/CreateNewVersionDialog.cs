@@ -1,14 +1,17 @@
-﻿using System;
+﻿// Ignore Spelling: Okato
+
+using System;
 using System.Windows.Forms;
 
 namespace DatabaseToolSuite.Dialogs
 {
 	internal class CreateNewVersionDialog : DialogBase
 	{
-		private string oldName;
-		private string oldOkato;
-		private long oldAuthorityId;
-		private long oldOwnerKey;
+		private readonly string oldCode;
+		private readonly string oldName;
+		private readonly string oldOkato;
+		private readonly long oldAuthorityId;
+		private readonly long oldOwnerKey;
 
 		public CreateNewVersionDialog() : base()
 		{
@@ -30,12 +33,13 @@ namespace DatabaseToolSuite.Dialogs
 			OkButtonEnabled = false;
 		}
 
-		public CreateNewVersionDialog(Repositoryes.MainDataSet.gaspsRow row) : this()
+		public CreateNewVersionDialog(Repositories.MainDataSet.gaspsRow row) : this()
 		{
 			ApplyButtonVisible = false;
 
 			DataRow = row;
 
+			oldCode = DataRow.code;
 			oldName = DataRow.name;
 			oldOkato = DataRow.okato_code;
 			oldAuthorityId = DataRow.authority_id;
@@ -52,7 +56,7 @@ namespace DatabaseToolSuite.Dialogs
 
 			if (DataRow.owner_id > 0)
 			{
-				Repositoryes.MainDataSet.gaspsRow owner = Services.FileSystem.Repository.MainDataSet.gasps.GetLastVersionOrganizationFromKey(DataRow.owner_id);
+				Repositories.MainDataSet.gaspsRow owner = Services.FileSystem.Repository.MainDataSet.gasps.GetLastVersionOrganizationFromKey(DataRow.owner_id);
 
 				ownerTextBox.Text = owner.name + " (код: " + owner.code + ")";
 			}
@@ -60,7 +64,7 @@ namespace DatabaseToolSuite.Dialogs
 				ownerTextBox.Text = string.Empty;
 		}
 
-		public Repositoryes.MainDataSet.gaspsRow DataRow { get; private set; }
+		public Repositories.MainDataSet.gaspsRow DataRow { get; private set; }
 
 		public DateTime BeginDate
 		{
@@ -111,7 +115,7 @@ namespace DatabaseToolSuite.Dialogs
 			}
 		}
 
-		private void deleteOwnerButton_Click(object sender, EventArgs e)
+		private void DeleteOwnerButton_Click(object sender, EventArgs e)
 		{
 			OrganizationOwner = 0;
 			ownerTextBox.Text = string.Empty;
@@ -124,7 +128,8 @@ namespace DatabaseToolSuite.Dialogs
 				CourtType != CourtType ||
 				oldName != OrganizationName ||
 				oldOkato != OkatoCode ||
-				oldOwnerKey != OrganizationOwner
+				oldOwnerKey != OrganizationOwner ||
+				oldCode != CodeText
 				)
 			{
 				OkButtonEnabled = true;
@@ -133,7 +138,7 @@ namespace DatabaseToolSuite.Dialogs
 			{
 				OkButtonEnabled = false;
 			}
-			if (string.IsNullOrWhiteSpace(codeTextBox.Text) ||
+			if ((string.IsNullOrWhiteSpace(codeTextBox.Text) && AuthorityCode != "20") ||
 				string.IsNullOrWhiteSpace(OrganizationName) ||
 				!Authority.HasValue ||
 				string.IsNullOrWhiteSpace(OkatoCode))
@@ -141,6 +146,56 @@ namespace DatabaseToolSuite.Dialogs
 
 			deleteOwnerButton.Enabled = OrganizationOwner != 0;
 		}
+
+		protected virtual void ComboBox_SelectedIndexChanged(object sender, EventArgs e) { }
+
+		protected string CodeText
+		{
+			get => codeTextBox.Text;
+			set => codeTextBox.Text = value;
+		}
+
+		protected bool CodeTextEnabled
+		{
+			get => codeTextBox.Enabled;
+			set => codeTextBox.Enabled = value;
+		}
+
+		protected string NameText
+		{
+			get => nameTextBox.Text;
+			set => nameTextBox.Text = value;
+		}
+
+		protected bool NameTextEnabled
+		{
+			get => nameTextBox.Enabled;
+			set => nameTextBox.Enabled = value;
+		}
+
+		protected string BeginDateLabelText
+		{ 
+			get => beginDateLabel.Text;
+			set => beginDateLabel.Text = value;
+		}
+
+		protected DateTime BeginDateTimeValue
+		{
+			get => beginDateTimePicker.Value;
+			set => beginDateTimePicker.Value = value;
+		}
+
+		protected bool BeginDateTimeEnabled
+		{
+			get => beginDateTimePicker.Enabled;
+			set => beginDateTimePicker.Enabled = value;
+		}
+
+		protected string AuthorityCode => authorityComboBox.Code;
+
+		protected long? AuthorityValue => authorityComboBox.Value;
+
+		protected Control.ControlCollection OtherControls => organizationGroupBox.Controls;
 
 		#region Код, автоматически созданный конструктором форм Windows
 
@@ -168,53 +223,45 @@ namespace DatabaseToolSuite.Dialogs
 			this.nameTextBox = new System.Windows.Forms.TextBox();
 			this.organizationGroupBox.SuspendLayout();
 			this.SuspendLayout();
-			//
-			// button_Cancel
-			//
-			this.button_Cancel.Location = new System.Drawing.Point(708, 573);
-			//
-			// button_OK
-			//
-			this.button_OK.Location = new System.Drawing.Point(508, 573);
-			//
+			// 
 			// beginDateLabel
-			//
+			// 
 			this.beginDateLabel.AutoSize = true;
 			this.beginDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.beginDateLabel.Location = new System.Drawing.Point(23, 64);
 			this.beginDateLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.beginDateLabel.Name = "beginDateLabel";
-			this.beginDateLabel.Size = new System.Drawing.Size(201, 16);
+			this.beginDateLabel.Size = new System.Drawing.Size(287, 25);
 			this.beginDateLabel.TabIndex = 36;
 			this.beginDateLabel.Text = "Дата введения новой версии:";
-			//
+			// 
 			// beginDateTimePicker
-			//
+			// 
 			this.beginDateTimePicker.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.beginDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.beginDateTimePicker.Location = new System.Drawing.Point(27, 88);
 			this.beginDateTimePicker.Margin = new System.Windows.Forms.Padding(4);
 			this.beginDateTimePicker.Name = "beginDateTimePicker";
-			this.beginDateTimePicker.Size = new System.Drawing.Size(214, 22);
+			this.beginDateTimePicker.Size = new System.Drawing.Size(214, 30);
 			this.beginDateTimePicker.TabIndex = 0;
 			this.beginDateTimePicker.ValueChanged += new System.EventHandler(this.Controls_ValueChanged);
-			//
+			// 
 			// nameLabel
-			//
+			// 
 			this.nameLabel.AutoSize = true;
 			this.nameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.nameLabel.Location = new System.Drawing.Point(9, 24);
 			this.nameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.nameLabel.Name = "nameLabel";
-			this.nameLabel.Size = new System.Drawing.Size(110, 17);
+			this.nameLabel.Size = new System.Drawing.Size(167, 25);
 			this.nameLabel.TabIndex = 37;
 			this.nameLabel.Text = "Наименование:";
-			//
+			// 
 			// organizationGroupBox
-			//
-			this.organizationGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-			| System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			// 
+			this.organizationGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.organizationGroupBox.Controls.Add(this.deleteOwnerButton);
 			this.organizationGroupBox.Controls.Add(this.selectOwnerButton);
 			this.organizationGroupBox.Controls.Add(this.ownerTextBox);
@@ -232,170 +279,170 @@ namespace DatabaseToolSuite.Dialogs
 			this.organizationGroupBox.Margin = new System.Windows.Forms.Padding(4);
 			this.organizationGroupBox.Name = "organizationGroupBox";
 			this.organizationGroupBox.Padding = new System.Windows.Forms.Padding(4);
-			this.organizationGroupBox.Size = new System.Drawing.Size(776, 423);
+			this.organizationGroupBox.Size = new System.Drawing.Size(770, 421);
 			this.organizationGroupBox.TabIndex = 38;
 			this.organizationGroupBox.TabStop = false;
 			this.organizationGroupBox.Text = "Сведения о подразделении правоохранительного органа";
-			//
+			// 
 			// deleteOwnerButton
-			//
+			// 
 			this.deleteOwnerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.deleteOwnerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.deleteOwnerButton.Location = new System.Drawing.Point(559, 387);
+			this.deleteOwnerButton.Location = new System.Drawing.Point(553, 377);
 			this.deleteOwnerButton.Margin = new System.Windows.Forms.Padding(4);
 			this.deleteOwnerButton.Name = "deleteOwnerButton";
-			this.deleteOwnerButton.Size = new System.Drawing.Size(200, 28);
+			this.deleteOwnerButton.Size = new System.Drawing.Size(200, 36);
 			this.deleteOwnerButton.TabIndex = 8;
 			this.deleteOwnerButton.Text = "Удалить владельца...";
-			this.deleteOwnerButton.Click += new System.EventHandler(this.deleteOwnerButton_Click);
-			//
+			this.deleteOwnerButton.Click += new System.EventHandler(this.DeleteOwnerButton_Click);
+			// 
 			// selectOwnerButton
-			//
+			// 
 			this.selectOwnerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.selectOwnerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.selectOwnerButton.Location = new System.Drawing.Point(351, 387);
+			this.selectOwnerButton.Location = new System.Drawing.Point(345, 377);
 			this.selectOwnerButton.Margin = new System.Windows.Forms.Padding(4);
 			this.selectOwnerButton.Name = "selectOwnerButton";
-			this.selectOwnerButton.Size = new System.Drawing.Size(200, 28);
+			this.selectOwnerButton.Size = new System.Drawing.Size(200, 36);
 			this.selectOwnerButton.TabIndex = 7;
 			this.selectOwnerButton.Text = "Выбрать владельца...";
 			this.selectOwnerButton.Click += new System.EventHandler(this.SelectOwnerButton_Click);
-			//
+			// 
 			// ownerTextBox
-			//
-			this.ownerTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			// 
+			this.ownerTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.ownerTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.ownerTextBox.Location = new System.Drawing.Point(11, 307);
+			this.ownerTextBox.Location = new System.Drawing.Point(11, 305);
 			this.ownerTextBox.Margin = new System.Windows.Forms.Padding(4);
 			this.ownerTextBox.Multiline = true;
 			this.ownerTextBox.Name = "ownerTextBox";
 			this.ownerTextBox.ReadOnly = true;
 			this.ownerTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.ownerTextBox.Size = new System.Drawing.Size(748, 72);
+			this.ownerTextBox.Size = new System.Drawing.Size(742, 64);
 			this.ownerTextBox.TabIndex = 45;
 			this.ownerTextBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
-			//
+			// 
 			// ownerLabel
-			//
+			// 
 			this.ownerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.ownerLabel.AutoSize = true;
-			this.ownerLabel.Location = new System.Drawing.Point(9, 283);
+			this.ownerLabel.Location = new System.Drawing.Point(9, 281);
 			this.ownerLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.ownerLabel.Name = "ownerLabel";
-			this.ownerLabel.Size = new System.Drawing.Size(77, 17);
+			this.ownerLabel.Size = new System.Drawing.Size(116, 25);
 			this.ownerLabel.TabIndex = 44;
 			this.ownerLabel.Text = "Владелец:";
-			//
+			// 
 			// okatoLabel
-			//
+			// 
 			this.okatoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.okatoLabel.AutoSize = true;
-			this.okatoLabel.Location = new System.Drawing.Point(54, 219);
+			this.okatoLabel.Location = new System.Drawing.Point(34, 209);
 			this.okatoLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.okatoLabel.Name = "okatoLabel";
-			this.okatoLabel.Size = new System.Drawing.Size(61, 17);
+			this.okatoLabel.Size = new System.Drawing.Size(91, 25);
 			this.okatoLabel.TabIndex = 39;
 			this.okatoLabel.Text = "ОКАТО:";
-			//
+			// 
 			// authorityLabel
-			//
+			// 
 			this.authorityLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.authorityLabel.AutoSize = true;
-			this.authorityLabel.Location = new System.Drawing.Point(16, 250);
+			this.authorityLabel.Location = new System.Drawing.Point(9, 245);
 			this.authorityLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.authorityLabel.Name = "authorityLabel";
-			this.authorityLabel.Size = new System.Drawing.Size(86, 17);
+			this.authorityLabel.Size = new System.Drawing.Size(130, 25);
 			this.authorityLabel.TabIndex = 43;
 			this.authorityLabel.Text = "Вид органа:";
-			//
+			// 
 			// okatoComboBox
-			//
-			this.okatoComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			// 
+			this.okatoComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.okatoComboBox.Code = "";
 			this.okatoComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.okatoComboBox.DropDownHeight = 424;
+			this.okatoComboBox.DropDownHeight = 584;
 			this.okatoComboBox.DropDownWidth = 80;
 			this.okatoComboBox.FormattingEnabled = true;
+			this.okatoComboBox.Id = ((long)(-1));
 			this.okatoComboBox.IntegralHeight = false;
-			this.okatoComboBox.ItemHeight = 21;
-			this.okatoComboBox.Location = new System.Drawing.Point(135, 208);
+			this.okatoComboBox.ItemHeight = 29;
+			this.okatoComboBox.Location = new System.Drawing.Point(144, 206);
 			this.okatoComboBox.Margin = new System.Windows.Forms.Padding(4);
 			this.okatoComboBox.MaxDropDownItems = 20;
 			this.okatoComboBox.Name = "okatoComboBox";
 			this.okatoComboBox.SelectedItem = null;
-			this.okatoComboBox.Size = new System.Drawing.Size(624, 27);
+			this.okatoComboBox.Size = new System.Drawing.Size(618, 35);
 			this.okatoComboBox.TabIndex = 6;
-			this.okatoComboBox.SelectedIndexChanged += new System.EventHandler(this.Controls_ValueChanged);
-			//
+			this.okatoComboBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox_SelectedIndexChanged);
+			// 
 			// authorityComboBox
-			//
-			this.authorityComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			// 
+			this.authorityComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.authorityComboBox.Code = "";
 			this.authorityComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.authorityComboBox.DropDownHeight = 424;
+			this.authorityComboBox.DropDownHeight = 584;
 			this.authorityComboBox.DropDownWidth = 80;
 			this.authorityComboBox.FormattingEnabled = true;
+			this.authorityComboBox.Id = ((long)(-1));
 			this.authorityComboBox.IntegralHeight = false;
-			this.authorityComboBox.ItemHeight = 21;
-			this.authorityComboBox.Location = new System.Drawing.Point(135, 247);
+			this.authorityComboBox.ItemHeight = 29;
+			this.authorityComboBox.Location = new System.Drawing.Point(144, 242);
 			this.authorityComboBox.Margin = new System.Windows.Forms.Padding(4);
 			this.authorityComboBox.MaxDropDownItems = 20;
 			this.authorityComboBox.Name = "authorityComboBox";
 			this.authorityComboBox.SelectedItem = null;
-			this.authorityComboBox.Size = new System.Drawing.Size(624, 27);
+			this.authorityComboBox.Size = new System.Drawing.Size(618, 35);
 			this.authorityComboBox.TabIndex = 5;
-			this.authorityComboBox.SelectedIndexChanged += new System.EventHandler(this.Controls_ValueChanged);
-			//
+			this.authorityComboBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox_SelectedIndexChanged);
+			// 
 			// codeTextBox
-			//
+			// 
 			this.codeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.codeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.codeTextBox.ForeColor = System.Drawing.SystemColors.HotTrack;
-			this.codeTextBox.Location = new System.Drawing.Point(203, 174);
+			this.codeTextBox.Location = new System.Drawing.Point(231, 172);
 			this.codeTextBox.Margin = new System.Windows.Forms.Padding(4);
 			this.codeTextBox.Name = "codeTextBox";
 			this.codeTextBox.ReadOnly = true;
-			this.codeTextBox.Size = new System.Drawing.Size(149, 22);
+			this.codeTextBox.Size = new System.Drawing.Size(149, 30);
 			this.codeTextBox.TabIndex = 2;
 			this.codeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.codeTextBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
-			//
+			// 
 			// codeLabel
-			//
+			// 
 			this.codeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.codeLabel.AutoSize = true;
-			this.codeLabel.Location = new System.Drawing.Point(7, 177);
+			this.codeLabel.Location = new System.Drawing.Point(7, 175);
 			this.codeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.codeLabel.Name = "codeLabel";
-			this.codeLabel.Size = new System.Drawing.Size(144, 17);
+			this.codeLabel.Size = new System.Drawing.Size(216, 25);
 			this.codeLabel.TabIndex = 39;
 			this.codeLabel.Text = "Код подразделения:";
-			//
+			// 
 			// nameTextBox
-			//
-			this.nameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-			| System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			// 
+			this.nameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.nameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.nameTextBox.Location = new System.Drawing.Point(11, 48);
 			this.nameTextBox.Margin = new System.Windows.Forms.Padding(4);
 			this.nameTextBox.Multiline = true;
 			this.nameTextBox.Name = "nameTextBox";
 			this.nameTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.nameTextBox.Size = new System.Drawing.Size(748, 118);
+			this.nameTextBox.Size = new System.Drawing.Size(742, 116);
 			this.nameTextBox.TabIndex = 1;
 			this.nameTextBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
-			//
+			// 
 			// CreateNewVersionDialog
-			//
-			this.AcceptButton = this.button_OK;
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.CancelButton = this.button_Cancel;
-			this.ClientSize = new System.Drawing.Size(814, 608);
+			this.ClientSize = new System.Drawing.Size(808, 591);
 			this.Controls.Add(this.organizationGroupBox);
 			this.Controls.Add(this.beginDateLabel);
 			this.Controls.Add(this.beginDateTimePicker);
@@ -405,8 +452,6 @@ namespace DatabaseToolSuite.Dialogs
 			this.Margin = new System.Windows.Forms.Padding(6);
 			this.MinimumSize = new System.Drawing.Size(830, 647);
 			this.Name = "CreateNewVersionDialog";
-			this.Controls.SetChildIndex(this.button_Cancel, 0);
-			this.Controls.SetChildIndex(this.button_OK, 0);
 			this.Controls.SetChildIndex(this.beginDateTimePicker, 0);
 			this.Controls.SetChildIndex(this.beginDateLabel, 0);
 			this.Controls.SetChildIndex(this.organizationGroupBox, 0);
@@ -414,24 +459,25 @@ namespace DatabaseToolSuite.Dialogs
 			this.organizationGroupBox.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
+
 		}
 
 		#endregion Код, автоматически созданный конструктором форм Windows
 
-		protected Label beginDateLabel;
+		private Label beginDateLabel;
 		private System.Windows.Forms.Label nameLabel;
 		private System.Windows.Forms.Label codeLabel;
 		private System.Windows.Forms.Label okatoLabel;
 		private System.Windows.Forms.Label authorityLabel;
-		protected TextBox ownerTextBox;
+		private TextBox ownerTextBox;
 		private System.Windows.Forms.Label ownerLabel;
 		private System.Windows.Forms.Button selectOwnerButton;
 		private System.Windows.Forms.Button deleteOwnerButton;
-		protected GroupBox organizationGroupBox;
-		protected TextBox codeTextBox;
-		protected Controls.AuthorityComboBox authorityComboBox;
-		protected Controls.OkatoComboBox okatoComboBox;
-		protected TextBox nameTextBox;
-		protected DateTimePicker beginDateTimePicker;
+		private GroupBox organizationGroupBox;
+		private TextBox codeTextBox;
+		private Controls.AuthorityComboBox authorityComboBox;
+		private Controls.OkatoComboBox okatoComboBox;
+		private TextBox nameTextBox;
+		private DateTimePicker beginDateTimePicker;
 	}
 }

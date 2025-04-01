@@ -1,4 +1,4 @@
-﻿using DatabaseToolSuite.Repositoryes.Dto;
+﻿using DatabaseToolSuite.Repositories.Dto;
 using System.Windows.Forms.Design;
 
 namespace DatabaseToolSuite.Controls
@@ -12,22 +12,22 @@ namespace DatabaseToolSuite.Controls
 		{
 		}
 
-		public void InitializeSource(Repositoryes.MainDataSet.SPECIAL_TERRITORIAL_CODEDataTable table)
+		public void InitializeSource(Repositories.MainDataSet.SPECIAL_TERRITORIAL_CODEDataTable table)
 		{
 			BeginUpdate();
 			Items.Clear();
-			foreach (Repositoryes.MainDataSet.SPECIAL_TERRITORIAL_CODERow row in table.Rows)
+			foreach (Repositories.MainDataSet.SPECIAL_TERRITORIAL_CODERow row in table.Rows)
 			{
 				Add(new SpecialTerritorialDto(row));
 			}
 			EndUpdate();
 		}
 
-		public void InitializeSource(Repositoryes.EXP_LAW_AGENCY.SPECIAL_TERRITORIAL_CODEDataTable table)
+		public void InitializeSource(Repositories.EXP_LAW_AGENCY.SPECIAL_TERRITORIAL_CODEDataTable table)
 		{
 			BeginUpdate();
 			Items.Clear();
-			foreach (Repositoryes.EXP_LAW_AGENCY.SPECIAL_TERRITORIAL_CODERow row in table.Rows)
+			foreach (Repositories.EXP_LAW_AGENCY.SPECIAL_TERRITORIAL_CODERow row in table.Rows)
 			{
 				Add(new SpecialTerritorialDto(row));
 			}

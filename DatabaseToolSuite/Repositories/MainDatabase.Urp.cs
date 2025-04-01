@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using urpRow = DatabaseToolSuite.Repositoryes.MainDataSet.EXP_LAW_AGENCY_URPRow;
+using urpRow = DatabaseToolSuite.Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow;
 
-namespace DatabaseToolSuite.Repositoryes
+namespace DatabaseToolSuite.Repositories
 {
 	internal partial class MainDataSet
 	{
