@@ -9,6 +9,27 @@
 	internal static class Database
 	{
 		/// <summary>
+		/// Вызов: return ConvertFromDBVal<string>(this[this.tablegasps.codeColumn]);
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="obj"></param>
+		/// <returns></returns>
+		/// <code>return ConvertFromDBVal<string>(this[this.tablegasps.codeColumn]);</code>
+		public static T ConvertFromDBVal<T>(object obj)
+		{
+			if (obj == null || obj == DBNull.Value)
+			{
+				return default;
+			}
+			else
+			{
+				return (T)obj;
+			}
+		}
+
+
+
+		/// <summary>
 		/// Defines the allowbleHierarchyArray
 		/// </summary>
 		private static readonly LAW_AGENCY_ALLOWBLE_HIERARCHY[] allowbleHierarchyArray = new LAW_AGENCY_ALLOWBLE_HIERARCHY[]
