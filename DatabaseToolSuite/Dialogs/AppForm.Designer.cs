@@ -49,6 +49,7 @@
 			this.mnuFileFullExportToExcel = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripSeparator();
 			this.mnuFileStatisticsExportToExcel = new System.Windows.Forms.ToolStripMenuItem();
+			this.mnuFileExportDelta = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
 			this.mnuFileExit = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuTable = new System.Windows.Forms.ToolStripMenuItem();
@@ -182,7 +183,7 @@
 			this.toolStripButton21 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton22 = new System.Windows.Forms.ToolStripButton();
 			this.gaspsListView = new DatabaseToolSuite.Controls.GaspsListView();
-			this.mnuFileExportDelta = new System.Windows.Forms.ToolStripMenuItem();
+			this.mnuFileFgisEsnsiForLawExportToExcel = new System.Windows.Forms.ToolStripMenuItem();
 			this.mainMenuStrip.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.filterPanel.SuspendLayout();
@@ -297,6 +298,7 @@
 			// 
 			this.mnuFileExportToExcel.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuFileGaspsExportToExcel,
+            this.mnuFileFgisEsnsiForLawExportToExcel,
             this.mnuFileFgisEsnsiExportToExcel,
             this.mnuFileErvkExportToExcel,
             this.toolStripMenuItem17,
@@ -312,7 +314,7 @@
 			// mnuFileGaspsExportToExcel
 			// 
 			this.mnuFileGaspsExportToExcel.Name = "mnuFileGaspsExportToExcel";
-			this.mnuFileGaspsExportToExcel.Size = new System.Drawing.Size(340, 38);
+			this.mnuFileGaspsExportToExcel.Size = new System.Drawing.Size(516, 38);
 			this.mnuFileGaspsExportToExcel.Text = "Данных ГАС ПС...";
 			this.mnuFileGaspsExportToExcel.Click += new System.EventHandler(this.FileExportGaspsToExcel_Click);
 			// 
@@ -320,7 +322,7 @@
 			// 
 			this.mnuFileFgisEsnsiExportToExcel.Image = global::DatabaseToolSuite.Properties.Resources.gosuslugi24;
 			this.mnuFileFgisEsnsiExportToExcel.Name = "mnuFileFgisEsnsiExportToExcel";
-			this.mnuFileFgisEsnsiExportToExcel.Size = new System.Drawing.Size(340, 38);
+			this.mnuFileFgisEsnsiExportToExcel.Size = new System.Drawing.Size(516, 38);
 			this.mnuFileFgisEsnsiExportToExcel.Text = "Данных ФГИС ЕСНСИ...";
 			this.mnuFileFgisEsnsiExportToExcel.Click += new System.EventHandler(this.FileFgisEsnsiExportToExcel_Click);
 			// 
@@ -328,35 +330,43 @@
 			// 
 			this.mnuFileErvkExportToExcel.Image = global::DatabaseToolSuite.Properties.Resources.economy24;
 			this.mnuFileErvkExportToExcel.Name = "mnuFileErvkExportToExcel";
-			this.mnuFileErvkExportToExcel.Size = new System.Drawing.Size(340, 38);
+			this.mnuFileErvkExportToExcel.Size = new System.Drawing.Size(516, 38);
 			this.mnuFileErvkExportToExcel.Text = "Данных ЕРВК...";
 			this.mnuFileErvkExportToExcel.Click += new System.EventHandler(this.FileErvkExportToExcel_Click);
 			// 
 			// toolStripMenuItem17
 			// 
 			this.toolStripMenuItem17.Name = "toolStripMenuItem17";
-			this.toolStripMenuItem17.Size = new System.Drawing.Size(337, 6);
+			this.toolStripMenuItem17.Size = new System.Drawing.Size(513, 6);
 			// 
 			// mnuFileFullExportToExcel
 			// 
 			this.mnuFileFullExportToExcel.Image = global::DatabaseToolSuite.Properties.Resources.Windows32;
 			this.mnuFileFullExportToExcel.Name = "mnuFileFullExportToExcel";
-			this.mnuFileFullExportToExcel.Size = new System.Drawing.Size(340, 38);
+			this.mnuFileFullExportToExcel.Size = new System.Drawing.Size(516, 38);
 			this.mnuFileFullExportToExcel.Text = "Всего справочника...";
 			this.mnuFileFullExportToExcel.Click += new System.EventHandler(this.FileFullExportToExcel_Click);
 			// 
 			// toolStripMenuItem18
 			// 
 			this.toolStripMenuItem18.Name = "toolStripMenuItem18";
-			this.toolStripMenuItem18.Size = new System.Drawing.Size(337, 6);
+			this.toolStripMenuItem18.Size = new System.Drawing.Size(513, 6);
 			// 
 			// mnuFileStatisticsExportToExcel
 			// 
 			this.mnuFileStatisticsExportToExcel.Image = global::DatabaseToolSuite.Properties.Resources.Statistics24;
 			this.mnuFileStatisticsExportToExcel.Name = "mnuFileStatisticsExportToExcel";
-			this.mnuFileStatisticsExportToExcel.Size = new System.Drawing.Size(340, 38);
+			this.mnuFileStatisticsExportToExcel.Size = new System.Drawing.Size(516, 38);
 			this.mnuFileStatisticsExportToExcel.Text = "Статистики...";
 			this.mnuFileStatisticsExportToExcel.Click += new System.EventHandler(this.FileStatisticsExportToExcel_Click);
+			// 
+			// mnuFileExportDelta
+			// 
+			this.mnuFileExportDelta.Image = global::DatabaseToolSuite.Properties.Resources.ExportXmlGaspsFile24;
+			this.mnuFileExportDelta.Name = "mnuFileExportDelta";
+			this.mnuFileExportDelta.Size = new System.Drawing.Size(516, 38);
+			this.mnuFileExportDelta.Text = "Сведения об изменениях за период...";
+			this.mnuFileExportDelta.Click += new System.EventHandler(this.FileExportDelta_Click);
 			// 
 			// toolStripMenuItem6
 			// 
@@ -1639,13 +1649,14 @@
 			this.gaspsListView.ItemMouseDoubleClick += new System.EventHandler<DatabaseToolSuite.Controls.ListViewEventArgs>(this.GaspsListView_ItemMouseDoubleClick);
 			this.gaspsListView.GaspsListViewCompleted += new DatabaseToolSuite.Controls.GaspsListView.ListViewCompletedEventHandler(this.GaspsListView_GaspsListViewCompleted);
 			// 
-			// mnuFileExportDelta
+			// mnuFileFgisEsnsiForLawExportToExcel
 			// 
-			this.mnuFileExportDelta.Image = global::DatabaseToolSuite.Properties.Resources.ExportXmlGaspsFile24;
-			this.mnuFileExportDelta.Name = "mnuFileExportDelta";
-			this.mnuFileExportDelta.Size = new System.Drawing.Size(476, 38);
-			this.mnuFileExportDelta.Text = "Сведения об изменениях за период...";
-			this.mnuFileExportDelta.Click += new System.EventHandler(this.FileExportDelta_Click);
+			this.mnuFileFgisEsnsiForLawExportToExcel.Image = global::DatabaseToolSuite.Properties.Resources.gosuslugi24;
+			this.mnuFileFgisEsnsiForLawExportToExcel.Name = "mnuFileFgisEsnsiForLawExportToExcel";
+			this.mnuFileFgisEsnsiForLawExportToExcel.Size = new System.Drawing.Size(516, 38);
+			this.mnuFileFgisEsnsiForLawExportToExcel.Text = "Данных ФГИС ЕСНСИ по приказу ГП РФ...";
+			this.mnuFileFgisEsnsiForLawExportToExcel.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+			this.mnuFileFgisEsnsiForLawExportToExcel.Click += new System.EventHandler(this.FileFgisEsnsiForLawExportToExcel_Click);
 			// 
 			// AppForm
 			// 
@@ -1840,5 +1851,6 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
 		private System.Windows.Forms.ToolStripMenuItem mnuFileExportDelta;
+		private System.Windows.Forms.ToolStripMenuItem mnuFileFgisEsnsiForLawExportToExcel;
 	}
 }

@@ -12,12 +12,12 @@ namespace DatabaseToolSuite.Dialogs
 {
 	internal partial class SelectOrganizationDialog : Form
 	{
-		private MainDataSet dialogDataSet;
-		private IList<Repositories.MainDataSet.gaspsRow> rowsCollection;
+		private readonly MainDataSet dialogDataSet;
+		private IList<MainDataSet.gaspsRow> rowsCollection;
 		private ListViewItem[] itemsCache;
 		private int firstItemIndex;
 
-		public Repositories.MainDataSet.gaspsRow DataRow { get; private set; }
+		public MainDataSet.gaspsRow DataRow { get; private set; }
 
 		[DefaultValue(true)]
 		public bool UnlockShow { get; set; }
@@ -51,10 +51,7 @@ namespace DatabaseToolSuite.Dialogs
 
 		public long FilterAuthority
 		{
-			get
-			{
-				return filterAuthorityComboBox.Value.HasValue ? filterAuthorityComboBox.Value.Value : 0;
-			}
+			get => filterAuthorityComboBox.Value ?? 0;
 			set
 			{
 				filterAuthorityComboBox.Code = value.ToString("00");
@@ -69,11 +66,11 @@ namespace DatabaseToolSuite.Dialogs
 
 		public bool ReserveShow { get; set; }
 
-		public SelectOrganizationDialog() : this(dataSet: Services.FileSystem.Repository.MainDataSet)
+		public SelectOrganizationDialog() : this(dataSet: FileSystem.Repository.MainDataSet)
 		{
 		}
 
-		public SelectOrganizationDialog(long authority) : this(dataSet: Services.FileSystem.Repository.MainDataSet)
+		public SelectOrganizationDialog(long authority) : this(dataSet: FileSystem.Repository.MainDataSet)
 		{
 			filterAuthorityComboBox.Enabled = false;
 			filterOkatoComboBox.Enabled = true;
@@ -186,7 +183,7 @@ namespace DatabaseToolSuite.Dialogs
 				if (DataRow.owner_id > 0)
 				{
 					text.AppendLine();
-					Repositories.MainDataSet.gaspsRow owner = dialogDataSet.gasps.GetLastVersionOrganizationFromKey(DataRow.owner_id);
+					MainDataSet.gaspsRow owner = dialogDataSet.gasps.GetLastVersionOrganizationFromKey(DataRow.owner_id);
 					text.AppendLine("Владелец: (" + owner.code + ") " + owner.name);
 				}
 
@@ -195,7 +192,7 @@ namespace DatabaseToolSuite.Dialogs
 			}
 		}
 
-		private void detailsListView_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
+		private void DetailsListView_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
 		{
 			if (itemsCache != null && e.ItemIndex >= firstItemIndex && e.ItemIndex < firstItemIndex + itemsCache.Length)
 			{
@@ -207,7 +204,7 @@ namespace DatabaseToolSuite.Dialogs
 			}
 		}
 
-		private void detailsListView_CacheVirtualItems(object sender, CacheVirtualItemsEventArgs e)
+		private void DetailsListView_CacheVirtualItems(object sender, CacheVirtualItemsEventArgs e)
 		{
 			if (itemsCache != null && e.StartIndex >= firstItemIndex && e.EndIndex <= firstItemIndex + itemsCache.Length)
 			{
@@ -224,10 +221,9 @@ namespace DatabaseToolSuite.Dialogs
 			}
 		}
 
-		private void detailsListView_SearchForVirtualItem(object sender, SearchForVirtualItemEventArgs e)
+		private void DetailsListView_SearchForVirtualItem(object sender, SearchForVirtualItemEventArgs e)
 		{
-			double x = 0;
-			if (Double.TryParse(e.Text, out x)) //check if this is a valid search
+			if (double.TryParse(e.Text, out double x)) //check if this is a valid search
 			{
 				x = Math.Sqrt(x);
 				x = Math.Round(x);
@@ -235,7 +231,7 @@ namespace DatabaseToolSuite.Dialogs
 			}
 		}
 
-		private ListViewItem CreateListViewItem(Repositories.MainDataSet.gaspsRow row)
+		private ListViewItem CreateListViewItem(MainDataSet.gaspsRow row)
 		{
 			ListViewItem item = new ListViewItem(row.code);
 
@@ -251,19 +247,19 @@ namespace DatabaseToolSuite.Dialogs
 			return item;
 		}
 
-		private void filterControls_ValueChanged(object sender, EventArgs e)
+		private void FilterControls_ValueChanged(object sender, EventArgs e)
 		{
 			detailsListView.SelectedIndices.Clear();
 			InitializeFilter(dialogDataSet);
 			DetailsUpdate();
 		}
 
-		private void detailsListView_SelectedIndexChanged(object sender, EventArgs e)
+		private void DetailsListView_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			DetailsUpdate();
 		}
 
-		private void detailsListView_ColumnClick(object sender, ColumnClickEventArgs e)
+		private void DetailsListView_ColumnClick(object sender, ColumnClickEventArgs e)
 		{
 			detailsListView.BeginUpdate();
 

@@ -133,6 +133,12 @@
     <Compile Include="Dialogs\SelectPeriodDialog.Designer.cs">
       <DependentUpon>SelectPeriodDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\SelectSkippedCodeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SelectSkippedCodeDialog.Designer.cs">
+      <DependentUpon>SelectSkippedCodeDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\UrpDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +166,7 @@
       <DependentUpon>GaspsDatabase.xsd</DependentUpon>
     </Compile>
     <Compile Include="Services\Rtk.cs" />
+    <Compile Include="Utils\Converters.cs" />
     <Compile Include="Utils\Database.cs" />
     <Compile Include="Dialogs\CreateNewOrganizationDialog.cs">
       <SubType>Form</SubType>
@@ -276,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectPeriodDialog.resx">
       <DependentUpon>SelectPeriodDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SelectSkippedCodeDialog.resx">
+      <DependentUpon>SelectSkippedCodeDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectTableDialog.resx">
       <DependentUpon>SelectTableDialog.cs</DependentUpon>

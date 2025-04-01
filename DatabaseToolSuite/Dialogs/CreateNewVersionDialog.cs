@@ -1,10 +1,13 @@
-﻿using System;
+﻿// Ignore Spelling: Okato
+
+using System;
 using System.Windows.Forms;
 
 namespace DatabaseToolSuite.Dialogs
 {
 	internal class CreateNewVersionDialog : DialogBase
 	{
+		private readonly string oldCode;
 		private readonly string oldName;
 		private readonly string oldOkato;
 		private readonly long oldAuthorityId;
@@ -36,6 +39,7 @@ namespace DatabaseToolSuite.Dialogs
 
 			DataRow = row;
 
+			oldCode = DataRow.code;
 			oldName = DataRow.name;
 			oldOkato = DataRow.okato_code;
 			oldAuthorityId = DataRow.authority_id;
@@ -124,7 +128,8 @@ namespace DatabaseToolSuite.Dialogs
 				CourtType != CourtType ||
 				oldName != OrganizationName ||
 				oldOkato != OkatoCode ||
-				oldOwnerKey != OrganizationOwner
+				oldOwnerKey != OrganizationOwner ||
+				oldCode != CodeText
 				)
 			{
 				OkButtonEnabled = true;

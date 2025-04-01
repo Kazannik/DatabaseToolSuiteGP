@@ -370,6 +370,7 @@ namespace DatabaseToolSuite.Services
 
 			oldRow.BeginEdit();
 			oldRow.date_end = date;
+			oldRow.logEditDate = DateTime.Now;
 			oldRow.EndEdit();
 			if (DataSet.ervk.Exists(version))
 			{

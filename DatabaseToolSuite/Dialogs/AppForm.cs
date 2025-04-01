@@ -527,6 +527,11 @@ namespace DatabaseToolSuite.Dialogs
 			Export.ExportFgisEsnsiToExcel();
 		}
 
+		private void FileFgisEsnsiForLawExportToExcel_Click(object sender, EventArgs e)
+		{
+			Export.ExportFgisEsnsiForLawToExcel();
+		}
+
 		private void FileErvkExportToExcel_Click(object sender, EventArgs e)
 		{
 			Export.ExportErvkToExcel();
@@ -1022,6 +1027,5 @@ namespace DatabaseToolSuite.Dialogs
 			Utils.Database.FillUrpInGasps();
 			gaspsListView.UpdateListViewItem();
 		}
-			
 	}
 }

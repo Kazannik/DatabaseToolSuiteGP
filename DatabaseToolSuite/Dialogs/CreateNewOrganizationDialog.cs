@@ -50,12 +50,16 @@ namespace DatabaseToolSuite.Dialogs
 
 			OtherControls.Add(this.nextCodeButton);
 			OtherControls.Add(this.selectCodeButton);
+			OtherControls.Add(this.selectSkippedCodeButton);
 			OtherControls.Add(this.cleanCodeButton);
 
 			nextCodeButton.Enabled = !string.IsNullOrWhiteSpace(AuthorityCode) ||
 				!string.IsNullOrWhiteSpace(OkatoCode);
 
 			selectCodeButton.Enabled = !string.IsNullOrWhiteSpace(AuthorityCode) ||
+				!string.IsNullOrWhiteSpace(OkatoCode);
+
+			selectSkippedCodeButton.Enabled = !string.IsNullOrWhiteSpace(AuthorityCode) ||
 				!string.IsNullOrWhiteSpace(OkatoCode);
 
 			cleanCodeButton.Enabled = AuthorityValue.HasValue && AuthorityValue == Services.MasterDataSystem.PROSECUTOR_CODE;
@@ -90,6 +94,15 @@ namespace DatabaseToolSuite.Dialogs
 			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{
 				CodeText = dialog.DataRow.code;
+			}
+		}
+
+		private void SelectSkippedCodeButton_Click(object sender, EventArgs e)
+		{
+			SelectSkippedCodeDialog dialog = new SelectSkippedCodeDialog(authority: Authority ?? 0, okato: OkatoCode);
+			if (dialog.ShowDialog(this) == DialogResult.OK)
+			{
+				CodeText = dialog.Code;
 			}
 		}
 
@@ -135,6 +148,7 @@ namespace DatabaseToolSuite.Dialogs
 		{
 			this.nextCodeButton = new System.Windows.Forms.Button();
 			this.selectCodeButton = new System.Windows.Forms.Button();
+			this.selectSkippedCodeButton = new System.Windows.Forms.Button();
 			this.cleanCodeButton = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
@@ -144,7 +158,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.nextCodeButton.Location = new System.Drawing.Point(390, 172);
 			this.nextCodeButton.Margin = new System.Windows.Forms.Padding(9);
 			this.nextCodeButton.Name = "nextCodeButton";
-			this.nextCodeButton.Size = new System.Drawing.Size(116, 28);
+			this.nextCodeButton.Size = new System.Drawing.Size(90, 28);
 			this.nextCodeButton.TabIndex = 3;
 			this.nextCodeButton.Text = "Создать";
 			this.nextCodeButton.UseVisualStyleBackColor = true;
@@ -153,23 +167,36 @@ namespace DatabaseToolSuite.Dialogs
 			// selectCodeButton
 			// 
 			this.selectCodeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.selectCodeButton.Location = new System.Drawing.Point(510, 172);
+			this.selectCodeButton.Location = new System.Drawing.Point(490, 172);
 			this.selectCodeButton.Margin = new System.Windows.Forms.Padding(9);
 			this.selectCodeButton.Name = "selectCodeButton";
-			this.selectCodeButton.Size = new System.Drawing.Size(116, 28);
+			this.selectCodeButton.Size = new System.Drawing.Size(90, 28);
 			this.selectCodeButton.TabIndex = 4;
 			this.selectCodeButton.Text = "Выбрать...";
 			this.selectCodeButton.UseVisualStyleBackColor = true;
 			this.selectCodeButton.Click += new System.EventHandler(this.SelectCodeButton_Click);
 			// 
+			// selectSkippedCodeButton
+			// 
+			this.selectSkippedCodeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.selectSkippedCodeButton.Location = new System.Drawing.Point(590, 172);
+			this.selectSkippedCodeButton.Margin = new System.Windows.Forms.Padding(9);
+			this.selectSkippedCodeButton.Name = "selectSkippedCodeButton";
+			this.selectSkippedCodeButton.Size = new System.Drawing.Size(90, 28);
+			this.selectSkippedCodeButton.TabIndex = 5;
+			this.selectSkippedCodeButton.Text = "Иные...";
+			this.selectSkippedCodeButton.UseVisualStyleBackColor = true;
+			this.selectSkippedCodeButton.Click += new System.EventHandler(this.SelectSkippedCodeButton_Click);
+
+			// 
 			// cleanCodeButton
 			// 
 			this.cleanCodeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.cleanCodeButton.Location = new System.Drawing.Point(630, 172);
+			this.cleanCodeButton.Location = new System.Drawing.Point(690, 172);
 			this.cleanCodeButton.Margin = new System.Windows.Forms.Padding(9);
 			this.cleanCodeButton.Name = "cleanCodeButton";
-			this.cleanCodeButton.Size = new System.Drawing.Size(116, 28);
-			this.cleanCodeButton.TabIndex = 46;
+			this.cleanCodeButton.Size = new System.Drawing.Size(90, 28);
+			this.cleanCodeButton.TabIndex = 6;
 			this.cleanCodeButton.Text = "Очистить";
 			this.cleanCodeButton.UseVisualStyleBackColor = true;
 			this.cleanCodeButton.Click += new System.EventHandler(this.CleanCodeButton_Click);
@@ -184,8 +211,9 @@ namespace DatabaseToolSuite.Dialogs
 
 		#endregion Код, автоматически созданный конструктором форм Windows
 
-		private System.Windows.Forms.Button selectCodeButton;
+		private Button nextCodeButton;
+		private Button selectCodeButton;
+		private Button selectSkippedCodeButton;
 		private Button cleanCodeButton;
-		private System.Windows.Forms.Button nextCodeButton;
 	}
 }

@@ -135,11 +135,11 @@
 			this.detailsListView.UseCompatibleStateImageBehavior = false;
 			this.detailsListView.View = System.Windows.Forms.View.Details;
 			this.detailsListView.VirtualMode = true;
-			this.detailsListView.CacheVirtualItems += new System.Windows.Forms.CacheVirtualItemsEventHandler(this.detailsListView_CacheVirtualItems);
-			this.detailsListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.detailsListView_ColumnClick);
-			this.detailsListView.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.detailsListView_RetrieveVirtualItem);
-			this.detailsListView.SearchForVirtualItem += new System.Windows.Forms.SearchForVirtualItemEventHandler(this.detailsListView_SearchForVirtualItem);
-			this.detailsListView.SelectedIndexChanged += new System.EventHandler(this.detailsListView_SelectedIndexChanged);
+			this.detailsListView.CacheVirtualItems += new System.Windows.Forms.CacheVirtualItemsEventHandler(this.DetailsListView_CacheVirtualItems);
+			this.detailsListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.DetailsListView_ColumnClick);
+			this.detailsListView.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.DetailsListView_RetrieveVirtualItem);
+			this.detailsListView.SearchForVirtualItem += new System.Windows.Forms.SearchForVirtualItemEventHandler(this.DetailsListView_SearchForVirtualItem);
+			this.detailsListView.SelectedIndexChanged += new System.EventHandler(this.DetailsListView_SelectedIndexChanged);
 			// 
 			// codeColumnHeader
 			// 
@@ -231,7 +231,7 @@
 			this.filterCodeNumericTextBox.Name = "filterCodeNumericTextBox";
 			this.filterCodeNumericTextBox.Size = new System.Drawing.Size(181, 26);
 			this.filterCodeNumericTextBox.TabIndex = 41;
-			this.filterCodeNumericTextBox.TextChanged += new System.EventHandler(this.filterControls_ValueChanged);
+			this.filterCodeNumericTextBox.TextChanged += new System.EventHandler(this.FilterControls_ValueChanged);
 			// 
 			// label1
 			// 
@@ -262,7 +262,7 @@
 			this.filterNameTextBox.Name = "filterNameTextBox";
 			this.filterNameTextBox.Size = new System.Drawing.Size(550, 26);
 			this.filterNameTextBox.TabIndex = 37;
-			this.filterNameTextBox.TextChanged += new System.EventHandler(this.filterControls_ValueChanged);
+			this.filterNameTextBox.TextChanged += new System.EventHandler(this.FilterControls_ValueChanged);
 			// 
 			// filterLockCodeViewCheckBox
 			// 
@@ -275,8 +275,8 @@
 			this.filterLockCodeViewCheckBox.TabIndex = 36;
 			this.filterLockCodeViewCheckBox.Text = "Включить заблокированные";
 			this.filterLockCodeViewCheckBox.UseVisualStyleBackColor = true;
-			this.filterLockCodeViewCheckBox.CheckedChanged += new System.EventHandler(this.filterControls_ValueChanged);
-			this.filterLockCodeViewCheckBox.VisibleChanged += new System.EventHandler(this.filterControls_ValueChanged);
+			this.filterLockCodeViewCheckBox.CheckedChanged += new System.EventHandler(this.FilterControls_ValueChanged);
+			this.filterLockCodeViewCheckBox.VisibleChanged += new System.EventHandler(this.FilterControls_ValueChanged);
 			// 
 			// okatoLabel
 			// 
@@ -305,7 +305,7 @@
 			this.filterAuthorityComboBox.SelectedItem = null;
 			this.filterAuthorityComboBox.Size = new System.Drawing.Size(334, 30);
 			this.filterAuthorityComboBox.TabIndex = 1;
-			this.filterAuthorityComboBox.SelectedIndexChanged += new System.EventHandler(this.filterControls_ValueChanged);
+			this.filterAuthorityComboBox.SelectedIndexChanged += new System.EventHandler(this.FilterControls_ValueChanged);
 			// 
 			// filterOkatoComboBox
 			// 
@@ -325,7 +325,7 @@
 			this.filterOkatoComboBox.SelectedItem = null;
 			this.filterOkatoComboBox.Size = new System.Drawing.Size(630, 30);
 			this.filterOkatoComboBox.TabIndex = 2;
-			this.filterOkatoComboBox.SelectedIndexChanged += new System.EventHandler(this.filterControls_ValueChanged);
+			this.filterOkatoComboBox.SelectedIndexChanged += new System.EventHandler(this.FilterControls_ValueChanged);
 			// 
 			// authorityLabel
 			// 

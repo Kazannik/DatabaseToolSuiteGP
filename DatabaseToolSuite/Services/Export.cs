@@ -1,6 +1,7 @@
 ﻿using DatabaseToolSuite.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -370,6 +371,71 @@ namespace DatabaseToolSuite.Services
 			excRange.Value = objData;
 		}
 
+
+		public static void ExportFgisEsnsiForLawToExcel()
+		{
+			IEnumerable<MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization> data = MasterDataSystem.DataSet.fgis_esnsi.ExportData();
+			IDictionary<long, string> urp = MasterDataSystem.DataSet.GetViewUrpOrganizations().ToDictionary(x=> x.Version, u => u.OwnerName);
+
+
+			int rowCount = data.Count();
+
+			Excel.Application excExcel = null;
+			Excel.Workbooks excBooks = null;
+			Excel._Workbook excBook = null;
+			Excel.Sheets excSheets = null;
+			Excel._Worksheet excSheet = null;
+			Excel.Range excRange = null;
+
+			object objOpt = Missing.Value;
+
+			excExcel = new Excel.Application
+			{
+				Visible = true
+			};
+
+			excBooks = excExcel.Workbooks;
+
+			excBook = excBooks.Add(objOpt);
+			excSheets = excBook.Worksheets;
+			excSheet = (Excel._Worksheet)excSheets.get_Item(1);
+			excSheet.Name = "FED_GENPROK_ORGANIZATION_Cp1251";
+
+			object[] objHeaders = {
+				"Регион", 
+				"Наименование прокуратуры\r\n(SV-0001)",
+				"Вышестоящий орган прокуратуры\r\n(SV-0003)",
+				"Телефон канцелярии\r\n(SV-0004)",
+				"Электронный адрес канцелярии\r\n(SV-0005)",
+				"Адрес приемной\r\n(SV-0006)",
+				"OKATO" };
+			excRange = excSheet.get_Range("A1", "G1");
+			excRange.Value = objHeaders;
+
+			excRange.AutoFilter(Excel.XlAutoFilterOperator.xlFilterValues); ;
+
+			object[,] objData = new object[rowCount, objHeaders.Count()];
+			int r = 0;
+			foreach (MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization item in data)
+			{
+				objData[r, 0] = item.Region;
+				objData[r, 1] = item.Name;
+				objData[r, 2] = urp.ContainsKey(item.Version) ? urp[item.Version] : "";
+				objData[r, 3] = item.Phone;
+				objData[r, 4] = item.Email;
+				objData[r, 5] = item.Address;
+				objData[r, 6] = item.Okato;
+				r += 1;
+			}
+
+			excRange = excSheet.get_Range("A2", objOpt);
+			excRange = excRange.get_Resize(rowCount, objHeaders.Count());
+			excRange.Value = objData;
+
+			excRange = excSheet.get_Range("A1", "G1");
+		}
+
+
 		public static void ExportFgisEsnsiToCsv(string path)
 		{
 			IEnumerable<Repositories.MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization> data = MasterDataSystem.DataSet.fgis_esnsi.ExportData();
@@ -396,13 +462,16 @@ namespace DatabaseToolSuite.Services
 		public static void ExportErvkToCsv(string path)
 		{
 			IEnumerable<MainDataSet.ervkDataTable.ErvkOrganization> data = MasterDataSystem.DataSet.ervk.ExportData();
-			StreamWriter writer = new StreamWriter(path: path, append: false, encoding: Encoding.GetEncoding(1251));
+			StreamWriter writer = new StreamWriter(path: path, append: false, encoding: Encoding.GetEncoding(1251))
+			{
+				NewLine = "\n"
+			};
 			writer.WriteLine("esnsiCode;title;isHead;special;military;isActive;idVersionProc;idVersionHead;dateStartVersion;dateCloseProc;ogrn;inn;subjectRfList;oktmoList;idSuccession;Родительский элемент");
 
 			foreach (MainDataSet.ervkDataTable.ErvkOrganization item in data)
 			{
 				string line = item.EsnsiCode + ";" +
-					item.Title.Replace("\r\n", string.Empty).Replace("\r", string.Empty).Trim() + ";" +
+					Utils.Converters.TitleForCsvFormat(item.Title) + ";" +
 					item.IsHead.ToString().ToLower() + ";" +
 					item.Special.ToString().ToLower() + ";" +
 					item.Military.ToString().ToLower() + ";" +
@@ -420,6 +489,7 @@ namespace DatabaseToolSuite.Services
 
 				writer.WriteLine(line);
 			}
+			writer.WriteLine();
 			writer.Close();
 			MessageBox.Show("Экспорт в формате CSV выполнен!");
 		}

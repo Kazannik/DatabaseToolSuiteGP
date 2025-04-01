@@ -10,6 +10,9 @@ namespace DatabaseToolSuite.Repositories
 {
 	internal partial class MainDataSet
 	{
+
+
+
 		public IEnumerable<ViewFgisEsnsiOrganization> GetViewFgisEsnsiOrganizations()
 		{
 			EnumerableRowCollection<gaspsRow> gaspsCollection = GaspsTable.Where(e => e.RowState != DataRowState.Deleted);
