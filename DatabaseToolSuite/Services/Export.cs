@@ -1,7 +1,8 @@
-﻿using DatabaseToolSuite.Repositories;
+﻿// Ignore Spelling: Ervk Esnsi Fgis
+
+using DatabaseToolSuite.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -33,9 +34,10 @@ namespace DatabaseToolSuite.Services
 
 			object objOpt = Missing.Value;
 
-			excExcel = new Excel.Application();
-
-			excExcel.Visible = true;
+			excExcel = new Excel.Application
+			{
+				Visible = true
+			};
 
 			excBooks = excExcel.Workbooks;
 			excBook = excBooks.Add(objOpt);
@@ -105,9 +107,10 @@ namespace DatabaseToolSuite.Services
 
 			object objOpt = Missing.Value;
 
-			excExcel = new Excel.Application();
-
-			excExcel.Visible = true;
+			excExcel = new Excel.Application
+			{
+				Visible = true
+			};
 
 			excBooks = excExcel.Workbooks;
 			excBook = excBooks.Add(objOpt);
@@ -236,7 +239,7 @@ namespace DatabaseToolSuite.Services
 				objData[r, 4] = item.Code;
 				objData[r, 5] = item.Begin;
 				objData[r, 6] = item.End;
-				objData[r, 7] = item.LogEditDate;
+				objData[r, 7] = (begin<= item.LogEditDate && end>= item.LogEditDate)? item.LogEditDate : item.End;
 
 				r += 1;
 			}
@@ -263,9 +266,10 @@ namespace DatabaseToolSuite.Services
 
 			object objOpt = Missing.Value;
 
-			excExcel = new Excel.Application();
-
-			excExcel.Visible = true;
+			excExcel = new Excel.Application
+			{
+				Visible = true
+			};
 
 			excBooks = excExcel.Workbooks;
 			excBook = excBooks.Add(objOpt);
@@ -335,9 +339,10 @@ namespace DatabaseToolSuite.Services
 
 			object objOpt = Missing.Value;
 
-			excExcel = new Excel.Application();
-
-			excExcel.Visible = true;
+			excExcel = new Excel.Application
+			{
+				Visible = true
+			};
 
 			excBooks = excExcel.Workbooks;
 
@@ -375,7 +380,7 @@ namespace DatabaseToolSuite.Services
 		public static void ExportFgisEsnsiForLawToExcel()
 		{
 			IEnumerable<MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization> data = MasterDataSystem.DataSet.fgis_esnsi.ExportData();
-			IDictionary<long, string> urp = MasterDataSystem.DataSet.GetViewUrpOrganizations().ToDictionary(x=> x.Version, u => u.OwnerName);
+			IDictionary<long, string> urp = MasterDataSystem.DataSet.GetViewUrpOrganizations().ToDictionary(x => x.Version, u => u.OwnerName);
 
 
 			int rowCount = data.Count();
@@ -402,7 +407,7 @@ namespace DatabaseToolSuite.Services
 			excSheet.Name = "FED_GENPROK_ORGANIZATION_Cp1251";
 
 			object[] objHeaders = {
-				"Регион", 
+				"Регион",
 				"Наименование прокуратуры\r\n(SV-0001)",
 				"Вышестоящий орган прокуратуры\r\n(SV-0003)",
 				"Телефон канцелярии\r\n(SV-0004)",
@@ -510,9 +515,10 @@ namespace DatabaseToolSuite.Services
 			object objOpt = Missing.Value;
 
 			// Start a new workbook in Excel.
-			excExcel = new Excel.Application();
-
-			excExcel.Visible = true;
+			excExcel = new Excel.Application
+			{
+				Visible = true
+			};
 
 			excBooks = excExcel.Workbooks;
 
@@ -567,9 +573,10 @@ namespace DatabaseToolSuite.Services
 			object objOpt = Missing.Value;
 
 			// Start a new workbook in Excel.
-			excExcel = new Excel.Application();
-
-			excExcel.Visible = true;
+			excExcel = new Excel.Application
+			{
+				Visible = true
+			};
 
 			excBooks = excExcel.Workbooks;
 

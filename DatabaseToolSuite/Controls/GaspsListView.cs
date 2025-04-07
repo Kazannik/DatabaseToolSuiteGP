@@ -24,9 +24,9 @@ namespace DatabaseToolSuite.Controls
 		private bool _unlockShow;
 		private bool _fgisEsnsiOnlyShow;
 		private bool _ervkOnlyShow;
-		private long? _authority;
-		private string _okato;
-		private string _code;
+		private readonly long? _authority;
+		private readonly string _okato;
+		private readonly string _code;
 		private ImageList organizationImageList;
 		private ColumnHeader phoneColumn;
 		private ColumnHeader emailColumn;
@@ -38,7 +38,7 @@ namespace DatabaseToolSuite.Controls
 		private ColumnHeader military;
 		private ColumnHeader ogrn;
 		private ColumnHeader inn;
-		private string _name;
+		private readonly string _name;
 
 		private readonly Func<ViewUrpOrganization, object>[] orders = new Func<ViewUrpOrganization, object>[] {
 			new Func<ViewUrpOrganization, string>(x => x.Code),
@@ -56,7 +56,8 @@ namespace DatabaseToolSuite.Controls
 			new Func<ViewUrpOrganization, object>(x => x.Military),
 			new Func<ViewUrpOrganization, string>(x => x.Ogrn),
 			new Func<ViewUrpOrganization, string>(x => x.Inn),
-			new Func<ViewUrpOrganization, object>(x => x.IsActive)
+			new Func<ViewUrpOrganization, object>(x => x.IsActive),
+			new Func<ViewUrpOrganization, object>(x => x.LawAgencyType)
 	};
 
 		public GaspsListView()
@@ -144,7 +145,7 @@ namespace DatabaseToolSuite.Controls
 				if (baseListView.SelectedIndices.Count > 1)
 				{
 					int[] indices = new int[baseListView.SelectedIndices.Count];
-					baseListView.SelectedIndices.CopyTo(indices,0);
+					baseListView.SelectedIndices.CopyTo(indices, 0);
 					return indices.Select(index => itemsCollection[index]);
 				}
 				else
@@ -313,8 +314,8 @@ namespace DatabaseToolSuite.Controls
 
 				MultySelectDataRows = MultySelectedOrganization
 					.Select(organization => DataSet.gasps.GetOrganizationFromVersion(organization.Version));
-				
-				OnItemsMultySelectionChanged(new EventArgs());				
+
+				OnItemsMultySelectionChanged(new EventArgs());
 			}
 		}
 
@@ -400,7 +401,7 @@ namespace DatabaseToolSuite.Controls
 				{
 					return 2 + (int)organization.LawAgencyType;
 				}
-			else
+				else
 				{
 					return 0;
 				}
@@ -471,18 +472,45 @@ namespace DatabaseToolSuite.Controls
 			baseListView.BeginUpdate();
 
 			int selectedIndex = baseListView.SelectedIndices.Count > 0 ? baseListView.SelectedIndices[0] : 0;
-			ViewUrpOrganization selectedOrganization = itemsCollection[selectedIndex];		
+			ViewUrpOrganization selectedOrganization = itemsCollection[selectedIndex];
 
-			if (baseListView.Columns[e.Column].Tag == null ||
-				baseListView.Columns[e.Column].Tag.ToString() == "UP")
+			if (e.Column == 0)
 			{
-				itemsCollection = itemsCollection.OrderBy(orders[e.Column]).ToArray();
-				baseListView.Columns[e.Column].Tag = "DOWN";
+				if (baseListView.Columns[0].Tag == null ||
+					baseListView.Columns[0].Tag.ToString() == "UP")
+				{
+					itemsCollection = itemsCollection.OrderBy(orders[0]).ToArray();
+					baseListView.Columns[0].Tag = "OTHER_UP";
+				}
+				else if (baseListView.Columns[0].Tag.ToString() == "OTHER_UP")
+				{
+					itemsCollection = itemsCollection.OrderBy(orders[16]).ToArray();
+					baseListView.Columns[e.Column].Tag = "DOWN";
+				}
+				else if (baseListView.Columns[0].Tag.ToString() == "DOWN")
+				{
+					itemsCollection = itemsCollection.OrderBy(orders[0]).ToArray();
+					baseListView.Columns[e.Column].Tag = "OTHER_DOWN";
+				}
+				else
+				{
+					itemsCollection = itemsCollection.OrderByDescending(orders[16]).ToArray();
+					baseListView.Columns[e.Column].Tag = "UP";
+				}
 			}
 			else
 			{
-				itemsCollection = itemsCollection.OrderByDescending(orders[e.Column]).ToArray();
-				baseListView.Columns[e.Column].Tag = "UP";
+				if (baseListView.Columns[e.Column].Tag == null ||
+					baseListView.Columns[e.Column].Tag.ToString() == "UP")
+				{
+					itemsCollection = itemsCollection.OrderBy(orders[e.Column]).ToArray();
+					baseListView.Columns[e.Column].Tag = "DOWN";
+				}
+				else
+				{
+					itemsCollection = itemsCollection.OrderByDescending(orders[e.Column]).ToArray();
+					baseListView.Columns[e.Column].Tag = "UP";
+				}
 			}
 
 			int selectIndex = itemsCollection.IndexOf(selectedOrganization);
@@ -834,22 +862,22 @@ namespace DatabaseToolSuite.Controls
 			// baseListView
 			// 
 			this.baseListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.codeColumn,
-            this.nameColumn,
-            this.authorityColumn,
-            this.okatoColumn,
-            this.beginColumn,
-            this.endColumn,
-            this.phoneColumn,
-            this.emailColumn,
-            this.addressColumn,
-            this.ownerName,
-            this.isHead,
-            this.special,
-            this.military,
-            this.ogrn,
-            this.inn,
-            this.isActive});
+			this.codeColumn,
+			this.nameColumn,
+			this.authorityColumn,
+			this.okatoColumn,
+			this.beginColumn,
+			this.endColumn,
+			this.phoneColumn,
+			this.emailColumn,
+			this.addressColumn,
+			this.ownerName,
+			this.isHead,
+			this.special,
+			this.military,
+			this.ogrn,
+			this.inn,
+			this.isActive});
 			this.baseListView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.baseListView.FullRowSelect = true;
 			this.baseListView.GridLines = true;
@@ -1093,7 +1121,7 @@ namespace DatabaseToolSuite.Controls
 		public delegate void ProgressChangedEventHandler(ProgressChangedEventArgs e);
 
 		public delegate void ListViewCompletedEventHandler(object sender, ListViewCompletedEventArgs e);
-				
+
 	}
 
 	internal class ListViewEventArgs : EventArgs
