@@ -1,4 +1,6 @@
-﻿using DatabaseToolSuite.Repositories;
+﻿// Ignore Spelling: App
+
+using DatabaseToolSuite.Repositories;
 using DatabaseToolSuite.Services;
 using System;
 using System.Reflection;
@@ -189,7 +191,7 @@ namespace DatabaseToolSuite.Dialogs
 				mnuTableUrpRemoveButton.Enabled = existsUrp;
 
 				mnuToolsClearCode.Enabled = !gaspsListView.DataRow.IscodeNull();
-				
+
 				additionalToolStripBar.Enabled = existsUrp;
 			}
 			else
@@ -492,8 +494,8 @@ namespace DatabaseToolSuite.Dialogs
 			SelectPeriodDialog dialog = new SelectPeriodDialog();
 			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{
-				Export.ExportDeltaDataBaseToExcel(dialog.Begin, dialog.End );
-			}		
+				Export.ExportDeltaDataBaseToExcel(dialog.Begin, dialog.End);
+			}
 		}
 
 		private void ToolsImportSubdivision_Click(object sender, EventArgs e)
@@ -873,9 +875,9 @@ namespace DatabaseToolSuite.Dialogs
 				UrpMultyEditDialog dialog = new UrpMultyEditDialog();
 				if (dialog.ShowDialog(this) == DialogResult.OK)
 				{
-					foreach(MainDataSet.gaspsRow row in gaspsListView.MultySelectDataRows)
+					foreach (MainDataSet.gaspsRow row in gaspsListView.MultySelectDataRows)
 					{
-						
+
 						if (MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Exists(row.version))
 						{
 							Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow editRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(row.version);
@@ -946,7 +948,7 @@ namespace DatabaseToolSuite.Dialogs
 				gaspsListView.UpdateListViewItem();
 				MessageBox.Show(this, "Данные успешно внесены", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
-		}		
+		}
 
 		#endregion URP
 

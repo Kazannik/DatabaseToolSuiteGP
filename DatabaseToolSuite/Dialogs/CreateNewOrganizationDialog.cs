@@ -116,8 +116,8 @@ namespace DatabaseToolSuite.Dialogs
 			if (string.IsNullOrWhiteSpace(AuthorityCode) ||
 				string.IsNullOrWhiteSpace(OkatoCode))
 			{
-				if (nextCodeButton !=null) nextCodeButton.Enabled = false;
-				if (selectCodeButton !=null) selectCodeButton.Enabled = false;
+				if (nextCodeButton != null) nextCodeButton.Enabled = false;
+				if (selectCodeButton != null) selectCodeButton.Enabled = false;
 			}
 			else
 			{

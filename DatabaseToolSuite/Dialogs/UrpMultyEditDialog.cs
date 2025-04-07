@@ -1,5 +1,4 @@
-﻿using DatabaseToolSuite.Controls;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace DatabaseToolSuite.Dialogs
 {

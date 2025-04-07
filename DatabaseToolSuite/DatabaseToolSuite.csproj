@@ -236,6 +236,7 @@
     <Compile Include="Services\FileSystem.cs" />
     <Compile Include="Services\Impors.cs" />
     <Compile Include="Services\MasterDataSystem.cs" />
+    <Compile Include="Utils\NameWizard.cs" />
     <EmbeddedResource Include="Controls\GaspsListView.resx">
       <DependentUpon>GaspsListView.cs</DependentUpon>
     </EmbeddedResource>

@@ -11,6 +11,7 @@ namespace DatabaseToolSuite.Dialogs
 		private readonly string oldName;
 		private readonly string oldOkato;
 		private readonly long oldAuthorityId;
+		private Button nameWizardButton;
 		private readonly long oldOwnerKey;
 
 		public CreateNewVersionDialog() : base()
@@ -174,7 +175,7 @@ namespace DatabaseToolSuite.Dialogs
 		}
 
 		protected string BeginDateLabelText
-		{ 
+		{
 			get => beginDateLabel.Text;
 			set => beginDateLabel.Text = value;
 		}
@@ -221,6 +222,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.codeTextBox = new System.Windows.Forms.TextBox();
 			this.codeLabel = new System.Windows.Forms.Label();
 			this.nameTextBox = new System.Windows.Forms.TextBox();
+			this.nameWizardButton = new System.Windows.Forms.Button();
 			this.organizationGroupBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -259,9 +261,9 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// organizationGroupBox
 			// 
-			this.organizationGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.organizationGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.organizationGroupBox.Controls.Add(this.deleteOwnerButton);
 			this.organizationGroupBox.Controls.Add(this.selectOwnerButton);
 			this.organizationGroupBox.Controls.Add(this.ownerTextBox);
@@ -310,8 +312,8 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// ownerTextBox
 			// 
-			this.ownerTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.ownerTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.ownerTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.ownerTextBox.Location = new System.Drawing.Point(11, 305);
 			this.ownerTextBox.Margin = new System.Windows.Forms.Padding(4);
@@ -358,8 +360,8 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// okatoComboBox
 			// 
-			this.okatoComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.okatoComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.okatoComboBox.Code = "";
 			this.okatoComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
 			this.okatoComboBox.DropDownHeight = 584;
@@ -379,8 +381,8 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// authorityComboBox
 			// 
-			this.authorityComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.authorityComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.authorityComboBox.Code = "";
 			this.authorityComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
 			this.authorityComboBox.DropDownHeight = 584;
@@ -425,9 +427,9 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// nameTextBox
 			// 
-			this.nameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.nameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.nameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.nameTextBox.Location = new System.Drawing.Point(11, 48);
 			this.nameTextBox.Margin = new System.Windows.Forms.Padding(4);
@@ -438,11 +440,24 @@ namespace DatabaseToolSuite.Dialogs
 			this.nameTextBox.TabIndex = 1;
 			this.nameTextBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
 			// 
+			// nameWizardButton
+			// 
+			this.nameWizardButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.nameWizardButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.nameWizardButton.Location = new System.Drawing.Point(608, 87);
+			this.nameWizardButton.Name = "nameWizardButton";
+			this.nameWizardButton.Size = new System.Drawing.Size(188, 39);
+			this.nameWizardButton.TabIndex = 39;
+			this.nameWizardButton.Text = "Мастер имени";
+			this.nameWizardButton.UseVisualStyleBackColor = true;
+			this.nameWizardButton.Click += new System.EventHandler(this.NameWizardButton_Click);
+			// 
 			// CreateNewVersionDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(808, 591);
+			this.Controls.Add(this.nameWizardButton);
 			this.Controls.Add(this.organizationGroupBox);
 			this.Controls.Add(this.beginDateLabel);
 			this.Controls.Add(this.beginDateTimePicker);
@@ -455,6 +470,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.Controls.SetChildIndex(this.beginDateTimePicker, 0);
 			this.Controls.SetChildIndex(this.beginDateLabel, 0);
 			this.Controls.SetChildIndex(this.organizationGroupBox, 0);
+			this.Controls.SetChildIndex(this.nameWizardButton, 0);
 			this.organizationGroupBox.ResumeLayout(false);
 			this.organizationGroupBox.PerformLayout();
 			this.ResumeLayout(false);
@@ -479,5 +495,10 @@ namespace DatabaseToolSuite.Dialogs
 		private Controls.OkatoComboBox okatoComboBox;
 		private TextBox nameTextBox;
 		private DateTimePicker beginDateTimePicker;
+
+		private void NameWizardButton_Click(object sender, EventArgs e)
+		{
+			nameTextBox.Text = Utils.NameWizard.GetName(DataRow);
+		}
 	}
 }

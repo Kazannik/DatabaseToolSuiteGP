@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 
 namespace DatabaseToolSuite.Repositories
@@ -77,7 +76,7 @@ namespace DatabaseToolSuite.Repositories
 
 			public IList<gaspsRow> GetGaspsOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
 			{
-				return _GetGaspsOrganizationFilter(authority: authority,
+				return prGetGaspsOrganizationFilter(authority: authority,
 					okato: okato,
 					code: code,
 					name: name,
@@ -86,7 +85,7 @@ namespace DatabaseToolSuite.Repositories
 					lockShow: lockShow).ToList();
 			}
 
-			private IEnumerable<gaspsRow> _GetGaspsOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
+			private IEnumerable<gaspsRow> prGetGaspsOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
 			{
 				IEnumerable<gaspsRow> result = this.AsEnumerable()
 					.Where(x => x.RowState != DataRowState.Deleted)
@@ -399,13 +398,13 @@ namespace DatabaseToolSuite.Repositories
 					gaspsRow gaspsRow = null;
 					foreach (var row in item)
 					{
-						if (gaspsRow == null 
+						if (gaspsRow == null
 							|| gaspsRow.date_beg < row.date_beg)
 							gaspsRow = row;
 					}
 					result.Add(gaspsRow);
 				}
-				return result;			
+				return result;
 			}
 
 			public IEnumerable<gaspsRow> GetGaspsChildOrganization(long ownerId, DateTime date)
@@ -450,7 +449,7 @@ namespace DatabaseToolSuite.Repositories
 			{
 				EnumerableRowCollection<gaspsRow> gaspsCollection = this.AsEnumerable()
 					.Where(e => e.RowState != DataRowState.Deleted)
-					.Where(e => (!e.IslogEditDateNull() 
+					.Where(e => (!e.IslogEditDateNull()
 					&& e.logEditDate >= begin && e.logEditDate <= end)
 					|| (e.date_end >= begin && e.date_end <= end));
 

@@ -27,7 +27,7 @@ namespace DatabaseToolSuite.Services
 		public static void ConvertDataBase()
 		{
 			DataSet.Clear();
-			
+
 			EntityCollection oktmo = ConvertOktmo();
 			EntityCollection authority = ConvertAuthority();
 			EntityCollection lawAgencyTypeAllowbleHierarchy = ConvertLawAgencyTypeAllowbleHierarchy();

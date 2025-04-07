@@ -147,8 +147,8 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// SHORT_NAME_textBox
 			// 
-			this.SHORT_NAME_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.SHORT_NAME_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.SHORT_NAME_textBox.Location = new System.Drawing.Point(274, 84);
 			this.SHORT_NAME_textBox.Name = "SHORT_NAME_textBox";
 			this.SHORT_NAME_textBox.Size = new System.Drawing.Size(594, 31);
@@ -188,9 +188,9 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// AGENCY_RECEIVING_REPORT_textBox
 			// 
-			this.AGENCY_RECEIVING_REPORT_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.AGENCY_RECEIVING_REPORT_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.AGENCY_RECEIVING_REPORT_textBox.Location = new System.Drawing.Point(234, 314);
 			this.AGENCY_RECEIVING_REPORT_textBox.Multiline = true;
 			this.AGENCY_RECEIVING_REPORT_textBox.Name = "AGENCY_RECEIVING_REPORT_textBox";
@@ -223,8 +223,8 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// LAW_AGENCY_TYPE_ComboBox
 			// 
-			this.AGENCY_TYPE_ComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.AGENCY_TYPE_ComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.AGENCY_TYPE_ComboBox.Code = "";
 			this.AGENCY_TYPE_ComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
 			this.AGENCY_TYPE_ComboBox.DropDownHeight = 584;
@@ -243,8 +243,8 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// VED_CODE_textBox
 			// 
-			this.VED_CODE_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.VED_CODE_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.VED_CODE_textBox.Location = new System.Drawing.Point(234, 415);
 			this.VED_CODE_textBox.Name = "VED_CODE_textBox";
 			this.VED_CODE_textBox.Size = new System.Drawing.Size(634, 31);
@@ -273,8 +273,8 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// OKTMO_LOC_ID_ComboBox
 			// 
-			this.OKTMO_LOC_ID_ComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.OKTMO_LOC_ID_ComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.OKTMO_LOC_ID_ComboBox.Code = "";
 			this.OKTMO_LOC_ID_ComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
 			this.OKTMO_LOC_ID_ComboBox.DropDownHeight = 584;
@@ -304,8 +304,8 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// SPECIAL_TERRITORIAL_CODE_ComboBox
 			// 
-			this.SPECIAL_TERRITORIAL_CODE_ComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.SPECIAL_TERRITORIAL_CODE_ComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.SPECIAL_TERRITORIAL_CODE_ComboBox.Code = "";
 			this.SPECIAL_TERRITORIAL_CODE_ComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
 			this.SPECIAL_TERRITORIAL_CODE_ComboBox.DropDownHeight = 584;

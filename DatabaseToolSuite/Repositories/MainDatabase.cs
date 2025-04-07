@@ -1,4 +1,5 @@
-﻿using System;
+﻿// Ignore Spelling: okato ord centrum ssrf fgis esnsi sv autokey ervk ogrn oktmo VED
+
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -97,7 +98,7 @@ namespace DatabaseToolSuite.Repositories
 		{
 			get { return Services.MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP; }
 		}
-				
+
 		public class GaspsRowComparer : IComparer<gaspsRow>
 		{
 			public int Compare(gaspsRow x, gaspsRow y)
@@ -249,7 +250,7 @@ namespace DatabaseToolSuite.Repositories
 				{
 					try
 					{
-						return (Utils.Database.ConvertFromDBVal <string>(this[this.tableokato.codeColumn]));
+						return (Utils.Database.ConvertFromDBVal<string>(this[this.tableokato.codeColumn]));
 					}
 					catch (global::System.InvalidCastException e)
 					{
@@ -270,7 +271,7 @@ namespace DatabaseToolSuite.Repositories
 				{
 					try
 					{
-						return (Utils.Database.ConvertFromDBVal <string>(this[this.tableokato.name2Column]));
+						return (Utils.Database.ConvertFromDBVal<string>(this[this.tableokato.name2Column]));
 					}
 					catch (global::System.InvalidCastException e)
 					{
@@ -312,7 +313,7 @@ namespace DatabaseToolSuite.Repositories
 				{
 					try
 					{
-						return (Utils.Database.ConvertFromDBVal <string>(this[this.tableokato.genitiveColumn]));
+						return (Utils.Database.ConvertFromDBVal<string>(this[this.tableokato.genitiveColumn]));
 					}
 					catch (global::System.InvalidCastException e)
 					{
@@ -398,7 +399,7 @@ namespace DatabaseToolSuite.Repositories
 				{
 					try
 					{
-						return (Utils.Database.ConvertFromDBVal <long>(this[this.tableokato.export_idColumn]));
+						return (Utils.Database.ConvertFromDBVal<long>(this[this.tableokato.export_idColumn]));
 					}
 					catch (global::System.InvalidCastException e)
 					{
@@ -422,7 +423,7 @@ namespace DatabaseToolSuite.Repositories
 				{
 					try
 					{
-						return (Utils.Database.ConvertFromDBVal <long>(this[this.tablegasps.indexColumn]));
+						return (Utils.Database.ConvertFromDBVal<long>(this[this.tablegasps.indexColumn]));
 					}
 					catch (global::System.InvalidCastException e)
 					{
@@ -443,7 +444,7 @@ namespace DatabaseToolSuite.Repositories
 				{
 					try
 					{
-						return (Utils.Database.ConvertFromDBVal <string>(this[this.tablegasps.codeColumn]));
+						return (Utils.Database.ConvertFromDBVal<string>(this[this.tablegasps.codeColumn]));
 					}
 					catch (global::System.InvalidCastException e)
 					{
@@ -528,7 +529,7 @@ namespace DatabaseToolSuite.Repositories
 				{
 					try
 					{
-						return (Utils.Database.ConvertFromDBVal <global::System.DateTime>(this[this.tablegasps.logEditDateColumn]));
+						return (Utils.Database.ConvertFromDBVal<global::System.DateTime>(this[this.tablegasps.logEditDateColumn]));
 					}
 					catch (global::System.InvalidCastException e)
 					{
@@ -1069,8 +1070,7 @@ namespace DatabaseToolSuite.Repositories
 					}
 					catch (global::System.InvalidCastException e)
 					{
-						throw new global::System.Data.StrongTypingException("Значение для столбца \'AGENCY_RECEIVING_REPORT\' в таблице \'EXP_LAW_AGENCY_URP\' рав" +
-								"но DBNull.", e);
+						throw new global::System.Data.StrongTypingException("Значение для столбца \'AGENCY_RECEIVING_REPORT\' в таблице \'EXP_LAW_AGENCY_URP\' равно DBNull.", e);
 					}
 				}
 				set
@@ -1154,8 +1154,7 @@ namespace DatabaseToolSuite.Repositories
 					}
 					catch (global::System.InvalidCastException e)
 					{
-						throw new global::System.Data.StrongTypingException("Значение для столбца \'LAW_AGENCY_TYPE\' в таблице \'EXP_LAW_AGENCY_URP\' равно DBNul" +
-								"l.", e);
+						throw new global::System.Data.StrongTypingException("Значение для столбца \'LAW_AGENCY_TYPE\' в таблице \'EXP_LAW_AGENCY_URP\' равно DBNull.", e);
 					}
 				}
 				set
@@ -1176,8 +1175,7 @@ namespace DatabaseToolSuite.Repositories
 					}
 					catch (global::System.InvalidCastException e)
 					{
-						throw new global::System.Data.StrongTypingException("Значение для столбца \'SPECIAL_TERRITORIAL_CODE\' в таблице \'EXP_LAW_AGENCY_URP\' ра" +
-								"вно DBNull.", e);
+						throw new global::System.Data.StrongTypingException("Значение для столбца \'SPECIAL_TERRITORIAL_CODE\' в таблице \'EXP_LAW_AGENCY_URP\' равно DBNull.", e);
 					}
 				}
 				set

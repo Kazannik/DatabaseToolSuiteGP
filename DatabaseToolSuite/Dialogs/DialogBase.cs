@@ -15,7 +15,7 @@ namespace DatabaseToolSuite.Dialogs
 		public const int TOP_BORDER_HEIGHT = 52;
 		public const int BOTTOM_BORDER_HEIGHT = 48;
 
-		public static readonly Size BUTTON_SIZE = new Size(94, 23);
+		public static readonly Size BUTTON_SIZE = new Size(94, 25);
 		public static readonly Size CAPTION_IMAGE_SIZE = new Size(TOP_BORDER_HEIGHT - CONTROL_MARGIN * 2, TOP_BORDER_HEIGHT - CONTROL_MARGIN * 2);
 		public static readonly Font CAPTION_FONT = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
 

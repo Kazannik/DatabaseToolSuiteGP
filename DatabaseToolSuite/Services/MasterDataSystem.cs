@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Ignore Spelling: sv okato autokey dest doesnt Ervk Esnsi Fgis Loc ogrn oktmo ord Urp ved
+
+using System;
 using System.Collections.Generic;
 
 namespace DatabaseToolSuite.Services
@@ -127,7 +129,7 @@ namespace DatabaseToolSuite.Services
 			{
 				oktmo = DataSet.okato.Get(okato).export_id;
 			}
-			
+
 			CreateUrpNote(
 					version: version,
 					shortName: name,
@@ -244,11 +246,12 @@ namespace DatabaseToolSuite.Services
 			if (!DataSet.gasps.IsLastVersion(version: version))
 			{
 				throw new ArgumentException(string.Format(
-					"Запись версии {0} не является самой последней записью с ключем {1}, поэтому не может быть отредактирована.",
+					"Запись версии {0} не является самой последней записью с ключом {1}, поэтому не может быть отредактирована.",
 							version, modifedRow.key));
 			}
 
 			modifedRow.date_end = date;
+			modifedRow.logEditDate = DateTime.Now;
 
 			long newVersion = DataSet.gasps.GetNextVersion();
 
@@ -311,6 +314,7 @@ namespace DatabaseToolSuite.Services
 			}
 
 			modifedRow.date_end = date;
+			modifedRow.logEditDate = DateTime.Now;
 
 			long newVersion = DataSet.gasps.GetNextVersion();
 
@@ -372,6 +376,7 @@ namespace DatabaseToolSuite.Services
 			oldRow.date_end = date;
 			oldRow.logEditDate = DateTime.Now;
 			oldRow.EndEdit();
+			
 			if (DataSet.ervk.Exists(version))
 			{
 				DataSet.ervk.Get(version).isActive = false;
@@ -416,6 +421,7 @@ namespace DatabaseToolSuite.Services
 		   long version)
 		{
 			Repositories.MainDataSet.gaspsRow row = DataSet.gasps.GetOrganizationFromVersion(version: version);
+			row.logEditDate = DateTime.Now;
 			row.SetcodeNull();
 			return row;
 		}
