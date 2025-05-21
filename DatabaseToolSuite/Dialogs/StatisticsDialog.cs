@@ -29,7 +29,7 @@ namespace DatabaseToolSuite.Dialogs
 		}
 
 
-		private void authorityComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+		private void AuthorityComboBox1_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			TableReload();
 		}
@@ -118,7 +118,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.authorityComboBox1.SelectedItem = null;
 			this.authorityComboBox1.Size = new System.Drawing.Size(881, 35);
 			this.authorityComboBox1.TabIndex = 4;
-			this.authorityComboBox1.SelectedIndexChanged += new System.EventHandler(this.authorityComboBox1_SelectedIndexChanged);
+			this.authorityComboBox1.SelectedIndexChanged += new System.EventHandler(this.AuthorityComboBox1_SelectedIndexChanged);
 			// 
 			// label1
 			// 

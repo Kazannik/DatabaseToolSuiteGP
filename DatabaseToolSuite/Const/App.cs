@@ -1,4 +1,6 @@
-﻿namespace DatabaseToolSuite.Const
+﻿// Ignore Spelling: APP
+
+namespace DatabaseToolSuite.Const
 {
 	public static class App
 	{

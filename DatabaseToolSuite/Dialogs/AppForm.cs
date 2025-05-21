@@ -589,7 +589,7 @@ namespace DatabaseToolSuite.Dialogs
 			{
 				if (MasterDataSystem.DataSet.fgis_esnsi.Exists(gaspsListView.DataRow.version))
 				{
-					MasterDataSystem.DataSet.fgis_esnsi.Romove(gaspsListView.DataRow.version);
+					MasterDataSystem.DataSet.fgis_esnsi.Remove(gaspsListView.DataRow.version);
 				}
 
 				bool existsFgisEsnsi = FileSystem.Repository.MainDataSet.fgis_esnsi.Exists(gaspsListView.DataRow.version);
@@ -806,7 +806,7 @@ namespace DatabaseToolSuite.Dialogs
 			{
 				if (MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Exists(gaspsListView.DataRow.version))
 				{
-					MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Romove(gaspsListView.DataRow.version);
+					MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Remove(gaspsListView.DataRow.version);
 				}
 
 				bool existsUrp = FileSystem.Repository.MainDataSet.ervk.Exists(gaspsListView.DataRow.version);
@@ -872,7 +872,7 @@ namespace DatabaseToolSuite.Dialogs
 			}
 			else if (gaspsListView.MultySelectDataRows != null && filterAuthorityComboBox.Value == MasterDataSystem.PROSECUTOR_CODE)
 			{
-				UrpMultyEditDialog dialog = new UrpMultyEditDialog();
+				UrpMultiEditDialog dialog = new UrpMultiEditDialog();
 				if (dialog.ShowDialog(this) == DialogResult.OK)
 				{
 					foreach (MainDataSet.gaspsRow row in gaspsListView.MultySelectDataRows)
@@ -979,22 +979,6 @@ namespace DatabaseToolSuite.Dialogs
 		private void GaspsListView_GaspsListViewCompleted(object sender, Controls.ListViewCompletedEventArgs e)
 		{
 			rowCountStatusLabel.Text = string.Format("Отражено записей {0}", gaspsListView.RowCount);
-		}
-
-		private void gaspsListView_ItemSelectionChanged(object sender, EventArgs e)
-		{
-		}
-
-		private void gaspsListView_ItemMouseClick(object sender, Controls.ListViewEventArgs e)
-		{
-		}
-
-		private void gaspsListView_ItemMouseDoubleClick(object sender, Controls.ListViewEventArgs e)
-		{
-		}
-
-		private void gaspsListView_GaspsListViewCompleted(object sender, Controls.ListViewCompletedEventArgs e)
-		{
 		}
 
 		private void ToolsClearCode_Click(object sender, EventArgs e)

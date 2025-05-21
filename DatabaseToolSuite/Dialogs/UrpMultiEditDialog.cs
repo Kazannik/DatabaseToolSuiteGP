@@ -1,11 +1,13 @@
-﻿using System.Windows.Forms;
+﻿// Ignore Spelling: Oktmo Loc Urp Doesnt
+
+using System.Windows.Forms;
 
 namespace DatabaseToolSuite.Dialogs
 {
-	internal class UrpMultyEditDialog : UrpDialog
+	internal class UrpMultiEditDialog : UrpDialog
 	{
 
-		public UrpMultyEditDialog() : base()
+		public UrpMultiEditDialog() : base()
 		{
 			SHORT_NAME_textBox.Enabled = false;
 			VED_CODE_textBox.Enabled = false;

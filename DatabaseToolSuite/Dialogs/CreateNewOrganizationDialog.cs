@@ -89,8 +89,10 @@ namespace DatabaseToolSuite.Dialogs
 
 		private void SelectCodeButton_Click(object sender, EventArgs e)
 		{
-			SelectOrganizationDialog dialog = new SelectOrganizationDialog(authority: Authority ?? 0, okato: OkatoCode);
-			dialog.LastLockOnlyShow = true;
+			SelectOrganizationDialog dialog = new SelectOrganizationDialog(authority: Authority ?? 0, okato: OkatoCode)
+			{
+				LastLockOnlyShow = true
+			};
 			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{
 				CodeText = dialog.DataRow.code;

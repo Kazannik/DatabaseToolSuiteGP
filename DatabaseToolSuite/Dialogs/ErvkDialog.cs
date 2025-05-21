@@ -1,4 +1,6 @@
-﻿using DatabaseToolSuite.Services;
+﻿// Ignore Spelling: Ervk Ogrn
+
+using DatabaseToolSuite.Services;
 using System;
 using System.Windows.Forms;
 
@@ -8,16 +10,16 @@ namespace DatabaseToolSuite.Dialogs
 	{
 		public Repositories.MainDataSet.ervkRow DataRow { get; private set; }
 
-		private bool oldIsHead;
-		private bool oldSpecial;
-		private bool oldMilitary;
-		private bool oldIsActive;
-		private long oldIdVersionHead;
-		private long oldIdSuccession;
-		private DateTime oldDateStartVersion;
-		private DateTime oldDateCloseProc;
-		private string oldOgrn;
-		private string oldInn;
+		private readonly bool oldIsHead;
+		private readonly bool oldSpecial;
+		private readonly bool oldMilitary;
+		private readonly bool oldIsActive;
+		private readonly long oldIdVersionHead;
+		private readonly long oldIdSuccession;
+		private readonly DateTime oldDateStartVersion;
+		private readonly DateTime oldDateCloseProc;
+		private readonly string oldOgrn;
+		private readonly string oldInn;
 
 		private Button deleteOwnerButton;
 		private Button selectOwnerButton;
@@ -440,7 +442,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.deleteOwnerButton.Size = new System.Drawing.Size(266, 42);
 			this.deleteOwnerButton.TabIndex = 47;
 			this.deleteOwnerButton.Text = "Удалить владельца...";
-			this.deleteOwnerButton.Click += new System.EventHandler(this.deleteOwnerButton_Click);
+			this.deleteOwnerButton.Click += new System.EventHandler(this.DeleteOwnerButton_Click);
 			// 
 			// selectOwnerButton
 			// 
@@ -451,7 +453,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.selectOwnerButton.Size = new System.Drawing.Size(266, 42);
 			this.selectOwnerButton.TabIndex = 46;
 			this.selectOwnerButton.Text = "Выбрать владельца...";
-			this.selectOwnerButton.Click += new System.EventHandler(this.selectOwnerButton_Click);
+			this.selectOwnerButton.Click += new System.EventHandler(this.SelectOwnerButton_Click);
 			// 
 			// ownerTextBox
 			// 
@@ -478,7 +480,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.autoSelectOwnerButton.Size = new System.Drawing.Size(266, 42);
 			this.autoSelectOwnerButton.TabIndex = 50;
 			this.autoSelectOwnerButton.Text = "Авто из ГАС ПС";
-			this.autoSelectOwnerButton.Click += new System.EventHandler(this.autoSelectOwnerButton_Click);
+			this.autoSelectOwnerButton.Click += new System.EventHandler(this.AutoSelectOwnerButton_Click);
 			// 
 			// getOwnerArgButton
 			// 
@@ -488,7 +490,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.getOwnerArgButton.Size = new System.Drawing.Size(856, 42);
 			this.getOwnerArgButton.TabIndex = 51;
 			this.getOwnerArgButton.Text = "Получить из вышестоящей прокуратуры";
-			this.getOwnerArgButton.Click += new System.EventHandler(this.getOwnerArgButton_Click);
+			this.getOwnerArgButton.Click += new System.EventHandler(this.GetOwnerArgButton_Click);
 			// 
 			// beginDateLabel
 			// 
@@ -599,21 +601,22 @@ namespace DatabaseToolSuite.Dialogs
 
 		}
 
-		private void autoSelectOwnerButton_Click(object sender, EventArgs e)
+		private void AutoSelectOwnerButton_Click(object sender, EventArgs e)
 		{
 			GetOwnerOrganization();
 		}
 
-		private void selectOwnerButton_Click(object sender, EventArgs e)
+		private void SelectOwnerButton_Click(object sender, EventArgs e)
 		{
 			SelectOrganizationDialog dialog;
 
-			dialog = new SelectOrganizationDialog(ervkOnlyShow: true);
-
-			dialog.UnlockShow = true;
-			dialog.LockShow = false;
-			dialog.ReserveShow = false;
-			dialog.LastLockOnlyShow = false;
+			dialog = new SelectOrganizationDialog(ervkOnlyShow: true)
+			{
+				UnlockShow = true,
+				LockShow = false,
+				ReserveShow = false,
+				LastLockOnlyShow = false
+			};
 
 			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{
@@ -624,14 +627,14 @@ namespace DatabaseToolSuite.Dialogs
 			}
 		}
 
-		private void deleteOwnerButton_Click(object sender, EventArgs e)
+		private void DeleteOwnerButton_Click(object sender, EventArgs e)
 		{
 			GaspsOwnerOrganization = null;
 			ErvkOwnerOrganization = null;
 			SetOwnerOrganizationName();
 		}
 
-		private void getOwnerArgButton_Click(object sender, EventArgs e)
+		private void GetOwnerArgButton_Click(object sender, EventArgs e)
 		{
 			if (ErvkOwnerOrganization != null)
 			{

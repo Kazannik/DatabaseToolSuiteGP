@@ -1,4 +1,6 @@
-﻿using DatabaseToolSuite.Controls;
+﻿// Ignore Spelling: Dto
+
+using DatabaseToolSuite.Controls;
 
 namespace DatabaseToolSuite.Repositories.Dto
 {

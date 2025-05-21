@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Ignore Spelling: eventargs
+
+using System;
 using System.Windows.Forms;
 
 namespace DatabaseToolSuite.Controls
@@ -53,11 +55,11 @@ namespace DatabaseToolSuite.Controls
 			}
 			set
 			{
-				if (value is string)
+				if (value is string v)
 				{
 					try
 					{
-						Value = DateTime.Parse(s: (string)value);
+						Value = DateTime.Parse(s: v);
 					}
 					catch
 					{

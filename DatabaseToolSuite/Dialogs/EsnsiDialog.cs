@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Ignore Spelling: Okato Esnsi Autokey
+
+using System;
 using System.Windows.Forms;
 
 namespace DatabaseToolSuite.Dialogs
@@ -7,14 +9,14 @@ namespace DatabaseToolSuite.Dialogs
 	{
 		public Repositories.MainDataSet.fgis_esnsiRow DataRow { get; private set; }
 
-		private long oldRegionCode;
-		private string oldPhone;
-		private string oldEmail;
-		private string oldAddress;
-		private int oldOkatoCode;
-		private long oldCode;
-		private string oldAutokey;
-		private long oldId;
+		private readonly long oldRegionCode;
+		private readonly string oldPhone;
+		private readonly string oldEmail;
+		private readonly string oldAddress;
+		private readonly int oldOkatoCode;
+		private readonly long oldCode;
+		private readonly string oldAutokey;
+		private readonly long oldId;
 
 		public long RegionCode
 		{

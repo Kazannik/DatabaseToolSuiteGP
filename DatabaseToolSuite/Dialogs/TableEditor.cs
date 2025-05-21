@@ -56,7 +56,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.tables_comboBox.Name = "tables_comboBox";
 			this.tables_comboBox.Size = new System.Drawing.Size(576, 33);
 			this.tables_comboBox.TabIndex = 4;
-			this.tables_comboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+			this.tables_comboBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
 			// 
 			// button1
 			// 
@@ -85,7 +85,7 @@ namespace DatabaseToolSuite.Dialogs
 
 		}
 
-		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+		private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
 		{
 
 		}

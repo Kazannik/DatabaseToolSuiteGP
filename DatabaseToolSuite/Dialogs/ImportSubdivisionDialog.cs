@@ -1,4 +1,6 @@
-﻿using DatabaseToolSuite.Repositories._1C;
+﻿// Ignore Spelling: Uncheck
+
+using DatabaseToolSuite.Repositories._1C;
 using DatabaseToolSuite.Services;
 using System;
 using System.Windows.Forms;
@@ -223,11 +225,13 @@ namespace DatabaseToolSuite.Dialogs
 
 		private void SelectParent_Click(object sender, EventArgs e)
 		{
-			SelectOrganizationDialog dialog = new SelectOrganizationDialog(authority: MasterDataSystem.PROSECUTOR_CODE);
-			dialog.UnlockShow = true;
-			dialog.LockShow = false;
-			dialog.ReserveShow = false;
-			dialog.LastLockOnlyShow = false;
+			SelectOrganizationDialog dialog = new SelectOrganizationDialog(authority: MasterDataSystem.PROSECUTOR_CODE)
+			{
+				UnlockShow = true,
+				LockShow = false,
+				ReserveShow = false,
+				LastLockOnlyShow = false
+			};
 
 			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{

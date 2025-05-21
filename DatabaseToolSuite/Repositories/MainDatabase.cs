@@ -237,7 +237,7 @@ namespace DatabaseToolSuite.Repositories
 		}
 
 		#region WARDING! NOT EDIT!
-		
+
 		// Delete double in MainDatabase.Desinger.cs
 
 		public partial class okatoRow : DataRow

@@ -11,29 +11,27 @@ namespace DatabaseToolSuite.Services
 	static class Import
 	{
 
-		public static void ImportSubdivision(long parentVersion, DateTime begiDate, SubdivisionCollection subdivisions)
+		public static void ImportSubdivision(long parentVersion, DateTime beginDate, SubdivisionCollection subdivisions)
 		{
 			foreach (SubdivisionCollection.Subdivision item in subdivisions.Roots)
 			{
-				Repositories.MainDataSet.gaspsRow rootRow = MasterDataSystem.CreateNewOrganization(parentVersion, begiDate, item.Name, item.Guid.ToString());
-				ImportSubdivision(rootRow, begiDate, item.Child);
+				Repositories.MainDataSet.gaspsRow rootRow = MasterDataSystem.CreateNewOrganization(parentVersion, beginDate, item.Name, item.Guid.ToString());
+				ImportSubdivision(rootRow, beginDate, item.Child);
 			}
 		}
 
-		private static void ImportSubdivision(Repositories.MainDataSet.gaspsRow parentRow, DateTime begiDate, IEnumerable<SubdivisionCollection.Subdivision> array)
+		private static void ImportSubdivision(Repositories.MainDataSet.gaspsRow parentRow, DateTime beginDate, IEnumerable<SubdivisionCollection.Subdivision> array)
 		{
 			foreach (SubdivisionCollection.Subdivision item in array)
 			{
-				Repositories.MainDataSet.gaspsRow rootRow = MasterDataSystem.CreateNewOrganization(parentRow, begiDate, item.Name, item.Guid.ToString());
-				ImportSubdivision(rootRow, begiDate, item.Child);
+				Repositories.MainDataSet.gaspsRow rootRow = MasterDataSystem.CreateNewOrganization(parentRow, beginDate, item.Name, item.Guid.ToString());
+				ImportSubdivision(rootRow, beginDate, item.Child);
 			}
 		}
 
 		public static void ImportTextFile(string fileName)
 		{
 			StreamReader reader = new StreamReader(fileName, Encoding.GetEncoding(1251));
-			long length = reader.BaseStream.Length;
-			string headers = reader.ReadLine();
 			Dictionary<string, CodeGroup> dictionary = new Dictionary<string, CodeGroup>();
 
 			while (!reader.EndOfStream)
@@ -98,11 +96,11 @@ namespace DatabaseToolSuite.Services
 							MasterDataSystem.CreateNewOrganization(
 								name: dialog.OrganizationName,
 								okato: dialog.OkatoCode,
-								authorityId: dialog.Authority.HasValue ? dialog.Authority.Value : 0,
+								authorityId: dialog.Authority ?? 0,
 								code: dialog.Code,
 								ownerKey: dialog.OrganizationOwner,
 								dateBegin: dialog.BeginDate,
-								dateEnd: Services.MasterDataSystem.MAX_DATE,
+								dateEnd: MasterDataSystem.MAX_DATE,
 								courtTypeId: dialog.CourtType);
 
 							created += 1;
@@ -122,7 +120,7 @@ namespace DatabaseToolSuite.Services
 		private class CodeGroup
 		{
 
-			List<CodeGroupItem> items;
+			private readonly List<CodeGroupItem> items;
 
 			public CodeGroup(string code, string name, DateTime? dateBegin, DateTime? dateEnd)
 			{

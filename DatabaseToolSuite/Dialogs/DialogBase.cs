@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Ignore Spelling: eventargs
+
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -22,7 +24,7 @@ namespace DatabaseToolSuite.Dialogs
 		private EventHandler onApply;
 		private EventHandler onCancel;
 		private EventHandler onOk;
-		private StringFormat stringFormat = new StringFormat();
+		private readonly StringFormat stringFormat = new StringFormat();
 
 		public string DialogCaption { get; set; }
 
@@ -259,12 +261,12 @@ namespace DatabaseToolSuite.Dialogs
 			if (button_Cancel.Visible)
 			{
 				button_Cancel.Location = new Point(left, Height - BOTTOM_BUTTON_MARGIN - BUTTON_SIZE.Height);
-				left = left - (BUTTON_SIZE.Width + CONTROL_MARGIN);
+				left -= BUTTON_SIZE.Width + CONTROL_MARGIN;
 			}
 			if (button_Apply.Visible)
 			{
 				button_Apply.Location = new Point(left, Height - BOTTOM_BUTTON_MARGIN - BUTTON_SIZE.Height);
-				left = left - (BUTTON_SIZE.Width + CONTROL_MARGIN);
+				left -= BUTTON_SIZE.Width + CONTROL_MARGIN;
 			}
 			if (button_OK.Visible)
 			{

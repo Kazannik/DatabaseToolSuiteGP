@@ -1,4 +1,6 @@
-﻿using DatabaseToolSuite.Repositories;
+﻿// Ignore Spelling: okato ervk
+
+using DatabaseToolSuite.Repositories;
 using DatabaseToolSuite.Services;
 using System;
 using System.Collections.Generic;

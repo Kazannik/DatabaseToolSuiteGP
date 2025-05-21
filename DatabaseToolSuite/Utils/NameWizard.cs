@@ -1,4 +1,6 @@
-﻿namespace DatabaseToolSuite.Utils
+﻿// Ignore Spelling: Utils
+
+namespace DatabaseToolSuite.Utils
 {
 	internal static class NameWizard
 	{

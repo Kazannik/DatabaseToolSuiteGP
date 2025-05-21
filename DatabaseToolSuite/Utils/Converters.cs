@@ -1,4 +1,4 @@
-﻿// Ignore Spelling: Oktmo
+﻿// Ignore Spelling: Oktmo Utils
 
 using System.Text.RegularExpressions;
 

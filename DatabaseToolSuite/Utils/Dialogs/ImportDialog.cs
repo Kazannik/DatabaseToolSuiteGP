@@ -1,4 +1,6 @@
-﻿using DatabaseToolSuite.Dialogs;
+﻿// Ignore Spelling: Fgis Esnsi autokey okato Utils
+
+using DatabaseToolSuite.Dialogs;
 using DatabaseToolSuite.Repositories;
 using System;
 using System.Collections.Generic;
@@ -12,7 +14,7 @@ namespace DatabaseToolSuite.Utils.Dialogs
 	{
 		private const string HEADER = "id;Наименование прокуратуры (SV-0001);REGION;Телефон канцелярии (SV-0004);Электронный адрес канцелярии(SV-0005);Адрес приемной(SV-0006);OKATO;CODE;autokey;version";
 
-		private List<NoteFgisEsnsi> existsNotes;
+		private readonly List<NoteFgisEsnsi> existsNotes;
 
 		public ImportDialog()
 		{
@@ -21,10 +23,12 @@ namespace DatabaseToolSuite.Utils.Dialogs
 			InitializeComponent();
 		}
 
-		private void openFilesButton_Click(object sender, EventArgs e)
+		private void OpenFilesButton_Click(object sender, EventArgs e)
 		{
-			OpenFileDialog dialog = new OpenFileDialog();
-			dialog.Multiselect = false;
+			OpenFileDialog dialog = new OpenFileDialog
+			{
+				Multiselect = false
+			};
 
 			if (dialog.ShowDialog(this) != DialogResult.OK) return;
 
@@ -66,7 +70,7 @@ namespace DatabaseToolSuite.Utils.Dialogs
 			}
 		}
 
-		private void selectOrganizationButton_Click(object sender, EventArgs e)
+		private void SelectOrganizationButton_Click(object sender, EventArgs e)
 		{
 			SelectOrganizationDialog dialog = new SelectOrganizationDialog(Services.MasterDataSystem.DataSet);
 			if (listView1.SelectedItems.Count > 0)
@@ -91,10 +95,12 @@ namespace DatabaseToolSuite.Utils.Dialogs
 			}
 		}
 
-		private void autoButton_Click(object sender, EventArgs e)
+		private void AutoButton_Click(object sender, EventArgs e)
 		{
-			OpenFileDialog dialog = new OpenFileDialog();
-			dialog.Multiselect = false;
+			OpenFileDialog dialog = new OpenFileDialog
+			{
+				Multiselect = false
+			};
 
 			if (dialog.ShowDialog(this) != DialogResult.OK) return;
 
@@ -189,7 +195,7 @@ namespace DatabaseToolSuite.Utils.Dialogs
 			}
 		}
 
-		private void saveButton_Click(object sender, EventArgs e)
+		private void SaveButton_Click(object sender, EventArgs e)
 		{
 			SaveFileDialog dialog = new SaveFileDialog();
 

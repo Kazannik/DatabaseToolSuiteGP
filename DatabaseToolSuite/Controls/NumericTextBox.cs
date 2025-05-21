@@ -46,8 +46,7 @@ namespace DatabaseToolSuite.Controls
 			get
 			{
 				if (string.IsNullOrWhiteSpace(Text)) return 0;
-				long result = 0;
-				if (long.TryParse(Text, out result))
+				if (long.TryParse(Text, out long result))
 					return result;
 				else
 					return 0;

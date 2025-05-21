@@ -1,4 +1,6 @@
-﻿using DatabaseToolSuite.Controls;
+﻿// Ignore Spelling: Okato Dto Ter Kod Centrum SSRF
+
+using DatabaseToolSuite.Controls;
 
 namespace DatabaseToolSuite.Repositories.Dto
 {

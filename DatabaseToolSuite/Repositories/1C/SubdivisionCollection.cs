@@ -81,8 +81,10 @@ namespace DatabaseToolSuite.Repositories._1C
 		public async Task ReadXmlAsync(string filename)
 		{
 			StreamReader stream = File.OpenText(filename);
-			XmlReaderSettings settings = new XmlReaderSettings();
-			settings.Async = true;
+			XmlReaderSettings settings = new XmlReaderSettings
+			{
+				Async = true
+			};
 
 			string nextElementTypeName = null;
 			string nextGuid = null;
@@ -150,8 +152,10 @@ namespace DatabaseToolSuite.Repositories._1C
 		public void ReadXml(string filename)
 		{
 			StreamReader stream = File.OpenText(filename);
-			XmlReaderSettings settings = new XmlReaderSettings();
-			settings.Async = false;
+			XmlReaderSettings settings = new XmlReaderSettings
+			{
+				Async = false
+			};
 
 			string nextElementTypeName = null;
 			string nextGuid = null;
@@ -277,7 +281,7 @@ namespace DatabaseToolSuite.Repositories._1C
 
 		public class SubdivisionEnumerator : IEnumerator<Subdivision>
 		{
-			private ArrayList array;
+			private readonly ArrayList array;
 			private int position;
 
 			public SubdivisionEnumerator(ArrayList array)
@@ -300,10 +304,7 @@ namespace DatabaseToolSuite.Repositories._1C
 				}
 			}
 
-			private object _Current
-			{
-				get { return Current; }
-			}
+			private object _Current => Current;
 
 			object IEnumerator.Current
 			{

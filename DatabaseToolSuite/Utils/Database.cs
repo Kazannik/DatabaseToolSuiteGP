@@ -1,4 +1,6 @@
-﻿namespace DatabaseToolSuite.Utils
+﻿// Ignore Spelling: Urp Ervk Fgis Esnsi ALLOWBLE Utils
+
+namespace DatabaseToolSuite.Utils
 {
 	using DatabaseToolSuite.Services;
 	using System;
@@ -333,16 +335,16 @@
 		/// </summary>
 		public static void FillUrpInGasps()
 		{
-			Rtk.EntityCollection oktmo = Rtk.ConvertOktmo();
-			Rtk.EntityCollection authority = Rtk.ConvertAuthority();
-			Rtk.EntityCollection lawAgencyTypeAllowbleHierarchy = Rtk.ConvertLawAgencyTypeAllowbleHierarchy();
-			Rtk.EntityCollection lawAgencyTypes = Rtk.ConvertLawAgencyTypes();
-			Rtk.EntityCollection specialTerritorialCode = Rtk.ConvertSpecialTerritorialCode();
+			_ = Rtk.ConvertOktmo();
+			_ = Rtk.ConvertAuthority();
+			_ = Rtk.ConvertLawAgencyTypeAllowbleHierarchy();
+			_ = Rtk.ConvertLawAgencyTypes();
+			_ = Rtk.ConvertSpecialTerritorialCode();
 
 			foreach (Repositories.MainDataSet.gaspsRow row in MasterDataSystem.DataSet.gasps.Rows)
 			{
 				if (row.authority_id == MasterDataSystem.PROSECUTOR_CODE
-					&& (row.date_end.Date > DateTime.Today && row.date_beg.Date <= DateTime.Today))
+					&& row.date_end.Date > DateTime.Today && row.date_beg.Date <= DateTime.Today)
 				{
 					if (!MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Exists(gaspsVersion: row.version))
 						MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Create(gaspsVersion: row.version, shortName: row.name, oktmo: row.okatoRow.export_id);

@@ -78,7 +78,7 @@
             this.openFilesButton.TabIndex = 1;
             this.openFilesButton.Text = "Open Files ...";
             this.openFilesButton.UseVisualStyleBackColor = true;
-            this.openFilesButton.Click += new System.EventHandler(this.openFilesButton_Click);
+            this.openFilesButton.Click += new System.EventHandler(this.OpenFilesButton_Click);
             // 
             // selectOrganizationButton
             // 
@@ -89,7 +89,7 @@
             this.selectOrganizationButton.TabIndex = 2;
             this.selectOrganizationButton.Text = "Select ...";
             this.selectOrganizationButton.UseVisualStyleBackColor = true;
-            this.selectOrganizationButton.Click += new System.EventHandler(this.selectOrganizationButton_Click);
+            this.selectOrganizationButton.Click += new System.EventHandler(this.SelectOrganizationButton_Click);
             // 
             // autoButton
             // 
@@ -100,7 +100,7 @@
             this.autoButton.TabIndex = 3;
             this.autoButton.Text = "Auto ...";
             this.autoButton.UseVisualStyleBackColor = true;
-            this.autoButton.Click += new System.EventHandler(this.autoButton_Click);
+            this.autoButton.Click += new System.EventHandler(this.AutoButton_Click);
             // 
             // saveButton
             // 
@@ -111,7 +111,7 @@
             this.saveButton.TabIndex = 4;
             this.saveButton.Text = "Save ...";
             this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // ImportDialog
             // 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Ignore Spelling: oktmo
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -58,7 +60,7 @@ namespace DatabaseToolSuite.Repositories
 				});
 			}
 
-			public void Romove(long gaspsVersion)
+			public void Remove(long gaspsVersion)
 			{
 				DataRow row = Get(gaspsVersion);
 				row.Delete();

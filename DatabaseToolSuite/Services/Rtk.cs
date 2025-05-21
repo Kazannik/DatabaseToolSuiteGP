@@ -1,4 +1,6 @@
-﻿using DatabaseToolSuite.Repositories;
+﻿// Ignore Spelling: Oktmo Allowble
+
+using DatabaseToolSuite.Repositories;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +12,7 @@ using ExportDataSet = DatabaseToolSuite.Repositories.EXP_LAW_AGENCY;
 namespace DatabaseToolSuite.Services
 {
 	/// <summary>
-	/// Сервисы для подготвки базы к передаче в РТК
+	/// Сервис для подготовки базы к передаче в РТК
 	/// </summary>
 	internal static class Rtk
 	{
@@ -21,7 +23,7 @@ namespace DatabaseToolSuite.Services
 
 		public static void ExportToXml(string xmlFileName)
 		{
-			DataSet.WriteXml(xmlFileName, System.Data.XmlWriteMode.WriteSchema);
+			DataSet.WriteXml(xmlFileName, XmlWriteMode.WriteSchema);
 		}
 
 		public static void ConvertDataBase()
@@ -29,10 +31,10 @@ namespace DatabaseToolSuite.Services
 			DataSet.Clear();
 
 			EntityCollection oktmo = ConvertOktmo();
-			EntityCollection authority = ConvertAuthority();
-			EntityCollection lawAgencyTypeAllowbleHierarchy = ConvertLawAgencyTypeAllowbleHierarchy();
-			EntityCollection lawAgencyTypes = ConvertLawAgencyTypes();
-			EntityCollection specialTerritorialCode = ConvertSpecialTerritorialCode();
+			_ = ConvertAuthority();
+			_ = ConvertLawAgencyTypeAllowbleHierarchy();
+			_ = ConvertLawAgencyTypes();
+			_ = ConvertSpecialTerritorialCode();
 
 			IEnumerable<MainDataSet.ViewUrpOrganization> gasps = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.ExportGaspsFullData();
 
@@ -67,8 +69,9 @@ namespace DatabaseToolSuite.Services
 			foreach (MainDataSet.okatoRow row in
 				(from MainDataSet.okatoRow row in MasterDataSystem.DataSet.okato.Rows
 				 where row.Isexport_idNull()
-				 orderby (row.code)
-				 select row).ToArray())
+				 orderby row.code
+				 select row)
+				 .ToArray())
 			{
 				if (!result.Contains(row.export_id))
 				{
@@ -90,8 +93,9 @@ namespace DatabaseToolSuite.Services
 
 			foreach (MainDataSet.authorityRow row in
 				(from MainDataSet.authorityRow row in MasterDataSystem.DataSet.authority.Rows
-				 orderby (row.id)
-				 select row).ToArray())
+				 orderby row.id
+				 select row)
+				 .ToArray())
 			{
 				if (!result.Contains(row.id))
 				{
@@ -112,8 +116,9 @@ namespace DatabaseToolSuite.Services
 
 			foreach (MainDataSet.EXP_LAW_AGENCY_TYPESRow row in
 				(from MainDataSet.EXP_LAW_AGENCY_TYPESRow row in MasterDataSystem.DataSet.EXP_LAW_AGENCY_TYPES.Rows
-				 orderby (row.ID)
-				 select row).ToArray())
+				 orderby row.ID
+				 select row)
+				 .ToArray())
 			{
 				if (!result.Contains(row.ID))
 				{
@@ -134,8 +139,9 @@ namespace DatabaseToolSuite.Services
 
 			foreach (MainDataSet.SPECIAL_TERRITORIAL_CODERow row in
 				(from MainDataSet.SPECIAL_TERRITORIAL_CODERow row in MasterDataSystem.DataSet.SPECIAL_TERRITORIAL_CODE.Rows
-				 orderby (row.ID)
-				 select row).ToArray())
+				 orderby row.ID
+				 select row)
+				 .ToArray())
 			{
 				if (!result.Contains(row.ID))
 				{
@@ -156,9 +162,10 @@ namespace DatabaseToolSuite.Services
 
 			foreach (MainDataSet.EXP_LAW_AGENCY_ALLOWBLE_HIERARCHYRow row in
 				(from MainDataSet.EXP_LAW_AGENCY_ALLOWBLE_HIERARCHYRow row in MasterDataSystem.DataSet.EXP_LAW_AGENCY_ALLOWBLE_HIERARCHY.Rows
-				 orderby (row.ALLOWBLE_HIERARCHY)
-				 orderby (row.LAW_AGENCY_TYPE)
-				 select row).ToArray())
+				 orderby row.ALLOWBLE_HIERARCHY
+				 orderby row.LAW_AGENCY_TYPE
+				 select row)
+				 .ToArray())
 			{
 				result.Add(row.LAW_AGENCY_TYPE, row.ALLOWBLE_HIERARCHY);
 			}
@@ -269,7 +276,7 @@ namespace DatabaseToolSuite.Services
 
 			private long GetNextId()
 			{
-				if (this.Count > 0)
+				if (Count > 0)
 					return 1 + this.AsEnumerable()
 						.Max(e => e.Id);
 				else
@@ -345,10 +352,7 @@ namespace DatabaseToolSuite.Services
 					}
 				}
 
-				private object _Current
-				{
-					get { return Current; }
-				}
+				private object _Current => Current;
 
 				object IEnumerator.Current
 				{
@@ -421,7 +425,7 @@ namespace DatabaseToolSuite.Services
 		/// <param name="oktmo">ОКТМО (okato_code)</param>
 		/// <param name="ved_id">Ведомство (authority_id)</param>
 		/// <param name="version">Версия (version)</param>
-		/// <param name="ord">Порядок (нет сопостовимых данных)</param>
+		/// <param name="ord">Порядок (нет сопоставимых данных)</param>
 		/// <param name="id">Ключ (key)</param>
 		/// <param name="parent_id">Родитель (owner_id)</param>
 		/// <param name="indate">Дата начала (date_beg)</param>

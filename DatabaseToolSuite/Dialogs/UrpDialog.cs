@@ -1,4 +1,6 @@
-﻿using DatabaseToolSuite.Controls;
+﻿// Ignore Spelling: Oktmo Loc Urp DOESNT Ved
+
+using DatabaseToolSuite.Controls;
 using DatabaseToolSuite.Services;
 using System;
 using System.Windows.Forms;
@@ -390,12 +392,13 @@ namespace DatabaseToolSuite.Dialogs
 
 		private void AGENCY_RECEIVING_REPORT_button_Click(object sender, EventArgs e)
 		{
-			SelectOrganizationDialog dialog = new SelectOrganizationDialog(MasterDataSystem.PROSECUTOR_CODE);
-
-			dialog.LastLockOnlyShow = false;
-			dialog.LockShow = false;
-			dialog.ReserveShow = false;
-			dialog.UnlockShow = true;
+			SelectOrganizationDialog dialog = new SelectOrganizationDialog(MasterDataSystem.PROSECUTOR_CODE)
+			{
+				LastLockOnlyShow = false,
+				LockShow = false,
+				ReserveShow = false,
+				UnlockShow = true
+			};
 
 			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{

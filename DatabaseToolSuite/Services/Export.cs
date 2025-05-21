@@ -239,7 +239,7 @@ namespace DatabaseToolSuite.Services
 				objData[r, 4] = item.Code;
 				objData[r, 5] = item.Begin;
 				objData[r, 6] = item.End;
-				objData[r, 7] = (begin<= item.LogEditDate && end>= item.LogEditDate)? item.LogEditDate : item.End;
+				objData[r, 7] = (begin <= item.LogEditDate && end >= item.LogEditDate) ? item.LogEditDate : item.End;
 
 				r += 1;
 			}

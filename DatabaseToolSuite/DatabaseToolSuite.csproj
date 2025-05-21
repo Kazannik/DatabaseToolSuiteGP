@@ -151,7 +151,7 @@
     <Compile Include="Dialogs\TableEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\UrpMultyEditDialog.cs">
+    <Compile Include="Dialogs\UrpMultiEditDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Repositories\1C\SubdivisionCollection.cs" />
