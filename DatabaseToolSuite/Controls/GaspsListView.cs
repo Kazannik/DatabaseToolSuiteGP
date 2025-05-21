@@ -1,4 +1,6 @@
-﻿using DatabaseToolSuite.Repositories;
+﻿// Ignore Spelling: okato fgis ervk Esnsi Multy
+
+using DatabaseToolSuite.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -389,7 +391,6 @@ namespace DatabaseToolSuite.Controls
 
 			return item;
 		}
-
 
 		private int GetImageIndex(ViewUrpOrganization organization)
 		{

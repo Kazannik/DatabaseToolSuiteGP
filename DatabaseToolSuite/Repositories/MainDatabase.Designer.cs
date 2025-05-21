@@ -5564,7 +5564,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tableokato.nameColumn] = value;
                 }
             }
-                       
+                                                
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string ter {
@@ -5586,7 +5586,11 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tableokato.kod1Column] = value;
                 }
             }
-                       
+                        
+            
+            
+            
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IscodeNull() {
@@ -5774,7 +5778,8 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tablegasps.versionColumn] = value;
                 }
             }
-                       
+            
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public long owner_id {
@@ -5810,13 +5815,6 @@ namespace DatabaseToolSuite.Repositories {
             
             
             
-            
-            
-            
-            
-            
-            
-          
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -6324,7 +6322,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tableervk.idVersionProcColumn] = value;
                 }
             }
-            
+                        
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public System.DateTime dateStartVersion {
@@ -6335,9 +6333,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tableervk.dateStartVersionColumn] = value;
                 }
             }
-            
-            
-            
+                        
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public gaspsRow gaspsRow {
@@ -6514,7 +6510,10 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tableEXP_LAW_AGENCY_URP.DOESNT_CONSOLIDATE_CHILDColumn] = value;
                 }
             }
-                        
+            
+            
+            
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public long OKTMO_LOC_ID {
@@ -6525,7 +6524,9 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tableEXP_LAW_AGENCY_URP.OKTMO_LOC_IDColumn] = value;
                 }
             }
-                        
+            
+            
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public gaspsRow gaspsRow {
@@ -6737,8 +6738,6 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tableSPECIAL_TERRITORIAL_CODE.CODEColumn] = value;
                 }
             }
-            
-            
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
