@@ -6,8 +6,7 @@ namespace DatabaseToolSuite.Utils
 {
 	static class Converters
 	{
-		private static readonly Regex quotesRegex = new Regex("\\u0022\\w+\\u0022", RegexOptions.IgnoreCase & RegexOptions.Compiled);
-
+		private static readonly Regex quotesRegex = new Regex("\u0022[^\u0022]+\u0022", RegexOptions.IgnoreCase & RegexOptions.Compiled);
 
 		/// <summary>
 		/// Добавление к коду ОКТМО нулей в конце строки (до 8 знаков).
@@ -27,9 +26,15 @@ namespace DatabaseToolSuite.Utils
 			}
 		}
 
-		public static string TitleForCsvFormat(string title)
+		public static string TextForCsvFormat(string text)
 		{
-			string result = title.Replace("\r\n", string.Empty).Replace("\r", string.Empty).Trim();
+			string result = text
+				.Replace("\r\n", string.Empty)
+				.Replace("\r", string.Empty)
+				.Replace("\n", string.Empty)
+				.Replace("\t", string.Empty)
+				.Replace (";", ",")
+				.Trim();
 			if (quotesRegex.IsMatch(result))
 			{
 				result = "\"" + result.Replace("\"", "\"\"") + "\"";
@@ -37,5 +42,9 @@ namespace DatabaseToolSuite.Utils
 			return result;
 		}
 
+		public static string GetFgisEsnsiAutokey(long id)
+		{
+			return "FED_GENPROK_ORGANIZATION_" + id;
+		}
 	}
 }

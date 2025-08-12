@@ -51,6 +51,7 @@ namespace DatabaseToolSuite.Utils.Dialogs
 					okato: short.Parse(split[6]),
 					code: long.Parse(split[7]),
 					autokey: split[8],
+					okatoList: string.Empty,
 					editDate: DateTime.Today);
 
 				if (split.Length == 10)
@@ -124,6 +125,7 @@ namespace DatabaseToolSuite.Utils.Dialogs
 					okato: short.Parse(split[6]),
 					code: long.Parse(split[7]),
 					autokey: split[8],
+					okatoList: string.Empty,
 					editDate: DateTime.Today);
 
 				IEnumerable<long> versions = Services.MasterDataSystem.DataSet.gasps.GetVersionFromNameOkato(note.Name1, note.Name2, note.Name3, note.Okato.ToString("00"));
@@ -175,6 +177,7 @@ namespace DatabaseToolSuite.Utils.Dialogs
 				   short okato,
 				   long code,
 				   string autokey,
+				   string okatoList,
 				   DateTime editDate) :
 				base(
 					version: -1,
@@ -187,6 +190,7 @@ namespace DatabaseToolSuite.Utils.Dialogs
 					okato: okato,
 					code: code,
 					autokey: autokey,
+					okatoList: okatoList,
 					editDate: editDate)
 			{
 				Name1 = name;

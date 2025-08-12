@@ -644,6 +644,8 @@ namespace DatabaseToolSuite.Dialogs
 					editRow.sv_0004 = dialog.Phone;
 					editRow.sv_0005 = dialog.Email;
 					editRow.sv_0006 = dialog.Address;
+					editRow.okatoList = dialog.OkatoList;
+
 					gaspsListView.UpdateListViewItem();
 				}
 				else
@@ -691,7 +693,7 @@ namespace DatabaseToolSuite.Dialogs
 			{
 				if (MasterDataSystem.DataSet.ervk.Exists(gaspsListView.DataRow.version))
 				{
-					MasterDataSystem.DataSet.ervk.Romove(gaspsListView.DataRow.version);
+					MasterDataSystem.DataSet.ervk.Remove(gaspsListView.DataRow.version);
 				}
 
 				bool existsErvk = FileSystem.Repository.MainDataSet.ervk.Exists(gaspsListView.DataRow.version);
@@ -757,8 +759,16 @@ namespace DatabaseToolSuite.Dialogs
 					editRow.ogrn = dialog.Ogrn;
 					editRow.special = dialog.IsSpecial;
 
+					if (!string.IsNullOrEmpty(dialog.Oktmo))
+					{
+						editRow.oktmoList = dialog.Oktmo;
+					}
+					else
+					{
+						editRow.SetoktmoListNull();
+					}
+					
 					Utils.Database.SetIsHeadAttribute();
-
 					gaspsListView.UpdateListViewItem();
 				}
 				else
@@ -1011,6 +1021,12 @@ namespace DatabaseToolSuite.Dialogs
 		private void ToolsFillRtkUrpTable_Click(object sender, EventArgs e)
 		{
 			Utils.Database.FillUrpInGasps();
+			gaspsListView.UpdateListViewItem();
+		}
+
+		private void mnuToolsEsnsiIdToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Utils.Database.SetIdFgisEsnsiAttribute();
 			gaspsListView.UpdateListViewItem();
 		}
 	}

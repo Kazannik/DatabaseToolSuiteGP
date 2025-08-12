@@ -32,9 +32,33 @@ namespace DatabaseToolSuite.Repositories
 				row.Delete();
 			}
 
+			public long GetNextId()
+			{
+				if (Count > 0)
+					return 1 + this.AsEnumerable()
+						.Where(x => x.RowState != DataRowState.Deleted)
+						.Max(r => r.id);
+				else
+					return 1;
+			}
+
+			public long GetNextCode()
+			{
+				if (Count > 0)
+					return 1 + this.AsEnumerable()
+						.Where(x => x.RowState != DataRowState.Deleted)
+						.Max(r => r.code);
+				else
+					return 1;
+			}
+
 			public fgis_esnsiRow Create(long gaspsVersion)
 			{
-				return (fgis_esnsiRow)this.Rows.Add(new object[] { gaspsVersion, null, null, null, null, null, null, null, null, null }); ;
+				DateTime dateStartVersion = DateTime.Now;
+				long esnsiId = GetNextId();
+				long esnsiCode = GetNextCode();
+				string autokey = "FED_GENPROK_ORGANIZATION_" + esnsiId;
+				return (fgis_esnsiRow)this.Rows.Add(new object[] { gaspsVersion, null, null, null, null, null, esnsiCode, autokey, esnsiId, null, null }); ;
 			}
 
 			public class FgisEsnsiOrganization
@@ -53,6 +77,8 @@ namespace DatabaseToolSuite.Repositories
 				public long Code { get; private set; }
 				public string Autokey { get; private set; }
 
+				public string OkatoList { get; private set; }
+
 				public DateTime EditDate { get; private set; }
 
 				public FgisEsnsiOrganization(
@@ -66,6 +92,7 @@ namespace DatabaseToolSuite.Repositories
 					short okato,
 					long code,
 					string autokey,
+					string okatoList,
 					DateTime editDate)
 				{
 					Version = version;
@@ -78,6 +105,7 @@ namespace DatabaseToolSuite.Repositories
 					Okato = okato;
 					Code = code;
 					Autokey = autokey;
+					OkatoList = okatoList;
 					EditDate = editDate;
 				}
 			}
@@ -86,11 +114,8 @@ namespace DatabaseToolSuite.Repositories
 			{
 				return from esnsi in this.AsEnumerable()
 						.Where(x => x.RowState != DataRowState.Deleted)
-					   join gasps in gaspsTable
-					   .Where(x => x.RowState != DataRowState.Deleted)
+					   join gasps in gaspsTable.ExportActiveData()
 					   on esnsi.version equals gasps.version
-					   where (gasps.date_beg.Date <= DateTime.Today &&
-					   gasps.date_end.Date > DateTime.Today)
 					   select new FgisEsnsiOrganization(
 						   version: esnsi.version,
 						   id: esnsi.IsidNull() ? 0 : esnsi.id,
@@ -102,6 +127,7 @@ namespace DatabaseToolSuite.Repositories
 						   okato: esnsi.IsokatoNull() ? (short)0 : esnsi.okato,
 						   code: esnsi.IscodeNull() ? 0 : esnsi.code,
 						   autokey: esnsi.IsautokeyNull() ? string.Empty : esnsi.autokey,
+						   okatoList: esnsi.IsokatoListNull() ? string.Empty : esnsi.okatoList,
 						   editDate: esnsi.IslogEditDateNull() ? Services.MasterDataSystem.MIN_DATE : esnsi.logEditDate);
 			}
 

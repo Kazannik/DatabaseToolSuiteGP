@@ -91,6 +91,7 @@
 			this.mnuToolsFillRtkUrpTable = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuToolsExpLawAgenceEdit = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuToolsTableEdit = new System.Windows.Forms.ToolStripMenuItem();
+			this.mnuToolsEsnsiIdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuHelpStatistic = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
@@ -104,14 +105,11 @@
 			this.filterFgisEsnsiOnlyRadioButton = new System.Windows.Forms.RadioButton();
 			this.filterAllRadioButton = new System.Windows.Forms.RadioButton();
 			this.cleanFilterButton = new System.Windows.Forms.Button();
-			this.filterCodeNumericTextBox = new DatabaseToolSuite.Controls.NumericTextBox(this.components);
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.filterNameTextBox = new System.Windows.Forms.TextBox();
 			this.filterLockCodeViewCheckBox = new System.Windows.Forms.CheckBox();
 			this.okatoLabel = new System.Windows.Forms.Label();
-			this.filterAuthorityComboBox = new DatabaseToolSuite.Controls.AuthorityComboBox();
-			this.filterOkatoComboBox = new DatabaseToolSuite.Controls.OkatoComboBox();
 			this.authorityLabel = new System.Windows.Forms.Label();
 			this.contextMenuTable = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.mnuContextNewOrganization = new System.Windows.Forms.ToolStripMenuItem();
@@ -183,6 +181,9 @@
 			this.toolStripButton20 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton21 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton22 = new System.Windows.Forms.ToolStripButton();
+			this.filterCodeNumericTextBox = new DatabaseToolSuite.Controls.NumericTextBox(this.components);
+			this.filterAuthorityComboBox = new DatabaseToolSuite.Controls.AuthorityComboBox();
+			this.filterOkatoComboBox = new DatabaseToolSuite.Controls.OkatoComboBox();
 			this.gaspsListView = new DatabaseToolSuite.Controls.GaspsListView();
 			this.mainMenuStrip.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
@@ -205,7 +206,7 @@
 			this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
 			this.mainMenuStrip.Name = "mainMenuStrip";
 			this.mainMenuStrip.Padding = new System.Windows.Forms.Padding(10, 2, 0, 2);
-			this.mainMenuStrip.Size = new System.Drawing.Size(1228, 27);
+			this.mainMenuStrip.Size = new System.Drawing.Size(1228, 31);
 			this.mainMenuStrip.TabIndex = 0;
 			this.mainMenuStrip.Text = "Основное";
 			// 
@@ -225,13 +226,13 @@
             this.toolStripMenuItem6,
             this.mnuFileExit});
 			this.mnuFile.Name = "mnuFile";
-			this.mnuFile.Size = new System.Drawing.Size(53, 23);
+			this.mnuFile.Size = new System.Drawing.Size(64, 27);
 			this.mnuFile.Text = "Файл";
 			// 
 			// mnuFileNew
 			// 
 			this.mnuFileNew.Name = "mnuFileNew";
-			this.mnuFileNew.Size = new System.Drawing.Size(276, 30);
+			this.mnuFileNew.Size = new System.Drawing.Size(331, 30);
 			this.mnuFileNew.Text = "mnuFileNew";
 			this.mnuFileNew.Visible = false;
 			// 
@@ -239,7 +240,7 @@
 			// 
 			this.mnuFileOpen.Image = global::DatabaseToolSuite.Properties.Resources.Open24;
 			this.mnuFileOpen.Name = "mnuFileOpen";
-			this.mnuFileOpen.Size = new System.Drawing.Size(276, 30);
+			this.mnuFileOpen.Size = new System.Drawing.Size(331, 30);
 			this.mnuFileOpen.Text = "Открыть...";
 			this.mnuFileOpen.Click += new System.EventHandler(this.FileOpenToolStripMenuItem_Click);
 			// 
@@ -247,7 +248,7 @@
 			// 
 			this.mnuFileSave.Image = global::DatabaseToolSuite.Properties.Resources.Save24;
 			this.mnuFileSave.Name = "mnuFileSave";
-			this.mnuFileSave.Size = new System.Drawing.Size(276, 30);
+			this.mnuFileSave.Size = new System.Drawing.Size(331, 30);
 			this.mnuFileSave.Text = "Сохранить";
 			this.mnuFileSave.Click += new System.EventHandler(this.FileSaveToolStripMenuItem_Click);
 			// 
@@ -255,20 +256,20 @@
 			// 
 			this.mnuFileSaveAs.Image = global::DatabaseToolSuite.Properties.Resources.SaveAs24;
 			this.mnuFileSaveAs.Name = "mnuFileSaveAs";
-			this.mnuFileSaveAs.Size = new System.Drawing.Size(276, 30);
+			this.mnuFileSaveAs.Size = new System.Drawing.Size(331, 30);
 			this.mnuFileSaveAs.Text = "Сохранить как...";
 			this.mnuFileSaveAs.Click += new System.EventHandler(this.FileSaveAsToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem1
 			// 
 			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(273, 6);
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(328, 6);
 			// 
 			// mnuFileImport
 			// 
 			this.mnuFileImport.Image = global::DatabaseToolSuite.Properties.Resources.ImportTextFile24;
 			this.mnuFileImport.Name = "mnuFileImport";
-			this.mnuFileImport.Size = new System.Drawing.Size(276, 30);
+			this.mnuFileImport.Size = new System.Drawing.Size(331, 30);
 			this.mnuFileImport.Text = "Импорт из файла...";
 			this.mnuFileImport.Click += new System.EventHandler(this.FileImport_Click);
 			// 
@@ -276,7 +277,7 @@
 			// 
 			this.mnuFileExport.Image = global::DatabaseToolSuite.Properties.Resources.ExportXmlFile24;
 			this.mnuFileExport.Name = "mnuFileExport";
-			this.mnuFileExport.Size = new System.Drawing.Size(276, 30);
+			this.mnuFileExport.Size = new System.Drawing.Size(331, 30);
 			this.mnuFileExport.Text = "Экспорт данных в файл...";
 			this.mnuFileExport.Click += new System.EventHandler(this.FileExport_Click);
 			// 
@@ -284,14 +285,14 @@
 			// 
 			this.mnuFileExportForGasps.Image = global::DatabaseToolSuite.Properties.Resources.ExportXmlGaspsFile24;
 			this.mnuFileExportForGasps.Name = "mnuFileExportForGasps";
-			this.mnuFileExportForGasps.Size = new System.Drawing.Size(276, 30);
+			this.mnuFileExportForGasps.Size = new System.Drawing.Size(331, 30);
 			this.mnuFileExportForGasps.Text = "Экспорт данных для ГАС ПС...";
 			this.mnuFileExportForGasps.Click += new System.EventHandler(this.FileExportForGasps_Click);
 			// 
 			// toolStripMenuItem2
 			// 
 			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-			this.toolStripMenuItem2.Size = new System.Drawing.Size(273, 6);
+			this.toolStripMenuItem2.Size = new System.Drawing.Size(328, 6);
 			// 
 			// mnuFileExportToExcel
 			// 
@@ -307,13 +308,13 @@
             this.mnuFileExportDelta});
 			this.mnuFileExportToExcel.Image = global::DatabaseToolSuite.Properties.Resources.ExportExcel24;
 			this.mnuFileExportToExcel.Name = "mnuFileExportToExcel";
-			this.mnuFileExportToExcel.Size = new System.Drawing.Size(276, 30);
+			this.mnuFileExportToExcel.Size = new System.Drawing.Size(331, 30);
 			this.mnuFileExportToExcel.Text = "Экспорт в MS Office Excel";
 			// 
 			// mnuFileGaspsExportToExcel
 			// 
 			this.mnuFileGaspsExportToExcel.Name = "mnuFileGaspsExportToExcel";
-			this.mnuFileGaspsExportToExcel.Size = new System.Drawing.Size(351, 30);
+			this.mnuFileGaspsExportToExcel.Size = new System.Drawing.Size(426, 30);
 			this.mnuFileGaspsExportToExcel.Text = "Данных ГАС ПС...";
 			this.mnuFileGaspsExportToExcel.Click += new System.EventHandler(this.FileExportGaspsToExcel_Click);
 			// 
@@ -321,7 +322,7 @@
 			// 
 			this.mnuFileFgisEsnsiForLawExportToExcel.Image = global::DatabaseToolSuite.Properties.Resources.gosuslugi24;
 			this.mnuFileFgisEsnsiForLawExportToExcel.Name = "mnuFileFgisEsnsiForLawExportToExcel";
-			this.mnuFileFgisEsnsiForLawExportToExcel.Size = new System.Drawing.Size(351, 30);
+			this.mnuFileFgisEsnsiForLawExportToExcel.Size = new System.Drawing.Size(426, 30);
 			this.mnuFileFgisEsnsiForLawExportToExcel.Text = "Данных ФГИС ЕСНСИ по приказу ГП РФ...";
 			this.mnuFileFgisEsnsiForLawExportToExcel.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
 			this.mnuFileFgisEsnsiForLawExportToExcel.Click += new System.EventHandler(this.FileFgisEsnsiForLawExportToExcel_Click);
@@ -330,7 +331,7 @@
 			// 
 			this.mnuFileFgisEsnsiExportToExcel.Image = global::DatabaseToolSuite.Properties.Resources.gosuslugi24;
 			this.mnuFileFgisEsnsiExportToExcel.Name = "mnuFileFgisEsnsiExportToExcel";
-			this.mnuFileFgisEsnsiExportToExcel.Size = new System.Drawing.Size(351, 30);
+			this.mnuFileFgisEsnsiExportToExcel.Size = new System.Drawing.Size(426, 30);
 			this.mnuFileFgisEsnsiExportToExcel.Text = "Данных ФГИС ЕСНСИ...";
 			this.mnuFileFgisEsnsiExportToExcel.Click += new System.EventHandler(this.FileFgisEsnsiExportToExcel_Click);
 			// 
@@ -338,33 +339,33 @@
 			// 
 			this.mnuFileErvkExportToExcel.Image = global::DatabaseToolSuite.Properties.Resources.economy24;
 			this.mnuFileErvkExportToExcel.Name = "mnuFileErvkExportToExcel";
-			this.mnuFileErvkExportToExcel.Size = new System.Drawing.Size(351, 30);
+			this.mnuFileErvkExportToExcel.Size = new System.Drawing.Size(426, 30);
 			this.mnuFileErvkExportToExcel.Text = "Данных ЕРВК...";
 			this.mnuFileErvkExportToExcel.Click += new System.EventHandler(this.FileErvkExportToExcel_Click);
 			// 
 			// toolStripMenuItem17
 			// 
 			this.toolStripMenuItem17.Name = "toolStripMenuItem17";
-			this.toolStripMenuItem17.Size = new System.Drawing.Size(348, 6);
+			this.toolStripMenuItem17.Size = new System.Drawing.Size(423, 6);
 			// 
 			// mnuFileFullExportToExcel
 			// 
 			this.mnuFileFullExportToExcel.Image = global::DatabaseToolSuite.Properties.Resources.Windows32;
 			this.mnuFileFullExportToExcel.Name = "mnuFileFullExportToExcel";
-			this.mnuFileFullExportToExcel.Size = new System.Drawing.Size(351, 30);
+			this.mnuFileFullExportToExcel.Size = new System.Drawing.Size(426, 30);
 			this.mnuFileFullExportToExcel.Text = "Всего справочника...";
 			this.mnuFileFullExportToExcel.Click += new System.EventHandler(this.FileFullExportToExcel_Click);
 			// 
 			// toolStripMenuItem18
 			// 
 			this.toolStripMenuItem18.Name = "toolStripMenuItem18";
-			this.toolStripMenuItem18.Size = new System.Drawing.Size(348, 6);
+			this.toolStripMenuItem18.Size = new System.Drawing.Size(423, 6);
 			// 
 			// mnuFileStatisticsExportToExcel
 			// 
 			this.mnuFileStatisticsExportToExcel.Image = global::DatabaseToolSuite.Properties.Resources.Statistics24;
 			this.mnuFileStatisticsExportToExcel.Name = "mnuFileStatisticsExportToExcel";
-			this.mnuFileStatisticsExportToExcel.Size = new System.Drawing.Size(351, 30);
+			this.mnuFileStatisticsExportToExcel.Size = new System.Drawing.Size(426, 30);
 			this.mnuFileStatisticsExportToExcel.Text = "Статистики...";
 			this.mnuFileStatisticsExportToExcel.Click += new System.EventHandler(this.FileStatisticsExportToExcel_Click);
 			// 
@@ -372,20 +373,20 @@
 			// 
 			this.mnuFileExportDelta.Image = global::DatabaseToolSuite.Properties.Resources.ExportXmlGaspsFile24;
 			this.mnuFileExportDelta.Name = "mnuFileExportDelta";
-			this.mnuFileExportDelta.Size = new System.Drawing.Size(351, 30);
+			this.mnuFileExportDelta.Size = new System.Drawing.Size(426, 30);
 			this.mnuFileExportDelta.Text = "Сведения об изменениях за период...";
 			this.mnuFileExportDelta.Click += new System.EventHandler(this.FileExportDelta_Click);
 			// 
 			// toolStripMenuItem6
 			// 
 			this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-			this.toolStripMenuItem6.Size = new System.Drawing.Size(273, 6);
+			this.toolStripMenuItem6.Size = new System.Drawing.Size(328, 6);
 			// 
 			// mnuFileExit
 			// 
 			this.mnuFileExit.Image = global::DatabaseToolSuite.Properties.Resources.FileExit24;
 			this.mnuFileExit.Name = "mnuFileExit";
-			this.mnuFileExit.Size = new System.Drawing.Size(276, 30);
+			this.mnuFileExit.Size = new System.Drawing.Size(331, 30);
 			this.mnuFileExit.Text = "Выход";
 			this.mnuFileExit.Click += new System.EventHandler(this.FileExit_Click);
 			// 
@@ -413,14 +414,14 @@
             this.mnuTableUrpCloneToLast,
             this.mnuTableUrpRemove});
 			this.mnuTable.Name = "mnuTable";
-			this.mnuTable.Size = new System.Drawing.Size(201, 23);
+			this.mnuTable.Size = new System.Drawing.Size(248, 27);
 			this.mnuTable.Text = "Справочник подразделений";
 			// 
 			// mnuTableNewOrganization
 			// 
 			this.mnuTableNewOrganization.Image = global::DatabaseToolSuite.Properties.Resources.New24;
 			this.mnuTableNewOrganization.Name = "mnuTableNewOrganization";
-			this.mnuTableNewOrganization.Size = new System.Drawing.Size(499, 30);
+			this.mnuTableNewOrganization.Size = new System.Drawing.Size(615, 30);
 			this.mnuTableNewOrganization.Text = "Создать запись...";
 			this.mnuTableNewOrganization.Click += new System.EventHandler(this.NewOrganization_Click);
 			// 
@@ -428,59 +429,59 @@
 			// 
 			this.mnuTableCreateOrganization.Image = global::DatabaseToolSuite.Properties.Resources.NewSeries24;
 			this.mnuTableCreateOrganization.Name = "mnuTableCreateOrganization";
-			this.mnuTableCreateOrganization.Size = new System.Drawing.Size(499, 30);
+			this.mnuTableCreateOrganization.Size = new System.Drawing.Size(615, 30);
 			this.mnuTableCreateOrganization.Text = "Создать запись на основе текущей...";
 			this.mnuTableCreateOrganization.Click += new System.EventHandler(this.CreateOrganization_Click);
 			// 
 			// toolStripMenuItem3
 			// 
 			this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-			this.toolStripMenuItem3.Size = new System.Drawing.Size(496, 6);
+			this.toolStripMenuItem3.Size = new System.Drawing.Size(612, 6);
 			// 
 			// mnuTableCreateNewVersion
 			// 
 			this.mnuTableCreateNewVersion.Image = global::DatabaseToolSuite.Properties.Resources.Duplicate24;
 			this.mnuTableCreateNewVersion.Name = "mnuTableCreateNewVersion";
-			this.mnuTableCreateNewVersion.Size = new System.Drawing.Size(499, 30);
+			this.mnuTableCreateNewVersion.Size = new System.Drawing.Size(615, 30);
 			this.mnuTableCreateNewVersion.Text = "Создать новую версию записи...";
 			this.mnuTableCreateNewVersion.Click += new System.EventHandler(this.CreateVersion_Click);
 			// 
 			// toolStripMenuItem4
 			// 
 			this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-			this.toolStripMenuItem4.Size = new System.Drawing.Size(496, 6);
+			this.toolStripMenuItem4.Size = new System.Drawing.Size(612, 6);
 			// 
 			// mnuTableRemoveOrganization
 			// 
 			this.mnuTableRemoveOrganization.Image = global::DatabaseToolSuite.Properties.Resources.Delete24;
 			this.mnuTableRemoveOrganization.Name = "mnuTableRemoveOrganization";
-			this.mnuTableRemoveOrganization.Size = new System.Drawing.Size(499, 30);
+			this.mnuTableRemoveOrganization.Size = new System.Drawing.Size(615, 30);
 			this.mnuTableRemoveOrganization.Text = "Заблокировать запись...";
 			this.mnuTableRemoveOrganization.Click += new System.EventHandler(this.RemoveOrganization_Click);
 			// 
 			// toolStripMenuItem7
 			// 
 			this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-			this.toolStripMenuItem7.Size = new System.Drawing.Size(496, 6);
+			this.toolStripMenuItem7.Size = new System.Drawing.Size(612, 6);
 			// 
 			// mnuTableEditError
 			// 
 			this.mnuTableEditError.Image = global::DatabaseToolSuite.Properties.Resources.Edit24;
 			this.mnuTableEditError.Name = "mnuTableEditError";
-			this.mnuTableEditError.Size = new System.Drawing.Size(499, 30);
+			this.mnuTableEditError.Size = new System.Drawing.Size(615, 30);
 			this.mnuTableEditError.Text = "Исправить ошибку...";
 			this.mnuTableEditError.Click += new System.EventHandler(this.EditError_Click);
 			// 
 			// toolStripMenuItem11
 			// 
 			this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-			this.toolStripMenuItem11.Size = new System.Drawing.Size(496, 6);
+			this.toolStripMenuItem11.Size = new System.Drawing.Size(612, 6);
 			// 
 			// mnuTableFgisEsnsiEdit
 			// 
 			this.mnuTableFgisEsnsiEdit.Image = global::DatabaseToolSuite.Properties.Resources.gosuslugi24;
 			this.mnuTableFgisEsnsiEdit.Name = "mnuTableFgisEsnsiEdit";
-			this.mnuTableFgisEsnsiEdit.Size = new System.Drawing.Size(499, 30);
+			this.mnuTableFgisEsnsiEdit.Size = new System.Drawing.Size(615, 30);
 			this.mnuTableFgisEsnsiEdit.Text = "Запись ФГИС ЕСНСИ...";
 			this.mnuTableFgisEsnsiEdit.Click += new System.EventHandler(this.FgisEsnsiEdit_Click);
 			// 
@@ -488,7 +489,7 @@
 			// 
 			this.mnuTableFgisEsnsiCloneToLast.Image = global::DatabaseToolSuite.Properties.Resources.gosuslugi_dublicate24;
 			this.mnuTableFgisEsnsiCloneToLast.Name = "mnuTableFgisEsnsiCloneToLast";
-			this.mnuTableFgisEsnsiCloneToLast.Size = new System.Drawing.Size(499, 30);
+			this.mnuTableFgisEsnsiCloneToLast.Size = new System.Drawing.Size(615, 30);
 			this.mnuTableFgisEsnsiCloneToLast.Text = "Копировать запись ФГИС ЕСНСИ в действующую версию записи";
 			this.mnuTableFgisEsnsiCloneToLast.Click += new System.EventHandler(this.FgisEsnsiCloneToLast_Click);
 			// 
@@ -496,20 +497,20 @@
 			// 
 			this.mnuTableFgisEsnsiRemove.Image = ((System.Drawing.Image)(resources.GetObject("mnuTableFgisEsnsiRemove.Image")));
 			this.mnuTableFgisEsnsiRemove.Name = "mnuTableFgisEsnsiRemove";
-			this.mnuTableFgisEsnsiRemove.Size = new System.Drawing.Size(499, 30);
+			this.mnuTableFgisEsnsiRemove.Size = new System.Drawing.Size(615, 30);
 			this.mnuTableFgisEsnsiRemove.Text = "Удалить запись ФГИС ЕСНСИ";
 			this.mnuTableFgisEsnsiRemove.Click += new System.EventHandler(this.FgisEsnsiRemove_Click);
 			// 
 			// toolStripMenuItem15
 			// 
 			this.toolStripMenuItem15.Name = "toolStripMenuItem15";
-			this.toolStripMenuItem15.Size = new System.Drawing.Size(496, 6);
+			this.toolStripMenuItem15.Size = new System.Drawing.Size(612, 6);
 			// 
 			// mnuTableErvkEdit
 			// 
 			this.mnuTableErvkEdit.Image = global::DatabaseToolSuite.Properties.Resources.economy24;
 			this.mnuTableErvkEdit.Name = "mnuTableErvkEdit";
-			this.mnuTableErvkEdit.Size = new System.Drawing.Size(499, 30);
+			this.mnuTableErvkEdit.Size = new System.Drawing.Size(615, 30);
 			this.mnuTableErvkEdit.Text = "Запись ЕРВК...";
 			this.mnuTableErvkEdit.Click += new System.EventHandler(this.ErvkEdit_Click);
 			// 
@@ -517,7 +518,7 @@
 			// 
 			this.mnuTableErvkCloneToLast.Image = global::DatabaseToolSuite.Properties.Resources.economy_dublicate24;
 			this.mnuTableErvkCloneToLast.Name = "mnuTableErvkCloneToLast";
-			this.mnuTableErvkCloneToLast.Size = new System.Drawing.Size(499, 30);
+			this.mnuTableErvkCloneToLast.Size = new System.Drawing.Size(615, 30);
 			this.mnuTableErvkCloneToLast.Text = "Копировать запись ЕРВК в действующую версию записи";
 			this.mnuTableErvkCloneToLast.Click += new System.EventHandler(this.ErvkCloneToLast_Click);
 			// 
@@ -525,20 +526,20 @@
 			// 
 			this.mnuTableErvkRemove.Image = ((System.Drawing.Image)(resources.GetObject("mnuTableErvkRemove.Image")));
 			this.mnuTableErvkRemove.Name = "mnuTableErvkRemove";
-			this.mnuTableErvkRemove.Size = new System.Drawing.Size(499, 30);
+			this.mnuTableErvkRemove.Size = new System.Drawing.Size(615, 30);
 			this.mnuTableErvkRemove.Text = "Удалить запись ЕРВК";
 			this.mnuTableErvkRemove.Click += new System.EventHandler(this.ErvkRemove_Click);
 			// 
 			// toolStripMenuItem21
 			// 
 			this.toolStripMenuItem21.Name = "toolStripMenuItem21";
-			this.toolStripMenuItem21.Size = new System.Drawing.Size(496, 6);
+			this.toolStripMenuItem21.Size = new System.Drawing.Size(612, 6);
 			// 
 			// mnuTableUrpEdit
 			// 
 			this.mnuTableUrpEdit.Image = global::DatabaseToolSuite.Properties.Resources.emblem24;
 			this.mnuTableUrpEdit.Name = "mnuTableUrpEdit";
-			this.mnuTableUrpEdit.Size = new System.Drawing.Size(499, 30);
+			this.mnuTableUrpEdit.Size = new System.Drawing.Size(615, 30);
 			this.mnuTableUrpEdit.Text = "Запись УРП ГАС ПС...";
 			this.mnuTableUrpEdit.Click += new System.EventHandler(this.UrpEdit_Click);
 			// 
@@ -546,7 +547,7 @@
 			// 
 			this.mnuTableUrpCloneToLast.Image = global::DatabaseToolSuite.Properties.Resources.emblem_dublicate24;
 			this.mnuTableUrpCloneToLast.Name = "mnuTableUrpCloneToLast";
-			this.mnuTableUrpCloneToLast.Size = new System.Drawing.Size(499, 30);
+			this.mnuTableUrpCloneToLast.Size = new System.Drawing.Size(615, 30);
 			this.mnuTableUrpCloneToLast.Text = "Копировать запись УРП ГАС ПС в действующую версию записи";
 			this.mnuTableUrpCloneToLast.Click += new System.EventHandler(this.UrpCloneToLast_Click);
 			// 
@@ -554,7 +555,7 @@
 			// 
 			this.mnuTableUrpRemove.Image = global::DatabaseToolSuite.Properties.Resources.emblem_remove24;
 			this.mnuTableUrpRemove.Name = "mnuTableUrpRemove";
-			this.mnuTableUrpRemove.Size = new System.Drawing.Size(499, 30);
+			this.mnuTableUrpRemove.Size = new System.Drawing.Size(615, 30);
 			this.mnuTableUrpRemove.Text = "Удалить запись УРП ГАС ПС";
 			this.mnuTableUrpRemove.Click += new System.EventHandler(this.UrpRemove_Click);
 			// 
@@ -568,15 +569,16 @@
             this.toolStripMenuItem19,
             this.mnuToolsServise,
             this.mnuToolsExpLawAgenceEdit,
-            this.mnuToolsTableEdit});
+            this.mnuToolsTableEdit,
+            this.mnuToolsEsnsiIdToolStripMenuItem});
 			this.mnuTools.Name = "mnuTools";
-			this.mnuTools.Size = new System.Drawing.Size(66, 23);
+			this.mnuTools.Size = new System.Drawing.Size(81, 27);
 			this.mnuTools.Text = "Сервис";
 			// 
 			// mnuToolsImportFgisEsnsi
 			// 
 			this.mnuToolsImportFgisEsnsi.Name = "mnuToolsImportFgisEsnsi";
-			this.mnuToolsImportFgisEsnsi.Size = new System.Drawing.Size(405, 30);
+			this.mnuToolsImportFgisEsnsi.Size = new System.Drawing.Size(490, 30);
 			this.mnuToolsImportFgisEsnsi.Text = "Импорт данных ФГИС ЕСНСИ...";
 			this.mnuToolsImportFgisEsnsi.Click += new System.EventHandler(this.ToolsImportFgisEsnsi_Click);
 			// 
@@ -584,28 +586,28 @@
 			// 
 			this.mnuToolsImportSubdivision.Image = global::DatabaseToolSuite.Properties.Resources._1C_Yellow24;
 			this.mnuToolsImportSubdivision.Name = "mnuToolsImportSubdivision";
-			this.mnuToolsImportSubdivision.Size = new System.Drawing.Size(405, 30);
+			this.mnuToolsImportSubdivision.Size = new System.Drawing.Size(490, 30);
 			this.mnuToolsImportSubdivision.Text = "Импорт данных из файла 1С...";
 			this.mnuToolsImportSubdivision.Click += new System.EventHandler(this.ToolsImportSubdivision_Click);
 			// 
 			// toolStripMenuItem13
 			// 
 			this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-			this.toolStripMenuItem13.Size = new System.Drawing.Size(402, 6);
+			this.toolStripMenuItem13.Size = new System.Drawing.Size(487, 6);
 			// 
 			// mnuToolsClearCode
 			// 
 			this.mnuToolsClearCode.Name = "mnuToolsClearCode";
 			this.mnuToolsClearCode.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.Delete)));
-			this.mnuToolsClearCode.Size = new System.Drawing.Size(405, 30);
+			this.mnuToolsClearCode.Size = new System.Drawing.Size(490, 30);
 			this.mnuToolsClearCode.Text = "Удалить код подразделения";
 			this.mnuToolsClearCode.Click += new System.EventHandler(this.ToolsClearCode_Click);
 			// 
 			// toolStripMenuItem19
 			// 
 			this.toolStripMenuItem19.Name = "toolStripMenuItem19";
-			this.toolStripMenuItem19.Size = new System.Drawing.Size(402, 6);
+			this.toolStripMenuItem19.Size = new System.Drawing.Size(487, 6);
 			// 
 			// mnuToolsServise
 			// 
@@ -619,14 +621,14 @@
             this.mnuToolsInitializeRtkTables,
             this.mnuToolsFillRtkUrpTable});
 			this.mnuToolsServise.Name = "mnuToolsServise";
-			this.mnuToolsServise.Size = new System.Drawing.Size(405, 30);
+			this.mnuToolsServise.Size = new System.Drawing.Size(490, 30);
 			this.mnuToolsServise.Text = "Сервисные команды";
 			// 
 			// mnuToolsCreateNewVersion
 			// 
 			this.mnuToolsCreateNewVersion.Image = global::DatabaseToolSuite.Properties.Resources.Duplicate24;
 			this.mnuToolsCreateNewVersion.Name = "mnuToolsCreateNewVersion";
-			this.mnuToolsCreateNewVersion.Size = new System.Drawing.Size(499, 30);
+			this.mnuToolsCreateNewVersion.Size = new System.Drawing.Size(615, 30);
 			this.mnuToolsCreateNewVersion.Text = "Аварийное создание новой версии записи...";
 			this.mnuToolsCreateNewVersion.Click += new System.EventHandler(this.CreateVersion_Click);
 			// 
@@ -634,14 +636,14 @@
 			// 
 			this.mnuToolsEditError.Image = global::DatabaseToolSuite.Properties.Resources.Edit24;
 			this.mnuToolsEditError.Name = "mnuToolsEditError";
-			this.mnuToolsEditError.Size = new System.Drawing.Size(499, 30);
+			this.mnuToolsEditError.Size = new System.Drawing.Size(615, 30);
 			this.mnuToolsEditError.Text = "Аварийное исправление ошибки...";
 			this.mnuToolsEditError.Click += new System.EventHandler(this.EditError_Click);
 			// 
 			// mnuToolsFillLogEditDateGasps
 			// 
 			this.mnuToolsFillLogEditDateGasps.Name = "mnuToolsFillLogEditDateGasps";
-			this.mnuToolsFillLogEditDateGasps.Size = new System.Drawing.Size(499, 30);
+			this.mnuToolsFillLogEditDateGasps.Size = new System.Drawing.Size(615, 30);
 			this.mnuToolsFillLogEditDateGasps.Text = "Автозаполнение журнала редактирования записей ГАС ПС";
 			this.mnuToolsFillLogEditDateGasps.Visible = false;
 			this.mnuToolsFillLogEditDateGasps.Click += new System.EventHandler(this.ToolsFillLogEditDateGasps_Click);
@@ -649,7 +651,7 @@
 			// mnuToolsFillLogEditDateFgisEsnsi
 			// 
 			this.mnuToolsFillLogEditDateFgisEsnsi.Name = "mnuToolsFillLogEditDateFgisEsnsi";
-			this.mnuToolsFillLogEditDateFgisEsnsi.Size = new System.Drawing.Size(499, 30);
+			this.mnuToolsFillLogEditDateFgisEsnsi.Size = new System.Drawing.Size(615, 30);
 			this.mnuToolsFillLogEditDateFgisEsnsi.Text = "Автозаполнение журнала редактирования записей ФГИС ЕСНСИ";
 			this.mnuToolsFillLogEditDateFgisEsnsi.Visible = false;
 			this.mnuToolsFillLogEditDateFgisEsnsi.Click += new System.EventHandler(this.ToolsFillLogEditDateFgisEsnsi_Click);
@@ -657,7 +659,7 @@
 			// mnuToolsFillLogEditDateErvk
 			// 
 			this.mnuToolsFillLogEditDateErvk.Name = "mnuToolsFillLogEditDateErvk";
-			this.mnuToolsFillLogEditDateErvk.Size = new System.Drawing.Size(499, 30);
+			this.mnuToolsFillLogEditDateErvk.Size = new System.Drawing.Size(615, 30);
 			this.mnuToolsFillLogEditDateErvk.Text = "Автозаполнение журнала редактирования записей ЕРВК";
 			this.mnuToolsFillLogEditDateErvk.Visible = false;
 			this.mnuToolsFillLogEditDateErvk.Click += new System.EventHandler(this.ToolsFillLogEditDateErvk_Click);
@@ -665,13 +667,13 @@
 			// toolStripMenuItem20
 			// 
 			this.toolStripMenuItem20.Name = "toolStripMenuItem20";
-			this.toolStripMenuItem20.Size = new System.Drawing.Size(496, 6);
+			this.toolStripMenuItem20.Size = new System.Drawing.Size(612, 6);
 			this.toolStripMenuItem20.Visible = false;
 			// 
 			// mnuToolsInitializeRtkTables
 			// 
 			this.mnuToolsInitializeRtkTables.Name = "mnuToolsInitializeRtkTables";
-			this.mnuToolsInitializeRtkTables.Size = new System.Drawing.Size(499, 30);
+			this.mnuToolsInitializeRtkTables.Size = new System.Drawing.Size(615, 30);
 			this.mnuToolsInitializeRtkTables.Text = "Инициализация таблиц в основной базе данных";
 			this.mnuToolsInitializeRtkTables.Visible = false;
 			this.mnuToolsInitializeRtkTables.Click += new System.EventHandler(this.ToolsInitializeRtkTables_Click);
@@ -679,7 +681,7 @@
 			// mnuToolsFillRtkUrpTable
 			// 
 			this.mnuToolsFillRtkUrpTable.Name = "mnuToolsFillRtkUrpTable";
-			this.mnuToolsFillRtkUrpTable.Size = new System.Drawing.Size(499, 30);
+			this.mnuToolsFillRtkUrpTable.Size = new System.Drawing.Size(615, 30);
 			this.mnuToolsFillRtkUrpTable.Text = "Автодополнение основной базы сведениями УРП ГАС ПС";
 			this.mnuToolsFillRtkUrpTable.Visible = false;
 			this.mnuToolsFillRtkUrpTable.Click += new System.EventHandler(this.ToolsFillRtkUrpTable_Click);
@@ -687,7 +689,7 @@
 			// mnuToolsExpLawAgenceEdit
 			// 
 			this.mnuToolsExpLawAgenceEdit.Name = "mnuToolsExpLawAgenceEdit";
-			this.mnuToolsExpLawAgenceEdit.Size = new System.Drawing.Size(405, 30);
+			this.mnuToolsExpLawAgenceEdit.Size = new System.Drawing.Size(490, 30);
 			this.mnuToolsExpLawAgenceEdit.Text = "mnuToolsExpLawAgenceEdit";
 			this.mnuToolsExpLawAgenceEdit.Visible = false;
 			this.mnuToolsExpLawAgenceEdit.Click += new System.EventHandler(this.ToolsExpLawAgenceEdit_Click);
@@ -695,10 +697,18 @@
 			// mnuToolsTableEdit
 			// 
 			this.mnuToolsTableEdit.Name = "mnuToolsTableEdit";
-			this.mnuToolsTableEdit.Size = new System.Drawing.Size(405, 30);
+			this.mnuToolsTableEdit.Size = new System.Drawing.Size(490, 30);
 			this.mnuToolsTableEdit.Text = "mnuToolsTableEdit";
 			this.mnuToolsTableEdit.Visible = false;
 			this.mnuToolsTableEdit.Click += new System.EventHandler(this.ToolsTableEdit_Click);
+			// 
+			// mnuToolsEsnsiIdToolStripMenuItem
+			// 
+			this.mnuToolsEsnsiIdToolStripMenuItem.Name = "mnuToolsEsnsiIdToolStripMenuItem";
+			this.mnuToolsEsnsiIdToolStripMenuItem.Size = new System.Drawing.Size(490, 30);
+			this.mnuToolsEsnsiIdToolStripMenuItem.Text = "mnuToolsEsnsiId";
+			this.mnuToolsEsnsiIdToolStripMenuItem.Visible = false;
+			this.mnuToolsEsnsiIdToolStripMenuItem.Click += new System.EventHandler(this.mnuToolsEsnsiIdToolStripMenuItem_Click);
 			// 
 			// mnuHelp
 			// 
@@ -707,27 +717,27 @@
             this.toolStripMenuItem5,
             this.mnuHelpAbout});
 			this.mnuHelp.Name = "mnuHelp";
-			this.mnuHelp.Size = new System.Drawing.Size(74, 23);
+			this.mnuHelp.Size = new System.Drawing.Size(90, 27);
 			this.mnuHelp.Text = "Справка";
 			// 
 			// mnuHelpStatistic
 			// 
 			this.mnuHelpStatistic.Image = global::DatabaseToolSuite.Properties.Resources.Statistics24;
 			this.mnuHelpStatistic.Name = "mnuHelpStatistic";
-			this.mnuHelpStatistic.Size = new System.Drawing.Size(181, 30);
+			this.mnuHelpStatistic.Size = new System.Drawing.Size(217, 30);
 			this.mnuHelpStatistic.Text = "Статистика";
 			this.mnuHelpStatistic.Click += new System.EventHandler(this.HelpStatistic_Click);
 			// 
 			// toolStripMenuItem5
 			// 
 			this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-			this.toolStripMenuItem5.Size = new System.Drawing.Size(178, 6);
+			this.toolStripMenuItem5.Size = new System.Drawing.Size(214, 6);
 			// 
 			// mnuHelpAbout
 			// 
 			this.mnuHelpAbout.Image = global::DatabaseToolSuite.Properties.Resources.About24;
 			this.mnuHelpAbout.Name = "mnuHelpAbout";
-			this.mnuHelpAbout.Size = new System.Drawing.Size(181, 30);
+			this.mnuHelpAbout.Size = new System.Drawing.Size(217, 30);
 			this.mnuHelpAbout.Text = "О программе...";
 			this.mnuHelpAbout.Click += new System.EventHandler(this.HelpAbout_Click);
 			// 
@@ -748,14 +758,14 @@
 			// 
 			this.rowCountStatusLabel.AutoSize = false;
 			this.rowCountStatusLabel.Name = "rowCountStatusLabel";
-			this.rowCountStatusLabel.Size = new System.Drawing.Size(200, 27);
+			this.rowCountStatusLabel.Size = new System.Drawing.Size(200, 26);
 			this.rowCountStatusLabel.Text = "##";
 			this.rowCountStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// selectedRowStatusLabel
 			// 
 			this.selectedRowStatusLabel.Name = "selectedRowStatusLabel";
-			this.selectedRowStatusLabel.Size = new System.Drawing.Size(133, 27);
+			this.selectedRowStatusLabel.Size = new System.Drawing.Size(169, 26);
 			this.selectedRowStatusLabel.Text = "selectedRowStatusLabel";
 			// 
 			// filterPanel
@@ -799,9 +809,9 @@
 			// 
 			this.filterErvkOnlyRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.filterErvkOnlyRadioButton.AutoSize = true;
-			this.filterErvkOnlyRadioButton.Location = new System.Drawing.Point(803, 99);
+			this.filterErvkOnlyRadioButton.Location = new System.Drawing.Point(789, 99);
 			this.filterErvkOnlyRadioButton.Name = "filterErvkOnlyRadioButton";
-			this.filterErvkOnlyRadioButton.Size = new System.Drawing.Size(62, 21);
+			this.filterErvkOnlyRadioButton.Size = new System.Drawing.Size(76, 24);
 			this.filterErvkOnlyRadioButton.TabIndex = 43;
 			this.filterErvkOnlyRadioButton.TabStop = true;
 			this.filterErvkOnlyRadioButton.Text = "ЕРВК";
@@ -812,9 +822,9 @@
 			// 
 			this.filterFgisEsnsiOnlyRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.filterFgisEsnsiOnlyRadioButton.AutoSize = true;
-			this.filterFgisEsnsiOnlyRadioButton.Location = new System.Drawing.Point(666, 99);
+			this.filterFgisEsnsiOnlyRadioButton.Location = new System.Drawing.Point(639, 99);
 			this.filterFgisEsnsiOnlyRadioButton.Name = "filterFgisEsnsiOnlyRadioButton";
-			this.filterFgisEsnsiOnlyRadioButton.Size = new System.Drawing.Size(117, 21);
+			this.filterFgisEsnsiOnlyRadioButton.Size = new System.Drawing.Size(144, 24);
 			this.filterFgisEsnsiOnlyRadioButton.TabIndex = 42;
 			this.filterFgisEsnsiOnlyRadioButton.TabStop = true;
 			this.filterFgisEsnsiOnlyRadioButton.Text = "ФГИС ЕСНСИ";
@@ -826,9 +836,9 @@
 			this.filterAllRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.filterAllRadioButton.AutoSize = true;
 			this.filterAllRadioButton.Checked = true;
-			this.filterAllRadioButton.Location = new System.Drawing.Point(533, 99);
+			this.filterAllRadioButton.Location = new System.Drawing.Point(509, 99);
 			this.filterAllRadioButton.Name = "filterAllRadioButton";
-			this.filterAllRadioButton.Size = new System.Drawing.Size(100, 21);
+			this.filterAllRadioButton.Size = new System.Drawing.Size(124, 24);
 			this.filterAllRadioButton.TabIndex = 41;
 			this.filterAllRadioButton.TabStop = true;
 			this.filterAllRadioButton.Text = "Все записи";
@@ -846,15 +856,6 @@
 			this.cleanFilterButton.Text = "Очистить";
 			this.cleanFilterButton.Click += new System.EventHandler(this.CleanFilterButton_Click);
 			// 
-			// filterCodeNumericTextBox
-			// 
-			this.filterCodeNumericTextBox.Location = new System.Drawing.Point(9, 142);
-			this.filterCodeNumericTextBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.filterCodeNumericTextBox.Name = "filterCodeNumericTextBox";
-			this.filterCodeNumericTextBox.Size = new System.Drawing.Size(196, 23);
-			this.filterCodeNumericTextBox.TabIndex = 6;
-			this.filterCodeNumericTextBox.TextChanged += new System.EventHandler(this.Filter_ParametersChanged);
-			// 
 			// label1
 			// 
 			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -862,7 +863,7 @@
 			this.label1.Location = new System.Drawing.Point(214, 114);
 			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(217, 17);
+			this.label1.Size = new System.Drawing.Size(277, 20);
 			this.label1.TabIndex = 40;
 			this.label1.Text = "Наименование подразделения:";
 			// 
@@ -873,7 +874,7 @@
 			this.label2.Location = new System.Drawing.Point(5, 114);
 			this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(144, 17);
+			this.label2.Size = new System.Drawing.Size(185, 20);
 			this.label2.TabIndex = 39;
 			this.label2.Text = "Код подразделения:";
 			// 
@@ -884,7 +885,7 @@
 			this.filterNameTextBox.Location = new System.Drawing.Point(216, 142);
 			this.filterNameTextBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.filterNameTextBox.Name = "filterNameTextBox";
-			this.filterNameTextBox.Size = new System.Drawing.Size(514, 23);
+			this.filterNameTextBox.Size = new System.Drawing.Size(514, 27);
 			this.filterNameTextBox.TabIndex = 7;
 			this.filterNameTextBox.TextChanged += new System.EventHandler(this.Filter_ParametersChanged);
 			// 
@@ -892,10 +893,10 @@
 			// 
 			this.filterLockCodeViewCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.filterLockCodeViewCheckBox.AutoSize = true;
-			this.filterLockCodeViewCheckBox.Location = new System.Drawing.Point(650, 70);
+			this.filterLockCodeViewCheckBox.Location = new System.Drawing.Point(594, 70);
 			this.filterLockCodeViewCheckBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.filterLockCodeViewCheckBox.Name = "filterLockCodeViewCheckBox";
-			this.filterLockCodeViewCheckBox.Size = new System.Drawing.Size(214, 21);
+			this.filterLockCodeViewCheckBox.Size = new System.Drawing.Size(270, 24);
 			this.filterLockCodeViewCheckBox.TabIndex = 5;
 			this.filterLockCodeViewCheckBox.Text = "Включить заблокированные";
 			this.filterLockCodeViewCheckBox.UseVisualStyleBackColor = true;
@@ -907,51 +908,9 @@
 			this.okatoLabel.Location = new System.Drawing.Point(5, 31);
 			this.okatoLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.okatoLabel.Name = "okatoLabel";
-			this.okatoLabel.Size = new System.Drawing.Size(90, 17);
+			this.okatoLabel.Size = new System.Drawing.Size(111, 20);
 			this.okatoLabel.TabIndex = 35;
 			this.okatoLabel.Text = "Код ОКАТО:";
-			// 
-			// filterAuthorityComboBox
-			// 
-			this.filterAuthorityComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.filterAuthorityComboBox.Code = "";
-			this.filterAuthorityComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.filterAuthorityComboBox.DropDownHeight = 424;
-			this.filterAuthorityComboBox.DropDownWidth = 80;
-			this.filterAuthorityComboBox.FormattingEnabled = true;
-			this.filterAuthorityComboBox.Id = ((long)(-1));
-			this.filterAuthorityComboBox.IntegralHeight = false;
-			this.filterAuthorityComboBox.ItemHeight = 21;
-			this.filterAuthorityComboBox.Location = new System.Drawing.Point(134, 66);
-			this.filterAuthorityComboBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.filterAuthorityComboBox.MaxDropDownItems = 20;
-			this.filterAuthorityComboBox.Name = "filterAuthorityComboBox";
-			this.filterAuthorityComboBox.SelectedItem = null;
-			this.filterAuthorityComboBox.Size = new System.Drawing.Size(409, 27);
-			this.filterAuthorityComboBox.TabIndex = 4;
-			this.filterAuthorityComboBox.SelectedIndexChanged += new System.EventHandler(this.Filter_ParametersChanged);
-			// 
-			// filterOkatoComboBox
-			// 
-			this.filterOkatoComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.filterOkatoComboBox.Code = "";
-			this.filterOkatoComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.filterOkatoComboBox.DropDownHeight = 424;
-			this.filterOkatoComboBox.DropDownWidth = 80;
-			this.filterOkatoComboBox.FormattingEnabled = true;
-			this.filterOkatoComboBox.Id = ((long)(-1));
-			this.filterOkatoComboBox.IntegralHeight = false;
-			this.filterOkatoComboBox.ItemHeight = 21;
-			this.filterOkatoComboBox.Location = new System.Drawing.Point(134, 26);
-			this.filterOkatoComboBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.filterOkatoComboBox.MaxDropDownItems = 20;
-			this.filterOkatoComboBox.Name = "filterOkatoComboBox";
-			this.filterOkatoComboBox.SelectedItem = null;
-			this.filterOkatoComboBox.Size = new System.Drawing.Size(730, 27);
-			this.filterOkatoComboBox.TabIndex = 3;
-			this.filterOkatoComboBox.SelectedIndexChanged += new System.EventHandler(this.Filter_ParametersChanged);
 			// 
 			// authorityLabel
 			// 
@@ -959,7 +918,7 @@
 			this.authorityLabel.Location = new System.Drawing.Point(5, 71);
 			this.authorityLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.authorityLabel.Name = "authorityLabel";
-			this.authorityLabel.Size = new System.Drawing.Size(93, 17);
+			this.authorityLabel.Size = new System.Drawing.Size(121, 20);
 			this.authorityLabel.TabIndex = 0;
 			this.authorityLabel.Text = "Вид органов:";
 			// 
@@ -988,13 +947,13 @@
             this.toolStripMenuItem22,
             this.mnuContextUpdate});
 			this.contextMenuTable.Name = "contextMenuTable";
-			this.contextMenuTable.Size = new System.Drawing.Size(500, 406);
+			this.contextMenuTable.Size = new System.Drawing.Size(606, 406);
 			// 
 			// mnuContextNewOrganization
 			// 
 			this.mnuContextNewOrganization.Image = global::DatabaseToolSuite.Properties.Resources.New24;
 			this.mnuContextNewOrganization.Name = "mnuContextNewOrganization";
-			this.mnuContextNewOrganization.Size = new System.Drawing.Size(499, 30);
+			this.mnuContextNewOrganization.Size = new System.Drawing.Size(605, 30);
 			this.mnuContextNewOrganization.Text = "Создать запись...";
 			this.mnuContextNewOrganization.Click += new System.EventHandler(this.NewOrganization_Click);
 			// 
@@ -1002,59 +961,59 @@
 			// 
 			this.mnuContextCreateOrganization.Image = global::DatabaseToolSuite.Properties.Resources.NewSeries24;
 			this.mnuContextCreateOrganization.Name = "mnuContextCreateOrganization";
-			this.mnuContextCreateOrganization.Size = new System.Drawing.Size(499, 30);
+			this.mnuContextCreateOrganization.Size = new System.Drawing.Size(605, 30);
 			this.mnuContextCreateOrganization.Text = "Создать запись на основе текущей...";
 			this.mnuContextCreateOrganization.Click += new System.EventHandler(this.CreateOrganization_Click);
 			// 
 			// toolStripMenuItem8
 			// 
 			this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-			this.toolStripMenuItem8.Size = new System.Drawing.Size(496, 6);
+			this.toolStripMenuItem8.Size = new System.Drawing.Size(602, 6);
 			// 
 			// mnuContextCreateNewVersion
 			// 
 			this.mnuContextCreateNewVersion.Image = global::DatabaseToolSuite.Properties.Resources.Duplicate24;
 			this.mnuContextCreateNewVersion.Name = "mnuContextCreateNewVersion";
-			this.mnuContextCreateNewVersion.Size = new System.Drawing.Size(499, 30);
+			this.mnuContextCreateNewVersion.Size = new System.Drawing.Size(605, 30);
 			this.mnuContextCreateNewVersion.Text = "Создать новую версию записи...";
 			this.mnuContextCreateNewVersion.Click += new System.EventHandler(this.CreateVersion_Click);
 			// 
 			// toolStripMenuItem9
 			// 
 			this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-			this.toolStripMenuItem9.Size = new System.Drawing.Size(496, 6);
+			this.toolStripMenuItem9.Size = new System.Drawing.Size(602, 6);
 			// 
 			// mnuContextRemoveOrganization
 			// 
 			this.mnuContextRemoveOrganization.Image = global::DatabaseToolSuite.Properties.Resources.Delete24;
 			this.mnuContextRemoveOrganization.Name = "mnuContextRemoveOrganization";
-			this.mnuContextRemoveOrganization.Size = new System.Drawing.Size(499, 30);
+			this.mnuContextRemoveOrganization.Size = new System.Drawing.Size(605, 30);
 			this.mnuContextRemoveOrganization.Text = "Заблокировать запись...";
 			this.mnuContextRemoveOrganization.Click += new System.EventHandler(this.RemoveOrganization_Click);
 			// 
 			// toolStripMenuItem10
 			// 
 			this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-			this.toolStripMenuItem10.Size = new System.Drawing.Size(496, 6);
+			this.toolStripMenuItem10.Size = new System.Drawing.Size(602, 6);
 			// 
 			// mnuContextEditError
 			// 
 			this.mnuContextEditError.Image = global::DatabaseToolSuite.Properties.Resources.Edit24;
 			this.mnuContextEditError.Name = "mnuContextEditError";
-			this.mnuContextEditError.Size = new System.Drawing.Size(499, 30);
+			this.mnuContextEditError.Size = new System.Drawing.Size(605, 30);
 			this.mnuContextEditError.Text = "Исправить ошибку...";
 			this.mnuContextEditError.Click += new System.EventHandler(this.EditError_Click);
 			// 
 			// toolStripMenuItem12
 			// 
 			this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-			this.toolStripMenuItem12.Size = new System.Drawing.Size(496, 6);
+			this.toolStripMenuItem12.Size = new System.Drawing.Size(602, 6);
 			// 
 			// mnuContextFgisEsnsiEdit
 			// 
 			this.mnuContextFgisEsnsiEdit.Image = global::DatabaseToolSuite.Properties.Resources.gosuslugi24;
 			this.mnuContextFgisEsnsiEdit.Name = "mnuContextFgisEsnsiEdit";
-			this.mnuContextFgisEsnsiEdit.Size = new System.Drawing.Size(499, 30);
+			this.mnuContextFgisEsnsiEdit.Size = new System.Drawing.Size(605, 30);
 			this.mnuContextFgisEsnsiEdit.Text = "Запись ФГИС ЕСНСИ...";
 			this.mnuContextFgisEsnsiEdit.Click += new System.EventHandler(this.FgisEsnsiEdit_Click);
 			// 
@@ -1062,20 +1021,20 @@
 			// 
 			this.mnuContextFgisEsnsiCloneToLast.Image = global::DatabaseToolSuite.Properties.Resources.gosuslugi_dublicate24;
 			this.mnuContextFgisEsnsiCloneToLast.Name = "mnuContextFgisEsnsiCloneToLast";
-			this.mnuContextFgisEsnsiCloneToLast.Size = new System.Drawing.Size(499, 30);
+			this.mnuContextFgisEsnsiCloneToLast.Size = new System.Drawing.Size(605, 30);
 			this.mnuContextFgisEsnsiCloneToLast.Text = "Копировать запись ФГИС ЕСНСИ в действующую версию записи";
 			this.mnuContextFgisEsnsiCloneToLast.Click += new System.EventHandler(this.FgisEsnsiCloneToLast_Click);
 			// 
 			// toolStripMenuItem14
 			// 
 			this.toolStripMenuItem14.Name = "toolStripMenuItem14";
-			this.toolStripMenuItem14.Size = new System.Drawing.Size(496, 6);
+			this.toolStripMenuItem14.Size = new System.Drawing.Size(602, 6);
 			// 
 			// mnuContextErvkEdit
 			// 
 			this.mnuContextErvkEdit.Image = global::DatabaseToolSuite.Properties.Resources.economy24;
 			this.mnuContextErvkEdit.Name = "mnuContextErvkEdit";
-			this.mnuContextErvkEdit.Size = new System.Drawing.Size(499, 30);
+			this.mnuContextErvkEdit.Size = new System.Drawing.Size(605, 30);
 			this.mnuContextErvkEdit.Text = "Запись ЕРВК...";
 			this.mnuContextErvkEdit.Click += new System.EventHandler(this.ErvkEdit_Click);
 			// 
@@ -1083,20 +1042,20 @@
 			// 
 			this.mnuContextErvkCloneToLast.Image = global::DatabaseToolSuite.Properties.Resources.economy_dublicate24;
 			this.mnuContextErvkCloneToLast.Name = "mnuContextErvkCloneToLast";
-			this.mnuContextErvkCloneToLast.Size = new System.Drawing.Size(499, 30);
+			this.mnuContextErvkCloneToLast.Size = new System.Drawing.Size(605, 30);
 			this.mnuContextErvkCloneToLast.Text = "Копировать запись ЕРВК в действующую версию записи";
 			this.mnuContextErvkCloneToLast.Click += new System.EventHandler(this.ErvkCloneToLast_Click);
 			// 
 			// toolStripMenuItem16
 			// 
 			this.toolStripMenuItem16.Name = "toolStripMenuItem16";
-			this.toolStripMenuItem16.Size = new System.Drawing.Size(496, 6);
+			this.toolStripMenuItem16.Size = new System.Drawing.Size(602, 6);
 			// 
 			// mnuContextUrpEdit
 			// 
 			this.mnuContextUrpEdit.Image = global::DatabaseToolSuite.Properties.Resources.emblem24;
 			this.mnuContextUrpEdit.Name = "mnuContextUrpEdit";
-			this.mnuContextUrpEdit.Size = new System.Drawing.Size(499, 30);
+			this.mnuContextUrpEdit.Size = new System.Drawing.Size(605, 30);
 			this.mnuContextUrpEdit.Text = "Запись УРП ГАС ПС...";
 			this.mnuContextUrpEdit.Click += new System.EventHandler(this.UrpEdit_Click);
 			// 
@@ -1104,20 +1063,20 @@
 			// 
 			this.mnuContextUrpCloneToLast.Image = global::DatabaseToolSuite.Properties.Resources.emblem_dublicate24;
 			this.mnuContextUrpCloneToLast.Name = "mnuContextUrpCloneToLast";
-			this.mnuContextUrpCloneToLast.Size = new System.Drawing.Size(499, 30);
+			this.mnuContextUrpCloneToLast.Size = new System.Drawing.Size(605, 30);
 			this.mnuContextUrpCloneToLast.Text = "Копировать запись УРП ГАС ПС в действующую версию записи";
 			this.mnuContextUrpCloneToLast.Click += new System.EventHandler(this.UrpCloneToLast_Click);
 			// 
 			// toolStripMenuItem22
 			// 
 			this.toolStripMenuItem22.Name = "toolStripMenuItem22";
-			this.toolStripMenuItem22.Size = new System.Drawing.Size(496, 6);
+			this.toolStripMenuItem22.Size = new System.Drawing.Size(602, 6);
 			// 
 			// mnuContextUpdate
 			// 
 			this.mnuContextUpdate.Image = global::DatabaseToolSuite.Properties.Resources.Update24;
 			this.mnuContextUpdate.Name = "mnuContextUpdate";
-			this.mnuContextUpdate.Size = new System.Drawing.Size(499, 30);
+			this.mnuContextUpdate.Size = new System.Drawing.Size(605, 30);
 			this.mnuContextUpdate.Text = "Обновить таблицу";
 			this.mnuContextUpdate.Click += new System.EventHandler(this.Filter_ParametersChanged);
 			// 
@@ -1148,7 +1107,7 @@
             this.mnuTableUrpRemoveButton,
             this.toolStripSeparator7,
             this.mnuTableRefreshButton});
-			this.mainToolStripBar.Location = new System.Drawing.Point(0, 27);
+			this.mainToolStripBar.Location = new System.Drawing.Point(0, 31);
 			this.mainToolStripBar.Name = "mainToolStripBar";
 			this.mainToolStripBar.Size = new System.Drawing.Size(1228, 39);
 			this.mainToolStripBar.TabIndex = 9;
@@ -1370,7 +1329,7 @@
             this.toolStripButton20,
             this.toolStripButton21,
             this.toolStripButton22});
-			this.additionalToolStripBar.Location = new System.Drawing.Point(0, 66);
+			this.additionalToolStripBar.Location = new System.Drawing.Point(0, 70);
 			this.additionalToolStripBar.Name = "additionalToolStripBar";
 			this.additionalToolStripBar.Size = new System.Drawing.Size(1228, 31);
 			this.additionalToolStripBar.TabIndex = 10;
@@ -1382,7 +1341,7 @@
 			this.toolStripButton1.Image = global::DatabaseToolSuite.Properties.Resources.bt01;
 			this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton1.Name = "toolStripButton1";
-			this.toolStripButton1.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton1.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton1.Tag = "1";
 			this.toolStripButton1.Text = "Генеральная прокуратура";
 			this.toolStripButton1.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1398,7 +1357,7 @@
 			this.toolStripButton2.Image = global::DatabaseToolSuite.Properties.Resources.bt02;
 			this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton2.Name = "toolStripButton2";
-			this.toolStripButton2.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton2.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton2.Tag = "2";
 			this.toolStripButton2.Text = "Прокуратура субъекта";
 			this.toolStripButton2.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1409,7 +1368,7 @@
 			this.toolStripButton3.Image = global::DatabaseToolSuite.Properties.Resources.bt03;
 			this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton3.Name = "toolStripButton3";
-			this.toolStripButton3.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton3.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton3.Tag = "3";
 			this.toolStripButton3.Text = "Районная прокуратура";
 			this.toolStripButton3.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1420,7 +1379,7 @@
 			this.toolStripButton4.Image = global::DatabaseToolSuite.Properties.Resources.bt04;
 			this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton4.Name = "toolStripButton4";
-			this.toolStripButton4.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton4.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton4.Tag = "4";
 			this.toolStripButton4.Text = "Межрайонная прокуратура";
 			this.toolStripButton4.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1431,7 +1390,7 @@
 			this.toolStripButton5.Image = global::DatabaseToolSuite.Properties.Resources.bt05;
 			this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton5.Name = "toolStripButton5";
-			this.toolStripButton5.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton5.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton5.Tag = "5";
 			this.toolStripButton5.Text = "Специализированная прокуратура субъекта";
 			this.toolStripButton5.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1442,7 +1401,7 @@
 			this.toolStripButton6.Image = global::DatabaseToolSuite.Properties.Resources.bt06;
 			this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton6.Name = "toolStripButton6";
-			this.toolStripButton6.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton6.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton6.Tag = "6";
 			this.toolStripButton6.Text = "Межрайонная специализированная прокуратура";
 			this.toolStripButton6.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1453,7 +1412,7 @@
 			this.toolStripButton7.Image = global::DatabaseToolSuite.Properties.Resources.bt07;
 			this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton7.Name = "toolStripButton7";
-			this.toolStripButton7.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton7.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton7.Tag = "7";
 			this.toolStripButton7.Text = "Городская прокуратура";
 			this.toolStripButton7.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1464,7 +1423,7 @@
 			this.toolStripButton8.Image = global::DatabaseToolSuite.Properties.Resources.bt08;
 			this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton8.Name = "toolStripButton8";
-			this.toolStripButton8.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton8.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton8.Tag = "8";
 			this.toolStripButton8.Text = "Окружная прокуратура";
 			this.toolStripButton8.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1475,7 +1434,7 @@
 			this.toolStripButton9.Image = global::DatabaseToolSuite.Properties.Resources.bt09;
 			this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton9.Name = "toolStripButton9";
-			this.toolStripButton9.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton9.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton9.Tag = "9";
 			this.toolStripButton9.Text = "Городская районная прокуратура";
 			this.toolStripButton9.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1491,7 +1450,7 @@
 			this.toolStripButton10.Image = global::DatabaseToolSuite.Properties.Resources.bt10;
 			this.toolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton10.Name = "toolStripButton10";
-			this.toolStripButton10.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton10.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton10.Tag = "10";
 			this.toolStripButton10.Text = "Специализированная прокуратура";
 			this.toolStripButton10.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1502,7 +1461,7 @@
 			this.toolStripButton11.Image = global::DatabaseToolSuite.Properties.Resources.bt11;
 			this.toolStripButton11.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton11.Name = "toolStripButton11";
-			this.toolStripButton11.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton11.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton11.Tag = "11";
 			this.toolStripButton11.Text = "Специализированная прокуратура на правах районной";
 			this.toolStripButton11.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1518,7 +1477,7 @@
 			this.toolStripButton12.Image = global::DatabaseToolSuite.Properties.Resources.bt12;
 			this.toolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton12.Name = "toolStripButton12";
-			this.toolStripButton12.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton12.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton12.Tag = "12";
 			this.toolStripButton12.Text = "Главная военная прокуратура";
 			this.toolStripButton12.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1529,7 +1488,7 @@
 			this.toolStripButton13.Image = global::DatabaseToolSuite.Properties.Resources.bt13;
 			this.toolStripButton13.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton13.Name = "toolStripButton13";
-			this.toolStripButton13.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton13.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton13.Tag = "13";
 			this.toolStripButton13.Text = "Военная прокуратура окружного звена";
 			this.toolStripButton13.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1540,7 +1499,7 @@
 			this.toolStripButton14.Image = global::DatabaseToolSuite.Properties.Resources.bt14;
 			this.toolStripButton14.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton14.Name = "toolStripButton14";
-			this.toolStripButton14.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton14.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton14.Tag = "14";
 			this.toolStripButton14.Text = "Военная прокуратура";
 			this.toolStripButton14.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1556,7 +1515,7 @@
 			this.toolStripButton15.Image = global::DatabaseToolSuite.Properties.Resources.bt15;
 			this.toolStripButton15.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton15.Name = "toolStripButton15";
-			this.toolStripButton15.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton15.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton15.Tag = "15";
 			this.toolStripButton15.Text = "Центральный аппарат";
 			this.toolStripButton15.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1567,7 +1526,7 @@
 			this.toolStripButton16.Image = global::DatabaseToolSuite.Properties.Resources.bt16;
 			this.toolStripButton16.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton16.Name = "toolStripButton16";
-			this.toolStripButton16.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton16.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton16.Tag = "16";
 			this.toolStripButton16.Text = "Аппарат";
 			this.toolStripButton16.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1578,7 +1537,7 @@
 			this.toolStripButton17.Image = global::DatabaseToolSuite.Properties.Resources.bt17;
 			this.toolStripButton17.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton17.Name = "toolStripButton17";
-			this.toolStripButton17.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton17.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton17.Tag = "17";
 			this.toolStripButton17.Text = "Главное управление";
 			this.toolStripButton17.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1589,7 +1548,7 @@
 			this.toolStripButton18.Image = global::DatabaseToolSuite.Properties.Resources.bt18;
 			this.toolStripButton18.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton18.Name = "toolStripButton18";
-			this.toolStripButton18.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton18.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton18.Tag = "18";
 			this.toolStripButton18.Text = "Управление";
 			this.toolStripButton18.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1600,7 +1559,7 @@
 			this.toolStripButton19.Image = global::DatabaseToolSuite.Properties.Resources.bt19;
 			this.toolStripButton19.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton19.Name = "toolStripButton19";
-			this.toolStripButton19.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton19.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton19.Tag = "19";
 			this.toolStripButton19.Text = "Отдел";
 			this.toolStripButton19.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1611,7 +1570,7 @@
 			this.toolStripButton20.Image = global::DatabaseToolSuite.Properties.Resources.bt20;
 			this.toolStripButton20.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton20.Name = "toolStripButton20";
-			this.toolStripButton20.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton20.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton20.Tag = "20";
 			this.toolStripButton20.Text = "Руководитель";
 			this.toolStripButton20.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1622,7 +1581,7 @@
 			this.toolStripButton21.Image = global::DatabaseToolSuite.Properties.Resources.bt21;
 			this.toolStripButton21.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton21.Name = "toolStripButton21";
-			this.toolStripButton21.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton21.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton21.Tag = "21";
 			this.toolStripButton21.Text = "Старший помощник";
 			this.toolStripButton21.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
@@ -1633,10 +1592,61 @@
 			this.toolStripButton22.Image = global::DatabaseToolSuite.Properties.Resources.bt22;
 			this.toolStripButton22.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton22.Name = "toolStripButton22";
-			this.toolStripButton22.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton22.Size = new System.Drawing.Size(29, 28);
 			this.toolStripButton22.Tag = "22";
 			this.toolStripButton22.Text = "Помощник";
 			this.toolStripButton22.Click += new System.EventHandler(this.UrpLawAgencyTypeEditButton_Click);
+			// 
+			// filterCodeNumericTextBox
+			// 
+			this.filterCodeNumericTextBox.Location = new System.Drawing.Point(9, 142);
+			this.filterCodeNumericTextBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.filterCodeNumericTextBox.Name = "filterCodeNumericTextBox";
+			this.filterCodeNumericTextBox.Size = new System.Drawing.Size(196, 27);
+			this.filterCodeNumericTextBox.TabIndex = 6;
+			this.filterCodeNumericTextBox.TextChanged += new System.EventHandler(this.Filter_ParametersChanged);
+			// 
+			// filterAuthorityComboBox
+			// 
+			this.filterAuthorityComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.filterAuthorityComboBox.Code = "";
+			this.filterAuthorityComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+			this.filterAuthorityComboBox.DropDownHeight = 504;
+			this.filterAuthorityComboBox.DropDownWidth = 80;
+			this.filterAuthorityComboBox.FormattingEnabled = true;
+			this.filterAuthorityComboBox.Id = ((long)(-1));
+			this.filterAuthorityComboBox.IntegralHeight = false;
+			this.filterAuthorityComboBox.ItemHeight = 25;
+			this.filterAuthorityComboBox.Location = new System.Drawing.Point(134, 66);
+			this.filterAuthorityComboBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.filterAuthorityComboBox.MaxDropDownItems = 20;
+			this.filterAuthorityComboBox.Name = "filterAuthorityComboBox";
+			this.filterAuthorityComboBox.SelectedItem = null;
+			this.filterAuthorityComboBox.Size = new System.Drawing.Size(409, 31);
+			this.filterAuthorityComboBox.TabIndex = 4;
+			this.filterAuthorityComboBox.SelectedIndexChanged += new System.EventHandler(this.Filter_ParametersChanged);
+			// 
+			// filterOkatoComboBox
+			// 
+			this.filterOkatoComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.filterOkatoComboBox.Code = "";
+			this.filterOkatoComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+			this.filterOkatoComboBox.DropDownHeight = 504;
+			this.filterOkatoComboBox.DropDownWidth = 80;
+			this.filterOkatoComboBox.FormattingEnabled = true;
+			this.filterOkatoComboBox.Id = ((long)(-1));
+			this.filterOkatoComboBox.IntegralHeight = false;
+			this.filterOkatoComboBox.ItemHeight = 25;
+			this.filterOkatoComboBox.Location = new System.Drawing.Point(134, 26);
+			this.filterOkatoComboBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.filterOkatoComboBox.MaxDropDownItems = 20;
+			this.filterOkatoComboBox.Name = "filterOkatoComboBox";
+			this.filterOkatoComboBox.SelectedItem = null;
+			this.filterOkatoComboBox.Size = new System.Drawing.Size(730, 31);
+			this.filterOkatoComboBox.TabIndex = 3;
+			this.filterOkatoComboBox.SelectedIndexChanged += new System.EventHandler(this.Filter_ParametersChanged);
 			// 
 			// gaspsListView
 			// 
@@ -1659,7 +1669,7 @@
 			// 
 			// AppForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1228, 739);
 			this.Controls.Add(this.filterPanel);
@@ -1851,5 +1861,6 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
 		private System.Windows.Forms.ToolStripMenuItem mnuFileExportDelta;
 		private System.Windows.Forms.ToolStripMenuItem mnuFileFgisEsnsiForLawExportToExcel;
+		private System.Windows.Forms.ToolStripMenuItem mnuToolsEsnsiIdToolStripMenuItem;
 	}
 }

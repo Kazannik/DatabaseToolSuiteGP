@@ -233,7 +233,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.beginDateLabel.Location = new System.Drawing.Point(23, 64);
 			this.beginDateLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.beginDateLabel.Name = "beginDateLabel";
-			this.beginDateLabel.Size = new System.Drawing.Size(287, 25);
+			this.beginDateLabel.Size = new System.Drawing.Size(263, 20);
 			this.beginDateLabel.TabIndex = 36;
 			this.beginDateLabel.Text = "Дата введения новой версии:";
 			// 
@@ -244,7 +244,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.beginDateTimePicker.Location = new System.Drawing.Point(27, 88);
 			this.beginDateTimePicker.Margin = new System.Windows.Forms.Padding(4);
 			this.beginDateTimePicker.Name = "beginDateTimePicker";
-			this.beginDateTimePicker.Size = new System.Drawing.Size(214, 30);
+			this.beginDateTimePicker.Size = new System.Drawing.Size(214, 26);
 			this.beginDateTimePicker.TabIndex = 0;
 			this.beginDateTimePicker.ValueChanged += new System.EventHandler(this.Controls_ValueChanged);
 			// 
@@ -255,15 +255,15 @@ namespace DatabaseToolSuite.Dialogs
 			this.nameLabel.Location = new System.Drawing.Point(9, 24);
 			this.nameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.nameLabel.Name = "nameLabel";
-			this.nameLabel.Size = new System.Drawing.Size(167, 25);
+			this.nameLabel.Size = new System.Drawing.Size(139, 20);
 			this.nameLabel.TabIndex = 37;
 			this.nameLabel.Text = "Наименование:";
 			// 
 			// organizationGroupBox
 			// 
-			this.organizationGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-			| System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.organizationGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.organizationGroupBox.Controls.Add(this.deleteOwnerButton);
 			this.organizationGroupBox.Controls.Add(this.selectOwnerButton);
 			this.organizationGroupBox.Controls.Add(this.ownerTextBox);
@@ -312,8 +312,8 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// ownerTextBox
 			// 
-			this.ownerTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.ownerTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.ownerTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.ownerTextBox.Location = new System.Drawing.Point(11, 305);
 			this.ownerTextBox.Margin = new System.Windows.Forms.Padding(4);
@@ -332,7 +332,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.ownerLabel.Location = new System.Drawing.Point(9, 281);
 			this.ownerLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.ownerLabel.Name = "ownerLabel";
-			this.ownerLabel.Size = new System.Drawing.Size(116, 25);
+			this.ownerLabel.Size = new System.Drawing.Size(98, 20);
 			this.ownerLabel.TabIndex = 44;
 			this.ownerLabel.Text = "Владелец:";
 			// 
@@ -343,7 +343,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.okatoLabel.Location = new System.Drawing.Point(34, 209);
 			this.okatoLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.okatoLabel.Name = "okatoLabel";
-			this.okatoLabel.Size = new System.Drawing.Size(91, 25);
+			this.okatoLabel.Size = new System.Drawing.Size(73, 20);
 			this.okatoLabel.TabIndex = 39;
 			this.okatoLabel.Text = "ОКАТО:";
 			// 
@@ -354,49 +354,49 @@ namespace DatabaseToolSuite.Dialogs
 			this.authorityLabel.Location = new System.Drawing.Point(9, 245);
 			this.authorityLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.authorityLabel.Name = "authorityLabel";
-			this.authorityLabel.Size = new System.Drawing.Size(130, 25);
+			this.authorityLabel.Size = new System.Drawing.Size(111, 20);
 			this.authorityLabel.TabIndex = 43;
 			this.authorityLabel.Text = "Вид органа:";
 			// 
 			// okatoComboBox
 			// 
-			this.okatoComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.okatoComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.okatoComboBox.Code = "";
 			this.okatoComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.okatoComboBox.DropDownHeight = 584;
+			this.okatoComboBox.DropDownHeight = 504;
 			this.okatoComboBox.DropDownWidth = 80;
 			this.okatoComboBox.FormattingEnabled = true;
 			this.okatoComboBox.Id = ((long)(-1));
 			this.okatoComboBox.IntegralHeight = false;
-			this.okatoComboBox.ItemHeight = 29;
+			this.okatoComboBox.ItemHeight = 25;
 			this.okatoComboBox.Location = new System.Drawing.Point(144, 206);
 			this.okatoComboBox.Margin = new System.Windows.Forms.Padding(4);
 			this.okatoComboBox.MaxDropDownItems = 20;
 			this.okatoComboBox.Name = "okatoComboBox";
 			this.okatoComboBox.SelectedItem = null;
-			this.okatoComboBox.Size = new System.Drawing.Size(618, 35);
+			this.okatoComboBox.Size = new System.Drawing.Size(618, 31);
 			this.okatoComboBox.TabIndex = 6;
 			this.okatoComboBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox_SelectedIndexChanged);
 			// 
 			// authorityComboBox
 			// 
-			this.authorityComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.authorityComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.authorityComboBox.Code = "";
 			this.authorityComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.authorityComboBox.DropDownHeight = 584;
+			this.authorityComboBox.DropDownHeight = 504;
 			this.authorityComboBox.DropDownWidth = 80;
 			this.authorityComboBox.FormattingEnabled = true;
 			this.authorityComboBox.Id = ((long)(-1));
 			this.authorityComboBox.IntegralHeight = false;
-			this.authorityComboBox.ItemHeight = 29;
+			this.authorityComboBox.ItemHeight = 25;
 			this.authorityComboBox.Location = new System.Drawing.Point(144, 242);
 			this.authorityComboBox.Margin = new System.Windows.Forms.Padding(4);
 			this.authorityComboBox.MaxDropDownItems = 20;
 			this.authorityComboBox.Name = "authorityComboBox";
 			this.authorityComboBox.SelectedItem = null;
-			this.authorityComboBox.Size = new System.Drawing.Size(618, 35);
+			this.authorityComboBox.Size = new System.Drawing.Size(618, 31);
 			this.authorityComboBox.TabIndex = 5;
 			this.authorityComboBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox_SelectedIndexChanged);
 			// 
@@ -409,7 +409,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.codeTextBox.Margin = new System.Windows.Forms.Padding(4);
 			this.codeTextBox.Name = "codeTextBox";
 			this.codeTextBox.ReadOnly = true;
-			this.codeTextBox.Size = new System.Drawing.Size(149, 30);
+			this.codeTextBox.Size = new System.Drawing.Size(149, 26);
 			this.codeTextBox.TabIndex = 2;
 			this.codeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.codeTextBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
@@ -421,15 +421,15 @@ namespace DatabaseToolSuite.Dialogs
 			this.codeLabel.Location = new System.Drawing.Point(7, 175);
 			this.codeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.codeLabel.Name = "codeLabel";
-			this.codeLabel.Size = new System.Drawing.Size(216, 25);
+			this.codeLabel.Size = new System.Drawing.Size(185, 20);
 			this.codeLabel.TabIndex = 39;
 			this.codeLabel.Text = "Код подразделения:";
 			// 
 			// nameTextBox
 			// 
-			this.nameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-			| System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.nameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.nameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.nameTextBox.Location = new System.Drawing.Point(11, 48);
 			this.nameTextBox.Margin = new System.Windows.Forms.Padding(4);
@@ -454,9 +454,9 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// CreateNewVersionDialog
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(808, 591);
+			this.ClientSize = new System.Drawing.Size(812, 600);
 			this.Controls.Add(this.nameWizardButton);
 			this.Controls.Add(this.organizationGroupBox);
 			this.Controls.Add(this.beginDateLabel);

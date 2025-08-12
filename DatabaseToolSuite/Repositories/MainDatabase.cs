@@ -844,6 +844,27 @@ namespace DatabaseToolSuite.Repositories
 
 			[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
 			[global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+			public string okatoList
+			{
+				get
+				{
+					try
+					{
+						return (Utils.Database.ConvertFromDBVal<string>(this[this.tablefgis_esnsi.okatoListColumn]));
+					}
+					catch (global::System.InvalidCastException e)
+					{
+						throw new global::System.Data.StrongTypingException("Значение для столбца \'okatoList\' в таблице \'fgis_esnsi\' равно DBNull.", e);
+					}
+				}
+				set
+				{
+					this[this.tablefgis_esnsi.okatoListColumn] = value;
+				}
+			}
+
+			[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+			[global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
 			public long id
 			{
 				get

@@ -8,7 +8,7 @@ namespace DatabaseToolSuite.Dialogs
 	class EsnsiDialog : DialogBase
 	{
 		public Repositories.MainDataSet.fgis_esnsiRow DataRow { get; private set; }
-
+				
 		private readonly long oldRegionCode;
 		private readonly string oldPhone;
 		private readonly string oldEmail;
@@ -17,6 +17,7 @@ namespace DatabaseToolSuite.Dialogs
 		private readonly long oldCode;
 		private readonly string oldAutokey;
 		private readonly long oldId;
+		private readonly string oldOkatoList;
 
 		public long RegionCode
 		{
@@ -68,6 +69,11 @@ namespace DatabaseToolSuite.Dialogs
 			get { return esnsiIdNumericTextBox.Value; }
 		}
 
+		public string OkatoList
+		{
+			get { return esnsiOkatoListTextBox.Text; }
+		}
+
 		public EsnsiDialog()
 			: base()
 		{
@@ -103,6 +109,7 @@ namespace DatabaseToolSuite.Dialogs
 			oldAddress = DataRow.Issv_0006Null() ? string.Empty : DataRow.sv_0006;
 			oldCode = DataRow.IscodeNull() ? -1 : DataRow.code;
 			oldId = DataRow.IsidNull() ? -1 : DataRow.id;
+			oldOkatoList = DataRow.IsokatoListNull() ? string.Empty: DataRow.okatoList;
 
 			if (oldOkatoCode >= 0)
 			{
@@ -121,6 +128,7 @@ namespace DatabaseToolSuite.Dialogs
 				? string.Empty
 				: DataRow.code.ToString();
 			esnsiIdNumericTextBox.Text = DataRow.IsidNull() ? string.Empty : DataRow.id.ToString();
+			esnsiOkatoListTextBox.Text = DataRow.IsokatoListNull() ? string.Empty : DataRow.okatoList;
 
 			OkButtonEnabled = false;
 		}
@@ -142,6 +150,7 @@ namespace DatabaseToolSuite.Dialogs
 				|| oldOkatoCode != OkatoCode
 				|| oldPhone != Phone
 				|| oldRegionCode != RegionCode
+				|| oldOkatoList != OkatoList
 			)
 			{
 				OkButtonEnabled = true;
@@ -167,6 +176,7 @@ namespace DatabaseToolSuite.Dialogs
 		private Controls.OkatoComboBox esnsiOkatoComboBox;
 		private Controls.NumericTextBox esnsiCodeNumericTextBox;
 		private System.Windows.Forms.TextBox esnsiAutokeyTextBox;
+		private TextBox esnsiOkatoListTextBox;
 		private Label esnsiIdLabel;
 		private Controls.NumericTextBox esnsiIdNumericTextBox;
 		private new System.ComponentModel.IContainer components;
@@ -194,6 +204,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.esnsiAutokeyTextBox = new System.Windows.Forms.TextBox();
 			this.esnsiIdLabel = new System.Windows.Forms.Label();
 			this.esnsiIdNumericTextBox = new DatabaseToolSuite.Controls.NumericTextBox(this.components);
+			this.esnsiOkatoListTextBox = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// esnsiNameLabel
@@ -202,19 +213,19 @@ namespace DatabaseToolSuite.Dialogs
 			this.esnsiNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.esnsiNameLabel.Location = new System.Drawing.Point(12, 59);
 			this.esnsiNameLabel.Name = "esnsiNameLabel";
-			this.esnsiNameLabel.Size = new System.Drawing.Size(297, 25);
+			this.esnsiNameLabel.Size = new System.Drawing.Size(246, 20);
 			this.esnsiNameLabel.TabIndex = 3;
 			this.esnsiNameLabel.Text = "Наименование прокуратуры";
 			// 
 			// esnsiNameTextBox
 			// 
-			this.esnsiNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.esnsiNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.esnsiNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.esnsiNameTextBox.Location = new System.Drawing.Point(16, 82);
 			this.esnsiNameTextBox.Name = "esnsiNameTextBox";
 			this.esnsiNameTextBox.ReadOnly = true;
-			this.esnsiNameTextBox.Size = new System.Drawing.Size(694, 31);
+			this.esnsiNameTextBox.Size = new System.Drawing.Size(694, 27);
 			this.esnsiNameTextBox.TabIndex = 4;
 			// 
 			// esnsiRegionLabel
@@ -223,19 +234,19 @@ namespace DatabaseToolSuite.Dialogs
 			this.esnsiRegionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.esnsiRegionLabel.Location = new System.Drawing.Point(12, 118);
 			this.esnsiRegionLabel.Name = "esnsiRegionLabel";
-			this.esnsiRegionLabel.Size = new System.Drawing.Size(82, 25);
+			this.esnsiRegionLabel.Size = new System.Drawing.Size(68, 20);
 			this.esnsiRegionLabel.TabIndex = 5;
 			this.esnsiRegionLabel.Text = "Регион";
 			// 
 			// esnsiRegionTextBox
 			// 
-			this.esnsiRegionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.esnsiRegionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.esnsiRegionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.esnsiRegionTextBox.Location = new System.Drawing.Point(86, 115);
 			this.esnsiRegionTextBox.Name = "esnsiRegionTextBox";
 			this.esnsiRegionTextBox.ReadOnly = true;
-			this.esnsiRegionTextBox.Size = new System.Drawing.Size(624, 31);
+			this.esnsiRegionTextBox.Size = new System.Drawing.Size(624, 27);
 			this.esnsiRegionTextBox.TabIndex = 6;
 			// 
 			// esnsiPhoneLabel
@@ -244,7 +255,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.esnsiPhoneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.esnsiPhoneLabel.Location = new System.Drawing.Point(103, 151);
 			this.esnsiPhoneLabel.Name = "esnsiPhoneLabel";
-			this.esnsiPhoneLabel.Size = new System.Drawing.Size(329, 25);
+			this.esnsiPhoneLabel.Size = new System.Drawing.Size(270, 20);
 			this.esnsiPhoneLabel.TabIndex = 7;
 			this.esnsiPhoneLabel.Text = "Телефон канцелярии (SV-0004)";
 			// 
@@ -254,7 +265,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.esnsiEmailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.esnsiEmailLabel.Location = new System.Drawing.Point(9, 184);
 			this.esnsiEmailLabel.Name = "esnsiEmailLabel";
-			this.esnsiEmailLabel.Size = new System.Drawing.Size(439, 25);
+			this.esnsiEmailLabel.Size = new System.Drawing.Size(364, 20);
 			this.esnsiEmailLabel.TabIndex = 8;
 			this.esnsiEmailLabel.Text = "Электронный адрес канцелярии (SV-0005)";
 			// 
@@ -264,7 +275,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.esnsiAddressLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.esnsiAddressLabel.Location = new System.Drawing.Point(12, 228);
 			this.esnsiAddressLabel.Name = "esnsiAddressLabel";
-			this.esnsiAddressLabel.Size = new System.Drawing.Size(281, 25);
+			this.esnsiAddressLabel.Size = new System.Drawing.Size(230, 20);
 			this.esnsiAddressLabel.TabIndex = 9;
 			this.esnsiAddressLabel.Text = "Адрес приемной (SV-0006)";
 			// 
@@ -275,7 +286,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.esnsiOkatoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.esnsiOkatoLabel.Location = new System.Drawing.Point(12, 329);
 			this.esnsiOkatoLabel.Name = "esnsiOkatoLabel";
-			this.esnsiOkatoLabel.Size = new System.Drawing.Size(85, 25);
+			this.esnsiOkatoLabel.Size = new System.Drawing.Size(68, 20);
 			this.esnsiOkatoLabel.TabIndex = 10;
 			this.esnsiOkatoLabel.Text = "ОКАТО";
 			// 
@@ -284,9 +295,9 @@ namespace DatabaseToolSuite.Dialogs
 			this.esnsiCodeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.esnsiCodeLabel.AutoSize = true;
 			this.esnsiCodeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.esnsiCodeLabel.Location = new System.Drawing.Point(22, 366);
+			this.esnsiCodeLabel.Location = new System.Drawing.Point(24, 418);
 			this.esnsiCodeLabel.Name = "esnsiCodeLabel";
-			this.esnsiCodeLabel.Size = new System.Drawing.Size(72, 25);
+			this.esnsiCodeLabel.Size = new System.Drawing.Size(58, 20);
 			this.esnsiCodeLabel.TabIndex = 11;
 			this.esnsiCodeLabel.Text = "CODE";
 			// 
@@ -295,39 +306,39 @@ namespace DatabaseToolSuite.Dialogs
 			this.eansiAutokeyLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.eansiAutokeyLabel.AutoSize = true;
 			this.eansiAutokeyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.eansiAutokeyLabel.Location = new System.Drawing.Point(307, 399);
+			this.eansiAutokeyLabel.Location = new System.Drawing.Point(309, 451);
 			this.eansiAutokeyLabel.Name = "eansiAutokeyLabel";
-			this.eansiAutokeyLabel.Size = new System.Drawing.Size(88, 25);
+			this.eansiAutokeyLabel.Size = new System.Drawing.Size(66, 20);
 			this.eansiAutokeyLabel.TabIndex = 12;
 			this.eansiAutokeyLabel.Text = "autokey";
 			// 
 			// esnsiPhoneTextBox
 			// 
-			this.esnsiPhoneTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.esnsiPhoneTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.esnsiPhoneTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.esnsiPhoneTextBox.Location = new System.Drawing.Point(379, 148);
 			this.esnsiPhoneTextBox.Name = "esnsiPhoneTextBox";
-			this.esnsiPhoneTextBox.Size = new System.Drawing.Size(331, 31);
+			this.esnsiPhoneTextBox.Size = new System.Drawing.Size(331, 27);
 			this.esnsiPhoneTextBox.TabIndex = 13;
 			this.esnsiPhoneTextBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
 			// 
 			// esnsiEmailTextBox
 			// 
-			this.esnsiEmailTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.esnsiEmailTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.esnsiEmailTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.esnsiEmailTextBox.Location = new System.Drawing.Point(379, 181);
 			this.esnsiEmailTextBox.Name = "esnsiEmailTextBox";
-			this.esnsiEmailTextBox.Size = new System.Drawing.Size(331, 31);
+			this.esnsiEmailTextBox.Size = new System.Drawing.Size(331, 27);
 			this.esnsiEmailTextBox.TabIndex = 14;
 			this.esnsiEmailTextBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
 			// 
 			// esnsiAddressTextBox
 			// 
-			this.esnsiAddressTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-			| System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.esnsiAddressTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.esnsiAddressTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.esnsiAddressTextBox.Location = new System.Drawing.Point(16, 251);
 			this.esnsiAddressTextBox.Multiline = true;
@@ -338,21 +349,22 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// esnsiOkatoComboBox
 			// 
-			this.esnsiOkatoComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.esnsiOkatoComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.esnsiOkatoComboBox.Code = "";
 			this.esnsiOkatoComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.esnsiOkatoComboBox.DropDownHeight = 584;
+			this.esnsiOkatoComboBox.DropDownHeight = 504;
 			this.esnsiOkatoComboBox.DropDownWidth = 80;
 			this.esnsiOkatoComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.esnsiOkatoComboBox.FormattingEnabled = true;
+			this.esnsiOkatoComboBox.Id = ((long)(-1));
 			this.esnsiOkatoComboBox.IntegralHeight = false;
-			this.esnsiOkatoComboBox.ItemHeight = 29;
+			this.esnsiOkatoComboBox.ItemHeight = 25;
 			this.esnsiOkatoComboBox.Location = new System.Drawing.Point(86, 326);
 			this.esnsiOkatoComboBox.MaxDropDownItems = 20;
 			this.esnsiOkatoComboBox.Name = "esnsiOkatoComboBox";
 			this.esnsiOkatoComboBox.SelectedItem = null;
-			this.esnsiOkatoComboBox.Size = new System.Drawing.Size(624, 35);
+			this.esnsiOkatoComboBox.Size = new System.Drawing.Size(624, 31);
 			this.esnsiOkatoComboBox.TabIndex = 16;
 			this.esnsiOkatoComboBox.SelectedIndexChanged += new System.EventHandler(this.Controls_ValueChanged);
 			// 
@@ -360,21 +372,21 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			this.esnsiCodeNumericTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.esnsiCodeNumericTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.esnsiCodeNumericTextBox.Location = new System.Drawing.Point(86, 363);
+			this.esnsiCodeNumericTextBox.Location = new System.Drawing.Point(88, 415);
 			this.esnsiCodeNumericTextBox.Name = "esnsiCodeNumericTextBox";
-			this.esnsiCodeNumericTextBox.Size = new System.Drawing.Size(304, 31);
+			this.esnsiCodeNumericTextBox.Size = new System.Drawing.Size(304, 27);
 			this.esnsiCodeNumericTextBox.TabIndex = 17;
 			this.esnsiCodeNumericTextBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
 			// 
 			// esnsiAutokeyTextBox
 			// 
-			this.esnsiAutokeyTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.esnsiAutokeyTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.esnsiAutokeyTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.esnsiAutokeyTextBox.Location = new System.Drawing.Point(379, 396);
+			this.esnsiAutokeyTextBox.Location = new System.Drawing.Point(381, 448);
 			this.esnsiAutokeyTextBox.Name = "esnsiAutokeyTextBox";
 			this.esnsiAutokeyTextBox.ReadOnly = true;
-			this.esnsiAutokeyTextBox.Size = new System.Drawing.Size(331, 31);
+			this.esnsiAutokeyTextBox.Size = new System.Drawing.Size(331, 27);
 			this.esnsiAutokeyTextBox.TabIndex = 18;
 			// 
 			// esnsiIdLabel
@@ -382,9 +394,9 @@ namespace DatabaseToolSuite.Dialogs
 			this.esnsiIdLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.esnsiIdLabel.AutoSize = true;
 			this.esnsiIdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.esnsiIdLabel.Location = new System.Drawing.Point(54, 399);
+			this.esnsiIdLabel.Location = new System.Drawing.Point(56, 451);
 			this.esnsiIdLabel.Name = "esnsiIdLabel";
-			this.esnsiIdLabel.Size = new System.Drawing.Size(32, 25);
+			this.esnsiIdLabel.Size = new System.Drawing.Size(26, 20);
 			this.esnsiIdLabel.TabIndex = 19;
 			this.esnsiIdLabel.Text = "ID";
 			// 
@@ -392,16 +404,29 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			this.esnsiIdNumericTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.esnsiIdNumericTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.esnsiIdNumericTextBox.Location = new System.Drawing.Point(86, 396);
+			this.esnsiIdNumericTextBox.Location = new System.Drawing.Point(88, 448);
 			this.esnsiIdNumericTextBox.Name = "esnsiIdNumericTextBox";
-			this.esnsiIdNumericTextBox.Size = new System.Drawing.Size(192, 31);
+			this.esnsiIdNumericTextBox.Size = new System.Drawing.Size(192, 27);
 			this.esnsiIdNumericTextBox.TabIndex = 20;
 			this.esnsiIdNumericTextBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
+			// 
+			// esnsiOkatoListTextBox
+			// 
+			this.esnsiOkatoListTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.esnsiOkatoListTextBox.Location = new System.Drawing.Point(13, 363);
+			this.esnsiOkatoListTextBox.Multiline = true;
+			this.esnsiOkatoListTextBox.Name = "esnsiOkatoListTextBox";
+			this.esnsiOkatoListTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.esnsiOkatoListTextBox.Size = new System.Drawing.Size(697, 46);
+			this.esnsiOkatoListTextBox.TabIndex = 21;
+			this.esnsiOkatoListTextBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
 			// 
 			// EsnsiDialog
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(722, 533);
+			this.Controls.Add(this.esnsiOkatoListTextBox);
 			this.Controls.Add(this.esnsiIdNumericTextBox);
 			this.Controls.Add(this.esnsiIdLabel);
 			this.Controls.Add(this.esnsiAutokeyTextBox);
@@ -443,6 +468,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.Controls.SetChildIndex(this.esnsiAutokeyTextBox, 0);
 			this.Controls.SetChildIndex(this.esnsiIdLabel, 0);
 			this.Controls.SetChildIndex(this.esnsiIdNumericTextBox, 0);
+			this.Controls.SetChildIndex(this.esnsiOkatoListTextBox, 0);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

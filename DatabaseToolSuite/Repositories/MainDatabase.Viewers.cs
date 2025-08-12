@@ -12,9 +12,6 @@ namespace DatabaseToolSuite.Repositories
 {
 	internal partial class MainDataSet
 	{
-
-
-
 		public IEnumerable<ViewFgisEsnsiOrganization> GetViewFgisEsnsiOrganizations()
 		{
 			EnumerableRowCollection<gaspsRow> gaspsCollection = GaspsTable.Where(e => e.RowState != DataRowState.Deleted);
@@ -513,6 +510,16 @@ namespace DatabaseToolSuite.Repositories
 			[Browsable(false)]
 			public bool IsErvk { get; private set; }
 
+			[Description("ОКТМО")]
+			[Category("ЕРВК")]
+			[DisplayName("ОКТМО")]
+			public string Oktmo { get; private set; }
+
+			[Description("Субъект РФ")]
+			[Category("ЕРВК")]
+			[DisplayName("Субъект Российской Федерации")]
+			public string Subject { get; private set; }
+
 			private ViewErvkOrganization(
 				gaspsRow gasps,
 				gaspsRow owner,
@@ -529,6 +536,8 @@ namespace DatabaseToolSuite.Repositories
 				DateTime dateCloseProc,
 				string ogrn,
 				string inn,
+				string oktmo,
+				string subject,
 				bool isErvk
 				) : base(gasps: gasps, owner: owner, esnsi: esnsi)
 			{
@@ -544,6 +553,8 @@ namespace DatabaseToolSuite.Repositories
 				DateCloseProc = dateCloseProc;
 				Ogrn = ogrn;
 				Inn = inn;
+				Oktmo = oktmo;
+				Subject = subject;
 				IsErvk = isErvk;
 			}
 
@@ -568,6 +579,8 @@ namespace DatabaseToolSuite.Repositories
 					dateCloseProc: ervk == null || ervk.IsdateCloseProcNull() ? Services.MasterDataSystem.MAX_DATE : ervk.dateCloseProc,
 					ogrn: ervk == null || ervk.IsogrnNull() ? string.Empty : ervk.ogrn,
 					inn: ervk == null || ervk.IsinnNull() ? string.Empty : ervk.inn,
+					oktmo: ervk == null || ervk.IsoktmoListNull() ? string.Empty : ervk.oktmoList,
+					subject: ervk == null || ervk.IssubjectRfListNull() ? string.Empty : ervk.subjectRfList,
 					isErvk: ervk != null
 					)
 			{

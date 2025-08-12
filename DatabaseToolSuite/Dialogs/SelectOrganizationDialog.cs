@@ -66,6 +66,7 @@ namespace DatabaseToolSuite.Dialogs
 			set { filterNameTextBox.Text = value; }
 		}
 
+		[DefaultValue(true)]
 		public bool ReserveShow { get; set; }
 
 		public SelectOrganizationDialog() : this(dataSet: FileSystem.Repository.MainDataSet)
@@ -142,7 +143,7 @@ namespace DatabaseToolSuite.Dialogs
 
 			if (ErvkOnlyShow)
 			{
-				EnumerableRowCollection<Repositories.MainDataSet.ervkRow> ervkCollection = dataSet.ervk.Where(e => e.RowState != DataRowState.Deleted);
+				EnumerableRowCollection<MainDataSet.ervkRow> ervkCollection = dataSet.ervk.Where(e => e.RowState != DataRowState.Deleted);
 				rowsCollection = (from gasps in rowsCollection
 								  join ervk in ervkCollection on gasps.version equals ervk.version
 								  select gasps).ToList();
@@ -196,7 +197,9 @@ namespace DatabaseToolSuite.Dialogs
 
 		private void DetailsListView_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
 		{
-			if (itemsCache != null && e.ItemIndex >= firstItemIndex && e.ItemIndex < firstItemIndex + itemsCache.Length)
+			if (itemsCache != null && 
+				e.ItemIndex >= firstItemIndex && 
+				e.ItemIndex < firstItemIndex + itemsCache.Length)
 			{
 				e.Item = itemsCache[e.ItemIndex - firstItemIndex];
 			}
@@ -239,7 +242,8 @@ namespace DatabaseToolSuite.Dialogs
 
 			if (row.date_beg.Date > DateTime.Today)
 				item.ImageIndex = 2;
-			else if (row.date_beg.Date <= DateTime.Today && row.date_end.Date > DateTime.Today)
+			else if (row.date_beg.Date <= DateTime.Today &&
+				row.date_end.Date > DateTime.Today)
 				item.ImageIndex = 0;
 			else
 				item.ImageIndex = 1;
@@ -266,7 +270,7 @@ namespace DatabaseToolSuite.Dialogs
 			detailsListView.BeginUpdate();
 
 			int selectedIndex = detailsListView.SelectedIndices.Count > 0 ? detailsListView.SelectedIndices[0] : 0;
-			Repositories.MainDataSet.gaspsRow selectedRow = rowsCollection[selectedIndex];
+			MainDataSet.gaspsRow selectedRow = rowsCollection[selectedIndex];
 
 			if (detailsListView.Columns[e.Column].Tag == null ||
 				detailsListView.Columns[e.Column].Tag.ToString() == "UP")

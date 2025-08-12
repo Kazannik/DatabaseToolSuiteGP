@@ -10,9 +10,11 @@ namespace DatabaseToolSuite.Services
 	/// </summary>
 	internal static class MasterDataSystem
 	{
-		public static readonly long PROSECUTOR_CODE = 20;
+		public const long PROSECUTOR_CODE = 20;
 		public static readonly DateTime MAX_DATE = new DateTime(2999, 12, 31);
 		public static readonly DateTime MIN_DATE = new DateTime(1900, 1, 1);
+		public static readonly DateTime ERVK_MIN_DATE = new DateTime(1899, 12, 31);
+		public static readonly long[] RESERVE_CODES = new long[] { 3200 };
 
 		public static Repositories.MainDataSet DataSet
 		{
@@ -467,7 +469,7 @@ namespace DatabaseToolSuite.Services
 		}
 
 		/// <summary>
-		/// Клонирование записи ФГИС ЕСНСИ из заданой записи в последнюю запись.
+		/// Клонирование записи ФГИС ЕСНСИ из заданной записи в последнюю запись.
 		/// </summary>
 		/// <param name="currentVersion">Выбранная запись.</param>
 		/// <returns></returns>
@@ -654,6 +656,67 @@ namespace DatabaseToolSuite.Services
 				subjectRfList: subjectRfList,
 				oktmoList: oktmoList);
 		}
+
+
+		/// <summary>
+		/// Создание новой версии записи ЕРВК
+		/// </summary>
+		/// <param name="version">Версия. Поле для связи gasps и ervk</param>
+		/// <param name="esnsiCode">ИД ЕСНСИ</param>
+		/// <param name="isHead">isHead</param>
+		/// <param name="special">Специальная</param>
+		/// <param name="military">Военная</param>
+		/// <param name="isActive">Признак активности</param>
+		/// <param name="idVersionProc">ИД версии органа прокуратуры в ЕСНСИ</param>
+		/// <param name="idVersionHead">ИД ЕСНСИ вышестоящего органа прокуратуры (ссылка на esnsiCode)</param>
+		/// <param name="idSuccession">ИД ЕСНСИ бывшего органа прокуратуры (ссылка на esnsiCode)</param>
+		/// <param name="dateStartVersion">Дата создания версии органа прокуратуры в ЕСНСИ</param>
+		/// <param name="dateCloseProc">Дата прекращения действия органа прокуратуры в ЕСНСИ</param>
+		/// <param name="ogrn">ОГРН</param>
+		/// <param name="inn">ИНН</param>
+		/// <param name="subjectRfList">Субъект множественный</param>
+		/// <param name="oktmoList">ОКТМО множественный</param>
+		/// <returns></returns>
+		public static Repositories.MainDataSet.ervkRow CreateErvkVersionNote(
+			long version,
+			bool isHead,
+			bool special,
+			bool military,
+			long idVersionHead,
+			long idSuccession,
+			DateTime dateStartVersion,
+			string ogrn,
+			string inn,
+			string subjectRfList,
+			string oktmoList
+			)
+		{
+			long esnsiCode = DataSet.ervk.GetNextEsnsiCode();
+			string idVersionProc = DataSet.ervk.GetNextVersionProc();
+			if (idVersionHead > 0)
+			{
+				Repositories.MainDataSet.ervkRow headRow = DataSet.ervk.GetFromEsnsiCode(idVersionHead);
+				headRow.isHead = true;
+			}
+
+			return CreateErvkNote(
+				version: version,
+				esnsiCode: esnsiCode,
+				isHead: isHead,
+				special: special,
+				military: military,
+				isActive: true,
+				idVersionProc: idVersionProc,
+				idVersionHead: idVersionHead,
+				idSuccession: idSuccession,
+				dateStartVersion: dateStartVersion,
+				dateCloseProc: MAX_DATE,
+				ogrn: ogrn,
+				inn: inn,
+				subjectRfList: subjectRfList,
+				oktmoList: oktmoList);
+		}
+
 
 		/// <summary>
 		/// Клонирование записи ЕРВК

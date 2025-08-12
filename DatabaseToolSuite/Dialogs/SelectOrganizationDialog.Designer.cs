@@ -63,10 +63,10 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(644, 645);
-			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.cancelButton.Location = new System.Drawing.Point(572, 516);
+			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.Size = new System.Drawing.Size(112, 34);
+			this.cancelButton.Size = new System.Drawing.Size(100, 27);
 			this.cancelButton.TabIndex = 28;
 			this.cancelButton.Text = "Отмена";
 			// 
@@ -74,10 +74,10 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(522, 645);
-			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.okButton.Location = new System.Drawing.Point(464, 516);
+			this.okButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.okButton.Name = "okButton";
-			this.okButton.Size = new System.Drawing.Size(112, 34);
+			this.okButton.Size = new System.Drawing.Size(100, 27);
 			this.okButton.TabIndex = 27;
 			this.okButton.Text = "&ОК";
 			// 
@@ -86,7 +86,7 @@
 			this.mainSplitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.mainSplitContainer.Location = new System.Drawing.Point(9, 9);
+			this.mainSplitContainer.Location = new System.Drawing.Point(8, 7);
 			this.mainSplitContainer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.mainSplitContainer.Name = "mainSplitContainer";
 			// 
@@ -97,8 +97,8 @@
 			// mainSplitContainer.Panel2
 			// 
 			this.mainSplitContainer.Panel2.Controls.Add(this.detailsListView);
-			this.mainSplitContainer.Size = new System.Drawing.Size(756, 354);
-			this.mainSplitContainer.SplitterDistance = 176;
+			this.mainSplitContainer.Size = new System.Drawing.Size(672, 283);
+			this.mainSplitContainer.SplitterDistance = 156;
 			this.mainSplitContainer.TabIndex = 29;
 			// 
 			// detailsTextBox
@@ -112,7 +112,7 @@
 			this.detailsTextBox.Multiline = true;
 			this.detailsTextBox.Name = "detailsTextBox";
 			this.detailsTextBox.ReadOnly = true;
-			this.detailsTextBox.Size = new System.Drawing.Size(176, 354);
+			this.detailsTextBox.Size = new System.Drawing.Size(156, 283);
 			this.detailsTextBox.TabIndex = 1;
 			// 
 			// detailsListView
@@ -129,7 +129,7 @@
 			this.detailsListView.MultiSelect = false;
 			this.detailsListView.Name = "detailsListView";
 			this.detailsListView.ShowGroups = false;
-			this.detailsListView.Size = new System.Drawing.Size(576, 354);
+			this.detailsListView.Size = new System.Drawing.Size(512, 283);
 			this.detailsListView.SmallImageList = this.organizationImageList;
 			this.detailsListView.TabIndex = 0;
 			this.detailsListView.UseCompatibleStateImageBehavior = false;
@@ -164,31 +164,31 @@
 			this.selectNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.selectNameTextBox.BackColor = System.Drawing.SystemColors.Window;
-			this.selectNameTextBox.Location = new System.Drawing.Point(204, 595);
+			this.selectNameTextBox.Location = new System.Drawing.Point(181, 476);
 			this.selectNameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.selectNameTextBox.Name = "selectNameTextBox";
 			this.selectNameTextBox.ReadOnly = true;
-			this.selectNameTextBox.Size = new System.Drawing.Size(550, 26);
+			this.selectNameTextBox.Size = new System.Drawing.Size(489, 22);
 			this.selectNameTextBox.TabIndex = 30;
 			// 
 			// selectOkatoTextBox
 			// 
 			this.selectOkatoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.selectOkatoTextBox.BackColor = System.Drawing.SystemColors.Window;
-			this.selectOkatoTextBox.Location = new System.Drawing.Point(17, 595);
+			this.selectOkatoTextBox.Location = new System.Drawing.Point(15, 476);
 			this.selectOkatoTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.selectOkatoTextBox.Name = "selectOkatoTextBox";
 			this.selectOkatoTextBox.ReadOnly = true;
-			this.selectOkatoTextBox.Size = new System.Drawing.Size(181, 26);
+			this.selectOkatoTextBox.Size = new System.Drawing.Size(161, 22);
 			this.selectOkatoTextBox.TabIndex = 31;
 			// 
 			// selectOkatoLabel
 			// 
 			this.selectOkatoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.selectOkatoLabel.AutoSize = true;
-			this.selectOkatoLabel.Location = new System.Drawing.Point(14, 566);
+			this.selectOkatoLabel.Location = new System.Drawing.Point(12, 453);
 			this.selectOkatoLabel.Name = "selectOkatoLabel";
-			this.selectOkatoLabel.Size = new System.Drawing.Size(168, 20);
+			this.selectOkatoLabel.Size = new System.Drawing.Size(140, 16);
 			this.selectOkatoLabel.TabIndex = 32;
 			this.selectOkatoLabel.Text = "Код подразделения:";
 			// 
@@ -196,9 +196,9 @@
 			// 
 			this.selectNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.selectNameLabel.AutoSize = true;
-			this.selectNameLabel.Location = new System.Drawing.Point(201, 566);
+			this.selectNameLabel.Location = new System.Drawing.Point(179, 453);
 			this.selectNameLabel.Name = "selectNameLabel";
-			this.selectNameLabel.Size = new System.Drawing.Size(251, 20);
+			this.selectNameLabel.Size = new System.Drawing.Size(215, 16);
 			this.selectNameLabel.TabIndex = 33;
 			this.selectNameLabel.Text = "Наименование подразделения:";
 			// 
@@ -215,21 +215,21 @@
 			this.filtrGroupBox.Controls.Add(this.filterAuthorityComboBox);
 			this.filtrGroupBox.Controls.Add(this.filterOkatoComboBox);
 			this.filtrGroupBox.Controls.Add(this.authorityLabel);
-			this.filtrGroupBox.Location = new System.Drawing.Point(9, 371);
+			this.filtrGroupBox.Location = new System.Drawing.Point(8, 297);
 			this.filtrGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.filtrGroupBox.Name = "filtrGroupBox";
 			this.filtrGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.filtrGroupBox.Size = new System.Drawing.Size(756, 191);
+			this.filtrGroupBox.Size = new System.Drawing.Size(672, 153);
 			this.filtrGroupBox.TabIndex = 34;
 			this.filtrGroupBox.TabStop = false;
 			this.filtrGroupBox.Text = "Фильтр";
 			// 
 			// filterCodeNumericTextBox
 			// 
-			this.filterCodeNumericTextBox.Location = new System.Drawing.Point(8, 142);
+			this.filterCodeNumericTextBox.Location = new System.Drawing.Point(7, 114);
 			this.filterCodeNumericTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.filterCodeNumericTextBox.Name = "filterCodeNumericTextBox";
-			this.filterCodeNumericTextBox.Size = new System.Drawing.Size(181, 26);
+			this.filterCodeNumericTextBox.Size = new System.Drawing.Size(161, 22);
 			this.filterCodeNumericTextBox.TabIndex = 41;
 			this.filterCodeNumericTextBox.TextChanged += new System.EventHandler(this.FilterControls_ValueChanged);
 			// 
@@ -237,9 +237,9 @@
 			// 
 			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(192, 114);
+			this.label1.Location = new System.Drawing.Point(171, 91);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(251, 20);
+			this.label1.Size = new System.Drawing.Size(215, 16);
 			this.label1.TabIndex = 40;
 			this.label1.Text = "Наименование подразделения:";
 			// 
@@ -247,9 +247,9 @@
 			// 
 			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(4, 114);
+			this.label2.Location = new System.Drawing.Point(4, 91);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(168, 20);
+			this.label2.Size = new System.Drawing.Size(140, 16);
 			this.label2.TabIndex = 39;
 			this.label2.Text = "Код подразделения:";
 			// 
@@ -257,10 +257,10 @@
 			// 
 			this.filterNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.filterNameTextBox.Location = new System.Drawing.Point(195, 142);
+			this.filterNameTextBox.Location = new System.Drawing.Point(173, 114);
 			this.filterNameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.filterNameTextBox.Name = "filterNameTextBox";
-			this.filterNameTextBox.Size = new System.Drawing.Size(550, 26);
+			this.filterNameTextBox.Size = new System.Drawing.Size(489, 22);
 			this.filterNameTextBox.TabIndex = 37;
 			this.filterNameTextBox.TextChanged += new System.EventHandler(this.FilterControls_ValueChanged);
 			// 
@@ -268,10 +268,10 @@
 			// 
 			this.filterLockCodeViewCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.filterLockCodeViewCheckBox.AutoSize = true;
-			this.filterLockCodeViewCheckBox.Location = new System.Drawing.Point(496, 71);
+			this.filterLockCodeViewCheckBox.Location = new System.Drawing.Point(449, 57);
 			this.filterLockCodeViewCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.filterLockCodeViewCheckBox.Name = "filterLockCodeViewCheckBox";
-			this.filterLockCodeViewCheckBox.Size = new System.Drawing.Size(252, 24);
+			this.filterLockCodeViewCheckBox.Size = new System.Drawing.Size(216, 20);
 			this.filterLockCodeViewCheckBox.TabIndex = 36;
 			this.filterLockCodeViewCheckBox.Text = "Включить заблокированные";
 			this.filterLockCodeViewCheckBox.UseVisualStyleBackColor = true;
@@ -281,9 +281,9 @@
 			// okatoLabel
 			// 
 			this.okatoLabel.AutoSize = true;
-			this.okatoLabel.Location = new System.Drawing.Point(4, 31);
+			this.okatoLabel.Location = new System.Drawing.Point(4, 25);
 			this.okatoLabel.Name = "okatoLabel";
-			this.okatoLabel.Size = new System.Drawing.Size(101, 20);
+			this.okatoLabel.Size = new System.Drawing.Size(83, 16);
 			this.okatoLabel.TabIndex = 35;
 			this.okatoLabel.Text = "Код ОКАТО:";
 			// 
@@ -293,17 +293,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.filterAuthorityComboBox.Code = "";
 			this.filterAuthorityComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.filterAuthorityComboBox.DropDownHeight = 484;
+			this.filterAuthorityComboBox.DropDownHeight = 404;
 			this.filterAuthorityComboBox.DropDownWidth = 80;
 			this.filterAuthorityComboBox.FormattingEnabled = true;
+			this.filterAuthorityComboBox.Id = ((long)(-1));
 			this.filterAuthorityComboBox.IntegralHeight = false;
-			this.filterAuthorityComboBox.ItemHeight = 24;
-			this.filterAuthorityComboBox.Location = new System.Drawing.Point(118, 66);
+			this.filterAuthorityComboBox.ItemHeight = 20;
+			this.filterAuthorityComboBox.Location = new System.Drawing.Point(105, 53);
 			this.filterAuthorityComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.filterAuthorityComboBox.MaxDropDownItems = 20;
 			this.filterAuthorityComboBox.Name = "filterAuthorityComboBox";
 			this.filterAuthorityComboBox.SelectedItem = null;
-			this.filterAuthorityComboBox.Size = new System.Drawing.Size(334, 30);
+			this.filterAuthorityComboBox.Size = new System.Drawing.Size(297, 26);
 			this.filterAuthorityComboBox.TabIndex = 1;
 			this.filterAuthorityComboBox.SelectedIndexChanged += new System.EventHandler(this.FilterControls_ValueChanged);
 			// 
@@ -313,35 +314,36 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.filterOkatoComboBox.Code = "";
 			this.filterOkatoComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.filterOkatoComboBox.DropDownHeight = 484;
+			this.filterOkatoComboBox.DropDownHeight = 404;
 			this.filterOkatoComboBox.DropDownWidth = 80;
 			this.filterOkatoComboBox.FormattingEnabled = true;
+			this.filterOkatoComboBox.Id = ((long)(-1));
 			this.filterOkatoComboBox.IntegralHeight = false;
-			this.filterOkatoComboBox.ItemHeight = 24;
-			this.filterOkatoComboBox.Location = new System.Drawing.Point(120, 26);
+			this.filterOkatoComboBox.ItemHeight = 20;
+			this.filterOkatoComboBox.Location = new System.Drawing.Point(107, 21);
 			this.filterOkatoComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.filterOkatoComboBox.MaxDropDownItems = 20;
 			this.filterOkatoComboBox.Name = "filterOkatoComboBox";
 			this.filterOkatoComboBox.SelectedItem = null;
-			this.filterOkatoComboBox.Size = new System.Drawing.Size(630, 30);
+			this.filterOkatoComboBox.Size = new System.Drawing.Size(560, 26);
 			this.filterOkatoComboBox.TabIndex = 2;
 			this.filterOkatoComboBox.SelectedIndexChanged += new System.EventHandler(this.FilterControls_ValueChanged);
 			// 
 			// authorityLabel
 			// 
 			this.authorityLabel.AutoSize = true;
-			this.authorityLabel.Location = new System.Drawing.Point(4, 71);
+			this.authorityLabel.Location = new System.Drawing.Point(4, 57);
 			this.authorityLabel.Name = "authorityLabel";
-			this.authorityLabel.Size = new System.Drawing.Size(109, 20);
+			this.authorityLabel.Size = new System.Drawing.Size(92, 16);
 			this.authorityLabel.TabIndex = 0;
 			this.authorityLabel.Text = "Вид органов:";
 			// 
 			// SelectOrganizationDialog
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(771, 695);
+			this.ClientSize = new System.Drawing.Size(685, 556);
 			this.Controls.Add(this.filtrGroupBox);
 			this.Controls.Add(this.selectNameLabel);
 			this.Controls.Add(this.selectOkatoLabel);
@@ -354,7 +356,7 @@
 			this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.MinimumSize = new System.Drawing.Size(786, 726);
+			this.MinimumSize = new System.Drawing.Size(701, 590);
 			this.Name = "SelectOrganizationDialog";
 			this.ShowInTaskbar = false;
 			this.Text = "Выбор подразделения";

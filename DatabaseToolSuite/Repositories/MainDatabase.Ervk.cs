@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DatabaseToolSuite.Services;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -47,7 +48,7 @@ namespace DatabaseToolSuite.Repositories
 			{
 				return (from item in this.AsEnumerable()
 						.Where(x => x.RowState != DataRowState.Deleted)
-						where (!item.IsidVersionHeadNull() && item.idVersionHead == idVersionHead)
+						where !item.IsidVersionHeadNull() && item.idVersionHead == idVersionHead
 						select item).Count() > 0;
 			}
 
@@ -65,7 +66,7 @@ namespace DatabaseToolSuite.Repositories
 					.Last(x => x.esnsiCode == esnsiCode);
 			}
 
-			public void Romove(long gaspsVersion)
+			public void Remove(long gaspsVersion)
 			{
 				DataRow row = Get(gaspsVersion);
 				row.Delete();
@@ -73,22 +74,37 @@ namespace DatabaseToolSuite.Repositories
 
 			public long GetNextEsnsiCode()
 			{
-				if (this.Count > 0)
-					return 1 + this.AsEnumerable()
+				if (Count > 0) {
+					long max = 1 + this.AsEnumerable()
 						.Where(x => x.RowState != DataRowState.Deleted)
-						.Max(r => r.esnsiCode);
+						.Select(x => x.esnsiCode)
+						.Max();
+					while (MasterDataSystem.RESERVE_CODES.Contains(max))
+					{
+						max++;
+					}
+					return max;
+				}
 				else
 					return 1;
 			}
 
 			public string GetNextVersionProc()
 			{
-				if (this.Count > 0)
-					return (1 + this.AsEnumerable()
+				if (Count > 0)
+				{
+					long max = 1 + this.AsEnumerable()
 						.Where(x => x.RowState != DataRowState.Deleted)
-						.Max(r => long.Parse(r.idVersionProc))).ToString();
+						.Select(x => long.Parse(x.idVersionProc))
+						.Max();
+					while (MasterDataSystem.RESERVE_CODES.Contains(max))
+					{
+						max++;
+					}
+					return max.ToString();					
+				}
 				else
-					return (1).ToString();
+					return 1.ToString();
 			}
 
 			public ervkRow Create(long gaspsVersion)
@@ -97,7 +113,7 @@ namespace DatabaseToolSuite.Repositories
 				long esnsiCode = GetNextEsnsiCode();
 				string idVersionProc = GetNextVersionProc();
 
-				return (ervkRow)this.Rows.Add(new object[] { gaspsVersion, esnsiCode, null, null, null, null, idVersionProc, null, null, dateStartVersion, null, null, null, null, null, null }); ;
+				return (ervkRow)Rows.Add(new object[] { gaspsVersion, esnsiCode, null, null, null, null, idVersionProc, null, null, dateStartVersion, null, null, null, null, null, null }); ;
 			}
 
 			/// <summary>
@@ -224,13 +240,61 @@ namespace DatabaseToolSuite.Repositories
 					SubjectRfList = subjectRfList;
 					OktmoList = oktmoList;
 				}
+
+				private ErvkOrganization(
+					long esnsiCode,
+					string title,
+					bool isHead,
+					bool special,
+					bool military,
+					bool isActive,
+					DateTime dateStartVersion,
+					DateTime dateCloseProc,
+					string ogrn,
+					string inn,
+					string subjectRfList,
+					string oktmoList)
+				{
+					EsnsiCode = esnsiCode;
+					Title = title;
+					IsHead = isHead;
+					Special = special;
+					Military = military;
+					IsActive = isActive;
+					IdVersionProc = esnsiCode.ToString();
+					IdVersionHead = 1;
+					DateStartVersion = dateStartVersion;
+					DateCloseProc = dateCloseProc;
+					Ogrn = ogrn;
+					Inn = inn;
+					SubjectRfList = subjectRfList;
+					OktmoList = oktmoList;
+				}
+
+				public static ErvkOrganization CreateTestOrganization()
+				{
+					return new ErvkOrganization(
+					esnsiCode: MasterDataSystem.RESERVE_CODES[0],
+					title: "Тестовая прокуратура",
+					isHead: false,
+					special: false,
+					military: false,
+					isActive: true,
+					dateStartVersion: MasterDataSystem.ERVK_MIN_DATE,
+					dateCloseProc: MasterDataSystem.MAX_DATE,
+					ogrn: "1037739514196",
+					inn: "7710146102",
+					subjectRfList: "77,город Москва",
+					oktmoList: "45000000");
+				}		
 			}
 
 			public IEnumerable<ErvkOrganization> ExportData()
 			{
 				return from ervk in this.AsEnumerable()
 						.Where(x => x.RowState != DataRowState.Deleted)
-					   join gasps in gaspsTable.GetGaspsLastOrganization()
+						//.Where(x=> x.isActive)
+					   join gasps in gaspsTable.ExportActiveData()
 					   on ervk.version equals gasps.version
 					   select new ErvkOrganization(
 						   version: ervk.version,
@@ -247,8 +311,44 @@ namespace DatabaseToolSuite.Repositories
 						   dateCloseProc: ervk.IsdateCloseProcNull() ? Services.MasterDataSystem.MAX_DATE : ervk.dateCloseProc,
 						   ogrn: ervk.ogrn,
 						   inn: ervk.inn,
-						   subjectRfList: gasps.okatoRow.IsssrfNull() ? string.Empty : gasps.okatoRow.ssrf + "," + gasps.okatoRow.name2,
-						   oktmoList: Utils.Converters.OktmoToEightSymbols(gasps.okato_code));
+						   subjectRfList: GetSubject(ervk, gasps),
+						   oktmoList: ervk.IsoktmoListNull() 
+						   ? Utils.Converters.OktmoToEightSymbols(gasps.okato_code)
+						   : Utils.Converters.OktmoToEightSymbols(ervk.oktmoList));
+			}
+
+			private string GetSubject(ervkRow ervk, gaspsRow gasps)
+			{
+				if (ervk.IssubjectRfListNull())
+				{
+					if (gasps.okatoRow.IsssrfNull())
+					{
+						if (ervk.IsoktmoListNull())
+						{
+							return string.Empty;
+						}
+						else
+						{
+							if (okatoTable.ExistsCode(ervk.oktmoList))
+							{
+								okatoRow okato = okatoTable.Get(ervk.oktmoList);
+								return okato.ssrf + "," + okato.name2;
+							}
+							else
+							{
+								return string.Empty;
+							}							
+						}
+					}
+					else
+					{
+						return gasps.okatoRow.ssrf + "," + gasps.okatoRow.name2;
+					}
+				}
+				else
+				{
+					return ervk.subjectRfList;
+				}
 			}
 
 			private gaspsDataTable gaspsTable

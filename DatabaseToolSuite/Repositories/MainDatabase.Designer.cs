@@ -50,9 +50,9 @@ namespace DatabaseToolSuite.Repositories {
         
         private EXP_LAW_AGENCY_TYPESDataTable tableEXP_LAW_AGENCY_TYPES;
         
-        private global::System.Data.DataRelation relationFK_authority_gasps;
-        
         private global::System.Data.DataRelation relationFK_court_type_gasps;
+        
+        private global::System.Data.DataRelation relationFK_authority_gasps;
         
         private global::System.Data.DataRelation relationfgis_esnsi_gasps;
         
@@ -514,8 +514,8 @@ namespace DatabaseToolSuite.Repositories {
                     this.tableEXP_LAW_AGENCY_TYPES.InitVars();
                 }
             }
-            this.relationFK_authority_gasps = this.Relations["FK_authority_gasps"];
             this.relationFK_court_type_gasps = this.Relations["FK_court_type_gasps"];
+            this.relationFK_authority_gasps = this.Relations["FK_authority_gasps"];
             this.relationfgis_esnsi_gasps = this.Relations["fgis_esnsi_gasps"];
             this.relationgasps_ervk = this.Relations["gasps_ervk"];
             this.relationFK_okato_gasps = this.Relations["FK_okato_gasps"];
@@ -565,13 +565,6 @@ namespace DatabaseToolSuite.Repositories {
             this.tableEXP_LAW_AGENCY_TYPES = new EXP_LAW_AGENCY_TYPESDataTable();
             base.Tables.Add(this.tableEXP_LAW_AGENCY_TYPES);
             global::System.Data.ForeignKeyConstraint fkc;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_authority_gasps", new global::System.Data.DataColumn[] {
-                        this.tableauthority.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablegasps.authority_idColumn});
-            this.tablegasps.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
-            fkc.DeleteRule = global::System.Data.Rule.Cascade;
-            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             fkc = new global::System.Data.ForeignKeyConstraint("FK_court_type_gasps", new global::System.Data.DataColumn[] {
                         this.tablecourt_type.idColumn}, new global::System.Data.DataColumn[] {
                         this.tablegasps.court_type_idColumn});
@@ -579,14 +572,21 @@ namespace DatabaseToolSuite.Repositories {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            this.relationFK_authority_gasps = new global::System.Data.DataRelation("FK_authority_gasps", new global::System.Data.DataColumn[] {
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_authority_gasps", new global::System.Data.DataColumn[] {
                         this.tableauthority.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablegasps.authority_idColumn}, false);
-            this.Relations.Add(this.relationFK_authority_gasps);
+                        this.tablegasps.authority_idColumn});
+            this.tablegasps.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             this.relationFK_court_type_gasps = new global::System.Data.DataRelation("FK_court_type_gasps", new global::System.Data.DataColumn[] {
                         this.tablecourt_type.idColumn}, new global::System.Data.DataColumn[] {
                         this.tablegasps.court_type_idColumn}, false);
             this.Relations.Add(this.relationFK_court_type_gasps);
+            this.relationFK_authority_gasps = new global::System.Data.DataRelation("FK_authority_gasps", new global::System.Data.DataColumn[] {
+                        this.tableauthority.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablegasps.authority_idColumn}, false);
+            this.Relations.Add(this.relationFK_authority_gasps);
             this.relationfgis_esnsi_gasps = new global::System.Data.DataRelation("fgis_esnsi_gasps", new global::System.Data.DataColumn[] {
                         this.tablegasps.versionColumn}, new global::System.Data.DataColumn[] {
                         this.tablefgis_esnsi.versionColumn}, false);
@@ -2494,6 +2494,8 @@ namespace DatabaseToolSuite.Repositories {
             
             private global::System.Data.DataColumn columnlogEditDate;
             
+            private global::System.Data.DataColumn columnokatoList;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public fgis_esnsiDataTable() {
@@ -2609,6 +2611,14 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn okatoListColumn {
+                get {
+                    return this.columnokatoList;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2644,7 +2654,7 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public fgis_esnsiRow Addfgis_esnsiRow(gaspsRow parentgaspsRowByfgis_esnsi_gasps, long region_id, string sv_0004, string sv_0005, string sv_0006, short okato, long code, string autokey, long id, System.DateTime logEditDate) {
+            public fgis_esnsiRow Addfgis_esnsiRow(gaspsRow parentgaspsRowByfgis_esnsi_gasps, long region_id, string sv_0004, string sv_0005, string sv_0006, short okato, long code, string autokey, long id, System.DateTime logEditDate, string okatoList) {
                 fgis_esnsiRow rowfgis_esnsiRow = ((fgis_esnsiRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2656,7 +2666,8 @@ namespace DatabaseToolSuite.Repositories {
                         code,
                         autokey,
                         id,
-                        logEditDate};
+                        logEditDate,
+                        okatoList};
                 if ((parentgaspsRowByfgis_esnsi_gasps != null)) {
                     columnValuesArray[0] = parentgaspsRowByfgis_esnsi_gasps[6];
                 }
@@ -2692,6 +2703,7 @@ namespace DatabaseToolSuite.Repositories {
                 this.columnautokey = base.Columns["autokey"];
                 this.columnid = base.Columns["id"];
                 this.columnlogEditDate = base.Columns["logEditDate"];
+                this.columnokatoList = base.Columns["okatoList"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2717,6 +2729,8 @@ namespace DatabaseToolSuite.Repositories {
                 base.Columns.Add(this.columnid);
                 this.columnlogEditDate = new global::System.Data.DataColumn("logEditDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnlogEditDate);
+                this.columnokatoList = new global::System.Data.DataColumn("okatoList", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnokatoList);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint4", new global::System.Data.DataColumn[] {
                                 this.columnversion}, false));
                 this.columnversion.AllowDBNull = false;
@@ -5564,7 +5578,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tableokato.nameColumn] = value;
                 }
             }
-                                                
+                        
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string ter {
@@ -5587,10 +5601,6 @@ namespace DatabaseToolSuite.Repositories {
                 }
             }
                         
-            
-            
-            
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IscodeNull() {
@@ -5778,8 +5788,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tablegasps.versionColumn] = value;
                 }
             }
-            
-            
+                        
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public long owner_id {
@@ -5812,9 +5821,17 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tablegasps.date_endColumn] = value;
                 }
             }
-            
-            
-            
+                        
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public court_typeRow court_typeRow {
+                get {
+                    return ((court_typeRow)(this.GetParentRow(this.Table.ParentRelations["FK_court_type_gasps"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_court_type_gasps"]);
+                }
+            }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -5824,17 +5841,6 @@ namespace DatabaseToolSuite.Repositories {
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_authority_gasps"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public court_typeRow court_typeRow {
-                get {
-                    return ((court_typeRow)(this.GetParentRow(this.Table.ParentRelations["FK_court_type_gasps"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_court_type_gasps"]);
                 }
             }
             
@@ -6230,6 +6236,18 @@ namespace DatabaseToolSuite.Repositories {
             public void SetlogEditDateNull() {
                 this[this.tablefgis_esnsi.logEditDateColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsokatoListNull() {
+                return this.IsNull(this.tablefgis_esnsi.okatoListColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetokatoListNull() {
+                this[this.tablefgis_esnsi.okatoListColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -6510,10 +6528,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tableEXP_LAW_AGENCY_URP.DOESNT_CONSOLIDATE_CHILDColumn] = value;
                 }
             }
-            
-            
-            
-            
+                       
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public long OKTMO_LOC_ID {
@@ -6524,9 +6539,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tableEXP_LAW_AGENCY_URP.OKTMO_LOC_IDColumn] = value;
                 }
             }
-            
-            
-            
+                       
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public gaspsRow gaspsRow {
@@ -6738,7 +6751,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tableSPECIAL_TERRITORIAL_CODE.CODEColumn] = value;
                 }
             }
-            
+                        
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public EXP_LAW_AGENCY_URPRow EXP_LAW_AGENCY_URPRow {

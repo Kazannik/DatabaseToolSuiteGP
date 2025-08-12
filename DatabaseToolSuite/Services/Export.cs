@@ -7,7 +7,9 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using static DatabaseToolSuite.Repositories.MainDataSet.ervkDataTable;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace DatabaseToolSuite.Services
@@ -115,7 +117,7 @@ namespace DatabaseToolSuite.Services
 			excBooks = excExcel.Workbooks;
 			excBook = excBooks.Add(objOpt);
 			excSheets = excBook.Worksheets;
-			excSheet = (Excel._Worksheet)(excSheets.get_Item(1));
+			excSheet = (Excel._Worksheet)excSheets.get_Item(1);
 
 
 			object[] objHeaders = { "Номер", "Наименование", "Ведомство", "ОКАТО", "Код", "Дата начала действия", "Дата окончания действия" };
@@ -443,22 +445,66 @@ namespace DatabaseToolSuite.Services
 
 		public static void ExportFgisEsnsiToCsv(string path)
 		{
-			IEnumerable<Repositories.MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization> data = MasterDataSystem.DataSet.fgis_esnsi.ExportData();
+			Regex regex = new Regex("\\u005b\\d+\\u005d", RegexOptions.Compiled);
+			
+			IEnumerable<MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization> data = MasterDataSystem.DataSet.fgis_esnsi.ExportData();
 			StreamWriter writer = new StreamWriter(path: path, append: false, encoding: Encoding.GetEncoding(1251));
 			writer.WriteLine("id;NAME;REGION;PHONE;EMAIL;ADDRESS;OKATO;CODE;autokey");
 
-			foreach (Repositories.MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization item in data)
+			foreach (MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization item in data)
 			{
-				string line = item.Id + ";" +
-					item.Name.Trim() + ";" +
-					item.Region.Trim() + ";" +
-					item.Phone.Trim() + ";" +
-					item.Email.Trim() + ";" +
-					item.Address.Trim() + ";" +
-					item.Okato.ToString("00") + ";" +
-					item.Code + ";" +
-					item.Autokey.Trim();
+				if (!string.IsNullOrEmpty(item.OkatoList)){
+
+					string id2 = item.Id.ToString();
+					string okato2 = item.OkatoList;
+					string autokey2 = item.Autokey.Trim();
+					if (regex.IsMatch(item.OkatoList))
+					{
+						Match match = regex.Match(item.OkatoList);
+						string okato = item.OkatoList.Substring(0, match.Index);
+
+						id2 = match.Value.Substring(1, match.Value.Length - 2);
+						okato2 = item.OkatoList.Substring(match.Index + match.Length);
+						autokey2 = "FED_GENPROK_ORGANIZATION_" + id2;
+
+						string line = item.Id + ";" +
+						Utils.Converters.TextForCsvFormat(item.Name.Trim()) + ";" +
+						item.Region.Trim() + ";" +
+						Utils.Converters.TextForCsvFormat(item.Phone.Trim()) + ";" +
+						item.Email.Trim() + ";" +
+						Utils.Converters.TextForCsvFormat(item.Address.Trim()) + ";" +
+						okato + ";" +
+						item.Code + ";" +
+						item.Autokey.Trim();
+
+						writer.WriteLine(line);
+					}
+					
+					string line2 = id2 + ";" +
+						Utils.Converters.TextForCsvFormat(item.Name.Trim()) + ";" +
+						item.Region.Trim() + ";" +
+						Utils.Converters.TextForCsvFormat(item.Phone.Trim()) + ";" +
+						item.Email.Trim() + ";" +
+						Utils.Converters.TextForCsvFormat(item.Address.Trim()) + ";" +
+						okato2 + ";" +
+						item.Code + ";" +
+						autokey2;
+					writer.WriteLine(line2);
+
+				}
+				else
+				{
+					string line = item.Id + ";" +
+						Utils.Converters.TextForCsvFormat(item.Name.Trim()) + ";" +
+						item.Region.Trim() + ";" +
+						Utils.Converters.TextForCsvFormat(item.Phone.Trim()) + ";" +
+						item.Email.Trim() + ";" +
+						Utils.Converters.TextForCsvFormat(item.Address.Trim()) + ";" +
+						item.Okato.ToString("00") + ";" +
+						item.Code + ";" +
+						item.Autokey.Trim();
 				writer.WriteLine(line);
+				}					
 			}
 			writer.Close();
 			MessageBox.Show("Экспорт в формате CSV выполнен!");
@@ -467,6 +513,10 @@ namespace DatabaseToolSuite.Services
 		public static void ExportErvkToCsv(string path)
 		{
 			IEnumerable<MainDataSet.ervkDataTable.ErvkOrganization> data = MasterDataSystem.DataSet.ervk.ExportData();
+
+			data = data.Union(new MainDataSet.ervkDataTable.ErvkOrganization[] { 
+				ErvkOrganization.CreateTestOrganization()});
+
 			StreamWriter writer = new StreamWriter(path: path, append: false, encoding: Encoding.GetEncoding(1251))
 			{
 				NewLine = "\n"
@@ -476,15 +526,15 @@ namespace DatabaseToolSuite.Services
 			foreach (MainDataSet.ervkDataTable.ErvkOrganization item in data)
 			{
 				string line = item.EsnsiCode + ";" +
-					Utils.Converters.TitleForCsvFormat(item.Title) + ";" +
+					Utils.Converters.TextForCsvFormat(item.Title) + ";" +
 					item.IsHead.ToString().ToLower() + ";" +
 					item.Special.ToString().ToLower() + ";" +
 					item.Military.ToString().ToLower() + ";" +
 					item.IsActive.ToString().ToLower() + ";" +
 					item.IdVersionProc.ToString() + ";" +
 					(item.IdVersionHead == 0 ? "1" : item.IdVersionHead.ToString()) + ";" +
-					item.DateStartVersion.ToString("dd.MM.yyyy") + ";" +
-					(item.DateCloseProc == MasterDataSystem.MAX_DATE ? string.Empty : item.DateCloseProc.ToString("dd.MM.yyyy")) + ";" +
+					(item.DateStartVersion <= MasterDataSystem.MIN_DATE ? MasterDataSystem.ERVK_MIN_DATE.ToString("dd.MM.yyyy") : item.DateStartVersion.ToString("dd.MM.yyyy")) + ";" +
+					(item.DateCloseProc >= MasterDataSystem.MAX_DATE ? string.Empty : item.DateCloseProc.ToString("dd.MM.yyyy")) + ";" +
 					item.Ogrn + ";" +
 					item.Inn + ";" +
 					item.SubjectRfList + ";" +

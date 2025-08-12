@@ -4,6 +4,7 @@ namespace DatabaseToolSuite.Utils
 {
 	using DatabaseToolSuite.Services;
 	using System;
+	using System.Windows.Forms;
 
 	/// <summary>
 	/// Класс для реализации временных функций
@@ -392,6 +393,37 @@ namespace DatabaseToolSuite.Utils
 					row.isHead = false;
 				}
 			}
+		}
+
+		/// <summary>
+		/// Автоматическое дополнение атрибута Id для ЕСНСИ
+		/// </summary>
+		public static void SetIdFgisEsnsiAttribute()
+		{
+			int res = 0;
+			foreach (Repositories.MainDataSet.fgis_esnsiRow row in MasterDataSystem.DataSet.fgis_esnsi.Rows)
+			{
+				if (row.id == 0)
+				{
+					long id = MasterDataSystem.DataSet.fgis_esnsi.GetNextId();
+					row.id = id;
+					res++;
+				}
+				if (row.code == 0)
+				{
+					long code = MasterDataSystem.DataSet.fgis_esnsi.GetNextCode();
+					row.code = code;
+					res++;
+				}	
+				if (row.autokey != "FED_GENPROK_ORGANIZATION_" + row.id)
+				{
+					row.autokey = "FED_GENPROK_ORGANIZATION_" + row.id;
+					res++;
+				}
+			}
+
+			MessageBox.Show(string.Format("Внесены сведения в {0} записей.", res));
+
 		}
 
 		/// <summary>
