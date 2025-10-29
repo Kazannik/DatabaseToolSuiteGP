@@ -11,6 +11,7 @@ namespace DatabaseToolSuite.Services
 	internal static class MasterDataSystem
 	{
 		public const long PROSECUTOR_CODE = 20;
+		public const long COURT_OF_LAW = 5;
 		public static readonly DateTime MAX_DATE = new DateTime(2999, 12, 31);
 		public static readonly DateTime MIN_DATE = new DateTime(1900, 1, 1);
 		public static readonly DateTime ERVK_MIN_DATE = new DateTime(1899, 12, 31);

@@ -1,5 +1,6 @@
 ﻿// Ignore Spelling: okato
 
+using DatabaseToolSuite.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,7 @@ namespace DatabaseToolSuite.Repositories
 				return (from item in this.AsEnumerable()
 						.Where(x => x.RowState != DataRowState.Deleted)
 						where item.version == version
-						select item).Count() > 0;
+						select item).Any();
 			}
 
 			public bool ExistsKey(long key)
@@ -25,33 +26,33 @@ namespace DatabaseToolSuite.Repositories
 				return (from item in this.AsEnumerable()
 						.Where(x => x.RowState != DataRowState.Deleted)
 						where item.key == key
-						select item).Count() > 0;
+						select item).Any();
 			}
 
 			public bool ExistsCode(string code)
 			{
 				return (from item in this.AsEnumerable()
 						.Where(x => x.RowState != DataRowState.Deleted)
-						where item.code.Equals(code, StringComparison.CurrentCultureIgnoreCase)
-						select item).Count() > 0;
+						where code.Equals(item.code, StringComparison.CurrentCultureIgnoreCase)
+						select item).Any();
 			}
 
 			public bool ExistsName(string name, string okato)
 			{
 				return (from item in this.AsEnumerable()
 						.Where(x => x.RowState != DataRowState.Deleted)
-						where item.name.Equals(name, StringComparison.CurrentCultureIgnoreCase) &&
-						item.okato_code.Equals(okato, StringComparison.CurrentCultureIgnoreCase)
-						select item).Count() > 0;
+						where name.Equals(item.name, StringComparison.CurrentCultureIgnoreCase) &&
+						okato.Equals(item.okato_code, StringComparison.CurrentCultureIgnoreCase)
+						select item).Any();
 			}
 
 			public bool ExistsGuid(string guid)
 			{
 				return (from item in this.AsEnumerable()
 						.Where(x => x.RowState != DataRowState.Deleted)
-						where (!item.Isimport_guidNull()
-						&& item.import_guid.Equals(guid, StringComparison.CurrentCultureIgnoreCase))
-						select item).Count() > 0;
+						where !item.Isimport_guidNull()
+						&& guid.Equals(item.import_guid, StringComparison.CurrentCultureIgnoreCase)
+						select item).Any();
 			}
 
 			public gaspsRow Get(long version)
@@ -336,12 +337,13 @@ namespace DatabaseToolSuite.Repositories
 				long code = 1;
 				if (this.AsEnumerable()
 					.Where(x => x.RowState != DataRowState.Deleted)
-					.Where(r => r.authority_id == authority && r.okato_code == okato).Any())
+					.Where(r => r.authority_id == authority && r.okato_code == okato)
+					.Any())
 				{
 					code = 1 + this.AsEnumerable()
 						.Where(x => x.RowState != DataRowState.Deleted)
 						.Where(r => r.authority_id == authority && r.okato_code == okato)
-						.Max(r => r.IscodeNull() ? 0 : long.Parse(r.code.Substring(leftCode.Length)));				
+						.Max(r => r.IscodeNull() ? 0 : string.IsNullOrEmpty(r.code) ? 0 : long.Parse(r.code.Substring(leftCode.Length)));				
 				}
 				
 				while (ExistsCode(leftCode + code.ToString(rightCodeFormat)))
@@ -369,7 +371,7 @@ namespace DatabaseToolSuite.Repositories
 				List<long> codes = new List<long>(this.AsEnumerable()
 					.Where(x => x.RowState != DataRowState.Deleted)
 					.Where(r => r.authority_id == authority && r.okato_code == okato)
-					.Select(r => long.Parse(r.code.Substring(leftCode.Length)))
+					.Select(r => r.IscodeNull() ? 0 : string.IsNullOrEmpty(r.code) ? 0 : long.Parse(r.code.Substring(leftCode.Length)))
 					.Distinct());
 				long length = rightCodeFormat.Length == 2 ? 99 : 9999;
 				List<long> result = new List<long>();
@@ -398,7 +400,7 @@ namespace DatabaseToolSuite.Repositories
 				List<long> codes = new List<long>(this.AsEnumerable()
 					.Where(x => x.RowState != DataRowState.Deleted)
 					.Where(r => r.authority_id == authority && r.okato_code == okato)
-					.Select(r => long.Parse(r.code.Substring(leftCode.Length)))
+					.Select(r => r.IscodeNull() ? 0 : string.IsNullOrEmpty(r.code) ? 0 : long.Parse(r.code.Substring(leftCode.Length)))
 					.Distinct());
 				codes.Sort();
 				return codes;
@@ -425,7 +427,8 @@ namespace DatabaseToolSuite.Repositories
 												   item.okato_code == okato &&
 												   item.date_end.Date <= today.Date
 												   orderby item.date_beg descending
-												   select item).GroupBy(x => x.code).Select(y => y.FirstOrDefault());
+												   select item)
+												   .GroupBy(x => x.code).Select(y => y.FirstOrDefault());
 
 				return new BindingList<gaspsRow>(lockCodes
 					.Where(p => unlockCodes.All(p2 => p2.code != p.code))
@@ -463,6 +466,34 @@ namespace DatabaseToolSuite.Repositories
 					.Where(e => 
 					e.date_end.Date > DateTime.Today && 
 					e.date_beg.Date <= DateTime.Today)
+					.OrderBy(e => e, new GaspsRowComparer());
+
+				return from gasps in gaspsCollection
+					   join owner in gaspsCollection on gasps.owner_id equals owner.key into ow_jointable
+					   from ow in ow_jointable.DefaultIfEmpty()
+					   select new ViewGaspsOrganization(gasps: gasps, owner: ow);
+			}
+
+			public IEnumerable<ViewGaspsOrganization> ExportDataForCourtOfLaw(DateTime date)
+			{
+				EnumerableRowCollection<gaspsRow> gaspsCollection = this.AsEnumerable()
+					.Where(e => e.RowState != DataRowState.Deleted)
+					.Where(e =>
+					e.logEditDate >= date)
+					.OrderBy(e => e, new GaspsRowComparer());
+
+				return from gasps in gaspsCollection
+					   join owner in gaspsCollection on gasps.owner_id equals owner.key into ow_jointable
+					   from ow in ow_jointable.DefaultIfEmpty()
+					   select new ViewGaspsOrganization(gasps: gasps, owner: ow);
+			}
+
+			public IEnumerable<ViewGaspsOrganization> ExportLockData()
+			{
+				EnumerableRowCollection<gaspsRow> gaspsCollection = this.AsEnumerable()
+					.Where(e => e.RowState != DataRowState.Deleted)
+					.Where(e =>
+					e.date_end.Date <= DateTime.Today)
 					.OrderBy(e => e, new GaspsRowComparer());
 
 				return from gasps in gaspsCollection

@@ -1,6 +1,7 @@
 ﻿// Ignore Spelling: Ervk Esnsi Fgis
 
 using DatabaseToolSuite.Repositories;
+using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +10,9 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Xml;
 using static DatabaseToolSuite.Repositories.MainDataSet.ervkDataTable;
+using static System.Net.WebRequestMethods;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace DatabaseToolSuite.Services
@@ -21,6 +24,9 @@ namespace DatabaseToolSuite.Services
 			MasterDataSystem.DataSet.WriteXml(xmlFileName, System.Data.XmlWriteMode.WriteSchema);
 		}
 
+		/// <summary>
+		/// Экспорт текущих данных в MS Excel
+		/// </summary>
 		public static void ExportGaspsToExcel()
 		{
 			IEnumerable<MainDataSet.ViewGaspsOrganization> data = MasterDataSystem.DataSet.gasps.ExportData();
@@ -44,11 +50,11 @@ namespace DatabaseToolSuite.Services
 			excBooks = excExcel.Workbooks;
 			excBook = excBooks.Add(objOpt);
 			excSheets = excBook.Worksheets;
-			excSheet = (Excel._Worksheet)(excSheets.get_Item(1));
+			excSheet = (Excel._Worksheet)excSheets.get_Item(1);
+			excSheet.Name = "Активные записи";
 
-
-			object[] objHeaders = { "Номер", "Наименование", "Ведомство", "ОКАТО", "Код", "Дата начала действия" };
-			excRange = excSheet.get_Range("A1", "F1");
+			object[] objHeaders = { "Номер", "Наименование", "Ведомство", "ОКАТО", "Код", "Дата начала действия", "Родитель" };
+			excRange = excSheet.get_Range("A1", "G1");
 			excRange.Value = objHeaders;
 			excFont = excRange.Font;
 			excFont.Bold = true;
@@ -75,7 +81,10 @@ namespace DatabaseToolSuite.Services
 			excRange = excSheet.get_Range("F1", "F1");
 			excRange.ColumnWidth = 10;
 
-			object[,] objData = new object[rowCount, 6];
+			excRange = excSheet.get_Range("G1", "G1");
+			excRange.ColumnWidth = 70;
+
+			object[,] objData = new object[rowCount, objHeaders.Length];
 			int r = 0;
 			foreach (MainDataSet.ViewGaspsOrganization item in data)
 			{
@@ -85,13 +94,131 @@ namespace DatabaseToolSuite.Services
 				objData[r, 3] = item.Okato;
 				objData[r, 4] = item.Code;
 				objData[r, 5] = item.Begin;
+				objData[r, 6] = item.OwnerName;
 				r += 1;
 			}
 
 			excRange = excSheet.get_Range("A2", objOpt);
-			excRange = excRange.get_Resize(rowCount, 6);
+			excRange = excRange.get_Resize(rowCount, objHeaders.Length);
+			excRange.Value = objData;
+
+
+			data = MasterDataSystem.DataSet.gasps.ExportLockData();
+			rowCount = data.Count();
+			
+			excSheet = (Excel._Worksheet)excSheets.Add(After: excSheet);
+			excSheet.Name = "Заблокированные версии записей";
+
+			objHeaders = new object[] { "Номер", "Наименование", "Ведомство", "ОКАТО", "Код", "Дата начала действия", "Дата блокировки", "Родитель" };
+			excRange = excSheet.get_Range("A1", "H1");
+
+			excRange.Value = objHeaders;
+			excFont = excRange.Font;
+			excFont.Bold = true;
+
+			excRange = excSheet.get_Range("B1", "E" + (rowCount + 1));
+			excRange.NumberFormat = "@";
+
+			excRange = excSheet.get_Range("B1", "B1");
+
+			excRange.ColumnWidth = 70;
+
+			excRange = excSheet.get_Range("B2", "B2");
+			excRange.Select();
+			excExcel.ActiveWindow.FreezePanes = true;
+
+			excRange = excSheet.get_Range("C1", "C1");
+			excRange.ColumnWidth = 20;
+
+			excRange = excSheet.get_Range("D1", "D1");
+			excRange.ColumnWidth = 60;
+
+			excRange = excSheet.get_Range("E1", "E1");
+			excRange.ColumnWidth = 10;
+
+			excRange = excSheet.get_Range("F1", "F1");
+			excRange.ColumnWidth = 10;
+
+			excRange = excSheet.get_Range("G1", "G1");
+			excRange.ColumnWidth = 10;
+
+			excRange = excSheet.get_Range("H1", "H1");
+			excRange.ColumnWidth = 70;
+
+			objData = new object[rowCount, objHeaders.Length];
+			r = 0;
+			foreach (MainDataSet.ViewGaspsOrganization item in data)
+			{
+				objData[r, 0] = r + 1;
+				objData[r, 1] = item.Name;
+				objData[r, 2] = item.AuthorityId.ToString("00 - ") + item.Authority;
+				objData[r, 3] = item.Okato;
+				objData[r, 4] = item.Code;
+				objData[r, 5] = item.Begin;
+				objData[r, 6] = item.End;
+				objData[r, 7] = item.OwnerName;
+				r += 1;
+			}
+			excRange = excSheet.get_Range("A2", objOpt);
+			excRange = excRange.get_Resize(rowCount, objHeaders.Length);
 			excRange.Value = objData;
 		}
+
+		public static void ExportGaspsToXmlForSud(string filename, DateTime date)
+		{
+			XmlDocument xmlDocument = new XmlDocument();
+			xmlDocument.LoadXml(string.Format(
+				@"<?xml version=""1.0"" encoding=""windows-1251""?>
+<DIC>
+	<OUTPUTDATE>{0}</OUTPUTDATE>
+</DIC>", DateTime.Now.ToShortDateString()));
+
+			XmlNode dicNode = xmlDocument.LastChild;
+
+
+			IEnumerable<MainDataSet.ViewGaspsOrganization> data = MasterDataSystem.DataSet.gasps.ExportDataForCourtOfLaw(date: date)
+				.Where(e => e.AuthorityId != MasterDataSystem.COURT_OF_LAW);
+			foreach (MainDataSet.ViewGaspsOrganization item in data)
+			{
+				XmlNode recordNode = dicNode.AppendChild(xmlDocument.CreateNode(XmlNodeType.Element, "DIC_RECORD", string.Empty));
+
+				XmlNode vnkodNode = xmlDocument.CreateNode(XmlNodeType.Element, "VNKOD", string.Empty);
+				vnkodNode.InnerText = item.Key.ToString();
+				recordNode.AppendChild(vnkodNode);
+
+				XmlNode znachatrNode = xmlDocument.CreateNode(XmlNodeType.Element, "ZNACHATR", string.Empty);
+				znachatrNode.InnerText = item.Name;
+				recordNode.AppendChild(znachatrNode);
+
+				XmlNode date_begNode = xmlDocument.CreateNode(XmlNodeType.Element, "DATE_BEG", string.Empty);
+				DateTime date_beg = item.Begin < MasterDataSystem.MIN_DATE ? MasterDataSystem.MIN_DATE : item.Begin;
+				date_begNode.InnerText = date_beg.ToShortDateString();
+				recordNode.AppendChild(date_begNode);
+
+				XmlNode date_endNode = xmlDocument.CreateNode(XmlNodeType.Element, "DATE_END", string.Empty);
+				if (item.End < MasterDataSystem.MAX_DATE) 
+					date_endNode.InnerText = item.End.ToShortDateString();
+				recordNode.AppendChild(date_endNode);
+
+				recordNode.AppendChild(xmlDocument.CreateNode(XmlNodeType.Element, "PRIM", string.Empty));
+
+				XmlNode upkodNode = xmlDocument.CreateNode(XmlNodeType.Element, "UPKOD", string.Empty);
+				upkodNode.InnerText = item.OwnerId.ToString();
+				recordNode.AppendChild(upkodNode);
+
+				string ssrf = MasterDataSystem.DataSet.GetOkatoSSRF(item.OkatoCode);
+				XmlNode nstNode = xmlDocument.CreateNode(XmlNodeType.Element, "NST", string.Empty);
+				if (!string.IsNullOrEmpty(ssrf)) nstNode.InnerText = ssrf;
+				recordNode.AppendChild(nstNode);
+
+				XmlNode vrn_recordNode = xmlDocument.CreateNode(XmlNodeType.Element, "VRN_RECORD", string.Empty);
+				vrn_recordNode.InnerText = item.Version.ToString();
+				recordNode.AppendChild(vrn_recordNode);
+			}
+			xmlDocument.Save(filename);
+		}
+
+
 
 
 		public static void ExportFullDataBaseToExcel()
@@ -378,7 +505,6 @@ namespace DatabaseToolSuite.Services
 			excRange.Value = objData;
 		}
 
-
 		public static void ExportFgisEsnsiForLawToExcel()
 		{
 			IEnumerable<MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization> data = MasterDataSystem.DataSet.fgis_esnsi.ExportData();
@@ -442,18 +568,18 @@ namespace DatabaseToolSuite.Services
 			excRange = excSheet.get_Range("A1", "G1");
 		}
 
-
 		public static void ExportFgisEsnsiToCsv(string path)
 		{
 			Regex regex = new Regex("\\u005b\\d+\\u005d", RegexOptions.Compiled);
-			
+
 			IEnumerable<MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization> data = MasterDataSystem.DataSet.fgis_esnsi.ExportData();
 			StreamWriter writer = new StreamWriter(path: path, append: false, encoding: Encoding.GetEncoding(1251));
 			writer.WriteLine("id;NAME;REGION;PHONE;EMAIL;ADDRESS;OKATO;CODE;autokey");
 
 			foreach (MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization item in data)
 			{
-				if (!string.IsNullOrEmpty(item.OkatoList)){
+				if (!string.IsNullOrEmpty(item.OkatoList))
+				{
 
 					string id2 = item.Id.ToString();
 					string okato2 = item.OkatoList;
@@ -479,7 +605,7 @@ namespace DatabaseToolSuite.Services
 
 						writer.WriteLine(line);
 					}
-					
+
 					string line2 = id2 + ";" +
 						Utils.Converters.TextForCsvFormat(item.Name.Trim()) + ";" +
 						item.Region.Trim() + ";" +
@@ -503,8 +629,8 @@ namespace DatabaseToolSuite.Services
 						item.Okato.ToString("00") + ";" +
 						item.Code + ";" +
 						item.Autokey.Trim();
-				writer.WriteLine(line);
-				}					
+					writer.WriteLine(line);
+				}
 			}
 			writer.Close();
 			MessageBox.Show("Экспорт в формате CSV выполнен!");
@@ -514,7 +640,7 @@ namespace DatabaseToolSuite.Services
 		{
 			IEnumerable<MainDataSet.ervkDataTable.ErvkOrganization> data = MasterDataSystem.DataSet.ervk.ExportData();
 
-			data = data.Union(new MainDataSet.ervkDataTable.ErvkOrganization[] { 
+			data = data.Union(new MainDataSet.ervkDataTable.ErvkOrganization[] {
 				ErvkOrganization.CreateTestOrganization()});
 
 			StreamWriter writer = new StreamWriter(path: path, append: false, encoding: Encoding.GetEncoding(1251))
@@ -548,7 +674,6 @@ namespace DatabaseToolSuite.Services
 			writer.Close();
 			MessageBox.Show("Экспорт в формате CSV выполнен!");
 		}
-
 
 		public static void ExportErvkToExcel()
 		{

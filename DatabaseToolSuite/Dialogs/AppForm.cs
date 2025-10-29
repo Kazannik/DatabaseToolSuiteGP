@@ -1,4 +1,4 @@
-﻿// Ignore Spelling: App
+﻿// Ignore Spelling: App Dialogs
 
 using DatabaseToolSuite.Repositories;
 using DatabaseToolSuite.Services;
@@ -355,7 +355,7 @@ namespace DatabaseToolSuite.Dialogs
 			{
 				Title = "Открыть данные",
 				Multiselect = false,
-				Filter = "Документ XML(.xml)|*.xml|XML Schema File(.xsd)|*.xsd"
+				Filter = "Документ XML|*.xml|XML Schema File|*.xsd"
 			};
 			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{
@@ -398,7 +398,7 @@ namespace DatabaseToolSuite.Dialogs
 			SaveFileDialog dialog = new SaveFileDialog
 			{
 				Title = "Сохранить данные",
-				Filter = "Документ XML(.xml)|*.xml|XML Schema File(.xsd)|*.xsd",
+				Filter = "Документ XML|*.xml|XML Schema File|*.xsd",
 				FileName = string.IsNullOrWhiteSpace(FileSystem.DatabaseFileName) ? "gasps.xml" : FileSystem.DatabaseFileName
 			};
 			if (dialog.ShowDialog(this) == DialogResult.OK)
@@ -431,7 +431,7 @@ namespace DatabaseToolSuite.Dialogs
 			{
 				Title = "Импортировать данные",
 				Multiselect = false,
-				Filter = "Текстовый документ (.txt)|*.txt"
+				Filter = "Текстовый документ|*.txt"
 			};
 			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{
@@ -449,11 +449,11 @@ namespace DatabaseToolSuite.Dialogs
 		{
 			SaveFileDialog dialog = new SaveFileDialog
 			{
-				Title = "Экспортировать данные",
-				Filter = "Документ XML(.xml)|*.xml|" +
-				"Файл Microsoft Excel, содержащий значения ЕСНСИ, разделенные запятыми (.csv)|*.csv|" +
-				"Файл Microsoft Excel, содержащий значения ЕРВК, разделенные запятыми (.csv)|*.csv|" +
-				"База данных ГАС ПС в формате XML(.xml)|*.xml",
+				Title = "Экспорт данныx",
+				Filter = "Документ XML|*.xml|" +
+				"Файл Microsoft Excel, содержащий значения ЕСНСИ, разделенные запятыми|*.csv|" +
+				"Файл Microsoft Excel, содержащий значения ЕРВК, разделенные запятыми|*.csv|" +
+				"Документ XML базы данных ГАС ПС для Судебного департамента|*.xml",
 				FileName = "FED_GENPROK_ORGANIZATION_Cp1251"
 			};
 			if (dialog.ShowDialog(this) == DialogResult.OK)
@@ -470,6 +470,19 @@ namespace DatabaseToolSuite.Dialogs
 				{
 					Export.ExportErvkToCsv(dialog.FileName);
 				}
+				else if (dialog.FilterIndex == 4)
+				{
+					SelectDateDialog selectDateDialog = new SelectDateDialog();
+					if (selectDateDialog.ShowDialog(this) == DialogResult.OK)
+					{
+						Export.ExportGaspsToXmlForSud(dialog.FileName, date: selectDateDialog.SelectDate);
+					}
+					else
+					{
+						Export.ExportGaspsToXmlForSud(dialog.FileName, date: MasterDataSystem.MIN_DATE);
+					}					
+				}
+				MessageBox.Show(dialog.Title + " успешно выполнен!", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
 		}
 
@@ -478,7 +491,7 @@ namespace DatabaseToolSuite.Dialogs
 			SaveFileDialog dialog = new SaveFileDialog
 			{
 				Title = "Экспорт данных для ГАС ПС",
-				Filter = "Документ XML(.xml)|*.xml",
+				Filter = "Документ XML|*.xml",
 				FileName = "EXP_LAW_AGENCY"
 			};
 			if (dialog.ShowDialog(this) == DialogResult.OK)
@@ -503,7 +516,7 @@ namespace DatabaseToolSuite.Dialogs
 			OpenFileDialog dialog = new OpenFileDialog
 			{
 				Title = "Импорт данных из кадров 1С",
-				Filter = "Документ XML(*.xml)|*.xml",
+				Filter = "Документ XML|*.xml",
 				FileName = "get_subdivision"
 			};
 			if (dialog.ShowDialog(this) == DialogResult.OK)

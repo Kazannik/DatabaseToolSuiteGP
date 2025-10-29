@@ -24,8 +24,8 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <TargetCulture>ru</TargetCulture>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.2.0</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.5.2.1</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -73,8 +73,9 @@
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
@@ -126,6 +127,12 @@
     </Compile>
     <Compile Include="Dialogs\ImportSubdivisionDialog.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SelectDateDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SelectDateDialog.Designer.cs">
+      <DependentUpon>SelectDateDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SelectPeriodDialog.cs">
       <SubType>Form</SubType>
@@ -277,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\RemoveOrganizationDialog.resx">
       <DependentUpon>RemoveOrganizationDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SelectDateDialog.resx">
+      <DependentUpon>SelectDateDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectOrganizationDialog.resx">
       <DependentUpon>SelectOrganizationDialog.cs</DependentUpon>
@@ -553,6 +563,9 @@
     <None Include="Resources\bt20.png" />
     <None Include="Resources\bt21.png" />
     <None Include="Resources\bt22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

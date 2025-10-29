@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Главное управление правовой статистики и информационных технологий Генеральной прокуратуры Российской Федерации")]
 [assembly: AssemblyProduct("Справочники НСИ ГАС ПС")]
-[assembly: AssemblyCopyright("Отдел ведения ЕНСИ © 2024")]
+[assembly: AssemblyCopyright("Отдел ведения ЕНСИ © 2025")]
 [assembly: AssemblyTrademark("Управление информационных технологий")]
 [assembly: AssemblyCulture("")]
 
@@ -32,7 +32,7 @@ using System.Runtime.InteropServices;
 // Можно задать все значения или принять номера сборки и редакции по умолчанию 
 // используя "*", как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.4.1.0")]
-[assembly: AssemblyFileVersion("1.4.1.0")]
+[assembly: AssemblyVersion("1.5.2.1")]
+[assembly: AssemblyFileVersion("1.5.2.1")]
 [assembly: NeutralResourcesLanguage("ru")]
 

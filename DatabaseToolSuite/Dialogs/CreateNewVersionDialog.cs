@@ -1,5 +1,6 @@
 ﻿// Ignore Spelling: Okato
 
+using DatabaseToolSuite.Services;
 using System;
 using System.Windows.Forms;
 
@@ -32,20 +33,23 @@ namespace DatabaseToolSuite.Dialogs
 			DialogCaption = "Создание новой версии записи о подразделении";
 
 			OkButtonEnabled = false;
+			authorityComboBox.Enabled = false;
 		}
 
 		public CreateNewVersionDialog(Repositories.MainDataSet.gaspsRow row) : this()
 		{
 			ApplyButtonVisible = false;
+			authorityComboBox.Enabled = false;
 
 			DataRow = row;
 
 			oldCode = DataRow.code;
+			if (string.IsNullOrEmpty(oldCode)) oldCode = string.Empty;
 			oldName = DataRow.name;
 			oldOkato = DataRow.okato_code;
 			oldAuthorityId = DataRow.authority_id;
 			oldOwnerKey = DataRow.owner_id;
-
+			
 			CourtType = DataRow.court_type_id;
 
 			beginDateTimePicker.Value = DateTime.Today;
@@ -122,7 +126,7 @@ namespace DatabaseToolSuite.Dialogs
 			ownerTextBox.Text = string.Empty;
 		}
 
-		private void Controls_ValueChanged(object sender, EventArgs e)
+		protected void Controls_ValueChanged(object sender, EventArgs e)
 		{
 			if (
 				oldAuthorityId != Authority ||
@@ -130,7 +134,8 @@ namespace DatabaseToolSuite.Dialogs
 				oldName != OrganizationName ||
 				oldOkato != OkatoCode ||
 				oldOwnerKey != OrganizationOwner ||
-				oldCode != CodeText
+				oldCode != CodeText ||
+				!AdditionalCondition()
 				)
 			{
 				OkButtonEnabled = true;
@@ -139,6 +144,7 @@ namespace DatabaseToolSuite.Dialogs
 			{
 				OkButtonEnabled = false;
 			}
+
 			if ((string.IsNullOrWhiteSpace(codeTextBox.Text) && AuthorityCode != "20") ||
 				string.IsNullOrWhiteSpace(OrganizationName) ||
 				!Authority.HasValue ||
@@ -148,7 +154,13 @@ namespace DatabaseToolSuite.Dialogs
 			deleteOwnerButton.Enabled = OrganizationOwner != 0;
 		}
 
-		protected virtual void ComboBox_SelectedIndexChanged(object sender, EventArgs e) { }
+
+		protected virtual bool AdditionalCondition() { return true; }
+
+		protected virtual void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			Controls_ValueChanged(this, EventArgs.Empty);
+		}
 
 		protected string CodeText
 		{
@@ -491,7 +503,7 @@ namespace DatabaseToolSuite.Dialogs
 		private System.Windows.Forms.Button deleteOwnerButton;
 		private GroupBox organizationGroupBox;
 		private TextBox codeTextBox;
-		private Controls.AuthorityComboBox authorityComboBox;
+		protected Controls.AuthorityComboBox authorityComboBox;
 		private Controls.OkatoComboBox okatoComboBox;
 		private TextBox nameTextBox;
 		private DateTimePicker beginDateTimePicker;

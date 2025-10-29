@@ -64,6 +64,11 @@ namespace DatabaseToolSuite.Repositories
 			return OkatoTable.GetGenitive(code);
 		}
 
+		public string GetOkatoSSRF(string code)
+		{
+			return OkatoTable.GetSSRF(code);
+		}
+
 		private gaspsDataTable GaspsTable
 		{
 			get { return Services.MasterDataSystem.DataSet.gasps; }
@@ -226,6 +231,20 @@ namespace DatabaseToolSuite.Repositories
 				return (from item in this.AsEnumerable()
 						where code.Equals(item.code)
 						select item).First().genitive;
+			}
+
+			public string GetSSRF(string code)
+			{
+				if ((from item in this.AsEnumerable()
+					 where code.Equals(item.code)
+					 select item).Any())
+				{
+					return (from item in this.AsEnumerable()
+							where code.Equals(item.code)
+							select item).First().ssrf;
+				}
+				else
+					return default;
 			}
 
 			public okatoRow Get(string code)

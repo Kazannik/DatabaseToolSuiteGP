@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace DatabaseToolSuite.Dialogs
@@ -26,6 +27,7 @@ namespace DatabaseToolSuite.Dialogs
 			Text = "Новая запись о подразделении";
 			DialogCaption = "Создание новой записи о подразделении";
 			CodeText = string.Empty;
+			authorityComboBox.Enabled = true;
 		}
 
 		public CreateNewOrganizationDialog(string name, string code, DateTime beginDate) : this()
@@ -40,6 +42,7 @@ namespace DatabaseToolSuite.Dialogs
 			CodeTextEnabled = false;
 			BeginDateTimeValue = new DateTime(year: beginDate.Year, month: beginDate.Month, day: beginDate.Day);
 			BeginDateTimeEnabled = false;
+			authorityComboBox.Enabled = true;
 		}
 
 		public CreateNewOrganizationDialog(Repositories.MainDataSet.gaspsRow row) : base(row)
@@ -67,6 +70,7 @@ namespace DatabaseToolSuite.Dialogs
 			Text = "Новая запись о подразделении";
 			DialogCaption = "Создание новой записи о подразделении";
 			CodeText = string.Empty;
+			authorityComboBox.Enabled = true;
 		}
 
 		public string Code
@@ -82,8 +86,7 @@ namespace DatabaseToolSuite.Dialogs
 			}
 			catch (Exception)
 			{
-				CodeText = Services.FileSystem.Repository.MainDataSet.gasps.GetNextSkippedCode(authority: Authority ?? 0, okato: OkatoCode);
-				MessageBox.Show(this, "Диапазон кодов исчерпан. Выбран код из числа пропущенных номеров.", "Создание новой записи о подразделении", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				NextSkippedCode();
 			}
 		}
 
@@ -133,12 +136,25 @@ namespace DatabaseToolSuite.Dialogs
 					}
 					catch (Exception)
 					{
-						CodeText = Services.FileSystem.Repository.MainDataSet.gasps.GetNextSkippedCode(authority: Authority ?? 0, okato: OkatoCode);
-						MessageBox.Show(this, "Диапазон кодов исчерпан. Выбран код из числа пропущенных номеров.", "Создание новой записи о подразделении", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+						NextSkippedCode();
 					}
 				}
 			}
 		}
+
+		private void NextSkippedCode()
+		{
+			if (Services.FileSystem.Repository.MainDataSet.gasps.GetSkippedCodes(authority: Authority ?? 0, okato: OkatoCode).Any())
+			{
+				CodeText = Services.FileSystem.Repository.MainDataSet.gasps.GetNextSkippedCode(authority: Authority ?? 0, okato: OkatoCode);
+				MessageBox.Show(this, "Диапазон кодов исчерпан. Выбран код из числа пропущенных номеров.", "Создание новой записи о подразделении", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			else
+			{
+				MessageBox.Show(this, "Создание записи не возможно! Диапазон кодов исчерпан. Пропущенных номеров также нет.", "Создание новой записи о подразделении", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
 
 		#region Код, автоматически созданный конструктором форм Windows
 
