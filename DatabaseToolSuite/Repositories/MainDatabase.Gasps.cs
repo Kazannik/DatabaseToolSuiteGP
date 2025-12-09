@@ -248,6 +248,15 @@ namespace DatabaseToolSuite.Repositories
 				return GetOrganizationFromVersion(version);
 			}
 
+			public gaspsRow[] GetOrganizationsFromKey(long key)
+			{
+				return this.AsEnumerable()
+					.Where(x => x.RowState != DataRowState.Deleted)
+					.Where(x => x.key == key)
+					.OrderBy(x => x.version)
+					.ToArray();
+			}
+
 			public gaspsRow GetLastVersionOrganizationFromCode(string code)
 			{
 				long version = this.AsEnumerable()

@@ -2,8 +2,11 @@
 
 namespace DatabaseToolSuite.Utils
 {
+	using DatabaseToolSuite.Controls;
 	using DatabaseToolSuite.Services;
+	using Microsoft.Office.Interop.Excel;
 	using System;
+	using System.Collections.Generic;
 	using System.Windows.Forms;
 
 	/// <summary>
@@ -421,9 +424,63 @@ namespace DatabaseToolSuite.Utils
 					res++;
 				}
 			}
-
 			MessageBox.Show(string.Format("Внесены сведения в {0} записей.", res));
+		}
 
+		/// <summary>
+		/// Внесение сведений о владельце
+		/// </summary>
+		/// <param name="date">Дата введения новой версии записи</param>
+		/// <param name="array">Массив строк для внесения сведений</param>
+		/// <param name="ownerKey">Ключ родительского подразделения</param>
+		public static void SetOwnerOrganization(DateTime date, Repositories.MainDataSet.gaspsRow[] array,  long ownerKey)
+		{
+			foreach (Repositories.MainDataSet.gaspsRow row in array)
+			{
+				MasterDataSystem.CreateNewVersionOrganization(
+					version: row.version,
+					date: date,
+					name: row.name,
+					okato: row.okato_code,
+					authorityId: row.authority_id,
+					ownerKey: ownerKey,
+					courtTypeId: row.court_type_id);
+			}			
+			MessageBox.Show(string.Format("Внесены сведения в {0} записей.", array.Length));
+		}
+
+		/// <summary>
+		/// Ремонт данных.
+		/// </summary>
+		public static void FixDataVersion01()
+		{
+			int n = 0;
+			
+			foreach (Repositories.MainDataSet.gaspsRow row in MasterDataSystem.DataSet.gasps.Rows)
+			{
+				if (row.authority_id != 5 &&
+					row.date_beg == row.date_end)
+				{
+					Repositories.MainDataSet.gaspsRow[] rowsFromKey = MasterDataSystem.DataSet.gasps.GetOrganizationsFromKey(row.key);
+
+					for (int i = 0; i < rowsFromKey.Length - 1; i++)
+					{
+						Repositories.MainDataSet.gaspsRow oldRow = rowsFromKey[i];
+						if (oldRow.date_beg == oldRow.date_end)
+						{
+							Repositories.MainDataSet.gaspsRow nextRow = rowsFromKey[i + 1];
+							if (oldRow.date_beg == nextRow.date_beg)
+							{
+								DateTime editDate = new DateTime(nextRow.logEditDate.Year, nextRow.logEditDate.Month, nextRow.logEditDate.Day);
+								oldRow.date_end = editDate;
+								nextRow.date_beg = editDate;
+								n++;
+							}
+						}
+					}
+				}				
+			}
+			MessageBox.Show(string.Format("Внесены сведения в {0} записей.", n));
 		}
 
 		/// <summary>

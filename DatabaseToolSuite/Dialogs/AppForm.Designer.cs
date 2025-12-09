@@ -92,6 +92,8 @@
 			this.mnuToolsExpLawAgenceEdit = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuToolsTableEdit = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuToolsEsnsiIdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.mnuToolsOwnerEdit = new System.Windows.Forms.ToolStripMenuItem();
+			this.mnuToolsFixData = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuHelpStatistic = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
@@ -570,7 +572,9 @@
             this.mnuToolsServise,
             this.mnuToolsExpLawAgenceEdit,
             this.mnuToolsTableEdit,
-            this.mnuToolsEsnsiIdToolStripMenuItem});
+            this.mnuToolsEsnsiIdToolStripMenuItem,
+            this.mnuToolsOwnerEdit,
+            this.mnuToolsFixData});
 			this.mnuTools.Name = "mnuTools";
 			this.mnuTools.Size = new System.Drawing.Size(81, 27);
 			this.mnuTools.Text = "Сервис";
@@ -709,6 +713,21 @@
 			this.mnuToolsEsnsiIdToolStripMenuItem.Text = "mnuToolsEsnsiId";
 			this.mnuToolsEsnsiIdToolStripMenuItem.Visible = false;
 			this.mnuToolsEsnsiIdToolStripMenuItem.Click += new System.EventHandler(this.mnuToolsEsnsiIdToolStripMenuItem_Click);
+			// 
+			// mnuToolsOwnerEdit
+			// 
+			this.mnuToolsOwnerEdit.Name = "mnuToolsOwnerEdit";
+			this.mnuToolsOwnerEdit.Size = new System.Drawing.Size(490, 30);
+			this.mnuToolsOwnerEdit.Text = "Внести сведения о владельце подразделения";
+			this.mnuToolsOwnerEdit.Click += new System.EventHandler(this.MnuToolsOwnerEdit_Click);
+			// 
+			// mnuToolsFixData
+			// 
+			this.mnuToolsFixData.Name = "mnuToolsFixData";
+			this.mnuToolsFixData.Size = new System.Drawing.Size(490, 30);
+			this.mnuToolsFixData.Text = "Fix Data";
+			this.mnuToolsFixData.Visible = false;
+			this.mnuToolsFixData.Click += new System.EventHandler(this.MnuToolsFixData_Click);
 			// 
 			// mnuHelp
 			// 
@@ -998,7 +1017,7 @@
             this.toolStripMenuItem22,
             this.mnuContextUpdate});
 			this.contextMenuTable.Name = "contextMenuTable";
-			this.contextMenuTable.Size = new System.Drawing.Size(606, 434);
+			this.contextMenuTable.Size = new System.Drawing.Size(606, 406);
 			// 
 			// mnuContextNewOrganization
 			// 
@@ -1862,5 +1881,7 @@
 		private System.Windows.Forms.ToolStripMenuItem mnuFileExportDelta;
 		private System.Windows.Forms.ToolStripMenuItem mnuFileFgisEsnsiForLawExportToExcel;
 		private System.Windows.Forms.ToolStripMenuItem mnuToolsEsnsiIdToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem mnuToolsOwnerEdit;
+		private System.Windows.Forms.ToolStripMenuItem mnuToolsFixData;
 	}
 }

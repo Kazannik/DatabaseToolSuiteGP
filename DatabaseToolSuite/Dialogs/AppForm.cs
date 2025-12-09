@@ -3,6 +3,7 @@
 using DatabaseToolSuite.Repositories;
 using DatabaseToolSuite.Services;
 using System;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -85,6 +86,8 @@ namespace DatabaseToolSuite.Dialogs
 
 			mnuToolsClearCode.Enabled = false;
 			additionalToolStripBar.Enabled = false;
+
+			mnuToolsOwnerEdit.Enabled = false;
 		}
 
 		private bool isFilter = true;
@@ -198,6 +201,7 @@ namespace DatabaseToolSuite.Dialogs
 			{
 				DisableControl();
 			}
+			mnuToolsOwnerEdit.Enabled = false;
 		}
 
 		private void GaspsListView_ItemsMultySelectionChanged(object sender, EventArgs e)
@@ -206,6 +210,7 @@ namespace DatabaseToolSuite.Dialogs
 			mnuContextUrpEdit.Enabled = filterAuthorityComboBox.Value == MasterDataSystem.PROSECUTOR_CODE;
 			mnuTableUrpEditButton.Enabled = filterAuthorityComboBox.Value == MasterDataSystem.PROSECUTOR_CODE;
 			additionalToolStripBar.Enabled = filterAuthorityComboBox.Value == MasterDataSystem.PROSECUTOR_CODE;
+			mnuToolsOwnerEdit.Enabled = true;
 		}
 
 		private void GaspsListView_ItemMouseClick(object sender, Controls.ListViewEventArgs e)
@@ -1040,6 +1045,32 @@ namespace DatabaseToolSuite.Dialogs
 		private void mnuToolsEsnsiIdToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Utils.Database.SetIdFgisEsnsiAttribute();
+			gaspsListView.UpdateListViewItem();
+		}
+
+		/// <summary>
+		/// Внести сведения о владельце
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void MnuToolsOwnerEdit_Click(object sender, EventArgs e)
+		{
+			if (gaspsListView.MultySelectDataRows.Any())
+			{
+				SelectOrganizationDialog dialog = new SelectOrganizationDialog(FileSystem.Repository.MainDataSet);
+				{
+					if (dialog.ShowDialog() == DialogResult.OK)
+					{
+						Utils.Database.SetOwnerOrganization(DateTime.Today, gaspsListView.MultySelectDataRows.ToArray(), dialog.DataRow.key);
+						gaspsListView.UpdateListViewItem();
+					}
+				}
+			}
+		}
+
+		private void MnuToolsFixData_Click(object sender, EventArgs e)
+		{
+			Utils.Database.FixDataVersion01();
 			gaspsListView.UpdateListViewItem();
 		}
 	}
