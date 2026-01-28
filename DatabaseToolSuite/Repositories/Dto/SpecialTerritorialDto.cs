@@ -12,8 +12,7 @@ namespace DatabaseToolSuite.Repositories.Dto
 
 		public string Name { get; private set; }
 
-		public string Text
-		{ get { return Name; } }
+		public string Text => Name;
 
 		public SpecialTerritorialDto()
 		{

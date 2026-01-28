@@ -1,7 +1,6 @@
 ﻿// Ignore Spelling: Ervk Esnsi Fgis
 
 using DatabaseToolSuite.Repositories;
-using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +11,6 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
 using static DatabaseToolSuite.Repositories.MainDataSet.ervkDataTable;
-using static System.Net.WebRequestMethods;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace DatabaseToolSuite.Services
@@ -480,8 +478,8 @@ namespace DatabaseToolSuite.Services
 			excSheet = (Excel._Worksheet)(excSheets.get_Item(1));
 			excSheet.Name = "FED_GENPROK_ORGANIZATION_Cp1251";
 
-			object[] objHeaders = { "id", "NAME", "REGION", "PHONE", "EMAIL", "ADDRESS", "OKATO", "CODE", "autokey" };
-			excRange = excSheet.get_Range("A1", "I1");
+			object[] objHeaders = { "id", "NAME", "REGION", "PHONE", "EMAIL", "ADDRESS", "OKATO", "OKATO_LIST", "CODE", "autokey", "EDIT_DATE" };
+			excRange = excSheet.get_Range("A1", "K1");
 			excRange.Value = objHeaders;
 
 			object[,] objData = new object[rowCount, objHeaders.Count()];
@@ -495,8 +493,10 @@ namespace DatabaseToolSuite.Services
 				objData[r, 4] = item.Email;
 				objData[r, 5] = item.Address;
 				objData[r, 6] = item.Okato;
-				objData[r, 7] = item.Code;
-				objData[r, 8] = item.Autokey;
+				objData[r, 7] = item.OkatoList;
+				objData[r, 8] = item.Code;
+				objData[r, 9] = item.Autokey;
+				objData[r, 10] = item.EditDate;
 				r += 1;
 			}
 

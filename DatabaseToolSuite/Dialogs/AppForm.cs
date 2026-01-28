@@ -241,16 +241,23 @@ namespace DatabaseToolSuite.Dialogs
 			};
 			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{
-				MasterDataSystem.CreateNewOrganization(
+				try
+				{
+					MasterDataSystem.CreateNewOrganization(
 					name: dialog.OrganizationName,
 					okato: dialog.OkatoCode,
 					authorityId: dialog.Authority ?? 0,
 					code: dialog.Code,
 					ownerKey: dialog.OrganizationOwner,
 					dateBegin: dialog.BeginDate,
-					dateEnd: Services.MasterDataSystem.MAX_DATE,
+					dateEnd: MasterDataSystem.MAX_DATE,
 					courtTypeId: dialog.CourtType);
-				gaspsListView.UpdateListViewItem();
+					gaspsListView.UpdateListViewItem();
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
 			}
 		}
 
@@ -262,16 +269,23 @@ namespace DatabaseToolSuite.Dialogs
 			};
 			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{
-				MasterDataSystem.CreateNewOrganization(
+				try
+				{
+					MasterDataSystem.CreateNewOrganization(
 					name: dialog.OrganizationName,
 					okato: dialog.OkatoCode,
 					authorityId: dialog.Authority ?? 0,
 					code: dialog.Code,
 					ownerKey: dialog.OrganizationOwner,
 					dateBegin: dialog.BeginDate,
-					dateEnd: Services.MasterDataSystem.MAX_DATE,
+					dateEnd: MasterDataSystem.MAX_DATE,
 					courtTypeId: dialog.CourtType);
-				gaspsListView.UpdateListViewItem();
+					gaspsListView.UpdateListViewItem();
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
 			}
 		}
 
@@ -280,16 +294,22 @@ namespace DatabaseToolSuite.Dialogs
 			CreateNewVersionDialog dialog = new CreateNewVersionDialog(gaspsListView.DataRow);
 			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{
-				long version = gaspsListView.DataRow.version;
-				MasterDataSystem.CreateNewVersionOrganization(
-					version: version,
-					date: dialog.BeginDate,
-					name: dialog.OrganizationName,
-					okato: dialog.OkatoCode,
-					authorityId: dialog.Authority ?? 0,
-					ownerKey: dialog.OrganizationOwner,
-					courtTypeId: dialog.CourtType);
-				gaspsListView.UpdateListViewItem();
+				try
+				{
+					long version = gaspsListView.DataRow.version;
+					MasterDataSystem.CreateNewVersionOrganization(
+						version: version,
+						date: dialog.BeginDate,
+						name: dialog.OrganizationName,
+						okato: dialog.OkatoCode,
+						authorityId: dialog.Authority ?? 0,
+						ownerKey: dialog.OrganizationOwner,
+						courtTypeId: dialog.CourtType);
+					gaspsListView.UpdateListViewItem();
+				}
+				catch (Exception ex) {
+					MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
 			}
 		}
 
@@ -298,9 +318,15 @@ namespace DatabaseToolSuite.Dialogs
 			RemoveOrganizationDialog dialog = new RemoveOrganizationDialog(gaspsListView.DataRow);
 			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{
-				long version = gaspsListView.DataRow.version;
-				MasterDataSystem.RemoveOrganization(version: version, date: dialog.LockDate);
-				gaspsListView.UpdateListViewItem();
+				try
+				{
+					long version = gaspsListView.DataRow.version;
+					MasterDataSystem.RemoveOrganization(version: version, date: dialog.LockDate);
+					gaspsListView.UpdateListViewItem();
+				}
+				catch (Exception ex) {				
+					MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}				
 			}
 		}
 
@@ -309,16 +335,23 @@ namespace DatabaseToolSuite.Dialogs
 			EditErrorDialog dialog = new EditErrorDialog(gaspsListView.DataRow);
 			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{
-				long version = gaspsListView.DataRow.version;
-				MasterDataSystem.EditVersionOrganization(
-					version: version,
-					date: dialog.BeginDate,
-					name: dialog.OrganizationName,
-					okato: dialog.OkatoCode,
-					authorityId: dialog.Authority ?? 0,
-					ownerKey: dialog.OrganizationOwner,
-					courtTypeId: dialog.CourtType);
-				gaspsListView.UpdateListViewItem();
+				try
+				{
+					long version = gaspsListView.DataRow.version;
+					MasterDataSystem.EditVersionOrganization(
+						version: version,
+						date: dialog.BeginDate,
+						name: dialog.OrganizationName,
+						okato: dialog.OkatoCode,
+						authorityId: dialog.Authority ?? 0,
+						ownerKey: dialog.OrganizationOwner,
+						courtTypeId: dialog.CourtType);
+					gaspsListView.UpdateListViewItem();
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}				
 			}
 		}
 
@@ -785,7 +818,16 @@ namespace DatabaseToolSuite.Dialogs
 					{
 						editRow.SetoktmoListNull();
 					}
-					
+
+					if (!string.IsNullOrEmpty(dialog.SubjectRF))
+					{
+						editRow.subjectRfList = dialog.SubjectRF;
+					}
+					else
+					{
+						editRow.SetsubjectRfListNull();
+					}
+
 					Utils.Database.SetIsHeadAttribute();
 					gaspsListView.UpdateListViewItem();
 				}

@@ -21,6 +21,7 @@ namespace DatabaseToolSuite.Dialogs
 		private readonly string oldOgrn;
 		private readonly string oldInn;
 		private readonly string oldOktmo;
+		private readonly string oldSubjectRf;
 
 		private Button deleteOwnerButton;
 		private Button selectOwnerButton;
@@ -33,6 +34,8 @@ namespace DatabaseToolSuite.Dialogs
 		private GroupBox ownerGroupBox;
 		private Label label3;
 		private Controls.NumericTextBox oktmoNumericTextBox;
+		private TextBox subjectRfTextBox;
+		private Label subjectFrLabel;
 		private Button getOwnerArgButton;
 
 		public Repositories.MainDataSet.ervkRow ErvkOrganization { get; private set; }
@@ -95,6 +98,11 @@ namespace DatabaseToolSuite.Dialogs
 		/// </summary>
 		public string Oktmo { get { return oktmoNumericTextBox.Text; } }
 
+		/// <summary>
+		/// Субъект РФ
+		/// </summary>
+		public string SubjectRF { get { return subjectRfTextBox.Text; } }
+
 		public ErvkDialog() : base()
 		{
 			ApplyButtonVisible = false;
@@ -134,6 +142,7 @@ namespace DatabaseToolSuite.Dialogs
 			oldOgrn = DataRow.IsogrnNull() ? string.Empty : DataRow.ogrn;
 			oldInn = DataRow.IsinnNull() ? string.Empty : DataRow.inn;
 			oldOktmo = DataRow.IsoktmoListNull() ? string.Empty : DataRow.oktmoList;
+			oldSubjectRf = DataRow.IssubjectRfListNull() ? string.Empty : DataRow.subjectRfList;
 
 			esnsiNameTextBox.Text = DataRow.gaspsRow.name;
 
@@ -148,6 +157,7 @@ namespace DatabaseToolSuite.Dialogs
 			ogrnNumericTextBox.Text = DataRow.IsogrnNull() ? string.Empty : DataRow.ogrn;
 			innNumericTextBox.Text = DataRow.IsinnNull() ? string.Empty : DataRow.inn;
 			oktmoNumericTextBox.Text = DataRow.IsoktmoListNull() ? string.Empty : DataRow.oktmoList;
+			subjectRfTextBox.Text = DataRow.IssubjectRfListNull() ? string.Empty : DataRow.subjectRfList;
 
 			ErvkOrganization = row;
 			GaspsOrganization = MasterDataSystem.DataSet.gasps.Get(ErvkOrganization.version);
@@ -214,7 +224,8 @@ namespace DatabaseToolSuite.Dialogs
 				oldDateCloseProc != DateCloseProc ||
 				oldOgrn != Ogrn ||
 				oldInn != Inn ||
-				oldOktmo != Oktmo
+				oldOktmo != Oktmo ||
+				oldSubjectRf != SubjectRF
 				)
 			{
 				OkButtonEnabled = true;
@@ -330,6 +341,8 @@ namespace DatabaseToolSuite.Dialogs
 			this.ownerGroupBox = new System.Windows.Forms.GroupBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.oktmoNumericTextBox = new DatabaseToolSuite.Controls.NumericTextBox(this.components);
+			this.subjectRfTextBox = new System.Windows.Forms.TextBox();
+			this.subjectFrLabel = new System.Windows.Forms.Label();
 			this.ownerGroupBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -345,7 +358,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.esnsiNameTextBox.Name = "esnsiNameTextBox";
 			this.esnsiNameTextBox.ReadOnly = true;
 			this.esnsiNameTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.esnsiNameTextBox.Size = new System.Drawing.Size(686, 33);
+			this.esnsiNameTextBox.Size = new System.Drawing.Size(712, 33);
 			this.esnsiNameTextBox.TabIndex = 8;
 			// 
 			// esnsiNameLabel
@@ -436,7 +449,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.isActiveCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.isActiveCheckBox.AutoSize = true;
 			this.isActiveCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.isActiveCheckBox.Location = new System.Drawing.Point(396, 383);
+			this.isActiveCheckBox.Location = new System.Drawing.Point(381, 383);
 			this.isActiveCheckBox.Margin = new System.Windows.Forms.Padding(4);
 			this.isActiveCheckBox.Name = "isActiveCheckBox";
 			this.isActiveCheckBox.Size = new System.Drawing.Size(175, 24);
@@ -450,7 +463,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.isHeadCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.isHeadCheckBox.AutoSize = true;
 			this.isHeadCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.isHeadCheckBox.Location = new System.Drawing.Point(396, 412);
+			this.isHeadCheckBox.Location = new System.Drawing.Point(381, 415);
 			this.isHeadCheckBox.Margin = new System.Windows.Forms.Padding(4);
 			this.isHeadCheckBox.Name = "isHeadCheckBox";
 			this.isHeadCheckBox.Size = new System.Drawing.Size(297, 24);
@@ -462,7 +475,7 @@ namespace DatabaseToolSuite.Dialogs
 			// deleteOwnerButton
 			// 
 			this.deleteOwnerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.deleteOwnerButton.Location = new System.Drawing.Point(451, 69);
+			this.deleteOwnerButton.Location = new System.Drawing.Point(477, 69);
 			this.deleteOwnerButton.Margin = new System.Windows.Forms.Padding(5);
 			this.deleteOwnerButton.Name = "deleteOwnerButton";
 			this.deleteOwnerButton.Size = new System.Drawing.Size(226, 42);
@@ -473,7 +486,7 @@ namespace DatabaseToolSuite.Dialogs
 			// selectOwnerButton
 			// 
 			this.selectOwnerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.selectOwnerButton.Location = new System.Drawing.Point(191, 70);
+			this.selectOwnerButton.Location = new System.Drawing.Point(217, 70);
 			this.selectOwnerButton.Margin = new System.Windows.Forms.Padding(5);
 			this.selectOwnerButton.Name = "selectOwnerButton";
 			this.selectOwnerButton.Size = new System.Drawing.Size(250, 42);
@@ -493,14 +506,14 @@ namespace DatabaseToolSuite.Dialogs
 			this.ownerTextBox.Name = "ownerTextBox";
 			this.ownerTextBox.ReadOnly = true;
 			this.ownerTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.ownerTextBox.Size = new System.Drawing.Size(668, 37);
+			this.ownerTextBox.Size = new System.Drawing.Size(694, 37);
 			this.ownerTextBox.TabIndex = 49;
 			this.ownerTextBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
 			// 
 			// autoSelectOwnerButton
 			// 
 			this.autoSelectOwnerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.autoSelectOwnerButton.Location = new System.Drawing.Point(9, 70);
+			this.autoSelectOwnerButton.Location = new System.Drawing.Point(35, 70);
 			this.autoSelectOwnerButton.Margin = new System.Windows.Forms.Padding(5);
 			this.autoSelectOwnerButton.Name = "autoSelectOwnerButton";
 			this.autoSelectOwnerButton.Size = new System.Drawing.Size(167, 42);
@@ -511,10 +524,10 @@ namespace DatabaseToolSuite.Dialogs
 			// getOwnerArgButton
 			// 
 			this.getOwnerArgButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.getOwnerArgButton.Location = new System.Drawing.Point(334, 329);
+			this.getOwnerArgButton.Location = new System.Drawing.Point(351, 332);
 			this.getOwnerArgButton.Margin = new System.Windows.Forms.Padding(5);
 			this.getOwnerArgButton.Name = "getOwnerArgButton";
-			this.getOwnerArgButton.Size = new System.Drawing.Size(378, 42);
+			this.getOwnerArgButton.Size = new System.Drawing.Size(369, 42);
 			this.getOwnerArgButton.TabIndex = 51;
 			this.getOwnerArgButton.Text = "Получить из вышестоящей прокуратуры";
 			this.getOwnerArgButton.Click += new System.EventHandler(this.GetOwnerArgButton_Click);
@@ -580,7 +593,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.ownerGroupBox.Margin = new System.Windows.Forms.Padding(4);
 			this.ownerGroupBox.Name = "ownerGroupBox";
 			this.ownerGroupBox.Padding = new System.Windows.Forms.Padding(4);
-			this.ownerGroupBox.Size = new System.Drawing.Size(686, 121);
+			this.ownerGroupBox.Size = new System.Drawing.Size(712, 121);
 			this.ownerGroupBox.TabIndex = 56;
 			this.ownerGroupBox.TabStop = false;
 			this.ownerGroupBox.Text = "Владелец";
@@ -608,10 +621,32 @@ namespace DatabaseToolSuite.Dialogs
 			this.oktmoNumericTextBox.TabIndex = 58;
 			this.oktmoNumericTextBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
 			// 
+			// subjectRfTextBox
+			// 
+			this.subjectRfTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.subjectRfTextBox.Location = new System.Drawing.Point(351, 473);
+			this.subjectRfTextBox.Name = "subjectRfTextBox";
+			this.subjectRfTextBox.Size = new System.Drawing.Size(369, 27);
+			this.subjectRfTextBox.TabIndex = 59;
+			this.subjectRfTextBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
+			// 
+			// subjectFrLabel
+			// 
+			this.subjectFrLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.subjectFrLabel.AutoSize = true;
+			this.subjectFrLabel.Location = new System.Drawing.Point(347, 443);
+			this.subjectFrLabel.Name = "subjectFrLabel";
+			this.subjectFrLabel.Size = new System.Drawing.Size(111, 20);
+			this.subjectFrLabel.TabIndex = 60;
+			this.subjectFrLabel.Text = "Субъект РФ";
+			// 
 			// ErvkDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
-			this.ClientSize = new System.Drawing.Size(722, 533);
+			this.ClientSize = new System.Drawing.Size(748, 560);
+			this.Controls.Add(this.subjectFrLabel);
+			this.Controls.Add(this.subjectRfTextBox);
 			this.Controls.Add(this.oktmoNumericTextBox);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.ownerGroupBox);
@@ -653,6 +688,8 @@ namespace DatabaseToolSuite.Dialogs
 			this.Controls.SetChildIndex(this.ownerGroupBox, 0);
 			this.Controls.SetChildIndex(this.label3, 0);
 			this.Controls.SetChildIndex(this.oktmoNumericTextBox, 0);
+			this.Controls.SetChildIndex(this.subjectRfTextBox, 0);
+			this.Controls.SetChildIndex(this.subjectFrLabel, 0);
 			this.ownerGroupBox.ResumeLayout(false);
 			this.ownerGroupBox.PerformLayout();
 			this.ResumeLayout(false);

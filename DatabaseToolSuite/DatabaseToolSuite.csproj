@@ -55,7 +55,7 @@
     <StartupObject>DatabaseToolSuite.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\app.ico</ApplicationIcon>
+    <ApplicationIcon>app.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>621114F6FD186ADF11B6C9A3F479A971987ACE6E</ManifestCertificateThumbprint>
@@ -311,6 +311,9 @@
     <EmbeddedResource Include="Dialogs\UrpDialog.resx">
       <DependentUpon>UrpDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\UrpMultiEditDialog.resx">
+      <DependentUpon>UrpMultiEditDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -565,6 +568,7 @@
     <None Include="Resources\bt22.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app.ico" />
     <Content Include="ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

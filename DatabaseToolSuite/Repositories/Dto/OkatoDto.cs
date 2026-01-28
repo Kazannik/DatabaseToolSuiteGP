@@ -26,8 +26,7 @@ namespace DatabaseToolSuite.Repositories.Dto
 
 		public string Genitive { get; private set; }
 
-		public string Text
-		{ get { return Name; } }
+		public string Text => Name;
 
 		public string SSRF { get; private set; }
 
@@ -64,15 +63,12 @@ namespace DatabaseToolSuite.Repositories.Dto
 		public OkatoDto(MainDataSet.okatoRow row) : this(
 			ter: int.Parse(row.ter),
 			kod1: row.kod1,
-			lab: (row.IslabNull() ? string.Empty : row.lab),
+			lab: row.IslabNull() ? string.Empty : row.lab,
 			name: row.name,
-			name2: (row.Isname2Null() ? string.Empty : row.name2),
-			centrum: (row.IscentrumNull() ? string.Empty : row.centrum),
-			genitive: (row.IsgenitiveNull() ? string.Empty : row.genitive),
-			ssrf: (row.IsssrfNull() ? string.Empty : row.ssrf)
-			)
-		{
-			Id = row.export_id;
-		}
+			name2: row.Isname2Null() ? string.Empty : row.name2,
+			centrum: row.IscentrumNull() ? string.Empty : row.centrum,
+			genitive: row.IsgenitiveNull() ? string.Empty : row.genitive,
+			ssrf: row.IsssrfNull() ? string.Empty : row.ssrf
+			) => Id = row.export_id;
 	}
 }

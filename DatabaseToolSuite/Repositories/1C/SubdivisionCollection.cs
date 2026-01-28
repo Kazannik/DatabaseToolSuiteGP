@@ -22,20 +22,11 @@ namespace DatabaseToolSuite.Repositories._1C
 
 		public SubdivisionCollection() { }
 
-		public void Add(Subdivision item)
-		{
-			InnerList.Add(item);
-		}
+		public void Add(Subdivision item) => InnerList.Add(item);
 
-		public void Remove(Subdivision item)
-		{
-			InnerList.Remove(item);
-		}
+		public void Remove(Subdivision item) => InnerList.Remove(item);
 
-		public Subdivision this[int index]
-		{
-			get { return (Subdivision)List[index]; }
-		}
+		public Subdivision this[int index] => (Subdivision)List[index];
 
 		public Subdivision this[Guid guid]
 		{
@@ -54,29 +45,15 @@ namespace DatabaseToolSuite.Repositories._1C
 			}
 		}
 
-		public bool ExistsGuid(Guid guid)
-		{
-			IEnumerable<Subdivision> array = this.AsEnumerable()
-					.Where(x => x.Guid.Equals(guid));
-			return array.Any();
-		}
+		public bool ExistsGuid(Guid guid) => this.AsEnumerable()
+					.Where(x => x.Guid.Equals(guid)).Any();
 
-		public bool ExistsParentGuid(Guid guid)
-		{
-			IEnumerable<Subdivision> array = this.AsEnumerable()
-					.Where(x => x.ParentGuid.Equals(guid));
-			return array.Any();
-		}
+		public bool ExistsParentGuid(Guid guid) => this.AsEnumerable()
+					.Where(x => x.ParentGuid.Equals(guid)).Any();
 
-		public IEnumerable<Subdivision> Roots
-		{
-			get
-			{
-				return this.AsEnumerable()
+		public IEnumerable<Subdivision> Roots => this.AsEnumerable()
 					.Where(x => Guid.Empty.Equals(x.ParentGuid)
 					|| !ExistsGuid(x.ParentGuid));
-			}
-		}
 
 		public async Task ReadXmlAsync(string filename)
 		{
@@ -221,20 +198,11 @@ namespace DatabaseToolSuite.Repositories._1C
 			stream.Close();
 		}
 
-		IEnumerator<Subdivision> IEnumerable<Subdivision>.GetEnumerator()
-		{
-			return new SubdivisionEnumerator(InnerList);
-		}
+		IEnumerator<Subdivision> IEnumerable<Subdivision>.GetEnumerator() => new SubdivisionEnumerator(InnerList);
 
-		private IEnumerator PrGetEnumerator()
-		{
-			return GetEnumerator();
-		}
+		private IEnumerator PrGetEnumerator() => GetEnumerator();
 
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return PrGetEnumerator();
-		}
+		IEnumerator IEnumerable.GetEnumerator() => PrGetEnumerator();
 
 		public class Subdivision
 		{
@@ -264,19 +232,10 @@ namespace DatabaseToolSuite.Repositories._1C
 				}
 			}
 
-			public Subdivision Parent
-			{
-				get { return parent[ParentGuid]; }
-			}
+			public Subdivision Parent => parent[ParentGuid];
 
-			public IEnumerable<Subdivision> Child
-			{
-				get
-				{
-					return parent
+			public IEnumerable<Subdivision> Child => parent
 						.Where(x => Guid.Equals(x.ParentGuid));
-				}
-			}
 		}
 
 		public class SubdivisionEnumerator : IEnumerator<Subdivision>
@@ -292,24 +251,11 @@ namespace DatabaseToolSuite.Repositories._1C
 
 			private Subdivision current;
 
-			public Subdivision Current
-			{
-				get
-				{
-					if (array == null || current == null)
-					{
-						throw new InvalidOperationException();
-					}
-					return current;
-				}
-			}
+			public Subdivision Current => array == null || current == null ? throw new InvalidOperationException() : current;
 
 			private object _Current => Current;
 
-			object IEnumerator.Current
-			{
-				get { return _Current; }
-			}
+			object IEnumerator.Current => _Current;
 
 			public bool MoveNext()
 			{

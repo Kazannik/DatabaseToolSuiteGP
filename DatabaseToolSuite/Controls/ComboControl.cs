@@ -229,7 +229,7 @@ namespace DatabaseToolSuite.Controls
 				}
 				findNext = 0;
 			}
-			else if (e.KeyChar == (0x0d))
+			else if (e.KeyChar == 0x0d)
 			{
 				e.Handled = false;
 				findNext += 1;
@@ -304,17 +304,7 @@ namespace DatabaseToolSuite.Controls
 
 		public string Code
 		{
-			get
-			{
-				if (SelectedItem != null)
-				{
-					return ((T)SelectedItem).Code;
-				}
-				else
-				{
-					return string.Empty;
-				}
-			}
+			get => SelectedItem == null ? string.Empty : SelectedItem.Code;
 			set
 			{
 				if (string.IsNullOrWhiteSpace(value))
@@ -337,17 +327,7 @@ namespace DatabaseToolSuite.Controls
 
 		public long Id
 		{
-			get
-			{
-				if (SelectedItem != null)
-				{
-					return ((T)SelectedItem).Id;
-				}
-				else
-				{
-					return -1;
-				}
-			}
+			get => SelectedItem == null ? -1 : SelectedItem.Id;
 			set
 			{
 				if (Contains(value))
@@ -361,28 +341,13 @@ namespace DatabaseToolSuite.Controls
 			}
 		}
 
-		public long? Value
-		{
-			get
-			{
-				return string.IsNullOrWhiteSpace(Code) ? (long?)null : long.Parse(Code);
-			}
-		}
+		public long? Value => string.IsNullOrWhiteSpace(Code) ? (long?)null : long.Parse(Code);
 
 		[ReadOnly(true)]
-		public T this[int index]
-		{
-			get
-			{
-				return (T)Items[index: index];
-			}
-		}
+		public T this[int index] => (T)Items[index: index];
 
 		[ReadOnly(true)]
-		public new ComboBoxStyle DropDownStyle
-		{
-			get { return base.DropDownStyle; }
-		}
+		public new ComboBoxStyle DropDownStyle => base.DropDownStyle;
 
 		protected void Insert(int index, T item)
 		{
@@ -450,8 +415,7 @@ namespace DatabaseToolSuite.Controls
 
 		public new T SelectedItem
 		{
-			get { return (T)base.SelectedItem; }
-			set { base.SelectedItem = value; }
+			get => (T)base.SelectedItem; set => base.SelectedItem = value;
 		}
 
 		public T GetItem(long id)
@@ -487,18 +451,9 @@ namespace DatabaseToolSuite.Controls
 
 		private class ItemComparer : IComparer<T>
 		{
-			public int Compare(T x, T y)
-			{
-				int xCode, yCode;
-				if (int.TryParse(x.Code, out xCode) && int.TryParse(y.Code, out yCode))
-				{
-					return decimal.Compare(xCode, yCode);
-				}
-				else
-				{
-					return string.Compare(x.Code, y.Code);
-				}
-			}
+			public int Compare(T x, T y) => int.TryParse(x.Code, out int xCode) && int.TryParse(y.Code, out int yCode)
+					? decimal.Compare(xCode, yCode)
+					: string.Compare(x.Code, y.Code);
 		}
 	}
 }

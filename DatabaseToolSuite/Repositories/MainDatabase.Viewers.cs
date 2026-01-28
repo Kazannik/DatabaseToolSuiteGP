@@ -399,6 +399,11 @@ namespace DatabaseToolSuite.Repositories
 
 		public class ViewFgisEsnsiOrganization : ViewGaspsOrganization
 		{
+			[Description("Территория ОКАТО")]
+			[Category("ФГИС ЕСНСИ")]
+			[DisplayName("Территория")]
+			public string OKATO { get; private set; }
+
 			[Description("Телефон канцелярии (SV-0004)")]
 			[Category("ФГИС ЕСНСИ")]
 			[DisplayName("Телефон")]
@@ -420,12 +425,14 @@ namespace DatabaseToolSuite.Repositories
 			private ViewFgisEsnsiOrganization(
 				gaspsRow gasps,
 				gaspsRow owner,
+				string okato,
 				string phone,
 				string email,
 				string address,
 				bool isFgisEsnsi
 				) : base(gasps: gasps, owner: owner)
 			{
+				OKATO = okato;
 				Phone = phone;
 				Email = email;
 				Address = address;
@@ -438,6 +445,7 @@ namespace DatabaseToolSuite.Repositories
 				fgis_esnsiRow esnsi) : this(
 					gasps: gasps,
 					owner: owner,
+					okato: esnsi == null ? string.Empty : esnsi.okato.ToString(),
 					phone: esnsi == null || esnsi.Issv_0004Null() ? string.Empty : esnsi.sv_0004,
 					email: esnsi == null || esnsi.Issv_0005Null() ? string.Empty : esnsi.sv_0005,
 					address: esnsi == null || esnsi.Issv_0006Null() ? string.Empty : esnsi.sv_0006,
