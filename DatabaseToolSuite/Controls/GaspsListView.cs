@@ -394,7 +394,7 @@ namespace DatabaseToolSuite.Controls
 
 		private int GetImageIndex(ViewUrpOrganization organization)
 		{
-			if (organization.Begin.Date > DateTime.Today)
+			if (organization.Begin.Date > DateTime.Now)
 				return 2;
 			else if (organization.Begin.Date <= DateTime.Today
 				&& organization.End.Date > DateTime.Today)
