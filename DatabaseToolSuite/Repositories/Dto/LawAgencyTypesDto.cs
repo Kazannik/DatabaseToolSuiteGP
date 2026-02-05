@@ -8,11 +8,11 @@ namespace DatabaseToolSuite.Repositories.Dto
 	{
 		public long Id { get; private set; }
 
-		public string Code { get { return Id.ToString(); } }
+		public string Code => Id.ToString();
 
 		public string Name { get; private set; }
 
-		public string Text { get { return Name; } }
+		public string Text => Name;
 
 		public bool MandatoryCode { get; private set; }
 

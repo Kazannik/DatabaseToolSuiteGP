@@ -17,7 +17,7 @@ namespace DatabaseToolSuite
 			{
 				return;
 			}
-			//Application.EnableVisualStyles();
+			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(true);
 			Application.Run(new AppForm());
 		}

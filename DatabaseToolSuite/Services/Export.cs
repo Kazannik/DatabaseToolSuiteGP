@@ -1,7 +1,6 @@
 ﻿// Ignore Spelling: Ervk Esnsi Fgis
 
 using DatabaseToolSuite.Repositories;
-using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +11,6 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
 using static DatabaseToolSuite.Repositories.MainDataSet.ervkDataTable;
-using static System.Net.WebRequestMethods;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace DatabaseToolSuite.Services
@@ -219,8 +217,6 @@ namespace DatabaseToolSuite.Services
 		}
 
 
-
-
 		public static void ExportFullDataBaseToExcel()
 		{
 			IEnumerable<MainDataSet.ViewGaspsOrganization> data = MasterDataSystem.DataSet.gasps.ExportFullData();
@@ -278,7 +274,7 @@ namespace DatabaseToolSuite.Services
 			excRange = excSheet.get_Range("G1", "G1");
 			excRange.ColumnWidth = 10;
 
-			object[,] objData = new object[rowCount, 7];
+			object[,] objData = new object[rowCount, objHeaders.Count()];
 			int r = 0;
 			foreach (MainDataSet.ViewGaspsOrganization item in data)
 			{
@@ -293,7 +289,7 @@ namespace DatabaseToolSuite.Services
 			}
 
 			excRange = excSheet.get_Range("A2", objOpt);
-			excRange = excRange.get_Resize(rowCount, 7);
+			excRange = excRange.get_Resize(rowCount, objHeaders.Count());
 			excRange.Value = objData;
 		}
 
@@ -322,31 +318,30 @@ namespace DatabaseToolSuite.Services
 			excSheets = excBook.Worksheets;
 			excSheet = (Excel._Worksheet)excSheets.get_Item(1);
 
-
-			object[] objHeaders = { "Номер", "Наименование", "Ведомство", "ОКАТО", "Код", "Дата начала действия", "Дата окончания действия", "Дата редактирования" };
-			excRange = excSheet.get_Range("A1", "H1");
+			object[] objHeaders = { "Номер", "Версия", "Наименование", "Ведомство", "ОКАТО", "Код", "Дата начала действия", "Дата окончания действия", "Дата редактирования" };
+			excRange = excSheet.get_Range("A1", "I1");
 			excRange.Value = objHeaders;
 			excFont = excRange.Font;
 			excFont.Bold = true;
 
-			excRange = excSheet.get_Range("B1", "E" + (rowCount + 1));
+			excRange = excSheet.get_Range("B1", "F" + (rowCount + 1));
 			excRange.NumberFormat = "@";
 
 			excRange = excSheet.get_Range("B1", "B1");
+			excRange.ColumnWidth = 10;
+
+			excRange = excSheet.get_Range("C1", "C1");
 			excRange.ColumnWidth = 70;
 
-			excRange = excSheet.get_Range("B2", "B2");
+			excRange = excSheet.get_Range("C2", "C2");
 			excRange.Select();
 			excExcel.ActiveWindow.FreezePanes = true;
 
-			excRange = excSheet.get_Range("C1", "C1");
+			excRange = excSheet.get_Range("D1", "D1");
 			excRange.ColumnWidth = 20;
 
-			excRange = excSheet.get_Range("D1", "D1");
-			excRange.ColumnWidth = 60;
-
 			excRange = excSheet.get_Range("E1", "E1");
-			excRange.ColumnWidth = 10;
+			excRange.ColumnWidth = 60;
 
 			excRange = excSheet.get_Range("F1", "F1");
 			excRange.ColumnWidth = 10;
@@ -357,24 +352,29 @@ namespace DatabaseToolSuite.Services
 			excRange = excSheet.get_Range("H1", "H1");
 			excRange.ColumnWidth = 10;
 
-			object[,] objData = new object[rowCount, 8];
+			excRange = excSheet.get_Range("I1", "I1");
+			excRange.ColumnWidth = 10;
+
+			object[,] objData = new object[rowCount, objHeaders.Count()];
 			int r = 0;
 			foreach (MainDataSet.ViewGaspsOrganization item in data)
 			{
 				objData[r, 0] = r + 1;
-				objData[r, 1] = item.Name;
-				objData[r, 2] = item.AuthorityId.ToString("00 - ") + item.Authority;
-				objData[r, 3] = item.Okato;
-				objData[r, 4] = item.Code;
-				objData[r, 5] = item.Begin;
-				objData[r, 6] = item.End;
-				objData[r, 7] = (begin <= item.LogEditDate && end >= item.LogEditDate) ? item.LogEditDate : item.End;
+				objData[r, 1] = item.Version;
+				objData[r, 2] = item.Name;
+				objData[r, 3] = item.AuthorityId.ToString("00 - ") + item.Authority;
+				objData[r, 4] = item.Okato;
+				objData[r, 5] = item.Code;
+				objData[r, 6] = item.Begin;
+				objData[r, 7] = item.End;
+				objData[r, 8] = (begin <= item.LogEditDate && end >= item.LogEditDate) ? item.LogEditDate : item.End;
 
 				r += 1;
 			}
 
 			excRange = excSheet.get_Range("A2", objOpt);
-			excRange = excRange.get_Resize(rowCount, 8);
+			if (rowCount>0)
+				excRange = excRange.get_Resize(rowCount, objHeaders.Count());
 			excRange.Value = objData;
 		}
 
@@ -403,7 +403,7 @@ namespace DatabaseToolSuite.Services
 			excBooks = excExcel.Workbooks;
 			excBook = excBooks.Add(objOpt);
 			excSheets = excBook.Worksheets;
-			excSheet = (Excel._Worksheet)(excSheets.get_Item(1));
+			excSheet = (Excel._Worksheet)excSheets.get_Item(1);
 
 
 			object[] objHeaders = { "Номер", "Наименование", "Ведомство", "ОКАТО", "Код", "Дата начала действия", "ключ", "ключ родителя" };
@@ -434,7 +434,7 @@ namespace DatabaseToolSuite.Services
 			excRange = excSheet.get_Range("F1", "F1");
 			excRange.ColumnWidth = 10;
 
-			object[,] objData = new object[rowCount, 8];
+			object[,] objData = new object[rowCount, objHeaders.Count()];
 			int r = 0;
 			foreach (MainDataSet.ViewGaspsOrganization item in data)
 			{
@@ -450,7 +450,8 @@ namespace DatabaseToolSuite.Services
 			}
 
 			excRange = excSheet.get_Range("A2", objOpt);
-			excRange = excRange.get_Resize(rowCount, 8);
+			if (rowCount > 0)
+				excRange = excRange.get_Resize(rowCount, objHeaders.Count());
 			excRange.Value = objData;
 		}
 
@@ -477,11 +478,11 @@ namespace DatabaseToolSuite.Services
 
 			excBook = excBooks.Add(objOpt);
 			excSheets = excBook.Worksheets;
-			excSheet = (Excel._Worksheet)(excSheets.get_Item(1));
+			excSheet = (Excel._Worksheet)excSheets.get_Item(1);
 			excSheet.Name = "FED_GENPROK_ORGANIZATION_Cp1251";
 
-			object[] objHeaders = { "id", "NAME", "REGION", "PHONE", "EMAIL", "ADDRESS", "OKATO", "CODE", "autokey" };
-			excRange = excSheet.get_Range("A1", "I1");
+			object[] objHeaders = { "id", "NAME", "REGION", "PHONE", "EMAIL", "ADDRESS", "OKATO", "OKATO_LIST", "CODE", "autokey", "EDIT_DATE" };
+			excRange = excSheet.get_Range("A1", "K1");
 			excRange.Value = objHeaders;
 
 			object[,] objData = new object[rowCount, objHeaders.Count()];
@@ -495,13 +496,16 @@ namespace DatabaseToolSuite.Services
 				objData[r, 4] = item.Email;
 				objData[r, 5] = item.Address;
 				objData[r, 6] = item.Okato;
-				objData[r, 7] = item.Code;
-				objData[r, 8] = item.Autokey;
+				objData[r, 7] = item.OkatoList;
+				objData[r, 8] = item.Code;
+				objData[r, 9] = item.Autokey;
+				objData[r, 10] = item.EditDate;
 				r += 1;
 			}
 
 			excRange = excSheet.get_Range("A2", objOpt);
-			excRange = excRange.get_Resize(rowCount, objHeaders.Count());
+			if (rowCount > 0)
+				excRange = excRange.get_Resize(rowCount, objHeaders.Count());
 			excRange.Value = objData;
 		}
 
@@ -562,9 +566,9 @@ namespace DatabaseToolSuite.Services
 			}
 
 			excRange = excSheet.get_Range("A2", objOpt);
-			excRange = excRange.get_Resize(rowCount, objHeaders.Count());
+			if (rowCount > 0)
+				excRange = excRange.get_Resize(rowCount, objHeaders.Count());
 			excRange.Value = objData;
-
 			excRange = excSheet.get_Range("A1", "G1");
 		}
 
@@ -732,7 +736,8 @@ namespace DatabaseToolSuite.Services
 			}
 
 			excRange = excSheet.get_Range("A2", objOpt);
-			excRange = excRange.get_Resize(rowCount, objHeaders.Count());
+			if (rowCount > 0)
+				excRange = excRange.get_Resize(rowCount, objHeaders.Count());
 			excRange.Value = objData;
 		}
 
@@ -799,7 +804,8 @@ namespace DatabaseToolSuite.Services
 			}
 
 			excRange = excSheet.get_Range("A2", objOpt);
-			excRange = excRange.get_Resize(rowCount, objHeaders.Count());
+			if (rowCount > 0)
+				excRange = excRange.get_Resize(rowCount, objHeaders.Count());
 			excRange.Value = objData;
 		}
 	}

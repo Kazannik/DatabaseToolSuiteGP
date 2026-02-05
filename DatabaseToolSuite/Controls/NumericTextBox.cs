@@ -17,10 +17,7 @@ namespace DatabaseToolSuite.Controls
 
 		}
 
-		public NumericTextBox(IContainer container)
-		{
-			container.Add(this);
-		}
+		public NumericTextBox(IContainer container) => container.Add(this);
 
 		protected override void OnKeyPress(KeyPressEventArgs e)
 		{
@@ -28,7 +25,7 @@ namespace DatabaseToolSuite.Controls
 				e.Handled = false;
 			else if (e.KeyChar == '\b')
 				e.Handled = false;
-			else if (e.KeyChar == (0x0d))
+			else if (e.KeyChar == 0x0d)
 				e.Handled = false;
 			else if (char.IsNumber(e.KeyChar))
 				e.Handled = false;

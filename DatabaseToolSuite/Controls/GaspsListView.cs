@@ -394,7 +394,7 @@ namespace DatabaseToolSuite.Controls
 
 		private int GetImageIndex(ViewUrpOrganization organization)
 		{
-			if (organization.Begin.Date > DateTime.Today)
+			if (organization.Begin.Date > DateTime.Now)
 				return 2;
 			else if (organization.Begin.Date <= DateTime.Today
 				&& organization.End.Date > DateTime.Today)
@@ -540,15 +540,9 @@ namespace DatabaseToolSuite.Controls
 
 		public event EventHandler<ListViewEventArgs> ItemMouseDoubleClick;
 
-		protected virtual void OnItemSelectionChanged(EventArgs e)
-		{
-			ItemSelectionChanged?.Invoke(this, e);
-		}
+		protected virtual void OnItemSelectionChanged(EventArgs e) => ItemSelectionChanged?.Invoke(this, e);
 
-		protected virtual void OnItemsMultySelectionChanged(EventArgs e)
-		{
-			ItemsMultySelectionChanged?.Invoke(this, e);
-		}
+		protected virtual void OnItemsMultySelectionChanged(EventArgs e) => ItemsMultySelectionChanged?.Invoke(this, e);
 
 		protected virtual void OnLockVisibleChanged(EventArgs e)
 		{
@@ -580,15 +574,9 @@ namespace DatabaseToolSuite.Controls
 			ErvkOnlyVisibleChanged?.Invoke(this, e);
 		}
 
-		protected virtual void OnItemMouseClick(ListViewEventArgs e)
-		{
-			ItemMouseClick?.Invoke(this, e);
-		}
+		protected virtual void OnItemMouseClick(ListViewEventArgs e) => ItemMouseClick?.Invoke(this, e);
 
-		protected virtual void OnItemMouseDoubleClick(ListViewEventArgs e)
-		{
-			ItemMouseDoubleClick?.Invoke(this, e);
-		}
+		protected virtual void OnItemMouseDoubleClick(ListViewEventArgs e) => ItemMouseDoubleClick?.Invoke(this, e);
 
 		private void ControlsValueChanged()
 		{
@@ -793,15 +781,9 @@ namespace DatabaseToolSuite.Controls
 			OnProgressChanged(e);
 		}
 
-		protected void OnListViewCompleted(ListViewCompletedEventArgs e)
-		{
-			GaspsListViewCompleted?.Invoke(this, e);
-		}
+		protected void OnListViewCompleted(ListViewCompletedEventArgs e) => GaspsListViewCompleted?.Invoke(this, e);
 
-		protected void OnProgressChanged(ProgressChangedEventArgs e)
-		{
-			ProgressChanged?.Invoke(e);
-		}
+		protected void OnProgressChanged(ProgressChangedEventArgs e) => ProgressChanged?.Invoke(e);
 
 		private void CompletionMethod(
 			FilterParameters filter,

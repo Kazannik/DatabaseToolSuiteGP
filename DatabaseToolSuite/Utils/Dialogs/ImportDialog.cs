@@ -85,7 +85,7 @@ namespace DatabaseToolSuite.Utils.Dialogs
 					try
 					{
 						note.Version = dialog.DataRow.version;
-						Services.MasterDataSystem.CreateFgisEsnsiNote(dialog.DataRow.version, note.Okato, note.Phone, note.Email, note.Address, note.Okato, note.Code, note.Autokey, note.Id);
+						Services.MasterDataSystem.CreateFgisEsnsiNote(dialog.DataRow.version, note.Okato, note.Phone, note.Email, note.Address, note.Okato, note.Code, note.Autokey, note.Id, note.OkatoList);
 						listView1.SelectedItems[0].Remove();
 					}
 					catch (Exception ex)
@@ -133,7 +133,7 @@ namespace DatabaseToolSuite.Utils.Dialogs
 				{
 					if (!Services.MasterDataSystem.DataSet.fgis_esnsi.Exists(v))
 					{
-						Services.MasterDataSystem.CreateFgisEsnsiNote(v, note.Okato, note.Phone, note.Email, note.Address, note.Okato, note.Code, note.Autokey, note.Id);
+						Services.MasterDataSystem.CreateFgisEsnsiNote(v, note.Okato, note.Phone, note.Email, note.Address, note.Okato, note.Code, note.Autokey, note.Id, note.OkatoList);
 						adding += 1;
 					}
 				}

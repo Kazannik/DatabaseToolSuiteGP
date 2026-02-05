@@ -43,10 +43,7 @@ namespace DatabaseToolSuite.Repositories
 			}
 		}
 
-		public void ReadSchema(string schemaFilename)
-		{
-			Initialize(schemaFilename);
-		}
+		public void ReadSchema(string schemaFilename) => Initialize(schemaFilename);
 
 		public void ReadXml(string filename)
 		{
@@ -54,25 +51,13 @@ namespace DatabaseToolSuite.Repositories
 			MainDataSet.ReadXml(filename, XmlReadMode.IgnoreSchema);
 		}
 
-		public void WriteSchema(string fileName)
-		{
-			MainDataSet.WriteXmlSchema(fileName);
-		}
+		public void WriteSchema(string fileName) => MainDataSet.WriteXmlSchema(fileName);
 
-		public void WriteXml(string filename)
-		{
-			MainDataSet.WriteXml(filename, XmlWriteMode.IgnoreSchema);
-		}
+		public void WriteXml(string filename) => MainDataSet.WriteXml(filename, XmlWriteMode.IgnoreSchema);
 
-		public void GaspsWriteSchema(string fileName)
-		{
-			GaspsDataSet.WriteXmlSchema(fileName);
-		}
+		public void GaspsWriteSchema(string fileName) => GaspsDataSet.WriteXmlSchema(fileName);
 
-		public void GaspsWriteXml(string filename)
-		{
-			GaspsDataSet.WriteXml(filename, XmlWriteMode.IgnoreSchema);
-		}
+		public void GaspsWriteXml(string filename) => GaspsDataSet.WriteXml(filename, XmlWriteMode.IgnoreSchema);
 
 		public void SubdivisionsReadXml(string filename)
 		{

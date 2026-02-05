@@ -56,6 +56,12 @@ namespace DatabaseToolSuite.Services
 			long? export_key,
 			long? export_version)
 		{
+			if (dateBegin > dateEnd)
+			{
+				throw new ArgumentException(string.Format(
+					"Дата начала действия {0} не может быть позже даты окончания действия {1}.",
+							dateBegin, dateEnd));
+			}
 			object[] values = new object[18];
 			values[0] = null; // id
 			values[1] = name; // name
@@ -368,6 +374,13 @@ namespace DatabaseToolSuite.Services
 		{
 			Repositories.MainDataSet.gaspsRow oldRow = DataSet.gasps.GetOrganizationFromVersion(version: version);
 
+			if (oldRow.date_beg > date)
+			{
+				throw new ArgumentException(string.Format(
+					"Дата начала действия {0} не может быть позже даты окончания действия {1}. РТК (разработчики ГАС ПС)",
+							oldRow.date_beg, date));
+			}
+
 			IEnumerable<Repositories.MainDataSet.gaspsRow> childRows = DataSet.gasps.GetGaspsChildOrganization(oldRow.key, date);
 
 			foreach (Repositories.MainDataSet.gaspsRow row in childRows)
@@ -451,9 +464,10 @@ namespace DatabaseToolSuite.Services
 			short okato,
 			long code,
 			string autokey,
-			long id)
+			long id,
+			string okatoList)
 		{
-			object[] values = new object[10];
+			object[] values = new object[11];
 			values[0] = version;
 			values[1] = region_id;
 			values[2] = sv_0004;
@@ -464,6 +478,7 @@ namespace DatabaseToolSuite.Services
 			values[7] = autokey;
 			values[8] = id;
 			values[9] = DateTime.Now;
+			values[10] = okatoList;
 
 			Repositories.MainDataSet.fgis_esnsiRow newRow = (Repositories.MainDataSet.fgis_esnsiRow)FileSystem.Repository.MainDataSet.fgis_esnsi.Rows.Add(values);
 			return newRow;
@@ -494,15 +509,16 @@ namespace DatabaseToolSuite.Services
 			{
 				Repositories.MainDataSet.fgis_esnsiRow currentFgisEsnsiRow = DataSet.fgis_esnsi.Get(sourceVersion);
 				return CreateFgisEsnsiNote(
-				version: destVersion,
-				region_id: currentFgisEsnsiRow.Isregion_idNull() ? 0 : currentFgisEsnsiRow.region_id,
-				sv_0004: currentFgisEsnsiRow.Issv_0004Null() ? null : currentFgisEsnsiRow.sv_0004,
-				sv_0005: currentFgisEsnsiRow.Issv_0005Null() ? null : currentFgisEsnsiRow.sv_0005,
-				sv_0006: currentFgisEsnsiRow.Issv_0006Null() ? null : currentFgisEsnsiRow.sv_0006,
-				okato: currentFgisEsnsiRow.IsokatoNull() ? (short)0 : currentFgisEsnsiRow.okato,
-				code: currentFgisEsnsiRow.IscodeNull() ? 0 : currentFgisEsnsiRow.code,
-				autokey: currentFgisEsnsiRow.IsautokeyNull() ? null : currentFgisEsnsiRow.autokey,
-				id: currentFgisEsnsiRow.IsidNull() ? 0 : currentFgisEsnsiRow.id);
+					version: destVersion,
+					region_id: currentFgisEsnsiRow.Isregion_idNull() ? 0 : currentFgisEsnsiRow.region_id,
+					sv_0004: currentFgisEsnsiRow.Issv_0004Null() ? null : currentFgisEsnsiRow.sv_0004,
+					sv_0005: currentFgisEsnsiRow.Issv_0005Null() ? null : currentFgisEsnsiRow.sv_0005,
+					sv_0006: currentFgisEsnsiRow.Issv_0006Null() ? null : currentFgisEsnsiRow.sv_0006,
+					okato: currentFgisEsnsiRow.IsokatoNull() ? (short)0 : currentFgisEsnsiRow.okato,
+					code: currentFgisEsnsiRow.IscodeNull() ? 0 : currentFgisEsnsiRow.code,
+					autokey: currentFgisEsnsiRow.IsautokeyNull() ? null : currentFgisEsnsiRow.autokey,
+					id: currentFgisEsnsiRow.IsidNull() ? 0 : currentFgisEsnsiRow.id,
+					okatoList: currentFgisEsnsiRow.IsokatoListNull() ? null : currentFgisEsnsiRow.okatoList);
 			}
 			else
 			{
@@ -526,7 +542,8 @@ namespace DatabaseToolSuite.Services
 			string sv_0004,
 			string sv_0005,
 			string sv_0006,
-			short okato)
+			short okato,
+			string okatoList)
 		{
 			Repositories.MainDataSet.fgis_esnsiRow errorRow = DataSet.fgis_esnsi.Get(gaspsVersion: version);
 
@@ -535,6 +552,7 @@ namespace DatabaseToolSuite.Services
 			errorRow.sv_0005 = sv_0005;
 			errorRow.sv_0006 = sv_0006;
 			errorRow.okato = okato;
+			errorRow.okatoList = okatoList;
 			errorRow.logEditDate = DateTime.Now;
 
 			return errorRow;

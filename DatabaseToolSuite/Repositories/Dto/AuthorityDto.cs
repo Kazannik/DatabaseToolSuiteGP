@@ -19,8 +19,7 @@ namespace DatabaseToolSuite.Repositories.Dto
 
 		public string Name { get; private set; }
 
-		public string Text
-		{ get { return Name; } }
+		public string Text => Name;
 
 		public AuthorityDto(string code, string name)
 		{
@@ -29,9 +28,6 @@ namespace DatabaseToolSuite.Repositories.Dto
 			Name = name;
 		}
 
-		public AuthorityDto(MainDataSet.authorityRow row) : this(code: row.code, name: row.name)
-		{
-			Id = row.id;
-		}
+		public AuthorityDto(MainDataSet.authorityRow row) : this(code: row.code, name: row.name) => Id = row.id;
 	}
 }
