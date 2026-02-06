@@ -655,7 +655,7 @@ namespace DatabaseToolSuite.Dialogs
 		{
 			if (MasterDataSystem.DataSet.fgis_esnsi.Exists(gaspsListView.DataRow.version))
 			{
-				Repositories.MainDataSet.fgis_esnsiRow currentRow = MasterDataSystem.DataSet.fgis_esnsi.Get(gaspsListView.DataRow.version);
+				MainDataSet.fgis_esnsiRow currentRow = MasterDataSystem.DataSet.fgis_esnsi.Get(gaspsListView.DataRow.version);
 				if (MasterDataSystem.CloneFgisEsnsiNoteToLastVersion(currentRow.version) != null)
 				{
 					MessageBox.Show(this, "Данные ФГСИ ЕСНСИ успешно скопированы в действующую запись!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -671,7 +671,7 @@ namespace DatabaseToolSuite.Dialogs
 		{
 			if (gaspsListView.DataRow != null && gaspsListView.DataRow.authority_id == MasterDataSystem.PROSECUTOR_CODE)
 			{
-				Repositories.MainDataSet.fgis_esnsiRow editRow;
+				MainDataSet.fgis_esnsiRow editRow;
 				bool createdRow = false;
 
 				if (MasterDataSystem.DataSet.fgis_esnsi.Exists(gaspsListView.DataRow.version))
@@ -726,7 +726,7 @@ namespace DatabaseToolSuite.Dialogs
 		{
 			if (MasterDataSystem.DataSet.ervk.Exists(gaspsListView.DataRow.version))
 			{
-				Repositories.MainDataSet.ervkRow currentRow = MasterDataSystem.DataSet.ervk.Get(gaspsListView.DataRow.version);
+				MainDataSet.ervkRow currentRow = MasterDataSystem.DataSet.ervk.Get(gaspsListView.DataRow.version);
 				if (MasterDataSystem.CloneErvkNoteToLastVersion(currentRow.version) != null)
 				{
 					MessageBox.Show(this, "Данные ЕРВК успешно скопированы в действующую запись!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -759,7 +759,7 @@ namespace DatabaseToolSuite.Dialogs
 		{
 			if (gaspsListView.DataRow != null && gaspsListView.DataRow.authority_id == MasterDataSystem.PROSECUTOR_CODE)
 			{
-				Repositories.MainDataSet.ervkRow editRow;
+				MainDataSet.ervkRow editRow;
 				bool createdRow = false;
 
 				if (MasterDataSystem.DataSet.ervk.Exists(gaspsListView.DataRow.version))
@@ -858,7 +858,7 @@ namespace DatabaseToolSuite.Dialogs
 		{
 			if (MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Exists(gaspsListView.DataRow.version))
 			{
-				Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow currentRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(gaspsListView.DataRow.version);
+				MainDataSet.EXP_LAW_AGENCY_URPRow currentRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(gaspsListView.DataRow.version);
 				if (MasterDataSystem.CloneUrpNoteToLastVersion(currentRow.VERSION) != null)
 				{
 					MessageBox.Show(this, "Данные УРП ГАС ПС успешно скопированы в действующую запись!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -891,7 +891,7 @@ namespace DatabaseToolSuite.Dialogs
 		{
 			if (gaspsListView.DataRow != null && gaspsListView.DataRow.authority_id == MasterDataSystem.PROSECUTOR_CODE)
 			{
-				Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow editRow;
+				MainDataSet.EXP_LAW_AGENCY_URPRow editRow;
 				bool createdRow = false;
 
 				if (MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Exists(gaspsListView.DataRow.version))
@@ -950,7 +950,7 @@ namespace DatabaseToolSuite.Dialogs
 
 						if (MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Exists(row.version))
 						{
-							Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow editRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(row.version);
+							MainDataSet.EXP_LAW_AGENCY_URPRow editRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(row.version);
 							if (dialog.IsEditDoesntConsolidateChild)
 							{
 								editRow.DOESNT_CONSOLIDATE_CHILD = dialog.DoesntConsolidateChild;
@@ -997,7 +997,7 @@ namespace DatabaseToolSuite.Dialogs
 			{
 				if (MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Exists(gaspsListView.DataRow.version))
 				{
-					Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow editRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(gaspsListView.DataRow.version);
+					MainDataSet.EXP_LAW_AGENCY_URPRow editRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(gaspsListView.DataRow.version);
 					editRow.LAW_AGENCY_TYPE = agencyType;
 
 					Utils.Database.SetIsHeadAttribute();
@@ -1010,7 +1010,7 @@ namespace DatabaseToolSuite.Dialogs
 				{
 					if (MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Exists(row.version))
 					{
-						Repositories.MainDataSet.EXP_LAW_AGENCY_URPRow editRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(row.version);
+						MainDataSet.EXP_LAW_AGENCY_URPRow editRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(row.version);
 						editRow.LAW_AGENCY_TYPE = agencyType;
 					}
 				}
