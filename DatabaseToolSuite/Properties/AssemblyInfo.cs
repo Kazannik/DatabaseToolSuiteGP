@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Главное управление правовой статистики и информационных технологий Генеральной прокуратуры Российской Федерации")]
 [assembly: AssemblyProduct("Справочники НСИ ГАС ПС")]
-[assembly: AssemblyCopyright("Отдел ведения ЕНСИ © 2025")]
+[assembly: AssemblyCopyright("Отдел ведения ЕНСИ © 2026")]
 [assembly: AssemblyTrademark("Управление информационных технологий")]
 [assembly: AssemblyCulture("")]
 

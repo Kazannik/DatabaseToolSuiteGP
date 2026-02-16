@@ -457,7 +457,7 @@ namespace DatabaseToolSuite.Services
 
 		public static void ExportFgisEsnsiToExcel()
 		{
-			IEnumerable<Repositories.MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization> data = MasterDataSystem.DataSet.fgis_esnsi.ExportData();
+			IEnumerable<MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization> data = MasterDataSystem.DataSet.fgis_esnsi.ExportData();
 			int rowCount = data.Count();
 
 			Excel.Application excExcel = null;
@@ -487,7 +487,7 @@ namespace DatabaseToolSuite.Services
 
 			object[,] objData = new object[rowCount, objHeaders.Count()];
 			int r = 0;
-			foreach (Repositories.MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization item in data)
+			foreach (MainDataSet.fgis_esnsiDataTable.FgisEsnsiOrganization item in data)
 			{
 				objData[r, 0] = item.Id;
 				objData[r, 1] = item.Name;
@@ -642,9 +642,9 @@ namespace DatabaseToolSuite.Services
 
 		public static void ExportErvkToCsv(string path)
 		{
-			IEnumerable<MainDataSet.ervkDataTable.ErvkOrganization> data = MasterDataSystem.DataSet.ervk.ExportData();
+			IEnumerable<ErvkOrganization> data = MasterDataSystem.DataSet.ervk.ExportData();
 
-			data = data.Union(new MainDataSet.ervkDataTable.ErvkOrganization[] {
+			data = data.Union(new ErvkOrganization[] {
 				ErvkOrganization.CreateTestOrganization()});
 
 			StreamWriter writer = new StreamWriter(path: path, append: false, encoding: Encoding.GetEncoding(1251))
@@ -653,7 +653,7 @@ namespace DatabaseToolSuite.Services
 			};
 			writer.WriteLine("esnsiCode;title;isHead;special;military;isActive;idVersionProc;idVersionHead;dateStartVersion;dateCloseProc;ogrn;inn;subjectRfList;oktmoList;idSuccession;Родительский элемент");
 
-			foreach (MainDataSet.ervkDataTable.ErvkOrganization item in data)
+			foreach (ErvkOrganization item in data)
 			{
 				string line = item.EsnsiCode + ";" +
 					Utils.Converters.TextForCsvFormat(item.Title) + ";" +
@@ -681,7 +681,7 @@ namespace DatabaseToolSuite.Services
 
 		public static void ExportErvkToExcel()
 		{
-			IEnumerable<MainDataSet.ervkDataTable.ErvkOrganization> data = MasterDataSystem.DataSet.ervk.ExportData();
+			IEnumerable<ErvkOrganization> data = MasterDataSystem.DataSet.ervk.ExportData();
 			int rowCount = data.Count();
 
 			Excel.Application excExcel = null;
@@ -714,7 +714,7 @@ namespace DatabaseToolSuite.Services
 
 			object[,] objData = new object[rowCount, objHeaders.Count()];
 			int r = 0;
-			foreach (MainDataSet.ervkDataTable.ErvkOrganization item in data)
+			foreach (ErvkOrganization item in data)
 			{
 				objData[r, 0] = item.EsnsiCode;
 				objData[r, 1] = item.Title;

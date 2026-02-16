@@ -386,7 +386,7 @@ namespace DatabaseToolSuite.Services
 
 				protected virtual void Dispose(bool disposing)
 				{
-					if (!this.disposedValue)
+					if (!disposedValue)
 					{
 						if (disposing)
 						{
@@ -394,7 +394,7 @@ namespace DatabaseToolSuite.Services
 						}
 						current = null;
 					}
-					this.disposedValue = true;
+					disposedValue = true;
 				}
 
 				~EntityEnumerator()
@@ -498,16 +498,16 @@ namespace DatabaseToolSuite.Services
 			)
 		{
 			object[] values = new object[10];
-			values[0] = version; // VERSION
-			values[1] = shortName; // SHORT_NAME
-			values[2] = doesntCreateCard; // DOESNT_CREATE_CARD
-			values[3] = doesntSingReport; // DOESNT_SIGN_REPORT
+			values[0] = version;                // VERSION
+			values[1] = shortName;              // SHORT_NAME
+			values[2] = doesntCreateCard;       // DOESNT_CREATE_CARD
+			values[3] = doesntSingReport;       // DOESNT_SIGN_REPORT
 			values[4] = doesntConsolidateChild; // DOESNT_CONSOLIDATE_CHILD
-			values[5] = agencyReceivingReport; // AGENCY_RECEIVING_REPORT
-			values[6] = ord; // ORD
-			values[7] = vedCode; // VED_CODE
-			values[8] = id; // ID
-			values[9] = oktmoLocId; // OKTMO_LOC_ID
+			values[5] = agencyReceivingReport;  // AGENCY_RECEIVING_REPORT
+			values[6] = ord;                    // ORD
+			values[7] = vedCode;                // VED_CODE
+			values[8] = id;                     // ID
+			values[9] = oktmoLocId;             // OKTMO_LOC_ID
 
 			ExportDataSet.EXP_LAW_AGENCY_URPRow newRow =
 				(ExportDataSet.EXP_LAW_AGENCY_URPRow)DataSet.EXP_LAW_AGENCY_URP.Rows.Add(values);
@@ -523,7 +523,7 @@ namespace DatabaseToolSuite.Services
 		private static ExportDataSet.t6292734Row CreateOktmo(long id, string code, string name)
 		{
 			object[] values = new object[3];
-			values[0] = id; // ID
+			values[0] = id;   // ID
 			values[1] = code; // CODE
 			values[2] = name; // NAME
 
@@ -540,7 +540,7 @@ namespace DatabaseToolSuite.Services
 		private static ExportDataSet.t6301724Row CreateVed(long id, string code, string name)
 		{
 			object[] values = new object[3];
-			values[0] = id; // ID
+			values[0] = id;   // ID
 			values[1] = code; // CODE
 			values[2] = name; // NAME
 
@@ -557,7 +557,7 @@ namespace DatabaseToolSuite.Services
 		private static ExportDataSet.EXP_LAW_AGENCY_ALLOWBLE_HIERARCHYRow CreateLawAgencyTypeAllowbleHierarchy(long agencyType, long allowbleHierarchy)
 		{
 			object[] values = new object[2];
-			values[0] = agencyType; // AGENCY_TYPE
+			values[0] = agencyType;        // AGENCY_TYPE
 			values[1] = allowbleHierarchy; // ALLOWBLE_HIERARCHY
 
 			ExportDataSet.EXP_LAW_AGENCY_ALLOWBLE_HIERARCHYRow newRow =
@@ -573,9 +573,9 @@ namespace DatabaseToolSuite.Services
 		private static ExportDataSet.EXP_LAW_AGENCY_TYPESRow CreateLawAgencyTypes(long id, bool mandatoryCode, string name)
 		{
 			object[] values = new object[3];
-			values[0] = id; // ID
+			values[0] = id;            // ID
 			values[1] = mandatoryCode; // MANDATORY_CODE
-			values[2] = name; // NAME
+			values[2] = name;          // NAME
 
 			ExportDataSet.EXP_LAW_AGENCY_TYPESRow newRow =
 				(ExportDataSet.EXP_LAW_AGENCY_TYPESRow)DataSet.EXP_LAW_AGENCY_TYPES.Rows.Add(values);
@@ -590,7 +590,7 @@ namespace DatabaseToolSuite.Services
 		private static ExportDataSet.SPECIAL_TERRITORIAL_CODERow CreateSpecialTerritorialCode(long id, string code, string name)
 		{
 			object[] values = new object[3];
-			values[0] = id; // ID
+			values[0] = id;   // ID
 			values[1] = code; // CODE
 			values[2] = name; // NAME
 

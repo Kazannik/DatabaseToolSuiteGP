@@ -2,11 +2,12 @@
 
 namespace DatabaseToolSuite.Utils
 {
-	using DatabaseToolSuite.Controls;
 	using DatabaseToolSuite.Services;
-	using Microsoft.Office.Interop.Excel;
 	using System;
 	using System.Collections.Generic;
+	using System.Data;
+	using System.Globalization;
+	using System.Linq;
 	using System.Windows.Forms;
 
 	/// <summary>
@@ -31,6 +32,21 @@ namespace DatabaseToolSuite.Utils
 			{
 				return (T)obj;
 			}
+		}
+
+
+		private static readonly CultureInfo provider = CultureInfo.InvariantCulture;
+		private const string shortFormat = "dd.MM.yyyy";
+		private const string longFormat = "dd.MM.yyyy HH:mm:ss";
+
+		public static DateTime Parse(string date, DateTime defaultDateTime)
+		{
+			if (date.Length == 10)
+				return DateTime.ParseExact(date, shortFormat, provider);
+			else if (date.Length == 19)
+				return DateTime.ParseExact(date, longFormat, provider);
+			else
+				return defaultDateTime;
 		}
 
 
@@ -481,6 +497,71 @@ namespace DatabaseToolSuite.Utils
 				}				
 			}
 			MessageBox.Show(string.Format("Внесены сведения в {0} записей.", n));
+		}
+
+		/// <summary>
+		/// Ремонт данных. Удаление записей УРП, ЕРВК и ЕСНСИ, созданных не для органов прокуратуры.
+		/// </summary>
+		public static void FixUrpData()
+		{
+			IEnumerable<long> versions = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP
+				.Where(row => row.RowState != DataRowState.Deleted &&
+				row?.gaspsRow.authority_id != MasterDataSystem.PROSECUTOR_CODE)
+				.Select(row => row.VERSION);
+
+			int count = versions.Count();
+			foreach (long version in versions) 
+			{
+				MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Remove(version);
+			}
+
+			versions = MasterDataSystem.DataSet.ervk
+				.Where(row => row.RowState != DataRowState.Deleted &&
+				row?.gaspsRow.authority_id != MasterDataSystem.PROSECUTOR_CODE)
+				.Select(row => row.version);
+			
+			count += versions.Count();
+			foreach (long version in versions)
+			{
+				MasterDataSystem.DataSet.ervk.Remove(version);
+			}
+
+			versions = MasterDataSystem.DataSet.fgis_esnsi
+				.Where(row => row.RowState != DataRowState.Deleted &&
+				row?.gaspsRow.authority_id != MasterDataSystem.PROSECUTOR_CODE)
+				.Select(row => row.version);
+
+			count += versions.Count();
+			foreach (long version in versions)
+			{
+				MasterDataSystem.DataSet.fgis_esnsi.Remove(version);
+			}
+			
+			MessageBox.Show(string.Format("Удалено {0} ошибочных записей.", count));
+			
+			UpdateCourtsType();
+		}
+
+
+		public static void UpdateCourtsType()
+		{
+			(int id, string name)[] courtsType =
+			{
+				(0,"Органы судов"),
+				(1, "Федеральные суды"),
+				(2, "Мировые суды"),
+				(3, "Судебный департамент и юстиция"),
+				(4, "Высшие судебные органы"),
+				(5, "Арбитражные суды")
+			};
+
+			foreach (var (id, name) in courtsType)
+			{
+				if (!MasterDataSystem.DataSet.court_type.ExistsId(id))
+				{
+					MasterDataSystem.DataSet.court_type.Rows.Add(id, name);
+				}
+			}
 		}
 
 		/// <summary>

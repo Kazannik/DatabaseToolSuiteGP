@@ -476,10 +476,7 @@ namespace DatabaseToolSuite.Dialogs
 				if (dialog.FilterIndex == 1)
 				{
 					Import.ImportTextFile(dialog.FileName);
-				}
-				else
-				{
-				}
+				}				
 			}
 		}
 
@@ -872,7 +869,7 @@ namespace DatabaseToolSuite.Dialogs
 
 		private void UrpRemove_Click(object sender, EventArgs e)
 		{
-			if (gaspsListView.DataRow != null && gaspsListView.DataRow.authority_id == MasterDataSystem.PROSECUTOR_CODE)
+			if (gaspsListView.DataRow != null)
 			{
 				if (MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Exists(gaspsListView.DataRow.version))
 				{
@@ -1112,8 +1109,15 @@ namespace DatabaseToolSuite.Dialogs
 
 		private void MnuToolsFixData_Click(object sender, EventArgs e)
 		{
-			Utils.Database.FixDataVersion01();
+			Utils.Database.FixUrpData();
 			gaspsListView.UpdateListViewItem();
+		}
+
+		private void ToolsImportCourtsData_Click(object sender, EventArgs e)
+		{
+			ImportСourtsDialog dialog = new ImportСourtsDialog();
+			dialog.ShowDialog();
+
 		}
 	}
 }

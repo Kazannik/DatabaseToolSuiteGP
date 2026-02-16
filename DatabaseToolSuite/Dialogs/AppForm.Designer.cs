@@ -94,6 +94,7 @@
 			this.mnuToolsEsnsiIdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuToolsOwnerEdit = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuToolsFixData = new System.Windows.Forms.ToolStripMenuItem();
+			this.mnuToolsImportCourtsData = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuHelpStatistic = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
@@ -566,6 +567,7 @@
 			this.mnuTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuToolsImportFgisEsnsi,
             this.mnuToolsImportSubdivision,
+            this.mnuToolsImportCourtsData,
             this.toolStripMenuItem13,
             this.mnuToolsClearCode,
             this.toolStripMenuItem19,
@@ -582,7 +584,7 @@
 			// mnuToolsImportFgisEsnsi
 			// 
 			this.mnuToolsImportFgisEsnsi.Name = "mnuToolsImportFgisEsnsi";
-			this.mnuToolsImportFgisEsnsi.Size = new System.Drawing.Size(490, 30);
+			this.mnuToolsImportFgisEsnsi.Size = new System.Drawing.Size(507, 30);
 			this.mnuToolsImportFgisEsnsi.Text = "Импорт данных ФГИС ЕСНСИ...";
 			this.mnuToolsImportFgisEsnsi.Click += new System.EventHandler(this.ToolsImportFgisEsnsi_Click);
 			// 
@@ -590,28 +592,28 @@
 			// 
 			this.mnuToolsImportSubdivision.Image = global::DatabaseToolSuite.Properties.Resources._1C_Yellow24;
 			this.mnuToolsImportSubdivision.Name = "mnuToolsImportSubdivision";
-			this.mnuToolsImportSubdivision.Size = new System.Drawing.Size(490, 30);
+			this.mnuToolsImportSubdivision.Size = new System.Drawing.Size(507, 30);
 			this.mnuToolsImportSubdivision.Text = "Импорт данных из файла 1С...";
 			this.mnuToolsImportSubdivision.Click += new System.EventHandler(this.ToolsImportSubdivision_Click);
 			// 
 			// toolStripMenuItem13
 			// 
 			this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-			this.toolStripMenuItem13.Size = new System.Drawing.Size(487, 6);
+			this.toolStripMenuItem13.Size = new System.Drawing.Size(504, 6);
 			// 
 			// mnuToolsClearCode
 			// 
 			this.mnuToolsClearCode.Name = "mnuToolsClearCode";
 			this.mnuToolsClearCode.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.Delete)));
-			this.mnuToolsClearCode.Size = new System.Drawing.Size(490, 30);
+			this.mnuToolsClearCode.Size = new System.Drawing.Size(507, 30);
 			this.mnuToolsClearCode.Text = "Удалить код подразделения";
 			this.mnuToolsClearCode.Click += new System.EventHandler(this.ToolsClearCode_Click);
 			// 
 			// toolStripMenuItem19
 			// 
 			this.toolStripMenuItem19.Name = "toolStripMenuItem19";
-			this.toolStripMenuItem19.Size = new System.Drawing.Size(487, 6);
+			this.toolStripMenuItem19.Size = new System.Drawing.Size(504, 6);
 			// 
 			// mnuToolsServise
 			// 
@@ -625,7 +627,7 @@
             this.mnuToolsInitializeRtkTables,
             this.mnuToolsFillRtkUrpTable});
 			this.mnuToolsServise.Name = "mnuToolsServise";
-			this.mnuToolsServise.Size = new System.Drawing.Size(490, 30);
+			this.mnuToolsServise.Size = new System.Drawing.Size(507, 30);
 			this.mnuToolsServise.Text = "Сервисные команды";
 			// 
 			// mnuToolsCreateNewVersion
@@ -693,7 +695,7 @@
 			// mnuToolsExpLawAgenceEdit
 			// 
 			this.mnuToolsExpLawAgenceEdit.Name = "mnuToolsExpLawAgenceEdit";
-			this.mnuToolsExpLawAgenceEdit.Size = new System.Drawing.Size(490, 30);
+			this.mnuToolsExpLawAgenceEdit.Size = new System.Drawing.Size(507, 30);
 			this.mnuToolsExpLawAgenceEdit.Text = "mnuToolsExpLawAgenceEdit";
 			this.mnuToolsExpLawAgenceEdit.Visible = false;
 			this.mnuToolsExpLawAgenceEdit.Click += new System.EventHandler(this.ToolsExpLawAgenceEdit_Click);
@@ -701,7 +703,7 @@
 			// mnuToolsTableEdit
 			// 
 			this.mnuToolsTableEdit.Name = "mnuToolsTableEdit";
-			this.mnuToolsTableEdit.Size = new System.Drawing.Size(490, 30);
+			this.mnuToolsTableEdit.Size = new System.Drawing.Size(507, 30);
 			this.mnuToolsTableEdit.Text = "mnuToolsTableEdit";
 			this.mnuToolsTableEdit.Visible = false;
 			this.mnuToolsTableEdit.Click += new System.EventHandler(this.ToolsTableEdit_Click);
@@ -709,7 +711,7 @@
 			// mnuToolsEsnsiIdToolStripMenuItem
 			// 
 			this.mnuToolsEsnsiIdToolStripMenuItem.Name = "mnuToolsEsnsiIdToolStripMenuItem";
-			this.mnuToolsEsnsiIdToolStripMenuItem.Size = new System.Drawing.Size(490, 30);
+			this.mnuToolsEsnsiIdToolStripMenuItem.Size = new System.Drawing.Size(507, 30);
 			this.mnuToolsEsnsiIdToolStripMenuItem.Text = "mnuToolsEsnsiId";
 			this.mnuToolsEsnsiIdToolStripMenuItem.Visible = false;
 			this.mnuToolsEsnsiIdToolStripMenuItem.Click += new System.EventHandler(this.mnuToolsEsnsiIdToolStripMenuItem_Click);
@@ -717,17 +719,25 @@
 			// mnuToolsOwnerEdit
 			// 
 			this.mnuToolsOwnerEdit.Name = "mnuToolsOwnerEdit";
-			this.mnuToolsOwnerEdit.Size = new System.Drawing.Size(490, 30);
+			this.mnuToolsOwnerEdit.Size = new System.Drawing.Size(507, 30);
 			this.mnuToolsOwnerEdit.Text = "Внести сведения о владельце подразделения";
 			this.mnuToolsOwnerEdit.Click += new System.EventHandler(this.MnuToolsOwnerEdit_Click);
 			// 
 			// mnuToolsFixData
 			// 
 			this.mnuToolsFixData.Name = "mnuToolsFixData";
-			this.mnuToolsFixData.Size = new System.Drawing.Size(490, 30);
+			this.mnuToolsFixData.Size = new System.Drawing.Size(507, 30);
 			this.mnuToolsFixData.Text = "Fix Data";
 			this.mnuToolsFixData.Visible = false;
 			this.mnuToolsFixData.Click += new System.EventHandler(this.MnuToolsFixData_Click);
+			// 
+			// mnuToolsImportCourtsData
+			// 
+			this.mnuToolsImportCourtsData.Image = global::DatabaseToolSuite.Properties.Resources.vsrf_emblem_32;
+			this.mnuToolsImportCourtsData.Name = "mnuToolsImportCourtsData";
+			this.mnuToolsImportCourtsData.Size = new System.Drawing.Size(507, 30);
+			this.mnuToolsImportCourtsData.Text = "Импорт справочников судов и судебных участков...";
+			this.mnuToolsImportCourtsData.Click += new System.EventHandler(this.ToolsImportCourtsData_Click);
 			// 
 			// mnuHelp
 			// 
@@ -1883,5 +1893,6 @@
 		private System.Windows.Forms.ToolStripMenuItem mnuToolsEsnsiIdToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem mnuToolsOwnerEdit;
 		private System.Windows.Forms.ToolStripMenuItem mnuToolsFixData;
+		private System.Windows.Forms.ToolStripMenuItem mnuToolsImportCourtsData;
 	}
 }

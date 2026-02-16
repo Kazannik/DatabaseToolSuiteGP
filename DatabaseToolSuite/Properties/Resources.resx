@@ -139,9 +139,6 @@
   <data name="1C" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1C.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bt06" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bt06.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Warning64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Warning64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -162,9 +159,6 @@
   </data>
   <data name="bt05" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bt05.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Save24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Save24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CutHS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CutHS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,6 +184,9 @@
   <data name="New24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\New24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="gosuslugi_dublicate24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gosuslugi_dublicate24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="bt18" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bt18.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -204,6 +201,9 @@
   </data>
   <data name="gosuslugi_dublicate32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gosuslugi_dublicate32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bt22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bt13" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bt13.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -250,14 +250,17 @@
   <data name="openHS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\openHS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="AddHomeHS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AddHomeHS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="NewSeries32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NewSeries32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CopyHS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CopyHS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bt19" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bt19.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bt02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bt09" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bt09.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -316,8 +319,8 @@
   <data name="gosuslugi32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gosuslugi32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="gosuslugi_dublicate24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\gosuslugi_dublicate24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bt19" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt19.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bt10" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bt10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -346,8 +349,8 @@
   <data name="Statistics24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Statistics24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AddHomeHS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AddHomeHS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bt06" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt06.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Save32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -361,10 +364,10 @@
   <data name="bt01" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bt01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bt02" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bt02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Save24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Save24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bt22" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bt22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="vsrf_emblem_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vsrf_emblem_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

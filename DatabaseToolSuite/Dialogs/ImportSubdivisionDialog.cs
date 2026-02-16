@@ -90,43 +90,47 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// subdivisions_treeView
 			// 
-			this.subdivisions_treeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-			| System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.subdivisions_treeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.subdivisions_treeView.CheckBoxes = true;
-			this.subdivisions_treeView.Location = new System.Drawing.Point(10, 226);
+			this.subdivisions_treeView.Location = new System.Drawing.Point(8, 181);
+			this.subdivisions_treeView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.subdivisions_treeView.Name = "subdivisions_treeView";
-			this.subdivisions_treeView.Size = new System.Drawing.Size(568, 280);
+			this.subdivisions_treeView.Size = new System.Drawing.Size(474, 225);
 			this.subdivisions_treeView.TabIndex = 3;
 			this.subdivisions_treeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.TreeView_AfterCheck);
 			// 
 			// parent_label
 			// 
 			this.parent_label.AutoSize = true;
-			this.parent_label.Location = new System.Drawing.Point(21, 132);
+			this.parent_label.Location = new System.Drawing.Point(18, 106);
+			this.parent_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.parent_label.Name = "parent_label";
-			this.parent_label.Size = new System.Drawing.Size(116, 25);
+			this.parent_label.Size = new System.Drawing.Size(98, 20);
 			this.parent_label.TabIndex = 4;
 			this.parent_label.Text = "Владелец:";
 			// 
 			// parent_textBox
 			// 
-			this.parent_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
-			this.parent_textBox.Location = new System.Drawing.Point(143, 132);
+			this.parent_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.parent_textBox.Location = new System.Drawing.Point(119, 106);
+			this.parent_textBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.parent_textBox.Multiline = true;
 			this.parent_textBox.Name = "parent_textBox";
 			this.parent_textBox.ReadOnly = true;
 			this.parent_textBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.parent_textBox.Size = new System.Drawing.Size(435, 77);
+			this.parent_textBox.Size = new System.Drawing.Size(363, 62);
 			this.parent_textBox.TabIndex = 5;
 			// 
 			// button_SelectParent
 			// 
 			this.button_SelectParent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_SelectParent.Location = new System.Drawing.Point(598, 132);
+			this.button_SelectParent.Location = new System.Drawing.Point(498, 106);
+			this.button_SelectParent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.button_SelectParent.Name = "button_SelectParent";
-			this.button_SelectParent.Size = new System.Drawing.Size(261, 38);
+			this.button_SelectParent.Size = new System.Drawing.Size(218, 30);
 			this.button_SelectParent.TabIndex = 6;
 			this.button_SelectParent.Text = "Выбрать...";
 			this.button_SelectParent.UseVisualStyleBackColor = true;
@@ -135,9 +139,10 @@ namespace DatabaseToolSuite.Dialogs
 			// button_CheckAll
 			// 
 			this.button_CheckAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_CheckAll.Location = new System.Drawing.Point(598, 226);
+			this.button_CheckAll.Location = new System.Drawing.Point(498, 181);
+			this.button_CheckAll.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.button_CheckAll.Name = "button_CheckAll";
-			this.button_CheckAll.Size = new System.Drawing.Size(261, 38);
+			this.button_CheckAll.Size = new System.Drawing.Size(218, 30);
 			this.button_CheckAll.TabIndex = 7;
 			this.button_CheckAll.Text = "Отметить всё";
 			this.button_CheckAll.UseVisualStyleBackColor = true;
@@ -146,9 +151,10 @@ namespace DatabaseToolSuite.Dialogs
 			// button_UncheckAll
 			// 
 			this.button_UncheckAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_UncheckAll.Location = new System.Drawing.Point(598, 270);
+			this.button_UncheckAll.Location = new System.Drawing.Point(498, 216);
+			this.button_UncheckAll.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.button_UncheckAll.Name = "button_UncheckAll";
-			this.button_UncheckAll.Size = new System.Drawing.Size(261, 38);
+			this.button_UncheckAll.Size = new System.Drawing.Size(218, 30);
 			this.button_UncheckAll.TabIndex = 8;
 			this.button_UncheckAll.Text = "Снять отметки";
 			this.button_UncheckAll.UseVisualStyleBackColor = true;
@@ -157,9 +163,10 @@ namespace DatabaseToolSuite.Dialogs
 			// button_Inverse
 			// 
 			this.button_Inverse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_Inverse.Location = new System.Drawing.Point(598, 468);
+			this.button_Inverse.Location = new System.Drawing.Point(498, 374);
+			this.button_Inverse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.button_Inverse.Name = "button_Inverse";
-			this.button_Inverse.Size = new System.Drawing.Size(261, 38);
+			this.button_Inverse.Size = new System.Drawing.Size(218, 30);
 			this.button_Inverse.TabIndex = 9;
 			this.button_Inverse.Text = "Инвертировать отметки";
 			this.button_Inverse.UseVisualStyleBackColor = true;
@@ -169,10 +176,9 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			this.beginDateLabel.AutoSize = true;
 			this.beginDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.beginDateLabel.Location = new System.Drawing.Point(21, 95);
-			this.beginDateLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.beginDateLabel.Location = new System.Drawing.Point(18, 76);
 			this.beginDateLabel.Name = "beginDateLabel";
-			this.beginDateLabel.Size = new System.Drawing.Size(287, 25);
+			this.beginDateLabel.Size = new System.Drawing.Size(263, 20);
 			this.beginDateLabel.TabIndex = 38;
 			this.beginDateLabel.Text = "Дата введения новой версии:";
 			// 
@@ -180,19 +186,18 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			this.beginDateTimePicker.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.beginDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.beginDateTimePicker.Location = new System.Drawing.Point(316, 95);
-			this.beginDateTimePicker.Margin = new System.Windows.Forms.Padding(4);
+			this.beginDateTimePicker.Location = new System.Drawing.Point(287, 75);
 			this.beginDateTimePicker.Name = "beginDateTimePicker";
-			this.beginDateTimePicker.Size = new System.Drawing.Size(214, 30);
+			this.beginDateTimePicker.Size = new System.Drawing.Size(179, 26);
 			this.beginDateTimePicker.TabIndex = 37;
 			// 
 			// ImportSubdivisionDialog
 			// 
 			this.AcceptButton = this.AcceptButton;
-			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.CancelButton;
-			this.ClientSize = new System.Drawing.Size(865, 591);
+			this.ClientSize = new System.Drawing.Size(721, 473);
 			this.Controls.Add(this.beginDateLabel);
 			this.Controls.Add(this.beginDateTimePicker);
 			this.Controls.Add(this.button_Inverse);
@@ -203,10 +208,10 @@ namespace DatabaseToolSuite.Dialogs
 			this.Controls.Add(this.parent_label);
 			this.Controls.Add(this.subdivisions_treeView);
 			this.DialogCaptionImage = global::DatabaseToolSuite.Properties.Resources._1C_Yellow32;
-			this.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
-			this.MinimumSize = new System.Drawing.Size(600, 600);
+			this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+			this.MinimumSize = new System.Drawing.Size(503, 489);
 			this.Name = "ImportSubdivisionDialog";
-			this.Padding = new System.Windows.Forms.Padding(18);
+			this.Padding = new System.Windows.Forms.Padding(15, 14, 15, 14);
 			this.ShowIcon = false;
 			this.Text = "ImportSubdivisionDialog";
 			this.Controls.SetChildIndex(this.subdivisions_treeView, 0);

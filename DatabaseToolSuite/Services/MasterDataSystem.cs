@@ -10,6 +10,7 @@ namespace DatabaseToolSuite.Services
 	/// </summary>
 	internal static class MasterDataSystem
 	{
+		public const long COURT_CODE = 5;
 		public const long PROSECUTOR_CODE = 20;
 		public const long COURT_OF_LAW = 5;
 		public static readonly DateTime MAX_DATE = new DateTime(2999, 12, 31);
@@ -17,10 +18,7 @@ namespace DatabaseToolSuite.Services
 		public static readonly DateTime ERVK_MIN_DATE = new DateTime(1899, 12, 31);
 		public static readonly long[] RESERVE_CODES = new long[] { 3200 };
 
-		public static Repositories.MainDataSet DataSet
-		{
-			get { return FileSystem.Repository.MainDataSet; }
-		}
+		public static Repositories.MainDataSet DataSet => FileSystem.Repository.MainDataSet; 
 
 		/// <summary>
 		/// Создание записи о подразделении правоохранительного органа в ГАС ПС
@@ -63,23 +61,23 @@ namespace DatabaseToolSuite.Services
 							dateBegin, dateEnd));
 			}
 			object[] values = new object[18];
-			values[0] = null; // id
-			values[1] = name; // name
-			values[2] = key; // key
-			values[3] = okato; // okato_code
-			values[4] = authorityId; // authority_id
-			values[5] = code; // code
-			values[6] = version; // version
-			values[7] = index; // index
-			values[8] = ownerKey; // owner_id
-			values[9] = dateBegin; // date_beg
-			values[10] = dateEnd; // date_end
-			values[11] = null; // location_okato_id
-			values[12] = null; // another_okato_id
-			values[13] = 0; // court_type_id
-			values[14] = DateTime.Now; // logEditDate
-			values[15] = import_guid; // import_guid
-			values[16] = export_key; // export_key
+			values[0] = null;            // id
+			values[1] = name;            // name
+			values[2] = key;             // key
+			values[3] = okato;           // okato_code
+			values[4] = authorityId;     // authority_id
+			values[5] = code;            // code
+			values[6] = version;         // version
+			values[7] = index;           // index
+			values[8] = ownerKey;        // owner_id
+			values[9] = dateBegin;       // date_beg
+			values[10] = dateEnd;        // date_end
+			values[11] = null;           // location_okato_id
+			values[12] = null;           // another_okato_id
+			values[13] = courtTypeId;    // court_type_id
+			values[14] = DateTime.Now;   // logEditDate
+			values[15] = import_guid;    // import_guid
+			values[16] = export_key;     // export_key
 			values[17] = export_version; // export_version
 
 			Repositories.MainDataSet.gaspsRow newRow = (Repositories.MainDataSet.gaspsRow)FileSystem.Repository.MainDataSet.gasps.Rows.Add(values);
@@ -132,27 +130,29 @@ namespace DatabaseToolSuite.Services
 						   export_version: null
 						   );
 
-			long id = DataSet.EXP_LAW_AGENCY_URP.GetNextId();
-			long oktmo = 0;
-			if (DataSet.okato.ExistsCode(okato))
+			if (authorityId == PROSECUTOR_CODE)
 			{
-				oktmo = DataSet.okato.Get(okato).export_id;
+				long id = DataSet.EXP_LAW_AGENCY_URP.GetNextId();
+				long oktmo = 0;
+				if (DataSet.okato.ExistsCode(okato))
+				{
+					oktmo = DataSet.okato.Get(okato).export_id;
+				}
+
+				CreateUrpNote(
+						version: version,
+						shortName: name,
+						doesntCreateCard: false,
+						doesntSingReport: false,
+						doesntConsolidateChild: false,
+						agencyReceivingReport: 0,
+						ord: 0,
+						vedCode: "0",
+						id: id,
+						oktmoLocId: oktmo,
+						lawAgencyType: 0,
+						specialTerritorialCode: 0);
 			}
-
-			CreateUrpNote(
-					version: version,
-					shortName: name,
-					doesntCreateCard: false,
-					doesntSingReport: false,
-					doesntConsolidateChild: false,
-					agencyReceivingReport: 0,
-					ord: 0,
-					vedCode: "0",
-					id: id,
-					oktmoLocId: oktmo,
-					lawAgencyType: 0,
-					specialTerritorialCode: 0);
-
 			return newRow;
 		}
 
@@ -982,6 +982,82 @@ namespace DatabaseToolSuite.Services
 			errorRow.LAW_AGENCY_TYPE = lawAgencyType;
 			errorRow.SPECIAL_TERRITORIAL_CODE = specialTerritorialCode;
 			return errorRow;
+		}
+	
+
+
+		/// <summary>
+		/// Создание новой или дополнение существующей записи.
+		/// </summary>
+		/// <param name="dicId"></param>
+		/// <param name="outputDate"></param>
+		/// <param name="vers"></param>
+		/// <param name="dic_id"></param>
+		/// <param name="vrn_cls"></param>
+		/// <param name="znachatr"></param>
+		/// <param name="vnkod"></param>
+		/// <param name="tip"></param>
+		/// <param name="adress"></param>
+		/// <param name="upkod"></param>
+		/// <param name="dateBeg"></param>
+		/// <param name="dateEnd"></param>
+		/// <param name="prim"></param>
+		/// <param name="vrn"></param>
+		/// <param name="faktaddress"></param>
+		/// <param name="isActive"></param>
+		/// <returns></returns>
+		public static Repositories.MainDataSet.DIC_RECORDRow CreateCourt(
+			int dicId,
+			DateTime outputDate,
+			int vers,
+			int dic_id,
+			int vrn_cls,
+			string znachatr,
+			string vnkod,
+			long tip,
+			string adress,
+			string upkod,
+			DateTime dateBeg,
+			DateTime dateEnd,
+			string prim,
+			string vrn,
+			string faktaddress,
+			bool isActive)
+		{
+			if (!DataSet.ExistsDicCourts(dic_id))
+			{
+				DataSet.DIC.Create(
+					dicId: dicId,
+					outputDate: outputDate,
+					vrn: vers);
+			}
+			if (!DataSet.ExistsCourts(vrn))
+			{
+				return DataSet.DIC_RECORD.Create(
+					dicId: dic_id,
+					vrnCls: vrn_cls,
+					znachatr: znachatr,
+					vnkod: vnkod,
+					tip: tip,
+					adress: adress,
+					upkod: upkod,
+					dateBeg: dateBeg,
+					dateEnd: dateEnd,
+					prim: prim,
+					vrn: vrn,
+					faktaddress: faktaddress,
+					isActive: isActive);
+			}
+			else
+			{
+				Repositories.MainDataSet.DIC_RECORDRow courtRow = DataSet.DIC_RECORD.Get(vrn);
+				if (courtRow.DATE_END != dateEnd) 
+				{
+					courtRow.DATE_END = dateEnd;
+					courtRow.ISACTIVE = isActive;
+				}
+				return courtRow;
+			}
 		}
 	}
 }

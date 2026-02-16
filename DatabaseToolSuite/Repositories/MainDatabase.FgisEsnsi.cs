@@ -63,8 +63,7 @@ namespace DatabaseToolSuite.Repositories
 
 			public class FgisEsnsiOrganization
 			{
-				private FgisEsnsiOrganization()
-				{ }
+				private FgisEsnsiOrganization() { }
 
 				public long Version { get; protected set; }
 				public long Id { get; private set; }
@@ -114,7 +113,7 @@ namespace DatabaseToolSuite.Repositories
 			{
 				return from esnsi in this.AsEnumerable()
 						.Where(x => x.RowState != DataRowState.Deleted)
-					   join gasps in gaspsTable.ExportActiveData()
+					   join gasps in GaspsTable.ExportActiveData()
 					   on esnsi.version equals gasps.version
 					   select new FgisEsnsiOrganization(
 						   version: esnsi.version,
@@ -131,15 +130,8 @@ namespace DatabaseToolSuite.Repositories
 						   editDate: esnsi.IslogEditDateNull() ? Services.MasterDataSystem.MIN_DATE : esnsi.logEditDate);
 			}
 
-			private gaspsDataTable gaspsTable
-			{
-				get { return Services.MasterDataSystem.DataSet.gasps; }
-			}
+			private gaspsDataTable GaspsTable => Services.MasterDataSystem.DataSet.gasps;
 
-			private okatoDataTable okatoTable
-			{
-				get { return Services.MasterDataSystem.DataSet.okato; }
-			}
 		}
 	}
 }
