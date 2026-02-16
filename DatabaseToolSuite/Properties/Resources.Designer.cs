@@ -863,6 +863,16 @@ namespace DatabaseToolSuite.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap vsrf_emblem_32 {
+            get {
+                object obj = ResourceManager.GetObject("vsrf_emblem_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Warning64 {
             get {
                 object obj = ResourceManager.GetObject("Warning64", resourceCulture);

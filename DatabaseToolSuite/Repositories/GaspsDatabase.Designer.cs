@@ -68,9 +68,9 @@ namespace DatabaseToolSuite.Repositories {
         
         private global::System.Data.DataRelation relationEXP_LAW_AGENCY_URP_exp_law_agency_okatoid;
         
-        private global::System.Data.DataRelation relationexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE;
-        
         private global::System.Data.DataRelation relationexp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES;
+        
+        private global::System.Data.DataRelation relationexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -450,8 +450,8 @@ namespace DatabaseToolSuite.Repositories {
             this.relationEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES1 = this.Relations["EXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES1"];
             this.relationEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES = this.Relations["EXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES"];
             this.relationEXP_LAW_AGENCY_URP_exp_law_agency_okatoid = this.Relations["EXP_LAW_AGENCY_URP_exp_law_agency_okatoid"];
-            this.relationexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE = this.Relations["exp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE"];
             this.relationexp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES = this.Relations["exp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES"];
+            this.relationexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE = this.Relations["exp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -532,14 +532,14 @@ namespace DatabaseToolSuite.Repositories {
                         this.tableEXP_LAW_AGENCY_URP.AGENCY_RECEIVING_REPORTColumn}, new global::System.Data.DataColumn[] {
                         this.tableexp_law_agency_okatoid.IDColumn}, false);
             this.Relations.Add(this.relationEXP_LAW_AGENCY_URP_exp_law_agency_okatoid);
-            this.relationexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE = new global::System.Data.DataRelation("exp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE", new global::System.Data.DataColumn[] {
-                        this.tableSPECIAL_TERRITORIAL_CODE.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableexp_law_agency_okatoid.SPECIAL_TERRITORIAL_CODEColumn}, false);
-            this.Relations.Add(this.relationexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE);
             this.relationexp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES = new global::System.Data.DataRelation("exp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES", new global::System.Data.DataColumn[] {
                         this.tableEXP_LAW_AGENCY_TYPES.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableexp_law_agency_okatoid.LAW_AGENCY_TYPEColumn}, false);
             this.Relations.Add(this.relationexp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES);
+            this.relationexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE = new global::System.Data.DataRelation("exp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE", new global::System.Data.DataColumn[] {
+                        this.tableSPECIAL_TERRITORIAL_CODE.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableexp_law_agency_okatoid.SPECIAL_TERRITORIAL_CODEColumn}, false);
+            this.Relations.Add(this.relationexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4103,23 +4103,23 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public SPECIAL_TERRITORIAL_CODERow SPECIAL_TERRITORIAL_CODERow {
-                get {
-                    return ((SPECIAL_TERRITORIAL_CODERow)(this.GetParentRow(this.Table.ParentRelations["exp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["exp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public EXP_LAW_AGENCY_TYPESRow EXP_LAW_AGENCY_TYPESRow {
                 get {
                     return ((EXP_LAW_AGENCY_TYPESRow)(this.GetParentRow(this.Table.ParentRelations["exp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["exp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SPECIAL_TERRITORIAL_CODERow SPECIAL_TERRITORIAL_CODERow {
+                get {
+                    return ((SPECIAL_TERRITORIAL_CODERow)(this.GetParentRow(this.Table.ParentRelations["exp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["exp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE"]);
                 }
             }
             

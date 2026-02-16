@@ -14,7 +14,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>publish\multi-users\2.x.x.x\</PublishUrl>
+    <PublishUrl>publish\2.x.x.x\2.0.0.0\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -66,7 +66,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>false</GenerateManifests>
+    <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
@@ -129,6 +129,9 @@
     <Compile Include="Dialogs\ImportSubdivisionDialog.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Dialogs\ImportСourtsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\SelectDateDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +176,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GaspsDatabase.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\Сourts\CourtsDataSet.cs">
+      <DependentUpon>CourtsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\Сourts\CourtsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CourtsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Courts\CourtEntity.cs" />
+    <Compile Include="Services\Courts\CourtsCollection.cs" />
     <Compile Include="Services\Rtk.cs" />
     <Compile Include="Utils\Converters.cs" />
     <Compile Include="Utils\Database.cs" />
@@ -206,6 +219,7 @@
     <Compile Include="Dialogs\StatisticsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Services\Courts\DateCorrector.cs" />
     <Compile Include="Utils\Dialogs\ImportDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,11 +232,6 @@
       <DependentUpon>MainDatabase.xsd</DependentUpon>
     </Compile>
     <Compile Include="Repositories\DatabaseRepository.cs" />
-    <Compile Include="Repositories\MainDatabase.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MainDatabase.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Repositories\MainDatabase.Viewers.cs">
       <DependentUpon>MainDatabase.xsd</DependentUpon>
     </Compile>
@@ -238,11 +247,22 @@
     <Compile Include="Repositories\MainDatabase.Ervk.cs">
       <DependentUpon>MainDatabase.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\MainDatabase.Courts.cs">
+      <DependentUpon>MainDatabase.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\MainDatabase.NotEdit.cs">
+      <DependentUpon>MainDatabase.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\MainDatabase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainDatabase.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\Dto\AuthorityDto.cs" />
     <Compile Include="Repositories\Dto\OkatoDto.cs" />
     <Compile Include="Services\Export.cs" />
     <Compile Include="Services\FileSystem.cs" />
-    <Compile Include="Services\Impors.cs" />
+    <Compile Include="Services\Import.cs" />
     <Compile Include="Services\MasterDataSystem.cs" />
     <Compile Include="Utils\NameWizard.cs" />
     <EmbeddedResource Include="Controls\GaspsListView.resx">
@@ -279,6 +299,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ImportSubdivisionDialog.resx">
       <DependentUpon>ImportSubdivisionDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ImportСourtsDialog.resx">
+      <DependentUpon>ImportСourtsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\OrganizationViewDialog.resx">
       <DependentUpon>OrganizationViewDialog.cs</DependentUpon>
@@ -376,6 +399,17 @@
     </None>
     <None Include="Repositories\GaspsDatabase.xss">
       <DependentUpon>GaspsDatabase.xsd</DependentUpon>
+    </None>
+    <None Include="Repositories\Сourts\CourtsDataSet.xsc">
+      <DependentUpon>CourtsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Repositories\Сourts\CourtsDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CourtsDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Repositories\Сourts\CourtsDataSet.xss">
+      <DependentUpon>CourtsDataSet.xsd</DependentUpon>
     </None>
     <None Include="Resources\app.ico" />
     <None Include="Resources\AddHomeHS.png" />
@@ -571,6 +605,7 @@
   <ItemGroup>
     <Content Include="app.ico" />
     <Content Include="ReadMe.txt" />
+    <None Include="Resources\vsrf_emblem_32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

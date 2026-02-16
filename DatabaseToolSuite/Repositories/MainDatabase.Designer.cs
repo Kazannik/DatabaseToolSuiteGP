@@ -28,9 +28,9 @@ namespace DatabaseToolSuite.Repositories {
         
         private okatoDataTable tableokato;
         
-        private gaspsDataTable tablegasps;
-        
         private court_typeDataTable tablecourt_type;
+        
+        private gaspsDataTable tablegasps;
         
         private fgis_esnsiDataTable tablefgis_esnsi;
         
@@ -50,9 +50,15 @@ namespace DatabaseToolSuite.Repositories {
         
         private EXP_LAW_AGENCY_TYPESDataTable tableEXP_LAW_AGENCY_TYPES;
         
+        private DICDataTable tableDIC;
+        
+        private DIC_RECORDDataTable tableDIC_RECORD;
+        
         private global::System.Data.DataRelation relationFK_court_type_gasps;
         
         private global::System.Data.DataRelation relationFK_authority_gasps;
+        
+        private global::System.Data.DataRelation relationDIC_DIC_RECORD;
         
         private global::System.Data.DataRelation relationfgis_esnsi_gasps;
         
@@ -75,6 +81,12 @@ namespace DatabaseToolSuite.Repositories {
         private global::System.Data.DataRelation relationEXP_LAW_AGENCY_TYPES_EXP_LAW_AGENCY_ALLOWBLE_HIERARCHY1;
         
         private global::System.Data.DataRelation relationEXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SETUP_REFERENCE_LINK;
+        
+        private global::System.Data.DataRelation relationcourt_type_DIC_RECORD;
+        
+        private global::System.Data.DataRelation relationgasps_DIC_RECORD;
+        
+        private global::System.Data.DataRelation relationokato_DIC_RECORD;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -114,11 +126,11 @@ namespace DatabaseToolSuite.Repositories {
                 if ((ds.Tables["okato"] != null)) {
                     base.Tables.Add(new okatoDataTable(ds.Tables["okato"]));
                 }
-                if ((ds.Tables["gasps"] != null)) {
-                    base.Tables.Add(new gaspsDataTable(ds.Tables["gasps"]));
-                }
                 if ((ds.Tables["court_type"] != null)) {
                     base.Tables.Add(new court_typeDataTable(ds.Tables["court_type"]));
+                }
+                if ((ds.Tables["gasps"] != null)) {
+                    base.Tables.Add(new gaspsDataTable(ds.Tables["gasps"]));
                 }
                 if ((ds.Tables["fgis_esnsi"] != null)) {
                     base.Tables.Add(new fgis_esnsiDataTable(ds.Tables["fgis_esnsi"]));
@@ -146,6 +158,12 @@ namespace DatabaseToolSuite.Repositories {
                 }
                 if ((ds.Tables["EXP_LAW_AGENCY_TYPES"] != null)) {
                     base.Tables.Add(new EXP_LAW_AGENCY_TYPESDataTable(ds.Tables["EXP_LAW_AGENCY_TYPES"]));
+                }
+                if ((ds.Tables["DIC"] != null)) {
+                    base.Tables.Add(new DICDataTable(ds.Tables["DIC"]));
+                }
+                if ((ds.Tables["DIC_RECORD"] != null)) {
+                    base.Tables.Add(new DIC_RECORDDataTable(ds.Tables["DIC_RECORD"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -190,9 +208,9 @@ namespace DatabaseToolSuite.Repositories {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public gaspsDataTable gasps {
+        public court_typeDataTable court_type {
             get {
-                return this.tablegasps;
+                return this.tablecourt_type;
             }
         }
         
@@ -200,9 +218,9 @@ namespace DatabaseToolSuite.Repositories {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public court_typeDataTable court_type {
+        public gaspsDataTable gasps {
             get {
-                return this.tablecourt_type;
+                return this.tablegasps;
             }
         }
         
@@ -298,6 +316,26 @@ namespace DatabaseToolSuite.Repositories {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public DICDataTable DIC {
+            get {
+                return this.tableDIC;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public DIC_RECORDDataTable DIC_RECORD {
+            get {
+                return this.tableDIC_RECORD;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -370,11 +408,11 @@ namespace DatabaseToolSuite.Repositories {
                 if ((ds.Tables["okato"] != null)) {
                     base.Tables.Add(new okatoDataTable(ds.Tables["okato"]));
                 }
-                if ((ds.Tables["gasps"] != null)) {
-                    base.Tables.Add(new gaspsDataTable(ds.Tables["gasps"]));
-                }
                 if ((ds.Tables["court_type"] != null)) {
                     base.Tables.Add(new court_typeDataTable(ds.Tables["court_type"]));
+                }
+                if ((ds.Tables["gasps"] != null)) {
+                    base.Tables.Add(new gaspsDataTable(ds.Tables["gasps"]));
                 }
                 if ((ds.Tables["fgis_esnsi"] != null)) {
                     base.Tables.Add(new fgis_esnsiDataTable(ds.Tables["fgis_esnsi"]));
@@ -402,6 +440,12 @@ namespace DatabaseToolSuite.Repositories {
                 }
                 if ((ds.Tables["EXP_LAW_AGENCY_TYPES"] != null)) {
                     base.Tables.Add(new EXP_LAW_AGENCY_TYPESDataTable(ds.Tables["EXP_LAW_AGENCY_TYPES"]));
+                }
+                if ((ds.Tables["DIC"] != null)) {
+                    base.Tables.Add(new DICDataTable(ds.Tables["DIC"]));
+                }
+                if ((ds.Tables["DIC_RECORD"] != null)) {
+                    base.Tables.Add(new DIC_RECORDDataTable(ds.Tables["DIC_RECORD"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -448,16 +492,16 @@ namespace DatabaseToolSuite.Repositories {
                     this.tableokato.InitVars();
                 }
             }
-            this.tablegasps = ((gaspsDataTable)(base.Tables["gasps"]));
-            if ((initTable == true)) {
-                if ((this.tablegasps != null)) {
-                    this.tablegasps.InitVars();
-                }
-            }
             this.tablecourt_type = ((court_typeDataTable)(base.Tables["court_type"]));
             if ((initTable == true)) {
                 if ((this.tablecourt_type != null)) {
                     this.tablecourt_type.InitVars();
+                }
+            }
+            this.tablegasps = ((gaspsDataTable)(base.Tables["gasps"]));
+            if ((initTable == true)) {
+                if ((this.tablegasps != null)) {
+                    this.tablegasps.InitVars();
                 }
             }
             this.tablefgis_esnsi = ((fgis_esnsiDataTable)(base.Tables["fgis_esnsi"]));
@@ -514,8 +558,21 @@ namespace DatabaseToolSuite.Repositories {
                     this.tableEXP_LAW_AGENCY_TYPES.InitVars();
                 }
             }
+            this.tableDIC = ((DICDataTable)(base.Tables["DIC"]));
+            if ((initTable == true)) {
+                if ((this.tableDIC != null)) {
+                    this.tableDIC.InitVars();
+                }
+            }
+            this.tableDIC_RECORD = ((DIC_RECORDDataTable)(base.Tables["DIC_RECORD"]));
+            if ((initTable == true)) {
+                if ((this.tableDIC_RECORD != null)) {
+                    this.tableDIC_RECORD.InitVars();
+                }
+            }
             this.relationFK_court_type_gasps = this.Relations["FK_court_type_gasps"];
             this.relationFK_authority_gasps = this.Relations["FK_authority_gasps"];
+            this.relationDIC_DIC_RECORD = this.Relations["DIC_DIC_RECORD"];
             this.relationfgis_esnsi_gasps = this.Relations["fgis_esnsi_gasps"];
             this.relationgasps_ervk = this.Relations["gasps_ervk"];
             this.relationFK_okato_gasps = this.Relations["FK_okato_gasps"];
@@ -527,6 +584,9 @@ namespace DatabaseToolSuite.Repositories {
             this.relationEXP_LAW_AGENCY_TYPES_EXP_LAW_AGENCY_ALLOWBLE_HIERARCHY = this.Relations["EXP_LAW_AGENCY_TYPES_EXP_LAW_AGENCY_ALLOWBLE_HIERARCHY"];
             this.relationEXP_LAW_AGENCY_TYPES_EXP_LAW_AGENCY_ALLOWBLE_HIERARCHY1 = this.Relations["EXP_LAW_AGENCY_TYPES_EXP_LAW_AGENCY_ALLOWBLE_HIERARCHY1"];
             this.relationEXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SETUP_REFERENCE_LINK = this.Relations["EXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SETUP_REFERENCE_LINK"];
+            this.relationcourt_type_DIC_RECORD = this.Relations["court_type_DIC_RECORD"];
+            this.relationgasps_DIC_RECORD = this.Relations["gasps_DIC_RECORD"];
+            this.relationokato_DIC_RECORD = this.Relations["okato_DIC_RECORD"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -542,10 +602,10 @@ namespace DatabaseToolSuite.Repositories {
             base.Tables.Add(this.tableauthority);
             this.tableokato = new okatoDataTable(false);
             base.Tables.Add(this.tableokato);
-            this.tablegasps = new gaspsDataTable();
-            base.Tables.Add(this.tablegasps);
             this.tablecourt_type = new court_typeDataTable();
             base.Tables.Add(this.tablecourt_type);
+            this.tablegasps = new gaspsDataTable();
+            base.Tables.Add(this.tablegasps);
             this.tablefgis_esnsi = new fgis_esnsiDataTable();
             base.Tables.Add(this.tablefgis_esnsi);
             this.tableervk = new ervkDataTable();
@@ -564,6 +624,10 @@ namespace DatabaseToolSuite.Repositories {
             base.Tables.Add(this.tableEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY);
             this.tableEXP_LAW_AGENCY_TYPES = new EXP_LAW_AGENCY_TYPESDataTable();
             base.Tables.Add(this.tableEXP_LAW_AGENCY_TYPES);
+            this.tableDIC = new DICDataTable();
+            base.Tables.Add(this.tableDIC);
+            this.tableDIC_RECORD = new DIC_RECORDDataTable();
+            base.Tables.Add(this.tableDIC_RECORD);
             global::System.Data.ForeignKeyConstraint fkc;
             fkc = new global::System.Data.ForeignKeyConstraint("FK_court_type_gasps", new global::System.Data.DataColumn[] {
                         this.tablecourt_type.idColumn}, new global::System.Data.DataColumn[] {
@@ -579,14 +643,27 @@ namespace DatabaseToolSuite.Repositories {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
+            fkc = new global::System.Data.ForeignKeyConstraint("DIC_DIC_RECORD", new global::System.Data.DataColumn[] {
+                        this.tableDIC.DIC_IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableDIC_RECORD.DIC_IdColumn});
+            this.tableDIC_RECORD.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             this.relationFK_court_type_gasps = new global::System.Data.DataRelation("FK_court_type_gasps", new global::System.Data.DataColumn[] {
                         this.tablecourt_type.idColumn}, new global::System.Data.DataColumn[] {
                         this.tablegasps.court_type_idColumn}, false);
+            this.relationFK_court_type_gasps.Nested = true;
             this.Relations.Add(this.relationFK_court_type_gasps);
             this.relationFK_authority_gasps = new global::System.Data.DataRelation("FK_authority_gasps", new global::System.Data.DataColumn[] {
                         this.tableauthority.idColumn}, new global::System.Data.DataColumn[] {
                         this.tablegasps.authority_idColumn}, false);
             this.Relations.Add(this.relationFK_authority_gasps);
+            this.relationDIC_DIC_RECORD = new global::System.Data.DataRelation("DIC_DIC_RECORD", new global::System.Data.DataColumn[] {
+                        this.tableDIC.DIC_IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableDIC_RECORD.DIC_IdColumn}, false);
+            this.relationDIC_DIC_RECORD.Nested = true;
+            this.Relations.Add(this.relationDIC_DIC_RECORD);
             this.relationfgis_esnsi_gasps = new global::System.Data.DataRelation("fgis_esnsi_gasps", new global::System.Data.DataColumn[] {
                         this.tablegasps.versionColumn}, new global::System.Data.DataColumn[] {
                         this.tablefgis_esnsi.versionColumn}, false);
@@ -631,6 +708,18 @@ namespace DatabaseToolSuite.Repositories {
                         this.tableEXP_LAW_AGENCY_URP.AGENCY_RECEIVING_REPORTColumn}, new global::System.Data.DataColumn[] {
                         this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK.LAW_AGENCYColumn}, false);
             this.Relations.Add(this.relationEXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SETUP_REFERENCE_LINK);
+            this.relationcourt_type_DIC_RECORD = new global::System.Data.DataRelation("court_type_DIC_RECORD", new global::System.Data.DataColumn[] {
+                        this.tablecourt_type.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableDIC_RECORD.TIPColumn}, false);
+            this.Relations.Add(this.relationcourt_type_DIC_RECORD);
+            this.relationgasps_DIC_RECORD = new global::System.Data.DataRelation("gasps_DIC_RECORD", new global::System.Data.DataColumn[] {
+                        this.tablegasps.versionColumn}, new global::System.Data.DataColumn[] {
+                        this.tableDIC_RECORD.gasps_versionColumn}, false);
+            this.Relations.Add(this.relationgasps_DIC_RECORD);
+            this.relationokato_DIC_RECORD = new global::System.Data.DataRelation("okato_DIC_RECORD", new global::System.Data.DataColumn[] {
+                        this.tableokato.courtsrfColumn}, new global::System.Data.DataColumn[] {
+                        this.tableDIC_RECORD.UPKODColumn}, false);
+            this.Relations.Add(this.relationokato_DIC_RECORD);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -647,13 +736,13 @@ namespace DatabaseToolSuite.Repositories {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializegasps() {
+        private bool ShouldSerializecourt_type() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializecourt_type() {
+        private bool ShouldSerializegasps() {
             return false;
         }
         
@@ -708,6 +797,18 @@ namespace DatabaseToolSuite.Repositories {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializeEXP_LAW_AGENCY_TYPES() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeDIC() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeDIC_RECORD() {
             return false;
         }
         
@@ -785,10 +886,10 @@ namespace DatabaseToolSuite.Repositories {
         public delegate void okatoRowChangeEventHandler(object sender, okatoRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void gaspsRowChangeEventHandler(object sender, gaspsRowChangeEvent e);
+        public delegate void court_typeRowChangeEventHandler(object sender, court_typeRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void court_typeRowChangeEventHandler(object sender, court_typeRowChangeEvent e);
+        public delegate void gaspsRowChangeEventHandler(object sender, gaspsRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void fgis_esnsiRowChangeEventHandler(object sender, fgis_esnsiRowChangeEvent e);
@@ -816,6 +917,12 @@ namespace DatabaseToolSuite.Repositories {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void EXP_LAW_AGENCY_TYPESRowChangeEventHandler(object sender, EXP_LAW_AGENCY_TYPESRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void DICRowChangeEventHandler(object sender, DICRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void DIC_RECORDRowChangeEventHandler(object sender, DIC_RECORDRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1170,6 +1277,8 @@ namespace DatabaseToolSuite.Repositories {
             
             private global::System.Data.DataColumn columnexport_id;
             
+            private global::System.Data.DataColumn columncourtsrf;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public okatoDataTable() : 
@@ -1302,6 +1411,14 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn courtsrfColumn {
+                get {
+                    return this.columncourtsrf;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1337,7 +1454,7 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public okatoRow AddokatoRow(string code, string name, string name2, string centrum, string genitive, string ter, short kod1, string lab, string okato, string ssrf, long export_id) {
+            public okatoRow AddokatoRow(string code, string name, string name2, string centrum, string genitive, string ter, short kod1, string lab, string okato, string ssrf, long export_id, string courtsrf) {
                 okatoRow rowokatoRow = ((okatoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         code,
@@ -1350,7 +1467,8 @@ namespace DatabaseToolSuite.Repositories {
                         lab,
                         okato,
                         ssrf,
-                        export_id};
+                        export_id,
+                        courtsrf};
                 rowokatoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowokatoRow);
                 return rowokatoRow;
@@ -1358,7 +1476,7 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public okatoRow AddokatoRow(string name, string name2, string centrum, string genitive, string ter, short kod1, string lab, string ssrf, long export_id) {
+            public okatoRow AddokatoRow(string name, string name2, string centrum, string genitive, string ter, short kod1, string lab, string ssrf, long export_id, string courtsrf) {
                 okatoRow rowokatoRow = ((okatoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1371,7 +1489,8 @@ namespace DatabaseToolSuite.Repositories {
                         lab,
                         null,
                         ssrf,
-                        export_id};
+                        export_id,
+                        courtsrf};
                 rowokatoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowokatoRow);
                 return rowokatoRow;
@@ -1405,6 +1524,7 @@ namespace DatabaseToolSuite.Repositories {
                 this.columnokato = base.Columns["okato"];
                 this.columnssrf = base.Columns["ssrf"];
                 this.columnexport_id = base.Columns["export_id"];
+                this.columncourtsrf = base.Columns["courtsrf"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1432,6 +1552,8 @@ namespace DatabaseToolSuite.Repositories {
                 base.Columns.Add(this.columnssrf);
                 this.columnexport_id = new global::System.Data.DataColumn("export_id", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnexport_id);
+                this.columncourtsrf = new global::System.Data.DataColumn("courtsrf", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncourtsrf);
                 this.columncode.ReadOnly = true;
                 this.columnname.AllowDBNull = false;
                 this.columnname.Caption = "Наименование по справочнику ОКАТО";
@@ -1546,6 +1668,284 @@ namespace DatabaseToolSuite.Repositories {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "okatoDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class court_typeDataTable : global::System.Data.TypedTableBase<court_typeRow> {
+            
+            private global::System.Data.DataColumn columnid;
+            
+            private global::System.Data.DataColumn columnname;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public court_typeDataTable() {
+                this.TableName = "court_type";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal court_typeDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected court_typeDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn idColumn {
+                get {
+                    return this.columnid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn nameColumn {
+                get {
+                    return this.columnname;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public court_typeRow this[int index] {
+                get {
+                    return ((court_typeRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event court_typeRowChangeEventHandler court_typeRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event court_typeRowChangeEventHandler court_typeRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event court_typeRowChangeEventHandler court_typeRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event court_typeRowChangeEventHandler court_typeRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Addcourt_typeRow(court_typeRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public court_typeRow Addcourt_typeRow(string name) {
+                court_typeRow rowcourt_typeRow = ((court_typeRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        name};
+                rowcourt_typeRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowcourt_typeRow);
+                return rowcourt_typeRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public court_typeRow FindByid(long id) {
+                return ((court_typeRow)(this.Rows.Find(new object[] {
+                            id})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                court_typeDataTable cln = ((court_typeDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new court_typeDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnid = base.Columns["id"];
+                this.columnname = base.Columns["name"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnid = new global::System.Data.DataColumn("id", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnid);
+                this.columnname = new global::System.Data.DataColumn("name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnname);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("court_type_key", new global::System.Data.DataColumn[] {
+                                this.columnid}, true));
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnname}, false));
+                this.columnid.AutoIncrement = true;
+                this.columnid.AllowDBNull = false;
+                this.columnid.Unique = true;
+                this.columnname.AllowDBNull = false;
+                this.columnname.Unique = true;
+                this.columnname.Caption = "Наименование";
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public court_typeRow Newcourt_typeRow() {
+                return ((court_typeRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new court_typeRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(court_typeRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.court_typeRowChanged != null)) {
+                    this.court_typeRowChanged(this, new court_typeRowChangeEvent(((court_typeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.court_typeRowChanging != null)) {
+                    this.court_typeRowChanging(this, new court_typeRowChangeEvent(((court_typeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.court_typeRowDeleted != null)) {
+                    this.court_typeRowDeleted(this, new court_typeRowChangeEvent(((court_typeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.court_typeRowDeleting != null)) {
+                    this.court_typeRowDeleting(this, new court_typeRowChangeEvent(((court_typeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Removecourt_typeRow(court_typeRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                MainDataSet ds = new MainDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "court_typeDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2062,6 +2462,7 @@ namespace DatabaseToolSuite.Repositories {
                 this.columndate_beg.Caption = "Дата начала";
                 this.columndate_end.AllowDBNull = false;
                 this.columndate_end.Caption = "Дата окончания";
+                this.columnimport_guid.Caption = "Гуид";
                 this.columnimport_guid.DefaultValue = ((string)(""));
             }
             
@@ -2149,284 +2550,6 @@ namespace DatabaseToolSuite.Repositories {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "gaspsDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class court_typeDataTable : global::System.Data.TypedTableBase<court_typeRow> {
-            
-            private global::System.Data.DataColumn columnid;
-            
-            private global::System.Data.DataColumn columnname;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public court_typeDataTable() {
-                this.TableName = "court_type";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal court_typeDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected court_typeDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn idColumn {
-                get {
-                    return this.columnid;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn nameColumn {
-                get {
-                    return this.columnname;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public court_typeRow this[int index] {
-                get {
-                    return ((court_typeRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event court_typeRowChangeEventHandler court_typeRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event court_typeRowChangeEventHandler court_typeRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event court_typeRowChangeEventHandler court_typeRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event court_typeRowChangeEventHandler court_typeRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Addcourt_typeRow(court_typeRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public court_typeRow Addcourt_typeRow(string name) {
-                court_typeRow rowcourt_typeRow = ((court_typeRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        name};
-                rowcourt_typeRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowcourt_typeRow);
-                return rowcourt_typeRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public court_typeRow FindByid(long id) {
-                return ((court_typeRow)(this.Rows.Find(new object[] {
-                            id})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                court_typeDataTable cln = ((court_typeDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new court_typeDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal void InitVars() {
-                this.columnid = base.Columns["id"];
-                this.columnname = base.Columns["name"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            private void InitClass() {
-                this.columnid = new global::System.Data.DataColumn("id", typeof(long), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnid);
-                this.columnname = new global::System.Data.DataColumn("name", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnname);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("court_type_key", new global::System.Data.DataColumn[] {
-                                this.columnid}, true));
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnname}, false));
-                this.columnid.AutoIncrement = true;
-                this.columnid.AllowDBNull = false;
-                this.columnid.Unique = true;
-                this.columnname.AllowDBNull = false;
-                this.columnname.Unique = true;
-                this.columnname.Caption = "Наименование";
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public court_typeRow Newcourt_typeRow() {
-                return ((court_typeRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new court_typeRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(court_typeRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.court_typeRowChanged != null)) {
-                    this.court_typeRowChanged(this, new court_typeRowChangeEvent(((court_typeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.court_typeRowChanging != null)) {
-                    this.court_typeRowChanging(this, new court_typeRowChangeEvent(((court_typeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.court_typeRowDeleted != null)) {
-                    this.court_typeRowDeleted(this, new court_typeRowChangeEvent(((court_typeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.court_typeRowDeleting != null)) {
-                    this.court_typeRowDeleting(this, new court_typeRowChangeEvent(((court_typeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Removecourt_typeRow(court_typeRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                MainDataSet ds = new MainDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "court_typeDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -5496,6 +5619,764 @@ namespace DatabaseToolSuite.Repositories {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class DICDataTable : global::System.Data.TypedTableBase<DICRow> {
+            
+            private global::System.Data.DataColumn columnDIC_Id;
+            
+            private global::System.Data.DataColumn columnOUTPUTDATE;
+            
+            private global::System.Data.DataColumn columnVRN;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public DICDataTable() {
+                this.TableName = "DIC";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal DICDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected DICDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DIC_IdColumn {
+                get {
+                    return this.columnDIC_Id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn OUTPUTDATEColumn {
+                get {
+                    return this.columnOUTPUTDATE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn VRNColumn {
+                get {
+                    return this.columnVRN;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public DICRow this[int index] {
+                get {
+                    return ((DICRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event DICRowChangeEventHandler DICRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event DICRowChangeEventHandler DICRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event DICRowChangeEventHandler DICRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event DICRowChangeEventHandler DICRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddDICRow(DICRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public DICRow AddDICRow(System.DateTime OUTPUTDATE, string VRN) {
+                DICRow rowDICRow = ((DICRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        OUTPUTDATE,
+                        VRN};
+                rowDICRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowDICRow);
+                return rowDICRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public DICRow FindByDIC_Id(int DIC_Id) {
+                return ((DICRow)(this.Rows.Find(new object[] {
+                            DIC_Id})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                DICDataTable cln = ((DICDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new DICDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnDIC_Id = base.Columns["DIC_Id"];
+                this.columnOUTPUTDATE = base.Columns["OUTPUTDATE"];
+                this.columnVRN = base.Columns["VRN"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnDIC_Id = new global::System.Data.DataColumn("DIC_Id", typeof(int), null, global::System.Data.MappingType.Attribute);
+                base.Columns.Add(this.columnDIC_Id);
+                this.columnOUTPUTDATE = new global::System.Data.DataColumn("OUTPUTDATE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOUTPUTDATE);
+                this.columnVRN = new global::System.Data.DataColumn("VRN", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVRN);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnDIC_Id}, true));
+                this.columnDIC_Id.AutoIncrement = true;
+                this.columnDIC_Id.AllowDBNull = false;
+                this.columnDIC_Id.Unique = true;
+                this.columnDIC_Id.Namespace = "";
+                this.columnOUTPUTDATE.AllowDBNull = false;
+                this.columnVRN.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public DICRow NewDICRow() {
+                return ((DICRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new DICRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(DICRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.DICRowChanged != null)) {
+                    this.DICRowChanged(this, new DICRowChangeEvent(((DICRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.DICRowChanging != null)) {
+                    this.DICRowChanging(this, new DICRowChangeEvent(((DICRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.DICRowDeleted != null)) {
+                    this.DICRowDeleted(this, new DICRowChangeEvent(((DICRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.DICRowDeleting != null)) {
+                    this.DICRowDeleting(this, new DICRowChangeEvent(((DICRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveDICRow(DICRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                MainDataSet ds = new MainDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "DICDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class DIC_RECORDDataTable : global::System.Data.TypedTableBase<DIC_RECORDRow> {
+            
+            private global::System.Data.DataColumn columnDIC_Id;
+            
+            private global::System.Data.DataColumn columnVRN_CLS;
+            
+            private global::System.Data.DataColumn columnZNACHATR;
+            
+            private global::System.Data.DataColumn columnVNKOD;
+            
+            private global::System.Data.DataColumn columnTIP;
+            
+            private global::System.Data.DataColumn columnADRESS;
+            
+            private global::System.Data.DataColumn columnUPKOD;
+            
+            private global::System.Data.DataColumn columnDATE_BEG;
+            
+            private global::System.Data.DataColumn columnDATE_END;
+            
+            private global::System.Data.DataColumn columnPRIM;
+            
+            private global::System.Data.DataColumn columnVRN;
+            
+            private global::System.Data.DataColumn columnFAKTADDRESSES;
+            
+            private global::System.Data.DataColumn columnISACTIVE;
+            
+            private global::System.Data.DataColumn columngasps_version;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public DIC_RECORDDataTable() {
+                this.TableName = "DIC_RECORD";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal DIC_RECORDDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected DIC_RECORDDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DIC_IdColumn {
+                get {
+                    return this.columnDIC_Id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn VRN_CLSColumn {
+                get {
+                    return this.columnVRN_CLS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ZNACHATRColumn {
+                get {
+                    return this.columnZNACHATR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn VNKODColumn {
+                get {
+                    return this.columnVNKOD;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn TIPColumn {
+                get {
+                    return this.columnTIP;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ADRESSColumn {
+                get {
+                    return this.columnADRESS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn UPKODColumn {
+                get {
+                    return this.columnUPKOD;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DATE_BEGColumn {
+                get {
+                    return this.columnDATE_BEG;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DATE_ENDColumn {
+                get {
+                    return this.columnDATE_END;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PRIMColumn {
+                get {
+                    return this.columnPRIM;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn VRNColumn {
+                get {
+                    return this.columnVRN;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn FAKTADDRESSESColumn {
+                get {
+                    return this.columnFAKTADDRESSES;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ISACTIVEColumn {
+                get {
+                    return this.columnISACTIVE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn gasps_versionColumn {
+                get {
+                    return this.columngasps_version;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public DIC_RECORDRow this[int index] {
+                get {
+                    return ((DIC_RECORDRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event DIC_RECORDRowChangeEventHandler DIC_RECORDRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event DIC_RECORDRowChangeEventHandler DIC_RECORDRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event DIC_RECORDRowChangeEventHandler DIC_RECORDRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event DIC_RECORDRowChangeEventHandler DIC_RECORDRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddDIC_RECORDRow(DIC_RECORDRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public DIC_RECORDRow AddDIC_RECORDRow(DICRow parentDICRowByDIC_DIC_RECORD, int VRN_CLS, string ZNACHATR, string VNKOD, court_typeRow parentcourt_typeRowBycourt_type_DIC_RECORD, string ADRESS, okatoRow parentokatoRowByokato_DIC_RECORD, System.DateTime DATE_BEG, System.DateTime DATE_END, string PRIM, string VRN, string FAKTADDRESSES, bool ISACTIVE, gaspsRow parentgaspsRowBygasps_DIC_RECORD) {
+                DIC_RECORDRow rowDIC_RECORDRow = ((DIC_RECORDRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        VRN_CLS,
+                        ZNACHATR,
+                        VNKOD,
+                        null,
+                        ADRESS,
+                        null,
+                        DATE_BEG,
+                        DATE_END,
+                        PRIM,
+                        VRN,
+                        FAKTADDRESSES,
+                        ISACTIVE,
+                        null};
+                if ((parentDICRowByDIC_DIC_RECORD != null)) {
+                    columnValuesArray[0] = parentDICRowByDIC_DIC_RECORD[0];
+                }
+                if ((parentcourt_typeRowBycourt_type_DIC_RECORD != null)) {
+                    columnValuesArray[4] = parentcourt_typeRowBycourt_type_DIC_RECORD[0];
+                }
+                if ((parentokatoRowByokato_DIC_RECORD != null)) {
+                    columnValuesArray[6] = parentokatoRowByokato_DIC_RECORD[11];
+                }
+                if ((parentgaspsRowBygasps_DIC_RECORD != null)) {
+                    columnValuesArray[13] = parentgaspsRowBygasps_DIC_RECORD[6];
+                }
+                rowDIC_RECORDRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowDIC_RECORDRow);
+                return rowDIC_RECORDRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                DIC_RECORDDataTable cln = ((DIC_RECORDDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new DIC_RECORDDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnDIC_Id = base.Columns["DIC_Id"];
+                this.columnVRN_CLS = base.Columns["VRN_CLS"];
+                this.columnZNACHATR = base.Columns["ZNACHATR"];
+                this.columnVNKOD = base.Columns["VNKOD"];
+                this.columnTIP = base.Columns["TIP"];
+                this.columnADRESS = base.Columns["ADRESS"];
+                this.columnUPKOD = base.Columns["UPKOD"];
+                this.columnDATE_BEG = base.Columns["DATE_BEG"];
+                this.columnDATE_END = base.Columns["DATE_END"];
+                this.columnPRIM = base.Columns["PRIM"];
+                this.columnVRN = base.Columns["VRN"];
+                this.columnFAKTADDRESSES = base.Columns["FAKTADDRESSES"];
+                this.columnISACTIVE = base.Columns["ISACTIVE"];
+                this.columngasps_version = base.Columns["gasps_version"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnDIC_Id = new global::System.Data.DataColumn("DIC_Id", typeof(int), null, global::System.Data.MappingType.Attribute);
+                base.Columns.Add(this.columnDIC_Id);
+                this.columnVRN_CLS = new global::System.Data.DataColumn("VRN_CLS", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVRN_CLS);
+                this.columnZNACHATR = new global::System.Data.DataColumn("ZNACHATR", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnZNACHATR);
+                this.columnVNKOD = new global::System.Data.DataColumn("VNKOD", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVNKOD);
+                this.columnTIP = new global::System.Data.DataColumn("TIP", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTIP);
+                this.columnADRESS = new global::System.Data.DataColumn("ADRESS", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnADRESS);
+                this.columnUPKOD = new global::System.Data.DataColumn("UPKOD", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUPKOD);
+                this.columnDATE_BEG = new global::System.Data.DataColumn("DATE_BEG", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDATE_BEG);
+                this.columnDATE_END = new global::System.Data.DataColumn("DATE_END", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDATE_END);
+                this.columnPRIM = new global::System.Data.DataColumn("PRIM", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPRIM);
+                this.columnVRN = new global::System.Data.DataColumn("VRN", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVRN);
+                this.columnFAKTADDRESSES = new global::System.Data.DataColumn("FAKTADDRESSES", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFAKTADDRESSES);
+                this.columnISACTIVE = new global::System.Data.DataColumn("ISACTIVE", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnISACTIVE);
+                this.columngasps_version = new global::System.Data.DataColumn("gasps_version", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columngasps_version);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnVRN}, false));
+                this.columnDIC_Id.AllowDBNull = false;
+                this.columnDIC_Id.Namespace = "";
+                this.columnDIC_Id.Caption = "Ключ выгрузки";
+                this.columnVRN_CLS.AllowDBNull = false;
+                this.columnVRN_CLS.Caption = "Версия выгрузки";
+                this.columnZNACHATR.AllowDBNull = false;
+                this.columnZNACHATR.Caption = "Наименование суда";
+                this.columnVNKOD.AllowDBNull = false;
+                this.columnVNKOD.Caption = "Код подразделения";
+                this.columnTIP.AllowDBNull = false;
+                this.columnTIP.Caption = "Тип суда";
+                this.columnADRESS.Caption = "Адрес расположения суда";
+                this.columnUPKOD.AllowDBNull = false;
+                this.columnUPKOD.Caption = "Индекс справочника SSRF";
+                this.columnDATE_BEG.AllowDBNull = false;
+                this.columnDATE_BEG.Caption = "Дата введения в действие";
+                this.columnDATE_END.AllowDBNull = false;
+                this.columnDATE_END.Caption = "Дата прекращения действия";
+                this.columnPRIM.Caption = "Ссылка на сайт суда";
+                this.columnVRN.AllowDBNull = false;
+                this.columnVRN.Unique = true;
+                this.columnVRN.Caption = "Уникальны код";
+                this.columnFAKTADDRESSES.Caption = "Фактический адрес местонахождения";
+                this.columnISACTIVE.AllowDBNull = false;
+                this.columnISACTIVE.Caption = "Признак активности подрезделения";
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public DIC_RECORDRow NewDIC_RECORDRow() {
+                return ((DIC_RECORDRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new DIC_RECORDRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(DIC_RECORDRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.DIC_RECORDRowChanged != null)) {
+                    this.DIC_RECORDRowChanged(this, new DIC_RECORDRowChangeEvent(((DIC_RECORDRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.DIC_RECORDRowChanging != null)) {
+                    this.DIC_RECORDRowChanging(this, new DIC_RECORDRowChangeEvent(((DIC_RECORDRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.DIC_RECORDRowDeleted != null)) {
+                    this.DIC_RECORDRowDeleted(this, new DIC_RECORDRowChangeEvent(((DIC_RECORDRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.DIC_RECORDRowDeleting != null)) {
+                    this.DIC_RECORDRowDeleting(this, new DIC_RECORDRowChangeEvent(((DIC_RECORDRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveDIC_RECORDRow(DIC_RECORDRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                MainDataSet ds = new MainDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "DIC_RECORDDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class authorityRow : global::System.Data.DataRow {
@@ -5578,7 +6459,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tableokato.nameColumn] = value;
                 }
             }
-                        
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string ter {
@@ -5699,12 +6580,94 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IscourtsrfNull() {
+                return this.IsNull(this.tableokato.courtsrfColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetcourtsrfNull() {
+                this[this.tableokato.courtsrfColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public gaspsRow[] GetgaspsRows() {
                 if ((this.Table.ChildRelations["FK_okato_gasps"] == null)) {
                     return new gaspsRow[0];
                 }
                 else {
                     return ((gaspsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_okato_gasps"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public DIC_RECORDRow[] GetDIC_RECORDRows() {
+                if ((this.Table.ChildRelations["okato_DIC_RECORD"] == null)) {
+                    return new DIC_RECORDRow[0];
+                }
+                else {
+                    return ((DIC_RECORDRow[])(base.GetChildRows(this.Table.ChildRelations["okato_DIC_RECORD"])));
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class court_typeRow : global::System.Data.DataRow {
+            
+            private court_typeDataTable tablecourt_type;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal court_typeRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablecourt_type = ((court_typeDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public long id {
+                get {
+                    return ((long)(this[this.tablecourt_type.idColumn]));
+                }
+                set {
+                    this[this.tablecourt_type.idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string name {
+                get {
+                    return ((string)(this[this.tablecourt_type.nameColumn]));
+                }
+                set {
+                    this[this.tablecourt_type.nameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public gaspsRow[] GetgaspsRows() {
+                if ((this.Table.ChildRelations["FK_court_type_gasps"] == null)) {
+                    return new gaspsRow[0];
+                }
+                else {
+                    return ((gaspsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_court_type_gasps"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public DIC_RECORDRow[] GetDIC_RECORDRows() {
+                if ((this.Table.ChildRelations["court_type_DIC_RECORD"] == null)) {
+                    return new DIC_RECORDRow[0];
+                }
+                else {
+                    return ((DIC_RECORDRow[])(base.GetChildRows(this.Table.ChildRelations["court_type_DIC_RECORD"])));
                 }
             }
         }
@@ -5777,7 +6740,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tablegasps.authority_idColumn] = value;
                 }
             }
-                        
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public long version {
@@ -5788,7 +6751,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tablegasps.versionColumn] = value;
                 }
             }
-                        
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public long owner_id {
@@ -5821,7 +6784,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tablegasps.date_endColumn] = value;
                 }
             }
-                        
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public court_typeRow court_typeRow {
@@ -6043,52 +7006,15 @@ namespace DatabaseToolSuite.Repositories {
                     return ((EXP_LAW_AGENCY_URPRow[])(base.GetChildRows(this.Table.ChildRelations["gasps_EXP_LAW_AGENCY_URP"])));
                 }
             }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class court_typeRow : global::System.Data.DataRow {
-            
-            private court_typeDataTable tablecourt_type;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal court_typeRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tablecourt_type = ((court_typeDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public long id {
-                get {
-                    return ((long)(this[this.tablecourt_type.idColumn]));
-                }
-                set {
-                    this[this.tablecourt_type.idColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string name {
-                get {
-                    return ((string)(this[this.tablecourt_type.nameColumn]));
-                }
-                set {
-                    this[this.tablecourt_type.nameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public gaspsRow[] GetgaspsRows() {
-                if ((this.Table.ChildRelations["FK_court_type_gasps"] == null)) {
-                    return new gaspsRow[0];
+            public DIC_RECORDRow[] GetDIC_RECORDRows() {
+                if ((this.Table.ChildRelations["gasps_DIC_RECORD"] == null)) {
+                    return new DIC_RECORDRow[0];
                 }
                 else {
-                    return ((gaspsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_court_type_gasps"])));
+                    return ((DIC_RECORDRow[])(base.GetChildRows(this.Table.ChildRelations["gasps_DIC_RECORD"])));
                 }
             }
         }
@@ -6117,7 +7043,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tablefgis_esnsi.versionColumn] = value;
                 }
             }
-                        
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public gaspsRow gaspsRow {
@@ -6340,7 +7266,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tableervk.idVersionProcColumn] = value;
                 }
             }
-                        
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public System.DateTime dateStartVersion {
@@ -6351,7 +7277,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tableervk.dateStartVersionColumn] = value;
                 }
             }
-                        
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public gaspsRow gaspsRow {
@@ -6528,7 +7454,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tableEXP_LAW_AGENCY_URP.DOESNT_CONSOLIDATE_CHILDColumn] = value;
                 }
             }
-                       
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public long OKTMO_LOC_ID {
@@ -6539,7 +7465,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tableEXP_LAW_AGENCY_URP.OKTMO_LOC_IDColumn] = value;
                 }
             }
-                       
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public gaspsRow gaspsRow {
@@ -6751,7 +7677,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tableSPECIAL_TERRITORIAL_CODE.CODEColumn] = value;
                 }
             }
-                        
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public EXP_LAW_AGENCY_URPRow EXP_LAW_AGENCY_URPRow {
@@ -7035,6 +7961,298 @@ namespace DatabaseToolSuite.Repositories {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class DICRow : global::System.Data.DataRow {
+            
+            private DICDataTable tableDIC;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal DICRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableDIC = ((DICDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int DIC_Id {
+                get {
+                    return ((int)(this[this.tableDIC.DIC_IdColumn]));
+                }
+                set {
+                    this[this.tableDIC.DIC_IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime OUTPUTDATE {
+                get {
+                    return ((global::System.DateTime)(this[this.tableDIC.OUTPUTDATEColumn]));
+                }
+                set {
+                    this[this.tableDIC.OUTPUTDATEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string VRN {
+                get {
+                    return ((string)(this[this.tableDIC.VRNColumn]));
+                }
+                set {
+                    this[this.tableDIC.VRNColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public DIC_RECORDRow[] GetDIC_RECORDRows() {
+                if ((this.Table.ChildRelations["DIC_DIC_RECORD"] == null)) {
+                    return new DIC_RECORDRow[0];
+                }
+                else {
+                    return ((DIC_RECORDRow[])(base.GetChildRows(this.Table.ChildRelations["DIC_DIC_RECORD"])));
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class DIC_RECORDRow : global::System.Data.DataRow {
+            
+            private DIC_RECORDDataTable tableDIC_RECORD;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal DIC_RECORDRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableDIC_RECORD = ((DIC_RECORDDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int DIC_Id {
+                get {
+                    return ((int)(this[this.tableDIC_RECORD.DIC_IdColumn]));
+                }
+                set {
+                    this[this.tableDIC_RECORD.DIC_IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int VRN_CLS {
+                get {
+                    return ((int)(this[this.tableDIC_RECORD.VRN_CLSColumn]));
+                }
+                set {
+                    this[this.tableDIC_RECORD.VRN_CLSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string ZNACHATR {
+                get {
+                    return ((string)(this[this.tableDIC_RECORD.ZNACHATRColumn]));
+                }
+                set {
+                    this[this.tableDIC_RECORD.ZNACHATRColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string VNKOD {
+                get {
+                    return ((string)(this[this.tableDIC_RECORD.VNKODColumn]));
+                }
+                set {
+                    this[this.tableDIC_RECORD.VNKODColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public long TIP {
+                get {
+                    return ((long)(this[this.tableDIC_RECORD.TIPColumn]));
+                }
+                set {
+                    this[this.tableDIC_RECORD.TIPColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string UPKOD {
+                get {
+                    return ((string)(this[this.tableDIC_RECORD.UPKODColumn]));
+                }
+                set {
+                    this[this.tableDIC_RECORD.UPKODColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime DATE_BEG {
+                get {
+                    return ((global::System.DateTime)(this[this.tableDIC_RECORD.DATE_BEGColumn]));
+                }
+                set {
+                    this[this.tableDIC_RECORD.DATE_BEGColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime DATE_END {
+                get {
+                    return ((global::System.DateTime)(this[this.tableDIC_RECORD.DATE_ENDColumn]));
+                }
+                set {
+                    this[this.tableDIC_RECORD.DATE_ENDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string VRN {
+                get {
+                    return ((string)(this[this.tableDIC_RECORD.VRNColumn]));
+                }
+                set {
+                    this[this.tableDIC_RECORD.VRNColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool ISACTIVE {
+                get {
+                    return ((bool)(this[this.tableDIC_RECORD.ISACTIVEColumn]));
+                }
+                set {
+                    this[this.tableDIC_RECORD.ISACTIVEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public long gasps_version {
+                get {
+                    try {
+                        return ((long)(this[this.tableDIC_RECORD.gasps_versionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'gasps_version\' в таблице \'DIC_RECORD\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDIC_RECORD.gasps_versionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public DICRow DICRow {
+                get {
+                    return ((DICRow)(this.GetParentRow(this.Table.ParentRelations["DIC_DIC_RECORD"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["DIC_DIC_RECORD"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public court_typeRow court_typeRow {
+                get {
+                    return ((court_typeRow)(this.GetParentRow(this.Table.ParentRelations["court_type_DIC_RECORD"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["court_type_DIC_RECORD"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public gaspsRow gaspsRow {
+                get {
+                    return ((gaspsRow)(this.GetParentRow(this.Table.ParentRelations["gasps_DIC_RECORD"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["gasps_DIC_RECORD"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public okatoRow okatoRow {
+                get {
+                    return ((okatoRow)(this.GetParentRow(this.Table.ParentRelations["okato_DIC_RECORD"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["okato_DIC_RECORD"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsADRESSNull() {
+                return this.IsNull(this.tableDIC_RECORD.ADRESSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetADRESSNull() {
+                this[this.tableDIC_RECORD.ADRESSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsPRIMNull() {
+                return this.IsNull(this.tableDIC_RECORD.PRIMColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetPRIMNull() {
+                this[this.tableDIC_RECORD.PRIMColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsFAKTADDRESSESNull() {
+                return this.IsNull(this.tableDIC_RECORD.FAKTADDRESSESColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetFAKTADDRESSESNull() {
+                this[this.tableDIC_RECORD.FAKTADDRESSESColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Isgasps_versionNull() {
+                return this.IsNull(this.tableDIC_RECORD.gasps_versionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Setgasps_versionNull() {
+                this[this.tableDIC_RECORD.gasps_versionColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -7106,22 +8324,22 @@ namespace DatabaseToolSuite.Repositories {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class gaspsRowChangeEvent : global::System.EventArgs {
+        public class court_typeRowChangeEvent : global::System.EventArgs {
             
-            private gaspsRow eventRow;
+            private court_typeRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public gaspsRowChangeEvent(gaspsRow row, global::System.Data.DataRowAction action) {
+            public court_typeRowChangeEvent(court_typeRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public gaspsRow Row {
+            public court_typeRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -7140,22 +8358,22 @@ namespace DatabaseToolSuite.Repositories {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class court_typeRowChangeEvent : global::System.EventArgs {
+        public class gaspsRowChangeEvent : global::System.EventArgs {
             
-            private court_typeRow eventRow;
+            private gaspsRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public court_typeRowChangeEvent(court_typeRow row, global::System.Data.DataRowAction action) {
+            public gaspsRowChangeEvent(gaspsRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public court_typeRow Row {
+            public gaspsRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -7462,6 +8680,74 @@ namespace DatabaseToolSuite.Repositories {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public EXP_LAW_AGENCY_TYPESRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class DICRowChangeEvent : global::System.EventArgs {
+            
+            private DICRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public DICRowChangeEvent(DICRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public DICRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class DIC_RECORDRowChangeEvent : global::System.EventArgs {
+            
+            private DIC_RECORDRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public DIC_RECORDRowChangeEvent(DIC_RECORDRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public DIC_RECORDRow Row {
                 get {
                     return this.eventRow;
                 }

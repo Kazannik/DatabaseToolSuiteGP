@@ -308,7 +308,7 @@ namespace DatabaseToolSuite.Repositories
 						   idVersionHead: ervk.IsidVersionHeadNull() ? 0 : ervk.idVersionHead,
 						   idSuccession: ervk.IsidSuccessionNull() ? 0 : ervk.idSuccession,
 						   dateStartVersion: ervk.dateStartVersion,
-						   dateCloseProc: ervk.IsdateCloseProcNull() ? Services.MasterDataSystem.MAX_DATE : ervk.dateCloseProc,
+						   dateCloseProc: ervk.IsdateCloseProcNull() ? MasterDataSystem.MAX_DATE : ervk.dateCloseProc,
 						   ogrn: ervk.ogrn,
 						   inn: ervk.inn,
 						   subjectRfList: GetSubject(ervk, gasps),
@@ -353,12 +353,12 @@ namespace DatabaseToolSuite.Repositories
 
 			private gaspsDataTable gaspsTable
 			{
-				get { return Services.MasterDataSystem.DataSet.gasps; }
+				get { return MasterDataSystem.DataSet.gasps; }
 			}
 
 			private okatoDataTable okatoTable
 			{
-				get { return Services.MasterDataSystem.DataSet.okato; }
+				get { return MasterDataSystem.DataSet.okato; }
 			}
 		}
 	}

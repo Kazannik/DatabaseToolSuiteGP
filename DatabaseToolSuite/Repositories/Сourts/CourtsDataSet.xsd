@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="СourtsDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DIC" msprop:Generator_RowEvHandlerName="DICRowChangeEventHandler" msprop:Generator_RowDeletedName="DICRowDeleted" msprop:Generator_RowDeletingName="DICRowDeleting" msprop:Generator_RowEvArgName="DICRowChangeEvent" msprop:Generator_TablePropName="DIC" msprop:Generator_RowChangedName="DICRowChanged" msprop:Generator_UserTableName="DIC" msprop:Generator_RowChangingName="DICRowChanging" msprop:Generator_RowClassName="DICRow" msprop:Generator_TableClassName="DICDataTable" msprop:Generator_TableVarName="tableDIC">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="OUTPUTDATE" msprop:Generator_ColumnPropNameInTable="OUTPUTDATEColumn" msprop:Generator_ColumnPropNameInRow="OUTPUTDATE" msprop:Generator_UserColumnName="OUTPUTDATE" msprop:Generator_ColumnVarNameInTable="columnOUTPUTDATE" type="xs:string" />
+        <xs:element name="VRN" msprop:Generator_ColumnPropNameInTable="VRNColumn" msprop:Generator_ColumnPropNameInRow="VRN" msprop:Generator_UserColumnName="VRN" msprop:Generator_ColumnVarNameInTable="columnVRN" type="xs:int" />
+        <xs:element name="DIC_RECORD" msprop:Generator_RowEvHandlerName="DIC_RECORDRowChangeEventHandler" msprop:Generator_RowDeletedName="DIC_RECORDRowDeleted" msprop:Generator_RowDeletingName="DIC_RECORDRowDeleting" msprop:Generator_RowEvArgName="DIC_RECORDRowChangeEvent" msprop:Generator_TablePropName="DIC_RECORD" msprop:Generator_RowChangedName="DIC_RECORDRowChanged" msprop:Generator_UserTableName="DIC_RECORD" msprop:Generator_RowChangingName="DIC_RECORDRowChanging" msprop:Generator_RowClassName="DIC_RECORDRow" msprop:Generator_TableClassName="DIC_RECORDDataTable" msprop:Generator_TableVarName="tableDIC_RECORD" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="VRN_CLS" msprop:Generator_ColumnPropNameInTable="VRN_CLSColumn" msprop:Generator_ColumnPropNameInRow="VRN_CLS" msprop:Generator_UserColumnName="VRN_CLS" msprop:Generator_ColumnVarNameInTable="columnVRN_CLS" type="xs:int" />
+              <xs:element name="DISTRICT" msprop:Generator_ColumnPropNameInTable="DISTRICTColumn" msprop:Generator_ColumnPropNameInRow="DISTRICT" msprop:Generator_UserColumnName="DISTRICT" msprop:Generator_ColumnVarNameInTable="columnDISTRICT" type="xs:string" minOccurs="0" />
+              <xs:element name="ZNACHATR" msprop:Generator_ColumnPropNameInTable="ZNACHATRColumn" msprop:Generator_ColumnPropNameInRow="ZNACHATR" msprop:Generator_UserColumnName="ZNACHATR" msprop:Generator_ColumnVarNameInTable="columnZNACHATR" type="xs:string" />
+              <xs:element name="VNKOD" msprop:Generator_ColumnPropNameInTable="VNKODColumn" msprop:Generator_ColumnPropNameInRow="VNKOD" msprop:Generator_UserColumnName="VNKOD" msprop:Generator_ColumnVarNameInTable="columnVNKOD" type="xs:string" />
+              <xs:element name="TIP" msprop:Generator_ColumnPropNameInTable="TIPColumn" msprop:Generator_ColumnPropNameInRow="TIP" msprop:Generator_UserColumnName="TIP" msprop:Generator_ColumnVarNameInTable="columnTIP" type="xs:string" />
+              <xs:element name="ADRESS" msprop:Generator_ColumnPropNameInTable="ADRESSColumn" msprop:Generator_ColumnPropNameInRow="ADRESS" msprop:Generator_UserColumnName="ADRESS" msprop:Generator_ColumnVarNameInTable="columnADRESS" type="xs:string" minOccurs="0" />
+              <xs:element name="UPKOD" msprop:Generator_ColumnPropNameInTable="UPKODColumn" msprop:Generator_ColumnPropNameInRow="UPKOD" msprop:Generator_UserColumnName="UPKOD" msprop:Generator_ColumnVarNameInTable="columnUPKOD" type="xs:string" />
+              <xs:element name="ADUP" msprop:Generator_ColumnPropNameInTable="ADUPColumn" msprop:Generator_ColumnPropNameInRow="ADUP" msprop:Generator_UserColumnName="ADUP" msprop:Generator_ColumnVarNameInTable="columnADUP" type="xs:string" minOccurs="0" />
+              <xs:element name="ADGAS" msprop:Generator_ColumnPropNameInTable="ADGASColumn" msprop:Generator_ColumnPropNameInRow="ADGAS" msprop:Generator_UserColumnName="ADGAS" msprop:Generator_ColumnVarNameInTable="columnADGAS" type="xs:string" minOccurs="0" />
+              <xs:element name="DOMEN" msprop:Generator_ColumnPropNameInTable="DOMENColumn" msprop:Generator_ColumnPropNameInRow="DOMEN" msprop:Generator_UserColumnName="DOMEN" msprop:Generator_ColumnVarNameInTable="columnDOMEN" type="xs:string" minOccurs="0" />
+              <xs:element name="EMAILKCA" msprop:Generator_ColumnPropNameInTable="EMAILKCAColumn" msprop:Generator_ColumnPropNameInRow="EMAILKCA" msprop:Generator_UserColumnName="EMAILKCA" msprop:Generator_ColumnVarNameInTable="columnEMAILKCA" type="xs:string" minOccurs="0" />
+              <xs:element name="DATE_BEG" msprop:Generator_ColumnPropNameInTable="DATE_BEGColumn" msprop:Generator_ColumnPropNameInRow="DATE_BEG" msprop:Generator_UserColumnName="DATE_BEG" msprop:Generator_ColumnVarNameInTable="columnDATE_BEG" type="xs:string" />
+              <xs:element name="DATE_END" msprop:Generator_ColumnPropNameInTable="DATE_ENDColumn" msprop:Generator_ColumnPropNameInRow="DATE_END" msprop:Generator_UserColumnName="DATE_END" msprop:Generator_ColumnVarNameInTable="columnDATE_END" type="xs:string" minOccurs="0" />
+              <xs:element name="PRIM" msprop:Generator_ColumnPropNameInTable="PRIMColumn" msprop:Generator_ColumnPropNameInRow="PRIM" msprop:Generator_UserColumnName="PRIM" msprop:Generator_ColumnVarNameInTable="columnPRIM" type="xs:string" minOccurs="0" />
+              <xs:element name="DATE_UROB" msprop:Generator_ColumnPropNameInTable="DATE_UROBColumn" msprop:Generator_ColumnPropNameInRow="DATE_UROB" msprop:Generator_UserColumnName="DATE_UROB" msprop:Generator_ColumnVarNameInTable="columnDATE_UROB" type="xs:string" minOccurs="0" />
+              <xs:element name="SOSTSUD" msprop:Generator_ColumnPropNameInTable="SOSTSUDColumn" msprop:Generator_ColumnPropNameInRow="SOSTSUD" msprop:Generator_UserColumnName="SOSTSUD" msprop:Generator_ColumnVarNameInTable="columnSOSTSUD" type="xs:string" minOccurs="0" />
+              <xs:element name="NOMSOST" msprop:Generator_ColumnPropNameInTable="NOMSOSTColumn" msprop:Generator_ColumnPropNameInRow="NOMSOST" msprop:Generator_UserColumnName="NOMSOST" msprop:Generator_ColumnVarNameInTable="columnNOMSOST" type="xs:string" minOccurs="0" />
+              <xs:element name="NOMZALA" msprop:Generator_ColumnPropNameInTable="NOMZALAColumn" msprop:Generator_ColumnPropNameInRow="NOMZALA" msprop:Generator_UserColumnName="NOMZALA" msprop:Generator_ColumnVarNameInTable="columnNOMZALA" type="xs:string" minOccurs="0" />
+              <xs:element name="KOORD" msprop:Generator_ColumnPropNameInTable="KOORDColumn" msprop:Generator_ColumnPropNameInRow="KOORD" msprop:Generator_UserColumnName="KOORD" msprop:Generator_ColumnVarNameInTable="columnKOORD" type="xs:string" minOccurs="0" />
+              <xs:element name="VRN" msprop:Generator_ColumnPropNameInTable="VRNColumn" msprop:Generator_ColumnPropNameInRow="VRN" msprop:Generator_UserColumnName="VRN" msprop:Generator_ColumnVarNameInTable="columnVRN" type="xs:string" />
+              <xs:element name="FAKTADDRESSES" msprop:Generator_ColumnPropNameInTable="FAKTADDRESSESColumn" msprop:Generator_ColumnPropNameInRow="FAKTADDRESSES" msprop:Generator_UserColumnName="FAKTADDRESSES" msprop:Generator_ColumnVarNameInTable="columnFAKTADDRESSES" type="xs:string" minOccurs="0" />
+              <xs:element name="KODHEIR" msprop:Generator_ColumnPropNameInTable="KODHEIRColumn" msprop:Generator_ColumnPropNameInRow="KODHEIR" msprop:Generator_UserColumnName="KODHEIR" msprop:Generator_ColumnVarNameInTable="columnKODHEIR" type="xs:string" minOccurs="0" />
+              <xs:element name="ISACTIVE" msprop:Generator_ColumnPropNameInTable="ISACTIVEColumn" msprop:Generator_ColumnPropNameInRow="ISACTIVE" msprop:Generator_UserColumnName="ISACTIVE" msprop:Generator_ColumnVarNameInTable="columnISACTIVE" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+            <xs:attribute name="DIC_Id" msprop:Generator_ColumnPropNameInTable="DIC_IdColumn" msprop:Generator_ColumnPropNameInRow="DIC_Id" msprop:Generator_UserColumnName="DIC_Id" msprop:Generator_ColumnVarNameInTable="columnDIC_Id" type="xs:int" msdata:AllowDBNull="false" use="prohibited" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="DIC_Id" msdata:AutoIncrement="true" msprop:Generator_ColumnPropNameInTable="DIC_IdColumn" msprop:Generator_ColumnPropNameInRow="DIC_Id" msprop:Generator_UserColumnName="DIC_Id" msprop:Generator_ColumnVarNameInTable="columnDIC_Id" type="xs:int" msdata:AllowDBNull="false" use="prohibited" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="СourtsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="СourtsDataSet" msprop:Generator_DataSetName="СourtsDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="DIC" />
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="DIC_RECORD_Constraint1" msdata:ConstraintName="Constraint1">
+      <xs:selector xpath=".//DIC_RECORD" />
+      <xs:field xpath="VRN" />
+    </xs:unique>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//DIC" />
+      <xs:field xpath="@DIC_Id" />
+    </xs:unique>
+    <xs:keyref name="DIC_DIC_RECORD" refer="Constraint1" msdata:IsNested="true" msprop:rel_Generator_UserParentTable="DIC" msprop:rel_Generator_UserChildTable="DIC_RECORD" msprop:rel_Generator_RelationVarName="relationDIC_DIC_RECORD" msprop:rel_Generator_ChildPropName="GetDIC_RECORDRows" msprop:rel_Generator_ParentPropName="DICRow" msprop:rel_Generator_UserRelationName="DIC_DIC_RECORD">
+      <xs:selector xpath=".//DIC_RECORD" />
+      <xs:field xpath="@DIC_Id" />
+    </xs:keyref>
+  </xs:element>
+</xs:schema>

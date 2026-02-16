@@ -1,4 +1,4 @@
-﻿// Ignore Spelling: eventargs
+﻿// Ignore Spelling: eventargs Dialogs
 
 using System;
 using System.Drawing;
@@ -177,19 +177,19 @@ namespace DatabaseToolSuite.Dialogs
 			}
 		}
 
-		protected virtual void OnApply(EventArgs eventargs)
+		protected virtual void OnApply(EventArgs e)
 		{
-			onApply?.Invoke(this, eventargs);
+			onApply?.Invoke(this, e);
 		}
 
-		protected virtual void OnCancel(EventArgs eventargs)
+		protected virtual void OnCancel(EventArgs e)
 		{
-			onCancel?.Invoke(this, eventargs);
+			onCancel?.Invoke(this, e);
 		}
 
-		protected virtual void OnOk(EventArgs eventargs)
+		protected virtual void OnOk(EventArgs e)
 		{
-			onOk?.Invoke(this, eventargs);
+			onOk?.Invoke(this, e);
 		}
 
 		public DialogBase()
@@ -200,6 +200,8 @@ namespace DatabaseToolSuite.Dialogs
 
 			Text = Const.App.APP_CAPTION;
 			KeyPreview = true;
+			AcceptButton = button_OK;
+			CancelButton = button_Cancel;
 
 			ResizeButton();
 		}
@@ -363,11 +365,9 @@ namespace DatabaseToolSuite.Dialogs
 			//
 			// DialogBase
 			//
-			this.AcceptButton = this.button_OK;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.CancelButton = this.button_Cancel;
 			this.ClientSize = new System.Drawing.Size(278, 244);
 			this.Controls.Add(this.button_OK);
 			this.Controls.Add(this.button_Cancel);
@@ -397,6 +397,7 @@ namespace DatabaseToolSuite.Dialogs
 			Width = Properties.Settings.Default.DialogWidth;
 			Height = Properties.Settings.Default.DialogHight;
 			ResizeButton();
+			this.Refresh();
 		}
 
 		private void DialogBase_Shown(object sender, EventArgs e)

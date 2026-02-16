@@ -29,7 +29,7 @@ namespace DatabaseToolSuite.Repositories
 
 			public long GetNextId()
 			{
-				if (this.Rows.Count > 0)
+				if (Rows.Count > 0)
 				{
 					return 1 + this.AsEnumerable()
 							.Where(x => x.RowState != DataRowState.Deleted)
@@ -71,22 +71,21 @@ namespace DatabaseToolSuite.Repositories
 				EnumerableRowCollection<gaspsRow> gaspsCollection = GaspsTable
 					.Where(e => e.RowState != DataRowState.Deleted)
 					.OrderBy(e => e, new GaspsRowComparer());
-				EnumerableRowCollection<gaspsRow> activeCollection = gaspsCollection.Where(e => e.date_end.Date > DateTime.Today && e.date_beg.Date <= DateTime.Today);
+
+				EnumerableRowCollection<gaspsRow> activeCollection = gaspsCollection
+					.Where(e => e.date_end.Date > DateTime.Today.Date && e.date_beg.Date <= DateTime.Today.Date);
 				EnumerableRowCollection<urpRow> urpCollection = this.AsEnumerable()
 					.Where(e => e.RowState != DataRowState.Deleted);
 
-				return from gasps in gaspsCollection
-					   join owner in activeCollection on gasps.owner_id equals owner.key into ow_jointable
+				return from gaspsRow in gaspsCollection
+					   join ownerRow in activeCollection on gaspsRow.owner_id equals ownerRow.key into ow_jointable
 					   from ow in ow_jointable.DefaultIfEmpty()
-					   join urp in urpCollection on gasps.version equals urp.VERSION into ur_jointable
+					   join urpRow in urpCollection on gaspsRow.version equals urpRow.VERSION into ur_jointable
 					   from ur in ur_jointable.DefaultIfEmpty()
-					   select new ViewUrpOrganization(gasps: gasps, owner: ow, urp: ur);
+					   select new ViewUrpOrganization(gasps: gaspsRow, owner: ow, urp: ur);
 			}
 
-			private gaspsDataTable GaspsTable
-			{
-				get { return Services.MasterDataSystem.DataSet.gasps; }
-			}
+			private gaspsDataTable GaspsTable => Services.MasterDataSystem.DataSet.gasps;
 		}
 	}
 }

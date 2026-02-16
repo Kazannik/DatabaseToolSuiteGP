@@ -2,9 +2,11 @@
 
 using DatabaseToolSuite.Services;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 
 namespace DatabaseToolSuite.Repositories
@@ -544,6 +546,98 @@ namespace DatabaseToolSuite.Repositories
 					   join owner in activeCollection on gasps.owner_id equals owner.key into ow_jointable
 					   from ow in ow_jointable.DefaultIfEmpty()
 					   select new ViewGaspsOrganization(gasps: gasps, owner: ow);
+			}
+
+			private IEnumerable<GaspsEntity> GetCourtEntity()
+			{
+				IEnumerable<GaspsEntity> result = this.AsEnumerable()
+					.Where(x => x.RowState != DataRowState.Deleted)
+					.Where(x => x.authority_id == MasterDataSystem.COURT_CODE)
+					.OrderBy(x=> x, new RowComparer())
+					.Select(x => new GaspsEntity() { Code = x.code, Version = x.version, DateBeg = x.date_beg, DateEnd = x.date_end });
+				return result;
+			}
+
+			public IEnumerable<GaspsEntity> CorrectedDates()
+			{
+				IEnumerable<GaspsEntity> entityCollection = GetCourtEntity();
+
+				IEnumerable<string> dublicateCodes = entityCollection
+					.GroupBy(x => x.Code)
+					.Where(g => g.Count() > 1)
+					.Select(g => g.Key)
+					.ToList();
+
+				IList<GaspsEntity> correctEntity = new List<GaspsEntity>(entityCollection.Where(x => !dublicateCodes.Contains(x.Code)));
+
+				IList<GaspsEntity> dublicateEntity = new List<GaspsEntity>(entityCollection.Where(x => dublicateCodes.Contains(x.Code)));
+
+				foreach (string vnkod in dublicateCodes)
+				{
+					IList<GaspsEntity> rows =
+					dublicateEntity.Where(x => x.Code == vnkod).ToList();
+
+					for (int i = rows.Count - 1; i > 0; i--)
+					{
+						CorrectedDates(rows[i], rows[i - 1]);
+					}					
+				}
+
+				return correctEntity.Union(dublicateEntity);
+			}
+
+			private void CorrectedDates(GaspsEntity currentEntity, GaspsEntity oldEntity)
+			{
+				if (oldEntity.DateEnd.Date.AddDays(1).Date == currentEntity.DateBeg.Date)
+					oldEntity.DateEnd = currentEntity.DateBeg;
+				else if (oldEntity.DateEnd.Date != MasterDataSystem.MAX_DATE &&
+					oldEntity.DateBeg == currentEntity.DateBeg &&
+					oldEntity.DateEnd.Date > currentEntity.DateBeg.Date)
+				{
+					currentEntity.DateBeg = oldEntity.DateEnd.Date.AddDays(1);
+					oldEntity.DateEnd = currentEntity.DateBeg;
+				}
+				else if (oldEntity.DateEnd.Date == MasterDataSystem.MAX_DATE)
+				{
+					oldEntity.DateEnd = currentEntity.DateBeg;
+				}
+				else if (oldEntity.DateEnd.Date > currentEntity.DateBeg.Date)
+				{
+					currentEntity.DateBeg = oldEntity.DateEnd.Date.AddDays(1);
+					oldEntity.DateEnd = currentEntity.DateBeg;
+				}
+#if DEBUG
+				//else
+				//	Debug.WriteLine(string.Format("beg: {0}, end: {1}/ beg: {2}, end: {2};", 
+				//		oldEntity.date_beg, oldEntity.date_end, currentEntity.date_beg, currentEntity.date_end));
+#endif
+			}
+									
+			public struct GaspsEntity
+			{
+				public string Code;
+				public long Version;
+				public DateTime DateBeg;
+				public DateTime DateEnd;
+			}
+
+			public class RowComparer : IComparer, IComparer<gaspsRow>
+			{
+				public int Compare(object x, object y)
+				{
+					gaspsRow xRow = (gaspsRow)x;
+					gaspsRow yRow = (gaspsRow)y;
+
+					int compare = string.Compare(xRow.code, yRow.code);
+					if (compare == 0) compare = DateTime.Compare(xRow.date_beg, yRow.date_beg);
+					if (compare == 0) compare = DateTime.Compare(xRow.date_end, yRow.date_end);
+					return compare;
+				}
+
+				int IComparer<gaspsRow>.Compare(gaspsRow x, gaspsRow y)
+				{
+					return Compare(x, y);
+				}
 			}
 		}
 	}
