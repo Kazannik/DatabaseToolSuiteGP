@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Threading.Tasks;
 using GaspsDataSet = DatabaseToolSuite.Repositories.EXP_LAW_AGENCY;
+using GaspsBiDataSet = DatabaseToolSuite.Repositories.EXP_LAW_AGENCY_FOR_BI;
 
 namespace DatabaseToolSuite.Repositories
 {
@@ -11,6 +12,8 @@ namespace DatabaseToolSuite.Repositories
 		public MainDataSet MainDataSet { get; }
 
 		public GaspsDataSet GaspsDataSet { get; }
+
+		public GaspsBiDataSet GaspsBiDataSet { get; }
 
 		public SubdivisionCollection Subdivisions { get; }
 
@@ -35,6 +38,7 @@ namespace DatabaseToolSuite.Repositories
 		{
 			MainDataSet = new MainDataSet();
 			GaspsDataSet = new GaspsDataSet();
+			GaspsBiDataSet = new GaspsBiDataSet();
 			Subdivisions = new SubdivisionCollection();
 
 			if (System.IO.File.Exists("DatabaseXMLSchema.xsd"))
@@ -58,6 +62,10 @@ namespace DatabaseToolSuite.Repositories
 		public void GaspsWriteSchema(string fileName) => GaspsDataSet.WriteXmlSchema(fileName);
 
 		public void GaspsWriteXml(string filename) => GaspsDataSet.WriteXml(filename, XmlWriteMode.IgnoreSchema);
+
+		public void GaspsBiWriteSchema(string fileName) => GaspsBiDataSet.WriteXmlSchema(fileName);
+
+		public void GaspsBiWriteXml(string filename) => GaspsBiDataSet.WriteXml(filename, XmlWriteMode.IgnoreSchema);
 
 		public void SubdivisionsReadXml(string filename)
 		{

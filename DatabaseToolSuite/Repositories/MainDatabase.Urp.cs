@@ -85,6 +85,26 @@ namespace DatabaseToolSuite.Repositories
 					   select new ViewUrpOrganization(gasps: gaspsRow, owner: ow, urp: ur);
 			}
 
+			public IEnumerable<ViewUrpOrganization> ExportGaspsBiData()
+			{
+				EnumerableRowCollection<gaspsRow> gaspsCollection = GaspsTable
+					.Where(e => e.RowState != DataRowState.Deleted && 
+					e.authority_id == Services.MasterDataSystem.PROSECUTOR_CODE)
+					.OrderBy(e => e, new GaspsRowComparer());
+
+				EnumerableRowCollection<gaspsRow> activeCollection = gaspsCollection
+					.Where(e => e.date_end.Date > DateTime.Today.Date && e.date_beg.Date <= DateTime.Today.Date);
+				EnumerableRowCollection<urpRow> urpCollection = this.AsEnumerable()
+					.Where(e => e.RowState != DataRowState.Deleted);
+
+				return from gaspsRow in gaspsCollection
+					   join ownerRow in activeCollection on gaspsRow.owner_id equals ownerRow.key into ow_jointable
+					   from ow in ow_jointable.DefaultIfEmpty()
+					   join urpRow in urpCollection on gaspsRow.version equals urpRow.VERSION into ur_jointable
+					   from ur in ur_jointable.DefaultIfEmpty()
+					   select new ViewUrpOrganization(gasps: gaspsRow, owner: ow, urp: ur);
+			}
+
 			private gaspsDataTable GaspsTable => Services.MasterDataSystem.DataSet.gasps;
 		}
 	}

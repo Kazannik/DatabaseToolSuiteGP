@@ -644,6 +644,8 @@ namespace DatabaseToolSuite.Services
 		{
 			IEnumerable<ErvkOrganization> data = MasterDataSystem.DataSet.ervk.ExportData();
 
+			// Размещение в выгрузке тестовой прокуратуры с кодом "3200".
+			// Обязательное требование разработчиков ЕРВК 
 			data = data.Union(new ErvkOrganization[] {
 				ErvkOrganization.CreateTestOrganization()});
 

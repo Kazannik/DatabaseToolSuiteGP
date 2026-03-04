@@ -40,15 +40,18 @@ namespace DatabaseToolSuite.Dialogs
 		private void InitializeComponent()
 		{
 			this.SuspendLayout();
-			//
+			// 
 			// EditErrorDialog
-			//
+			// 
 			this.AcceptButton = null;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
 			this.CancelButton = null;
+			this.ClientSize = new System.Drawing.Size(812, 600);
 			this.DialogCaptionImage = global::DatabaseToolSuite.Properties.Resources.Edit32;
 			this.Name = "EditErrorDialog";
 			this.ResumeLayout(false);
 			this.PerformLayout();
+
 		}
 	}
 }

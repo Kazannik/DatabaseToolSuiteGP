@@ -466,15 +466,13 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// CreateNewVersionDialog
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(812, 600);
 			this.Controls.Add(this.nameWizardButton);
 			this.Controls.Add(this.organizationGroupBox);
 			this.Controls.Add(this.beginDateLabel);
 			this.Controls.Add(this.beginDateTimePicker);
 			this.DialogCaptionImage = global::DatabaseToolSuite.Properties.Resources.Duplicate32;
-			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(6);
 			this.MinimumSize = new System.Drawing.Size(830, 647);

@@ -7,16 +7,16 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web.UI.WebControls.Expressions;
-using ExportDataSet = DatabaseToolSuite.Repositories.EXP_LAW_AGENCY;
+using ExportDataSet = DatabaseToolSuite.Repositories.EXP_LAW_AGENCY_FOR_BI;
 
 namespace DatabaseToolSuite.Services
 {
 	/// <summary>
 	/// Сервис для подготовки базы к передаче в РТК.
 	/// </summary>
-	internal static class Rtk
+	internal static class RtkBi
 	{
-		public static ExportDataSet DataSet => FileSystem.Repository.GaspsDataSet; 
+		public static ExportDataSet DataSet => FileSystem.Repository.GaspsBiDataSet; 
 
 		public static void ExportToXml(string xmlFileName)
 		{
@@ -33,16 +33,23 @@ namespace DatabaseToolSuite.Services
 			_ = ConvertLawAgencyTypes();
 			_ = ConvertSpecialTerritorialCode();
 
-			IEnumerable<MainDataSet.ViewUrpOrganization> gasps = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.ExportGaspsFullData();
+			IEnumerable<MainDataSet.ViewUrpOrganization> gasps = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.ExportGaspsBiData();
 
 			long ord = 1;
 			foreach (MainDataSet.ViewUrpOrganization item in gasps)
 			{
+				string address = string.Empty;
+					
+				if (MasterDataSystem.DataSet.fgis_esnsi.Exists(item.Version))
+				{
+					address = MasterDataSystem.DataSet.fgis_esnsi.Get(item.Version).sv_0006;
+				}
+
 				long oktmoId = oktmo[item.OkatoCode].Id;
 				CreateLawAgency(name: item.Name, uniq: item.Code, oktmo: oktmoId, ved_id: item.AuthorityId, version: item.Version,
 					ord: ord, id: item.Key, parent_id: item.OwnerId, indate: item.Begin, outdate: item.End,
 					oktmo_loc_id: item.OktmoLocId, law_agency_type: item.LawAgencyType,
-					special_territorial_code: item.SpecialTerritorialCode);
+					special_territorial_code: item.SpecialTerritorialCode, address: address);
 
 				if (item.IsUrp)
 				{
@@ -427,8 +434,9 @@ namespace DatabaseToolSuite.Services
 		/// <param name="oktmo_loc_id">Место дислокации (ОКТМО) (location_okato_id)</param>
 		/// <param name="law_agency_type">Тип подразделений (таблица: exp_law_agency_types)</param>
 		/// <param name="special_territorial_code">Специализированный территориальный код (таблица: special_territorial_code)</param>
+		/// <param name="address">Адрес приемной</param>
 		/// <returns></returns>
-		private static ExportDataSet.exp_law_agency_okatoidRow CreateLawAgency(
+		private static ExportDataSet.exp_law_agency_okatoid_for_biRow CreateLawAgency(
 			string name,
 			string uniq,
 			long oktmo,
@@ -441,9 +449,10 @@ namespace DatabaseToolSuite.Services
 			DateTime outdate,
 			long oktmo_loc_id,
 			long law_agency_type,
-			long special_territorial_code)
+			long special_territorial_code,
+			string address)
 		{
-			object[] values = new object[13];
+			object[] values = new object[14];
 			values[0] = name;
 			values[1] = uniq;
 			values[2] = oktmo;
@@ -457,9 +466,10 @@ namespace DatabaseToolSuite.Services
 			values[10] = oktmo_loc_id;
 			values[11] = law_agency_type;
 			values[12] = special_territorial_code;
+			values[13] = address;
 
-			ExportDataSet.exp_law_agency_okatoidRow newRow =
-				(ExportDataSet.exp_law_agency_okatoidRow)DataSet.exp_law_agency_okatoid.Rows.Add(values);
+			ExportDataSet.exp_law_agency_okatoid_for_biRow newRow =
+				(ExportDataSet.exp_law_agency_okatoid_for_biRow)DataSet.exp_law_agency_okatoid_for_bi.Rows.Add(values);
 
 			return newRow;
 		}

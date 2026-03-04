@@ -537,6 +537,22 @@ namespace DatabaseToolSuite.Dialogs
 			}
 		}
 
+		private void FileExportForBiGasps_Click(object sender, EventArgs e)
+		{
+			SaveFileDialog dialog = new SaveFileDialog
+			{
+				Title = "Экспорт данных для BI платформы ГАС ПС",
+				Filter = "Документ XML|*.xml",
+				FileName = "EXP_LAW_AGENCY_FOR_BI"
+			};
+			if (dialog.ShowDialog(this) == DialogResult.OK)
+			{
+				RtkBi.ConvertDataBase();
+				RtkBi.ExportToXml(dialog.FileName);
+				MessageBox.Show(dialog.Title + " успешно выполнен!", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+		}
+
 		private void FileExportDelta_Click(object sender, EventArgs e)
 		{
 			SelectPeriodDialog dialog = new SelectPeriodDialog();
@@ -1118,6 +1134,6 @@ namespace DatabaseToolSuite.Dialogs
 			ImportСourtsDialog dialog = new ImportСourtsDialog();
 			dialog.ShowDialog();
 
-		}
+		}				
 	}
 }

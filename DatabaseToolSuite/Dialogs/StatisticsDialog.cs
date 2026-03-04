@@ -73,19 +73,19 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// listView1
 			// 
-			this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-			| System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-			this.nameColumnHeader,
-			this.expensesСolumnHeader});
+            this.nameColumnHeader,
+            this.expensesСolumnHeader});
 			this.listView1.GridLines = true;
 			this.listView1.HideSelection = false;
-			this.listView1.Location = new System.Drawing.Point(18, 136);
-			this.listView1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+			this.listView1.Location = new System.Drawing.Point(15, 109);
+			this.listView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.listView1.MultiSelect = false;
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(1046, 569);
+			this.listView1.Size = new System.Drawing.Size(872, 456);
 			this.listView1.TabIndex = 3;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;
@@ -102,43 +102,44 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// authorityComboBox1
 			// 
-			this.authorityComboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.authorityComboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.authorityComboBox1.Code = "";
 			this.authorityComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.authorityComboBox1.DropDownHeight = 584;
+			this.authorityComboBox1.DropDownHeight = 504;
 			this.authorityComboBox1.DropDownWidth = 80;
 			this.authorityComboBox1.FormattingEnabled = true;
+			this.authorityComboBox1.Id = ((long)(-1));
 			this.authorityComboBox1.IntegralHeight = false;
-			this.authorityComboBox1.ItemHeight = 29;
-			this.authorityComboBox1.Location = new System.Drawing.Point(181, 86);
-			this.authorityComboBox1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+			this.authorityComboBox1.ItemHeight = 25;
+			this.authorityComboBox1.Location = new System.Drawing.Point(151, 69);
+			this.authorityComboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.authorityComboBox1.MaxDropDownItems = 20;
 			this.authorityComboBox1.Name = "authorityComboBox1";
 			this.authorityComboBox1.SelectedItem = null;
-			this.authorityComboBox1.Size = new System.Drawing.Size(881, 35);
+			this.authorityComboBox1.Size = new System.Drawing.Size(735, 31);
 			this.authorityComboBox1.TabIndex = 4;
 			this.authorityComboBox1.SelectedIndexChanged += new System.EventHandler(this.AuthorityComboBox1_SelectedIndexChanged);
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(18, 90);
-			this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+			this.label1.Location = new System.Drawing.Point(15, 72);
+			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(130, 25);
+			this.label1.Size = new System.Drawing.Size(111, 20);
 			this.label1.TabIndex = 5;
 			this.label1.Text = "Вид органа:";
 			// 
 			// StatisticsDialog
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
-			this.ClientSize = new System.Drawing.Size(1082, 832);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+			this.ClientSize = new System.Drawing.Size(902, 666);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.authorityComboBox1);
 			this.Controls.Add(this.listView1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+			this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
 			this.Name = "StatisticsDialog";
 			this.Controls.SetChildIndex(this.listView1, 0);
 			this.Controls.SetChildIndex(this.authorityComboBox1, 0);

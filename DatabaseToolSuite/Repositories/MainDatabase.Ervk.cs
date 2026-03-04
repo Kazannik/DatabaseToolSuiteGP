@@ -271,6 +271,10 @@ namespace DatabaseToolSuite.Repositories
 					OktmoList = oktmoList;
 				}
 
+				/// <summary>
+				/// Тестовая прокуратура с зарезервированным кодом 3200. Требование разработчиков ЕРВК.
+				/// </summary>
+				/// <returns></returns>
 				public static ErvkOrganization CreateTestOrganization()
 				{
 					return new ErvkOrganization(
@@ -317,6 +321,13 @@ namespace DatabaseToolSuite.Repositories
 						   : Utils.Converters.OktmoToEightSymbols(ervk.oktmoList));
 			}
 
+			/// <summary>
+			/// Преобразование данных для ЕРВК. Либо предоставляются сведения из ervk.subjectRfList "как есть", либо, если это поле пустое, то склейка из справочника ССРФ, разделителя(запятой)
+			/// и наименования субъекта РФ: "31,Белгородская область"
+			/// </summary>
+			/// <param name="ervk"></param>
+			/// <param name="gasps"></param>
+			/// <returns></returns>
 			private string GetSubject(ervkRow ervk, gaspsRow gasps)
 			{
 				if (ervk.IssubjectRfListNull())

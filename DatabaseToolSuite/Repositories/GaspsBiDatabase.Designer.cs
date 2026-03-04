@@ -20,13 +20,13 @@ namespace DatabaseToolSuite.Repositories {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("EXP_LAW_AGENCY")]
+    [global::System.Xml.Serialization.XmlRootAttribute("EXP_LAW_AGENCY_FOR_BI")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class EXP_LAW_AGENCY : global::System.Data.DataSet {
+    public partial class EXP_LAW_AGENCY_FOR_BI : global::System.Data.DataSet {
         
         private t6301724DataTable tablet6301724;
         
-        private exp_law_agency_okatoidDataTable tableexp_law_agency_okatoid;
+        private exp_law_agency_okatoid_for_biDataTable tableexp_law_agency_okatoid_for_bi;
         
         private SPECIAL_TERRITORIAL_CODEDataTable tableSPECIAL_TERRITORIAL_CODE;
         
@@ -82,7 +82,7 @@ namespace DatabaseToolSuite.Repositories {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public EXP_LAW_AGENCY() {
+        public EXP_LAW_AGENCY_FOR_BI() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -93,7 +93,7 @@ namespace DatabaseToolSuite.Repositories {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected EXP_LAW_AGENCY(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected EXP_LAW_AGENCY_FOR_BI(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -109,8 +109,8 @@ namespace DatabaseToolSuite.Repositories {
                 if ((ds.Tables["t6301724"] != null)) {
                     base.Tables.Add(new t6301724DataTable(ds.Tables["t6301724"]));
                 }
-                if ((ds.Tables["exp_law_agency_okatoid"] != null)) {
-                    base.Tables.Add(new exp_law_agency_okatoidDataTable(ds.Tables["exp_law_agency_okatoid"]));
+                if ((ds.Tables["exp_law_agency_okatoid_for_bi"] != null)) {
+                    base.Tables.Add(new exp_law_agency_okatoid_for_biDataTable(ds.Tables["exp_law_agency_okatoid_for_bi"]));
                 }
                 if ((ds.Tables["SPECIAL_TERRITORIAL_CODE"] != null)) {
                     base.Tables.Add(new SPECIAL_TERRITORIAL_CODEDataTable(ds.Tables["SPECIAL_TERRITORIAL_CODE"]));
@@ -171,9 +171,9 @@ namespace DatabaseToolSuite.Repositories {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public exp_law_agency_okatoidDataTable exp_law_agency_okatoid {
+        public exp_law_agency_okatoid_for_biDataTable exp_law_agency_okatoid_for_bi {
             get {
-                return this.tableexp_law_agency_okatoid;
+                return this.tableexp_law_agency_okatoid_for_bi;
             }
         }
         
@@ -309,7 +309,7 @@ namespace DatabaseToolSuite.Repositories {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            EXP_LAW_AGENCY cln = ((EXP_LAW_AGENCY)(base.Clone()));
+            EXP_LAW_AGENCY_FOR_BI cln = ((EXP_LAW_AGENCY_FOR_BI)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -337,8 +337,8 @@ namespace DatabaseToolSuite.Repositories {
                 if ((ds.Tables["t6301724"] != null)) {
                     base.Tables.Add(new t6301724DataTable(ds.Tables["t6301724"]));
                 }
-                if ((ds.Tables["exp_law_agency_okatoid"] != null)) {
-                    base.Tables.Add(new exp_law_agency_okatoidDataTable(ds.Tables["exp_law_agency_okatoid"]));
+                if ((ds.Tables["exp_law_agency_okatoid_for_bi"] != null)) {
+                    base.Tables.Add(new exp_law_agency_okatoid_for_biDataTable(ds.Tables["exp_law_agency_okatoid_for_bi"]));
                 }
                 if ((ds.Tables["SPECIAL_TERRITORIAL_CODE"] != null)) {
                     base.Tables.Add(new SPECIAL_TERRITORIAL_CODEDataTable(ds.Tables["SPECIAL_TERRITORIAL_CODE"]));
@@ -406,10 +406,10 @@ namespace DatabaseToolSuite.Repositories {
                     this.tablet6301724.InitVars();
                 }
             }
-            this.tableexp_law_agency_okatoid = ((exp_law_agency_okatoidDataTable)(base.Tables["exp_law_agency_okatoid"]));
+            this.tableexp_law_agency_okatoid_for_bi = ((exp_law_agency_okatoid_for_biDataTable)(base.Tables["exp_law_agency_okatoid_for_bi"]));
             if ((initTable == true)) {
-                if ((this.tableexp_law_agency_okatoid != null)) {
-                    this.tableexp_law_agency_okatoid.InitVars();
+                if ((this.tableexp_law_agency_okatoid_for_bi != null)) {
+                    this.tableexp_law_agency_okatoid_for_bi.InitVars();
                 }
             }
             this.tableSPECIAL_TERRITORIAL_CODE = ((SPECIAL_TERRITORIAL_CODEDataTable)(base.Tables["SPECIAL_TERRITORIAL_CODE"]));
@@ -487,15 +487,15 @@ namespace DatabaseToolSuite.Repositories {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "EXP_LAW_AGENCY";
+            this.DataSetName = "EXP_LAW_AGENCY_FOR_BI";
             this.Prefix = "";
             this.Namespace = "http://tempuri.org/Gasps.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tablet6301724 = new t6301724DataTable();
             base.Tables.Add(this.tablet6301724);
-            this.tableexp_law_agency_okatoid = new exp_law_agency_okatoidDataTable();
-            base.Tables.Add(this.tableexp_law_agency_okatoid);
+            this.tableexp_law_agency_okatoid_for_bi = new exp_law_agency_okatoid_for_biDataTable();
+            base.Tables.Add(this.tableexp_law_agency_okatoid_for_bi);
             this.tableSPECIAL_TERRITORIAL_CODE = new SPECIAL_TERRITORIAL_CODEDataTable();
             base.Tables.Add(this.tableSPECIAL_TERRITORIAL_CODE);
             this.tableEXP_LAW_AGENCY_SERVICE_AREA = new EXP_LAW_AGENCY_SERVICE_AREADataTable();
@@ -516,7 +516,7 @@ namespace DatabaseToolSuite.Repositories {
             base.Tables.Add(this.tableNADZOR_ORGAN);
             this.relationexp_law_agency_okatoid_t6301724 = new global::System.Data.DataRelation("exp_law_agency_okatoid_t6301724", new global::System.Data.DataColumn[] {
                         this.tablet6301724.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableexp_law_agency_okatoid.VED_IDColumn}, false);
+                        this.tableexp_law_agency_okatoid_for_bi.VED_IDColumn}, false);
             this.relationexp_law_agency_okatoid_t6301724.Nested = true;
             this.Relations.Add(this.relationexp_law_agency_okatoid_t6301724);
             this.relationEXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE = new global::System.Data.DataRelation("EXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE", new global::System.Data.DataColumn[] {
@@ -546,7 +546,7 @@ namespace DatabaseToolSuite.Repositories {
             this.Relations.Add(this.relationEXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SERVICE_AREA);
             this.relationexp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES = new global::System.Data.DataRelation("exp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES", new global::System.Data.DataColumn[] {
                         this.tableEXP_LAW_AGENCY_TYPES.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableexp_law_agency_okatoid.LAW_AGENCY_TYPEColumn}, false);
+                        this.tableexp_law_agency_okatoid_for_bi.LAW_AGENCY_TYPEColumn}, false);
             this.Relations.Add(this.relationexp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES);
             this.relationFK_EXP_LAW_AGENCY_URP_t6292734 = new global::System.Data.DataRelation("FK_EXP_LAW_AGENCY_URP_t6292734", new global::System.Data.DataColumn[] {
                         this.tablet6292734.IDColumn}, new global::System.Data.DataColumn[] {
@@ -554,30 +554,30 @@ namespace DatabaseToolSuite.Repositories {
             this.Relations.Add(this.relationFK_EXP_LAW_AGENCY_URP_t6292734);
             this.relationFK_exp_law_agency_okatoid_t62927341 = new global::System.Data.DataRelation("FK_exp_law_agency_okatoid_t62927341", new global::System.Data.DataColumn[] {
                         this.tablet6292734.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableexp_law_agency_okatoid.OKTMO_LOC_IDColumn}, false);
+                        this.tableexp_law_agency_okatoid_for_bi.OKTMO_LOC_IDColumn}, false);
             this.Relations.Add(this.relationFK_exp_law_agency_okatoid_t62927341);
             this.relationFK_exp_law_agency_okatoid_t6292734 = new global::System.Data.DataRelation("FK_exp_law_agency_okatoid_t6292734", new global::System.Data.DataColumn[] {
                         this.tablet6292734.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableexp_law_agency_okatoid.OKTMOColumn}, false);
+                        this.tableexp_law_agency_okatoid_for_bi.OKTMOColumn}, false);
             this.Relations.Add(this.relationFK_exp_law_agency_okatoid_t6292734);
             this.relationexp_law_agency_okatoid_EXP_LAW_AGENCY_URP = new global::System.Data.DataRelation("exp_law_agency_okatoid_EXP_LAW_AGENCY_URP", new global::System.Data.DataColumn[] {
                         this.tableEXP_LAW_AGENCY_URP.VERSIONColumn}, new global::System.Data.DataColumn[] {
-                        this.tableexp_law_agency_okatoid.VERSIONColumn}, false);
+                        this.tableexp_law_agency_okatoid_for_bi.VERSIONColumn}, false);
             this.Relations.Add(this.relationexp_law_agency_okatoid_EXP_LAW_AGENCY_URP);
             this.relationexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE = new global::System.Data.DataRelation("exp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE", new global::System.Data.DataColumn[] {
                         this.tableSPECIAL_TERRITORIAL_CODE.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableexp_law_agency_okatoid.SPECIAL_TERRITORIAL_CODEColumn}, false);
+                        this.tableexp_law_agency_okatoid_for_bi.SPECIAL_TERRITORIAL_CODEColumn}, false);
             this.Relations.Add(this.relationexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE);
             this.relationEXP_LAW_AGENCY_URP_exp_law_agency_okatoid = new global::System.Data.DataRelation("EXP_LAW_AGENCY_URP_exp_law_agency_okatoid", new global::System.Data.DataColumn[] {
-                        this.tableexp_law_agency_okatoid.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableexp_law_agency_okatoid_for_bi.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableEXP_LAW_AGENCY_URP.AGENCY_RECEIVING_REPORTColumn}, false);
             this.Relations.Add(this.relationEXP_LAW_AGENCY_URP_exp_law_agency_okatoid);
             this.relationexp_law_agency_okatoid_NADZOR_ORGAN = new global::System.Data.DataRelation("exp_law_agency_okatoid_NADZOR_ORGAN", new global::System.Data.DataColumn[] {
-                        this.tableexp_law_agency_okatoid.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableexp_law_agency_okatoid_for_bi.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableNADZOR_ORGAN.LAW_ENFORCEMENT_AGENCYColumn}, false);
             this.Relations.Add(this.relationexp_law_agency_okatoid_NADZOR_ORGAN);
             this.relationexp_law_agency_okatoid_NADZOR_ORGAN1 = new global::System.Data.DataRelation("exp_law_agency_okatoid_NADZOR_ORGAN1", new global::System.Data.DataColumn[] {
-                        this.tableexp_law_agency_okatoid.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableexp_law_agency_okatoid_for_bi.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableNADZOR_ORGAN.SUPERVISING_PROSECUTION_AGENCYColumn}, false);
             this.Relations.Add(this.relationexp_law_agency_okatoid_NADZOR_ORGAN1);
         }
@@ -590,7 +590,7 @@ namespace DatabaseToolSuite.Repositories {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeexp_law_agency_okatoid() {
+        private bool ShouldSerializeexp_law_agency_okatoid_for_bi() {
             return false;
         }
         
@@ -659,7 +659,7 @@ namespace DatabaseToolSuite.Repositories {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            EXP_LAW_AGENCY ds = new EXP_LAW_AGENCY();
+            EXP_LAW_AGENCY_FOR_BI ds = new EXP_LAW_AGENCY_FOR_BI();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -707,7 +707,7 @@ namespace DatabaseToolSuite.Repositories {
         public delegate void t6301724RowChangeEventHandler(object sender, t6301724RowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void exp_law_agency_okatoidRowChangeEventHandler(object sender, exp_law_agency_okatoidRowChangeEvent e);
+        public delegate void exp_law_agency_okatoid_for_biRowChangeEventHandler(object sender, exp_law_agency_okatoid_for_biRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void SPECIAL_TERRITORIAL_CODERowChangeEventHandler(object sender, SPECIAL_TERRITORIAL_CODERowChangeEvent e);
@@ -971,7 +971,7 @@ namespace DatabaseToolSuite.Repositories {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                EXP_LAW_AGENCY ds = new EXP_LAW_AGENCY();
+                EXP_LAW_AGENCY_FOR_BI ds = new EXP_LAW_AGENCY_FOR_BI();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1035,7 +1035,7 @@ namespace DatabaseToolSuite.Repositories {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class exp_law_agency_okatoidDataTable : global::System.Data.TypedTableBase<exp_law_agency_okatoidRow> {
+        public partial class exp_law_agency_okatoid_for_biDataTable : global::System.Data.TypedTableBase<exp_law_agency_okatoid_for_biRow> {
             
             private global::System.Data.DataColumn columnNAME;
             
@@ -1063,10 +1063,12 @@ namespace DatabaseToolSuite.Repositories {
             
             private global::System.Data.DataColumn columnSPECIAL_TERRITORIAL_CODE;
             
+            private global::System.Data.DataColumn columnADDRESS;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoidDataTable() {
-                this.TableName = "exp_law_agency_okatoid";
+            public exp_law_agency_okatoid_for_biDataTable() {
+                this.TableName = "exp_law_agency_okatoid_for_bi";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -1074,7 +1076,7 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal exp_law_agency_okatoidDataTable(global::System.Data.DataTable table) {
+            internal exp_law_agency_okatoid_for_biDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -1091,7 +1093,7 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected exp_law_agency_okatoidDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected exp_law_agency_okatoid_for_biDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -1202,6 +1204,14 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ADDRESSColumn {
+                get {
+                    return this.columnADDRESS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1211,34 +1221,34 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoidRow this[int index] {
+            public exp_law_agency_okatoid_for_biRow this[int index] {
                 get {
-                    return ((exp_law_agency_okatoidRow)(this.Rows[index]));
+                    return ((exp_law_agency_okatoid_for_biRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event exp_law_agency_okatoidRowChangeEventHandler exp_law_agency_okatoidRowChanging;
+            public event exp_law_agency_okatoid_for_biRowChangeEventHandler exp_law_agency_okatoid_for_biRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event exp_law_agency_okatoidRowChangeEventHandler exp_law_agency_okatoidRowChanged;
+            public event exp_law_agency_okatoid_for_biRowChangeEventHandler exp_law_agency_okatoid_for_biRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event exp_law_agency_okatoidRowChangeEventHandler exp_law_agency_okatoidRowDeleting;
+            public event exp_law_agency_okatoid_for_biRowChangeEventHandler exp_law_agency_okatoid_for_biRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event exp_law_agency_okatoidRowChangeEventHandler exp_law_agency_okatoidRowDeleted;
+            public event exp_law_agency_okatoid_for_biRowChangeEventHandler exp_law_agency_okatoid_for_biRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Addexp_law_agency_okatoidRow(exp_law_agency_okatoidRow row) {
+            public void Addexp_law_agency_okatoid_for_biRow(exp_law_agency_okatoid_for_biRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoidRow Addexp_law_agency_okatoidRow(string NAME, string UNIQ, t6292734Row parentt6292734RowByFK_exp_law_agency_okatoid_t6292734, t6301724Row parentt6301724RowByexp_law_agency_okatoid_t6301724, EXP_LAW_AGENCY_URPRow parentEXP_LAW_AGENCY_URPRowByexp_law_agency_okatoid_EXP_LAW_AGENCY_URP, long ORD, long ID, long PARENT_ID, System.DateTime INDATE, System.DateTime OUTDATE, t6292734Row parentt6292734RowByFK_exp_law_agency_okatoid_t62927341, EXP_LAW_AGENCY_TYPESRow parentEXP_LAW_AGENCY_TYPESRowByexp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES, SPECIAL_TERRITORIAL_CODERow parentSPECIAL_TERRITORIAL_CODERowByexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE) {
-                exp_law_agency_okatoidRow rowexp_law_agency_okatoidRow = ((exp_law_agency_okatoidRow)(this.NewRow()));
+            public exp_law_agency_okatoid_for_biRow Addexp_law_agency_okatoid_for_biRow(string NAME, string UNIQ, t6292734Row parentt6292734RowByFK_exp_law_agency_okatoid_t6292734, t6301724Row parentt6301724RowByexp_law_agency_okatoid_t6301724, EXP_LAW_AGENCY_URPRow parentEXP_LAW_AGENCY_URPRowByexp_law_agency_okatoid_EXP_LAW_AGENCY_URP, long ORD, long ID, long PARENT_ID, System.DateTime INDATE, System.DateTime OUTDATE, t6292734Row parentt6292734RowByFK_exp_law_agency_okatoid_t62927341, EXP_LAW_AGENCY_TYPESRow parentEXP_LAW_AGENCY_TYPESRowByexp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES, SPECIAL_TERRITORIAL_CODERow parentSPECIAL_TERRITORIAL_CODERowByexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE, string ADDRESS) {
+                exp_law_agency_okatoid_for_biRow rowexp_law_agency_okatoid_for_biRow = ((exp_law_agency_okatoid_for_biRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         NAME,
                         UNIQ,
@@ -1252,7 +1262,8 @@ namespace DatabaseToolSuite.Repositories {
                         OUTDATE,
                         null,
                         null,
-                        null};
+                        null,
+                        ADDRESS};
                 if ((parentt6292734RowByFK_exp_law_agency_okatoid_t6292734 != null)) {
                     columnValuesArray[2] = parentt6292734RowByFK_exp_law_agency_okatoid_t6292734[0];
                 }
@@ -1271,22 +1282,22 @@ namespace DatabaseToolSuite.Repositories {
                 if ((parentSPECIAL_TERRITORIAL_CODERowByexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE != null)) {
                     columnValuesArray[12] = parentSPECIAL_TERRITORIAL_CODERowByexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE[0];
                 }
-                rowexp_law_agency_okatoidRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowexp_law_agency_okatoidRow);
-                return rowexp_law_agency_okatoidRow;
+                rowexp_law_agency_okatoid_for_biRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowexp_law_agency_okatoid_for_biRow);
+                return rowexp_law_agency_okatoid_for_biRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoidRow FindByVERSION(long VERSION) {
-                return ((exp_law_agency_okatoidRow)(this.Rows.Find(new object[] {
+            public exp_law_agency_okatoid_for_biRow FindByVERSION(long VERSION) {
+                return ((exp_law_agency_okatoid_for_biRow)(this.Rows.Find(new object[] {
                             VERSION})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                exp_law_agency_okatoidDataTable cln = ((exp_law_agency_okatoidDataTable)(base.Clone()));
+                exp_law_agency_okatoid_for_biDataTable cln = ((exp_law_agency_okatoid_for_biDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -1294,7 +1305,7 @@ namespace DatabaseToolSuite.Repositories {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new exp_law_agency_okatoidDataTable();
+                return new exp_law_agency_okatoid_for_biDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1313,6 +1324,7 @@ namespace DatabaseToolSuite.Repositories {
                 this.columnOKTMO_LOC_ID = base.Columns["OKTMO_LOC_ID"];
                 this.columnLAW_AGENCY_TYPE = base.Columns["LAW_AGENCY_TYPE"];
                 this.columnSPECIAL_TERRITORIAL_CODE = base.Columns["SPECIAL_TERRITORIAL_CODE"];
+                this.columnADDRESS = base.Columns["ADDRESS"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1344,6 +1356,8 @@ namespace DatabaseToolSuite.Repositories {
                 base.Columns.Add(this.columnLAW_AGENCY_TYPE);
                 this.columnSPECIAL_TERRITORIAL_CODE = new global::System.Data.DataColumn("SPECIAL_TERRITORIAL_CODE", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSPECIAL_TERRITORIAL_CODE);
+                this.columnADDRESS = new global::System.Data.DataColumn("ADDRESS", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnADDRESS);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("exp_law_agency_okatoidKey1", new global::System.Data.DataColumn[] {
                                 this.columnVERSION}, true));
                 this.columnNAME.AllowDBNull = false;
@@ -1368,32 +1382,33 @@ namespace DatabaseToolSuite.Repositories {
                 this.columnOKTMO_LOC_ID.Caption = "Место дислокации (ОКТМО)";
                 this.columnLAW_AGENCY_TYPE.Caption = "Тип подразделений";
                 this.columnSPECIAL_TERRITORIAL_CODE.Caption = "Специализированный территориальный код";
+                this.columnADDRESS.Caption = "Адрес приемной";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoidRow Newexp_law_agency_okatoidRow() {
-                return ((exp_law_agency_okatoidRow)(this.NewRow()));
+            public exp_law_agency_okatoid_for_biRow Newexp_law_agency_okatoid_for_biRow() {
+                return ((exp_law_agency_okatoid_for_biRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new exp_law_agency_okatoidRow(builder);
+                return new exp_law_agency_okatoid_for_biRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(exp_law_agency_okatoidRow);
+                return typeof(exp_law_agency_okatoid_for_biRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.exp_law_agency_okatoidRowChanged != null)) {
-                    this.exp_law_agency_okatoidRowChanged(this, new exp_law_agency_okatoidRowChangeEvent(((exp_law_agency_okatoidRow)(e.Row)), e.Action));
+                if ((this.exp_law_agency_okatoid_for_biRowChanged != null)) {
+                    this.exp_law_agency_okatoid_for_biRowChanged(this, new exp_law_agency_okatoid_for_biRowChangeEvent(((exp_law_agency_okatoid_for_biRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1401,8 +1416,8 @@ namespace DatabaseToolSuite.Repositories {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.exp_law_agency_okatoidRowChanging != null)) {
-                    this.exp_law_agency_okatoidRowChanging(this, new exp_law_agency_okatoidRowChangeEvent(((exp_law_agency_okatoidRow)(e.Row)), e.Action));
+                if ((this.exp_law_agency_okatoid_for_biRowChanging != null)) {
+                    this.exp_law_agency_okatoid_for_biRowChanging(this, new exp_law_agency_okatoid_for_biRowChangeEvent(((exp_law_agency_okatoid_for_biRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1410,8 +1425,8 @@ namespace DatabaseToolSuite.Repositories {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.exp_law_agency_okatoidRowDeleted != null)) {
-                    this.exp_law_agency_okatoidRowDeleted(this, new exp_law_agency_okatoidRowChangeEvent(((exp_law_agency_okatoidRow)(e.Row)), e.Action));
+                if ((this.exp_law_agency_okatoid_for_biRowDeleted != null)) {
+                    this.exp_law_agency_okatoid_for_biRowDeleted(this, new exp_law_agency_okatoid_for_biRowChangeEvent(((exp_law_agency_okatoid_for_biRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1419,14 +1434,14 @@ namespace DatabaseToolSuite.Repositories {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.exp_law_agency_okatoidRowDeleting != null)) {
-                    this.exp_law_agency_okatoidRowDeleting(this, new exp_law_agency_okatoidRowChangeEvent(((exp_law_agency_okatoidRow)(e.Row)), e.Action));
+                if ((this.exp_law_agency_okatoid_for_biRowDeleting != null)) {
+                    this.exp_law_agency_okatoid_for_biRowDeleting(this, new exp_law_agency_okatoid_for_biRowChangeEvent(((exp_law_agency_okatoid_for_biRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Removeexp_law_agency_okatoidRow(exp_law_agency_okatoidRow row) {
+            public void Removeexp_law_agency_okatoid_for_biRow(exp_law_agency_okatoid_for_biRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -1435,7 +1450,7 @@ namespace DatabaseToolSuite.Repositories {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                EXP_LAW_AGENCY ds = new EXP_LAW_AGENCY();
+                EXP_LAW_AGENCY_FOR_BI ds = new EXP_LAW_AGENCY_FOR_BI();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1453,7 +1468,7 @@ namespace DatabaseToolSuite.Repositories {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "exp_law_agency_okatoidDataTable";
+                attribute2.FixedValue = "exp_law_agency_okatoid_for_biDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1728,7 +1743,7 @@ namespace DatabaseToolSuite.Repositories {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                EXP_LAW_AGENCY ds = new EXP_LAW_AGENCY();
+                EXP_LAW_AGENCY_FOR_BI ds = new EXP_LAW_AGENCY_FOR_BI();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1994,7 +2009,7 @@ namespace DatabaseToolSuite.Repositories {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                EXP_LAW_AGENCY ds = new EXP_LAW_AGENCY();
+                EXP_LAW_AGENCY_FOR_BI ds = new EXP_LAW_AGENCY_FOR_BI();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -2230,7 +2245,7 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public EXP_LAW_AGENCY_URPRow AddEXP_LAW_AGENCY_URPRow(long VERSION, string SHORT_NAME, bool DOESNT_CREATE_CARD, bool DOESNT_SIGN_REPORT, bool DOESNT_CONSOLIDATE_CHILD, exp_law_agency_okatoidRow parentexp_law_agency_okatoidRowByEXP_LAW_AGENCY_URP_exp_law_agency_okatoid, long ORD, string VED_CODE, long ID, t6292734Row parentt6292734RowByFK_EXP_LAW_AGENCY_URP_t6292734) {
+            public EXP_LAW_AGENCY_URPRow AddEXP_LAW_AGENCY_URPRow(long VERSION, string SHORT_NAME, bool DOESNT_CREATE_CARD, bool DOESNT_SIGN_REPORT, bool DOESNT_CONSOLIDATE_CHILD, exp_law_agency_okatoid_for_biRow parentexp_law_agency_okatoid_for_biRowByEXP_LAW_AGENCY_URP_exp_law_agency_okatoid, long ORD, string VED_CODE, long ID, t6292734Row parentt6292734RowByFK_EXP_LAW_AGENCY_URP_t6292734) {
                 EXP_LAW_AGENCY_URPRow rowEXP_LAW_AGENCY_URPRow = ((EXP_LAW_AGENCY_URPRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         VERSION,
@@ -2243,8 +2258,8 @@ namespace DatabaseToolSuite.Repositories {
                         VED_CODE,
                         ID,
                         null};
-                if ((parentexp_law_agency_okatoidRowByEXP_LAW_AGENCY_URP_exp_law_agency_okatoid != null)) {
-                    columnValuesArray[5] = parentexp_law_agency_okatoidRowByEXP_LAW_AGENCY_URP_exp_law_agency_okatoid[6];
+                if ((parentexp_law_agency_okatoid_for_biRowByEXP_LAW_AGENCY_URP_exp_law_agency_okatoid != null)) {
+                    columnValuesArray[5] = parentexp_law_agency_okatoid_for_biRowByEXP_LAW_AGENCY_URP_exp_law_agency_okatoid[6];
                 }
                 if ((parentt6292734RowByFK_EXP_LAW_AGENCY_URP_t6292734 != null)) {
                     columnValuesArray[9] = parentt6292734RowByFK_EXP_LAW_AGENCY_URP_t6292734[0];
@@ -2405,7 +2420,7 @@ namespace DatabaseToolSuite.Repositories {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                EXP_LAW_AGENCY ds = new EXP_LAW_AGENCY();
+                EXP_LAW_AGENCY_FOR_BI ds = new EXP_LAW_AGENCY_FOR_BI();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -2680,7 +2695,7 @@ namespace DatabaseToolSuite.Repositories {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                EXP_LAW_AGENCY ds = new EXP_LAW_AGENCY();
+                EXP_LAW_AGENCY_FOR_BI ds = new EXP_LAW_AGENCY_FOR_BI();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -2977,7 +2992,7 @@ namespace DatabaseToolSuite.Repositories {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                EXP_LAW_AGENCY ds = new EXP_LAW_AGENCY();
+                EXP_LAW_AGENCY_FOR_BI ds = new EXP_LAW_AGENCY_FOR_BI();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -3272,7 +3287,7 @@ namespace DatabaseToolSuite.Repositories {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                EXP_LAW_AGENCY ds = new EXP_LAW_AGENCY();
+                EXP_LAW_AGENCY_FOR_BI ds = new EXP_LAW_AGENCY_FOR_BI();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -3537,7 +3552,7 @@ namespace DatabaseToolSuite.Repositories {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                EXP_LAW_AGENCY ds = new EXP_LAW_AGENCY();
+                EXP_LAW_AGENCY_FOR_BI ds = new EXP_LAW_AGENCY_FOR_BI();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -3833,7 +3848,7 @@ namespace DatabaseToolSuite.Repositories {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                EXP_LAW_AGENCY ds = new EXP_LAW_AGENCY();
+                EXP_LAW_AGENCY_FOR_BI ds = new EXP_LAW_AGENCY_FOR_BI();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -4019,7 +4034,7 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public NADZOR_ORGANRow AddNADZOR_ORGANRow(long ID, exp_law_agency_okatoidRow parentexp_law_agency_okatoidRowByexp_law_agency_okatoid_NADZOR_ORGAN, exp_law_agency_okatoidRow parentexp_law_agency_okatoidRowByexp_law_agency_okatoid_NADZOR_ORGAN1, System.DateTime CREATION_DATE, System.DateTime CLOSED_DATE) {
+            public NADZOR_ORGANRow AddNADZOR_ORGANRow(long ID, exp_law_agency_okatoid_for_biRow parentexp_law_agency_okatoid_for_biRowByexp_law_agency_okatoid_NADZOR_ORGAN, exp_law_agency_okatoid_for_biRow parentexp_law_agency_okatoid_for_biRowByexp_law_agency_okatoid_NADZOR_ORGAN1, System.DateTime CREATION_DATE, System.DateTime CLOSED_DATE) {
                 NADZOR_ORGANRow rowNADZOR_ORGANRow = ((NADZOR_ORGANRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -4027,11 +4042,11 @@ namespace DatabaseToolSuite.Repositories {
                         null,
                         CREATION_DATE,
                         CLOSED_DATE};
-                if ((parentexp_law_agency_okatoidRowByexp_law_agency_okatoid_NADZOR_ORGAN != null)) {
-                    columnValuesArray[1] = parentexp_law_agency_okatoidRowByexp_law_agency_okatoid_NADZOR_ORGAN[6];
+                if ((parentexp_law_agency_okatoid_for_biRowByexp_law_agency_okatoid_NADZOR_ORGAN != null)) {
+                    columnValuesArray[1] = parentexp_law_agency_okatoid_for_biRowByexp_law_agency_okatoid_NADZOR_ORGAN[6];
                 }
-                if ((parentexp_law_agency_okatoidRowByexp_law_agency_okatoid_NADZOR_ORGAN1 != null)) {
-                    columnValuesArray[2] = parentexp_law_agency_okatoidRowByexp_law_agency_okatoid_NADZOR_ORGAN1[6];
+                if ((parentexp_law_agency_okatoid_for_biRowByexp_law_agency_okatoid_NADZOR_ORGAN1 != null)) {
+                    columnValuesArray[2] = parentexp_law_agency_okatoid_for_biRowByexp_law_agency_okatoid_NADZOR_ORGAN1[6];
                 }
                 rowNADZOR_ORGANRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowNADZOR_ORGANRow);
@@ -4150,7 +4165,7 @@ namespace DatabaseToolSuite.Repositories {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                EXP_LAW_AGENCY ds = new EXP_LAW_AGENCY();
+                EXP_LAW_AGENCY_FOR_BI ds = new EXP_LAW_AGENCY_FOR_BI();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -4258,12 +4273,12 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoidRow[] Getexp_law_agency_okatoidRows() {
+            public exp_law_agency_okatoid_for_biRow[] Getexp_law_agency_okatoid_for_biRows() {
                 if ((this.Table.ChildRelations["exp_law_agency_okatoid_t6301724"] == null)) {
-                    return new exp_law_agency_okatoidRow[0];
+                    return new exp_law_agency_okatoid_for_biRow[0];
                 }
                 else {
-                    return ((exp_law_agency_okatoidRow[])(base.GetChildRows(this.Table.ChildRelations["exp_law_agency_okatoid_t6301724"])));
+                    return ((exp_law_agency_okatoid_for_biRow[])(base.GetChildRows(this.Table.ChildRelations["exp_law_agency_okatoid_t6301724"])));
                 }
             }
         }
@@ -4271,25 +4286,25 @@ namespace DatabaseToolSuite.Repositories {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class exp_law_agency_okatoidRow : global::System.Data.DataRow {
+        public partial class exp_law_agency_okatoid_for_biRow : global::System.Data.DataRow {
             
-            private exp_law_agency_okatoidDataTable tableexp_law_agency_okatoid;
+            private exp_law_agency_okatoid_for_biDataTable tableexp_law_agency_okatoid_for_bi;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal exp_law_agency_okatoidRow(global::System.Data.DataRowBuilder rb) : 
+            internal exp_law_agency_okatoid_for_biRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableexp_law_agency_okatoid = ((exp_law_agency_okatoidDataTable)(this.Table));
+                this.tableexp_law_agency_okatoid_for_bi = ((exp_law_agency_okatoid_for_biDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string NAME {
                 get {
-                    return ((string)(this[this.tableexp_law_agency_okatoid.NAMEColumn]));
+                    return ((string)(this[this.tableexp_law_agency_okatoid_for_bi.NAMEColumn]));
                 }
                 set {
-                    this[this.tableexp_law_agency_okatoid.NAMEColumn] = value;
+                    this[this.tableexp_law_agency_okatoid_for_bi.NAMEColumn] = value;
                 }
             }
             
@@ -4298,14 +4313,15 @@ namespace DatabaseToolSuite.Repositories {
             public string UNIQ {
                 get {
                     try {
-                        return ((string)(this[this.tableexp_law_agency_okatoid.UNIQColumn]));
+                        return ((string)(this[this.tableexp_law_agency_okatoid_for_bi.UNIQColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'UNIQ\' в таблице \'exp_law_agency_okatoid\' равно DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'UNIQ\' в таблице \'exp_law_agency_okatoid_for_bi\' равно DBNul" +
+                                "l.", e);
                     }
                 }
                 set {
-                    this[this.tableexp_law_agency_okatoid.UNIQColumn] = value;
+                    this[this.tableexp_law_agency_okatoid_for_bi.UNIQColumn] = value;
                 }
             }
             
@@ -4313,10 +4329,10 @@ namespace DatabaseToolSuite.Repositories {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public long OKTMO {
                 get {
-                    return ((long)(this[this.tableexp_law_agency_okatoid.OKTMOColumn]));
+                    return ((long)(this[this.tableexp_law_agency_okatoid_for_bi.OKTMOColumn]));
                 }
                 set {
-                    this[this.tableexp_law_agency_okatoid.OKTMOColumn] = value;
+                    this[this.tableexp_law_agency_okatoid_for_bi.OKTMOColumn] = value;
                 }
             }
             
@@ -4324,10 +4340,10 @@ namespace DatabaseToolSuite.Repositories {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public long VED_ID {
                 get {
-                    return ((long)(this[this.tableexp_law_agency_okatoid.VED_IDColumn]));
+                    return ((long)(this[this.tableexp_law_agency_okatoid_for_bi.VED_IDColumn]));
                 }
                 set {
-                    this[this.tableexp_law_agency_okatoid.VED_IDColumn] = value;
+                    this[this.tableexp_law_agency_okatoid_for_bi.VED_IDColumn] = value;
                 }
             }
             
@@ -4335,10 +4351,10 @@ namespace DatabaseToolSuite.Repositories {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public long VERSION {
                 get {
-                    return ((long)(this[this.tableexp_law_agency_okatoid.VERSIONColumn]));
+                    return ((long)(this[this.tableexp_law_agency_okatoid_for_bi.VERSIONColumn]));
                 }
                 set {
-                    this[this.tableexp_law_agency_okatoid.VERSIONColumn] = value;
+                    this[this.tableexp_law_agency_okatoid_for_bi.VERSIONColumn] = value;
                 }
             }
             
@@ -4346,10 +4362,10 @@ namespace DatabaseToolSuite.Repositories {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public long ORD {
                 get {
-                    return ((long)(this[this.tableexp_law_agency_okatoid.ORDColumn]));
+                    return ((long)(this[this.tableexp_law_agency_okatoid_for_bi.ORDColumn]));
                 }
                 set {
-                    this[this.tableexp_law_agency_okatoid.ORDColumn] = value;
+                    this[this.tableexp_law_agency_okatoid_for_bi.ORDColumn] = value;
                 }
             }
             
@@ -4357,10 +4373,10 @@ namespace DatabaseToolSuite.Repositories {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public long ID {
                 get {
-                    return ((long)(this[this.tableexp_law_agency_okatoid.IDColumn]));
+                    return ((long)(this[this.tableexp_law_agency_okatoid_for_bi.IDColumn]));
                 }
                 set {
-                    this[this.tableexp_law_agency_okatoid.IDColumn] = value;
+                    this[this.tableexp_law_agency_okatoid_for_bi.IDColumn] = value;
                 }
             }
             
@@ -4369,15 +4385,15 @@ namespace DatabaseToolSuite.Repositories {
             public long PARENT_ID {
                 get {
                     try {
-                        return ((long)(this[this.tableexp_law_agency_okatoid.PARENT_IDColumn]));
+                        return ((long)(this[this.tableexp_law_agency_okatoid_for_bi.PARENT_IDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'PARENT_ID\' в таблице \'exp_law_agency_okatoid\' равно DBNull." +
-                                "", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'PARENT_ID\' в таблице \'exp_law_agency_okatoid_for_bi\' равно " +
+                                "DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableexp_law_agency_okatoid.PARENT_IDColumn] = value;
+                    this[this.tableexp_law_agency_okatoid_for_bi.PARENT_IDColumn] = value;
                 }
             }
             
@@ -4385,10 +4401,10 @@ namespace DatabaseToolSuite.Repositories {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public System.DateTime INDATE {
                 get {
-                    return ((global::System.DateTime)(this[this.tableexp_law_agency_okatoid.INDATEColumn]));
+                    return ((global::System.DateTime)(this[this.tableexp_law_agency_okatoid_for_bi.INDATEColumn]));
                 }
                 set {
-                    this[this.tableexp_law_agency_okatoid.INDATEColumn] = value;
+                    this[this.tableexp_law_agency_okatoid_for_bi.INDATEColumn] = value;
                 }
             }
             
@@ -4396,10 +4412,10 @@ namespace DatabaseToolSuite.Repositories {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public System.DateTime OUTDATE {
                 get {
-                    return ((global::System.DateTime)(this[this.tableexp_law_agency_okatoid.OUTDATEColumn]));
+                    return ((global::System.DateTime)(this[this.tableexp_law_agency_okatoid_for_bi.OUTDATEColumn]));
                 }
                 set {
-                    this[this.tableexp_law_agency_okatoid.OUTDATEColumn] = value;
+                    this[this.tableexp_law_agency_okatoid_for_bi.OUTDATEColumn] = value;
                 }
             }
             
@@ -4408,15 +4424,15 @@ namespace DatabaseToolSuite.Repositories {
             public long OKTMO_LOC_ID {
                 get {
                     try {
-                        return ((long)(this[this.tableexp_law_agency_okatoid.OKTMO_LOC_IDColumn]));
+                        return ((long)(this[this.tableexp_law_agency_okatoid_for_bi.OKTMO_LOC_IDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'OKTMO_LOC_ID\' в таблице \'exp_law_agency_okatoid\' равно DBNu" +
-                                "ll.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'OKTMO_LOC_ID\' в таблице \'exp_law_agency_okatoid_for_bi\' рав" +
+                                "но DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableexp_law_agency_okatoid.OKTMO_LOC_IDColumn] = value;
+                    this[this.tableexp_law_agency_okatoid_for_bi.OKTMO_LOC_IDColumn] = value;
                 }
             }
             
@@ -4425,15 +4441,15 @@ namespace DatabaseToolSuite.Repositories {
             public long LAW_AGENCY_TYPE {
                 get {
                     try {
-                        return ((long)(this[this.tableexp_law_agency_okatoid.LAW_AGENCY_TYPEColumn]));
+                        return ((long)(this[this.tableexp_law_agency_okatoid_for_bi.LAW_AGENCY_TYPEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'LAW_AGENCY_TYPE\' в таблице \'exp_law_agency_okatoid\' равно D" +
-                                "BNull.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'LAW_AGENCY_TYPE\' в таблице \'exp_law_agency_okatoid_for_bi\' " +
+                                "равно DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableexp_law_agency_okatoid.LAW_AGENCY_TYPEColumn] = value;
+                    this[this.tableexp_law_agency_okatoid_for_bi.LAW_AGENCY_TYPEColumn] = value;
                 }
             }
             
@@ -4442,15 +4458,32 @@ namespace DatabaseToolSuite.Repositories {
             public long SPECIAL_TERRITORIAL_CODE {
                 get {
                     try {
-                        return ((long)(this[this.tableexp_law_agency_okatoid.SPECIAL_TERRITORIAL_CODEColumn]));
+                        return ((long)(this[this.tableexp_law_agency_okatoid_for_bi.SPECIAL_TERRITORIAL_CODEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'SPECIAL_TERRITORIAL_CODE\' в таблице \'exp_law_agency_okatoid" +
-                                "\' равно DBNull.", e);
+                                "_for_bi\' равно DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableexp_law_agency_okatoid.SPECIAL_TERRITORIAL_CODEColumn] = value;
+                    this[this.tableexp_law_agency_okatoid_for_bi.SPECIAL_TERRITORIAL_CODEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string ADDRESS {
+                get {
+                    try {
+                        return ((string)(this[this.tableexp_law_agency_okatoid_for_bi.ADDRESSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'ADDRESS\' в таблице \'exp_law_agency_okatoid_for_bi\' равно DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableexp_law_agency_okatoid_for_bi.ADDRESSColumn] = value;
                 }
             }
             
@@ -4523,61 +4556,73 @@ namespace DatabaseToolSuite.Repositories {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsUNIQNull() {
-                return this.IsNull(this.tableexp_law_agency_okatoid.UNIQColumn);
+                return this.IsNull(this.tableexp_law_agency_okatoid_for_bi.UNIQColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetUNIQNull() {
-                this[this.tableexp_law_agency_okatoid.UNIQColumn] = global::System.Convert.DBNull;
+                this[this.tableexp_law_agency_okatoid_for_bi.UNIQColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsPARENT_IDNull() {
-                return this.IsNull(this.tableexp_law_agency_okatoid.PARENT_IDColumn);
+                return this.IsNull(this.tableexp_law_agency_okatoid_for_bi.PARENT_IDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetPARENT_IDNull() {
-                this[this.tableexp_law_agency_okatoid.PARENT_IDColumn] = global::System.Convert.DBNull;
+                this[this.tableexp_law_agency_okatoid_for_bi.PARENT_IDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsOKTMO_LOC_IDNull() {
-                return this.IsNull(this.tableexp_law_agency_okatoid.OKTMO_LOC_IDColumn);
+                return this.IsNull(this.tableexp_law_agency_okatoid_for_bi.OKTMO_LOC_IDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetOKTMO_LOC_IDNull() {
-                this[this.tableexp_law_agency_okatoid.OKTMO_LOC_IDColumn] = global::System.Convert.DBNull;
+                this[this.tableexp_law_agency_okatoid_for_bi.OKTMO_LOC_IDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsLAW_AGENCY_TYPENull() {
-                return this.IsNull(this.tableexp_law_agency_okatoid.LAW_AGENCY_TYPEColumn);
+                return this.IsNull(this.tableexp_law_agency_okatoid_for_bi.LAW_AGENCY_TYPEColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetLAW_AGENCY_TYPENull() {
-                this[this.tableexp_law_agency_okatoid.LAW_AGENCY_TYPEColumn] = global::System.Convert.DBNull;
+                this[this.tableexp_law_agency_okatoid_for_bi.LAW_AGENCY_TYPEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsSPECIAL_TERRITORIAL_CODENull() {
-                return this.IsNull(this.tableexp_law_agency_okatoid.SPECIAL_TERRITORIAL_CODEColumn);
+                return this.IsNull(this.tableexp_law_agency_okatoid_for_bi.SPECIAL_TERRITORIAL_CODEColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetSPECIAL_TERRITORIAL_CODENull() {
-                this[this.tableexp_law_agency_okatoid.SPECIAL_TERRITORIAL_CODEColumn] = global::System.Convert.DBNull;
+                this[this.tableexp_law_agency_okatoid_for_bi.SPECIAL_TERRITORIAL_CODEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsADDRESSNull() {
+                return this.IsNull(this.tableexp_law_agency_okatoid_for_bi.ADDRESSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetADDRESSNull() {
+                this[this.tableexp_law_agency_okatoid_for_bi.ADDRESSColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4680,12 +4725,12 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoidRow[] Getexp_law_agency_okatoidRows() {
+            public exp_law_agency_okatoid_for_biRow[] Getexp_law_agency_okatoidRows() {
                 if ((this.Table.ChildRelations["exp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE"] == null)) {
-                    return new exp_law_agency_okatoidRow[0];
+                    return new exp_law_agency_okatoid_for_biRow[0];
                 }
                 else {
-                    return ((exp_law_agency_okatoidRow[])(base.GetChildRows(this.Table.ChildRelations["exp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE"])));
+                    return ((exp_law_agency_okatoid_for_biRow[])(base.GetChildRows(this.Table.ChildRelations["exp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE"])));
                 }
             }
         }
@@ -4907,9 +4952,9 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoidRow exp_law_agency_okatoidRow {
+            public exp_law_agency_okatoid_for_biRow exp_law_agency_okatoidRow {
                 get {
-                    return ((exp_law_agency_okatoidRow)(this.GetParentRow(this.Table.ParentRelations["EXP_LAW_AGENCY_URP_exp_law_agency_okatoid"])));
+                    return ((exp_law_agency_okatoid_for_biRow)(this.GetParentRow(this.Table.ParentRelations["EXP_LAW_AGENCY_URP_exp_law_agency_okatoid"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["EXP_LAW_AGENCY_URP_exp_law_agency_okatoid"]);
@@ -4988,12 +5033,12 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoidRow[] Getexp_law_agency_okatoidRows() {
+            public exp_law_agency_okatoid_for_biRow[] Getexp_law_agency_okatoidRows() {
                 if ((this.Table.ChildRelations["exp_law_agency_okatoid_EXP_LAW_AGENCY_URP"] == null)) {
-                    return new exp_law_agency_okatoidRow[0];
+                    return new exp_law_agency_okatoid_for_biRow[0];
                 }
                 else {
-                    return ((exp_law_agency_okatoidRow[])(base.GetChildRows(this.Table.ChildRelations["exp_law_agency_okatoid_EXP_LAW_AGENCY_URP"])));
+                    return ((exp_law_agency_okatoid_for_biRow[])(base.GetChildRows(this.Table.ChildRelations["exp_law_agency_okatoid_EXP_LAW_AGENCY_URP"])));
                 }
             }
         }
@@ -5187,12 +5232,12 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoidRow[] Getexp_law_agency_okatoidRows() {
+            public exp_law_agency_okatoid_for_biRow[] Getexp_law_agency_okatoidRows() {
                 if ((this.Table.ChildRelations["exp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES"] == null)) {
-                    return new exp_law_agency_okatoidRow[0];
+                    return new exp_law_agency_okatoid_for_biRow[0];
                 }
                 else {
-                    return ((exp_law_agency_okatoidRow[])(base.GetChildRows(this.Table.ChildRelations["exp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES"])));
+                    return ((exp_law_agency_okatoid_for_biRow[])(base.GetChildRows(this.Table.ChildRelations["exp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES"])));
                 }
             }
         }
@@ -5327,23 +5372,23 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoidRow[] Getexp_law_agency_okatoidRowsByFK_exp_law_agency_okatoid_t62927341() {
+            public exp_law_agency_okatoid_for_biRow[] Getexp_law_agency_okatoidRowsByFK_exp_law_agency_okatoid_t62927341() {
                 if ((this.Table.ChildRelations["FK_exp_law_agency_okatoid_t62927341"] == null)) {
-                    return new exp_law_agency_okatoidRow[0];
+                    return new exp_law_agency_okatoid_for_biRow[0];
                 }
                 else {
-                    return ((exp_law_agency_okatoidRow[])(base.GetChildRows(this.Table.ChildRelations["FK_exp_law_agency_okatoid_t62927341"])));
+                    return ((exp_law_agency_okatoid_for_biRow[])(base.GetChildRows(this.Table.ChildRelations["FK_exp_law_agency_okatoid_t62927341"])));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoidRow[] Getexp_law_agency_okatoidRowsByFK_exp_law_agency_okatoid_t6292734() {
+            public exp_law_agency_okatoid_for_biRow[] Getexp_law_agency_okatoidRowsByFK_exp_law_agency_okatoid_t6292734() {
                 if ((this.Table.ChildRelations["FK_exp_law_agency_okatoid_t6292734"] == null)) {
-                    return new exp_law_agency_okatoidRow[0];
+                    return new exp_law_agency_okatoid_for_biRow[0];
                 }
                 else {
-                    return ((exp_law_agency_okatoidRow[])(base.GetChildRows(this.Table.ChildRelations["FK_exp_law_agency_okatoid_t6292734"])));
+                    return ((exp_law_agency_okatoid_for_biRow[])(base.GetChildRows(this.Table.ChildRelations["FK_exp_law_agency_okatoid_t6292734"])));
                 }
             }
         }
@@ -5424,9 +5469,9 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoidRow exp_law_agency_okatoidRowByexp_law_agency_okatoid_NADZOR_ORGAN {
+            public exp_law_agency_okatoid_for_biRow exp_law_agency_okatoidRowByexp_law_agency_okatoid_NADZOR_ORGAN {
                 get {
-                    return ((exp_law_agency_okatoidRow)(this.GetParentRow(this.Table.ParentRelations["exp_law_agency_okatoid_NADZOR_ORGAN"])));
+                    return ((exp_law_agency_okatoid_for_biRow)(this.GetParentRow(this.Table.ParentRelations["exp_law_agency_okatoid_NADZOR_ORGAN"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["exp_law_agency_okatoid_NADZOR_ORGAN"]);
@@ -5435,9 +5480,9 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoidRow exp_law_agency_okatoidRowByexp_law_agency_okatoid_NADZOR_ORGAN1 {
+            public exp_law_agency_okatoid_for_biRow exp_law_agency_okatoidRowByexp_law_agency_okatoid_NADZOR_ORGAN1 {
                 get {
-                    return ((exp_law_agency_okatoidRow)(this.GetParentRow(this.Table.ParentRelations["exp_law_agency_okatoid_NADZOR_ORGAN1"])));
+                    return ((exp_law_agency_okatoid_for_biRow)(this.GetParentRow(this.Table.ParentRelations["exp_law_agency_okatoid_NADZOR_ORGAN1"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["exp_law_agency_okatoid_NADZOR_ORGAN1"]);
@@ -5495,22 +5540,22 @@ namespace DatabaseToolSuite.Repositories {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class exp_law_agency_okatoidRowChangeEvent : global::System.EventArgs {
+        public class exp_law_agency_okatoid_for_biRowChangeEvent : global::System.EventArgs {
             
-            private exp_law_agency_okatoidRow eventRow;
+            private exp_law_agency_okatoid_for_biRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoidRowChangeEvent(exp_law_agency_okatoidRow row, global::System.Data.DataRowAction action) {
+            public exp_law_agency_okatoid_for_biRowChangeEvent(exp_law_agency_okatoid_for_biRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoidRow Row {
+            public exp_law_agency_okatoid_for_biRow Row {
                 get {
                     return this.eventRow;
                 }

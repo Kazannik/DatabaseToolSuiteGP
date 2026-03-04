@@ -153,9 +153,9 @@ namespace DatabaseToolSuite.Dialogs
 			this.SHORT_NAME_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.SHORT_NAME_textBox.Location = new System.Drawing.Point(228, 67);
-			this.SHORT_NAME_textBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.SHORT_NAME_textBox.Margin = new System.Windows.Forms.Padding(2);
 			this.SHORT_NAME_textBox.Name = "SHORT_NAME_textBox";
-			this.SHORT_NAME_textBox.Size = new System.Drawing.Size(496, 27);
+			this.SHORT_NAME_textBox.Size = new System.Drawing.Size(508, 27);
 			this.SHORT_NAME_textBox.TabIndex = 4;
 			this.SHORT_NAME_textBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
 			// 
@@ -163,7 +163,7 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			this.DOESNT_CREATE_CARD_checkBox.AutoSize = true;
 			this.DOESNT_CREATE_CARD_checkBox.Location = new System.Drawing.Point(14, 160);
-			this.DOESNT_CREATE_CARD_checkBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.DOESNT_CREATE_CARD_checkBox.Margin = new System.Windows.Forms.Padding(2);
 			this.DOESNT_CREATE_CARD_checkBox.Name = "DOESNT_CREATE_CARD_checkBox";
 			this.DOESNT_CREATE_CARD_checkBox.Size = new System.Drawing.Size(217, 24);
 			this.DOESNT_CREATE_CARD_checkBox.TabIndex = 5;
@@ -175,7 +175,7 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			this.DOESNT_SIGN_REPORT_checkBox.AutoSize = true;
 			this.DOESNT_SIGN_REPORT_checkBox.Location = new System.Drawing.Point(14, 188);
-			this.DOESNT_SIGN_REPORT_checkBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.DOESNT_SIGN_REPORT_checkBox.Margin = new System.Windows.Forms.Padding(2);
 			this.DOESNT_SIGN_REPORT_checkBox.Name = "DOESNT_SIGN_REPORT_checkBox";
 			this.DOESNT_SIGN_REPORT_checkBox.Size = new System.Drawing.Size(227, 24);
 			this.DOESNT_SIGN_REPORT_checkBox.TabIndex = 6;
@@ -199,20 +199,20 @@ namespace DatabaseToolSuite.Dialogs
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.AGENCY_RECEIVING_REPORT_textBox.Location = new System.Drawing.Point(195, 251);
-			this.AGENCY_RECEIVING_REPORT_textBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.AGENCY_RECEIVING_REPORT_textBox.Margin = new System.Windows.Forms.Padding(2);
 			this.AGENCY_RECEIVING_REPORT_textBox.Multiline = true;
 			this.AGENCY_RECEIVING_REPORT_textBox.Name = "AGENCY_RECEIVING_REPORT_textBox";
 			this.AGENCY_RECEIVING_REPORT_textBox.ReadOnly = true;
 			this.AGENCY_RECEIVING_REPORT_textBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.AGENCY_RECEIVING_REPORT_textBox.Size = new System.Drawing.Size(288, 36);
+			this.AGENCY_RECEIVING_REPORT_textBox.Size = new System.Drawing.Size(300, 36);
 			this.AGENCY_RECEIVING_REPORT_textBox.TabIndex = 8;
 			this.AGENCY_RECEIVING_REPORT_textBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
 			// 
 			// AGENCY_RECEIVING_REPORT_button
 			// 
 			this.AGENCY_RECEIVING_REPORT_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.AGENCY_RECEIVING_REPORT_button.Location = new System.Drawing.Point(502, 251);
-			this.AGENCY_RECEIVING_REPORT_button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.AGENCY_RECEIVING_REPORT_button.Location = new System.Drawing.Point(514, 251);
+			this.AGENCY_RECEIVING_REPORT_button.Margin = new System.Windows.Forms.Padding(2);
 			this.AGENCY_RECEIVING_REPORT_button.Name = "AGENCY_RECEIVING_REPORT_button";
 			this.AGENCY_RECEIVING_REPORT_button.Size = new System.Drawing.Size(108, 27);
 			this.AGENCY_RECEIVING_REPORT_button.TabIndex = 9;
@@ -244,11 +244,11 @@ namespace DatabaseToolSuite.Dialogs
 			this.AGENCY_TYPE_ComboBox.IntegralHeight = false;
 			this.AGENCY_TYPE_ComboBox.ItemHeight = 25;
 			this.AGENCY_TYPE_ComboBox.Location = new System.Drawing.Point(195, 295);
-			this.AGENCY_TYPE_ComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.AGENCY_TYPE_ComboBox.Margin = new System.Windows.Forms.Padding(2);
 			this.AGENCY_TYPE_ComboBox.MaxDropDownItems = 20;
 			this.AGENCY_TYPE_ComboBox.Name = "AGENCY_TYPE_ComboBox";
 			this.AGENCY_TYPE_ComboBox.SelectedItem = null;
-			this.AGENCY_TYPE_ComboBox.Size = new System.Drawing.Size(529, 31);
+			this.AGENCY_TYPE_ComboBox.Size = new System.Drawing.Size(541, 31);
 			this.AGENCY_TYPE_ComboBox.TabIndex = 11;
 			this.AGENCY_TYPE_ComboBox.SelectedIndexChanged += new System.EventHandler(this.Controls_ValueChanged);
 			// 
@@ -257,9 +257,9 @@ namespace DatabaseToolSuite.Dialogs
 			this.VED_CODE_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.VED_CODE_textBox.Location = new System.Drawing.Point(195, 332);
-			this.VED_CODE_textBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.VED_CODE_textBox.Margin = new System.Windows.Forms.Padding(2);
 			this.VED_CODE_textBox.Name = "VED_CODE_textBox";
-			this.VED_CODE_textBox.Size = new System.Drawing.Size(529, 27);
+			this.VED_CODE_textBox.Size = new System.Drawing.Size(541, 27);
 			this.VED_CODE_textBox.TabIndex = 12;
 			this.VED_CODE_textBox.TextChanged += new System.EventHandler(this.Controls_ValueChanged);
 			// 
@@ -298,11 +298,11 @@ namespace DatabaseToolSuite.Dialogs
 			this.OKTMO_LOC_ID_ComboBox.IntegralHeight = false;
 			this.OKTMO_LOC_ID_ComboBox.ItemHeight = 25;
 			this.OKTMO_LOC_ID_ComboBox.Location = new System.Drawing.Point(327, 364);
-			this.OKTMO_LOC_ID_ComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.OKTMO_LOC_ID_ComboBox.Margin = new System.Windows.Forms.Padding(2);
 			this.OKTMO_LOC_ID_ComboBox.MaxDropDownItems = 20;
 			this.OKTMO_LOC_ID_ComboBox.Name = "OKTMO_LOC_ID_ComboBox";
 			this.OKTMO_LOC_ID_ComboBox.SelectedItem = null;
-			this.OKTMO_LOC_ID_ComboBox.Size = new System.Drawing.Size(398, 31);
+			this.OKTMO_LOC_ID_ComboBox.Size = new System.Drawing.Size(410, 31);
 			this.OKTMO_LOC_ID_ComboBox.TabIndex = 15;
 			this.OKTMO_LOC_ID_ComboBox.SelectedIndexChanged += new System.EventHandler(this.Controls_ValueChanged);
 			// 
@@ -310,7 +310,7 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			this.DOESNT_CONSOLIDATE_CHILD_checkBox.AutoSize = true;
 			this.DOESNT_CONSOLIDATE_CHILD_checkBox.Location = new System.Drawing.Point(14, 216);
-			this.DOESNT_CONSOLIDATE_CHILD_checkBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.DOESNT_CONSOLIDATE_CHILD_checkBox.Margin = new System.Windows.Forms.Padding(2);
 			this.DOESNT_CONSOLIDATE_CHILD_checkBox.Name = "DOESNT_CONSOLIDATE_CHILD_checkBox";
 			this.DOESNT_CONSOLIDATE_CHILD_checkBox.Size = new System.Drawing.Size(274, 24);
 			this.DOESNT_CONSOLIDATE_CHILD_checkBox.TabIndex = 16;
@@ -331,11 +331,11 @@ namespace DatabaseToolSuite.Dialogs
 			this.SPECIAL_TERRITORIAL_CODE_ComboBox.IntegralHeight = false;
 			this.SPECIAL_TERRITORIAL_CODE_ComboBox.ItemHeight = 25;
 			this.SPECIAL_TERRITORIAL_CODE_ComboBox.Location = new System.Drawing.Point(195, 127);
-			this.SPECIAL_TERRITORIAL_CODE_ComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.SPECIAL_TERRITORIAL_CODE_ComboBox.Margin = new System.Windows.Forms.Padding(2);
 			this.SPECIAL_TERRITORIAL_CODE_ComboBox.MaxDropDownItems = 20;
 			this.SPECIAL_TERRITORIAL_CODE_ComboBox.Name = "SPECIAL_TERRITORIAL_CODE_ComboBox";
 			this.SPECIAL_TERRITORIAL_CODE_ComboBox.SelectedItem = null;
-			this.SPECIAL_TERRITORIAL_CODE_ComboBox.Size = new System.Drawing.Size(527, 31);
+			this.SPECIAL_TERRITORIAL_CODE_ComboBox.Size = new System.Drawing.Size(539, 31);
 			this.SPECIAL_TERRITORIAL_CODE_ComboBox.TabIndex = 17;
 			this.SPECIAL_TERRITORIAL_CODE_ComboBox.SelectedIndexChanged += new System.EventHandler(this.Controls_ValueChanged);
 			// 
@@ -352,8 +352,8 @@ namespace DatabaseToolSuite.Dialogs
 			// AGENCY_RECEIVING_REPORT_Clean_button
 			// 
 			this.AGENCY_RECEIVING_REPORT_Clean_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.AGENCY_RECEIVING_REPORT_Clean_button.Location = new System.Drawing.Point(616, 251);
-			this.AGENCY_RECEIVING_REPORT_Clean_button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.AGENCY_RECEIVING_REPORT_Clean_button.Location = new System.Drawing.Point(628, 251);
+			this.AGENCY_RECEIVING_REPORT_Clean_button.Margin = new System.Windows.Forms.Padding(2);
 			this.AGENCY_RECEIVING_REPORT_Clean_button.Name = "AGENCY_RECEIVING_REPORT_Clean_button";
 			this.AGENCY_RECEIVING_REPORT_Clean_button.Size = new System.Drawing.Size(108, 27);
 			this.AGENCY_RECEIVING_REPORT_Clean_button.TabIndex = 19;
@@ -364,7 +364,7 @@ namespace DatabaseToolSuite.Dialogs
 			// UrpDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
-			this.ClientSize = new System.Drawing.Size(732, 474);
+			this.ClientSize = new System.Drawing.Size(744, 474);
 			this.Controls.Add(this.AGENCY_RECEIVING_REPORT_Clean_button);
 			this.Controls.Add(this.SPECIAL_TERRITORIAL_CODE_label);
 			this.Controls.Add(this.SPECIAL_TERRITORIAL_CODE_ComboBox);
@@ -383,7 +383,7 @@ namespace DatabaseToolSuite.Dialogs
 			this.Controls.Add(this.SHORT_NAME_textBox);
 			this.Controls.Add(this.SHORT_NAME_label);
 			this.DialogCaptionImage = global::DatabaseToolSuite.Properties.Resources.emblem32;
-			this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+			this.Margin = new System.Windows.Forms.Padding(3);
 			this.MinimumSize = new System.Drawing.Size(486, 521);
 			this.Name = "UrpDialog";
 			this.Controls.SetChildIndex(this.SHORT_NAME_label, 0);

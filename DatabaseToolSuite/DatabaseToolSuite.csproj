@@ -14,7 +14,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>publish\2.x.x.x\2.0.0.0\</PublishUrl>
+    <PublishUrl>publish\2.x.x.x\2.0.0.2\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -25,8 +25,8 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <TargetCulture>ru</TargetCulture>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>2.0.0.0</ApplicationVersion>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>2.0.0.2</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -168,6 +168,14 @@
     <Compile Include="Repositories\1C\SubdivisionCollection.cs" />
     <Compile Include="Repositories\Dto\LawAgencyTypesDto.cs" />
     <Compile Include="Repositories\Dto\SpecialTerritorialDto.cs" />
+    <Compile Include="Repositories\GaspsBiDatabase.cs">
+      <DependentUpon>GaspsBiDatabase.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\GaspsBiDatabase.Designer.cs">
+      <DependentUpon>GaspsBiDatabase.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Repositories\GaspsDatabase.cs">
       <DependentUpon>GaspsDatabase.xsd</DependentUpon>
     </Compile>
@@ -186,6 +194,7 @@
     </Compile>
     <Compile Include="Services\Courts\CourtEntity.cs" />
     <Compile Include="Services\Courts\CourtsCollection.cs" />
+    <Compile Include="Services\RtkBi.cs" />
     <Compile Include="Services\Rtk.cs" />
     <Compile Include="Utils\Converters.cs" />
     <Compile Include="Utils\Database.cs" />
@@ -361,6 +370,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Repositories\GaspsBiDatabase.xsc">
+      <DependentUpon>GaspsBiDatabase.xsd</DependentUpon>
+    </None>
+    <None Include="Repositories\GaspsBiDatabase.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GaspsBiDatabase.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Repositories\GaspsBiDatabase.xss">
+      <DependentUpon>GaspsBiDatabase.xsd</DependentUpon>
+    </None>
     <None Include="Repositories\MainDatabase.xsc">
       <DependentUpon>MainDatabase.xsd</DependentUpon>
     </None>

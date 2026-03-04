@@ -9,7 +9,7 @@ namespace DatabaseToolSuite.Utils
 		private static readonly Regex quotesRegex = new Regex("\u0022[^\u0022]+\u0022", RegexOptions.IgnoreCase & RegexOptions.Compiled);
 
 		/// <summary>
-		/// Добавление к коду ОКТМО нулей в конце строки (до 8 знаков).
+		/// Добавление к коду ОКТМО нулей в конце строки (до 8 знаков) (Требуется для ЕРВК).
 		/// </summary>
 		/// <param name="oktmo">Код ОКТМО</param>
 		/// <returns></returns>

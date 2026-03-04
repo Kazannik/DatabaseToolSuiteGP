@@ -185,7 +185,7 @@ namespace DatabaseToolSuite.Dialogs
 			// selectCodeButton
 			// 
 			this.selectCodeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.selectCodeButton.Location = new System.Drawing.Point(490, 172);
+			this.selectCodeButton.Location = new System.Drawing.Point(480, 172);
 			this.selectCodeButton.Margin = new System.Windows.Forms.Padding(9);
 			this.selectCodeButton.Name = "selectCodeButton";
 			this.selectCodeButton.Size = new System.Drawing.Size(90, 28);
@@ -197,7 +197,7 @@ namespace DatabaseToolSuite.Dialogs
 			// selectSkippedCodeButton
 			// 
 			this.selectSkippedCodeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.selectSkippedCodeButton.Location = new System.Drawing.Point(590, 172);
+			this.selectSkippedCodeButton.Location = new System.Drawing.Point(570, 172);
 			this.selectSkippedCodeButton.Margin = new System.Windows.Forms.Padding(9);
 			this.selectSkippedCodeButton.Name = "selectSkippedCodeButton";
 			this.selectSkippedCodeButton.Size = new System.Drawing.Size(90, 28);
@@ -205,12 +205,11 @@ namespace DatabaseToolSuite.Dialogs
 			this.selectSkippedCodeButton.Text = "Иные...";
 			this.selectSkippedCodeButton.UseVisualStyleBackColor = true;
 			this.selectSkippedCodeButton.Click += new System.EventHandler(this.SelectSkippedCodeButton_Click);
-
 			// 
 			// cleanCodeButton
 			// 
-			this.cleanCodeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.cleanCodeButton.Location = new System.Drawing.Point(690, 172);
+			this.cleanCodeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cleanCodeButton.Location = new System.Drawing.Point(672, 172);
 			this.cleanCodeButton.Margin = new System.Windows.Forms.Padding(9);
 			this.cleanCodeButton.Name = "cleanCodeButton";
 			this.cleanCodeButton.Size = new System.Drawing.Size(90, 28);
