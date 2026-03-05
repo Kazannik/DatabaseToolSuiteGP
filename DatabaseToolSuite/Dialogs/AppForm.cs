@@ -547,7 +547,7 @@ namespace DatabaseToolSuite.Dialogs
 			};
 			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{
-				RtkBi.ConvertDataBase();
+				RtkBi.ConvertBiDataBase();
 				RtkBi.ExportToXml(dialog.FileName);
 				MessageBox.Show(dialog.Title + " успешно выполнен!", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}

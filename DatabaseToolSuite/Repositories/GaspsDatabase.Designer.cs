@@ -4082,7 +4082,6 @@ namespace DatabaseToolSuite.Repositories {
                 this.columnLAW_ENFORCEMENT_AGENCY.AllowDBNull = false;
                 this.columnSUPERVISING_PROSECUTION_AGENCY.AllowDBNull = false;
                 this.columnCREATION_DATE.AllowDBNull = false;
-                this.columnCLOSED_DATE.Caption = "Поднадзорность";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

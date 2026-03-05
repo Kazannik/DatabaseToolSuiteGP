@@ -23,15 +23,15 @@ namespace DatabaseToolSuite.Services
 			DataSet.WriteXml(xmlFileName, XmlWriteMode.WriteSchema);
 		}
 
-		public static void ConvertDataBase()
+		public static void ConvertBiDataBase()
 		{
 			DataSet.Clear();
 
-			EntityCollection oktmo = ConvertOktmo();
-			_ = ConvertAuthority();
-			_ = ConvertLawAgencyTypeAllowbleHierarchy();
-			_ = ConvertLawAgencyTypes();
-			_ = ConvertSpecialTerritorialCode();
+			EntityCollection oktmo = ConvertBiOktmo();
+			_ = ConvertBiAuthority();
+			_ = ConvertBiLawAgencyTypeAllowbleHierarchy();
+			_ = ConvertBiLawAgencyTypes();
+			_ = ConvertBiSpecialTerritorialCode();
 
 			IEnumerable<MainDataSet.ViewUrpOrganization> gasps = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.ExportGaspsBiData();
 
@@ -45,23 +45,26 @@ namespace DatabaseToolSuite.Services
 					address = MasterDataSystem.DataSet.fgis_esnsi.Get(item.Version).sv_0006;
 				}
 
-				long oktmoId = oktmo[item.OkatoCode].Id;
-				CreateLawAgency(name: item.Name, uniq: item.Code, oktmo: oktmoId, ved_id: item.AuthorityId, version: item.Version,
-					ord: ord, id: item.Key, parent_id: item.OwnerId, indate: item.Begin, outdate: item.End,
-					oktmo_loc_id: item.OktmoLocId, law_agency_type: item.LawAgencyType,
-					special_territorial_code: item.SpecialTerritorialCode, address: address);
-
-				if (item.IsUrp)
+				if (!string.IsNullOrEmpty(address))
 				{
-					CreateLawAgencyUrp(version: item.Version, shortName: item.ShortName, doesntCreateCard: item.DoesntCreateCard,
-						doesntSingReport: item.DoesntSingReport, doesntConsolidateChild: item.DoesntConsolidateChild,
-						agencyReceivingReport: item.AgencyReceivingReport, ord: item.Ord, vedCode: item.VedCode, id: item.Id,
-						oktmoLocId: item.OktmoLocId);
+					long oktmoId = oktmo[item.OkatoCode].Id;
+					CreateBiLawAgency(name: item.Name, uniq: item.Code, oktmo: oktmoId, ved_id: item.AuthorityId, version: item.Version,
+						ord: ord, id: item.Key, parent_id: item.OwnerId, indate: item.Begin, outdate: item.End,
+						oktmo_loc_id: item.OktmoLocId, law_agency_type: item.LawAgencyType,
+						special_territorial_code: item.SpecialTerritorialCode, address: address);
+
+					if (item.IsUrp)
+					{
+						CreateBiLawAgencyUrp(version: item.Version, shortName: item.ShortName, doesntCreateCard: item.DoesntCreateCard,
+							doesntSingReport: item.DoesntSingReport, doesntConsolidateChild: item.DoesntConsolidateChild,
+							agencyReceivingReport: item.AgencyReceivingReport, ord: item.Ord, vedCode: item.VedCode, id: item.Id,
+							oktmoLocId: item.OktmoLocId);
+					}
 				}
 			}
 		}
 
-		public static EntityCollection ConvertOktmo()
+		public static EntityCollection ConvertBiOktmo()
 		{
 			EntityCollection result = new EntityCollection();
 			foreach (MainDataSet.okatoRow row in MasterDataSystem.DataSet.okato.Rows)
@@ -86,12 +89,12 @@ namespace DatabaseToolSuite.Services
 
 			foreach (EntityCollection.IEntity entity in result)
 			{
-				CreateOktmo(entity);
+				CreateBiOktmo(entity);
 			}
 			return result;
 		}
 
-		public static EntityCollection ConvertAuthority()
+		public static EntityCollection ConvertBiAuthority()
 		{
 			EntityCollection result = new EntityCollection();
 
@@ -109,12 +112,12 @@ namespace DatabaseToolSuite.Services
 
 			foreach (EntityCollection.IEntity entity in result)
 			{
-				CreateVed(entity);
+				CreateBiVed(entity);
 			}
 			return result;
 		}
 
-		public static EntityCollection ConvertLawAgencyTypes()
+		public static EntityCollection ConvertBiLawAgencyTypes()
 		{
 			EntityCollection result = new EntityCollection();
 
@@ -132,12 +135,12 @@ namespace DatabaseToolSuite.Services
 
 			foreach (EntityCollection.IEntity entity in result)
 			{
-				CreateLawAgencyTypes(entity);
+				CreateBiLawAgencyTypes(entity);
 			}
 			return result;
 		}
 
-		public static EntityCollection ConvertSpecialTerritorialCode()
+		public static EntityCollection ConvertBiSpecialTerritorialCode()
 		{
 			EntityCollection result = new EntityCollection();
 
@@ -155,12 +158,12 @@ namespace DatabaseToolSuite.Services
 
 			foreach (EntityCollection.IEntity entity in result)
 			{
-				CreateSpecialTerritorialCode(entity);
+				CreateBiSpecialTerritorialCode(entity);
 			}
 			return result;
 		}
 
-		public static EntityCollection ConvertLawAgencyTypeAllowbleHierarchy()
+		public static EntityCollection ConvertBiLawAgencyTypeAllowbleHierarchy()
 		{
 			EntityCollection result = new EntityCollection();
 
@@ -176,7 +179,7 @@ namespace DatabaseToolSuite.Services
 
 			foreach (EntityCollection.IEntity entity in result)
 			{
-				CreateLawAgencyTypeAllowbleHierarchy(entity);
+				CreateBiLawAgencyTypeAllowbleHierarchy(entity);
 			}
 			return result;
 		}
@@ -404,6 +407,10 @@ namespace DatabaseToolSuite.Services
 				}
 			}
 
+
+
+
+
 			public class EntityComparer : IComparer, IComparer<IEntity>
 			{
 				public int Compare(object x, object y)
@@ -436,7 +443,7 @@ namespace DatabaseToolSuite.Services
 		/// <param name="special_territorial_code">Специализированный территориальный код (таблица: special_territorial_code)</param>
 		/// <param name="address">Адрес приемной</param>
 		/// <returns></returns>
-		private static ExportDataSet.exp_law_agency_okatoid_for_biRow CreateLawAgency(
+		private static ExportDataSet.exp_law_agency_okatoid_for_biRow CreateBiLawAgency(
 			string name,
 			string uniq,
 			long oktmo,
@@ -488,7 +495,7 @@ namespace DatabaseToolSuite.Services
 		/// <param name="id">Ключ</param>
 		/// <param name="oktmoLocId">ОКТМО территории обслуживания (см. t6292734.id) </param>
 		/// <returns></returns>
-		private static ExportDataSet.EXP_LAW_AGENCY_URPRow CreateLawAgencyUrp(
+		private static ExportDataSet.EXP_LAW_AGENCY_URPRow CreateBiLawAgencyUrp(
 			long version,
 			string shortName,
 			bool doesntCreateCard,
@@ -519,12 +526,12 @@ namespace DatabaseToolSuite.Services
 			return newRow;
 		}
 
-		private static ExportDataSet.t6292734Row CreateOktmo(EntityCollection.IEntity entity)
+		private static ExportDataSet.t6292734Row CreateBiOktmo(EntityCollection.IEntity entity)
 		{
-			return CreateOktmo(id: entity.Id, code: entity.Code, name: entity.Name);
+			return CreateBiOktmo(id: entity.Id, code: entity.Code, name: entity.Name);
 		}
 
-		private static ExportDataSet.t6292734Row CreateOktmo(long id, string code, string name)
+		private static ExportDataSet.t6292734Row CreateBiOktmo(long id, string code, string name)
 		{
 			object[] values = new object[3];
 			values[0] = id;   // ID
@@ -536,12 +543,12 @@ namespace DatabaseToolSuite.Services
 			return newRow;
 		}
 
-		private static ExportDataSet.t6301724Row CreateVed(EntityCollection.IEntity entity)
+		private static ExportDataSet.t6301724Row CreateBiVed(EntityCollection.IEntity entity)
 		{
-			return CreateVed(id: entity.Id, code: entity.Code, name: entity.Name);
+			return CreateBiVed(id: entity.Id, code: entity.Code, name: entity.Name);
 		}
 
-		private static ExportDataSet.t6301724Row CreateVed(long id, string code, string name)
+		private static ExportDataSet.t6301724Row CreateBiVed(long id, string code, string name)
 		{
 			object[] values = new object[3];
 			values[0] = id;   // ID
@@ -553,12 +560,12 @@ namespace DatabaseToolSuite.Services
 			return newRow;
 		}
 
-		private static ExportDataSet.EXP_LAW_AGENCY_ALLOWBLE_HIERARCHYRow CreateLawAgencyTypeAllowbleHierarchy(EntityCollection.IEntity entity)
+		private static ExportDataSet.EXP_LAW_AGENCY_ALLOWBLE_HIERARCHYRow CreateBiLawAgencyTypeAllowbleHierarchy(EntityCollection.IEntity entity)
 		{
-			return CreateLawAgencyTypeAllowbleHierarchy(agencyType: entity.Id, allowbleHierarchy: entity.LongArg);
+			return CreateBiLawAgencyTypeAllowbleHierarchy(agencyType: entity.Id, allowbleHierarchy: entity.LongArg);
 		}
 
-		private static ExportDataSet.EXP_LAW_AGENCY_ALLOWBLE_HIERARCHYRow CreateLawAgencyTypeAllowbleHierarchy(long agencyType, long allowbleHierarchy)
+		private static ExportDataSet.EXP_LAW_AGENCY_ALLOWBLE_HIERARCHYRow CreateBiLawAgencyTypeAllowbleHierarchy(long agencyType, long allowbleHierarchy)
 		{
 			object[] values = new object[2];
 			values[0] = agencyType;        // AGENCY_TYPE
@@ -569,12 +576,12 @@ namespace DatabaseToolSuite.Services
 			return newRow;
 		}
 
-		private static ExportDataSet.EXP_LAW_AGENCY_TYPESRow CreateLawAgencyTypes(EntityCollection.IEntity entity)
+		private static ExportDataSet.EXP_LAW_AGENCY_TYPESRow CreateBiLawAgencyTypes(EntityCollection.IEntity entity)
 		{
-			return CreateLawAgencyTypes(id: entity.Id, mandatoryCode: entity.BooleanArg, name: entity.Name);
+			return CreateBiLawAgencyTypes(id: entity.Id, mandatoryCode: entity.BooleanArg, name: entity.Name);
 		}
 
-		private static ExportDataSet.EXP_LAW_AGENCY_TYPESRow CreateLawAgencyTypes(long id, bool mandatoryCode, string name)
+		private static ExportDataSet.EXP_LAW_AGENCY_TYPESRow CreateBiLawAgencyTypes(long id, bool mandatoryCode, string name)
 		{
 			object[] values = new object[3];
 			values[0] = id;            // ID
@@ -586,12 +593,12 @@ namespace DatabaseToolSuite.Services
 			return newRow;
 		}
 
-		private static ExportDataSet.SPECIAL_TERRITORIAL_CODERow CreateSpecialTerritorialCode(EntityCollection.IEntity entity)
+		private static ExportDataSet.SPECIAL_TERRITORIAL_CODERow CreateBiSpecialTerritorialCode(EntityCollection.IEntity entity)
 		{
-			return CreateSpecialTerritorialCode(id: entity.Id, code: entity.Code, name: entity.Name);
+			return CreateBiSpecialTerritorialCode(id: entity.Id, code: entity.Code, name: entity.Name);
 		}
 
-		private static ExportDataSet.SPECIAL_TERRITORIAL_CODERow CreateSpecialTerritorialCode(long id, string code, string name)
+		private static ExportDataSet.SPECIAL_TERRITORIAL_CODERow CreateBiSpecialTerritorialCode(long id, string code, string name)
 		{
 			object[] values = new object[3];
 			values[0] = id;   // ID
