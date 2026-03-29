@@ -16,7 +16,7 @@ namespace DatabaseToolSuite.Services
 	/// </summary>
 	internal static class RtkBi
 	{
-		public static ExportDataSet DataSet => FileSystem.Repository.GaspsBiDataSet; 
+		public static ExportDataSet DataSet => FileSystem.Repository.GaspsBiDataSet;
 
 		public static void ExportToXml(string xmlFileName)
 		{
@@ -39,7 +39,7 @@ namespace DatabaseToolSuite.Services
 			foreach (MainDataSet.ViewUrpOrganization item in gasps)
 			{
 				string address = string.Empty;
-					
+
 				if (MasterDataSystem.DataSet.fgis_esnsi.Exists(item.Version))
 				{
 					address = MasterDataSystem.DataSet.fgis_esnsi.Get(item.Version).sv_0006;
@@ -361,7 +361,7 @@ namespace DatabaseToolSuite.Services
 
 				private object _Current => Current;
 
-				object IEnumerator.Current => _Current; 
+				object IEnumerator.Current => _Current;
 
 				public bool MoveNext()
 				{

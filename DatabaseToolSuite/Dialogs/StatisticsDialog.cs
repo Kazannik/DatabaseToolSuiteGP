@@ -73,12 +73,12 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// listView1
 			// 
-			this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.nameColumnHeader,
-            this.expensesСolumnHeader});
+			this.nameColumnHeader,
+			this.expensesСolumnHeader});
 			this.listView1.GridLines = true;
 			this.listView1.HideSelection = false;
 			this.listView1.Location = new System.Drawing.Point(15, 109);
@@ -102,8 +102,8 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// authorityComboBox1
 			// 
-			this.authorityComboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.authorityComboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.authorityComboBox1.Code = "";
 			this.authorityComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
 			this.authorityComboBox1.DropDownHeight = 504;

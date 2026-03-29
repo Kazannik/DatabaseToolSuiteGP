@@ -16,7 +16,7 @@ namespace DatabaseToolSuite.Services
 	/// </summary>
 	internal static class Rtk
 	{
-		public static ExportDataSet DataSet => FileSystem.Repository.GaspsDataSet; 
+		public static ExportDataSet DataSet => FileSystem.Repository.GaspsDataSet;
 
 		public static void ExportToXml(string xmlFileName)
 		{
@@ -49,7 +49,7 @@ namespace DatabaseToolSuite.Services
 					CreateLawAgencyUrp(version: item.Version, shortName: item.ShortName, doesntCreateCard: item.DoesntCreateCard,
 						doesntSingReport: item.DoesntSingReport, doesntConsolidateChild: item.DoesntConsolidateChild,
 						agencyReceivingReport: item.AgencyReceivingReport, ord: item.Ord, vedCode: item.VedCode, id: item.Id,
-						oktmoLocId: item.OktmoLocId);
+						oktmoLocId: item.OktmoLocId, isGs: item.IsGS);
 				}
 			}
 		}
@@ -351,7 +351,7 @@ namespace DatabaseToolSuite.Services
 
 				private object _Current => Current;
 
-				object IEnumerator.Current => _Current; 
+				object IEnumerator.Current => _Current;
 
 				public bool MoveNext()
 				{
@@ -488,10 +488,11 @@ namespace DatabaseToolSuite.Services
 			long ord,
 			string vedCode,
 			long id,
-			long oktmoLocId
+			long oktmoLocId,
+			bool isGs
 			)
 		{
-			object[] values = new object[10];
+			object[] values = new object[11];
 			values[0] = version;                // VERSION
 			values[1] = shortName;              // SHORT_NAME
 			values[2] = doesntCreateCard;       // DOESNT_CREATE_CARD
@@ -502,6 +503,7 @@ namespace DatabaseToolSuite.Services
 			values[7] = vedCode;                // VED_CODE
 			values[8] = id;                     // ID
 			values[9] = oktmoLocId;             // OKTMO_LOC_ID
+			values[10] = isGs;                  // IS_GS
 
 			ExportDataSet.EXP_LAW_AGENCY_URPRow newRow =
 				(ExportDataSet.EXP_LAW_AGENCY_URPRow)DataSet.EXP_LAW_AGENCY_URP.Rows.Add(values);

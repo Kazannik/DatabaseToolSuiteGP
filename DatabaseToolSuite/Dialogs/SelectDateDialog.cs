@@ -19,7 +19,7 @@ namespace DatabaseToolSuite.Dialogs
 			{
 				if (fullDateCheckBox.Checked)
 					return MasterDataSystem.MIN_DATE;
-				else 
+				else
 					return selectDateTimePicker.Value;
 			}
 		}

@@ -15,7 +15,7 @@ namespace DatabaseToolSuite.Dialogs
 		{
 			InitializeComponent();
 
-			this.Text = Const.App.APP_CAPTION +
+			Text = Const.App.APP_CAPTION +
 				string.Format(" - Версия {0}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
 
 			DisableControl();
@@ -252,7 +252,7 @@ namespace DatabaseToolSuite.Dialogs
 					dateBegin: dialog.BeginDate,
 					dateEnd: MasterDataSystem.MAX_DATE,
 					courtTypeId: dialog.CourtType);
-					gaspsListView.UpdateListViewItem();
+					gaspsListView.UpdateListViewItems();
 				}
 				catch (Exception ex)
 				{
@@ -280,7 +280,7 @@ namespace DatabaseToolSuite.Dialogs
 					dateBegin: dialog.BeginDate,
 					dateEnd: MasterDataSystem.MAX_DATE,
 					courtTypeId: dialog.CourtType);
-					gaspsListView.UpdateListViewItem();
+					gaspsListView.UpdateListViewItems();
 				}
 				catch (Exception ex)
 				{
@@ -305,9 +305,10 @@ namespace DatabaseToolSuite.Dialogs
 						authorityId: dialog.Authority ?? 0,
 						ownerKey: dialog.OrganizationOwner,
 						courtTypeId: dialog.CourtType);
-					gaspsListView.UpdateListViewItem();
+					gaspsListView.UpdateListViewItems();
 				}
-				catch (Exception ex) {
+				catch (Exception ex)
+				{
 					MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
@@ -322,11 +323,12 @@ namespace DatabaseToolSuite.Dialogs
 				{
 					long version = gaspsListView.DataRow.version;
 					MasterDataSystem.RemoveOrganization(version: version, date: dialog.LockDate);
-					gaspsListView.UpdateListViewItem();
+					gaspsListView.UpdateListViewItems();
 				}
-				catch (Exception ex) {				
+				catch (Exception ex)
+				{
 					MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}				
+				}
 			}
 		}
 
@@ -346,12 +348,12 @@ namespace DatabaseToolSuite.Dialogs
 						authorityId: dialog.Authority ?? 0,
 						ownerKey: dialog.OrganizationOwner,
 						courtTypeId: dialog.CourtType);
-					gaspsListView.UpdateListViewItem();
+					gaspsListView.UpdateListViewItems();
 				}
 				catch (Exception ex)
 				{
 					MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}				
+				}
 			}
 		}
 
@@ -476,7 +478,7 @@ namespace DatabaseToolSuite.Dialogs
 				if (dialog.FilterIndex == 1)
 				{
 					Import.ImportTextFile(dialog.FileName);
-				}				
+				}
 			}
 		}
 
@@ -515,7 +517,7 @@ namespace DatabaseToolSuite.Dialogs
 					else
 					{
 						Export.ExportGaspsToXmlForSud(dialog.FileName, date: MasterDataSystem.MIN_DATE);
-					}					
+					}
 				}
 				MessageBox.Show(dialog.Title + " успешно выполнен!", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
@@ -578,7 +580,7 @@ namespace DatabaseToolSuite.Dialogs
 				if (subdivisionDialog.ShowDialog(this) == DialogResult.OK)
 				{
 					Import.ImportSubdivision(subdivisionDialog.ParentVersion, subdivisionDialog.BeginDate, subdivisionDialog.SelectSubdivisions);
-					gaspsListView.UpdateListViewItem();
+					gaspsListView.UpdateListViewItems();
 				}
 			}
 		}
@@ -622,7 +624,7 @@ namespace DatabaseToolSuite.Dialogs
 
 		protected override void OnFormClosed(FormClosedEventArgs e)
 		{
-			if (this.WindowState == FormWindowState.Normal)
+			if (WindowState == FormWindowState.Normal)
 			{
 				Properties.Settings.Default.AppWindowWidth = Width;
 				Properties.Settings.Default.AppWindowHight = Height;
@@ -660,7 +662,7 @@ namespace DatabaseToolSuite.Dialogs
 
 				mnuTableFgisEsnsiRemove.Enabled = existsFgisEsnsi;
 				mnuTableFgisEsnsiRemoveButton.Enabled = existsFgisEsnsi;
-				gaspsListView.UpdateListViewItem();
+				gaspsListView.UpdateListViewItems();
 			}
 		}
 
@@ -710,7 +712,7 @@ namespace DatabaseToolSuite.Dialogs
 					editRow.sv_0006 = dialog.Address;
 					editRow.okatoList = dialog.OkatoList;
 
-					gaspsListView.UpdateListViewItem();
+					gaspsListView.UpdateListViewItems();
 				}
 				else
 				{
@@ -764,7 +766,7 @@ namespace DatabaseToolSuite.Dialogs
 
 				mnuTableErvkRemove.Enabled = existsErvk;
 				mnuTableErvkRemoveButton.Enabled = existsErvk;
-				gaspsListView.UpdateListViewItem();
+				gaspsListView.UpdateListViewItems();
 			}
 		}
 
@@ -842,7 +844,7 @@ namespace DatabaseToolSuite.Dialogs
 					}
 
 					Utils.Database.SetIsHeadAttribute();
-					gaspsListView.UpdateListViewItem();
+					gaspsListView.UpdateListViewItems();
 				}
 				else
 				{
@@ -896,7 +898,7 @@ namespace DatabaseToolSuite.Dialogs
 
 				mnuTableUrpRemove.Enabled = existsUrp;
 				mnuTableUrpRemoveButton.Enabled = existsUrp;
-				gaspsListView.UpdateListViewItem();
+				gaspsListView.UpdateListViewItems();
 			}
 		}
 
@@ -928,6 +930,7 @@ namespace DatabaseToolSuite.Dialogs
 					editRow.OKTMO_LOC_ID = dialog.OktmoLocId;
 					editRow.SHORT_NAME = dialog.ShortName;
 					editRow.VED_CODE = dialog.VedCode;
+					editRow.IS_GS = dialog.IsGS;
 					if (dialog.SpecialTerritorialCode > 0)
 					{
 						editRow.SPECIAL_TERRITORIAL_CODE = dialog.SpecialTerritorialCode;
@@ -939,7 +942,7 @@ namespace DatabaseToolSuite.Dialogs
 
 					Utils.Database.SetIsHeadAttribute();
 
-					gaspsListView.UpdateListViewItem();
+					gaspsListView.UpdateListViewItems();
 				}
 				else
 				{
@@ -964,6 +967,7 @@ namespace DatabaseToolSuite.Dialogs
 						if (MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Exists(row.version))
 						{
 							MainDataSet.EXP_LAW_AGENCY_URPRow editRow = MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Get(row.version);
+
 							if (dialog.IsEditDoesntConsolidateChild)
 							{
 								editRow.DOESNT_CONSOLIDATE_CHILD = dialog.DoesntConsolidateChild;
@@ -992,10 +996,14 @@ namespace DatabaseToolSuite.Dialogs
 							{
 								editRow.SPECIAL_TERRITORIAL_CODE = dialog.SpecialTerritorialCode;
 							}
+							if (dialog.IsEditIsGS)
+							{
+								editRow.IS_GS = dialog.IsGS;
+							}
 						}
 					}
 					Utils.Database.SetIsHeadAttribute();
-					gaspsListView.UpdateListViewItem();
+					gaspsListView.UpdateListViewItems();
 					MessageBox.Show(this, "Данные успешно внесены", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
 			}
@@ -1014,7 +1022,7 @@ namespace DatabaseToolSuite.Dialogs
 					editRow.LAW_AGENCY_TYPE = agencyType;
 
 					Utils.Database.SetIsHeadAttribute();
-					gaspsListView.UpdateListViewItem();
+					gaspsListView.UpdateListViewItems();
 				}
 			}
 			else if (gaspsListView.MultySelectDataRows != null && filterAuthorityComboBox.Value == MasterDataSystem.PROSECUTOR_CODE)
@@ -1028,7 +1036,7 @@ namespace DatabaseToolSuite.Dialogs
 					}
 				}
 				Utils.Database.SetIsHeadAttribute();
-				gaspsListView.UpdateListViewItem();
+				gaspsListView.UpdateListViewItems();
 				MessageBox.Show(this, "Данные успешно внесены", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
 		}
@@ -1069,7 +1077,7 @@ namespace DatabaseToolSuite.Dialogs
 			if (gaspsListView.SelectedOrganization != null)
 			{
 				MasterDataSystem.ClearCodeVersionOrganization(gaspsListView.SelectedOrganization.Version);
-				gaspsListView.UpdateListViewItem();
+				gaspsListView.UpdateListViewItems();
 			}
 		}
 
@@ -1088,19 +1096,19 @@ namespace DatabaseToolSuite.Dialogs
 		private void ToolsInitializeRtkTables_Click(object sender, EventArgs e)
 		{
 			Utils.Database.InitializeTables();
-			gaspsListView.UpdateListViewItem();
+			gaspsListView.UpdateListViewItems();
 		}
 
 		private void ToolsFillRtkUrpTable_Click(object sender, EventArgs e)
 		{
 			Utils.Database.FillUrpInGasps();
-			gaspsListView.UpdateListViewItem();
+			gaspsListView.UpdateListViewItems();
 		}
 
-		private void mnuToolsEsnsiIdToolStripMenuItem_Click(object sender, EventArgs e)
+		private void ToolsEsnsiIdToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Utils.Database.SetIdFgisEsnsiAttribute();
-			gaspsListView.UpdateListViewItem();
+			gaspsListView.UpdateListViewItems();
 		}
 
 		/// <summary>
@@ -1117,7 +1125,7 @@ namespace DatabaseToolSuite.Dialogs
 					if (dialog.ShowDialog() == DialogResult.OK)
 					{
 						Utils.Database.SetOwnerOrganization(DateTime.Today, gaspsListView.MultySelectDataRows.ToArray(), dialog.DataRow.key);
-						gaspsListView.UpdateListViewItem();
+						gaspsListView.UpdateListViewItems();
 					}
 				}
 			}
@@ -1126,7 +1134,7 @@ namespace DatabaseToolSuite.Dialogs
 		private void MnuToolsFixData_Click(object sender, EventArgs e)
 		{
 			Utils.Database.FixUrpData();
-			gaspsListView.UpdateListViewItem();
+			gaspsListView.UpdateListViewItems();
 		}
 
 		private void ToolsImportCourtsData_Click(object sender, EventArgs e)
@@ -1134,6 +1142,18 @@ namespace DatabaseToolSuite.Dialogs
 			ImportСourtsDialog dialog = new ImportСourtsDialog();
 			dialog.ShowDialog();
 
-		}				
+		}
+
+		private void ToolsSupervision_Click(object sender, EventArgs e)
+		{
+			SupervisionDialog dialog = new SupervisionDialog();
+			dialog.ShowDialog();
+		}
+
+		private void ToolsBatchDataProcessing_Click(object sender, EventArgs e)
+		{
+			BatchDataProcessingDialog dialog = new BatchDataProcessingDialog(FileSystem.Repository.MainDataSet);
+			dialog.ShowDialog();
+		}
 	}
 }

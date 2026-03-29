@@ -25,7 +25,7 @@ namespace DatabaseToolSuite.Services.Courts
 		public bool IsGaspsOnly => !entities.Any(e => e.IsMS.HasValue) && entities.Any(e => e.IsGasps);
 		public bool IsCourtsOnly => !entities.Any(e => e.IsGasps);
 		public bool IsMix => entities.Any(e => e.IsGasps) && entities.Any(e => !e.IsGasps);
-		public DateTime GaspsMaxDateEnd =>  entities.Where(e => e.IsGasps).Max(e => e.DateEnd);
+		public DateTime GaspsMaxDateEnd => entities.Where(e => e.IsGasps).Max(e => e.DateEnd);
 		public DateTime CourtMaxDateEnd => entities.Where(e => !e.IsGasps).Max(e => e.DateEnd);
 
 		public CourtEntity(string code)
@@ -50,7 +50,7 @@ namespace DatabaseToolSuite.Services.Courts
 		public long GetLastVersion()
 		{
 			return (long)entities.Where(x => x.IsGasps)
-				.OrderBy(x=> x, new DateEntityComparer())
+				.OrderBy(x => x, new DateEntityComparer())
 				.LastOrDefault()?.Version;
 		}
 
@@ -102,7 +102,7 @@ namespace DatabaseToolSuite.Services.Courts
 				entities.Sort(new DateEntityComparer());
 				for (int i = 0; i < entities.Count; i = i + 2)
 				{
-					result.Add((entities[i + 1].Version as string, (long)entities[i].Version));					
+					result.Add((entities[i + 1].Version as string, (long)entities[i].Version));
 				}
 			}
 			return result;
@@ -180,7 +180,7 @@ namespace DatabaseToolSuite.Services.Courts
 			{
 				return x.DateBegin.Date != y.DateBegin.Date ||
 					x.DateEnd.Date != y.DateEnd.Date;
-			}			
+			}
 		}
 
 		public class DateEntityComparer : IComparer, IComparer<IDatesEntity>
@@ -198,7 +198,7 @@ namespace DatabaseToolSuite.Services.Courts
 					{
 						return 0;
 					}
-					else if (xEntity.IsGasps  && !yEntity.IsGasps)
+					else if (xEntity.IsGasps && !yEntity.IsGasps)
 					{
 						return -1;
 					}

@@ -11,8 +11,8 @@ using System.Text;
 using System.Windows.Forms;
 using static DatabaseToolSuite.Repositories.MainDataSet;
 using static DatabaseToolSuite.Repositories.MainDataSet.gaspsDataTable;
-using currentCourtRow = DatabaseToolSuite.Repositories.MainDataSet.DIC_RECORDRow;
 using bufferCourtRow = DatabaseToolSuite.Repositories.Сourts.СourtsDataSet.DIC_RECORDRow;
+using currentCourtRow = DatabaseToolSuite.Repositories.MainDataSet.DIC_RECORDRow;
 using dicRow = DatabaseToolSuite.Repositories.Сourts.СourtsDataSet.DICRow;
 
 namespace DatabaseToolSuite.Services
@@ -148,8 +148,8 @@ namespace DatabaseToolSuite.Services
 		public static void ImportCourtsDataXmlFile(string fileName)
 		{
 			СourtsDataSet bufferDataSet = new СourtsDataSet();
-			bufferDataSet.ReadXml(fileName);			
-			
+			bufferDataSet.ReadXml(fileName);
+
 			foreach (bufferCourtRow bufferRow in bufferDataSet.DIC_RECORD)
 			{
 				if (!MasterDataSystem.DataSet.ExistsCourts(bufferRow.VRN))
@@ -182,15 +182,15 @@ namespace DatabaseToolSuite.Services
 				else
 				{
 					currentCourtRow currentRow = MasterDataSystem.DataSet.DIC_RECORD.Get(bufferRow.VRN);
-					if (currentRow.DATE_END.Date != (bufferRow.IsDATE_ENDNull() || 
-						string.IsNullOrWhiteSpace(bufferRow.DATE_END) ? 
-						MasterDataSystem.MAX_DATE : 
+					if (currentRow.DATE_END.Date != (bufferRow.IsDATE_ENDNull() ||
+						string.IsNullOrWhiteSpace(bufferRow.DATE_END) ?
+						MasterDataSystem.MAX_DATE :
 						Utils.Database.Parse(bufferRow.DATE_END, MasterDataSystem.MAX_DATE).Date))
 					{
 						Debug.WriteLine(currentRow.gasps_version);
 					}
 
-					
+
 				}
 			}
 
@@ -206,7 +206,7 @@ namespace DatabaseToolSuite.Services
 				{
 					//if (entity.DateEnd.Date > DateTime.Today.Date)
 					//	Debug.WriteLine("Not fount");
-				}				
+				}
 			}
 
 			MessageBox.Show("Импорт данных из текстового файла завершен.");
@@ -217,7 +217,7 @@ namespace DatabaseToolSuite.Services
 		}
 
 
-		
+
 
 
 

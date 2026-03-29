@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-
-namespace DatabaseToolSuite.Utils
+﻿namespace DatabaseToolSuite.Utils
 {
 	/// <summary>
 	/// Класс для корректировки дат пула записей.
@@ -12,7 +8,7 @@ namespace DatabaseToolSuite.Utils
 
 		public class Entity
 		{
-			
+
 		}
 	}
 }

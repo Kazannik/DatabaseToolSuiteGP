@@ -88,7 +88,7 @@ namespace DatabaseToolSuite.Repositories
 			public IEnumerable<ViewUrpOrganization> ExportGaspsBiData()
 			{
 				EnumerableRowCollection<gaspsRow> gaspsCollection = GaspsTable
-					.Where(e => e.RowState != DataRowState.Deleted && 
+					.Where(e => e.RowState != DataRowState.Deleted &&
 					e.authority_id == Services.MasterDataSystem.PROSECUTOR_CODE)
 					.OrderBy(e => e, new GaspsRowComparer());
 

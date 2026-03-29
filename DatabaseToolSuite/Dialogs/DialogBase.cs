@@ -397,12 +397,12 @@ namespace DatabaseToolSuite.Dialogs
 			Width = Properties.Settings.Default.DialogWidth;
 			Height = Properties.Settings.Default.DialogHight;
 			ResizeButton();
-			this.Refresh();
+			Refresh();
 		}
 
 		private void DialogBase_Shown(object sender, EventArgs e)
 		{
-			this.Refresh();
+			Refresh();
 		}
 	}
 }

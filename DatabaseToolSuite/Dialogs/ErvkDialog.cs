@@ -348,8 +348,8 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// esnsiNameTextBox
 			// 
-			this.esnsiNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.esnsiNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.esnsiNameTextBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
 			this.esnsiNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.esnsiNameTextBox.Location = new System.Drawing.Point(17, 83);
@@ -496,9 +496,9 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// ownerTextBox
 			// 
-			this.ownerTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.ownerTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.ownerTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.ownerTextBox.Location = new System.Drawing.Point(9, 22);
 			this.ownerTextBox.Margin = new System.Windows.Forms.Padding(5);
@@ -582,8 +582,8 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// ownerGroupBox
 			// 
-			this.ownerGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.ownerGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.ownerGroupBox.Controls.Add(this.ownerTextBox);
 			this.ownerGroupBox.Controls.Add(this.autoSelectOwnerButton);
 			this.ownerGroupBox.Controls.Add(this.selectOwnerButton);
@@ -623,8 +623,8 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// subjectRfTextBox
 			// 
-			this.subjectRfTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.subjectRfTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.subjectRfTextBox.Location = new System.Drawing.Point(351, 473);
 			this.subjectRfTextBox.Name = "subjectRfTextBox";
 			this.subjectRfTextBox.Size = new System.Drawing.Size(369, 27);
@@ -750,7 +750,7 @@ namespace DatabaseToolSuite.Dialogs
 				MessageBox.Show(this, "Не удалось в автоматическом режиме получить ИНН, ОГРН и ОКТМО вышестоящего органа!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 		}
-		
+
 		private string GetOwnerOktmo()
 		{
 			if (ErvkOwnerOrganization.IsoktmoListNull())

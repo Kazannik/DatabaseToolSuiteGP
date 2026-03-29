@@ -92,8 +92,8 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// consoleTextBox
 			// 
-			this.consoleTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.consoleTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.consoleTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.consoleTextBox.Location = new System.Drawing.Point(4, 164);
 			this.consoleTextBox.Multiline = true;
@@ -165,11 +165,11 @@ namespace DatabaseToolSuite.Dialogs
 
 		private void ReadXmlFile(string fileName)
 		{
-			СourtsDataSet bufferDataSet = new СourtsDataSet();			
+			СourtsDataSet bufferDataSet = new СourtsDataSet();
 			bufferDataSet.ReadXml(fileName);
 			int count = _courtsCollection.Count;
 
-			if (count <= 0) 
+			if (count <= 0)
 			{
 				DateTime outDate = Utils.Database.Parse(bufferDataSet.DIC.Last().OUTPUTDATE, DateTime.Today).Date;
 				editedDateTimePicker.Value = outDate;
@@ -331,7 +331,7 @@ namespace DatabaseToolSuite.Dialogs
 					}
 				}
 			}
-			
+
 			foreach (string vrn in _addingCourtsCode)
 			{
 				currentCourtRow courtRaw = MasterDataSystem.DataSet.DIC_RECORD.GetOfVnkod(vrn);

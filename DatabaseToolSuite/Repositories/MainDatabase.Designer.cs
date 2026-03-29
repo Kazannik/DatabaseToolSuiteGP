@@ -3516,6 +3516,8 @@ namespace DatabaseToolSuite.Repositories {
             
             private global::System.Data.DataColumn columnSPECIAL_TERRITORIAL_CODE;
             
+            private global::System.Data.DataColumn columnIS_GS;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public EXP_LAW_AGENCY_URPDataTable() {
@@ -3647,6 +3649,14 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IS_GSColumn {
+                get {
+                    return this.columnIS_GS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3682,7 +3692,7 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public EXP_LAW_AGENCY_URPRow AddEXP_LAW_AGENCY_URPRow(gaspsRow parentgaspsRowBygasps_EXP_LAW_AGENCY_URP, string SHORT_NAME, bool DOESNT_CREATE_CARD, bool DOESNT_SIGN_REPORT, bool DOESNT_CONSOLIDATE_CHILD, long AGENCY_RECEIVING_REPORT, long ORD, string VED_CODE, long ID, long OKTMO_LOC_ID, long LAW_AGENCY_TYPE, long SPECIAL_TERRITORIAL_CODE) {
+            public EXP_LAW_AGENCY_URPRow AddEXP_LAW_AGENCY_URPRow(gaspsRow parentgaspsRowBygasps_EXP_LAW_AGENCY_URP, string SHORT_NAME, bool DOESNT_CREATE_CARD, bool DOESNT_SIGN_REPORT, bool DOESNT_CONSOLIDATE_CHILD, long AGENCY_RECEIVING_REPORT, long ORD, string VED_CODE, long ID, long OKTMO_LOC_ID, long LAW_AGENCY_TYPE, long SPECIAL_TERRITORIAL_CODE, bool IS_GS) {
                 EXP_LAW_AGENCY_URPRow rowEXP_LAW_AGENCY_URPRow = ((EXP_LAW_AGENCY_URPRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -3696,7 +3706,8 @@ namespace DatabaseToolSuite.Repositories {
                         ID,
                         OKTMO_LOC_ID,
                         LAW_AGENCY_TYPE,
-                        SPECIAL_TERRITORIAL_CODE};
+                        SPECIAL_TERRITORIAL_CODE,
+                        IS_GS};
                 if ((parentgaspsRowBygasps_EXP_LAW_AGENCY_URP != null)) {
                     columnValuesArray[0] = parentgaspsRowBygasps_EXP_LAW_AGENCY_URP[6];
                 }
@@ -3741,6 +3752,7 @@ namespace DatabaseToolSuite.Repositories {
                 this.columnOKTMO_LOC_ID = base.Columns["OKTMO_LOC_ID"];
                 this.columnLAW_AGENCY_TYPE = base.Columns["LAW_AGENCY_TYPE"];
                 this.columnSPECIAL_TERRITORIAL_CODE = base.Columns["SPECIAL_TERRITORIAL_CODE"];
+                this.columnIS_GS = base.Columns["IS_GS"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3770,6 +3782,8 @@ namespace DatabaseToolSuite.Repositories {
                 base.Columns.Add(this.columnLAW_AGENCY_TYPE);
                 this.columnSPECIAL_TERRITORIAL_CODE = new global::System.Data.DataColumn("SPECIAL_TERRITORIAL_CODE", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSPECIAL_TERRITORIAL_CODE);
+                this.columnIS_GS = new global::System.Data.DataColumn("IS_GS", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIS_GS);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("EXP_LAW_AGENCY_URPKey1", new global::System.Data.DataColumn[] {
                                 this.columnVERSION}, true));
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("EXP_LAW_AGENCY_URPKey2", new global::System.Data.DataColumn[] {
@@ -3795,6 +3809,8 @@ namespace DatabaseToolSuite.Repositories {
                 this.columnID.Caption = "Ключ";
                 this.columnOKTMO_LOC_ID.AllowDBNull = false;
                 this.columnOKTMO_LOC_ID.Caption = "ОКТМО территории обслуживания";
+                this.columnIS_GS.AllowDBNull = false;
+                this.columnIS_GS.DefaultValue = ((bool)(true));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6448,18 +6464,7 @@ namespace DatabaseToolSuite.Repositories {
                     base(rb) {
                 this.tableokato = ((okatoDataTable)(this.Table));
             }
-                        
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string name {
-                get {
-                    return ((string)(this[this.tableokato.nameColumn]));
-                }
-                set {
-                    this[this.tableokato.nameColumn] = value;
-                }
-            }
-            
+                                    
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string ter {
@@ -6481,7 +6486,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tableokato.kod1Column] = value;
                 }
             }
-                        
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IscodeNull() {
@@ -7468,6 +7473,17 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IS_GS {
+                get {
+                    return ((bool)(this[this.tableEXP_LAW_AGENCY_URP.IS_GSColumn]));
+                }
+                set {
+                    this[this.tableEXP_LAW_AGENCY_URP.IS_GSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public gaspsRow gaspsRow {
                 get {
                     return ((gaspsRow)(this.GetParentRow(this.Table.ParentRelations["gasps_EXP_LAW_AGENCY_URP"])));
@@ -8131,7 +8147,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tableDIC_RECORD.VRNColumn] = value;
                 }
             }
-            
+                       
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool ISACTIVE {

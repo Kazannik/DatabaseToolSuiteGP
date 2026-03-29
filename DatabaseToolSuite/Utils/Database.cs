@@ -433,7 +433,7 @@ namespace DatabaseToolSuite.Utils
 					long code = MasterDataSystem.DataSet.fgis_esnsi.GetNextCode();
 					row.code = code;
 					res++;
-				}	
+				}
 				if (row.autokey != "FED_GENPROK_ORGANIZATION_" + row.id)
 				{
 					row.autokey = "FED_GENPROK_ORGANIZATION_" + row.id;
@@ -449,7 +449,7 @@ namespace DatabaseToolSuite.Utils
 		/// <param name="date">Дата введения новой версии записи</param>
 		/// <param name="array">Массив строк для внесения сведений</param>
 		/// <param name="ownerKey">Ключ родительского подразделения</param>
-		public static void SetOwnerOrganization(DateTime date, Repositories.MainDataSet.gaspsRow[] array,  long ownerKey)
+		public static void SetOwnerOrganization(DateTime date, Repositories.MainDataSet.gaspsRow[] array, long ownerKey)
 		{
 			foreach (Repositories.MainDataSet.gaspsRow row in array)
 			{
@@ -461,7 +461,7 @@ namespace DatabaseToolSuite.Utils
 					authorityId: row.authority_id,
 					ownerKey: ownerKey,
 					courtTypeId: row.court_type_id);
-			}			
+			}
 			MessageBox.Show(string.Format("Внесены сведения в {0} записей.", array.Length));
 		}
 
@@ -471,7 +471,7 @@ namespace DatabaseToolSuite.Utils
 		public static void FixDataVersion01()
 		{
 			int n = 0;
-			
+
 			foreach (Repositories.MainDataSet.gaspsRow row in MasterDataSystem.DataSet.gasps.Rows)
 			{
 				if (row.authority_id != 5 &&
@@ -494,7 +494,7 @@ namespace DatabaseToolSuite.Utils
 							}
 						}
 					}
-				}				
+				}
 			}
 			MessageBox.Show(string.Format("Внесены сведения в {0} записей.", n));
 		}
@@ -510,7 +510,7 @@ namespace DatabaseToolSuite.Utils
 				.Select(row => row.VERSION);
 
 			int count = versions.Count();
-			foreach (long version in versions) 
+			foreach (long version in versions)
 			{
 				MasterDataSystem.DataSet.EXP_LAW_AGENCY_URP.Remove(version);
 			}
@@ -519,7 +519,7 @@ namespace DatabaseToolSuite.Utils
 				.Where(row => row.RowState != DataRowState.Deleted &&
 				row?.gaspsRow.authority_id != MasterDataSystem.PROSECUTOR_CODE)
 				.Select(row => row.version);
-			
+
 			count += versions.Count();
 			foreach (long version in versions)
 			{
@@ -536,9 +536,9 @@ namespace DatabaseToolSuite.Utils
 			{
 				MasterDataSystem.DataSet.fgis_esnsi.Remove(version);
 			}
-			
+
 			MessageBox.Show(string.Format("Удалено {0} ошибочных записей.", count));
-			
+
 			UpdateCourtsType();
 		}
 

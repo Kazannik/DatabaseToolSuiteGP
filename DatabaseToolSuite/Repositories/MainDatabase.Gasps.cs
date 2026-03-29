@@ -6,7 +6,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Linq;
 
 namespace DatabaseToolSuite.Repositories
@@ -91,18 +90,18 @@ namespace DatabaseToolSuite.Repositories
 
 			delegate bool FilterFunction(gaspsRow row);
 
-		/// <summary>
-		/// Применение фильтра к коллекции записей.
-		/// </summary>
-		/// <param name="authority">Вид правоохранительного органа</param>
-		/// <param name="okato">ОКАТО</param>
-		/// <param name="code">Код подразделения</param>
-		/// <param name="name">Наименование подразделения</param>
-		/// <param name="unlockShow">Отражать не заблокированные записи</param>
-		/// <param name="reserveShow">Отражать зарезервированные записи</param>
-		/// <param name="lockShow">Отражать заблокированные записи</param>
-		/// <returns></returns>
-		private IEnumerable<gaspsRow> prGetGaspsOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
+			/// <summary>
+			/// Применение фильтра к коллекции записей.
+			/// </summary>
+			/// <param name="authority">Вид правоохранительного органа</param>
+			/// <param name="okato">ОКАТО</param>
+			/// <param name="code">Код подразделения</param>
+			/// <param name="name">Наименование подразделения</param>
+			/// <param name="unlockShow">Отражать не заблокированные записи</param>
+			/// <param name="reserveShow">Отражать зарезервированные записи</param>
+			/// <param name="lockShow">Отражать заблокированные записи</param>
+			/// <returns></returns>
+			private IEnumerable<gaspsRow> prGetGaspsOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
 			{
 				FilterFunction unlockFunction = DefaultFilter;
 				FilterFunction lockFunction = DefaultFilter;
@@ -125,7 +124,7 @@ namespace DatabaseToolSuite.Repositories
 					.Where(x => x.RowState != DataRowState.Deleted)
 					.Where(x => unlockFunction(x) && lockFunction(x) && reserveFunction(x))
 					.OrderBy(x => x.version)
-					.OrderBy(x => x.code);				
+					.OrderBy(x => x.code);
 
 				if (authority.HasValue)
 				{
@@ -155,7 +154,7 @@ namespace DatabaseToolSuite.Repositories
 				return true;
 			}
 
-			private static bool UnlockHide (gaspsRow row)
+			private static bool UnlockHide(gaspsRow row)
 			{
 				return !(row.date_beg <= DateTime.Today &&
 					row.date_end > DateTime.Today);
@@ -354,9 +353,9 @@ namespace DatabaseToolSuite.Repositories
 					code = 1 + this.AsEnumerable()
 						.Where(x => x.RowState != DataRowState.Deleted)
 						.Where(r => r.authority_id == authority && r.okato_code == okato)
-						.Max(r => r.IscodeNull() ? 0 : string.IsNullOrEmpty(r.code) ? 0 : long.Parse(r.code.Substring(leftCode.Length)));				
+						.Max(r => r.IscodeNull() ? 0 : string.IsNullOrEmpty(r.code) ? 0 : long.Parse(r.code.Substring(leftCode.Length)));
 				}
-				
+
 				while (ExistsCode(leftCode + code.ToString(rightCodeFormat)))
 				{
 					code++;
@@ -446,7 +445,7 @@ namespace DatabaseToolSuite.Repositories
 					.OrderBy(x => x.code)
 					.ToArray());
 			}
-						
+
 			public IEnumerable<gaspsRow> GetGaspsChildOrganization(long ownerId, DateTime date)
 			{
 				IEnumerable<gaspsRow> result = this.AsEnumerable()
@@ -467,15 +466,15 @@ namespace DatabaseToolSuite.Repositories
 					.Where(e =>
 					e.date_end.Date > DateTime.Today &&
 					e.date_beg.Date <= DateTime.Today)
-					.OrderBy(e => e, new GaspsRowComparer());				
+					.OrderBy(e => e, new GaspsRowComparer());
 			}
 
 			public IEnumerable<ViewGaspsOrganization> ExportData()
 			{
 				EnumerableRowCollection<gaspsRow> gaspsCollection = this.AsEnumerable()
 					.Where(e => e.RowState != DataRowState.Deleted)
-					.Where(e => 
-					e.date_end.Date > DateTime.Today && 
+					.Where(e =>
+					e.date_end.Date > DateTime.Today &&
 					e.date_beg.Date <= DateTime.Today)
 					.OrderBy(e => e, new GaspsRowComparer());
 
@@ -519,7 +518,7 @@ namespace DatabaseToolSuite.Repositories
 					.Where(e => e.RowState != DataRowState.Deleted);
 
 				EnumerableRowCollection<gaspsRow> activeCollection = gaspsCollection
-					.Where(e => 
+					.Where(e =>
 					e.date_end.Date > DateTime.Today &&
 					e.date_beg.Date <= DateTime.Today)
 					.OrderBy(e => e, new GaspsRowComparer());
@@ -553,7 +552,7 @@ namespace DatabaseToolSuite.Repositories
 				IEnumerable<GaspsEntity> result = this.AsEnumerable()
 					.Where(x => x.RowState != DataRowState.Deleted)
 					.Where(x => x.authority_id == MasterDataSystem.COURT_CODE)
-					.OrderBy(x=> x, new RowComparer())
+					.OrderBy(x => x, new RowComparer())
 					.Select(x => new GaspsEntity() { Code = x.code, Version = x.version, DateBeg = x.date_beg, DateEnd = x.date_end });
 				return result;
 			}
@@ -580,7 +579,7 @@ namespace DatabaseToolSuite.Repositories
 					for (int i = rows.Count - 1; i > 0; i--)
 					{
 						CorrectedDates(rows[i], rows[i - 1]);
-					}					
+					}
 				}
 
 				return correctEntity.Union(dublicateEntity);
@@ -612,7 +611,7 @@ namespace DatabaseToolSuite.Repositories
 				//		oldEntity.date_beg, oldEntity.date_end, currentEntity.date_beg, currentEntity.date_end));
 #endif
 			}
-									
+
 			public struct GaspsEntity
 			{
 				public string Code;

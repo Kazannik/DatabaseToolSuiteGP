@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DatabaseToolSuite.Services.Courts
 {
-	internal class CourtsCollection: Dictionary<string, CourtEntity>
+	internal class CourtsCollection : Dictionary<string, CourtEntity>
 	{
 		public bool IsFullCourtsCollection()
 		{
@@ -69,7 +69,7 @@ namespace DatabaseToolSuite.Services.Courts
 		public IEnumerable<CourtEntity> GetSkipCourtEntity(DateTime editedDate)
 		{
 			return Values
-				.Where(x => x.IsMix && 
+				.Where(x => x.IsMix &&
 				((x.GaspsMaxDateEnd > editedDate && x.CourtMaxDateEnd > editedDate) ||
 				(x.GaspsMaxDateEnd < editedDate && x.CourtMaxDateEnd < editedDate)));
 		}
@@ -100,7 +100,7 @@ namespace DatabaseToolSuite.Services.Courts
 
 		public void Add(string code, DateTime dateBegin, DateTime dateEnd, long version)
 		{
-			if (this.ContainsKey(code)) 
+			if (this.ContainsKey(code))
 			{
 				CourtEntity court = this[code];
 				court.Add(dateBegin: dateBegin, dateEnd: dateEnd, version: version);
@@ -108,7 +108,7 @@ namespace DatabaseToolSuite.Services.Courts
 			else
 			{
 				CourtEntity court = new CourtEntity(code);
-				court.Add(dateBegin:  dateBegin, dateEnd: dateEnd, version: version);
+				court.Add(dateBegin: dateBegin, dateEnd: dateEnd, version: version);
 				Add(court: court);
 			}
 		}

@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace DatabaseToolSuite.Dialogs
 {
-	internal partial class SelectOrganizationDialog : Form
+	internal partial class SupervisionDialog : Form
 	{
 		private readonly MainDataSet dialogDataSet;
 		private IList<MainDataSet.gaspsRow> rowsCollection;
@@ -54,18 +54,18 @@ namespace DatabaseToolSuite.Dialogs
 		[DefaultValue(true)]
 		public bool ReserveShow { get; set; }
 
-		public SelectOrganizationDialog() : this(dataSet: FileSystem.Repository.MainDataSet)
+		public SupervisionDialog() : this(dataSet: FileSystem.Repository.MainDataSet)
 		{
 		}
 
-		public SelectOrganizationDialog(long authority) : this(dataSet: FileSystem.Repository.MainDataSet)
+		public SupervisionDialog(long authority) : this(dataSet: FileSystem.Repository.MainDataSet)
 		{
 			filterAuthorityComboBox.Enabled = false;
 			filterOkatoComboBox.Enabled = true;
 			filterAuthorityComboBox.Code = authority.ToString("00");
 		}
 
-		public SelectOrganizationDialog(bool ervkOnlyShow) : this(dataSet: Services.FileSystem.Repository.MainDataSet)
+		public SupervisionDialog(bool ervkOnlyShow) : this(dataSet: FileSystem.Repository.MainDataSet)
 		{
 			ErvkOnlyShow = ervkOnlyShow;
 			filterAuthorityComboBox.Enabled = false;
@@ -73,7 +73,7 @@ namespace DatabaseToolSuite.Dialogs
 			filterAuthorityComboBox.Code = MasterDataSystem.PROSECUTOR_CODE.ToString("00");
 		}
 
-		public SelectOrganizationDialog(long authority, string okato) : this(dataSet: Services.FileSystem.Repository.MainDataSet)
+		public SupervisionDialog(long authority, string okato) : this(dataSet: FileSystem.Repository.MainDataSet)
 		{
 			filterAuthorityComboBox.Enabled = false;
 			filterOkatoComboBox.Enabled = true;
@@ -81,7 +81,7 @@ namespace DatabaseToolSuite.Dialogs
 			filterOkatoComboBox.Code = okato;
 		}
 
-		public SelectOrganizationDialog(MainDataSet dataSet)
+		public SupervisionDialog(MainDataSet dataSet)
 		{
 			dialogDataSet = dataSet;
 
@@ -93,7 +93,7 @@ namespace DatabaseToolSuite.Dialogs
 			filterLockCodeViewCheckBox.Visible = true;
 
 			filterOkatoComboBox.InitializeSource(dialogDataSet.okato);
-			filterAuthorityComboBox.InitializeSource(dialogDataSet.authority);
+			filterAuthorityComboBox.InitializeSource(dialogDataSet.authority, false);
 
 			InitializeFilter(dialogDataSet);
 			DetailsUpdate();
@@ -143,7 +143,6 @@ namespace DatabaseToolSuite.Dialogs
 		{
 			if (detailsListView.SelectedIndices.Count == 0)
 			{
-				detailsTextBox.Text = string.Empty;
 				selectOkatoTextBox.Text = string.Empty;
 				selectNameTextBox.Text = string.Empty;
 				DataRow = null;
@@ -175,7 +174,6 @@ namespace DatabaseToolSuite.Dialogs
 					text.AppendLine("Владелец: (" + owner.code + ") " + owner.name);
 				}
 
-				detailsTextBox.Text = text.ToString();
 				okButton.Enabled = true;
 			}
 		}
@@ -235,6 +233,7 @@ namespace DatabaseToolSuite.Dialogs
 
 			item.Text = row.code;
 			item.SubItems.Add(row.name);
+			item.SubItems.Add(row.authorityRow.name);
 			return item;
 		}
 
@@ -262,16 +261,21 @@ namespace DatabaseToolSuite.Dialogs
 			{
 				if (e.Column == 0)
 					rowsCollection = rowsCollection.OrderBy(x => x.code).ToList();
-				else
+				else if (e.Column == 1)
 					rowsCollection = rowsCollection.OrderBy(x => x.name).ToList();
+				else
+					rowsCollection = rowsCollection.OrderBy(x => x.authorityRow.name).ToList();
 				detailsListView.Columns[e.Column].Tag = "DOWN";
 			}
 			else
 			{
 				if (e.Column == 0)
 					rowsCollection = rowsCollection.OrderByDescending(x => x.code).ToList();
-				else
+				else if (e.Column == 1)
 					rowsCollection = rowsCollection.OrderByDescending(x => x.name).ToList();
+				else
+					rowsCollection = rowsCollection.OrderByDescending(x => x.authorityRow.name).ToList();
+
 				detailsListView.Columns[e.Column].Tag = "UP";
 			}
 
