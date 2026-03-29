@@ -143,20 +143,20 @@ namespace DatabaseToolSuite.Repositories
 
 			public bool SetVersion(string code, DateTime dateBeg, long version)
 			{
-				if (Exists(vnkod:  code, dateBeg: dateBeg))
+				if (Exists(vnkod: code, dateBeg: dateBeg))
 				{
 					DIC_RECORDRow row = Get(vnkod: code, dateBeg: dateBeg);
 					row.gasps_version = version;
 					return true;
 				}
-				else 
+				else
 					return false;
 			}
 
 			private void CorrectedDates(string vnkod)
 			{
 				List<DIC_RECORDRow> rows = new List<DIC_RECORDRow>(GetRows(vnkod: vnkod));
-				for (int i = rows.Count-1 ; i > 0; i--)
+				for (int i = rows.Count - 1; i > 0; i--)
 				{
 					CorrectedDates(rows[i], rows[i - 1]);
 				}
@@ -187,9 +187,9 @@ namespace DatabaseToolSuite.Repositories
 					currentRow.DATE_BEG = oldRow.DATE_END.Date.AddDays(1);
 					oldRow.DATE_END = currentRow.DATE_BEG;
 				}
-#if DEBUG 
+#if DEBUG
 				else
-					Debug.WriteLine(string.Format( "beg: {0}, end: {1}/ beg: {2}, end: {2};", oldRow.DATE_BEG, oldRow.DATE_END, currentRow.DATE_BEG, currentRow.DATE_END));
+					Debug.WriteLine(string.Format("beg: {0}, end: {1}/ beg: {2}, end: {2};", oldRow.DATE_BEG, oldRow.DATE_END, currentRow.DATE_BEG, currentRow.DATE_END));
 #endif
 			}
 
@@ -198,7 +198,7 @@ namespace DatabaseToolSuite.Repositories
 				if (oldRow.DATE_BEG.Date == oldRow.DATE_END.Date &&
 					oldRow.DATE_BEG == currentRow.DATE_BEG &&
 					!oldRow.ISACTIVE)
-					Remove(oldRow.VRN);				
+					Remove(oldRow.VRN);
 			}
 
 			public class RowComparer : IComparer, IComparer<DIC_RECORDRow>
@@ -264,7 +264,7 @@ namespace DatabaseToolSuite.Repositories
 				DataRow row = Get(dicId);
 				row.Delete();
 			}
-		}		
+		}
 	}
 }
 

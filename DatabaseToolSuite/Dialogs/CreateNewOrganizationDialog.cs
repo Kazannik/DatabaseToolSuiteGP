@@ -14,9 +14,9 @@ namespace DatabaseToolSuite.Dialogs
 
 			InitializeComponent();
 
-			OtherControls.Add(this.nextCodeButton);
-			OtherControls.Add(this.selectCodeButton);
-			OtherControls.Add(this.cleanCodeButton);
+			OtherControls.Add(nextCodeButton);
+			OtherControls.Add(selectCodeButton);
+			OtherControls.Add(cleanCodeButton);
 
 			nextCodeButton.Enabled = !string.IsNullOrWhiteSpace(AuthorityCode) ||
 				!string.IsNullOrWhiteSpace(OkatoCode);
@@ -51,10 +51,10 @@ namespace DatabaseToolSuite.Dialogs
 
 			InitializeComponent();
 
-			OtherControls.Add(this.nextCodeButton);
-			OtherControls.Add(this.selectCodeButton);
-			OtherControls.Add(this.selectSkippedCodeButton);
-			OtherControls.Add(this.cleanCodeButton);
+			OtherControls.Add(nextCodeButton);
+			OtherControls.Add(selectCodeButton);
+			OtherControls.Add(selectSkippedCodeButton);
+			OtherControls.Add(cleanCodeButton);
 
 			nextCodeButton.Enabled = !string.IsNullOrWhiteSpace(AuthorityCode) ||
 				!string.IsNullOrWhiteSpace(OkatoCode);
@@ -73,10 +73,7 @@ namespace DatabaseToolSuite.Dialogs
 			authorityComboBox.Enabled = true;
 		}
 
-		public string Code
-		{
-			get { return CodeText; }
-		}
+		public string Code => CodeText;
 
 		private void NextCodeButton_Click(object sender, EventArgs e)
 		{

@@ -105,14 +105,15 @@ namespace DatabaseToolSuite.Repositories
 		private IEnumerable<ViewFgisEsnsiOrganization> _GetViewFgisEsnsiOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
 		{
 			IEnumerable<ViewFgisEsnsiOrganization> result = GetViewFgisEsnsiOrganizations()
-				.OrderBy(x => x.Version).OrderBy(x => x.Code);
+				.OrderBy(x => x.Version)
+				.OrderBy(x => x.Code);
 
 			if (!unlockShow)
 			{
 				result = result
-					.Where(x => (
-				(x.End.Date < DateTime.Today
-				|| x.Begin.Date >= DateTime.Today))
+					.Where(x =>
+				x.End.Date < DateTime.Today
+				|| x.Begin.Date >= DateTime.Today
 				);
 			}
 
@@ -164,7 +165,7 @@ namespace DatabaseToolSuite.Repositories
 				ervkOnlyShow: ervkOnlyShow).ToList();
 		}
 
-		public IList<ViewUrpOrganization> GetViewUrpOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow, bool fgisEsnsiOnlyShow, bool ervkOnlyShow)
+		public IList<ViewUrpOrganization> GetViewUrpOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow, bool fgisEsnsiOnlyShow, bool ervkOnlyShow, long? lawAgencyType)
 		{
 			return _GetViewUrpOrganizationFilter(authority: authority,
 				okato: okato,
@@ -174,20 +175,22 @@ namespace DatabaseToolSuite.Repositories
 				reserveShow: reserveShow,
 				lockShow: lockShow,
 				fgisEsnsiOnlyShow: fgisEsnsiOnlyShow,
-				ervkOnlyShow: ervkOnlyShow).ToList();
+				ervkOnlyShow: ervkOnlyShow,
+				lawAgencyType: lawAgencyType).ToList();
 		}
 
 		private IEnumerable<ViewErvkOrganization> _GetViewErvkOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow, bool fgisEsnsiOnlyShow, bool ervkOnlyShow)
 		{
 			IEnumerable<ViewErvkOrganization> result = GetViewErvkOrganizations()
-				.OrderBy(x => x.Version).OrderBy(x => x.Code);
+				.OrderBy(x => x.Version)
+				.OrderBy(x => x.Code);
 
 			if (!unlockShow)
 			{
 				result = result
-					.Where(x => (
-				(x.End.Date < DateTime.Today
-				|| x.Begin.Date >= DateTime.Today))
+					.Where(x =>
+				x.End.Date < DateTime.Today
+				|| x.Begin.Date >= DateTime.Today
 				);
 			}
 
@@ -237,17 +240,18 @@ namespace DatabaseToolSuite.Repositories
 			return result;
 		}
 
-		private IEnumerable<ViewUrpOrganization> _GetViewUrpOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow, bool fgisEsnsiOnlyShow, bool ervkOnlyShow)
+		private IEnumerable<ViewUrpOrganization> _GetViewUrpOrganizationFilter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow, bool fgisEsnsiOnlyShow, bool ervkOnlyShow, long? lawAgencyType)
 		{
 			IEnumerable<ViewUrpOrganization> result = GetViewUrpOrganizations()
-				.OrderBy(x => x.Version).OrderBy(x => x.Code);
+				.OrderBy(x => x.Version)
+				.OrderBy(x => x.Code);
 
 			if (!unlockShow)
 			{
 				result = result
-					.Where(x => (
-				(x.End.Date < DateTime.Today
-				|| x.Begin.Date >= DateTime.Today))
+					.Where(x =>
+				x.End.Date < DateTime.Today
+				|| x.Begin.Date >= DateTime.Today
 				);
 			}
 
@@ -277,6 +281,11 @@ namespace DatabaseToolSuite.Repositories
 			if (authority.HasValue)
 			{
 				result = result.Where(x => x.AuthorityId == authority.Value);
+			}
+
+			if (lawAgencyType.HasValue)
+			{
+				result = result.Where(x => x.LawAgencyType == lawAgencyType.Value);
 			}
 
 			if (!string.IsNullOrWhiteSpace(okato))
@@ -299,68 +308,75 @@ namespace DatabaseToolSuite.Repositories
 
 		public class ViewGaspsOrganization
 		{
+			private const string CATEGORY = "ГАС ПС";
+
 			[Description("Наименование подразделения (SV-0001)")]
-			[Category("ГАС ПС")]
+			[Category(CATEGORY)]
 			[DisplayName("Наименование")]
-			public string Name { get; private set; }
+			public string Name { get; }
 
 			[Description("Ведомство")]
-			[Category("ГАС ПС")]
+			[Category(CATEGORY)]
 			[DisplayName("Ведомство")]
-			public string Authority { get; private set; }
+			public string Authority { get; }
 
 			[Description("Код ОКАТО")]
-			[Category("ГАС ПС")]
+			[Category(CATEGORY)]
 			[DisplayName("ОКАТО")]
-			public string Okato { get; private set; }
+			public string Okato { get; }
 
 			[Description("Код подразделения")]
-			[Category("ГАС ПС")]
+			[Category(CATEGORY)]
 			[DisplayName("Код подразделения")]
-			public string Code { get; private set; }
+			public string Code { get; }
 
 			[Description("Дата начала действия подразделения")]
-			[Category("ГАС ПС")]
+			[Category(CATEGORY)]
 			[DisplayName("Дата начала")]
-			public DateTime Begin { get; private set; }
+			public DateTime Begin { get; }
 
 			[Description("Дата окончания действия подразделения")]
-			[Category("ГАС ПС")]
+			[Category(CATEGORY)]
 			[DisplayName("Дата окончания")]
-			public DateTime End { get; private set; }
+			public DateTime End { get; }
 
 			[Description("Уникальное значение версии записи")]
 			[DisplayName("Версия записи")]
-			public long Version { get; private set; }
+			public long Version { get; }
 
 			[Description("Наименование вышестоящей организации (владельца)")]
-			[Category("ГАС ПС")]
+			[Category(CATEGORY)]
 			[DisplayName("Владелец")]
-			public string OwnerName { get; private set; }
+			public string OwnerName { get; }
+
+			[Description("Код вышестоящей организации (владельца)")]
+			[Category(CATEGORY)]
+			[DisplayName("Владелец")]
+			public string OwnerCode { get; }
 
 			[Browsable(false)]
-			public long AuthorityId { get; private set; }
+			public long AuthorityId { get; }
 
 			[Browsable(false)]
-			public string OkatoCode { get; private set; }
+			public string OkatoCode { get; }
 
 			[Description("Постоянный ключ записи, который не меняется при изменении версии записи")]
 			[DisplayName("Ключ записи")]
-			public long Key { get; private set; }
+			public long Key { get; }
 
 			[Description("Постоянный ключ записи вышестоящей организации, который не меняется при изменении версии записи")]
 			[DisplayName("Ключ записи вышестоящей организации")]
-			public long OwnerId { get; private set; }
+			public long OwnerId { get; }
 
 			[Description("Идентификатор GUID из АИК `Кадры` 1С")]
 			[DisplayName("Идентификатор GUID")]
-			public string Guid { get; private set; }
+			public string Guid { get; }
 
 			[Description("Дата и время редактирования записи в базе данных")]
 			[DisplayName("Дата и время редактирования")]
-			public DateTime LogEditDate { get; private set; }
+			public DateTime LogEditDate { get; }
 
-			private ViewGaspsOrganization(string name, string authority, string okato, string code, DateTime begin, DateTime end, long version, long authorityId, string okatoCode, long key, long ownerId, string ownerName, string guid, DateTime logEditDate)
+			private ViewGaspsOrganization(string name, string authority, string okato, string code, DateTime begin, DateTime end, long version, long authorityId, string okatoCode, long key, long ownerId, string ownerName, string ownerCode, string guid, DateTime logEditDate)
 			{
 				Name = name;
 				Authority = authority;
@@ -374,6 +390,7 @@ namespace DatabaseToolSuite.Repositories
 				Key = key;
 				OwnerId = ownerId;
 				OwnerName = ownerName;
+				OwnerCode = ownerCode;
 				Guid = guid;
 				LogEditDate = logEditDate;
 			}
@@ -391,6 +408,7 @@ namespace DatabaseToolSuite.Repositories
 				key: gasps.key,
 				ownerId: gasps.owner_id,
 				ownerName: owner == null ? string.Empty : owner.name,
+				ownerCode: owner == null ? string.Empty : owner.code,
 				guid: gasps.import_guid,
 				logEditDate: gasps.logEditDate)
 			{
@@ -399,28 +417,30 @@ namespace DatabaseToolSuite.Repositories
 
 		public class ViewFgisEsnsiOrganization : ViewGaspsOrganization
 		{
+			private const string CATEGORY = "ФГИС ЕСНСИ";
+
 			[Description("Территория ОКАТО")]
-			[Category("ФГИС ЕСНСИ")]
+			[Category(CATEGORY)]
 			[DisplayName("Территория")]
-			public string OKATO { get; private set; }
+			public string OKATO { get; }
 
 			[Description("Телефон канцелярии (SV-0004)")]
-			[Category("ФГИС ЕСНСИ")]
+			[Category(CATEGORY)]
 			[DisplayName("Телефон")]
-			public string Phone { get; private set; }
+			public string Phone { get; }
 
 			[Description("Электронный адрес канцелярии (SV-0005)")]
-			[Category("ФГИС ЕСНСИ")]
+			[Category(CATEGORY)]
 			[DisplayName("Электронный адрес")]
-			public string Email { get; private set; }
+			public string Email { get; }
 
 			[Description("Почтовый адрес где ведется прием граждан (SV-0006)")]
-			[Category("ФГИС ЕСНСИ")]
+			[Category(CATEGORY)]
 			[DisplayName("Почтовый адрес")]
-			public string Address { get; private set; }
+			public string Address { get; }
 
 			[Browsable(false)]
-			public bool IsFgisEsnsi { get; private set; }
+			public bool IsFgisEsnsi { get; }
 
 			private ViewFgisEsnsiOrganization(
 				gaspsRow gasps,
@@ -455,78 +475,80 @@ namespace DatabaseToolSuite.Repositories
 
 		public class ViewErvkOrganization : ViewFgisEsnsiOrganization, IGaspsListViewItem
 		{
+			private const string CATEGORY = "ЕРВК";
+
 			[Description("ИД ЕСНСИ")]
-			[Category("ЕРВК")]
+			[Category(CATEGORY)]
 			[DisplayName("ИД ЕСНСИ")]
-			public long EsnsiCode { get; private set; }
+			public long EsnsiCode { get; }
 
 			[Description("Признак, определяющий, что орган прокуратуры является головным")]
-			[Category("ЕРВК")]
+			[Category(CATEGORY)]
 			[DisplayName("Головная прокуратура")]
-			public bool IsHead { get; private set; }
+			public bool IsHead { get; }
 
 			[Description("Признак, определяющий, что орган прокуратуры является специализированным")]
-			[Category("ЕРВК")]
+			[Category(CATEGORY)]
 			[DisplayName("Спец.прокуратура")]
-			public bool Special { get; private set; }
+			public bool Special { get; }
 
 			[Description("Признак, определяющий, что орган прокуратуры является военным")]
-			[Category("ЕРВК")]
+			[Category(CATEGORY)]
 			[DisplayName("Военная прокуратура")]
-			public bool Military { get; private set; }
+			public bool Military { get; }
 
 			[Description("Признак, определяющий, что запись является активной")]
-			[Category("ЕРВК")]
+			[Category(CATEGORY)]
 			[DisplayName("Признак активности")]
-			public bool IsActive { get; private set; }
+			public bool IsActive { get; }
 
 			[Description("ИД версии органа прокуратуры в ЕСНСИ")]
-			[Category("ЕРВК")]
+			[Category(CATEGORY)]
 			[DisplayName("ИД версии органа прокуратуры в ЕСНСИ")]
-			public string IdVersionProc { get; private set; }
+			public string IdVersionProc { get; }
 
 			[Description("ИД ЕСНСИ вышестоящего органа прокуратуры (ссылка на esnsiCode)")]
-			[Category("ЕРВК")]
+			[Category(CATEGORY)]
 			[DisplayName("ИД ЕСНСИ вышестоящего органа прокуратуры")]
-			public long IdVersionHead { get; private set; }
+			public long IdVersionHead { get; }
 
 			[Description("ИД ЕСНСИ бывшего органа прокуратуры (ссылка на esnsiCode)")]
-			[Category("ЕРВК")]
+			[Category(CATEGORY)]
 			[DisplayName("ИД ЕСНСИ бывшего органа прокуратуры")]
-			public long IdSuccession { get; private set; }
+			public long IdSuccession { get; }
 
 			[Description("Дата создания версии органа прокуратуры в ЕСНСИ")]
-			[Category("ЕРВК")]
+			[Category(CATEGORY)]
 			[DisplayName("Дата создания версии органа прокуратуры в ЕСНСИ")]
-			public DateTime DateStartVersion { get; private set; }
+			public DateTime DateStartVersion { get; }
 
 			[Description("Дата прекращения действия органа прокуратуры в ЕСНСИ")]
-			[Category("ЕРВК")]
+			[Category(CATEGORY)]
 			[DisplayName("Дата прекращения действия")]
-			public DateTime DateCloseProc { get; private set; }
+			public DateTime DateCloseProc { get; }
 
 			[Description("ОГРН")]
-			[Category("ЕРВК")]
+			[Category(CATEGORY)]
 			[DisplayName("ОГРН")]
-			public string Ogrn { get; private set; }
+			public string Ogrn { get; }
 
 			[Description("ИНН")]
-			[Category("ЕРВК")]
+			[Category(CATEGORY)]
 			[DisplayName("ИНН")]
-			public string Inn { get; private set; }
+			public string Inn { get; }
 
 			[Browsable(false)]
-			public bool IsErvk { get; private set; }
+			public bool IsErvk { get; }
 
 			[Description("ОКТМО")]
-			[Category("ЕРВК")]
+			[Category(CATEGORY)]
 			[DisplayName("ОКТМО")]
-			public string Oktmo { get; private set; }
+			public string Oktmo { get; }
 
 			[Description("Субъект РФ")]
-			[Category("ЕРВК")]
+			[Category(CATEGORY)]
 			[DisplayName("Субъект Российской Федерации")]
-			public string Subject { get; private set; }
+			public string Subject { get; }
 
 			private ViewErvkOrganization(
 				gaspsRow gasps,
@@ -602,60 +624,65 @@ namespace DatabaseToolSuite.Repositories
 			[Description("Краткое наименование")]
 			[Category(CATEGORY)]
 			[DisplayName("Краткое наименование")]
-			public string ShortName { get; private set; }
+			public string ShortName { get; }
 
-			[Description("Не создаёт карточки ")]
+			[Description("Не создаёт карточки")]
 			[Category(CATEGORY)]
-			[DisplayName("Не создаёт карточки ")]
-			public bool DoesntCreateCard { get; private set; }
+			[DisplayName("Не создаёт карточки")]
+			public bool DoesntCreateCard { get; }
 
 			[Description("Не подписывает отчёт")]
 			[Category(CATEGORY)]
 			[DisplayName("Не подписывает отчёт")]
-			public bool DoesntSingReport { get; private set; }
+			public bool DoesntSingReport { get; }
 
 			[Description("Не консолидирует дочерние")]
 			[Category(CATEGORY)]
 			[DisplayName("Не консолидирует дочерние")]
-			public bool DoesntConsolidateChild { get; private set; }
+			public bool DoesntConsolidateChild { get; }
 
 			[Description("Передаёт отчёт в")]
 			[Category(CATEGORY)]
 			[DisplayName("Подразделение, в которое передается отчет")]
-			public long AgencyReceivingReport { get; private set; }
+			public long AgencyReceivingReport { get; }
 
 			[Description("Порядок")]
 			[Category(CATEGORY)]
 			[DisplayName("Порядок")]
-			public long Ord { get; private set; }
+			public long Ord { get; }
 
 			[Description("Ведомственный код")]
 			[Category(CATEGORY)]
 			[DisplayName("Ведомственный код")]
-			public string VedCode { get; private set; }
+			public string VedCode { get; }
 
 			[Description("Ключ")]
 			[Category(CATEGORY)]
 			[DisplayName("Ключ")]
-			public long Id { get; private set; }
+			public long Id { get; }
 
 			[Description("ОКТМО территории обслуживания")]
 			[Category(CATEGORY)]
-			[DisplayName("ОКТМО территории обслуживания ")]
-			public long OktmoLocId { get; private set; }
+			[DisplayName("ОКТМО территории обслуживания")]
+			public long OktmoLocId { get; }
 
 			[Description("Тип подразделений")]
 			[Category(CATEGORY)]
 			[DisplayName("Тип подразделений")]
-			public long LawAgencyType { get; private set; }
+			public long LawAgencyType { get; }
 
-			[Description("Специализированный территориальный код ")]
+			[Description("Специализированный территориальный код")]
 			[Category(CATEGORY)]
-			[DisplayName("Специализированный территориальный код ")]
-			public long SpecialTerritorialCode { get; private set; }
+			[DisplayName("Специализированный территориальный код")]
+			public long SpecialTerritorialCode { get; }
+
+			[Description("Правоохранительный орган участвует в формировании государственной статистики")]
+			[Category(CATEGORY)]
+			[DisplayName("Орган участвует в ГС")]
+			public bool IsGS { get; }
 
 			[Browsable(false)]
-			public bool IsUrp { get; private set; }
+			public bool IsUrp { get; }
 
 			private ViewUrpOrganization(
 				gaspsRow gasps,
@@ -672,7 +699,8 @@ namespace DatabaseToolSuite.Repositories
 				long id,
 				long oktmoLocId,
 				long lawAgencyType,
-				long specialTerritorialCode
+				long specialTerritorialCode,
+				bool isGs
 				) : base(gasps: gasps, owner: owner, esnsi: esnsi, ervk: ervk)
 			{
 				ShortName = shortName;
@@ -686,6 +714,7 @@ namespace DatabaseToolSuite.Repositories
 				OktmoLocId = oktmoLocId;
 				LawAgencyType = lawAgencyType;
 				SpecialTerritorialCode = specialTerritorialCode;
+				IsGS = isGs;
 			}
 
 			public ViewUrpOrganization(
@@ -721,7 +750,8 @@ namespace DatabaseToolSuite.Repositories
 					id: urp != null ? urp.ID : 0,
 					oktmoLocId: urp != null ? urp.OKTMO_LOC_ID : 0,
 					lawAgencyType: urp != null ? urp.LAW_AGENCY_TYPE : 0,
-					specialTerritorialCode: urp != null ? urp.SPECIAL_TERRITORIAL_CODE : 0)
+					specialTerritorialCode: urp != null ? urp.SPECIAL_TERRITORIAL_CODE : 0,
+					isGs: urp == null || urp.IS_GS)
 			{
 				IsUrp = urp != null;
 			}

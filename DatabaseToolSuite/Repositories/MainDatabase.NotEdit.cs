@@ -35,6 +35,25 @@ namespace DatabaseToolSuite.Repositories
 				}
 			}
 
+			public string name
+			{
+				get
+				{
+					try
+					{
+						return Utils.Database.ConvertFromDBVal<string>(this[tableokato.nameColumn]);
+					}
+					catch (InvalidCastException e)
+					{
+						throw new StrongTypingException("Значение для столбца \'name\' в таблице \'okato\' равно DBNull.", e);
+					}
+				}
+				set
+				{
+					this[tableokato.nameColumn] = value;
+				}
+			}
+
 			public string name2
 			{
 				get

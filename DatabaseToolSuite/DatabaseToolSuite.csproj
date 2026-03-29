@@ -14,7 +14,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>publish\2.x.x.x\2.0.0.2\</PublishUrl>
+    <PublishUrl>publish\2.x.x.x\2.0.2.0\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -25,8 +25,8 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <TargetCulture>ru</TargetCulture>
-    <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>2.0.0.2</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>2.0.2.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -59,10 +59,11 @@
     <ApplicationIcon>app.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>520C187776488C0BEC5F0661B97D4D020233CB00</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>07066D49CFDDCE7CC8DAE6C58EF3D65710F6AB30</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Kazannik Software CA.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -84,7 +85,7 @@
     <DelaySign>false</DelaySign>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Kazannik Software CA.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Kazannik Test Software CA.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestTimestampUrl>http://timestamp.digicert.com</ManifestTimestampUrl>
@@ -112,6 +113,12 @@
     <Compile Include="Controls\AuthorityComboBox.cs" />
     <Compile Include="Controls\ComboControl.cs" />
     <Compile Include="Controls\DataGridViewDateTimePickerCell.cs" />
+    <Compile Include="Controls\UrpListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\GaspsLiteListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\GaspsListView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -127,6 +134,12 @@
     </Compile>
     <Compile Include="Dialogs\AppForm.Designer.cs">
       <DependentUpon>AppForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\BatchDataProcessingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\BatchDataProcessingDialog.Designer.cs">
+      <DependentUpon>BatchDataProcessingDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ErvkDialog.cs">
       <SubType>Form</SubType>
@@ -148,6 +161,12 @@
     </Compile>
     <Compile Include="Dialogs\SelectDateDialog.Designer.cs">
       <DependentUpon>SelectDateDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SupervisionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SupervisionDialog.Designer.cs">
+      <DependentUpon>SupervisionDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SelectPeriodDialog.cs">
       <SubType>Form</SubType>
@@ -285,6 +304,12 @@
     <Compile Include="Services\Import.cs" />
     <Compile Include="Services\MasterDataSystem.cs" />
     <Compile Include="Utils\NameWizard.cs" />
+    <EmbeddedResource Include="Controls\UrpListView.resx">
+      <DependentUpon>UrpListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\GaspsLiteListView.resx">
+      <DependentUpon>GaspsLiteListView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\GaspsListView.resx">
       <DependentUpon>GaspsListView.cs</DependentUpon>
     </EmbeddedResource>
@@ -294,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AppForm.resx">
       <DependentUpon>AppForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\BatchDataProcessingDialog.resx">
+      <DependentUpon>BatchDataProcessingDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ErvkDialog.resx">
       <DependentUpon>ErvkDialog.cs</DependentUpon>
@@ -331,6 +359,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectDateDialog.resx">
       <DependentUpon>SelectDateDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SupervisionDialog.resx">
+      <DependentUpon>SupervisionDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectOrganizationDialog.resx">
       <DependentUpon>SelectOrganizationDialog.cs</DependentUpon>
@@ -371,7 +403,7 @@
     <EmbeddedResource Include="Utils\Dialogs\ImportDialog.resx">
       <DependentUpon>ImportDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Kazannik Software CA.pfx" />
+    <None Include="Kazannik Test Software CA.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -2,8 +2,8 @@
 using System;
 using System.Data;
 using System.Threading.Tasks;
-using GaspsDataSet = DatabaseToolSuite.Repositories.EXP_LAW_AGENCY;
 using GaspsBiDataSet = DatabaseToolSuite.Repositories.EXP_LAW_AGENCY_FOR_BI;
+using GaspsDataSet = DatabaseToolSuite.Repositories.EXP_LAW_AGENCY;
 
 namespace DatabaseToolSuite.Repositories
 {

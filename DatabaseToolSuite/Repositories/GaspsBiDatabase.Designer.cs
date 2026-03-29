@@ -24,9 +24,11 @@ namespace DatabaseToolSuite.Repositories {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class EXP_LAW_AGENCY_FOR_BI : global::System.Data.DataSet {
         
-        private t6301724DataTable tablet6301724;
-        
         private exp_law_agency_okatoid_for_biDataTable tableexp_law_agency_okatoid_for_bi;
+        
+        private EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK;
+        
+        private t6301724DataTable tablet6301724;
         
         private SPECIAL_TERRITORIAL_CODEDataTable tableSPECIAL_TERRITORIAL_CODE;
         
@@ -36,8 +38,6 @@ namespace DatabaseToolSuite.Repositories {
         
         private EXP_LAW_AGENCY_SETUP_REFERENCEDataTable tableEXP_LAW_AGENCY_SETUP_REFERENCE;
         
-        private EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK;
-        
         private EXP_LAW_AGENCY_TYPESDataTable tableEXP_LAW_AGENCY_TYPES;
         
         private EXP_LAW_AGENCY_ALLOWBLE_HIERARCHYDataTable tableEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY;
@@ -46,21 +46,11 @@ namespace DatabaseToolSuite.Repositories {
         
         private NADZOR_ORGANDataTable tableNADZOR_ORGAN;
         
-        private global::System.Data.DataRelation relationexp_law_agency_okatoid_t6301724;
-        
-        private global::System.Data.DataRelation relationEXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE;
-        
         private global::System.Data.DataRelation relationEXP_LAW_AGENCY_SERVICE_AREA_t6292734;
-        
-        private global::System.Data.DataRelation relationEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES1;
-        
-        private global::System.Data.DataRelation relationEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES;
         
         private global::System.Data.DataRelation relationEXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SETUP_REFERENCE_LINK;
         
         private global::System.Data.DataRelation relationEXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SERVICE_AREA;
-        
-        private global::System.Data.DataRelation relationexp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES;
         
         private global::System.Data.DataRelation relationFK_EXP_LAW_AGENCY_URP_t6292734;
         
@@ -70,13 +60,23 @@ namespace DatabaseToolSuite.Repositories {
         
         private global::System.Data.DataRelation relationexp_law_agency_okatoid_EXP_LAW_AGENCY_URP;
         
-        private global::System.Data.DataRelation relationexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE;
-        
         private global::System.Data.DataRelation relationEXP_LAW_AGENCY_URP_exp_law_agency_okatoid;
         
         private global::System.Data.DataRelation relationexp_law_agency_okatoid_NADZOR_ORGAN;
         
         private global::System.Data.DataRelation relationexp_law_agency_okatoid_NADZOR_ORGAN1;
+        
+        private global::System.Data.DataRelation relationEXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE;
+        
+        private global::System.Data.DataRelation relationexp_law_agency_okatoid_t6301724;
+        
+        private global::System.Data.DataRelation relationexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE;
+        
+        private global::System.Data.DataRelation relationexp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES;
+        
+        private global::System.Data.DataRelation relationEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES1;
+        
+        private global::System.Data.DataRelation relationEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -106,11 +106,14 @@ namespace DatabaseToolSuite.Repositories {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["t6301724"] != null)) {
-                    base.Tables.Add(new t6301724DataTable(ds.Tables["t6301724"]));
-                }
                 if ((ds.Tables["exp_law_agency_okatoid_for_bi"] != null)) {
                     base.Tables.Add(new exp_law_agency_okatoid_for_biDataTable(ds.Tables["exp_law_agency_okatoid_for_bi"]));
+                }
+                if ((ds.Tables["EXP_LAW_AGENCY_SETUP_REFERENCE_LINK"] != null)) {
+                    base.Tables.Add(new EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable(ds.Tables["EXP_LAW_AGENCY_SETUP_REFERENCE_LINK"]));
+                }
+                if ((ds.Tables["t6301724"] != null)) {
+                    base.Tables.Add(new t6301724DataTable(ds.Tables["t6301724"]));
                 }
                 if ((ds.Tables["SPECIAL_TERRITORIAL_CODE"] != null)) {
                     base.Tables.Add(new SPECIAL_TERRITORIAL_CODEDataTable(ds.Tables["SPECIAL_TERRITORIAL_CODE"]));
@@ -123,9 +126,6 @@ namespace DatabaseToolSuite.Repositories {
                 }
                 if ((ds.Tables["EXP_LAW_AGENCY_SETUP_REFERENCE"] != null)) {
                     base.Tables.Add(new EXP_LAW_AGENCY_SETUP_REFERENCEDataTable(ds.Tables["EXP_LAW_AGENCY_SETUP_REFERENCE"]));
-                }
-                if ((ds.Tables["EXP_LAW_AGENCY_SETUP_REFERENCE_LINK"] != null)) {
-                    base.Tables.Add(new EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable(ds.Tables["EXP_LAW_AGENCY_SETUP_REFERENCE_LINK"]));
                 }
                 if ((ds.Tables["EXP_LAW_AGENCY_TYPES"] != null)) {
                     base.Tables.Add(new EXP_LAW_AGENCY_TYPESDataTable(ds.Tables["EXP_LAW_AGENCY_TYPES"]));
@@ -161,9 +161,9 @@ namespace DatabaseToolSuite.Repositories {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public t6301724DataTable t6301724 {
+        public exp_law_agency_okatoid_for_biDataTable exp_law_agency_okatoid_for_bi {
             get {
-                return this.tablet6301724;
+                return this.tableexp_law_agency_okatoid_for_bi;
             }
         }
         
@@ -171,9 +171,19 @@ namespace DatabaseToolSuite.Repositories {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public exp_law_agency_okatoid_for_biDataTable exp_law_agency_okatoid_for_bi {
+        public EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable EXP_LAW_AGENCY_SETUP_REFERENCE_LINK {
             get {
-                return this.tableexp_law_agency_okatoid_for_bi;
+                return this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public t6301724DataTable t6301724 {
+            get {
+                return this.tablet6301724;
             }
         }
         
@@ -214,16 +224,6 @@ namespace DatabaseToolSuite.Repositories {
         public EXP_LAW_AGENCY_SETUP_REFERENCEDataTable EXP_LAW_AGENCY_SETUP_REFERENCE {
             get {
                 return this.tableEXP_LAW_AGENCY_SETUP_REFERENCE;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable EXP_LAW_AGENCY_SETUP_REFERENCE_LINK {
-            get {
-                return this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK;
             }
         }
         
@@ -334,11 +334,14 @@ namespace DatabaseToolSuite.Repositories {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["t6301724"] != null)) {
-                    base.Tables.Add(new t6301724DataTable(ds.Tables["t6301724"]));
-                }
                 if ((ds.Tables["exp_law_agency_okatoid_for_bi"] != null)) {
                     base.Tables.Add(new exp_law_agency_okatoid_for_biDataTable(ds.Tables["exp_law_agency_okatoid_for_bi"]));
+                }
+                if ((ds.Tables["EXP_LAW_AGENCY_SETUP_REFERENCE_LINK"] != null)) {
+                    base.Tables.Add(new EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable(ds.Tables["EXP_LAW_AGENCY_SETUP_REFERENCE_LINK"]));
+                }
+                if ((ds.Tables["t6301724"] != null)) {
+                    base.Tables.Add(new t6301724DataTable(ds.Tables["t6301724"]));
                 }
                 if ((ds.Tables["SPECIAL_TERRITORIAL_CODE"] != null)) {
                     base.Tables.Add(new SPECIAL_TERRITORIAL_CODEDataTable(ds.Tables["SPECIAL_TERRITORIAL_CODE"]));
@@ -351,9 +354,6 @@ namespace DatabaseToolSuite.Repositories {
                 }
                 if ((ds.Tables["EXP_LAW_AGENCY_SETUP_REFERENCE"] != null)) {
                     base.Tables.Add(new EXP_LAW_AGENCY_SETUP_REFERENCEDataTable(ds.Tables["EXP_LAW_AGENCY_SETUP_REFERENCE"]));
-                }
-                if ((ds.Tables["EXP_LAW_AGENCY_SETUP_REFERENCE_LINK"] != null)) {
-                    base.Tables.Add(new EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable(ds.Tables["EXP_LAW_AGENCY_SETUP_REFERENCE_LINK"]));
                 }
                 if ((ds.Tables["EXP_LAW_AGENCY_TYPES"] != null)) {
                     base.Tables.Add(new EXP_LAW_AGENCY_TYPESDataTable(ds.Tables["EXP_LAW_AGENCY_TYPES"]));
@@ -400,16 +400,22 @@ namespace DatabaseToolSuite.Repositories {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tablet6301724 = ((t6301724DataTable)(base.Tables["t6301724"]));
-            if ((initTable == true)) {
-                if ((this.tablet6301724 != null)) {
-                    this.tablet6301724.InitVars();
-                }
-            }
             this.tableexp_law_agency_okatoid_for_bi = ((exp_law_agency_okatoid_for_biDataTable)(base.Tables["exp_law_agency_okatoid_for_bi"]));
             if ((initTable == true)) {
                 if ((this.tableexp_law_agency_okatoid_for_bi != null)) {
                     this.tableexp_law_agency_okatoid_for_bi.InitVars();
+                }
+            }
+            this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK = ((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable)(base.Tables["EXP_LAW_AGENCY_SETUP_REFERENCE_LINK"]));
+            if ((initTable == true)) {
+                if ((this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK != null)) {
+                    this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK.InitVars();
+                }
+            }
+            this.tablet6301724 = ((t6301724DataTable)(base.Tables["t6301724"]));
+            if ((initTable == true)) {
+                if ((this.tablet6301724 != null)) {
+                    this.tablet6301724.InitVars();
                 }
             }
             this.tableSPECIAL_TERRITORIAL_CODE = ((SPECIAL_TERRITORIAL_CODEDataTable)(base.Tables["SPECIAL_TERRITORIAL_CODE"]));
@@ -436,12 +442,6 @@ namespace DatabaseToolSuite.Repositories {
                     this.tableEXP_LAW_AGENCY_SETUP_REFERENCE.InitVars();
                 }
             }
-            this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK = ((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable)(base.Tables["EXP_LAW_AGENCY_SETUP_REFERENCE_LINK"]));
-            if ((initTable == true)) {
-                if ((this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK != null)) {
-                    this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK.InitVars();
-                }
-            }
             this.tableEXP_LAW_AGENCY_TYPES = ((EXP_LAW_AGENCY_TYPESDataTable)(base.Tables["EXP_LAW_AGENCY_TYPES"]));
             if ((initTable == true)) {
                 if ((this.tableEXP_LAW_AGENCY_TYPES != null)) {
@@ -466,22 +466,22 @@ namespace DatabaseToolSuite.Repositories {
                     this.tableNADZOR_ORGAN.InitVars();
                 }
             }
-            this.relationexp_law_agency_okatoid_t6301724 = this.Relations["exp_law_agency_okatoid_t6301724"];
-            this.relationEXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE = this.Relations["EXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE"];
             this.relationEXP_LAW_AGENCY_SERVICE_AREA_t6292734 = this.Relations["EXP_LAW_AGENCY_SERVICE_AREA_t6292734"];
-            this.relationEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES1 = this.Relations["EXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES1"];
-            this.relationEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES = this.Relations["EXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES"];
             this.relationEXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SETUP_REFERENCE_LINK = this.Relations["EXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SETUP_REFERENCE_LINK"];
             this.relationEXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SERVICE_AREA = this.Relations["EXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SERVICE_AREA"];
-            this.relationexp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES = this.Relations["exp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES"];
             this.relationFK_EXP_LAW_AGENCY_URP_t6292734 = this.Relations["FK_EXP_LAW_AGENCY_URP_t6292734"];
             this.relationFK_exp_law_agency_okatoid_t62927341 = this.Relations["FK_exp_law_agency_okatoid_t62927341"];
             this.relationFK_exp_law_agency_okatoid_t6292734 = this.Relations["FK_exp_law_agency_okatoid_t6292734"];
             this.relationexp_law_agency_okatoid_EXP_LAW_AGENCY_URP = this.Relations["exp_law_agency_okatoid_EXP_LAW_AGENCY_URP"];
-            this.relationexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE = this.Relations["exp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE"];
             this.relationEXP_LAW_AGENCY_URP_exp_law_agency_okatoid = this.Relations["EXP_LAW_AGENCY_URP_exp_law_agency_okatoid"];
             this.relationexp_law_agency_okatoid_NADZOR_ORGAN = this.Relations["exp_law_agency_okatoid_NADZOR_ORGAN"];
             this.relationexp_law_agency_okatoid_NADZOR_ORGAN1 = this.Relations["exp_law_agency_okatoid_NADZOR_ORGAN1"];
+            this.relationEXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE = this.Relations["EXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE"];
+            this.relationexp_law_agency_okatoid_t6301724 = this.Relations["exp_law_agency_okatoid_t6301724"];
+            this.relationexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE = this.Relations["exp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE"];
+            this.relationexp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES = this.Relations["exp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES"];
+            this.relationEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES1 = this.Relations["EXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES1"];
+            this.relationEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES = this.Relations["EXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -492,10 +492,12 @@ namespace DatabaseToolSuite.Repositories {
             this.Namespace = "http://tempuri.org/Gasps.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tablet6301724 = new t6301724DataTable();
-            base.Tables.Add(this.tablet6301724);
             this.tableexp_law_agency_okatoid_for_bi = new exp_law_agency_okatoid_for_biDataTable();
             base.Tables.Add(this.tableexp_law_agency_okatoid_for_bi);
+            this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK = new EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable();
+            base.Tables.Add(this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK);
+            this.tablet6301724 = new t6301724DataTable();
+            base.Tables.Add(this.tablet6301724);
             this.tableSPECIAL_TERRITORIAL_CODE = new SPECIAL_TERRITORIAL_CODEDataTable();
             base.Tables.Add(this.tableSPECIAL_TERRITORIAL_CODE);
             this.tableEXP_LAW_AGENCY_SERVICE_AREA = new EXP_LAW_AGENCY_SERVICE_AREADataTable();
@@ -504,8 +506,6 @@ namespace DatabaseToolSuite.Repositories {
             base.Tables.Add(this.tableEXP_LAW_AGENCY_URP);
             this.tableEXP_LAW_AGENCY_SETUP_REFERENCE = new EXP_LAW_AGENCY_SETUP_REFERENCEDataTable();
             base.Tables.Add(this.tableEXP_LAW_AGENCY_SETUP_REFERENCE);
-            this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK = new EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable();
-            base.Tables.Add(this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK);
             this.tableEXP_LAW_AGENCY_TYPES = new EXP_LAW_AGENCY_TYPESDataTable();
             base.Tables.Add(this.tableEXP_LAW_AGENCY_TYPES);
             this.tableEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY = new EXP_LAW_AGENCY_ALLOWBLE_HIERARCHYDataTable();
@@ -514,28 +514,10 @@ namespace DatabaseToolSuite.Repositories {
             base.Tables.Add(this.tablet6292734);
             this.tableNADZOR_ORGAN = new NADZOR_ORGANDataTable();
             base.Tables.Add(this.tableNADZOR_ORGAN);
-            this.relationexp_law_agency_okatoid_t6301724 = new global::System.Data.DataRelation("exp_law_agency_okatoid_t6301724", new global::System.Data.DataColumn[] {
-                        this.tablet6301724.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableexp_law_agency_okatoid_for_bi.VED_IDColumn}, false);
-            this.relationexp_law_agency_okatoid_t6301724.Nested = true;
-            this.Relations.Add(this.relationexp_law_agency_okatoid_t6301724);
-            this.relationEXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE = new global::System.Data.DataRelation("EXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE", new global::System.Data.DataColumn[] {
-                        this.tableEXP_LAW_AGENCY_SETUP_REFERENCE.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK.SETUP_REFERENCEColumn}, false);
-            this.relationEXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE.Nested = true;
-            this.Relations.Add(this.relationEXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE);
             this.relationEXP_LAW_AGENCY_SERVICE_AREA_t6292734 = new global::System.Data.DataRelation("EXP_LAW_AGENCY_SERVICE_AREA_t6292734", new global::System.Data.DataColumn[] {
                         this.tableEXP_LAW_AGENCY_SERVICE_AREA.VLUColumn}, new global::System.Data.DataColumn[] {
                         this.tablet6292734.IDColumn}, false);
             this.Relations.Add(this.relationEXP_LAW_AGENCY_SERVICE_AREA_t6292734);
-            this.relationEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES1 = new global::System.Data.DataRelation("EXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES1", new global::System.Data.DataColumn[] {
-                        this.tableEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY.ALLOWBLE_HIERARCHYColumn}, new global::System.Data.DataColumn[] {
-                        this.tableEXP_LAW_AGENCY_TYPES.IDColumn}, false);
-            this.Relations.Add(this.relationEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES1);
-            this.relationEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES = new global::System.Data.DataRelation("EXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES", new global::System.Data.DataColumn[] {
-                        this.tableEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY.LAW_AGENCY_TYPEColumn}, new global::System.Data.DataColumn[] {
-                        this.tableEXP_LAW_AGENCY_TYPES.IDColumn}, false);
-            this.Relations.Add(this.relationEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES);
             this.relationEXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SETUP_REFERENCE_LINK = new global::System.Data.DataRelation("EXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SETUP_REFERENCE_LINK", new global::System.Data.DataColumn[] {
                         this.tableEXP_LAW_AGENCY_URP.AGENCY_RECEIVING_REPORTColumn}, new global::System.Data.DataColumn[] {
                         this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK.LAW_AGENCYColumn}, false);
@@ -544,10 +526,6 @@ namespace DatabaseToolSuite.Repositories {
                         this.tableEXP_LAW_AGENCY_URP.VERSIONColumn}, new global::System.Data.DataColumn[] {
                         this.tableEXP_LAW_AGENCY_SERVICE_AREA.ELEM_VERSIONColumn}, false);
             this.Relations.Add(this.relationEXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SERVICE_AREA);
-            this.relationexp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES = new global::System.Data.DataRelation("exp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES", new global::System.Data.DataColumn[] {
-                        this.tableEXP_LAW_AGENCY_TYPES.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableexp_law_agency_okatoid_for_bi.LAW_AGENCY_TYPEColumn}, false);
-            this.Relations.Add(this.relationexp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES);
             this.relationFK_EXP_LAW_AGENCY_URP_t6292734 = new global::System.Data.DataRelation("FK_EXP_LAW_AGENCY_URP_t6292734", new global::System.Data.DataColumn[] {
                         this.tablet6292734.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableEXP_LAW_AGENCY_URP.OKTMO_LOC_IDColumn}, false);
@@ -564,10 +542,6 @@ namespace DatabaseToolSuite.Repositories {
                         this.tableEXP_LAW_AGENCY_URP.VERSIONColumn}, new global::System.Data.DataColumn[] {
                         this.tableexp_law_agency_okatoid_for_bi.VERSIONColumn}, false);
             this.Relations.Add(this.relationexp_law_agency_okatoid_EXP_LAW_AGENCY_URP);
-            this.relationexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE = new global::System.Data.DataRelation("exp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE", new global::System.Data.DataColumn[] {
-                        this.tableSPECIAL_TERRITORIAL_CODE.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableexp_law_agency_okatoid_for_bi.SPECIAL_TERRITORIAL_CODEColumn}, false);
-            this.Relations.Add(this.relationexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE);
             this.relationEXP_LAW_AGENCY_URP_exp_law_agency_okatoid = new global::System.Data.DataRelation("EXP_LAW_AGENCY_URP_exp_law_agency_okatoid", new global::System.Data.DataColumn[] {
                         this.tableexp_law_agency_okatoid_for_bi.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableEXP_LAW_AGENCY_URP.AGENCY_RECEIVING_REPORTColumn}, false);
@@ -580,17 +554,47 @@ namespace DatabaseToolSuite.Repositories {
                         this.tableexp_law_agency_okatoid_for_bi.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableNADZOR_ORGAN.SUPERVISING_PROSECUTION_AGENCYColumn}, false);
             this.Relations.Add(this.relationexp_law_agency_okatoid_NADZOR_ORGAN1);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializet6301724() {
-            return false;
+            this.relationEXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE = new global::System.Data.DataRelation("EXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE", new global::System.Data.DataColumn[] {
+                        this.tableEXP_LAW_AGENCY_SETUP_REFERENCE.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK.SETUP_REFERENCEColumn}, false);
+            this.Relations.Add(this.relationEXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE);
+            this.relationexp_law_agency_okatoid_t6301724 = new global::System.Data.DataRelation("exp_law_agency_okatoid_t6301724", new global::System.Data.DataColumn[] {
+                        this.tablet6301724.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableexp_law_agency_okatoid_for_bi.VED_IDColumn}, false);
+            this.Relations.Add(this.relationexp_law_agency_okatoid_t6301724);
+            this.relationexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE = new global::System.Data.DataRelation("exp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE", new global::System.Data.DataColumn[] {
+                        this.tableSPECIAL_TERRITORIAL_CODE.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableexp_law_agency_okatoid_for_bi.SPECIAL_TERRITORIAL_CODEColumn}, false);
+            this.Relations.Add(this.relationexp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE);
+            this.relationexp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES = new global::System.Data.DataRelation("exp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES", new global::System.Data.DataColumn[] {
+                        this.tableEXP_LAW_AGENCY_TYPES.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableexp_law_agency_okatoid_for_bi.LAW_AGENCY_TYPEColumn}, false);
+            this.Relations.Add(this.relationexp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES);
+            this.relationEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES1 = new global::System.Data.DataRelation("EXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES1", new global::System.Data.DataColumn[] {
+                        this.tableEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY.ALLOWBLE_HIERARCHYColumn}, new global::System.Data.DataColumn[] {
+                        this.tableEXP_LAW_AGENCY_TYPES.IDColumn}, false);
+            this.Relations.Add(this.relationEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES1);
+            this.relationEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES = new global::System.Data.DataRelation("EXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES", new global::System.Data.DataColumn[] {
+                        this.tableEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY.LAW_AGENCY_TYPEColumn}, new global::System.Data.DataColumn[] {
+                        this.tableEXP_LAW_AGENCY_TYPES.IDColumn}, false);
+            this.Relations.Add(this.relationEXP_LAW_AGENCY_ALLOWBLE_HIERARCHY_EXP_LAW_AGENCY_TYPES);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializeexp_law_agency_okatoid_for_bi() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeEXP_LAW_AGENCY_SETUP_REFERENCE_LINK() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializet6301724() {
             return false;
         }
         
@@ -615,12 +619,6 @@ namespace DatabaseToolSuite.Repositories {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializeEXP_LAW_AGENCY_SETUP_REFERENCE() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeEXP_LAW_AGENCY_SETUP_REFERENCE_LINK() {
             return false;
         }
         
@@ -704,10 +702,13 @@ namespace DatabaseToolSuite.Repositories {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void t6301724RowChangeEventHandler(object sender, t6301724RowChangeEvent e);
+        public delegate void exp_law_agency_okatoid_for_biRowChangeEventHandler(object sender, exp_law_agency_okatoid_for_biRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void exp_law_agency_okatoid_for_biRowChangeEventHandler(object sender, exp_law_agency_okatoid_for_biRowChangeEvent e);
+        public delegate void EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEventHandler(object sender, EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void t6301724RowChangeEventHandler(object sender, t6301724RowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void SPECIAL_TERRITORIAL_CODERowChangeEventHandler(object sender, SPECIAL_TERRITORIAL_CODERowChangeEvent e);
@@ -722,9 +723,6 @@ namespace DatabaseToolSuite.Repositories {
         public delegate void EXP_LAW_AGENCY_SETUP_REFERENCERowChangeEventHandler(object sender, EXP_LAW_AGENCY_SETUP_REFERENCERowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEventHandler(object sender, EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void EXP_LAW_AGENCY_TYPESRowChangeEventHandler(object sender, EXP_LAW_AGENCY_TYPESRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -735,300 +733,6 @@ namespace DatabaseToolSuite.Repositories {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void NADZOR_ORGANRowChangeEventHandler(object sender, NADZOR_ORGANRowChangeEvent e);
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class t6301724DataTable : global::System.Data.TypedTableBase<t6301724Row> {
-            
-            private global::System.Data.DataColumn columnID;
-            
-            private global::System.Data.DataColumn columnCODE;
-            
-            private global::System.Data.DataColumn columnNAME;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public t6301724DataTable() {
-                this.TableName = "t6301724";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal t6301724DataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected t6301724DataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn IDColumn {
-                get {
-                    return this.columnID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn CODEColumn {
-                get {
-                    return this.columnCODE;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn NAMEColumn {
-                get {
-                    return this.columnNAME;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public t6301724Row this[int index] {
-                get {
-                    return ((t6301724Row)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event t6301724RowChangeEventHandler t6301724RowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event t6301724RowChangeEventHandler t6301724RowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event t6301724RowChangeEventHandler t6301724RowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event t6301724RowChangeEventHandler t6301724RowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Addt6301724Row(t6301724Row row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public t6301724Row Addt6301724Row(long ID, string CODE, string NAME) {
-                t6301724Row rowt6301724Row = ((t6301724Row)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        ID,
-                        CODE,
-                        NAME};
-                rowt6301724Row.ItemArray = columnValuesArray;
-                this.Rows.Add(rowt6301724Row);
-                return rowt6301724Row;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public t6301724Row FindByID(long ID) {
-                return ((t6301724Row)(this.Rows.Find(new object[] {
-                            ID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                t6301724DataTable cln = ((t6301724DataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new t6301724DataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal void InitVars() {
-                this.columnID = base.Columns["ID"];
-                this.columnCODE = base.Columns["CODE"];
-                this.columnNAME = base.Columns["NAME"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(long), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnID);
-                this.columnCODE = new global::System.Data.DataColumn("CODE", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCODE);
-                this.columnNAME = new global::System.Data.DataColumn("NAME", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNAME);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("t6301724Key1", new global::System.Data.DataColumn[] {
-                                this.columnID}, true));
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnCODE}, false));
-                this.columnID.AllowDBNull = false;
-                this.columnID.Unique = true;
-                this.columnID.Caption = "Ключ";
-                this.columnCODE.AllowDBNull = false;
-                this.columnCODE.Unique = true;
-                this.columnCODE.Caption = "Код";
-                this.columnNAME.AllowDBNull = false;
-                this.columnNAME.Caption = "Наименование";
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public t6301724Row Newt6301724Row() {
-                return ((t6301724Row)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new t6301724Row(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(t6301724Row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.t6301724RowChanged != null)) {
-                    this.t6301724RowChanged(this, new t6301724RowChangeEvent(((t6301724Row)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.t6301724RowChanging != null)) {
-                    this.t6301724RowChanging(this, new t6301724RowChangeEvent(((t6301724Row)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.t6301724RowDeleted != null)) {
-                    this.t6301724RowDeleted(this, new t6301724RowChangeEvent(((t6301724Row)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.t6301724RowDeleting != null)) {
-                    this.t6301724RowDeleting(this, new t6301724RowChangeEvent(((t6301724Row)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Removet6301724Row(t6301724Row row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                EXP_LAW_AGENCY_FOR_BI ds = new EXP_LAW_AGENCY_FOR_BI();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "t6301724DataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1469,6 +1173,597 @@ namespace DatabaseToolSuite.Repositories {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "exp_law_agency_okatoid_for_biDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable : global::System.Data.TypedTableBase<EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow> {
+            
+            private global::System.Data.DataColumn columnID;
+            
+            private global::System.Data.DataColumn columnLAW_AGENCY;
+            
+            private global::System.Data.DataColumn columnSETUP_REFERENCE;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable() {
+                this.TableName = "EXP_LAW_AGENCY_SETUP_REFERENCE_LINK";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn LAW_AGENCYColumn {
+                get {
+                    return this.columnLAW_AGENCY;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SETUP_REFERENCEColumn {
+                get {
+                    return this.columnSETUP_REFERENCE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow this[int index] {
+                get {
+                    return ((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEventHandler EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEventHandler EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEventHandler EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEventHandler EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddEXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow(EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow AddEXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow(long ID, EXP_LAW_AGENCY_URPRow parentEXP_LAW_AGENCY_URPRowByEXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SETUP_REFERENCE_LINK, EXP_LAW_AGENCY_SETUP_REFERENCERow parentEXP_LAW_AGENCY_SETUP_REFERENCERowByEXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE) {
+                EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow rowEXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow = ((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        ID,
+                        null,
+                        null};
+                if ((parentEXP_LAW_AGENCY_URPRowByEXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SETUP_REFERENCE_LINK != null)) {
+                    columnValuesArray[1] = parentEXP_LAW_AGENCY_URPRowByEXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SETUP_REFERENCE_LINK[5];
+                }
+                if ((parentEXP_LAW_AGENCY_SETUP_REFERENCERowByEXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE != null)) {
+                    columnValuesArray[2] = parentEXP_LAW_AGENCY_SETUP_REFERENCERowByEXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE[0];
+                }
+                rowEXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowEXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow);
+                return rowEXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow FindByID(long ID) {
+                return ((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow)(this.Rows.Find(new object[] {
+                            ID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable cln = ((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnID = base.Columns["ID"];
+                this.columnLAW_AGENCY = base.Columns["LAW_AGENCY"];
+                this.columnSETUP_REFERENCE = base.Columns["SETUP_REFERENCE"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
+                this.columnLAW_AGENCY = new global::System.Data.DataColumn("LAW_AGENCY", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLAW_AGENCY);
+                this.columnSETUP_REFERENCE = new global::System.Data.DataColumn("SETUP_REFERENCE", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSETUP_REFERENCE);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("EXP_LAW_AGENCY_SETUP_REFERENCE_LINKKey1", new global::System.Data.DataColumn[] {
+                                this.columnID}, true));
+                this.columnID.AllowDBNull = false;
+                this.columnID.Unique = true;
+                this.columnID.Caption = "Ключ";
+                this.columnLAW_AGENCY.AllowDBNull = false;
+                this.columnLAW_AGENCY.Caption = "Подразделение";
+                this.columnSETUP_REFERENCE.AllowDBNull = false;
+                this.columnSETUP_REFERENCE.Caption = "Настройка";
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow NewEXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow() {
+                return ((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChanged != null)) {
+                    this.EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChanged(this, new EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEvent(((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChanging != null)) {
+                    this.EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChanging(this, new EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEvent(((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowDeleted != null)) {
+                    this.EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowDeleted(this, new EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEvent(((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowDeleting != null)) {
+                    this.EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowDeleting(this, new EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEvent(((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveEXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow(EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                EXP_LAW_AGENCY_FOR_BI ds = new EXP_LAW_AGENCY_FOR_BI();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class t6301724DataTable : global::System.Data.TypedTableBase<t6301724Row> {
+            
+            private global::System.Data.DataColumn columnID;
+            
+            private global::System.Data.DataColumn columnCODE;
+            
+            private global::System.Data.DataColumn columnNAME;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public t6301724DataTable() {
+                this.TableName = "t6301724";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal t6301724DataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected t6301724DataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CODEColumn {
+                get {
+                    return this.columnCODE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn NAMEColumn {
+                get {
+                    return this.columnNAME;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public t6301724Row this[int index] {
+                get {
+                    return ((t6301724Row)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event t6301724RowChangeEventHandler t6301724RowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event t6301724RowChangeEventHandler t6301724RowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event t6301724RowChangeEventHandler t6301724RowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event t6301724RowChangeEventHandler t6301724RowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Addt6301724Row(t6301724Row row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public t6301724Row Addt6301724Row(long ID, string CODE, string NAME) {
+                t6301724Row rowt6301724Row = ((t6301724Row)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        ID,
+                        CODE,
+                        NAME};
+                rowt6301724Row.ItemArray = columnValuesArray;
+                this.Rows.Add(rowt6301724Row);
+                return rowt6301724Row;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public t6301724Row FindByID(long ID) {
+                return ((t6301724Row)(this.Rows.Find(new object[] {
+                            ID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                t6301724DataTable cln = ((t6301724DataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new t6301724DataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnID = base.Columns["ID"];
+                this.columnCODE = base.Columns["CODE"];
+                this.columnNAME = base.Columns["NAME"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
+                this.columnCODE = new global::System.Data.DataColumn("CODE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCODE);
+                this.columnNAME = new global::System.Data.DataColumn("NAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNAME);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("t6301724Key1", new global::System.Data.DataColumn[] {
+                                this.columnID}, true));
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnCODE}, false));
+                this.columnID.AllowDBNull = false;
+                this.columnID.Unique = true;
+                this.columnID.Caption = "Ключ";
+                this.columnCODE.AllowDBNull = false;
+                this.columnCODE.Unique = true;
+                this.columnCODE.Caption = "Код";
+                this.columnNAME.AllowDBNull = false;
+                this.columnNAME.Caption = "Наименование";
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public t6301724Row Newt6301724Row() {
+                return ((t6301724Row)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new t6301724Row(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(t6301724Row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.t6301724RowChanged != null)) {
+                    this.t6301724RowChanged(this, new t6301724RowChangeEvent(((t6301724Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.t6301724RowChanging != null)) {
+                    this.t6301724RowChanging(this, new t6301724RowChangeEvent(((t6301724Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.t6301724RowDeleted != null)) {
+                    this.t6301724RowDeleted(this, new t6301724RowChangeEvent(((t6301724Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.t6301724RowDeleting != null)) {
+                    this.t6301724RowDeleting(this, new t6301724RowChangeEvent(((t6301724Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Removet6301724Row(t6301724Row row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                EXP_LAW_AGENCY_FOR_BI ds = new EXP_LAW_AGENCY_FOR_BI();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "t6301724DataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2759,303 +3054,6 @@ namespace DatabaseToolSuite.Repositories {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable : global::System.Data.TypedTableBase<EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow> {
-            
-            private global::System.Data.DataColumn columnID;
-            
-            private global::System.Data.DataColumn columnLAW_AGENCY;
-            
-            private global::System.Data.DataColumn columnSETUP_REFERENCE;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable() {
-                this.TableName = "EXP_LAW_AGENCY_SETUP_REFERENCE_LINK";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn IDColumn {
-                get {
-                    return this.columnID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn LAW_AGENCYColumn {
-                get {
-                    return this.columnLAW_AGENCY;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn SETUP_REFERENCEColumn {
-                get {
-                    return this.columnSETUP_REFERENCE;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow this[int index] {
-                get {
-                    return ((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEventHandler EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEventHandler EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEventHandler EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEventHandler EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddEXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow(EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow AddEXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow(long ID, EXP_LAW_AGENCY_URPRow parentEXP_LAW_AGENCY_URPRowByEXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SETUP_REFERENCE_LINK, EXP_LAW_AGENCY_SETUP_REFERENCERow parentEXP_LAW_AGENCY_SETUP_REFERENCERowByEXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE) {
-                EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow rowEXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow = ((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        ID,
-                        null,
-                        null};
-                if ((parentEXP_LAW_AGENCY_URPRowByEXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SETUP_REFERENCE_LINK != null)) {
-                    columnValuesArray[1] = parentEXP_LAW_AGENCY_URPRowByEXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SETUP_REFERENCE_LINK[5];
-                }
-                if ((parentEXP_LAW_AGENCY_SETUP_REFERENCERowByEXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE != null)) {
-                    columnValuesArray[2] = parentEXP_LAW_AGENCY_SETUP_REFERENCERowByEXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE[0];
-                }
-                rowEXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowEXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow);
-                return rowEXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow FindByID(long ID) {
-                return ((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow)(this.Rows.Find(new object[] {
-                            ID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable cln = ((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal void InitVars() {
-                this.columnID = base.Columns["ID"];
-                this.columnLAW_AGENCY = base.Columns["LAW_AGENCY"];
-                this.columnSETUP_REFERENCE = base.Columns["SETUP_REFERENCE"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(long), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnID);
-                this.columnLAW_AGENCY = new global::System.Data.DataColumn("LAW_AGENCY", typeof(long), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLAW_AGENCY);
-                this.columnSETUP_REFERENCE = new global::System.Data.DataColumn("SETUP_REFERENCE", typeof(long), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSETUP_REFERENCE);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("EXP_LAW_AGENCY_SETUP_REFERENCE_LINKKey1", new global::System.Data.DataColumn[] {
-                                this.columnID}, true));
-                this.columnID.AllowDBNull = false;
-                this.columnID.Unique = true;
-                this.columnID.Caption = "Ключ";
-                this.columnLAW_AGENCY.AllowDBNull = false;
-                this.columnLAW_AGENCY.Caption = "Подразделение";
-                this.columnSETUP_REFERENCE.AllowDBNull = false;
-                this.columnSETUP_REFERENCE.Caption = "Настройка";
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow NewEXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow() {
-                return ((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChanged != null)) {
-                    this.EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChanged(this, new EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEvent(((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChanging != null)) {
-                    this.EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChanging(this, new EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEvent(((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowDeleted != null)) {
-                    this.EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowDeleted(this, new EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEvent(((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowDeleting != null)) {
-                    this.EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowDeleting(this, new EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEvent(((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveEXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow(EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                EXP_LAW_AGENCY_FOR_BI ds = new EXP_LAW_AGENCY_FOR_BI();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class EXP_LAW_AGENCY_TYPESDataTable : global::System.Data.TypedTableBase<EXP_LAW_AGENCY_TYPESRow> {
             
             private global::System.Data.DataColumn columnID;
@@ -4226,65 +4224,6 @@ namespace DatabaseToolSuite.Repositories {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class t6301724Row : global::System.Data.DataRow {
-            
-            private t6301724DataTable tablet6301724;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal t6301724Row(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tablet6301724 = ((t6301724DataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public long ID {
-                get {
-                    return ((long)(this[this.tablet6301724.IDColumn]));
-                }
-                set {
-                    this[this.tablet6301724.IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string CODE {
-                get {
-                    return ((string)(this[this.tablet6301724.CODEColumn]));
-                }
-                set {
-                    this[this.tablet6301724.CODEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string NAME {
-                get {
-                    return ((string)(this[this.tablet6301724.NAMEColumn]));
-                }
-                set {
-                    this[this.tablet6301724.NAMEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoid_for_biRow[] Getexp_law_agency_okatoid_for_biRows() {
-                if ((this.Table.ChildRelations["exp_law_agency_okatoid_t6301724"] == null)) {
-                    return new exp_law_agency_okatoid_for_biRow[0];
-                }
-                else {
-                    return ((exp_law_agency_okatoid_for_biRow[])(base.GetChildRows(this.Table.ChildRelations["exp_law_agency_okatoid_t6301724"])));
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
         public partial class exp_law_agency_okatoid_for_biRow : global::System.Data.DataRow {
             
             private exp_law_agency_okatoid_for_biDataTable tableexp_law_agency_okatoid_for_bi;
@@ -4488,28 +4427,6 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public t6301724Row t6301724Row {
-                get {
-                    return ((t6301724Row)(this.GetParentRow(this.Table.ParentRelations["exp_law_agency_okatoid_t6301724"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["exp_law_agency_okatoid_t6301724"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public EXP_LAW_AGENCY_TYPESRow EXP_LAW_AGENCY_TYPESRow {
-                get {
-                    return ((EXP_LAW_AGENCY_TYPESRow)(this.GetParentRow(this.Table.ParentRelations["exp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["exp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public t6292734Row t6292734RowByFK_exp_law_agency_okatoid_t62927341 {
                 get {
                     return ((t6292734Row)(this.GetParentRow(this.Table.ParentRelations["FK_exp_law_agency_okatoid_t62927341"])));
@@ -4543,12 +4460,34 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public t6301724Row t6301724Row {
+                get {
+                    return ((t6301724Row)(this.GetParentRow(this.Table.ParentRelations["exp_law_agency_okatoid_t6301724"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["exp_law_agency_okatoid_t6301724"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public SPECIAL_TERRITORIAL_CODERow SPECIAL_TERRITORIAL_CODERow {
                 get {
                     return ((SPECIAL_TERRITORIAL_CODERow)(this.GetParentRow(this.Table.ParentRelations["exp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["exp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public EXP_LAW_AGENCY_TYPESRow EXP_LAW_AGENCY_TYPESRow {
+                get {
+                    return ((EXP_LAW_AGENCY_TYPESRow)(this.GetParentRow(this.Table.ParentRelations["exp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["exp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES"]);
                 }
             }
             
@@ -4661,6 +4600,135 @@ namespace DatabaseToolSuite.Repositories {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
+        public partial class EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow : global::System.Data.DataRow {
+            
+            private EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK = ((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public long ID {
+                get {
+                    return ((long)(this[this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK.IDColumn]));
+                }
+                set {
+                    this[this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public long LAW_AGENCY {
+                get {
+                    return ((long)(this[this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK.LAW_AGENCYColumn]));
+                }
+                set {
+                    this[this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK.LAW_AGENCYColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public long SETUP_REFERENCE {
+                get {
+                    return ((long)(this[this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK.SETUP_REFERENCEColumn]));
+                }
+                set {
+                    this[this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK.SETUP_REFERENCEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public EXP_LAW_AGENCY_URPRow EXP_LAW_AGENCY_URPRow {
+                get {
+                    return ((EXP_LAW_AGENCY_URPRow)(this.GetParentRow(this.Table.ParentRelations["EXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SETUP_REFERENCE_LINK"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["EXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SETUP_REFERENCE_LINK"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public EXP_LAW_AGENCY_SETUP_REFERENCERow EXP_LAW_AGENCY_SETUP_REFERENCERow {
+                get {
+                    return ((EXP_LAW_AGENCY_SETUP_REFERENCERow)(this.GetParentRow(this.Table.ParentRelations["EXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["EXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE"]);
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class t6301724Row : global::System.Data.DataRow {
+            
+            private t6301724DataTable tablet6301724;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal t6301724Row(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablet6301724 = ((t6301724DataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public long ID {
+                get {
+                    return ((long)(this[this.tablet6301724.IDColumn]));
+                }
+                set {
+                    this[this.tablet6301724.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string CODE {
+                get {
+                    return ((string)(this[this.tablet6301724.CODEColumn]));
+                }
+                set {
+                    this[this.tablet6301724.CODEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string NAME {
+                get {
+                    return ((string)(this[this.tablet6301724.NAMEColumn]));
+                }
+                set {
+                    this[this.tablet6301724.NAMEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public exp_law_agency_okatoid_for_biRow[] Getexp_law_agency_okatoid_for_biRows() {
+                if ((this.Table.ChildRelations["exp_law_agency_okatoid_t6301724"] == null)) {
+                    return new exp_law_agency_okatoid_for_biRow[0];
+                }
+                else {
+                    return ((exp_law_agency_okatoid_for_biRow[])(base.GetChildRows(this.Table.ChildRelations["exp_law_agency_okatoid_t6301724"])));
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
         public partial class SPECIAL_TERRITORIAL_CODERow : global::System.Data.DataRow {
             
             private SPECIAL_TERRITORIAL_CODEDataTable tableSPECIAL_TERRITORIAL_CODE;
@@ -4724,7 +4792,7 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoid_for_biRow[] Getexp_law_agency_okatoidRows() {
+            public exp_law_agency_okatoid_for_biRow[] Getexp_law_agency_okatoid_for_biRows() {
                 if ((this.Table.ChildRelations["exp_law_agency_okatoid_SPECIAL_TERRITORIAL_CODE"] == null)) {
                     return new exp_law_agency_okatoid_for_biRow[0];
                 }
@@ -5093,76 +5161,6 @@ namespace DatabaseToolSuite.Repositories {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow : global::System.Data.DataRow {
-            
-            private EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK = ((EXP_LAW_AGENCY_SETUP_REFERENCE_LINKDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public long ID {
-                get {
-                    return ((long)(this[this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK.IDColumn]));
-                }
-                set {
-                    this[this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK.IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public long LAW_AGENCY {
-                get {
-                    return ((long)(this[this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK.LAW_AGENCYColumn]));
-                }
-                set {
-                    this[this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK.LAW_AGENCYColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public long SETUP_REFERENCE {
-                get {
-                    return ((long)(this[this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK.SETUP_REFERENCEColumn]));
-                }
-                set {
-                    this[this.tableEXP_LAW_AGENCY_SETUP_REFERENCE_LINK.SETUP_REFERENCEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public EXP_LAW_AGENCY_SETUP_REFERENCERow EXP_LAW_AGENCY_SETUP_REFERENCERow {
-                get {
-                    return ((EXP_LAW_AGENCY_SETUP_REFERENCERow)(this.GetParentRow(this.Table.ParentRelations["EXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["EXP_LAW_AGENCY_SETUP_REFERENCE_LINK_EXP_LAW_AGENCY_SETUP_REFERENCE"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public EXP_LAW_AGENCY_URPRow EXP_LAW_AGENCY_URPRow {
-                get {
-                    return ((EXP_LAW_AGENCY_URPRow)(this.GetParentRow(this.Table.ParentRelations["EXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SETUP_REFERENCE_LINK"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["EXP_LAW_AGENCY_URP_EXP_LAW_AGENCY_SETUP_REFERENCE_LINK"]);
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
         public partial class EXP_LAW_AGENCY_TYPESRow : global::System.Data.DataRow {
             
             private EXP_LAW_AGENCY_TYPESDataTable tableEXP_LAW_AGENCY_TYPES;
@@ -5231,7 +5229,7 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoid_for_biRow[] Getexp_law_agency_okatoidRows() {
+            public exp_law_agency_okatoid_for_biRow[] Getexp_law_agency_okatoid_for_biRows() {
                 if ((this.Table.ChildRelations["exp_law_agency_okatoid_EXP_LAW_AGENCY_TYPES"] == null)) {
                     return new exp_law_agency_okatoid_for_biRow[0];
                 }
@@ -5505,22 +5503,22 @@ namespace DatabaseToolSuite.Repositories {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class t6301724RowChangeEvent : global::System.EventArgs {
+        public class exp_law_agency_okatoid_for_biRowChangeEvent : global::System.EventArgs {
             
-            private t6301724Row eventRow;
+            private exp_law_agency_okatoid_for_biRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public t6301724RowChangeEvent(t6301724Row row, global::System.Data.DataRowAction action) {
+            public exp_law_agency_okatoid_for_biRowChangeEvent(exp_law_agency_okatoid_for_biRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public t6301724Row Row {
+            public exp_law_agency_okatoid_for_biRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -5539,22 +5537,56 @@ namespace DatabaseToolSuite.Repositories {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class exp_law_agency_okatoid_for_biRowChangeEvent : global::System.EventArgs {
+        public class EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEvent : global::System.EventArgs {
             
-            private exp_law_agency_okatoid_for_biRow eventRow;
+            private EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoid_for_biRowChangeEvent(exp_law_agency_okatoid_for_biRow row, global::System.Data.DataRowAction action) {
+            public EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEvent(EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public exp_law_agency_okatoid_for_biRow Row {
+            public EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class t6301724RowChangeEvent : global::System.EventArgs {
+            
+            private t6301724Row eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public t6301724RowChangeEvent(t6301724Row row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public t6301724Row Row {
                 get {
                     return this.eventRow;
                 }
@@ -5691,40 +5723,6 @@ namespace DatabaseToolSuite.Repositories {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public EXP_LAW_AGENCY_SETUP_REFERENCERow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEvent : global::System.EventArgs {
-            
-            private EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRowChangeEvent(EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public EXP_LAW_AGENCY_SETUP_REFERENCE_LINKRow Row {
                 get {
                     return this.eventRow;
                 }

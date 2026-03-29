@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -14,7 +13,7 @@ using static DatabaseToolSuite.Repositories.MainDataSet;
 
 namespace DatabaseToolSuite.Controls
 {
-	internal partial class GaspsListView : UserControl
+	internal partial class GaspsLiteListView : UserControl
 	{
 		private MainDataSet _dataSet;
 		private IList<ViewUrpOrganization> itemsCollection;
@@ -24,22 +23,11 @@ namespace DatabaseToolSuite.Controls
 		private bool _lockShow;
 		private bool _reserveShow;
 		private bool _unlockShow;
-		private bool _fgisEsnsiOnlyShow;
-		private bool _ervkOnlyShow;
 		private readonly long? _authority;
 		private readonly string _okato;
 		private readonly string _code;
 		private ImageList organizationImageList;
-		private ColumnHeader phoneColumn;
-		private ColumnHeader emailColumn;
-		private ColumnHeader addressColumn;
 		private ColumnHeader ownerName;
-		private ColumnHeader isActive;
-		private ColumnHeader isHead;
-		private ColumnHeader special;
-		private ColumnHeader military;
-		private ColumnHeader ogrn;
-		private ColumnHeader inn;
 		private readonly string _name;
 
 		private readonly Func<ViewUrpOrganization, object>[] orders = new Func<ViewUrpOrganization, object>[] {
@@ -49,29 +37,17 @@ namespace DatabaseToolSuite.Controls
 			new Func<ViewUrpOrganization, string>(x => x.Okato),
 			new Func<ViewUrpOrganization, object>(x => x.Begin),
 			new Func<ViewUrpOrganization, object>(x => x.End),
-			new Func<ViewUrpOrganization, string>(x => x.Phone),
-			new Func<ViewUrpOrganization, string>(x => x.Email),
-			new Func<ViewUrpOrganization, string>(x => x.Address),
 			new Func<ViewUrpOrganization, string>(x => x.OwnerName),
-			new Func<ViewUrpOrganization, object>(x => x.IsHead),
-			new Func<ViewUrpOrganization, object>(x => x.Special),
-			new Func<ViewUrpOrganization, object>(x => x.Military),
-			new Func<ViewUrpOrganization, string>(x => x.Ogrn),
-			new Func<ViewUrpOrganization, string>(x => x.Inn),
-			new Func<ViewUrpOrganization, object>(x => x.IsActive),
 			new Func<ViewUrpOrganization, object>(x => x.LawAgencyType)
 	};
 
-		public GaspsListView()
+		public GaspsLiteListView()
 		{
 			itemsCollection = new List<ViewUrpOrganization>();
 
 			_lockShow = false;
 			_reserveShow = true;
 			_unlockShow = true;
-			_fgisEsnsiOnlyShow = false;
-			_ervkOnlyShow = false;
-
 			_authority = null;
 			_okato = string.Empty;
 			_code = string.Empty;
@@ -87,9 +63,7 @@ namespace DatabaseToolSuite.Controls
 				name: _name,
 				unlockShow: _unlockShow,
 				reserveShow: _reserveShow,
-				lockShow: _lockShow,
-				fgisEsnsiOnlyShow: _fgisEsnsiOnlyShow,
-				ervkOnlyShow: _ervkOnlyShow);
+				lockShow: _lockShow);
 
 			DetailsUpdate();
 		}
@@ -109,9 +83,7 @@ namespace DatabaseToolSuite.Controls
 						name: _name,
 						unlockShow: _unlockShow,
 						reserveShow: _reserveShow,
-						lockShow: _lockShow,
-						fgisEsnsiOnlyShow: _fgisEsnsiOnlyShow,
-						ervkOnlyShow: _ervkOnlyShow);
+						lockShow: _lockShow);
 
 					DetailsUpdate();
 				}
@@ -193,35 +165,9 @@ namespace DatabaseToolSuite.Controls
 			}
 		}
 
-		public bool FgisEsnsiOnlyShow
-		{
-			get => _fgisEsnsiOnlyShow;
-			set
-			{
-				if (_fgisEsnsiOnlyShow != value)
-				{
-					_fgisEsnsiOnlyShow = value;
-					OnFgisEsnsiOnlyVisibleChanged(new EventArgs());
-				}
-			}
-		}
-
-		public bool ErvkOnlyShow
-		{
-			get => _ervkOnlyShow;
-			set
-			{
-				if (_ervkOnlyShow != value)
-				{
-					_ervkOnlyShow = value;
-					OnErvkOnlyVisibleChanged(new EventArgs());
-				}
-			}
-		}
-
 		public int RowCount => itemsCollection.Count;
-		
-		public void Filter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow, bool fgisEsnsiOnlyShow, bool ervkOnlyShow)
+
+		public void Filter(long? authority, string okato, string code, string name, bool unlockShow, bool reserveShow, bool lockShow)
 		{
 			if (DataSet == null) return;
 			IList<ViewUrpOrganization> list = DataSet.GetViewUrpOrganizationFilter(
@@ -232,8 +178,8 @@ namespace DatabaseToolSuite.Controls
 				unlockShow: unlockShow,
 				reserveShow: reserveShow,
 				lockShow: lockShow,
-				fgisEsnsiOnlyShow: fgisEsnsiOnlyShow,
-				ervkOnlyShow: ervkOnlyShow,
+				fgisEsnsiOnlyShow: false,
+				ervkOnlyShow: false,
 				lawAgencyType: null);
 
 			ApplyFilter(list);
@@ -344,30 +290,7 @@ namespace DatabaseToolSuite.Controls
 			item.SubItems.Add(organization.Begin.ToShortDateString());
 			item.SubItems.Add(organization.End.ToShortDateString());
 
-			item.SubItems.Add(organization.Phone);
-			item.SubItems.Add(organization.Email);
-			item.SubItems.Add(organization.Address);
-
 			item.SubItems.Add(organization.OwnerName);
-
-			if (organization.IsErvk)
-			{
-				item.SubItems.Add(organization.IsHead.ToString());
-				item.SubItems.Add(organization.Special.ToString());
-				item.SubItems.Add(organization.Military.ToString());
-				item.SubItems.Add(organization.Ogrn);
-				item.SubItems.Add(organization.Inn);
-				item.SubItems.Add(organization.IsActive.ToString());
-			}
-			else
-			{
-				item.SubItems.Add(string.Empty);
-				item.SubItems.Add(string.Empty);
-				item.SubItems.Add(string.Empty);
-				item.SubItems.Add(string.Empty);
-				item.SubItems.Add(string.Empty);
-				item.SubItems.Add(string.Empty);
-			}
 
 			return item;
 		}
@@ -376,8 +299,8 @@ namespace DatabaseToolSuite.Controls
 		{
 			if (organization.Begin.Date > DateTime.Now)
 				return 2;
-			else if (organization.Begin.Date <= DateTime.Today.Date
-				&& organization.End.Date > DateTime.Today.Date)
+			else if (organization.Begin.Date <= DateTime.Today
+				&& organization.End.Date > DateTime.Today)
 				if (organization.IsUrp)
 				{
 					return 2 + (int)organization.LawAgencyType;
@@ -390,52 +313,26 @@ namespace DatabaseToolSuite.Controls
 				return 1;
 		}
 
-		public void UpdateListViewItems()
+		public void UpdateListViewItem()
 		{
-			if (itemsCollection.Count == 0 && baseListView.SelectedIndices.Count == 0) return;
+			if (itemsCollection.Count == 0) return;
+			int selectedIndex = baseListView.SelectedIndices.Count > 0 ? baseListView.SelectedIndices[0] : 0;
+			long version = itemsCollection[selectedIndex].Version;
+			itemsCollection[selectedIndex] = _dataSet.GetViewUrpOrganization(version);
+			ViewUrpOrganization organization = itemsCollection[selectedIndex];
+			ListViewItem item = selectedIndex >= firstItemIndex ? itemsCache[selectedIndex - firstItemIndex] : itemsCache[0];
 
-			foreach (int index in baseListView.SelectedIndices)
-			{
-				long version = itemsCollection[index].Version;
-				itemsCollection[index] = _dataSet.GetViewUrpOrganization(version);
-				ViewUrpOrganization organization = itemsCollection[index];
-				ListViewItem item = index >= firstItemIndex ? itemsCache[index - firstItemIndex] : itemsCache[0];
-				
-				item.ImageIndex = GetImageIndex(organization);
-				item.Text = string.IsNullOrEmpty(organization.Code) ? string.Empty : organization.Code;
-				item.SubItems[1].Text = organization.Name;
-				item.SubItems[2].Text = organization.Authority;
-				item.SubItems[3].Text = organization.Okato;
-				item.SubItems[4].Text = organization.Begin.ToShortDateString();
-				item.SubItems[5].Text = organization.End.ToShortDateString();
+			item.ImageIndex = GetImageIndex(organization);
 
-				item.SubItems[6].Text = organization.Phone;
-				item.SubItems[7].Text = organization.Email;
-				item.SubItems[8].Text = organization.Address;
+			item.Text = string.IsNullOrEmpty(organization.Code) ? string.Empty : organization.Code;
+			item.SubItems[1].Text = organization.Name;
+			item.SubItems[2].Text = organization.Authority;
+			item.SubItems[3].Text = organization.Okato;
+			item.SubItems[4].Text = organization.Begin.ToShortDateString();
+			item.SubItems[5].Text = organization.End.ToShortDateString();
+			item.SubItems[6].Text = organization.OwnerName;
 
-				item.SubItems[9].Text = organization.OwnerName;
-				
-				if (organization.IsErvk)
-				{
-					item.SubItems[10].Text = organization.IsHead.ToString();
-					item.SubItems[11].Text = organization.Special.ToString();
-					item.SubItems[12].Text = organization.Military.ToString();
-					item.SubItems[13].Text = organization.Ogrn;
-					item.SubItems[14].Text = organization.Inn;
-					item.SubItems[15].Text = organization.IsActive.ToString();
-				}
-				else
-				{
-					item.SubItems[10].Text = string.Empty;
-					item.SubItems[11].Text = string.Empty;
-					item.SubItems[12].Text = string.Empty;
-					item.SubItems[13].Text = string.Empty;
-					item.SubItems[14].Text = string.Empty;
-					item.SubItems[15].Text = string.Empty;
-				}
-
-				baseListView.Invalidate(item.Bounds);
-			}
+			Refresh();
 		}
 
 		private void ListView_SelectedIndexChanged(object sender, EventArgs e)
@@ -477,7 +374,7 @@ namespace DatabaseToolSuite.Controls
 				}
 				else
 				{
-					itemsCollection = itemsCollection.OrderByDescending(orders[16]).ToArray();
+					itemsCollection = itemsCollection.OrderByDescending(orders.Last()).ToArray();
 					baseListView.Columns[e.Column].Tag = "UP";
 				}
 			}
@@ -514,10 +411,6 @@ namespace DatabaseToolSuite.Controls
 
 		public event EventHandler UnlockVisibleChanged;
 
-		public event EventHandler FgisEsnsiOnlyVisibleChanged;
-
-		public event EventHandler ErvkOnlyVisibleChanged;
-
 		public event EventHandler<ListViewEventArgs> ItemMouseClick;
 
 		public event EventHandler<ListViewEventArgs> ItemMouseDoubleClick;
@@ -544,18 +437,6 @@ namespace DatabaseToolSuite.Controls
 			UnlockVisibleChanged?.Invoke(this, e);
 		}
 
-		protected virtual void OnFgisEsnsiOnlyVisibleChanged(EventArgs e)
-		{
-			ControlsValueChanged();
-			FgisEsnsiOnlyVisibleChanged?.Invoke(this, e);
-		}
-
-		protected virtual void OnErvkOnlyVisibleChanged(EventArgs e)
-		{
-			ControlsValueChanged();
-			ErvkOnlyVisibleChanged?.Invoke(this, e);
-		}
-
 		protected virtual void OnItemMouseClick(ListViewEventArgs e) => ItemMouseClick?.Invoke(this, e);
 
 		protected virtual void OnItemMouseDoubleClick(ListViewEventArgs e) => ItemMouseDoubleClick?.Invoke(this, e);
@@ -571,9 +452,7 @@ namespace DatabaseToolSuite.Controls
 				name: _name,
 				unlockShow: _unlockShow,
 				reserveShow: _reserveShow,
-				lockShow: _lockShow,
-				fgisEsnsiOnlyShow: _fgisEsnsiOnlyShow,
-				ervkOnlyShow: _ervkOnlyShow);
+				lockShow: _lockShow);
 			DetailsUpdate();
 		}
 
@@ -602,7 +481,7 @@ namespace DatabaseToolSuite.Controls
 		private SendOrPostCallback onProgressReportDelegate;
 		private SendOrPostCallback onCompletedDelegate;
 
-		private readonly HybridDictionary userStateToLifetime = new HybridDictionary();
+		private HybridDictionary userStateToLifetime = new HybridDictionary();
 
 		#region Public events
 
@@ -744,8 +623,8 @@ namespace DatabaseToolSuite.Controls
 				unlockShow: filter.UnlockShow,
 				reserveShow: filter.ReserveShow,
 				lockShow: filter.LockShow,
-				fgisEsnsiOnlyShow: filter.FgisEsnsiOnlyShow,
-				ervkOnlyShow: filter.ErvkOnlyShow,
+				fgisEsnsiOnlyShow: false,
+				ervkOnlyShow: false,
 				lawAgencyType: null);
 
 			return list;
@@ -812,16 +691,7 @@ namespace DatabaseToolSuite.Controls
 			this.okatoColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.beginColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.endColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.phoneColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.emailColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.addressColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ownerName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.isHead = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.special = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.military = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.ogrn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.inn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.isActive = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.organizationImageList = new System.Windows.Forms.ImageList(this.components);
 			this.SuspendLayout();
 			// 
@@ -834,16 +704,7 @@ namespace DatabaseToolSuite.Controls
 			this.okatoColumn,
 			this.beginColumn,
 			this.endColumn,
-			this.phoneColumn,
-			this.emailColumn,
-			this.addressColumn,
-			this.ownerName,
-			this.isHead,
-			this.special,
-			this.military,
-			this.ogrn,
-			this.inn,
-			this.isActive});
+			this.ownerName});
 			this.baseListView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.baseListView.FullRowSelect = true;
 			this.baseListView.GridLines = true;
@@ -897,49 +758,10 @@ namespace DatabaseToolSuite.Controls
 			this.endColumn.Text = "Окончание действия";
 			this.endColumn.Width = 100;
 			// 
-			// phoneColumn
-			// 
-			this.phoneColumn.Text = "Телефон";
-			this.phoneColumn.Width = 120;
-			// 
-			// emailColumn
-			// 
-			this.emailColumn.Text = "Эл.почта";
-			this.emailColumn.Width = 120;
-			// 
-			// addressColumn
-			// 
-			this.addressColumn.Text = "Адрес";
-			this.addressColumn.Width = 200;
-			// 
 			// ownerName
 			// 
 			this.ownerName.Text = "Владелец";
 			this.ownerName.Width = 200;
-			// 
-			// isHead
-			// 
-			this.isHead.Text = "Головная";
-			// 
-			// special
-			// 
-			this.special.Text = "Специализированная";
-			// 
-			// military
-			// 
-			this.military.Text = "Военная";
-			// 
-			// ogrn
-			// 
-			this.ogrn.Text = "ОГРН";
-			// 
-			// inn
-			// 
-			this.inn.Text = "ИНН";
-			// 
-			// isActive
-			// 
-			this.isActive.Text = "Активная";
 			// 
 			// organizationImageList
 			// 
@@ -1003,8 +825,6 @@ namespace DatabaseToolSuite.Controls
 			public bool UnlockShow { get; private set; }
 			public bool ReserveShow { get; private set; }
 			public bool LockShow { get; private set; }
-			public bool FgisEsnsiOnlyShow { get; private set; }
-			public bool ErvkOnlyShow { get; private set; }
 
 			private int hashCode;
 
@@ -1018,8 +838,6 @@ namespace DatabaseToolSuite.Controls
 				UnlockShow = unlockShow;
 				ReserveShow = reserveShow;
 				LockShow = lockShow;
-				FgisEsnsiOnlyShow = fgisEsnsiOnlyShow;
-				ErvkOnlyShow = ervkOnlyShow;
 
 				hashCode = ("GaspsListViewFilterParameters" +
 					(Authority.HasValue ? Authority.Value.ToString() : "Null") + "F1" +
@@ -1028,9 +846,7 @@ namespace DatabaseToolSuite.Controls
 					Name + "F4" +
 					UnlockShow.ToString() + "F5" +
 					ReserveShow.ToString() + "F6" +
-					LockShow.ToString() + "F7" +
-					FgisEsnsiOnlyShow.ToString() + "F8" +
-					ErvkOnlyShow.ToString())
+					LockShow.ToString() + "F7")
 					.GetHashCode();
 			}
 
@@ -1090,149 +906,4 @@ namespace DatabaseToolSuite.Controls
 
 	}
 
-
-	internal class ListViewEventArgs : EventArgs
-	{
-		public ListViewEventArgs(ListViewItem item, MouseEventArgs arg)
-		{
-			FocusedItem = item;
-			Button = arg.Button;
-			Clicks = arg.Clicks;
-			Delta = arg.Delta;
-			Location = arg.Location;
-			X = arg.X;
-			Y = arg.Y;
-		}
-
-		public ListViewItem FocusedItem { get; private set; }
-
-		public MouseButtons Button { get; private set; }
-
-		public int Clicks { get; private set; }
-
-		public int Delta { get; private set; }
-
-		public Point Location { get; private set; }
-
-		public int X { get; private set; }
-
-		public int Y { get; private set; }
-	}
-
-	internal class GaspsListViewProgressChangedEventArgs : ProgressChangedEventArgs
-	{
-		public GaspsListViewProgressChangedEventArgs(
-			long latestItemIndex,
-			int progressPercentage,
-			object userToken) : base(progressPercentage, userToken)
-		{
-			LatestItemIndex = latestItemIndex;
-		}
-
-		public long LatestItemIndex { get; } = 0;
-	}
-
-	internal class ListViewCompletedEventArgs : AsyncCompletedEventArgs
-	{
-		public ListViewCompletedEventArgs(
-			IList<ViewUrpOrganization> collection,
-			Exception e,
-			bool canceled,
-			object state) : base(e, canceled, state)
-		{
-			this.Collection = collection;
-		}
-
-		public IList<ViewUrpOrganization> Collection { get; }
-	}
-
-	internal interface IGaspsListViewItem
-	{
-		[Description("Наименование подразделения (SV-0001)")]
-		[Category("ГАС ПС")]
-		[DisplayName("Наименование")]
-		string Name { get; }
-
-		[Description("Ведомство")]
-		[Category("ГАС ПС")]
-		[DisplayName("Ведомство")]
-		string Authority { get; }
-
-		[Description("Код ОКАТО")]
-		[Category("ГАС ПС")]
-		[DisplayName("ОКАТО")]
-		string Okato { get; }
-
-		[Description("Код подразделения")]
-		[Category("ГАС ПС")]
-		[DisplayName("Код подразделения")]
-		string Code { get; }
-
-		[Description("Дата начала действия подразделения")]
-		[Category("ГАС ПС")]
-		[DisplayName("Дата начала")]
-		DateTime Begin { get; }
-
-		[Description("Дата окончания действия подразделения")]
-		[Category("ГАС ПС")]
-		[DisplayName("Дата окончания")]
-		DateTime End { get; }
-
-		[Description("Уникальное значение версии записи")]
-		[DisplayName("Версия записи")]
-		long Version { get; }
-
-		[Description("Наименование вышестоящей организации (владельца)")]
-		[Category("ГАС ПС")]
-		[DisplayName("Владелец")]
-		string OwnerName { get; }
-
-		[Description("Телефон канцелярии (SV-0004)")]
-		[Category("ФГИС ЕСНСИ")]
-		[DisplayName("Телефон")]
-		string Phone { get; }
-
-		[Description("Электронный адрес канцелярии (SV-0005)")]
-		[Category("ФГИС ЕСНСИ")]
-		[DisplayName("Электронный адрес")]
-		string Email { get; }
-
-		[Description("Почтовый адрес где ведется прием граждан (SV-0006)")]
-		[Category("ФГИС ЕСНСИ")]
-		[DisplayName("Почтовый адрес")]
-		string Address { get; }
-
-		[Description("Признак, определяющий, что орган прокуратуры является головным")]
-		[Category("ЕРВК")]
-		[DisplayName("Головная прокуратура")]
-		bool IsHead { get; }
-
-		[Description("Признак, определяющий, что орган прокуратуры является специализированным")]
-		[Category("ЕРВК")]
-		[DisplayName("Спец.прокуратура")]
-		bool Special { get; }
-
-		[Description("Признак, определяющий, что орган прокуратуры является военным")]
-		[Category("ЕРВК")]
-		[DisplayName("Военная прокуратура")]
-		bool Military { get; }
-
-		[Description("Признак, определяющий, что запись является активной")]
-		[Category("ЕРВК")]
-		[DisplayName("Признак активности")]
-		bool IsActive { get; }
-
-		[Description("ОГРН")]
-		[Category("ЕРВК")]
-		[DisplayName("ОГРН")]
-		string Ogrn { get; }
-
-		[Description("ИНН")]
-		[Category("ЕРВК")]
-		[DisplayName("ИНН")]
-		string Inn { get; }
-
-		[Browsable(false)]
-		bool IsErvk { get; }
-	}
 }

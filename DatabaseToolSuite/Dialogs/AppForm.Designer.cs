@@ -40,6 +40,7 @@
 			this.mnuFileImport = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuFileExport = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuFileExportForGasps = new System.Windows.Forms.ToolStripMenuItem();
+			this.mnuFileExportForBiGasps = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
 			this.mnuFileExportToExcel = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuFileGaspsExportToExcel = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,6 +96,8 @@
 			this.mnuToolsEsnsiIdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuToolsOwnerEdit = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuToolsFixData = new System.Windows.Forms.ToolStripMenuItem();
+			this.mnuToolsSupervision = new System.Windows.Forms.ToolStripMenuItem();
+			this.mnuToolsBatchDataProcessing = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuHelpStatistic = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
@@ -188,7 +191,6 @@
 			this.toolStripButton21 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton22 = new System.Windows.Forms.ToolStripButton();
 			this.gaspsListView = new DatabaseToolSuite.Controls.GaspsListView();
-			this.mnuFileExportForBiGasps = new System.Windows.Forms.ToolStripMenuItem();
 			this.mainMenuStrip.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.filterPanel.SuspendLayout();
@@ -293,6 +295,14 @@
 			this.mnuFileExportForGasps.Size = new System.Drawing.Size(447, 30);
 			this.mnuFileExportForGasps.Text = "Экспорт данных для ГАС ПС...";
 			this.mnuFileExportForGasps.Click += new System.EventHandler(this.FileExportForGasps_Click);
+			// 
+			// mnuFileExportForBiGasps
+			// 
+			this.mnuFileExportForBiGasps.Image = global::DatabaseToolSuite.Properties.Resources.ExportXmlGaspsFile24;
+			this.mnuFileExportForBiGasps.Name = "mnuFileExportForBiGasps";
+			this.mnuFileExportForBiGasps.Size = new System.Drawing.Size(447, 30);
+			this.mnuFileExportForBiGasps.Text = "Экспорт данных для BI платформы ГАС ПС...";
+			this.mnuFileExportForBiGasps.Click += new System.EventHandler(this.FileExportForBiGasps_Click);
 			// 
 			// toolStripMenuItem2
 			// 
@@ -578,7 +588,9 @@
             this.mnuToolsTableEdit,
             this.mnuToolsEsnsiIdToolStripMenuItem,
             this.mnuToolsOwnerEdit,
-            this.mnuToolsFixData});
+            this.mnuToolsFixData,
+            this.mnuToolsSupervision,
+            this.mnuToolsBatchDataProcessing});
 			this.mnuTools.Name = "mnuTools";
 			this.mnuTools.Size = new System.Drawing.Size(81, 27);
 			this.mnuTools.Text = "Сервис";
@@ -588,6 +600,7 @@
 			this.mnuToolsImportFgisEsnsi.Name = "mnuToolsImportFgisEsnsi";
 			this.mnuToolsImportFgisEsnsi.Size = new System.Drawing.Size(507, 30);
 			this.mnuToolsImportFgisEsnsi.Text = "Импорт данных ФГИС ЕСНСИ...";
+			this.mnuToolsImportFgisEsnsi.Visible = false;
 			this.mnuToolsImportFgisEsnsi.Click += new System.EventHandler(this.ToolsImportFgisEsnsi_Click);
 			// 
 			// mnuToolsImportSubdivision
@@ -596,6 +609,7 @@
 			this.mnuToolsImportSubdivision.Name = "mnuToolsImportSubdivision";
 			this.mnuToolsImportSubdivision.Size = new System.Drawing.Size(507, 30);
 			this.mnuToolsImportSubdivision.Text = "Импорт данных из файла 1С...";
+			this.mnuToolsImportSubdivision.Visible = false;
 			this.mnuToolsImportSubdivision.Click += new System.EventHandler(this.ToolsImportSubdivision_Click);
 			// 
 			// mnuToolsImportCourtsData
@@ -724,7 +738,7 @@
 			this.mnuToolsEsnsiIdToolStripMenuItem.Size = new System.Drawing.Size(507, 30);
 			this.mnuToolsEsnsiIdToolStripMenuItem.Text = "mnuToolsEsnsiId";
 			this.mnuToolsEsnsiIdToolStripMenuItem.Visible = false;
-			this.mnuToolsEsnsiIdToolStripMenuItem.Click += new System.EventHandler(this.mnuToolsEsnsiIdToolStripMenuItem_Click);
+			this.mnuToolsEsnsiIdToolStripMenuItem.Click += new System.EventHandler(this.ToolsEsnsiIdToolStripMenuItem_Click);
 			// 
 			// mnuToolsOwnerEdit
 			// 
@@ -740,6 +754,21 @@
 			this.mnuToolsFixData.Text = "Fix Data";
 			this.mnuToolsFixData.Visible = false;
 			this.mnuToolsFixData.Click += new System.EventHandler(this.MnuToolsFixData_Click);
+			// 
+			// mnuToolsSupervision
+			// 
+			this.mnuToolsSupervision.Name = "mnuToolsSupervision";
+			this.mnuToolsSupervision.Size = new System.Drawing.Size(507, 30);
+			this.mnuToolsSupervision.Text = "Поднадзорность...";
+			this.mnuToolsSupervision.Visible = false;
+			this.mnuToolsSupervision.Click += new System.EventHandler(this.ToolsSupervision_Click);
+			// 
+			// mnuToolsBatchDataProcessing
+			// 
+			this.mnuToolsBatchDataProcessing.Name = "mnuToolsBatchDataProcessing";
+			this.mnuToolsBatchDataProcessing.Size = new System.Drawing.Size(507, 30);
+			this.mnuToolsBatchDataProcessing.Text = "Пакетная обработка...";
+			this.mnuToolsBatchDataProcessing.Click += new System.EventHandler(this.ToolsBatchDataProcessing_Click);
 			// 
 			// mnuHelp
 			// 
@@ -1698,14 +1727,6 @@
 			this.gaspsListView.ItemMouseDoubleClick += new System.EventHandler<DatabaseToolSuite.Controls.ListViewEventArgs>(this.GaspsListView_ItemMouseDoubleClick);
 			this.gaspsListView.GaspsListViewCompleted += new DatabaseToolSuite.Controls.GaspsListView.ListViewCompletedEventHandler(this.GaspsListView_GaspsListViewCompleted);
 			// 
-			// mnuFileExportForBiGasps
-			// 
-			this.mnuFileExportForBiGasps.Image = global::DatabaseToolSuite.Properties.Resources.ExportXmlGaspsFile24;
-			this.mnuFileExportForBiGasps.Name = "mnuFileExportForBiGasps";
-			this.mnuFileExportForBiGasps.Size = new System.Drawing.Size(447, 30);
-			this.mnuFileExportForBiGasps.Text = "Экспорт данных для BI платформы ГАС ПС...";
-			this.mnuFileExportForBiGasps.Click += new System.EventHandler(this.FileExportForBiGasps_Click);
-			// 
 			// AppForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -1905,5 +1926,7 @@
 		private System.Windows.Forms.ToolStripMenuItem mnuToolsFixData;
 		private System.Windows.Forms.ToolStripMenuItem mnuToolsImportCourtsData;
 		private System.Windows.Forms.ToolStripMenuItem mnuFileExportForBiGasps;
+		private System.Windows.Forms.ToolStripMenuItem mnuToolsSupervision;
+		private System.Windows.Forms.ToolStripMenuItem mnuToolsBatchDataProcessing;
 	}
 }

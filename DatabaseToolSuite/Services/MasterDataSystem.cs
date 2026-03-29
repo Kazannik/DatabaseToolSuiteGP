@@ -10,15 +10,25 @@ namespace DatabaseToolSuite.Services
 	/// </summary>
 	internal static class MasterDataSystem
 	{
+		/// <summary>
+		/// Судебный орган.
+		/// </summary>
 		public const long COURT_CODE = 5;
+		/// <summary>
+		/// Орган прокуратуры.
+		/// </summary>
 		public const long PROSECUTOR_CODE = 20;
-		public const long COURT_OF_LAW = 5;
+
+		public const long COURT_OF_LAW = COURT_CODE;
 		public static readonly DateTime MAX_DATE = new DateTime(2999, 12, 31);
 		public static readonly DateTime MIN_DATE = new DateTime(1900, 1, 1);
 		public static readonly DateTime ERVK_MIN_DATE = new DateTime(1899, 12, 31);
+		/// <summary>
+		/// Зарезервированные коды.
+		/// </summary>
 		public static readonly long[] RESERVE_CODES = new long[] { 3200 };
 
-		public static Repositories.MainDataSet DataSet => FileSystem.Repository.MainDataSet; 
+		public static Repositories.MainDataSet DataSet => FileSystem.Repository.MainDataSet;
 
 		/// <summary>
 		/// Создание записи о подразделении правоохранительного органа в ГАС ПС
@@ -983,7 +993,7 @@ namespace DatabaseToolSuite.Services
 			errorRow.SPECIAL_TERRITORIAL_CODE = specialTerritorialCode;
 			return errorRow;
 		}
-	
+
 
 
 		/// <summary>
@@ -1051,7 +1061,7 @@ namespace DatabaseToolSuite.Services
 			else
 			{
 				Repositories.MainDataSet.DIC_RECORDRow courtRow = DataSet.DIC_RECORD.Get(vrn);
-				if (courtRow.DATE_END != dateEnd) 
+				if (courtRow.DATE_END != dateEnd)
 				{
 					courtRow.DATE_END = dateEnd;
 					courtRow.ISACTIVE = isActive;

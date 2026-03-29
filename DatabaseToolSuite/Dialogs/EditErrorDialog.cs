@@ -1,5 +1,4 @@
-﻿using DatabaseToolSuite.Controls;
-using System;
+﻿using System;
 
 namespace DatabaseToolSuite.Dialogs
 {
@@ -32,7 +31,7 @@ namespace DatabaseToolSuite.Dialogs
 			return DateTime.Equals(BeginDateTimeValue, oldBeginDate);
 		}
 
-		protected override void ComboBox_SelectedIndexChanged(object sender, EventArgs e) 
+		protected override void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			Controls_ValueChanged(this, EventArgs.Empty);
 		}

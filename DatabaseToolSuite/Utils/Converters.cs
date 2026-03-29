@@ -33,7 +33,7 @@ namespace DatabaseToolSuite.Utils
 				.Replace("\r", string.Empty)
 				.Replace("\n", string.Empty)
 				.Replace("\t", string.Empty)
-				.Replace (";", ",")
+				.Replace(";", ",")
 				.Trim();
 			if (quotesRegex.IsMatch(result))
 			{

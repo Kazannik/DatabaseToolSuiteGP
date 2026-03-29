@@ -90,9 +90,9 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// subdivisions_treeView
 			// 
-			this.subdivisions_treeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.subdivisions_treeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.subdivisions_treeView.CheckBoxes = true;
 			this.subdivisions_treeView.Location = new System.Drawing.Point(8, 181);
 			this.subdivisions_treeView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -113,8 +113,8 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			// parent_textBox
 			// 
-			this.parent_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.parent_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.parent_textBox.Location = new System.Drawing.Point(119, 106);
 			this.parent_textBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.parent_textBox.Multiline = true;

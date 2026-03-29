@@ -74,7 +74,8 @@ namespace DatabaseToolSuite.Repositories
 
 			public long GetNextEsnsiCode()
 			{
-				if (Count > 0) {
+				if (Count > 0)
+				{
 					long max = 1 + this.AsEnumerable()
 						.Where(x => x.RowState != DataRowState.Deleted)
 						.Select(x => x.esnsiCode)
@@ -101,7 +102,7 @@ namespace DatabaseToolSuite.Repositories
 					{
 						max++;
 					}
-					return max.ToString();					
+					return max.ToString();
 				}
 				else
 					return 1.ToString();
@@ -290,14 +291,14 @@ namespace DatabaseToolSuite.Repositories
 					inn: "7710146102",
 					subjectRfList: "77,город Москва",
 					oktmoList: "45000000");
-				}		
+				}
 			}
 
 			public IEnumerable<ErvkOrganization> ExportData()
 			{
 				return from ervk in this.AsEnumerable()
 						.Where(x => x.RowState != DataRowState.Deleted)
-						//.Where(x=> x.isActive)
+						   //.Where(x=> x.isActive)
 					   join gasps in gaspsTable.ExportActiveData()
 					   on ervk.version equals gasps.version
 					   select new ErvkOrganization(
@@ -316,7 +317,7 @@ namespace DatabaseToolSuite.Repositories
 						   ogrn: ervk.ogrn,
 						   inn: ervk.inn,
 						   subjectRfList: GetSubject(ervk, gasps),
-						   oktmoList: ervk.IsoktmoListNull() 
+						   oktmoList: ervk.IsoktmoListNull()
 						   ? Utils.Converters.OktmoToEightSymbols(gasps.okato_code)
 						   : Utils.Converters.OktmoToEightSymbols(ervk.oktmoList));
 			}
@@ -348,7 +349,7 @@ namespace DatabaseToolSuite.Repositories
 							else
 							{
 								return string.Empty;
-							}							
+							}
 						}
 					}
 					else

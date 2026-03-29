@@ -51,8 +51,8 @@ namespace DatabaseToolSuite.Services
 			excSheet = (Excel._Worksheet)excSheets.get_Item(1);
 			excSheet.Name = "Активные записи";
 
-			object[] objHeaders = { "Номер", "Наименование", "Ведомство", "ОКАТО", "Код", "Дата начала действия", "Родитель" };
-			excRange = excSheet.get_Range("A1", "G1");
+			object[] objHeaders = { "Номер", "Наименование", "Ведомство", "ОКАТО", "Код", "Дата начала действия", "Родитель", "Код родителя" };
+			excRange = excSheet.get_Range("A1", "H1");
 			excRange.Value = objHeaders;
 			excFont = excRange.Font;
 			excFont.Bold = true;
@@ -80,7 +80,13 @@ namespace DatabaseToolSuite.Services
 			excRange.ColumnWidth = 10;
 
 			excRange = excSheet.get_Range("G1", "G1");
+			excRange.NumberFormat = "@";
 			excRange.ColumnWidth = 70;
+
+			excRange = excSheet.get_Range("H1", "H1");
+			excRange.NumberFormat = "@";
+			excRange.ColumnWidth = 10;
+
 
 			object[,] objData = new object[rowCount, objHeaders.Length];
 			int r = 0;
@@ -93,6 +99,7 @@ namespace DatabaseToolSuite.Services
 				objData[r, 4] = item.Code;
 				objData[r, 5] = item.Begin;
 				objData[r, 6] = item.OwnerName;
+				objData[r, 7] = item.OwnerCode;
 				r += 1;
 			}
 
@@ -103,12 +110,12 @@ namespace DatabaseToolSuite.Services
 
 			data = MasterDataSystem.DataSet.gasps.ExportLockData();
 			rowCount = data.Count();
-			
+
 			excSheet = (Excel._Worksheet)excSheets.Add(After: excSheet);
 			excSheet.Name = "Заблокированные версии записей";
 
-			objHeaders = new object[] { "Номер", "Наименование", "Ведомство", "ОКАТО", "Код", "Дата начала действия", "Дата блокировки", "Родитель" };
-			excRange = excSheet.get_Range("A1", "H1");
+			objHeaders = new object[] { "Номер", "Наименование", "Ведомство", "ОКАТО", "Код", "Дата начала действия", "Дата блокировки", "Родитель", "Код родителя" };
+			excRange = excSheet.get_Range("A1", "I1");
 
 			excRange.Value = objHeaders;
 			excFont = excRange.Font;
@@ -141,7 +148,13 @@ namespace DatabaseToolSuite.Services
 			excRange.ColumnWidth = 10;
 
 			excRange = excSheet.get_Range("H1", "H1");
+			excRange.NumberFormat = "@";
 			excRange.ColumnWidth = 70;
+
+			excRange = excSheet.get_Range("I1", "I1");
+			excRange.NumberFormat = "@";
+			excRange.ColumnWidth = 10;
+
 
 			objData = new object[rowCount, objHeaders.Length];
 			r = 0;
@@ -155,6 +168,7 @@ namespace DatabaseToolSuite.Services
 				objData[r, 5] = item.Begin;
 				objData[r, 6] = item.End;
 				objData[r, 7] = item.OwnerName;
+				objData[r, 8] = item.OwnerCode;
 				r += 1;
 			}
 			excRange = excSheet.get_Range("A2", objOpt);
@@ -194,7 +208,7 @@ namespace DatabaseToolSuite.Services
 				recordNode.AppendChild(date_begNode);
 
 				XmlNode date_endNode = xmlDocument.CreateNode(XmlNodeType.Element, "DATE_END", string.Empty);
-				if (item.End < MasterDataSystem.MAX_DATE) 
+				if (item.End < MasterDataSystem.MAX_DATE)
 					date_endNode.InnerText = item.End.ToShortDateString();
 				recordNode.AppendChild(date_endNode);
 
@@ -373,7 +387,7 @@ namespace DatabaseToolSuite.Services
 			}
 
 			excRange = excSheet.get_Range("A2", objOpt);
-			if (rowCount>0)
+			if (rowCount > 0)
 				excRange = excRange.get_Resize(rowCount, objHeaders.Count());
 			excRange.Value = objData;
 		}
