@@ -23,11 +23,16 @@
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
+    <MapFileExtensions>false</MapFileExtensions>
     <TargetCulture>ru</TargetCulture>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>2.0.2.0</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
+    <ProductName>Database Tools Suite</ProductName>
+    <PublisherName>Mikhail Kazannik</PublisherName>
+    <SuiteName>Database Tools Suite</SuiteName>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>2.0.2.1</ApplicationVersion>
+    <UseApplicationTrust>true</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -40,6 +45,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -113,6 +120,9 @@
     <Compile Include="Controls\AuthorityComboBox.cs" />
     <Compile Include="Controls\ComboControl.cs" />
     <Compile Include="Controls\DataGridViewDateTimePickerCell.cs" />
+    <Compile Include="Controls\DatasetListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\UrpListView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -304,6 +314,9 @@
     <Compile Include="Services\Import.cs" />
     <Compile Include="Services\MasterDataSystem.cs" />
     <Compile Include="Utils\NameWizard.cs" />
+    <EmbeddedResource Include="Controls\DatasetListView.resx">
+      <DependentUpon>DatasetListView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\UrpListView.resx">
       <DependentUpon>UrpListView.cs</DependentUpon>
     </EmbeddedResource>
@@ -441,9 +454,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 и x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 и x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

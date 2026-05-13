@@ -79,11 +79,11 @@ namespace DatabaseToolSuite.Services
 			excRange = excSheet.get_Range("F1", "F1");
 			excRange.ColumnWidth = 10;
 
-			excRange = excSheet.get_Range("G1", "G1");
+			excRange = excSheet.get_Range("G1", "G" + (rowCount + 1));
 			excRange.NumberFormat = "@";
 			excRange.ColumnWidth = 70;
 
-			excRange = excSheet.get_Range("H1", "H1");
+			excRange = excSheet.get_Range("H1", "H" + (rowCount + 1));
 			excRange.NumberFormat = "@";
 			excRange.ColumnWidth = 10;
 
@@ -147,11 +147,11 @@ namespace DatabaseToolSuite.Services
 			excRange = excSheet.get_Range("G1", "G1");
 			excRange.ColumnWidth = 10;
 
-			excRange = excSheet.get_Range("H1", "H1");
+			excRange = excSheet.get_Range("H1", "H" + (rowCount + 1));
 			excRange.NumberFormat = "@";
 			excRange.ColumnWidth = 70;
 
-			excRange = excSheet.get_Range("I1", "I1");
+			excRange = excSheet.get_Range("I1", "I" + (rowCount + 1));
 			excRange.NumberFormat = "@";
 			excRange.ColumnWidth = 10;
 

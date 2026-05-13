@@ -88,6 +88,8 @@ namespace DatabaseToolSuite.Repositories {
         
         private global::System.Data.DataRelation relationokato_DIC_RECORD;
         
+        private global::System.Data.DataRelation relationgasps_gasps_owner;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -587,6 +589,7 @@ namespace DatabaseToolSuite.Repositories {
             this.relationcourt_type_DIC_RECORD = this.Relations["court_type_DIC_RECORD"];
             this.relationgasps_DIC_RECORD = this.Relations["gasps_DIC_RECORD"];
             this.relationokato_DIC_RECORD = this.Relations["okato_DIC_RECORD"];
+            this.relationgasps_gasps_owner = this.Relations["gasps_gasps_owner"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -720,6 +723,10 @@ namespace DatabaseToolSuite.Repositories {
                         this.tableokato.courtsrfColumn}, new global::System.Data.DataColumn[] {
                         this.tableDIC_RECORD.UPKODColumn}, false);
             this.Relations.Add(this.relationokato_DIC_RECORD);
+            this.relationgasps_gasps_owner = new global::System.Data.DataRelation("gasps_gasps_owner", new global::System.Data.DataColumn[] {
+                        this.tablegasps.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablegasps.owner_idColumn}, false);
+            this.Relations.Add(this.relationgasps_gasps_owner);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2291,7 +2298,7 @@ namespace DatabaseToolSuite.Repositories {
                         string code, 
                         long version, 
                         long index, 
-                        long owner_id, 
+                        gaspsRow parentgaspsRowBygasps_gasps_owner, 
                         System.DateTime date_beg, 
                         System.DateTime date_end, 
                         long location_okato_id, 
@@ -2315,7 +2322,7 @@ namespace DatabaseToolSuite.Repositories {
                         code,
                         version,
                         index,
-                        owner_id,
+                        null,
                         date_beg,
                         date_end,
                         location_okato_id,
@@ -2334,6 +2341,9 @@ namespace DatabaseToolSuite.Repositories {
                 }
                 if ((parentauthorityRowByFK_authority_gasps != null)) {
                     columnValuesArray[4] = parentauthorityRowByFK_authority_gasps[0];
+                }
+                if ((parentgaspsRowBygasps_gasps_owner != null)) {
+                    columnValuesArray[8] = parentgaspsRowBygasps_gasps_owner[0];
                 }
                 if ((parentcourt_typeRowByFK_court_type_gasps != null)) {
                     columnValuesArray[13] = parentcourt_typeRowByFK_court_type_gasps[0];
@@ -6464,7 +6474,7 @@ namespace DatabaseToolSuite.Repositories {
                     base(rb) {
                 this.tableokato = ((okatoDataTable)(this.Table));
             }
-                                    
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string ter {
@@ -6825,6 +6835,17 @@ namespace DatabaseToolSuite.Repositories {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public gaspsRow gaspsRowParent {
+                get {
+                    return ((gaspsRow)(this.GetParentRow(this.Table.ParentRelations["gasps_gasps_owner"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["gasps_gasps_owner"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IscodeNull() {
                 return this.IsNull(this.tablegasps.codeColumn);
             }
@@ -7020,6 +7041,17 @@ namespace DatabaseToolSuite.Repositories {
                 }
                 else {
                     return ((DIC_RECORDRow[])(base.GetChildRows(this.Table.ChildRelations["gasps_DIC_RECORD"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public gaspsRow[] GetgaspsRows() {
+                if ((this.Table.ChildRelations["gasps_gasps_owner"] == null)) {
+                    return new gaspsRow[0];
+                }
+                else {
+                    return ((gaspsRow[])(base.GetChildRows(this.Table.ChildRelations["gasps_gasps_owner"])));
                 }
             }
         }
@@ -8147,7 +8179,7 @@ namespace DatabaseToolSuite.Repositories {
                     this[this.tableDIC_RECORD.VRNColumn] = value;
                 }
             }
-                       
+                        
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool ISACTIVE {

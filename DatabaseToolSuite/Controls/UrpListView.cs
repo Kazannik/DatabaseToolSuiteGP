@@ -282,7 +282,9 @@ namespace DatabaseToolSuite.Controls
 
 		private void ListView_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
 		{
-			if (itemsCache != null && e.ItemIndex >= firstItemIndex && e.ItemIndex < firstItemIndex + itemsCache.Length)
+			if (itemsCache != null && 
+				e.ItemIndex >= firstItemIndex &&
+				e.ItemIndex < firstItemIndex + itemsCache.Length)
 			{
 				e.Item = itemsCache[e.ItemIndex - firstItemIndex];
 			}
@@ -343,14 +345,17 @@ namespace DatabaseToolSuite.Controls
 		private void UpdateListViewItem(int index)
 		{			
 			int offset = index >= firstItemIndex ? index - firstItemIndex : 0;
-			if (offset >= itemsCache.Length) return;
-			
+			if (offset >= itemsCache.Length)
+			{
+				itemsCache = null;
+				return;
+			}
+
 			long version = itemsCollection[index].Version;
 			itemsCollection[index] = _dataSet.GetViewUrpOrganization(version);
 			ViewUrpOrganization organization = itemsCollection[index];
+			ListViewItem item = index >= firstItemIndex ? itemsCache[index - firstItemIndex] : itemsCache[0];
 
-			ListViewItem item = itemsCache[offset];
-			
 			item.ImageIndex = GetImageIndex(organization);
 			item.Text = string.IsNullOrEmpty(organization.Code) ? string.Empty : organization.Code;
 			item.SubItems[1].Text = organization.Name;
@@ -370,6 +375,8 @@ namespace DatabaseToolSuite.Controls
 
 		private void ListView_VirtualItemsSelectionRangeChanged(object sender, ListViewVirtualItemsSelectionRangeChangedEventArgs e)
 		{
+
+			
 			DetailsUpdate();
 		}
 
