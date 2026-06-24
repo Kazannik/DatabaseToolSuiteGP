@@ -469,6 +469,14 @@ namespace DatabaseToolSuite.Repositories
 					.OrderBy(e => e, new GaspsRowComparer());
 			}
 
+			public EnumerableRowCollection<gaspsRow> GetActiveRowCollection()
+			{
+				return this.AsEnumerable()
+					.Where(e => e.RowState != DataRowState.Deleted)
+					.Where(e => e.date_end.Date > DateTime.Today && e.date_beg.Date <= DateTime.Today)
+					.OrderBy(e => e, new GaspsRowComparer());
+			}
+
 			public IEnumerable<ViewGaspsOrganization> ExportData()
 			{
 				EnumerableRowCollection<gaspsRow> gaspsCollection = this.AsEnumerable()
@@ -479,7 +487,7 @@ namespace DatabaseToolSuite.Repositories
 					.OrderBy(e => e, new GaspsRowComparer());
 
 				return from gasps in gaspsCollection
-					   join owner in gaspsCollection on gasps.owner_id equals owner.key into ow_jointable
+					   join owner in GetActiveRowCollection() on gasps.owner_id equals owner.key into ow_jointable
 					   from ow in ow_jointable.DefaultIfEmpty()
 					   select new ViewGaspsOrganization(gasps: gasps, owner: ow);
 			}
@@ -493,7 +501,7 @@ namespace DatabaseToolSuite.Repositories
 					.OrderBy(e => e, new GaspsRowComparer());
 
 				return from gasps in gaspsCollection
-					   join owner in gaspsCollection on gasps.owner_id equals owner.key into ow_jointable
+					   join owner in GetActiveRowCollection() on gasps.owner_id equals owner.key into ow_jointable
 					   from ow in ow_jointable.DefaultIfEmpty()
 					   select new ViewGaspsOrganization(gasps: gasps, owner: ow);
 			}
@@ -504,8 +512,9 @@ namespace DatabaseToolSuite.Repositories
 					.Where(e => e.RowState != DataRowState.Deleted)
 					.Where(e => e.logEditDate.Date == date.Date)
 					.OrderBy(e => e, new GaspsRowComparer());
+
 				return from gasps in gaspsCollection
-					   join owner in gaspsCollection on gasps.owner_id equals owner.key into ow_jointable
+					   join owner in GetActiveRowCollection() on gasps.owner_id equals owner.key into ow_jointable
 					   from ow in ow_jointable.DefaultIfEmpty()
 					   select new ViewGaspsOrganization(gasps: gasps, owner: ow);
 			}
@@ -519,7 +528,7 @@ namespace DatabaseToolSuite.Repositories
 					.OrderBy(e => e, new GaspsRowComparer());
 
 				return from gasps in gaspsCollection
-					   join owner in gaspsCollection on gasps.owner_id equals owner.key into ow_jointable
+					   join owner in GetActiveRowCollection() on gasps.owner_id equals owner.key into ow_jointable
 					   from ow in ow_jointable.DefaultIfEmpty()
 					   select new ViewGaspsOrganization(gasps: gasps, owner: ow);
 			}
@@ -529,14 +538,8 @@ namespace DatabaseToolSuite.Repositories
 				EnumerableRowCollection<gaspsRow> gaspsCollection = this.AsEnumerable()
 					.Where(e => e.RowState != DataRowState.Deleted);
 
-				EnumerableRowCollection<gaspsRow> activeCollection = gaspsCollection
-					.Where(e =>
-					e.date_end.Date > DateTime.Today &&
-					e.date_beg.Date <= DateTime.Today)
-					.OrderBy(e => e, new GaspsRowComparer());
-
 				return from gasps in gaspsCollection
-					   join owner in activeCollection on gasps.owner_id equals owner.key into ow_jointable
+					   join owner in GetActiveRowCollection() on gasps.owner_id equals owner.key into ow_jointable
 					   from ow in ow_jointable.DefaultIfEmpty()
 					   select new ViewGaspsOrganization(gasps: gasps, owner: ow);
 			}
@@ -549,12 +552,8 @@ namespace DatabaseToolSuite.Repositories
 					&& e.logEditDate >= begin && e.logEditDate <= end)
 					|| (e.date_end >= begin && e.date_end <= end));
 
-				EnumerableRowCollection<gaspsRow> activeCollection = gaspsCollection
-					.Where(e => e.date_end.Date > DateTime.Today && e.date_beg.Date <= DateTime.Today)
-					.OrderBy(e => e, new GaspsRowComparer());
-
 				return from gasps in gaspsCollection
-					   join owner in activeCollection on gasps.owner_id equals owner.key into ow_jointable
+					   join owner in GetActiveRowCollection() on gasps.owner_id equals owner.key into ow_jointable
 					   from ow in ow_jointable.DefaultIfEmpty()
 					   select new ViewGaspsOrganization(gasps: gasps, owner: ow);
 			}
@@ -645,10 +644,7 @@ namespace DatabaseToolSuite.Repositories
 					return compare;
 				}
 
-				int IComparer<gaspsRow>.Compare(gaspsRow x, gaspsRow y)
-				{
-					return Compare(x, y);
-				}
+				int IComparer<gaspsRow>.Compare(gaspsRow x, gaspsRow y) => Compare(x, y);
 			}
 		}
 	}
