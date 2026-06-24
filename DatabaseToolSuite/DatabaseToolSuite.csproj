@@ -14,7 +14,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>publish\2.x.x.x\2.0.2.0\</PublishUrl>
+    <PublishUrl>publish\2.x.x.x\2.0.3.1\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -30,7 +30,7 @@
     <SuiteName>Database Tools Suite</SuiteName>
     <AutorunEnabled>true</AutorunEnabled>
     <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>2.0.2.1</ApplicationVersion>
+    <ApplicationVersion>2.0.3.1</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -101,6 +101,9 @@
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -159,6 +162,12 @@
     </Compile>
     <Compile Include="Dialogs\ExpLawAgencyForm.Designer.cs">
       <DependentUpon>ExpLawAgencyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ExportToWordDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ExportToWordDialog.Designer.cs">
+      <DependentUpon>ExportToWordDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ImportSubdivisionDialog.cs">
       <SubType>Form</SubType>
@@ -357,6 +366,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ExpLawAgencyForm.resx">
       <DependentUpon>ExpLawAgencyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExportToWordDialog.resx">
+      <DependentUpon>ExportToWordDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ImportSubdivisionDialog.resx">
       <DependentUpon>ImportSubdivisionDialog.cs</DependentUpon>

@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Windows.Forms;
 
 namespace DatabaseToolSuite.Services
 {
@@ -14,7 +17,7 @@ namespace DatabaseToolSuite.Services
 		public static bool DefaultDatabaseFileExists()
 		{
 			string fileName = Properties.Settings.Default.DatabaseFileName;
-			return System.IO.File.Exists(fileName);
+			return File.Exists(fileName);
 		}
 
 		public static void ReadDatabase()
@@ -41,9 +44,13 @@ namespace DatabaseToolSuite.Services
 
 		public static void WriteDatabase(string xmlFileName)
 		{
+			Cursor.Current = Cursors.WaitCursor;
+
 			DatabaseFileName = xmlFileName;
 			Repository.WriteXml(xmlFileName);
 			Repository.MainDataSet.AcceptChanges();
+
+			Cursor.Current = Cursors.Default;
 		}
 
 		public static void WriteSchema(string xsdFileName)
@@ -53,7 +60,37 @@ namespace DatabaseToolSuite.Services
 
 		public static void RescueDatabase()
 		{
+			Cursor.Current = Cursors.WaitCursor;
+			
 			Repository.WriteXml(DateTime.Now.ToString("yyyy-MM-dd_hh-mm-ss_") + Properties.Settings.Default.RescueDatabaseFileName);
+				
+			Cursor.Current = Cursors.Default;
+		}
+
+
+		private static string GetBackupFolderPath()
+		{
+			string applicationDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+			DirectoryInfo backubDirectory = new DirectoryInfo(Path.Combine(applicationDataPath, "GASPS"));
+			if (!backubDirectory.Exists) backubDirectory.Create();
+			return backubDirectory.FullName;
+		}
+
+		public static void BackupDatabase()
+		{
+			if (Repository.MainDataSet.HasChanges())
+			{
+				Cursor.Current = Cursors.WaitCursor;
+
+				Repository.WriteXml(Path.Combine(GetBackupFolderPath(), DateTime.Now.ToString("yyyy-MM-dd_hh-mm-ss_") + Properties.Settings.Default.RescueDatabaseFileName));
+
+				Cursor.Current = Cursors.Default;
+			}
+		}
+
+		public static void OpenBackupFilder()
+		{
+			Process.Start("explorer.exe", GetBackupFolderPath());
 		}
 	}
 }

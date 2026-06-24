@@ -18,6 +18,14 @@ namespace DatabaseToolSuite.Services
 		/// Орган прокуратуры.
 		/// </summary>
 		public const long PROSECUTOR_CODE = 20;
+		/// <summary>
+		/// Орган ФССП.
+		/// </summary>
+		public const long FSSP_CODE = 8;
+		/// <summary>
+		/// Орган ФССП.
+		/// </summary>
+		public static readonly string FSSP_STR_CODE = FSSP_CODE.ToString("00");
 
 		public const long COURT_OF_LAW = COURT_CODE;
 		public static readonly DateTime MAX_DATE = new DateTime(2999, 12, 31);
@@ -414,7 +422,8 @@ namespace DatabaseToolSuite.Services
 		/// Правка записи о подразделении правоохранительного органа в ГАС ПС
 		/// </summary>
 		/// <param name="version">Индекс версии</param>
-		/// <param name="date">Дата введения в действие новой версии</param>
+		/// <param name="beginDate">Дата введения в действие версии</param>
+		/// <param name="endDate">Дата прекращения действия версии</param>
 		/// <param name="name">Наименование подразделения</param>
 		/// <param name="okato">Код ОКАТО</param>
 		/// <param name="authorityId">Индекс вида органа</param>
@@ -423,7 +432,8 @@ namespace DatabaseToolSuite.Services
 		/// <returns></returns>
 		public static Repositories.MainDataSet.gaspsRow EditVersionOrganization(
 			long version,
-			DateTime date,
+			DateTime beginDate,
+			DateTime endDate,
 			string name,
 			string okato,
 			long authorityId,
@@ -432,12 +442,12 @@ namespace DatabaseToolSuite.Services
 		{
 			Repositories.MainDataSet.gaspsRow errorRow = DataSet.gasps.GetOrganizationFromVersion(version: version);
 
-			errorRow.date_beg = date;
+			errorRow.date_beg = beginDate;
 			errorRow.name = name;
 			errorRow.okato_code = okato;
 			errorRow.authority_id = authorityId;
 			errorRow.owner_id = ownerKey;
-			errorRow.date_end = MAX_DATE;
+			errorRow.date_end = endDate;
 			errorRow.logEditDate = DateTime.Now;
 
 			return errorRow;

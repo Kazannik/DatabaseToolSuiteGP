@@ -65,7 +65,7 @@ namespace DatabaseToolSuite.Dialogs
 			selectSkippedCodeButton.Enabled = !string.IsNullOrWhiteSpace(AuthorityCode) ||
 				!string.IsNullOrWhiteSpace(OkatoCode);
 
-			cleanCodeButton.Enabled = AuthorityValue.HasValue && AuthorityValue == Services.MasterDataSystem.PROSECUTOR_CODE;
+			cleanCodeButton.Enabled = AuthorityValue.HasValue && (AuthorityValue == Services.MasterDataSystem.PROSECUTOR_CODE || AuthorityValue == Services.MasterDataSystem.FSSP_CODE);
 
 			Text = "Новая запись о подразделении";
 			DialogCaption = "Создание новой записи о подразделении";

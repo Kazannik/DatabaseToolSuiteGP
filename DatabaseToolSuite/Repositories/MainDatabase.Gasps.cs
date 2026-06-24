@@ -498,6 +498,18 @@ namespace DatabaseToolSuite.Repositories
 					   select new ViewGaspsOrganization(gasps: gasps, owner: ow);
 			}
 
+			public IEnumerable<ViewGaspsOrganization> ExportData(DateTime date)
+			{
+				EnumerableRowCollection<gaspsRow> gaspsCollection = this.AsEnumerable()
+					.Where(e => e.RowState != DataRowState.Deleted)
+					.Where(e => e.logEditDate.Date == date.Date)
+					.OrderBy(e => e, new GaspsRowComparer());
+				return from gasps in gaspsCollection
+					   join owner in gaspsCollection on gasps.owner_id equals owner.key into ow_jointable
+					   from ow in ow_jointable.DefaultIfEmpty()
+					   select new ViewGaspsOrganization(gasps: gasps, owner: ow);
+			}
+
 			public IEnumerable<ViewGaspsOrganization> ExportLockData()
 			{
 				EnumerableRowCollection<gaspsRow> gaspsCollection = this.AsEnumerable()

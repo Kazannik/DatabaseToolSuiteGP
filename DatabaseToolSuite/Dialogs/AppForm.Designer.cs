@@ -98,6 +98,7 @@
 			this.mnuToolsFixData = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuToolsSupervision = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuToolsBatchDataProcessing = new System.Windows.Forms.ToolStripMenuItem();
+			this.mnuToolsOpenBackupFolder = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuHelpStatistic = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
@@ -191,6 +192,7 @@
 			this.toolStripButton21 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton22 = new System.Windows.Forms.ToolStripButton();
 			this.gaspsListView = new DatabaseToolSuite.Controls.GaspsListView();
+			this.mnuToolsExportToWord = new System.Windows.Forms.ToolStripMenuItem();
 			this.mainMenuStrip.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.filterPanel.SuspendLayout();
@@ -590,7 +592,9 @@
             this.mnuToolsOwnerEdit,
             this.mnuToolsFixData,
             this.mnuToolsSupervision,
-            this.mnuToolsBatchDataProcessing});
+            this.mnuToolsBatchDataProcessing,
+            this.mnuToolsOpenBackupFolder,
+            this.mnuToolsExportToWord});
 			this.mnuTools.Name = "mnuTools";
 			this.mnuTools.Size = new System.Drawing.Size(81, 27);
 			this.mnuTools.Text = "Сервис";
@@ -769,6 +773,13 @@
 			this.mnuToolsBatchDataProcessing.Size = new System.Drawing.Size(507, 30);
 			this.mnuToolsBatchDataProcessing.Text = "Пакетная обработка...";
 			this.mnuToolsBatchDataProcessing.Click += new System.EventHandler(this.ToolsBatchDataProcessing_Click);
+			// 
+			// mnuToolsOpenBackupFolder
+			// 
+			this.mnuToolsOpenBackupFolder.Name = "mnuToolsOpenBackupFolder";
+			this.mnuToolsOpenBackupFolder.Size = new System.Drawing.Size(507, 30);
+			this.mnuToolsOpenBackupFolder.Text = "Открыть папку Backup...";
+			this.mnuToolsOpenBackupFolder.Click += new System.EventHandler(this.ToolsOpenBackupFolder_Click);
 			// 
 			// mnuHelp
 			// 
@@ -1727,6 +1738,13 @@
 			this.gaspsListView.ItemMouseDoubleClick += new System.EventHandler<DatabaseToolSuite.Controls.ListViewEventArgs>(this.GaspsListView_ItemMouseDoubleClick);
 			this.gaspsListView.GaspsListViewCompleted += new DatabaseToolSuite.Controls.GaspsListView.ListViewCompletedEventHandler(this.GaspsListView_GaspsListViewCompleted);
 			// 
+			// mnuToolsExportToWord
+			// 
+			this.mnuToolsExportToWord.Name = "mnuToolsExportToWord";
+			this.mnuToolsExportToWord.Size = new System.Drawing.Size(507, 30);
+			this.mnuToolsExportToWord.Text = "Экспорт в MS Word...";
+			this.mnuToolsExportToWord.Click += new System.EventHandler(this.MnuToolsExportToWord_Click);
+			// 
 			// AppForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -1928,5 +1946,7 @@
 		private System.Windows.Forms.ToolStripMenuItem mnuFileExportForBiGasps;
 		private System.Windows.Forms.ToolStripMenuItem mnuToolsSupervision;
 		private System.Windows.Forms.ToolStripMenuItem mnuToolsBatchDataProcessing;
+		private System.Windows.Forms.ToolStripMenuItem mnuToolsOpenBackupFolder;
+		private System.Windows.Forms.ToolStripMenuItem mnuToolsExportToWord;
 	}
 }

@@ -116,6 +116,8 @@ namespace DatabaseToolSuite.Dialogs
 
 		protected void Controls_ValueChanged(object sender, EventArgs e)
 		{
+			deleteOwnerButton.Enabled = OrganizationOwner != 0;
+
 			if (
 				oldAuthorityId != Authority ||
 				CourtType != CourtType ||
@@ -131,17 +133,15 @@ namespace DatabaseToolSuite.Dialogs
 			else
 			{
 				OkButtonEnabled = false;
+				return;
 			}
 
-			if ((string.IsNullOrWhiteSpace(codeTextBox.Text) && AuthorityCode != "20") ||
+			if ((string.IsNullOrWhiteSpace(codeTextBox.Text) && AuthorityCode != MasterDataSystem.PROSECUTOR_CODE.ToString() && AuthorityCode != MasterDataSystem.FSSP_STR_CODE)||
 				string.IsNullOrWhiteSpace(OrganizationName) ||
 				!Authority.HasValue ||
 				string.IsNullOrWhiteSpace(OkatoCode))
 				OkButtonEnabled = false;
-
-			deleteOwnerButton.Enabled = OrganizationOwner != 0;
 		}
-
 
 		protected virtual bool AdditionalCondition() => true;
 

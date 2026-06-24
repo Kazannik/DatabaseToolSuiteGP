@@ -34,58 +34,58 @@ namespace DatabaseToolSuite.Dialogs
 		{
 			selectedRowStatusLabel.Text = string.Empty;
 
-			mnuTableCreateOrganization.Enabled = false;
-			mnuContextCreateOrganization.Enabled = false;
-			tableCreateOrganizationButton.Enabled = false;
+			mnuTableCreateOrganization.Enabled = 
+			mnuContextCreateOrganization.Enabled = 
+			tableCreateOrganizationButton.Enabled = 
 
-			mnuTableCreateNewVersion.Enabled = false;
-			mnuContextCreateNewVersion.Enabled = false;
-			tableCreateNewVersionButton.Enabled = false;
-			mnuToolsCreateNewVersion.Enabled = false;
+			mnuTableCreateNewVersion.Enabled = 
+			mnuContextCreateNewVersion.Enabled = 
+			tableCreateNewVersionButton.Enabled = 
+			mnuToolsCreateNewVersion.Enabled = 
 
-			mnuTableRemoveOrganization.Enabled = false;
-			mnuContextRemoveOrganization.Enabled = false;
-			tableRemoveOrganizationButton.Enabled = false;
+			mnuTableRemoveOrganization.Enabled = 
+			mnuContextRemoveOrganization.Enabled = 
+			tableRemoveOrganizationButton.Enabled = 
 
-			mnuTableEditError.Enabled = false;
-			mnuContextEditError.Enabled = false;
-			mnuToolsEditError.Enabled = false;
+			mnuTableEditError.Enabled = 
+			mnuContextEditError.Enabled = 
+			mnuToolsEditError.Enabled = 
 
-			mnuTableFgisEsnsiEdit.Enabled = false;
-			mnuContextFgisEsnsiEdit.Enabled = false;
-			mnuTableFgisEsnsiEditButton.Enabled = false;
+			mnuTableFgisEsnsiEdit.Enabled = 
+			mnuContextFgisEsnsiEdit.Enabled = 
+			mnuTableFgisEsnsiEditButton.Enabled = 
 
-			mnuTableFgisEsnsiCloneToLast.Enabled = false;
-			mnuContextFgisEsnsiCloneToLast.Enabled = false;
-			mnuTableFgisEsnsiCloneToLastButton.Enabled = false;
+			mnuTableFgisEsnsiCloneToLast.Enabled = 
+			mnuContextFgisEsnsiCloneToLast.Enabled = 
+			mnuTableFgisEsnsiCloneToLastButton.Enabled = 
 
-			mnuTableFgisEsnsiRemove.Enabled = false;
-			mnuTableFgisEsnsiRemoveButton.Enabled = false;
+			mnuTableFgisEsnsiRemove.Enabled = 
+			mnuTableFgisEsnsiRemoveButton.Enabled = 
 
-			mnuTableErvkEdit.Enabled = false;
-			mnuContextErvkEdit.Enabled = false;
-			mnuTableErvkEditButton.Enabled = false;
+			mnuTableErvkEdit.Enabled = 
+			mnuContextErvkEdit.Enabled = 
+			mnuTableErvkEditButton.Enabled = 
 
-			mnuTableErvkCloneToLast.Enabled = false;
-			mnuContextErvkCloneToLast.Enabled = false;
-			mnuTableErvkCloneToLastButton.Enabled = false;
+			mnuTableErvkCloneToLast.Enabled = 
+			mnuContextErvkCloneToLast.Enabled = 
+			mnuTableErvkCloneToLastButton.Enabled = 
 
-			mnuTableErvkRemove.Enabled = false;
-			mnuTableErvkRemoveButton.Enabled = false;
+			mnuTableErvkRemove.Enabled = 
+			mnuTableErvkRemoveButton.Enabled = 
 
-			mnuTableUrpEdit.Enabled = false;
-			mnuContextUrpEdit.Enabled = false;
-			mnuTableUrpEditButton.Enabled = false;
+			mnuTableUrpEdit.Enabled = 
+			mnuContextUrpEdit.Enabled = 
+			mnuTableUrpEditButton.Enabled = 
 
-			mnuTableUrpCloneToLast.Enabled = false;
-			mnuContextUrpCloneToLast.Enabled = false;
-			mnuTableUrpCloneToLastButton.Enabled = false;
+			mnuTableUrpCloneToLast.Enabled = 
+			mnuContextUrpCloneToLast.Enabled = 
+			mnuTableUrpCloneToLastButton.Enabled = 
 
-			mnuTableUrpRemove.Enabled = false;
-			mnuTableUrpRemoveButton.Enabled = false;
+			mnuTableUrpRemove.Enabled = 
+			mnuTableUrpRemoveButton.Enabled = 
 
-			mnuToolsClearCode.Enabled = false;
-			additionalToolStripBar.Enabled = false;
+			mnuToolsClearCode.Enabled = 
+			additionalToolStripBar.Enabled = 
 
 			mnuToolsOwnerEdit.Enabled = false;
 		}
@@ -342,7 +342,8 @@ namespace DatabaseToolSuite.Dialogs
 					long version = gaspsListView.DataRow.version;
 					MasterDataSystem.EditVersionOrganization(
 						version: version,
-						date: dialog.BeginDate,
+						beginDate: dialog.BeginDate,
+						endDate: dialog.EndDate,
 						name: dialog.OrganizationName,
 						okato: dialog.OkatoCode,
 						authorityId: dialog.Authority ?? 0,
@@ -418,6 +419,8 @@ namespace DatabaseToolSuite.Dialogs
 
 		private void FileSaveToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+			FileSystem.BackupDatabase();
+
 			if (string.IsNullOrWhiteSpace(FileSystem.DatabaseFileName))
 			{
 				FileSaveAs();
@@ -1153,6 +1156,17 @@ namespace DatabaseToolSuite.Dialogs
 		private void ToolsBatchDataProcessing_Click(object sender, EventArgs e)
 		{
 			BatchDataProcessingDialog dialog = new BatchDataProcessingDialog(FileSystem.Repository.MainDataSet);
+			dialog.ShowDialog();
+		}
+
+		private void ToolsOpenBackupFolder_Click(object sender, EventArgs e)
+		{
+			FileSystem.OpenBackupFilder();
+		}
+
+		private void MnuToolsExportToWord_Click(object sender, EventArgs e)
+		{
+			ExportToWordDialog dialog = new ExportToWordDialog();
 			dialog.ShowDialog();
 		}
 	}

@@ -10,8 +10,10 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
+using static DatabaseToolSuite.Repositories.MainDataSet;
 using static DatabaseToolSuite.Repositories.MainDataSet.ervkDataTable;
 using Excel = Microsoft.Office.Interop.Excel;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace DatabaseToolSuite.Services
 {
@@ -823,6 +825,105 @@ namespace DatabaseToolSuite.Services
 			if (rowCount > 0)
 				excRange = excRange.get_Resize(rowCount, objHeaders.Count());
 			excRange.Value = objData;
+		}
+	
+
+		private static string GetTemplateFileName()
+		{
+			string applicationDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+			DirectoryInfo backubDirectory = new DirectoryInfo(Path.Combine(applicationDataPath, "GASPS"));
+			if (!backubDirectory.Exists) backubDirectory.Create();
+			return Path.Combine(backubDirectory.FullName, "Шаблон.docx");
+		}
+
+	
+		public static void ExportToWord(IEnumerable<ViewGaspsOrganization> collecton, DateTime date)
+		{
+			int rowCount = collecton.Count();
+
+			object oMissing = Missing.Value;
+			object oEndOfDoc = "\\endofdoc"; /* \endofdoc is a predefined bookmark */
+
+			//Start Word and create a new document.
+			Word._Application oWord;
+			Word._Document oDoc;
+			oWord = new Word.Application
+			{
+				Visible = true
+			};
+
+			FileInfo file = new FileInfo(GetTemplateFileName());
+			if (file.Exists)
+			{				
+				object oTemplate = file.FullName;
+				oDoc = oWord.Documents.Add(ref oTemplate, ref oMissing, ref oMissing, ref oMissing);
+			}
+			else
+			{
+				oDoc = oWord.Documents.Add(ref oMissing, ref oMissing, ref oMissing, ref oMissing);
+			}
+			
+			Word.Table oTable;
+			Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+			oTable = oDoc.Tables.Add(wrdRng, rowCount + 1, 4, ref oMissing, ref oMissing);
+
+			oTable.Borders.Enable = 1;
+			// For specific customization (optional):
+			oTable.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
+			oTable.Borders.InsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
+			oTable.Borders.OutsideColor = Word.WdColor.wdColorBlack;
+
+			oTable.Range.ParagraphFormat.SpaceBefore = 0;
+			oTable.Range.ParagraphFormat.SpaceAfter = 0;
+			oTable.Range.ParagraphFormat.LineSpacingRule = Word.WdLineSpacing.wdLineSpaceSingle;
+
+			oTable.Cell(1, 1).Range.Text = "№\nп\\п";
+			oTable.Cell(1, 2).Range.Text = "Наименование подразделения";
+			oTable.Cell(1, 3).Range.Text = "Код подразделения";
+			oTable.Cell(1, 4).Range.Text = "Дата (создания/блокировки) записи";
+			
+			oTable.Rows[1].Range.Font.Bold = 1;
+
+			oTable.Columns[1].SetWidth(oWord.InchesToPoints(0.5f), Word.WdRulerStyle.wdAdjustFirstColumn);
+			
+			oTable.Range.Font.Name = "Times New Roman";
+			oTable.Range.Font.Size = 14;
+
+			oTable.Columns[1].Select();
+			oWord.Selection.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+			oTable.Columns[2].Select();
+			oWord.Selection.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphLeft;
+
+			oTable.Columns[3].Select();
+			oWord.Selection.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphRight;
+
+			oTable.Columns[4].Select();
+			oWord.Selection.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+			oTable.Rows[1].Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+			oTable.Rows[1].AllowBreakAcrossPages = -1;
+			oTable.Rows[1].HeadingFormat = -1;
+
+			int i = 1;
+			List<ViewGaspsOrganization> lockOrganization = new List<ViewGaspsOrganization>(collecton.Where(x => x.End <= date.Date));
+			foreach (var item in lockOrganization)			
+			{
+				oTable.Cell(i + 1, 1).Range.Text = i.ToString();
+				oTable.Cell(i + 1, 2).Range.Text = item.Name;
+				oTable.Cell(i + 1, 3).Range.Text = string.IsNullOrEmpty(item.Code) ? "-" : item.Code;
+				oTable.Cell(i + 1, 4).Range.Text = string.Format("Заблокирована\n{0}", item.End.ToShortDateString());
+				i++;
+			}
+
+			foreach (var item in collecton.Where(x => !lockOrganization.Contains(x)))
+			{
+				oTable.Cell(i + 1, 1).Range.Text = i.ToString();
+				oTable.Cell(i + 1, 2).Range.Text = item.Name;
+				oTable.Cell(i + 1, 3).Range.Text = string.IsNullOrEmpty(item.Code) ? "-" : item.Code;
+				oTable.Cell(i + 1, 4).Range.Text = string.Format("Создана\n{0}", item.Begin.ToShortDateString());
+				i++;
+			}
 		}
 	}
 }

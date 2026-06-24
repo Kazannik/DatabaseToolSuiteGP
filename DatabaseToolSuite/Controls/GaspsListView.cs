@@ -252,7 +252,16 @@ namespace DatabaseToolSuite.Controls
 			if (list != null)
 				itemsCollection = list;
 			else
-				itemsCollection.Clear();
+			{
+				try
+				{
+					itemsCollection.Clear();
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.Message);
+				}
+			}
 
 			baseListView.VirtualListSize = itemsCollection.Count();
 

@@ -131,8 +131,8 @@ namespace DatabaseToolSuite.Dialogs
 			this.tableLayoutPanel.Controls.Add(this.label_Version, 1, 1);
 			this.tableLayoutPanel.Controls.Add(this.label_Copyright, 1, 2);
 			this.tableLayoutPanel.Controls.Add(this.textBox_Description, 0, 4);
-			this.tableLayoutPanel.Location = new System.Drawing.Point(17, 85);
-			this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(6);
+			this.tableLayoutPanel.Location = new System.Drawing.Point(14, 68);
+			this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(5);
 			this.tableLayoutPanel.Name = "tableLayoutPanel";
 			this.tableLayoutPanel.RowCount = 5;
 			this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -140,21 +140,21 @@ namespace DatabaseToolSuite.Dialogs
 			this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
 			this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
 			this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-			this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-			this.tableLayoutPanel.Size = new System.Drawing.Size(834, 425);
+			this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+			this.tableLayoutPanel.Size = new System.Drawing.Size(695, 340);
 			this.tableLayoutPanel.TabIndex = 0;
 			// 
 			// textBox_CompanyName
 			// 
 			this.textBox_CompanyName.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.textBox_CompanyName.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.textBox_CompanyName.Location = new System.Drawing.Point(287, 147);
-			this.textBox_CompanyName.Margin = new System.Windows.Forms.Padding(12, 6, 6, 6);
+			this.textBox_CompanyName.Location = new System.Drawing.Point(239, 116);
+			this.textBox_CompanyName.Margin = new System.Windows.Forms.Padding(10, 5, 5, 5);
 			this.textBox_CompanyName.Multiline = true;
 			this.textBox_CompanyName.Name = "textBox_CompanyName";
 			this.textBox_CompanyName.ReadOnly = true;
 			this.textBox_CompanyName.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.textBox_CompanyName.Size = new System.Drawing.Size(541, 129);
+			this.textBox_CompanyName.Size = new System.Drawing.Size(451, 103);
 			this.textBox_CompanyName.TabIndex = 25;
 			this.textBox_CompanyName.TabStop = false;
 			this.textBox_CompanyName.Text = "Наименование компании";
@@ -163,11 +163,11 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			this.pictureBox_Logo.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pictureBox_Logo.Image = global::DatabaseToolSuite.Properties.Resources.emblem_big;
-			this.pictureBox_Logo.Location = new System.Drawing.Point(6, 6);
-			this.pictureBox_Logo.Margin = new System.Windows.Forms.Padding(6);
+			this.pictureBox_Logo.Location = new System.Drawing.Point(5, 5);
+			this.pictureBox_Logo.Margin = new System.Windows.Forms.Padding(5);
 			this.pictureBox_Logo.Name = "pictureBox_Logo";
 			this.tableLayoutPanel.SetRowSpan(this.pictureBox_Logo, 4);
-			this.pictureBox_Logo.Size = new System.Drawing.Size(263, 270);
+			this.pictureBox_Logo.Size = new System.Drawing.Size(219, 214);
 			this.pictureBox_Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pictureBox_Logo.TabIndex = 12;
 			this.pictureBox_Logo.TabStop = false;
@@ -175,11 +175,11 @@ namespace DatabaseToolSuite.Dialogs
 			// label_ProductName
 			// 
 			this.label_ProductName.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label_ProductName.Location = new System.Drawing.Point(287, 0);
-			this.label_ProductName.Margin = new System.Windows.Forms.Padding(12, 0, 6, 0);
-			this.label_ProductName.MaximumSize = new System.Drawing.Size(0, 32);
+			this.label_ProductName.Location = new System.Drawing.Point(239, 0);
+			this.label_ProductName.Margin = new System.Windows.Forms.Padding(10, 0, 5, 0);
+			this.label_ProductName.MaximumSize = new System.Drawing.Size(0, 26);
 			this.label_ProductName.Name = "label_ProductName";
-			this.label_ProductName.Size = new System.Drawing.Size(541, 32);
+			this.label_ProductName.Size = new System.Drawing.Size(451, 26);
 			this.label_ProductName.TabIndex = 19;
 			this.label_ProductName.Text = "Название продукта";
 			this.label_ProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -187,11 +187,11 @@ namespace DatabaseToolSuite.Dialogs
 			// label_Version
 			// 
 			this.label_Version.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label_Version.Location = new System.Drawing.Point(287, 47);
-			this.label_Version.Margin = new System.Windows.Forms.Padding(12, 0, 6, 0);
-			this.label_Version.MaximumSize = new System.Drawing.Size(0, 32);
+			this.label_Version.Location = new System.Drawing.Point(239, 37);
+			this.label_Version.Margin = new System.Windows.Forms.Padding(10, 0, 5, 0);
+			this.label_Version.MaximumSize = new System.Drawing.Size(0, 26);
 			this.label_Version.Name = "label_Version";
-			this.label_Version.Size = new System.Drawing.Size(541, 32);
+			this.label_Version.Size = new System.Drawing.Size(451, 26);
 			this.label_Version.TabIndex = 0;
 			this.label_Version.Text = "Версия";
 			this.label_Version.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -199,11 +199,11 @@ namespace DatabaseToolSuite.Dialogs
 			// label_Copyright
 			// 
 			this.label_Copyright.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label_Copyright.Location = new System.Drawing.Point(287, 94);
-			this.label_Copyright.Margin = new System.Windows.Forms.Padding(12, 0, 6, 0);
-			this.label_Copyright.MaximumSize = new System.Drawing.Size(0, 32);
+			this.label_Copyright.Location = new System.Drawing.Point(239, 74);
+			this.label_Copyright.Margin = new System.Windows.Forms.Padding(10, 0, 5, 0);
+			this.label_Copyright.MaximumSize = new System.Drawing.Size(0, 26);
 			this.label_Copyright.Name = "label_Copyright";
-			this.label_Copyright.Size = new System.Drawing.Size(541, 32);
+			this.label_Copyright.Size = new System.Drawing.Size(451, 26);
 			this.label_Copyright.TabIndex = 21;
 			this.label_Copyright.Text = "Авторские права";
 			this.label_Copyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -212,13 +212,13 @@ namespace DatabaseToolSuite.Dialogs
 			// 
 			this.tableLayoutPanel.SetColumnSpan(this.textBox_Description, 2);
 			this.textBox_Description.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.textBox_Description.Location = new System.Drawing.Point(12, 288);
-			this.textBox_Description.Margin = new System.Windows.Forms.Padding(12, 6, 6, 6);
+			this.textBox_Description.Location = new System.Drawing.Point(10, 229);
+			this.textBox_Description.Margin = new System.Windows.Forms.Padding(10, 5, 5, 5);
 			this.textBox_Description.Multiline = true;
 			this.textBox_Description.Name = "textBox_Description";
 			this.textBox_Description.ReadOnly = true;
 			this.textBox_Description.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.textBox_Description.Size = new System.Drawing.Size(816, 131);
+			this.textBox_Description.Size = new System.Drawing.Size(680, 106);
 			this.textBox_Description.TabIndex = 23;
 			this.textBox_Description.TabStop = false;
 			this.textBox_Description.Text = "Описание";
@@ -226,17 +226,17 @@ namespace DatabaseToolSuite.Dialogs
 			// AboutDialog
 			// 
 			this.AcceptButton = this.AcceptButton;
-			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.CancelButton;
-			this.ClientSize = new System.Drawing.Size(865, 591);
+			this.ClientSize = new System.Drawing.Size(724, 480);
 			this.Controls.Add(this.tableLayoutPanel);
 			this.DialogCaptionImage = global::DatabaseToolSuite.Properties.Resources.About24;
-			this.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
-			this.MaximumSize = new System.Drawing.Size(887, 647);
-			this.MinimumSize = new System.Drawing.Size(887, 647);
+			this.Margin = new System.Windows.Forms.Padding(6);
+			this.MaximumSize = new System.Drawing.Size(742, 527);
+			this.MinimumSize = new System.Drawing.Size(742, 527);
 			this.Name = "AboutDialog";
-			this.Padding = new System.Windows.Forms.Padding(18);
+			this.Padding = new System.Windows.Forms.Padding(15, 14, 15, 14);
 			this.ShowIcon = false;
 			this.Text = "DialogAbout";
 			this.Controls.SetChildIndex(this.tableLayoutPanel, 0);

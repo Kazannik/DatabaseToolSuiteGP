@@ -413,6 +413,11 @@ namespace DatabaseToolSuite.Repositories
 				logEditDate: gasps.logEditDate)
 			{
 			}
+
+			public override string ToString()
+			{
+				return string.Format("{0} : {1}" ,Okato, Name);
+			}		
 		}
 
 		public class ViewFgisEsnsiOrganization : ViewGaspsOrganization
